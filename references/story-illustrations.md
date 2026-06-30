@@ -227,16 +227,17 @@ python3 /tmp/gen_cover_model.py \
 - gpt: excluded (deterministic rejection at T3+)
 - T5 is never used for illustrations
 
-**Run all illustrations for a book in parallel** (one background process per chapter):
+**Run all illustrations in parallel** — across every chapter AND every book being illustrated. Launch one background process per illustration (all books' chapters together), then a single `wait`. Never generate illustrations one at a time or book-by-book in sequence.
 
 ```bash
+# one background process per illustration — all books, all chapters at once
 python3 /tmp/gen_cover_model.py "doubao-seedream-5-0-260128" "1664x2496" \
-  "public/illustrations/{book-slug}/ch-{NNN}.png" "$PROMPT_1" > /tmp/illus_ch{NNN}.log 2>&1 &
+  "public/illustrations/{book-slug}/ch-{NNN}.png" "$PROMPT_1" > /tmp/illus_{book-slug}_ch{NNN}.log 2>&1 &
 
-# repeat for each illustrated chapter...
+# repeat for every illustrated chapter across every book...
 
 wait
-rm -f /tmp/illus_ch*.log
+rm -f /tmp/illus_*.log
 ```
 
 ### A2.5-4: Verify and report

@@ -171,7 +171,7 @@ If a full pipeline run reaches launch with no illustrations generated for its lo
 | "Review prose" / `/story-review` | A3 only |
 | "Build the site" / full pipeline | 0 → Track A + Track B in parallel; **A2.5 runs automatically after A2 for every long-form book** (skip only on explicit opt-out) |
 
-**New-site book count:** When building a full pipeline for a brand-new site with no existing content, default to **8 books**. Run A0 for all 8 in parallel (one Agent call per book), then A1 for all 8 in parallel. Genre and topic are selected independently per book by random sampling from the high-demand genre pool — repetition across books is allowed and expected. Do not attempt to maximize genre variety across the site; just pick whatever has strong demand for each book independently.
+**New-site book count:** When building a full pipeline for a brand-new site with no existing content, default to **5 books**. Run A0 for all 5 in parallel (one Agent call per book), then A1 for all 5 in parallel. Genre and topic are selected independently per book by random sampling from the high-demand genre pool — repetition across books is allowed and expected. Do not attempt to maximize genre variety across the site; just pick whatever has strong demand for each book independently.
 
 For review and redesign tasks, start at the relevant phase and load only the references covering the failing areas.
 
@@ -188,13 +188,13 @@ If the Bash tool is unavailable (not a Claude Code session), stop immediately an
 ERROR: fiction-site-builder requires Claude Code. Re-invoke from a Claude Code session.
 ```
 
-**Cover image generation (A2):** Calls `https://api.apiyi.com/v1/images/generations` with model `gpt-image-2-all` via curl. Requires `APIYI_API_KEY` in the environment. If not set, Claude generates a styled SVG cover as fallback — no external API required.
+**Cover image generation (A2):** Calls `https://api.apiyi.com/v1/images/generations` via curl through the cascade `gpt-image-2-all` → `doubao-seedream-5-0-260128` → `nano-banana-pro`. Requires `APIYI_API_KEY` in the environment. **No SVG fallback** — if the key is not set, cover generation is skipped (warning + continue), and the slot is filled in a later pass. All covers in a batch are generated **in parallel**.
 
 ```bash
-[ -n "$APIYI_API_KEY" ] && echo "apiyi path" || echo "SVG fallback"
+[ -n "$APIYI_API_KEY" ] && echo "apiyi path" || echo "skip (no SVG fallback)"
 ```
 
-**Logo and favicon (B2):** Same `APIYI_API_KEY` check as A2. If set, generates PNG assets via `gpt-image-2-all`; if not set, yellow warning + Claude writes SVG fallback.
+**Logo and favicon (B2):** Same `APIYI_API_KEY` check as A2. If set, generates PNG assets via `gpt-image-2-all` → `nano-banana-pro` fallback (logo + favicon **in parallel**); if not set, yellow warning + **skip** (no SVG fallback).
 
 ## Phase Execution Protocol
 
@@ -279,8 +279,8 @@ Do not deliver a build if any of these are true.
 - `outline/outline.md` is missing or empty for any published book.
 - `world/worldbuilding.md` is missing or empty for any published book.
 - Cover image is missing for any book in the reader at launch time. (Development preview may use CSS placeholders; final launch requires real covers.)
-- Logo is missing or is the default Next.js placeholder at launch time. Required: `public/logo.png` (apiyi path) or `public/logo.svg` (SVG fallback).
-- Favicon is missing or is the default Next.js favicon at launch time. Required: `public/favicon-32x32.png` (apiyi path) or `public/favicon.svg` (SVG fallback).
+- Logo is missing or is the default Next.js placeholder at launch time. Required: `public/logo.png` (apiyi). No SVG fallback — if generation was skipped, flag for a later pass.
+- Favicon is missing or is the default Next.js favicon at launch time. Required: `public/favicon-32x32.png` (apiyi). No SVG fallback — if generation was skipped, flag for a later pass.
 
 **Technical:**
 - Build errors or console errors exist on page load.
@@ -333,7 +333,7 @@ Load references only when entering that phase. Do not preload all references at 
 - `story-import.md` — import and split an existing manuscript into project structure.
 - `story-review.md` — multi-perspective structural and prose review.
 - `story-deslop.md` — AI-flavor detection and removal (7 gates).
-- `story-cover.md` + `cover-styles.md` — cover generation via apiyi `gpt-image-2-all` (SVG fallback if no API key).
+- `story-cover.md` + `cover-styles.md` — cover generation via apiyi cascade (gpt → doubao → nano); covers roll T2/T3 per book; no SVG fallback (skip if no API key); all covers generated in parallel.
 - `cover-allure-elements.md` — visual-appeal vocabulary for covers and illustrations; §0 is a lightweight monetization risk note (avoid only outright explicit content).
 - `story-illustrations.md` + `cover-allure-elements.md` — in-chapter illustration generation (A2.5); T3/T4 tier (never T5); peak scene selection; IllustrationBlock component pattern.
 
@@ -377,11 +377,11 @@ Load references only when entering that phase. Do not preload all references at 
     illustrations/              # in-chapter illustrations (A2.5, optional)
       {book-slug}/
         ch-{NNN}.png            # 0–5 per book, at peak dramatic moments
-    logo.png / logo.svg         # site logo — PNG if APIYI_API_KEY set, else SVG (B2)
-    favicon-32x32.png / favicon.svg  # favicon (B2)
+    logo.png                    # site logo — PNG via apiyi (B2); no SVG fallback
+    favicon-32x32.png           # favicon — PNG via apiyi (B2); no SVG fallback
 ```
 
-Cover images (`public/covers/{book-title}/cover/cover_v1.png`) are generated in A2 via apiyi (or SVG fallback). Logo and favicon follow the same pattern in B2 — PNG via apiyi if `APIYI_API_KEY` is set, SVG written by Claude otherwise. During development only, CSS placeholders are acceptable — never ship without real assets.
+Cover images (`public/covers/{book-title}/cover/cover_v1.png`) are generated in A2 via the apiyi cascade (gpt → doubao → nano), all books in parallel. Logo and favicon follow the same pattern in B2 — PNG via apiyi (gpt → nano), generated in parallel. **No SVG fallback** anywhere: if `APIYI_API_KEY` is unset or the cascade fails, the asset is skipped (warning + continue) and flagged for a later pass. During development only, CSS placeholders are acceptable — never ship a launch without real assets.
 
 For a review or redesign task, the output is a findings report and patch set, not a full scaffold.
 

@@ -1912,14 +1912,13 @@ The 8 dimensions:
 
 | Scenario | Tier | Model |
 |---|---|---|
-| New ad account, first creative, unknown audience | T1 | `doubao-seedream-5-0-260128` |
-| Retargeting warm audience, established account | T2 | `doubao-seedream-5-0-260128` |
-| All production covers (default) | **T3** | `doubao-seedream-5-0-260128` |
-| Maximum allure, established account | **T4** | `doubao-seedream-5-0-260128` |
+| New ad account, first creative, unknown audience | T1 | `gpt-image-2-all` → `doubao-seedream-5-0-260128` |
+| Production cover — safer roll (≈half of covers) | **T2** | `gpt-image-2-all` → `doubao-seedream-5-0-260128` |
+| Production cover — hotter roll (≈half of covers) | **T3** | `doubao-seedream-5-0-260128` |
+| Illustration / maximum allure, established account | **T4** | `doubao-seedream-5-0-260128` |
 | Implied nudity, composition coverage | **T5** | `doubao-seedream-5-0-260128` |
-| doubao rejected → fallback (any tier) | same tier | `nano-banana-pro` ⚠️ blank-prevention only |
-| All models reject | drop one tier | — |
-| All models reject T1 | SVG fallback | — |
+| Primary rejected → fallback (any tier) | same tier | `nano-banana-pro` ⚠️ blank-prevention only |
+| All models reject (incl. nano) | skip the asset, continue | — |
 
 > ⚠️ **nano is a blank-prevention fallback, NOT an allure-tier producer.** It is kept in the cascade only so that *some* image exists rather than none when doubao hard-rejects. Three things make its output unusable as a real cover without manual review:
 > - **Silently downgrades.** nano accepts T3+/T4/T5 clothing-state keywords (`torn`, `fallen`, `panels open`, `bare`) and then **ignores them**, rendering intact ~T1 conservative clothing. The prompt says T4; the image is T1. It does not refuse — it lies.
@@ -1928,11 +1927,11 @@ The 8 dimensions:
 >
 > **Rule:** when the cascade falls to nano, treat the result as a placeholder. Prefer re-running the doubao cascade once more (upstream stochastic rejections often clear) before accepting nano output, and always flag a nano cover for manual review. Never ship a nano cover as a final T3+ creative unsigned-off.
 
-**gpt-image-2-all excluded:** boundary confirmed — passes T1/T2, rejects T3+ deterministically. Not included in production or model tests.
+**gpt-image-2-all — excluded at T3+ only:** boundary confirmed — passes T1/T2 (leads the cover cascade there), rejects T3+ deterministically. Not used for any T3+ output.
 
 **A/B testing across rounds:** assign a **different tier per round** (round 1 → T1, round 2 → T2, round 3 → T3, round 4 → T4, round 5 → T5), all using doubao primary + nano fallback. Record which combinations produce clean output without rejection or anatomy distortion.
 
-**Never preemptively soften.** A prompt that hasn't been rejected is not "too much." Default to T3, trust the model cascade to fall through, and only drop a tier when every model at that tier has explicitly rejected. Stop only at the §0 floor.
+**Never preemptively soften.** A prompt that hasn't been rejected is not "too much." Default to the rolled tier (T2/T3 for covers, T3/T4 for illustrations), trust the model cascade to fall through, and only drop a tier when every model at that tier has explicitly rejected. Stop only at the §0 floor.
 
 ---
 

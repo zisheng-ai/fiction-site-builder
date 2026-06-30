@@ -13,8 +13,8 @@ Run these checks before go-live. These are **not** blockers for development prev
 - [ ] `world/worldbuilding.md` exists and describes the world, genre, and tone.
 - [ ] `tracking/context.md` exists and reflects the last written chapter.
 - [ ] Cover image generated for each book: `public/covers/{book-title}/cover_v1.png`.
-- [ ] Site logo generated: `public/logo.png` (apiyi) or `public/logo.svg` (SVG fallback).
-- [ ] Favicon generated: `public/favicon-32x32.png` (apiyi) or `public/favicon.svg` (SVG fallback).
+- [ ] Site logo generated: `public/logo.png` (apiyi). No SVG fallback — if skipped, flagged for a later pass.
+- [ ] Favicon generated: `public/favicon-32x32.png` (apiyi). No SVG fallback — if skipped, flagged for a later pass.
 
 If any launch asset is missing, attempt to generate it automatically (Phase 3 / Phase 6). Only if generation fails, log the missing asset and continue; do not stop the pipeline.
 
@@ -161,8 +161,8 @@ Automated grep over build output:
 
 - [ ] No "lorem ipsum", "Coming soon", "TODO", "[BOOK TITLE]" on rendered pages.
 - [ ] No reader-visible copy mentions AI, Markdown, parser, prompt, or skill.
-- [ ] Logo exists: `public/logo.png` (apiyi path) or `public/logo.svg` (SVG fallback).
-- [ ] Favicon exists: `public/favicon-32x32.png` (apiyi path) or `public/favicon.svg` (SVG fallback).
+- [ ] Logo exists: `public/logo.png` (apiyi). No SVG fallback.
+- [ ] Favicon exists: `public/favicon-32x32.png` (apiyi). No SVG fallback.
 - [ ] End-of-chapter and end-of-book states render correctly.
 
 ## Performance Spot Check
