@@ -16,11 +16,11 @@ Reference for Phase A2.5 — in-chapter illustration generation. Load when the u
 | Hero image on book-detail and home pages | Embedded inside the chapter reader only |
 | Scanned by ad-review crawlers | Never surfaced as an ad creative or meta-image |
 | `public/covers/` | `public/illustrations/` |
-| One per book | Maximum 3 per book, minimum 0 |
+| One per book | Maximum 5 per book, minimum 0 |
 
 **T5 is never used for illustrations.** T5's no-fabric dorsal composition is too sparse as an inline scene image — it reads as a standalone art piece, not as a chapter moment. T3 and T4 produce more scene-grounded, immersive results.
 
-**Tier assignment per illustration:** randomly pick T3 or T4 independently for each illustration in the book. This produces variety across the novel — some peak moments are charged-but-clothed (T3), others are post-decision (T4). Do not use the same tier for all 3 illustrations in a book.
+**Tier assignment per illustration:** randomly pick T3 or T4 independently for each illustration in the book. This produces variety across the novel — some peak moments are charged-but-clothed (T3), others are post-decision (T4). Do not use the same tier for all illustrations in a book.
 
 ---
 
@@ -36,9 +36,9 @@ The difference from covers is the *tier* used, not the floor.
 
 ---
 
-## Budget: Maximum 3 Illustrations Per Book
+## Budget: Maximum 5 Illustrations Per Book
 
-Place illustrations only at the **3 highest-stakes dramatic peaks** of the novel. Fewer is fine — 1 or 2 is better than 3 forced ones. Zero is correct for books where no scene rises to the emotional level that justifies one.
+Place illustrations only at the **highest-stakes dramatic peaks** of the novel — up to 5, but fewer is fine. 2–3 well-placed illustrations are better than 5 forced ones. Zero is correct for books where no scene rises to the emotional level that justifies one.
 
 **Never add an illustration just to meet a quota.** The image must earn its placement.
 
@@ -48,17 +48,19 @@ Place illustrations only at the **3 highest-stakes dramatic peaks** of the novel
 
 Read `content/{book-slug}/outline/outline.md` and `content/{book-slug}/tracking/context.md` to identify candidate scenes. Use these criteria:
 
-### Placement rule — front / middle / back
+### Placement rule — 5 slots across the novel
 
-Illustrations must be **evenly distributed** across the novel. For a book with N chapters, target one illustration in each third:
+Illustrations must be **evenly distributed** across the novel. For a book with N chapters, divide into 5 equal zones and target at most one illustration per zone:
 
 | Slot | Target range | What to look for |
 |---|---|---|
-| **Front** | chapters 3 – ⌊N/3⌋ | First moment of undeniable attraction; first deliberate touch; the scene where the leads stop pretending they don't notice each other |
-| **Middle** | chapters ⌊N/3⌋+1 – ⌊2N/3⌋ | Emotional turning point; a confession or betrayal that resets the relationship; the moment the protagonist stops fighting |
-| **Back** | chapters ⌊2N/3⌋+1 – N−3 | Near-climax or climactic surrender; the scene readers came for; the point of no return |
+| **S1 — Opening hook** | chapters 2 – ⌊N×0.2⌋ | First charged encounter; first moment of undeniable attraction; the scene that hooks the reader to the relationship |
+| **S2 — Rising tension** | chapters ⌊N×0.2⌋+1 – ⌊N×0.4⌋ | First deliberate touch; the moment the leads stop pretending; early push-pull moment |
+| **S3 — Midpoint shift** | chapters ⌊N×0.4⌋+1 – ⌊N×0.6⌋ | Emotional turning point; a confession or betrayal that resets the relationship; the moment the protagonist stops fighting |
+| **S4 — Late tension** | chapters ⌊N×0.6⌋+1 – ⌊N×0.8⌋ | Near-climax; the decision point; a truth revealed through intimacy |
+| **S5 — Climax** | chapters ⌊N×0.8⌋+1 – N−2 | The scene readers came for; point of no return; final surrender |
 
-**Never place two illustrations within 2 chapters of each other.** If no qualifying scene exists in a slot, leave that slot empty — do not force a scene that doesn't earn it.
+**Never place two illustrations within 3 chapters of each other.** If no qualifying scene exists in a slot, leave that slot empty — do not force a scene that doesn't earn it.
 
 ### Qualifying peak types (one per slot)
 
@@ -206,13 +208,13 @@ python3 /tmp/gen_cover_model.py \
 
 | Tier | Primary | Fallback |
 |---|---|---|
-| T3 | `doubao-seedream-5-0-260128` | `nano-banana-pro` |
-| T4 | `doubao-seedream-5-0-260128` | `nano-banana-pro` |
+| T3 | `doubao-seedream-5-0-260128` | retry once |
+| T4 | `doubao-seedream-5-0-260128` | retry once |
 
-- doubao is reliable at T3 and T4; may stochastically reject T4 — retry once before falling to nano
-- nano at T3: silently ignores clinging-fabric keywords → T1-level output (acceptable for a chapter illustration)
-- nano at T4: post-event framing bypasses nano's filter → ~T2 output (acceptable fallback)
-- gpt: do not attempt T3 or T4 for illustrations (rejects T3 clinging-fabric trigger, rejects T4)
+- doubao is reliable at T3 and T4; stochastic rejection → retry once with identical prompt
+- On second rejection: adjust prompt (remove result-description clauses per `cover-allure-elements.md`), then generate
+- nano: not used in production (test reference only; silently downgrades T3+ to ~T1 output)
+- gpt: excluded (deterministic rejection at T3+)
 - T5 is never used for illustrations
 
 **Run all illustrations for a book in parallel** (one background process per chapter):
@@ -275,12 +277,13 @@ export default function IllustrationBlock({ bookSlug, chapterNum }: Props) {
 ```css
 /* global styles */
 .illustration-block {
-  margin: 2.5rem -1rem;
+  margin: 2.5rem 0;
+  padding: 0 2rem;   /* horizontal padding — image never full-bleed */
   text-align: center;
 }
 .illustration-img {
   width: 100%;
-  max-width: 480px;
+  max-width: 400px;
   height: auto;
   border-radius: 8px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
