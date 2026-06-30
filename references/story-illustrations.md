@@ -233,13 +233,18 @@ When building the site (B4), implement `IllustrationBlock` and wire it into the 
 ```tsx
 // src/components/IllustrationBlock.tsx
 import Image from 'next/image'
+import { existsSync } from 'fs'
+import { join } from 'path'
 
 interface Props {
   bookSlug: string
   chapterNum: string   // zero-padded: "007"
 }
 
-export function IllustrationBlock({ bookSlug, chapterNum }: Props) {
+export default function IllustrationBlock({ bookSlug, chapterNum }: Props) {
+  const filePath = join(process.cwd(), 'public', 'illustrations', bookSlug, `ch-${chapterNum}.png`)
+  if (!existsSync(filePath)) return null
+
   return (
     <figure className="illustration-block">
       <Image
@@ -258,7 +263,7 @@ export function IllustrationBlock({ bookSlug, chapterNum }: Props) {
 ```css
 /* global styles */
 .illustration-block {
-  margin: 2.5rem -1rem;   /* bleed slightly beyond the text column */
+  margin: 2.5rem -1rem;
   text-align: center;
 }
 .illustration-img {
@@ -266,33 +271,39 @@ export function IllustrationBlock({ bookSlug, chapterNum }: Props) {
   max-width: 480px;
   height: auto;
   border-radius: 8px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
 }
 ```
 
 ### Chapter renderer split
 
-In the chapter page component, split chapter body on the marker and insert `IllustrationBlock` at the split point:
+In the chapter page component, split chapter body on the marker and insert `IllustrationBlock` at the split point. The split must integrate with any existing ad-interleaving logic — the `before` half goes through the existing paragraph-split/ad loop; the `after` half renders as a single block after the illustration.
 
 ```tsx
-// src/app/book/[slug]/chapter/[n]/page.tsx (simplified)
+// src/app/book/[slug]/chapter/[n]/page.tsx (integration pattern)
+import IllustrationBlock from '@/components/IllustrationBlock'
+
+// Inside the page component, before the JSX return:
+const chapterNum = String(chapter.order).padStart(3, '0')
 const ILLUSTRATION_MARKER = '<!-- ILLUSTRATION -->'
+const hasIllustration = chapter.content.includes(ILLUSTRATION_MARKER)
+const [mainContent, afterIllustration] = hasIllustration
+  ? chapter.content.split(ILLUSTRATION_MARKER)
+  : [chapter.content, '']
+const contentParts = splitContent(mainContent)  // existing paragraph-split function
 
-function renderChapterContent(rawBody: string, bookSlug: string, chapterNum: string) {
-  const parts = rawBody.split(ILLUSTRATION_MARKER)
-  if (parts.length === 1) return <div dangerouslySetInnerHTML={{ __html: parts[0] }} />
-
-  return (
-    <>
-      <div dangerouslySetInnerHTML={{ __html: parts[0] }} />
-      <IllustrationBlock bookSlug={bookSlug} chapterNum={chapterNum} />
-      <div dangerouslySetInnerHTML={{ __html: parts[1] }} />
-    </>
-  )
-}
+// In the JSX, after the existing content/ad block:
+{hasIllustration && (
+  <>
+    <IllustrationBlock bookSlug={slug} chapterNum={chapterNum} />
+    <div className="prose-reader">
+      <ReactMarkdown remarkPlugins={[remarkGfm]}>{afterIllustration}</ReactMarkdown>
+    </div>
+  </>
+)}
 ```
 
-**If no `public/illustrations/{book-slug}/ch-{NNN}.png` exists, `IllustrationBlock` renders nothing** (implement with a try/catch or a `notFound` guard on the image path). Do not show a broken image or placeholder.
+**IllustrationBlock uses `fs.existsSync` to guard rendering** — if the PNG doesn't exist on disk it returns `null`. This prevents broken images on chapters where generation failed.
 
 ---
 

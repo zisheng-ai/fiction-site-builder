@@ -1072,14 +1072,19 @@ Front-facing compositions outperform side-profile and back-view on scroll-stop r
 
 **Default failure mode:** two characters rendered in pure side profile facing each other, neither face readable to the viewer. The model treats "bodies close together" as "looking at each other" unless explicitly overridden.
 
-**Rule: her face always toward the viewer. His gaze toward her, not the camera — but his face must still be partially readable.**
+**Primary rule: both characters face the viewer. This is the production default — frontal gaze from both figures produces the highest scroll-stop rate. "She looks at viewer, he looks at her" is the fallback, not the default.**
+
+**Priority order (highest to lowest):**
+1. **Both looking at the viewer** — default. Both faces toward camera. No gaze lock between characters.
+2. **She faces viewer, he faces toward her from the side** — his face still three-quarter readable, but he looks slightly toward her, not at the camera.
+3. **She faces viewer, he looks at the side of her face / her throat from behind** — accent pose only (≤1 in 3 covers).
 
 Write gaze direction explicitly for both characters every time:
 
 | Character | Correct | Wrong |
 |---|---|---|
-| **Female lead** | `her face turned outward toward the viewer` / `her expression directed at the camera` / `facing the viewer, her gaze forward` | `her face tilted toward his` / `looking up at him` / `gazing at him` |
-| **Male lead** | `his gaze on her — the side of her face, her throat, her hair` / `looking at her from above, his jaw at her temple` / `his face at three-quarter angle, readable to the viewer` | `looking at her face-to-face` / `their eyes meeting` / `facing her` |
+| **Female lead** | `her face toward the viewer, eyes forward` / `her expression toward the camera, chin slightly lifted` / `facing the viewer, her gaze forward — not looking at him` | `her face tilted toward his` / `looking up at him` / `gazing at him` |
+| **Male lead** | `his face toward the viewer, three-quarter angle — expression of cold possession` / `facing the camera, jaw set, his expression the story` / `his face at three-quarter angle toward the viewer, not toward her` | `looking at her face-to-face` / `their eyes meeting` / `his gaze on her` (when she is also looking at him — gaze lock) |
 
 **The jaw-tilt trap:** `his hand at her jaw tilting her face toward his` is the single most common gaze-lock trigger. It is in almost every T3 pose description and almost always produces face-to-face. Replace it with:
 > `his hand at her jaw — steadying, not directing — her face turns outward toward the viewer, not toward him`
@@ -1087,13 +1092,18 @@ Write gaze direction explicitly for both characters every time:
 Or remove the jaw-tilt entirely and describe his hand position without a direction:
 > `his hand cupping her jaw from the side, thumb at her cheekbone — her face remains toward the viewer`
 
-**Pattern for man-behind-woman (the most common T3 pose):**
-> `she faces the viewer directly — her expression toward the camera. He stands behind her, his face above and to one side of hers, his jaw at her temple — looking at her, not the camera, his face readable at three-quarter angle to the viewer. His gaze is on her. Hers is on the viewer.`
+**Pattern for both facing viewer (default — use first):**
+> `both figures at three-quarter angle toward the viewer — both looking at the camera. Neither is looking at the other. His expression: cold possession, jaw tight, looking directly at the viewer. Her expression: fierce surrender, lips parted, eyes forward toward the viewer. The tension is in the proximity and their bodies, not a gaze exchange.`
 
-**Pattern for man-beside-woman:**
-> `both at three-quarter angle toward the viewer — neither in side profile. She faces camera. He faces slightly toward her but his face reads to the viewer. Neither is looking at the other's eyes — the tension is in the proximity, not a gaze lock.`
+**Pattern for man-behind-woman (second choice):**
+> `she faces the viewer directly — her expression toward the camera, eyes forward. He stands behind her, his face above and to one side of hers, his jaw at her temple — his face at three-quarter angle toward the viewer, or looking slightly toward her. His gaze is not locked onto hers — tension is in their bodies, not their eyes.`
 
-**Anti-pattern — "facing each other" side-profile trap:** When a prompt says two characters are "facing each other," models render both in pure side profile — two faces looking at each other from the side, neither looking at the camera. This kills allure. The fix: **both characters face the viewer**, even in a charged confrontation. Use `both at three-quarter angle toward the viewer` or `she faces the viewer, his gaze on the side of her face`. Never write `facing each other` without also anchoring both figures to the viewer.
+**Pattern for man-beside-woman (second choice):**
+> `both at three-quarter angle toward the viewer — neither in side profile. Both faces readable to the viewer. Neither is looking into the other's eyes — the tension is in the proximity, not a gaze lock.`
+
+**Anti-pattern — "facing each other" side-profile trap:** When a prompt says two characters are "facing each other," models render both in pure side profile — two faces looking at each other from the side, neither looking at the camera. This kills allure. The fix: **both characters face the viewer**, looking at the camera, not at each other. Use `both at three-quarter angle toward the viewer, both looking at the camera` or `both faces turned toward the viewer — the tension is physical proximity, not eye contact`. Never write `facing each other` without also anchoring both figures to the viewer.
+
+**Anti-pattern — gaze-lock via "looking at each other":** Any phrase that implies mutual eye contact between the characters (even indirectly — `tilting her face toward his`, `she meets his gaze`, `their eyes meet`) triggers a face-to-face render. The fix: specify that BOTH characters look at the camera/viewer, not at each other. Their emotional connection is communicated by body proximity, not by eye contact.
 
 | Frame | When to use | Prompt fragment to include |
 |-------|-------------|---------------------------|
@@ -1310,12 +1320,12 @@ FRAMING: full-body shot, both figures visible from feet to crown, three-quarter 
 TWO characters. Man with powerful bare muscular torso — shirt completely removed,
 defined abs and chest catching moonlight — standing beside woman, his body pressed
 against her side, one forearm low across her abdomen pulling her into him, his other
-hand gripping her jaw and tilting her face toward his. Both figures oriented toward the
-viewer so the full silhouette of both is readable — his bare chest and abs visible,
-her voluptuous figure from feet to crown.
-His expression: absolute cold possession, eyes glowing amber, jaw tight with
-barely-contained instinct — the expression of a man who has claimed something and
-the world can argue later.
+hand at the side of her jaw — steadying, not directing. Both figures at three-quarter
+angle toward the viewer — both faces toward the camera, neither looking at the other.
+His bare chest and abs visible, her voluptuous figure from feet to crown.
+His expression: absolute cold possession, eyes glowing amber, jaw tight —
+looking at the camera, not at her. Her expression: fierce surrender, eyes forward
+toward the viewer.
 Woman in a torn flowing ivory dress — one shoulder completely bare, neckline
 plunging to the sternum, fabric clinging to and slipping from her voluptuous hourglass
 figure; lips parted and trembling, eyes wide with the expression of someone who knows
@@ -1360,11 +1370,12 @@ Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 Romance novel cover, cinematic fantasy photorealistic quality, dark ethereal atmosphere.
 FRAMING: medium-to-full-body shot, both figures from hip to crown, three-quarter angle facing viewer.
 TWO characters. Fae male in dark armor or black robes with silver detail, inhumanly beautiful
-pointed features, his hand at the woman's jaw tilting her face up to his, faces one inch apart.
-Both figures face the viewer — the jaw-tilt brings their faces together while keeping both bodies
-visible and forward-facing, clothing and figures readable from hip to crown.
-His expression: cold ancient amusement and absolute want — the expression of someone who has
-never been told no and finds it unexpectedly interesting that she is trying.
+pointed features, his hand at the side of her jaw — steadying, not directing — both faces
+at three-quarter angle toward the viewer, both looking toward the camera, the charged gap
+between their faces one inch apart but neither breaking to look at the other.
+Both figures face the viewer — clothing and figures readable from hip to crown.
+His expression: cold ancient amusement and absolute want, looking at the camera —
+the expression of someone who has never been told no and finds it unexpectedly interesting.
 Woman in sheer silver flowing gown with deep plunging neckline, bare shoulders, bare midriff —
 fabric billowing from wind that doesn't exist, her hair unbound with tiny flowers woven in;
 her hand pressed flat against his armored chest — the gesture could be stopping him or
@@ -1759,13 +1770,16 @@ The 8 dimensions:
 | **Skin zones** | Three or more zones simultaneously. Bare shoulder + bare back + upper thigh + midriff. The exposure feels total — the viewer's eye has nowhere to rest that isn't skin. | `bare shoulder, bare back from neckline to tailbone`, `upper thigh fully exposed through the torn slit`, `bare midriff and the curve of her hip`, `skin visible from collarbone to hip`, `the entire curve of her back in the moonlight` |
 | **Fabric behavior** | Wet, clinging, or sheer — fabric that maps the body rather than covering it. The material has stopped functioning as clothing. | `rain-soaked fabric transparent and clinging to every curve of her figure`, `wet silk outlining the exact shape of her body`, `sheer fabric leaving nothing to imagination`, `damp clothing pressing against her skin, every line visible`, `wet thin shirt clinging to her chest` |
 | **Body contact** | Zero gap. Multiple simultaneous contact points. Skin-to-skin wherever possible. Bodies intertwined, not merely touching. | `bodies pressed flush together, zero space between them, skin to skin`, `one hand gripping her bare waist with fingers pressing into her skin, the other cupping her jaw`, `her bare back against his bare chest`, `thigh locked against thigh, her hip against his`, `hand splayed across the bare small of her back pulling her flush against him` |
-| **Male figure** | Shirt entirely off. Bare torso in full contact with her. His physical mass is the visual anchor — her body reads against his. Rain-slicked or lit so every muscle is visible. | `shirt completely removed, powerful bare chest and carved abs`, `bare torso pressing against her back, rain-slicked in the moonlight`, `powerful bare chest, muscles catching the only light source`, `bare shoulder at her eyeline, her face turned up toward his jaw` |
+| **Male figure** | **Not required to be bare.** Shirt open or removed — choose by genre. Bare torso fits paranormal/shifter/beach scenes. For contemporary/billionaire/historical: shirt open to mid-chest (T2 torso state) is preferred — the partial-undone read creates more tension than already-off. His physical mass is the visual anchor. | Paranormal/shifter: `shirt completely removed, powerful bare chest and carved abs`, `bare torso pressing against her back, rain-slicked in the moonlight`. Contemporary: `shirt unbuttoned to mid-chest, bare sternum visible`, `open shirt hanging off his shoulders, chest catching the light`. Historical: `shirt torn open at the collar, chest partially exposed`. |
 | **Camera framing** | Extreme close-up. Faces and bodies fill the frame — there is no wasted space, no environment visible except as abstract light and color. | `extreme close-up, bodies from mid-thigh to crown filling the entire frame`, `tight portrait crop, background dissolved to near-abstraction`, `faces in the upper third, bodies pressed together filling the rest`, `camera so close the background is pure shallow bokeh` |
 | **Emotional register** | The point of no return. One of them has stopped fighting and the other knows it. Surrender and raw physical want are visible in every line of the body, not just the face. | `raw physical want, the moment one second before the point of no return`, `expression of total abandon — head thrown back, eyes closed, has stopped fighting it`, `the look of a man who is certain, consuming, possessive — she is already his`, `her expression: she knows this is wrong and her body doesn't care`, `both of them past the point where words would help` |
 | **Environment** | Primal, elemental, intimate to the point of erasure. Rain, darkness, fire, moonlight — the environment amplifies desire, it does not decorate the scene. The world outside them barely exists. | `heavy rain pouring down, both of them soaked, cobblestones reflecting silver moonlight`, `single candle or streetlamp, everything beyond them in total darkness`, `moonlight the only light source, cutting hard shadows across wet bare skin`, `steam rising between them in the cold air`, `the dark so complete their faces are all that's lit` |
 
-**T3 assembly block:**
-> *flowing white silk dress slipping off one bare shoulder, rain-soaked translucent fabric clinging to every curve of her body, the wet silk transparent against her skin, the full skirt heavy with rain. Her back arched in a long elegant curve, pressing her chest forward — chest heaving with each breath, the fabric barely containing her figure. Bare back exposed, bare shoulder. Man behind her, shirt completely off, powerful bare torso pressing against her, one hand gripping her bare waist with fingers pressing into her skin, the other hand at the side of her jaw — steadying, not directing — her face turned outward toward the viewer, not toward him. She faces the camera. He looks at her from above, his jaw at her temple, his face readable at three-quarter angle. Bodies flush together, zero space, skin to skin. Her expression: fierce surrender — she knows this is the point of no return and her body has already answered. Heavy rain, cobblestones reflecting silver moonlight; silver rim light tracing the full curve of her silhouette. The world beyond them dissolved into darkness.*
+**T3 assembly block (both toward viewer — default):**
+> *flowing white silk dress slipping off one bare shoulder, rain-soaked translucent fabric clinging to every curve of her body, the wet silk transparent against her skin, the full skirt heavy with rain. Her back arched in a long elegant curve, pressing her chest forward — chest heaving with each breath, the fabric barely containing her figure. Bare back exposed, bare shoulder. Both figures at three-quarter angle toward the viewer — both faces readable to the camera. Man beside/behind her, shirt open to the chest (or completely off for paranormal genre), his bare sternum or bare torso visible, one hand gripping her bare waist with fingers pressing into her skin, the other hand at the side of her jaw — steadying, not directing. **His face toward the viewer, jaw set, cold expression of possession — looking at the camera, not at her.** Her face toward the viewer, chin slightly lifted, eyes forward. Neither is looking at the other — the tension is in their bodies. Her expression: fierce surrender. His: absolute possession. Bodies flush together, zero space, skin to skin. Heavy rain, cobblestones reflecting silver moonlight; silver rim light tracing the full curve of her silhouette. The world beyond them dissolved into darkness.*
+
+**T3 assembly block (man-behind-woman accent variant — use at most 1 in 3):**
+> *[same fabric/body description as above] Man behind her, shirt completely off [paranormal] or shirt open and hanging [contemporary], powerful bare torso pressing against her bare back, one hand gripping her bare waist, the other at the side of her jaw — steadying, not directing — her face turned outward toward the viewer, not toward him. She faces the camera. His face at three-quarter angle, readable to the viewer — not face-to-face, not gaze-locked. Bodies flush together, zero space, skin to skin.*
 
 > **Style note:** prefer a full flowing skirt over a body-con or short cut — the test-1 doubao image (best result in this series) was a full-length white dress the model chose instinctively. A flowing skirt reads as more romantic and produces more dramatic fabric movement in rain scenes. Not mandatory — body-con and short cuts are valid at T2/T3 for contemporary genres.
 
@@ -1829,16 +1843,18 @@ The 8 dimensions:
 
 | Scenario | Tier | Model |
 |---|---|---|
-| New ad account, first creative, unknown audience | T1 | `gpt-image-2-all` |
-| Retargeting warm audience, established account | T2 | `gpt-image-2-all` |
+| New ad account, first creative, unknown audience | T1 | `doubao-seedream-5-0-260128` |
+| Retargeting warm audience, established account | T2 | `doubao-seedream-5-0-260128` |
 | All production covers (default) | **T3** | `doubao-seedream-5-0-260128` |
 | Maximum allure, established account | **T4** | `doubao-seedream-5-0-260128` |
 | Implied nudity, composition coverage | **T5** | `doubao-seedream-5-0-260128` |
-| doubao rejected → fallback (T3/T4/T5) | same tier | `nano-banana-pro` |
+| doubao rejected → fallback (any tier) | same tier | `nano-banana-pro` |
 | All models reject | drop one tier | — |
 | All models reject T1 | SVG fallback | — |
 
-**A/B testing across rounds:** assign a **different tier per round** (round 1 → T1/gpt, round 2 → T2/gpt, round 3 → T3/doubao, round 4 → T4/doubao, round 5 → T5/doubao). Record which combinations produce clean output without rejection or anatomy distortion.
+**gpt-image-2-all excluded:** boundary confirmed — passes T1/T2, rejects T3+ deterministically. Not included in production or model tests.
+
+**A/B testing across rounds:** assign a **different tier per round** (round 1 → T1, round 2 → T2, round 3 → T3, round 4 → T4, round 5 → T5), all using doubao primary + nano fallback. Record which combinations produce clean output without rejection or anatomy distortion.
 
 **Never preemptively soften.** A prompt that hasn't been rejected is not "too much." Default to T3, trust the model cascade to fall through, and only drop a tier when every model at that tier has explicitly rejected. Stop only at the §0 floor.
 
