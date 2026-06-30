@@ -210,6 +210,8 @@ Every cover must have **all three**:
 | **Question** | Makes the viewer need to know more | An incomplete story visible in the image — what happened before? what happens next? |
 | **Desire** | Makes the viewer want to be in the scene | The allure of the bodies, the heat between them |
 
+**Adding a third figure for conflict:** the Hook Formula does not require exactly two people. When the synopsis offers a rival, betrayer, jealous third party, or looming antagonist, render them in the frame — a third figure sharpens **Tension** and **Question** more than a clean two-person embrace can. Keep one central focal pairing so the eye still has a home; place the third figure to threaten or intrude on that pairing (watching from behind, reaching between them, turned away in betrayal), not to dilute it.
+
 ### Expression Rules — The Face Sells the Story
 
 The face is the click trigger. Generic beauty does not hook. Specific emotion does.
@@ -716,16 +718,19 @@ Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 
 ---
 
-### Escalation Strategy (if first generation is too tame)
+### Exposure Tiers (擦边分级 — pick the highest the model accepts)
 
-If the output looks like two people politely standing near each other, escalate in order:
-1. Add `bodies pressed flush together, zero space between them, skin to skin`
-2. Add `his hand visibly gripping her [bare waist / hip / jaw / inner thigh]`
-3. Add `her dress slipping / fallen / torn — [bare shoulder / bare back / thigh fully exposed]`
-4. Add `close-up crop at chest and face — fill the frame with their bodies`
-5. Add `raw physical want, the moment one second before the point of no return`
-6. Add `wet fabric clinging to and outlining every curve of her figure`
-7. Add `his shirt completely off, powerful bare torso pressing against her back`
+Exposure is **stochastic** — the same prompt rolls different skin levels each generation, so a tame result is not a spec failure, it's RNG. To get a reliably high result you must **bake the tier fragments into the prompt**, not leave them to chance and not treat them as a reactive afterthought. Three named tiers, all strictly above the §0 floor (no nipples / genitals / sex acts):
+
+| Tier | Name | Bake these fragments into every prompt at this tier |
+|---|---|---|
+| **T1** | Suggestive | `off-shoulder gown slipping`, `elegant deep neckline`, `close charged proximity`, `bare shoulders and collarbone` |
+| **T2** | Bold | T1 **plus** `deep plunging neckline to the sternum`, `ample décolletage fully on display`, `bodies pressed flush together, zero space between them`, `his hand gripping her bare waist` |
+| **T3** | Maximum (default for covers) | T2 **plus** `dress torn / slipped / fallen — bare shoulder + bare back + upper thigh exposed`, `wet fabric clinging to and outlining every curve of her figure`, `his shirt completely off, powerful bare torso pressing against her`, `close-up crop at chest and face filling the frame`, `raw physical want, one second before the point of no return` |
+
+**Default for production covers = T3.** Do not start tame and escalate only if it looks weak — start at T3 and let the model's content filter be the only thing that pulls it back. T3 is intentionally pitched **above** what a lucky T2 roll produces, so output reliably clears the highest previous results. The only reason to drop a tier is an actual model rejection: on `invalid_prompt` / `safety` / `rejected`, fall to the cascade's more permissive models first (they usually pass T3), and only soften the tier as the last resort before SVG.
+
+**A/B testing across rounds:** when running model comparison rounds, assign a **different tier per round** (round 1 → T1, round 2 → T2, round 3 → T3) so each model's ceiling is mapped — which tier it renders cleanly, where it starts refusing or distorting anatomy. Keep the tier identical across all models within a round so the round is a fair comparison. Record which (model × tier) combinations pass; the production default is the highest tier the chosen model clears without rejection or anatomy breakage.
 
 Stop only at the §0 floor. Never soften a prompt to "be safe" unless the model actually rejects it.
 
