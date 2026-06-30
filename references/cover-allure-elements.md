@@ -1023,6 +1023,8 @@ Quick-reference: which scene types pair naturally with each genre.
 
 Front-facing compositions outperform side-profile and back-view on scroll-stop rate. **Frontal = default. Side profile = accent only.**
 
+**Anti-pattern — "facing each other" side-profile trap:** When a prompt says two characters are "facing each other," models render both in pure side profile — two faces looking at each other from the side, neither looking at the camera. This kills allure. The fix: **both characters face the viewer**, even in a charged confrontation. Use `both at three-quarter angle toward the viewer` or `she faces the viewer, his gaze cutting toward her from the side`. Never write `facing each other` without also anchoring both figures to the viewer.
+
 | Frame | When to use | Prompt fragment to include |
 |-------|-------------|---------------------------|
 | **Full body** (first choice) | Always — shows clothing, figure, and both characters fully | `full-body shot, both figures visible head to toe, full torso and legs in frame, facing the viewer` |
@@ -1038,7 +1040,7 @@ Front-facing compositions outperform side-profile and back-view on scroll-stop r
 | **Wall pin — frontal cage** | Woman's back to wall, man's arms on either side, she faces viewer fully | `woman's back pressed to wall, man's arms planted on either side forming a cage around her — she faces the viewer fully, dress and figure readable, he leans in from the front, bodies an inch apart` |
 | **Frontal chest press** | Chest-to-chest, both facing camera | `man and woman chest-to-chest facing the viewer, his hands gripping both her hips pulling her flush against him, her hands fisted in his open shirt, full-body shot from hip to crown, every curve of her dress pressed hard against him` |
 | **Power lift — face level** | Lifted to eye level, dynamic | `man's hands gripping her waist lifting her until their faces are level, her legs hanging with skirt riding up, both facing the viewer, her hands on his shoulders, full-body shot` |
-| **Standing confrontation** | Face to face, charged gap visible | `two figures face to face, bodies close but not touching, both in three-quarter view facing camera, full torsos and legs visible, his hand reaching toward her jaw not yet touching, her chin raised in defiance` |
+| **Standing confrontation** | Charged gap, both facing viewer | `two figures standing close but not touching, both at three-quarter angle facing the viewer — neither in side profile — his hand reaching toward her jaw not yet touching, her chin raised in defiance, full torsos and legs visible` |
 | **Chair pin** | Man leans over woman seated in chair | `dominant figure leaning over seated woman in chair, she faces viewer, intense close proximity, power dynamic, controlled expression, medium shot` |
 | **Rain-soaked** | Wet hair clinging to face and neck, raw emotion | `rain-soaked figure, wet hair clinging to face and neck, damp clinging clothing outlining figure, emotionally raw upward gaze facing viewer, neon-lit rainy night street, full body visible` |
 | **Look back over shoulder** *(accent)* | Three-quarter turn, cheekbone catching light | `looking back over shoulder with mysterious expression, cheekbone catching soft light, hair swept by motion, cinematic depth of field` |
@@ -1194,7 +1196,7 @@ Default to the **top three** — all frontal. From-behind poses (marked ▲) are
 | **Against-the-wall — bodies locked** | `man's body pinning woman to the wall, his thigh pressed between her legs, one hand flat on the wall above her, the other gripping her waist and pulling her hips into him, her leg hooked around his, fingers twisted in his open shirt, faces one centimeter apart, both breathing hard — medium shot, she faces viewer, full torsos visible` |
 | **Power lift — face level** | `man's hands gripping her waist lifting her until their faces are level, her legs hanging with dress riding up to bare the thigh, both facing the viewer, her hands gripping his shoulders, full-body shot` |
 | **Chin tilt — almost-collision** | `man's large hand cupping woman's jaw, thumb pressing her lower lip open, tilting her face up to his until their lips are a breath apart, her hands clutching his open shirt, arching her body into his, eyes barely open, raw wanting expression — medium shot showing both torsos, not a head crop` |
-| **Standing confrontation — charged gap** | `man and woman face to face, bodies one inch apart but not touching, both at three-quarter angle facing the viewer, his hand reaching toward her jaw not yet making contact, her chin raised in defiance, his expression of absolute certainty — full-body shot, legs and clothing fully visible` |
+| **Standing confrontation — charged gap** | `man and woman bodies one inch apart but not touching, both at three-quarter angle facing the viewer — NOT facing each other — his gaze cutting toward her, his hand reaching toward her jaw not yet making contact, her chin raised in defiance and turned slightly toward camera, his expression of absolute certainty — full-body shot, legs and clothing fully visible` |
 | **Rain-drenched — bodies merged** | `two figures pressed chest to chest in heavy rain facing the viewer, soaked fabric clinging to and outlining every curve of her body, his hands gripping her waist and the back of her thigh, her leg wrapped around his hip, lips nearly touching — full-body shot` |
 | **Torn aftermath — disheveled** | `woman's gown slipped completely off one shoulder and falling, man's hand at her bare waist skin-to-skin, her hair unraveled, both facing viewer in dim candlelight, her expression: desire and defiance — medium shot` |
 | **Kneeling power dynamic** | `woman kneeling on floor facing the viewer, hands on man's thighs as she looks up at him, her dress draped and falling open at one side, his hand loose in her hair, gaze commanding — full body visible` |
@@ -1360,14 +1362,14 @@ Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 ```
 Romance novel cover, cinematic photorealistic quality, charged competitive atmosphere.
 FRAMING: full-body shot, both figures from feet to crown, three-quarter angle facing the viewer.
-TWO characters facing each other and angled toward the viewer — both bodies fully readable.
+TWO characters both at three-quarter angle facing the viewer — NOT in side profile facing each other — both bodies fully readable.
 He bare chest or fitted athletic shirt torn open, muscular torso and abs fully visible —
-sweat-sheened, still running warm from competition. He looks at her with controlled intensity,
-jaw tight, not letting himself look away.
+sweat-sheened, still running warm from competition. He looks toward her with controlled intensity,
+jaw tight, not letting himself look away, his gaze cutting toward her but his body angled to camera.
 His expression: defiance + desire — he's been told she's off-limits and cannot find a reason
 that still makes sense. Eyes dark, decision already made.
-She facing him at camera angle, in fitted athletic wear — sports bra, high-waist leggings,
-bare midriff fully exposed, voluptuous figure forward — chin raised to meet his gaze;
+She at three-quarter angle toward the viewer, in fitted athletic wear — sports bra, high-waist leggings,
+bare midriff fully exposed, voluptuous figure forward — chin raised, her gaze forward;
 her hand gripping his jersey or forearm. Full body visible — her athletic figure from feet to crown,
 his bare torso, both fully in frame.
 Background: golden-hour empty stadium tunnel, dramatic light shafts from above cutting through dust.
