@@ -1735,7 +1735,7 @@ Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 
 Exposure is **stochastic** — the same prompt rolls different skin levels each generation, so a tame result is not a spec failure, it's RNG. To get a reliably high result you must **bake the tier fragments into the prompt**, not leave them to chance and not treat them as a reactive afterthought.
 
-Five named tiers, all strictly above the §0 floor (no nipples / genitals / sex acts). **Default for production = T3 with doubao.** Each tier has a designated model based on tested compatibility.
+Five named tiers, all strictly above the §0 floor (no nipples / genitals / sex acts). **Production covers = randomly T2 or T3 per cover (roll independently for each book), with doubao.** Illustrations = randomly T3 or T4. Each tier has a designated model based on tested compatibility.
 
 **Model routing (production standard):**
 
@@ -1802,9 +1802,9 @@ The 8 dimensions:
 
 ---
 
-#### T2 — Bold
+#### T2 — Bold *(production cover tier — rolled 50/50 with T3)*
 
-**Use for:** retargeting warm audiences, accounts with history, dark/contemporary romance where the synopsis is clearly adult.
+**Use for:** roughly half of production covers (rolled per book against T3); retargeting warm audiences, accounts with history, dark/contemporary romance where the synopsis is clearly adult. T2 is the safer of the two cover tiers for fresh ad accounts and ad-review crawlers.
 
 **Viewer feeling:** "I need this book right now"
 
@@ -1824,9 +1824,9 @@ The 8 dimensions:
 
 ---
 
-#### T3 — Maximum *(production default)*
+#### T3 — Maximum *(production cover tier — rolled 50/50 with T2)*
 
-**Use for:** all production covers by default. Dark romance, paranormal romance, billionaire/MC/mafia romance, any genre where physical intensity is core to the premise. This is the floor for production output, not a ceiling — it is intentionally pitched above the highest result a lucky T2 roll can produce.
+**Use for:** roughly half of production covers (rolled per book against T2). Dark romance, paranormal romance, billionaire/MC/mafia romance, any genre where physical intensity is core to the premise. This is the hotter of the two production cover tiers — it is intentionally pitched above the highest result a lucky T2 roll can produce.
 
 **Viewer feeling:** "this is exactly what I came here for" — instant click, immediate scroll stop
 
