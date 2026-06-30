@@ -85,7 +85,7 @@ Starts after Phase 0. Runs in parallel with Track B.
 | A0 | Niche Research | `fiction-niche-researcher.md` | `outputs/{site-slug}/{book-slug}/niche-research.json` |
 | A1 | Write | see modes below | chapters, outline, world, tracking |
 | A2 | Cover | `story-cover.md` + `cover-styles.md` | `public/covers/{book-title}/cover/cover_v1.png` per book |
-| A2.5 | Illustrations | `story-illustrations.md` + `cover-allure-elements.md` | `public/illustrations/{book-slug}/ch-{NNN}.png` (0–3 per book) |
+| A2.5 | Illustrations | `story-illustrations.md` + `cover-allure-elements.md` | `public/illustrations/{book-slug}/ch-{NNN}.png` (0–5 per book) |
 | A3 | Quality Pass | `story-review.md` + `story-deslop.md` | review report, AI flavor removed |
 
 A0 runs once per book (not once per site). Required for each new book unless the user has explicitly stated the genre, tropes, and premise. A0's `differentiation_angle` and `competitive_brief` feed directly into A1's story brief.
@@ -100,7 +100,7 @@ A0 runs once per book (not once per site). Required for each new book unless the
 - **Optional** — runs only when the user requests illustrations, or on a full pipeline run after A1 is complete.
 - Never on short-form stories (no chapter files to illustrate).
 - Illustrations use T3 or T4, randomly assigned per illustration. Never T1, T2, or T5.
-- Maximum 3 illustrations per book. A book may have 0.
+- Maximum 5 illustrations per book. A book may have 0.
 - Does not block the Pre-Launch Gate — a site may launch without illustrations.
 
 A3 is optional unless the user requests a review or the quality gate fails.

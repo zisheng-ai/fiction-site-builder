@@ -191,6 +191,8 @@ Three apiyi models are viable for covers, ranked by tested capability for this u
 | 3 (last resort) | `nano-banana-pro` | `1024x1024` | `url` (JPEG) | Accepts T3 prompts without refusal but **silently ignores clothing-state keywords** (`torn`, `slipped`, `fallen`, `clinging`) — always renders intact conservative clothing (~T1 exposure) regardless of prompt. Square output (not 2:3). Use only when both gpt and doubao fail; accept T1-level allure result. |
 
 > **T3 fallback path:** gpt rejects → doubao (not nano). Nano cannot produce torn/wet/bare-back output under any prompt phrasing — it accepts the words and ignores them. The cascade's content-filter resilience applies to gpt→doubao only; nano is a last resort for composition and framing, not for allure intensity.
+>
+> ⚠️ **nano is blank-prevention only — never a finished cover.** It stays in the cascade solely so *some* image exists when both gpt and doubao fail; its output is **not** a real cover at the intended tier. It silently downgrades any T3+ prompt to ~T1 intact clothing AND emits a square 1024×1024 frame (not 2:3), so a nano result looks like a successful generation while being 货不对板. **Rule:** treat every nano fallback as a placeholder — prefer re-running the cascade once more (upstream stochastic rejections often clear) before accepting it, always flag it for manual review, and never ship a nano cover as a final creative unsigned-off.
 
 ### apiyi path
 
@@ -216,6 +218,8 @@ data = json.loads(raw)
 if 'error' in data:
     msg = data['error']['message'] if isinstance(data['error'], dict) else str(data['error'])
     print('API_ERROR:' + msg); sys.exit(2)
+if not data.get('data'):
+    print('SOFT_REJECT: empty data array (model declined silently)'); sys.exit(2)
 item = data['data'][0]
 if item.get('b64_json'):
     b64 = item['b64_json']
@@ -232,7 +236,7 @@ print('SAVED:' + str(os.path.getsize(output_path)))
 # Capability cascade — try best model first, fall through on failure
 if   gen_cover_apiyi "gpt-image-2-all"            "848x1280";  then MODEL_USED="gpt-image-2-all"
 elif gen_cover_apiyi "doubao-seedream-5-0-260128" "1664x2496"; then MODEL_USED="doubao-seedream-5-0-260128"
-elif gen_cover_apiyi "nano-banana-pro"           "1024x1024"; then MODEL_USED="nano-banana-pro"
+elif gen_cover_apiyi "nano-banana-pro"           "1024x1024"; then MODEL_USED="nano-banana-pro"  # blank-prevention only — ~T1 square output, flag for manual review
 else MODEL_USED=""; echo "ALL_MODELS_FAILED"
 fi
 echo "MODEL_USED=$MODEL_USED"
