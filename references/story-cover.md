@@ -188,9 +188,9 @@ Three apiyi models are viable for covers, ranked by tested capability for this u
 |---|---|---|---|---|
 | 1 (primary) | `gpt-image-2-all` | `848x1280` | `b64_json` (PNG) | True 2:3, cleanest title text, best brief adherence, no watermark. Most reliable — but the strictest content filter. |
 | 2 (fallback) | `doubao-seedream-5-0-260128` | `1664x2496` | `url` (JPEG) | Highest visual quality + strongest allure, true 2:3, far more permissive filter. **Stamps an `AI生成` watermark in the bottom-right corner — must crop it (see post-process).** Needs ≥3.7M px, hence the large size. |
-| 3 (last resort) | `nano-banana-pro` | `1024x1024` | `url` (JPEG) | Clean output and permissive, but renders **square** (not 2:3) and allure runs tamer. Use only when both above fail; the square frame needs reframing to 2:3. |
+| 3 (last resort) | `nano-banana-pro` | `1024x1024` | `url` (JPEG) | Accepts T3 prompts without refusal but **silently ignores clothing-state keywords** (`torn`, `slipped`, `fallen`, `clinging`) — always renders intact conservative clothing (~T1 exposure) regardless of prompt. Square output (not 2:3). Use only when both gpt and doubao fail; accept T1-level allure result. |
 
-> Because gpt-image-2-all has the strictest filter, a content-safety rejection there naturally falls through to the more permissive doubao/nano — the cascade doubles as content-filter resilience.
+> **T3 fallback path:** gpt rejects → doubao (not nano). Nano cannot produce torn/wet/bare-back output under any prompt phrasing — it accepts the words and ignores them. The cascade's content-filter resilience applies to gpt→doubao only; nano is a last resort for composition and framing, not for allure intensity.
 
 ### apiyi path
 

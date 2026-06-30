@@ -21,6 +21,26 @@ Everything short of explicit (suggestive poses, deep cleavage, figure-forward bo
 
 ## Costume Elements
 
+### Fabric Allure Ranking (read before picking a costume)
+
+**Dark opaque fabric kills allure. Light/sheer/soft fabric multiplies it.** This is the single most important costume decision — it overrides everything else.
+
+| Fabric tier | Examples | Why it works / fails |
+|---|---|---|
+| **S — Maximum allure** | Sheer white lace, wet white silk, ivory chiffon, white bed sheet, torn white dress | Light colours + sheer/thin fabric → model renders naturally translucent, body visible through material, curves read even when "covered". Wet white fabric is the highest-yield phrase in the entire system. |
+| **A — High allure** | Champagne silk slip, blush satin, pale pink lace, silver mesh, ivory corset, nude bodycon | Light neutrals + fitted/satin → skin tone bleeds through, material clings, décolletage amplified by the colour contrast against skin. |
+| **B — Moderate allure** | Deep red satin, wine velvet, dark green silk, dark floral | Saturated colour but smooth/shiny finish → some cling, some reflection, still reads as feminine and revealing at T2. |
+| **C — Low allure** | Black leather jacket, black leather pants, black denim | Dark + opaque + rigid → model renders as a shell covering the body. The jacket becomes armour. Even "torn" or "slipping" rarely produces skin because the material reads as thick. **Avoid as primary female costume at T2/T3.** |
+| **D — Avoid** | Full tactical gear, trench coat, oversized hoodie, thick winter coat | Complete body coverage, no allure signal, model defaults to fully dressed output regardless of T3 prompts. |
+
+**The test-1 lesson (mark-of-the-moon):** when doubao got the leather jacket prompt in round 1, it randomly chose a white flowing dress instead — and produced the best allure result. From round 2 onwards it rendered the leather jacket faithfully and the result was far less sexy. The prompt specified dark leather; the model that ignored it made a better cover. **Conclusion: do not put dark leather on the female lead in the prompt. Let the genre flavor come from environment, male character, and accessories instead.**
+
+**Leather on the female lead:** acceptable only when it's a jacket worn OPEN over a sheer/minimal undergarment, with the jacket described as a background element rather than the costume itself:
+> ✓ `white crop top barely reaching her ribs, leather jacket open and draped loosely off both shoulders`
+> ✗ `black fitted leather jacket` (model renders it as opaque coverage)
+
+---
+
 ### Academy / School Uniform
 
 | Element | Description | Prompt keywords |
@@ -207,15 +227,15 @@ Everything short of explicit (suggestive poses, deep cleavage, figure-forward bo
 
 ### Leather / Biker
 
-- **Visual:** Black fitted leather jacket, leather pants or miniskirt, boots
-- **Best for:** paranormal romance, urban fantasy, biker MC romance, dark contemporary
-- **Prompt:**
+- **Visual:** Black fitted leather jacket — genre-appropriate for paranormal/MC romance, but see warning below
+- **Best for:** paranormal romance, urban fantasy, biker MC romance — for the male lead or as an accessory layer over a revealing female costume
+- **⚠ Allure warning:** Dark leather on the female lead is a C-tier fabric (see Fabric Allure Ranking above). Models render black leather as opaque rigid coverage — even "torn" and "slipping" prompts frequently produce an intact jacket. **Do not make leather the primary female costume at T2/T3.** Use it as an open layer over sheer/minimal underlayer:
   ```
-  woman in black fitted leather jacket falling off one bare shoulder, skin-tight leather pants,
-  heavy boots, leather jacket partially open revealing bare midriff,
-  urban nighttime street, neon backlight, hard-edged rim light catching the leather sheen
+  woman in white mesh bodysuit with a leather jacket open and hanging off both shoulders,
+  leather draped loosely at her elbows — not covering anything — bare midriff and décolletage fully visible,
+  skin-tight leather pants OR no pants, just the jacket pooling around her hips
   ```
-- **Allure tip:** jacket slipping off = instant skin reveal with zero filter risk. Pair with `no shirt underneath, jacket barely covering her chest`.
+- **For the male lead:** leather jacket / leather coat reads as dominant and powerful without reducing allure. Safe to use freely on him.
 
 ---
 
@@ -1550,11 +1570,11 @@ Exposure is **stochastic** — the same prompt rolls different skin levels each 
 Three named tiers, all strictly above the §0 floor (no nipples / genitals / sex acts). **Default for production = T3.** Start there and let the model's content filter be the only thing that pulls you back.
 
 **Model × Tier compatibility (tested):**
-- `gpt-image-2-all` — passes T1, T2; rejects T3
-- `doubao-seedream-5-0-260128` — passes T1, T2, T3 ✓
-- `nano-banana-pro` — passes T1, T2, T3 ✓
+- `gpt-image-2-all` — passes T1, T2; **rejects T3** (explicit content-safety refusal)
+- `doubao-seedream-5-0-260128` — passes T1, T2, T3 ✓ — **the only reliable T3 model**
+- `nano-banana-pro` — accepts T3 without refusal, but **silently ignores clothing-state keywords** (`torn`, `slipped`, `fallen`, `clinging to every curve`) and defaults to intact conservative clothing (~T1 exposure) regardless of what the prompt says; do NOT expect torn/wet/bare-back output from nano
 
-When T3 is rejected by the primary model, fall to doubao before softening the tier.
+**T3 fallback path:** gpt rejects → doubao (not nano). Nano cannot produce T3 clothing exposure under any prompt. Use nano only as a last resort when both gpt and doubao fail, and accept that the result will be T1-level allure.
 
 ---
 
@@ -1626,7 +1646,7 @@ The 8 dimensions:
 
 | Dimension | T3 specification | Prompt keywords |
 |---|---|---|
-| **Clothing state** | Garment failing in multiple places simultaneously. Torn AND slipped AND barely covering. The clothing is in the process of leaving, not covering. Multiple garment failures visible at once. | `leather jacket torn open and fallen completely off one shoulder`, `dress ripped down the side, held by one strap`, `blouse falling open, fabric pulling away`, `shirt slipped entirely off both shoulders and falling`, `torn fabric barely covering her, the last thing between her and nothing` |
+| **Clothing state** | Garment failing in multiple places simultaneously. Torn AND slipped AND barely covering. The clothing is in the process of leaving, not covering. Multiple garment failures visible at once. **Use light/white/sheer fabric — dark opaque fabric (especially black leather) renders as coverage regardless of "torn" keywords.** | `white dress torn down the side, held by one strap`, `sheer white blouse falling open`, `ivory silk slip slipped off both shoulders and falling`, `torn white fabric barely covering her, the last thing between her and nothing`, `wet white shirt transparent and clinging` |
 | **Skin zones** | Three or more zones simultaneously. Bare shoulder + bare back + upper thigh + midriff. The exposure feels total — the viewer's eye has nowhere to rest that isn't skin. | `bare shoulder, bare back from neckline to tailbone`, `upper thigh fully exposed through the torn slit`, `bare midriff and the curve of her hip`, `skin visible from collarbone to hip`, `the entire curve of her back in the moonlight` |
 | **Fabric behavior** | Wet, clinging, or sheer — fabric that maps the body rather than covering it. The material has stopped functioning as clothing. | `rain-soaked fabric transparent and clinging to every curve of her figure`, `wet silk outlining the exact shape of her body`, `sheer fabric leaving nothing to imagination`, `damp clothing pressing against her skin, every line visible`, `wet thin shirt clinging to her chest` |
 | **Body contact** | Zero gap. Multiple simultaneous contact points. Skin-to-skin wherever possible. Bodies intertwined, not merely touching. | `bodies pressed flush together, zero space between them, skin to skin`, `one hand gripping her bare waist with fingers pressing into her skin, the other cupping her jaw`, `her bare back against his bare chest`, `thigh locked against thigh, her hip against his`, `hand splayed across the bare small of her back pulling her flush against him` |
