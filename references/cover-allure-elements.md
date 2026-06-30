@@ -1,43 +1,41 @@
 # Cover Allure Elements
 
-Reference for `story-cover.md`. 中文网文封面常见「擦边」视觉元素 — AI prompt 工程指南。
+Reference for `story-cover.md`. Visual allure elements for fiction cover generation — AI prompt engineering guide.
 
-适用场景：都市、现言、甜宠、轻小说类封面；需要强视觉吸引力但不越线的生成策略。
+Use for: romance, thriller, contemporary, drama, and light novel covers requiring strong visual appeal within gpt-image-2-vip policy.
 
 ---
 
-## 一、JK / 制服系
+## Costume Elements
 
-### 核心视觉元素
+### Academy / School Uniform
 
-| 元素 | 描述 | Prompt 关键词 |
+| Element | Description | Prompt keywords |
 |---|---|---|
-| 水手服 | 白衬衫 + 海军领 + 藏蓝百褶裙 | `Japanese academy sailor uniform, white blouse with navy sailor collar, pleated navy skirt` |
-| 格子百褶裙 | 苏格兰格纹（藏蓝/绿/灰）短百褶裙 | `plaid pleated skirt in navy tartan, academy uniform` |
-| 小西装套装 | 深色西装外套 + 格子裙 + 领带/领结 | `fitted academy blazer, plaid skirt, striped necktie` |
-| 膝上袜/过膝袜 | 白色或藏蓝 | `white knee-high socks` / `white thigh-high socks` |
-| 配件 | 小领结、皮革书包、双马尾 | `small bow tie, leather satchel, twin tails hairstyle` |
+| Sailor uniform | White blouse + navy sailor collar + pleated navy skirt | `Japanese academy sailor uniform, white blouse with navy sailor collar, pleated navy skirt` |
+| Plaid skirt | Tartan plaid (navy/green/grey), short pleated | `plaid pleated skirt in navy tartan, academy uniform` |
+| Blazer + plaid | Dark blazer + plaid skirt + necktie/bow | `fitted academy blazer, plaid skirt, striped necktie` |
+| Knee-high / thigh-high socks | White or navy | `white knee-high socks` / `white thigh-high socks` |
+| Accessories | Bow tie, leather satchel, twin tails | `small bow tie, leather satchel, twin tails hairstyle` |
 
-**适用类型：** 校园甜宠、轻小说、都市甜宠（大学恋爱）
+**Best for:** academy romance, light novel / isekai, college-age contemporary romance
 
-**背景场景：** 樱花校园走廊、天台日落、黑板教室、放学街道
+**Background scenes:** Cherry blossom campus corridor, rooftop at sunset, classroom, after-school street
 
-**安全写法规则：**
+**Safe writing rules:**
 
-| 禁止 | 替代 |
+| Avoid | Use instead |
 |---|---|
 | `high school girl`, `teenage girl`, `minor`, `underage` | `young woman in academy uniform`, `college-style school uniform` |
 | `high school campus` | `academy courtyard`, `preparatory school grounds` |
 
 ---
 
-## 二、制服诱惑分类
+### Nurse Uniform
 
-### 护士服 (Nurse Uniform)
-
-- **视觉特征：** 白色合身连衣裙、护士帽（红十字）、徽章
-- **适用类型：** 都市甜宠、现言（霸总+护士）
-- **Prompt：**
+- **Visual:** White form-fitting dress, nurse cap with red cross, badge
+- **Best for:** contemporary romance, urban drama (executive + nurse)
+- **Prompt:**
   ```
   elegant young woman in crisp white nurse uniform dress, form-fitting silhouette,
   small nurse cap with red cross badge, composed expression with quiet allure,
@@ -46,11 +44,11 @@ Reference for `story-cover.md`. 中文网文封面常见「擦边」视觉元素
 
 ---
 
-### 空姐/乘务员服 (Flight Attendant)
+### Flight Attendant Uniform
 
-- **视觉特征：** 修身西装外套（海军/红色）+ 铅笔裙、丝巾系颈、服务帽
-- **适用类型：** 都市言情、现言、悬疑
-- **Prompt：**
+- **Visual:** Tailored blazer (navy/red) + pencil skirt, silk neck scarf, service cap
+- **Best for:** contemporary romance, thriller
+- **Prompt:**
   ```
   sophisticated woman in tailored airline stewardess uniform, navy fitted blazer,
   pencil skirt, white silk scarf tied at neck in airline style, small service cap,
@@ -59,11 +57,11 @@ Reference for `story-cover.md`. 中文网文封面常见「擦边」视觉元素
 
 ---
 
-### 警服 (Police Uniform)
+### Police Uniform
 
-- **视觉特征：** 深藏蓝正装、警徽、腰带装备
-- **适用类型：** 悬疑、都市刑侦现言、强强配对
-- **Prompt：**
+- **Visual:** Dark navy dress uniform, badge, duty belt
+- **Best for:** thriller, urban crime romance
+- **Prompt:**
   ```
   young woman in dark navy police officer uniform, formal fitted jacket with badge,
   duty belt, composed authoritative expression,
@@ -72,11 +70,11 @@ Reference for `story-cover.md`. 中文网文封面常见「擦边」视觉元素
 
 ---
 
-### 女仆装 (Maid Outfit)
+### Maid Outfit
 
-- **视觉特征：** 黑色礼服裙 + 白色蕾丝围裙 + 白色发箍、蕾丝边
-- **适用类型：** 轻小说/二次元、甜宠、都市（隐藏身份线）
-- **Prompt：**
+- **Visual:** Black dress + white lace apron + white lace headband, ruffle trim
+- **Best for:** isekai / light novel, sweet romance, contemporary (hidden identity arc)
+- **Prompt:**
   ```
   elegant woman in classic black and white French maid dress, white lace apron,
   white lace headband, fitted bodice with ruffle trim,
@@ -85,11 +83,11 @@ Reference for `story-cover.md`. 中文网文封面常见「擦边」视觉元素
 
 ---
 
-### 旗袍/高叉旗袍 (Qipao / Cheongsam)
+### Qipao / Cheongsam
 
-- **视觉特征：** 立领（满洲领）、丝绸材质、高叉开衩、修身轮廓
-- **适用类型：** 都市言情、悬疑（民国风）、现言
-- **Prompt：**
+- **Visual:** Mandarin collar, silk fabric, high side slit, fitted silhouette
+- **Best for:** historical drama, thriller (1930s aesthetic), contemporary romance
+- **Prompt:**
   ```
   elegant sophisticated woman in deep crimson silk qipao, mandarin collar,
   body-hugging silhouette with high side slit in traditional qipao design,
@@ -99,25 +97,25 @@ Reference for `story-cover.md`. 中文网文封面常见「擦边」视觉元素
 
 ---
 
-### 婚纱 (Wedding Dress)
+### Wedding Dress
 
-- **视觉特征：** 白色拖尾礼服、蕾丝细节、薄纱面纱
-- **适用类型：** 现言甜宠（婚约/闪婚/替嫁）
-- **Prompt：**
+- **Visual:** White trailing gown, lace detail, sheer veil
+- **Best for:** contemporary romance (engagement / elopement / fake-marriage arcs)
+- **Prompt:**
   ```
   young woman in elegant white wedding gown, flowing skirt with lace details,
   sheer bridal veil, one hand holding bouquet, emotional or melancholy expression,
   grand ballroom or garden setting, golden soft diffused light
   ```
-- **逃婚变体：** 加 `mascara streaked, disheveled veil, running in rain`
+- **Runaway bride variant:** add `mascara streaked, disheveled veil, running in rain`
 
 ---
 
-### 睡衣/浴袍 (Silk Slip / Robe)
+### Silk Slip / Robe (Morning After)
 
-- **视觉特征：** 象牙色或裸粉丝绸质地、晨光、凌乱发型
-- **适用类型：** 现言甜宠、都市（同居线）
-- **Prompt（浴袍版）：**
+- **Visual:** Ivory or blush silk, morning light, disheveled hair
+- **Best for:** contemporary romance, urban drama (cohabitation arc)
+- **Prompt (robe version):**
   ```
   young woman in ivory silk slip dress or loose silk robe,
   softly disheveled morning hair over one shoulder,
@@ -126,7 +124,7 @@ Reference for `story-cover.md`. 中文网文封面常见「擦边」视觉元素
   golden morning sunlight diffused through sheer curtains, halo effect, warm dust-mote glow
   ```
 
-- **Prompt（白床单·清晨后悔版 — 最高强度，对应图2参考尺度）：**
+- **Prompt (white sheet morning — maximum intensity):**
   ```
   young woman wrapped only in a white bed sheet clutched to her chest —
   shoulders and collarbone visible above the sheet, loosely draped and falling away
@@ -146,11 +144,11 @@ Reference for `story-cover.md`. 中文网文封面常见「擦边」视觉元素
 
 ---
 
-### 秘书/职业装 (Business / Secretary)
+### Business / Secretary
 
-- **视觉特征：** 铅笔裙套装、黑框眼镜（可选）、高跟鞋
-- **适用类型：** 都市言情（总裁+秘书）、现言
-- **Prompt：**
+- **Visual:** Pencil skirt suit, optional glasses, heels
+- **Best for:** urban romance (executive + secretary), contemporary romance
+- **Prompt:**
   ```
   professional young woman in fitted pencil skirt business suit, crisp blouse,
   optional thin-framed glasses, elegant heels, composed quietly assertive expression,
@@ -159,52 +157,33 @@ Reference for `story-cover.md`. 中文网文封面常见「擦边」视觉元素
 
 ---
 
-## 三、撩人构图 / 姿态元素
+## Poses
 
-| 姿态 | 场景 | 安全 Prompt 关键词 |
+| Pose | Scene | Safe prompt keywords |
 |---|---|---|
-| **壁咚** | 男站女靠墙，面部极近 | `man leaning one arm against wall over woman, woman back pressed to wall, faces close but not touching, charged tension, dramatic side lighting` |
-| **椅咚** | 男俯身至坐着的女性 | `dominant figure leaning over seated woman in chair, intense close proximity, power dynamic, controlled expression` |
-| **湿身/雨中** | 湿发贴脸颈，情绪外露 | `rain-soaked figure, wet hair clinging to face and neck, damp clothing, emotionally raw upward gaze, neon-lit rainy night street, silver rain threads in light` |
-| **回眸** | 转身回望，侧脸捕光 | `looking back over shoulder with mysterious expression, cheekbone catching soft light, hair swept by motion, cinematic depth of field` |
-| **侧颜** | 纯侧脸，轮廓线条 | `pure side profile, elegant jawline and neckline, downcast or distant gaze, moody window light from one side` |
-| **微露香肩** | 领口微滑或单肩款 | `off-shoulder silhouette, elegantly bare collarbone and shoulder line, soft light on skin, fabric gathered gracefully` |
-| **裙摆飞扬** | 户外/风中，动态感 | `skirt billowing in wind, fabric flowing dramatically, legs partially visible through motion, golden hour backlight` |
-| **俯视/低头** | 低垂眼眸，脆弱或沉思 | `downcast eyes, eyelashes catching light, subtle vulnerability, soft chin shadow` |
-| **床榻晨光** | 枕边/床边，丝质晨光 | `bedside morning light, figure half-reclining or sitting at edge, disheveled hair, sheer curtain filtering golden hour, intimate quiet atmosphere` |
+| **Wall pin** | Man stands over woman against wall, faces close | `man leaning one arm against wall over woman, woman back pressed to wall, faces close but not touching, charged tension, dramatic side lighting` |
+| **Chair pin** | Man leans over woman seated in chair | `dominant figure leaning over seated woman in chair, intense close proximity, power dynamic, controlled expression` |
+| **Rain-soaked** | Wet hair clinging to face and neck, raw emotion | `rain-soaked figure, wet hair clinging to face and neck, damp clothing, emotionally raw upward gaze, neon-lit rainy night street, silver rain threads in light` |
+| **Look back over shoulder** | Three-quarter turn, cheekbone catching light | `looking back over shoulder with mysterious expression, cheekbone catching soft light, hair swept by motion, cinematic depth of field` |
+| **Pure side profile** | Side face only, jawline and neckline | `pure side profile, elegant jawline and neckline, downcast or distant gaze, moody window light from one side` |
+| **Off-shoulder** | Neckline slightly off one shoulder | `off-shoulder silhouette, elegantly bare collarbone and shoulder line, soft light on skin, fabric gathered gracefully` |
+| **Billowing skirt** | Outdoor / wind, dynamic movement | `skirt billowing in wind, fabric flowing dramatically, legs partially visible through motion, golden hour backlight` |
+| **Downcast gaze** | Eyes lowered, eyelashes catching light | `downcast eyes, eyelashes catching light, subtle vulnerability, soft chin shadow` |
+| **Bedside morning light** | Pillow / bed edge, silk morning light | `bedside morning light, figure half-reclining or sitting at edge, disheveled hair, sheer curtain filtering golden hour, intimate quiet atmosphere` |
 
 ---
 
-## 六、English Romance Cover Playbook
+## English Romance Cover Playbook
 
 Maximum-allure formulas for English romance novel covers within gpt-image-2-vip policy.  
 **Core rule: always use physical contact. Bodies pressed together is the minimum; aim for poses where removing the prompt description would make the image read as explicit.**
 
 ---
 
-### Figure Vocabulary (MANDATORY for every female character — use aggressively)
-
-Every female character description MUST include a curvy, hot figure. This is not optional —
-a flat or plain body description fails the allure gate. Combine at least one bust + one
-silhouette keyword in every female prompt.
-
-**Bust (allowed — minimum D-cup):** `full D-cup bust`, `large D-cup chest`, `ample D-cup bust`, `full bust`, `generous décolletage`, `voluptuous chest`, `busty silhouette` — 罩杯至少 D，可写 `D-cup` / `DD-cup` / `E-cup`，不要低于 D 或留空
-**Silhouette (allowed):** `hourglass figure`, `voluptuous curvaceous figure`, `full hips and narrow waist`, `sultry curves`, `bombshell physique`, `long toned legs`
-
-**Cleavage / exposure (allowed — push hard here):** `deep plunging neckline down to the sternum`, `low-cut neckline revealing deep cleavage`, `deep V-neckline framing the décolletage`, `plunging bodice, full cleavage on display`, `tight bodice pushing the bust up, prominent cleavage`
-
-> 罩杯下限：每个女性角色至少写 **D 罩杯**（`full D-cup bust` / `large D-cup chest`），可往上写 `DD-cup` / `E-cup`，绝不留空或低于 D。
-> 想加大「漏胸程度」时，重点叠加 cleavage / neckline 这一类**服装开口**描述词（`deep plunging neckline`、`low-cut`、`deep cleavage`、`tight bodice pushing the bust up`），
-> 再配合 bust 形体词（`full D-cup bust` / `ample bust`），即可在不越线的前提下最大化展示效果。
-> 安全写法：用 `voluptuous / curvaceous / hourglass / full bust / generous décolletage / deep cleavage` 这类形体+服装开口描述词，
-> 不要用 `huge breasts`、`large breasts`、`big tits`、`exposed breast`、`nipple` 等会触发过滤的露骨词。形体词 + 低胸服装词组合即可表达「身材火辣 + 大幅漏胸」。
-
 ### Skin & Clothing Vocabulary (allowed — use aggressively)
 
 **Female:**
 - `backless evening gown, back gracefully revealed to the lower back`
-- `deep plunging neckline down to the sternum, full cleavage on display`
-- `low-cut bodice, tight fit pushing the bust up, prominent deep cleavage`
 - `deep V-neckline, décolletage catching the light`
 - `thigh-high slit in gown, leg partially visible through the opening`
 - `off-shoulder gown, collarbone and one shoulder elegantly uncovered`
@@ -359,40 +338,39 @@ Do NOT add explicit content. The goal is maximum implication through body langua
 
 ---
 
-## 四、gpt-image-2-vip 内容安全规则
+## Content Safety Rules
 
-### 触发过滤的词汇 — 禁止使用
+### Banned Terms — Do Not Use
 
-| 类别 | 禁止词 | 安全替代 |
+| Category | Banned | Safe alternative |
 |---|---|---|
-| 年龄 | `teenage`, `underage`, `minor`, `high school girl`, `loli`, `young teen` | `young woman`, `elegant woman`, `college-aged woman`, `sophisticated` |
-| 制服+年龄绑定 | `high school uniform`, `teenage school girl` | `academy uniform`, `preparatory school uniform`, `Japanese-style school blazer` |
-| 裸露 | `naked`, `nude`, `topless`, `exposed breast` | `off-shoulder`, `bare collarbone`, `elegant neckline`, `decolletage` |
-| 形体 | `huge breasts`, `large breasts`, `big tits`, `busty` (露骨) | `full bust`, `ample bust`, `generous décolletage`, `voluptuous curvaceous figure`, `hourglass figure` |
-| 情色 | `erotic`, `sexual`, `explicit`, `lewd` | `alluring`, `intimate atmosphere`, `charged tension`, `romantic` |
-| 湿透透视 | `see-through wet shirt`, `wet transparent fabric` | `rain-soaked fabric`, `damp clothing`, `wet silk clinging` |
+| Age | `teenage`, `underage`, `minor`, `high school girl`, `loli`, `young teen` | `young woman`, `elegant woman`, `college-aged woman`, `sophisticated` |
+| Uniform + age | `high school uniform`, `teenage school girl` | `academy uniform`, `preparatory school uniform`, `Japanese-style school blazer` |
+| Nudity | `naked`, `nude`, `topless`, `exposed breast` | `off-shoulder`, `bare collarbone`, `elegant neckline`, `decolletage` |
+| Explicit | `erotic`, `sexual`, `explicit`, `lewd` | `alluring`, `intimate atmosphere`, `charged tension`, `romantic` |
+| Wet transparency | `see-through wet shirt`, `wet transparent fabric` | `rain-soaked fabric`, `damp clothing`, `wet silk clinging` |
 
-### 各元素安全等级
+### Safety Level by Element
 
-| 元素 | Photorealistic 安全? | 说明 |
+| Element | Safe for photorealistic? | Notes |
 |---|---|---|
-| 学院/校服（adult-appearing） | 安全 | 不绑定年龄词即可 |
-| 护士/空姐/警服/女仆/职业装 | 安全 | 职业制服无限制 |
-| 旗袍高叉 | 安全 | 描述为 qipao design feature 而非裸露 |
-| 湿发雨中 | 安全 | 不强调透视；用 `damp fabric` 而非 `see-through` |
-| 床榻晨光 | 安全 | `intimate atmosphere / morning light`，不描述裸露 |
-| 壁咚 | 安全 | 强调 tension / close proximity，不描述身体接触细节 |
-| 裙摆飞扬/腿部 | 安全 | `legs partially visible through motion` 可接受 |
-| 浴袍/睡衣 | 安全 | `silk slip dress / robe` 是正常服装描述 |
-| 露肩/锁骨 | 安全 | `off-shoulder`, `bare collarbone` 均安全 |
+| Academy / school uniform (adult-appearing) | Safe | Do not pair with age terms |
+| Nurse / flight attendant / police / maid / business | Safe | Professional uniforms are unrestricted |
+| Qipao high slit | Safe | Describe as qipao design feature, not nudity |
+| Rain-soaked hair | Safe | Avoid transparency emphasis; use `damp fabric` not `see-through` |
+| Bedside morning light | Safe | `intimate atmosphere / morning light` — do not describe nudity |
+| Wall pin | Safe | Emphasize tension / close proximity, not body contact details |
+| Billowing skirt / legs | Safe | `legs partially visible through motion` is acceptable |
+| Silk robe / slip | Safe | `silk slip dress / robe` is standard clothing description |
+| Off-shoulder / collarbone | Safe | `off-shoulder`, `bare collarbone` both safe |
 
 ---
 
-## 五、完整 Prompt 示例
+## Complete Prompt Examples
 
-### JK / 水手服 校园场景
+### Academy Uniform
 ```
-Chinese web novel cover, cinematic photorealistic quality, soft romantic atmosphere.
+Romance novel cover, cinematic photorealistic quality, soft romantic atmosphere.
 Young woman in Japanese academy-style sailor uniform — white blouse with navy sailor collar,
 navy pleated skirt, white knee-high socks — stands in warm afternoon light.
 She looks over her shoulder with a gentle, slightly mysterious expression,
@@ -405,9 +383,9 @@ Professional book cover, ultra-detailed, portrait 2:3 ratio, no watermark,
 keep text inside central safe area (inner 85%).
 ```
 
-### 护士服
+### Nurse Uniform
 ```
-Chinese web novel cover, cinematic photorealistic quality, clean intimate atmosphere.
+Romance novel cover, cinematic photorealistic quality, clean intimate atmosphere.
 Elegant young woman in crisp white form-fitting nurse uniform dress,
 small nurse cap with red cross badge, silver stethoscope at neck.
 She leans slightly forward, one hand raised to her cap,
@@ -418,9 +396,9 @@ Lighting: soft overhead clinical light, subtle warm fill on face.
 Professional book cover, ultra-detailed, portrait 2:3 ratio, no watermark.
 ```
 
-### 旗袍（高叉）
+### Qipao (High Slit)
 ```
-Chinese web novel cover, cinematic photorealistic quality, Shanghai glamour 1930s aesthetic.
+Romance novel cover, cinematic photorealistic quality, Shanghai glamour 1930s aesthetic.
 Elegant sophisticated woman in deep crimson silk qipao — mandarin collar,
 body-hugging silhouette, high side slit in traditional qipao design — jade ornament in updo.
 Three-quarter profile, hand resting on carved wooden table, powerful composed expression.
@@ -430,22 +408,22 @@ Lighting: warm side candlelight, golden hour through art deco windows.
 Professional book cover, ultra-detailed, portrait 2:3 ratio, no watermark.
 ```
 
-### 湿身雨中
+### Rain-Soaked
 ```
-Chinese web novel cover, cinematic photorealistic dark romance quality.
+Romance novel cover, cinematic photorealistic dark romance quality.
 Young woman stands in heavy rain — hair soaked and clinging to face and neck,
 damp clothing pressed against her silhouette, a single mascara streak on one cheek.
 She tilts her face upward with a raw emotionally complex expression — longing and defiance.
-Background: rain-slicked Asian urban street at night, neon signs reflected in puddles.
+Background: rain-slicked urban street at night, neon signs reflected in puddles.
 Color palette: deep blue-black, neon pink and cyan reflections, silver rain threads.
 Lighting: dramatic neon overhead, rain catching light as silver threads,
 street lamp behind creating strong rim light.
 Professional book cover, ultra-detailed, portrait 2:3 ratio, no watermark.
 ```
 
-### 女仆装
+### Maid Outfit
 ```
-Chinese web novel cover, high-quality light novel illustration style, warm elegant atmosphere.
+Romance novel cover, high-quality light novel illustration style, warm elegant atmosphere.
 Elegant young woman in classic black and white French maid outfit —
 fitted black dress, white lace apron, white lace headband, ruffle trim at cuffs.
 Three-quarter pose holding a silver tea tray, one gloved hand to lips, mischievous expression.
@@ -455,9 +433,9 @@ Lighting: soft diffused natural window light, warm interior glow.
 Professional book cover, ultra-detailed, portrait 2:3 ratio, no watermark.
 ```
 
-### 空姐服
+### Flight Attendant
 ```
-Chinese web novel cover, cinematic photorealistic quality, modern commercial aesthetic.
+Romance novel cover, cinematic photorealistic quality, modern commercial aesthetic.
 Sophisticated young woman in tailored navy airline stewardess uniform —
 fitted double-breasted blazer, pencil skirt, white silk scarf at neck, small service cap.
 Confident pose, slight head tilt, composed professional expression with subtle warmth.
@@ -467,9 +445,9 @@ Lighting: bright clean terminal daylight, sharp rim light on uniform structure.
 Professional book cover, ultra-detailed, portrait 2:3 ratio, no watermark.
 ```
 
-### 睡衣/浴袍晨光
+### Silk Robe Morning
 ```
-Chinese web novel cover, cinematic photorealistic soft romance quality.
+Romance novel cover, cinematic photorealistic soft romance quality.
 Young woman in loose ivory silk robe, softly disheveled hair over one shoulder,
 sitting at bed edge or standing at sheer curtain window, quiet melancholy expression.
 Background: luxury bedroom, sheer white curtains, unmade silk sheets in warm ivory.
@@ -479,9 +457,9 @@ halo effect around figure, floating dust motes in golden beam.
 Professional book cover, ultra-detailed, portrait 2:3 ratio, no watermark.
 ```
 
-### 壁咚（男强女弱）
+### Wall Pin (Two-Character)
 ```
-Chinese web novel cover, cinematic photorealistic quality, intense dark romance atmosphere.
+Romance novel cover, cinematic photorealistic quality, intense dark romance atmosphere.
 TWO characters. Tall powerful man in tailored dark charcoal suit presses one hand
 flat against wall above, leaning close over a young woman whose back is to the wall —
 she looks up with wide eyes, surprise and suppressed tension.
