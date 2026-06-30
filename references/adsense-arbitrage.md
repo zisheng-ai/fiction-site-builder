@@ -154,7 +154,7 @@ Add these routes/pages to every monetized site — they are gating requirements,
 - `/privacy` — Privacy Policy (mentions cookies, AdSense/Google & third-party vendors, Meta Pixel, data use)
 - `/terms` — Terms of Use
 - `/about` — About (a real description of the site/brand)
-- `/contact` — Contact (a reachable email/form)
+- `/contact` — Contact (a reachable address — either a dedicated email or a reference to the domain WHOIS contact for DMCA/content requests; a page must exist)
 - Cookie-consent banner wired to a Google-certified CMP
 - Footer on every page links all of the above.
 
@@ -191,7 +191,7 @@ Track and optimize:
 - [ ] No ad is mistakable for the Next/TOC control; clear gap maintained (§1.4).
 - [ ] Chapter change does a full reload so ads reinit and a fresh pageview counts (§2.1).
 - [ ] (If used) in-chapter pagination keeps each page content-rich and compliant (§2.2).
-- [ ] Meta Pixel installed; `NEXT_PUBLIC_META_PIXEL_ID` set before build (§4.1 impl).
+- [ ] *(Optional — add when running FB campaigns)* Meta Pixel installed (§8.1).
 - [ ] Landing chapter LCP < 2.5s, no interstitial before content (§4.2).
 - [ ] `og:image` set on all chapter and book detail pages; `metadataBase` set in root layout (§4 impl).
 - [ ] End-of-last-chapter shows cross-book recommendation grid, not a dead-end link (§2.3 impl).
@@ -201,39 +201,42 @@ Track and optimize:
 
 ## 8. Implementation patterns (Next.js App Router + static export)
 
-### 8.1 Meta Pixel — `layout.tsx`
+### 8.1 Meta Pixel — `layout.tsx` *(add when running FB campaigns)*
 
-Fires `PageView` on every full-reload chapter navigation automatically:
+Fires `PageView` on every full-reload chapter navigation automatically. Only add this when you have a real Pixel ID — do not add placeholder env vars to the build.
+
+Hardcode `metadataBase` with the real domain (no env var needed):
 
 ```tsx
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://yoursite.com'),
+  metadataBase: new URL('https://yoursite.com'),  // hardcode — no env var
   // ...
 }
-
-// In <head>:
-{process.env.NEXT_PUBLIC_META_PIXEL_ID && (
-  <script
-    dangerouslySetInnerHTML={{
-      __html: `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','${process.env.NEXT_PUBLIC_META_PIXEL_ID}');fbq('track','PageView');`,
-    }}
-  />
-)}
 ```
 
-Set in `.env.local`: `NEXT_PUBLIC_META_PIXEL_ID=your_pixel_id` and `NEXT_PUBLIC_SITE_URL=https://yoursite.com`. Must be set at **build time** for static export.
+Then add the Pixel script in `<head>` when the campaign goes live:
+
+```tsx
+<script
+  dangerouslySetInnerHTML={{
+    __html: `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','YOUR_PIXEL_ID');fbq('track','PageView');`,
+  }}
+/>
 
 ### 8.2 OG image — `generateMetadata` in chapter and book pages
 
+`metadataBase` in `layout.tsx` resolves relative paths to absolute URLs automatically — no `siteUrl` variable needed:
+
 ```ts
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? ''
+// layout.tsx: metadataBase: new URL('https://yoursite.com')
+
 return {
   title: `${chapter.title} - ${book.title}`,
   description: `Read Chapter ${n} of ${book.title} by ${book.author}.`,
   openGraph: {
     title: `${chapter.title} — ${book.title}`,
     description: `Read Chapter ${n} of ${book.title} by ${book.author}.`,
-    images: [{ url: `${siteUrl}${book.cover}`, width: 848, height: 1280, alt: book.title }],
+    images: [{ url: book.cover, width: 848, height: 1280, alt: book.title }],  // relative path, resolved by metadataBase
     type: 'article',
     siteName: 'Your Site Name',
   },
@@ -305,4 +308,4 @@ Each trust page follows the same shell: site header `<Link href="/">← Site Nam
 </footer>
 ```
 
-Privacy Policy must explicitly name: the ad network (Google AdSense or Google Ad Manager), Meta Pixel, cookies, and user rights. Terms must state: fiction content, 18+ audience, no reproduction. Contact must show a reachable email.
+Privacy Policy must explicitly name: the ad network (Google AdSense or Google Ad Manager), cookies, and user rights. Add Meta Pixel mention only if Pixel is actually installed. Terms must state: fiction content, 18+ audience, no reproduction. Contact page must exist and be reachable — a dedicated email is fine, but for independently-operated sites a note directing DMCA requests to the domain WHOIS contact is acceptable.
