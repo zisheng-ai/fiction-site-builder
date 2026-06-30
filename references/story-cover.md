@@ -90,7 +90,7 @@ Use for adding one book to an already-launched site. Skip logo and favicon steps
 
 ## Generation Method
 
-**apiyi path (preferred):** `curl` to `https://api.apiyi.com/v1/images/generations` with model `gpt-image-2-vip`. Response is base64 PNG, decoded and written to disk with Python. See Step 3.
+**apiyi path (preferred):** `curl` to `https://api.apiyi.com/v1/images/generations` with model `gpt-image-2-vip`. Response `b64_json` already includes `data:image/png;base64,` prefix — strip it before decoding. See Step 3 and `references/apiyi.md` for full API reference.
 
 **Claude SVG fallback:** When `APIYI_API_KEY` is not set, Claude writes a styled SVG cover directly. Acceptable as a launch asset when the API is unavailable.
 
@@ -172,7 +172,7 @@ Parameters:
 
 `image-gen` skill execution flow:
 1. Check `APIYI_API_KEY` → present: use apiyi; absent: SVG fallback
-2. `curl --max-time 200` calls `gpt-image-2-vip`, base64-decoded and written as PNG
+2. `curl --max-time 300` calls `gpt-image-2-vip` (90–150s typical; 300s minimum per apiyi docs), base64-decoded and written as PNG
 3. Prompt saved to same directory as `.prompt.txt`
 4. On content filter (`invalid_prompt`): replace triggering terms using the skill's word list and retry once
 5. Retry fails → SVG fallback (480×720 viewBox, includes title/author/gradient background)
