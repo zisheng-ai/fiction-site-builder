@@ -552,6 +552,168 @@ Title '{title}' in sharp contemporary serif — clean lines, authority. Author '
 Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 ```
 
+#### Romantasy (Romance-Fantasy Fusion)
+```
+Romance novel cover, semi-realistic illustrated or hyperrealistic 3D render style — NOT photographic
+realism, NOT anime. TWO characters.
+Female lead center-left: fantasy battle leathers or an asymmetric gown with one armored leg exposed,
+deep jewel-tone fabric (midnight blue, blood red, or deep emerald), one hand gripping a glowing
+rune-etched sword or trailing warm golden magic from her palm.
+Her expression: defiance bleeding into something she has not named yet — jaw set, eyes on him,
+body half-turned as if she started to leave and changed her mind.
+Male figure right of center: dark plate armor with silver-edged sigils or heavy royal robes over
+a broad frame, expression controlled but with one detail that breaks the control — a hand reaching
+toward her that stops just short of contact.
+One dominant symbolic object occupies the vertical center between them: a serpent coiling upward,
+a dragon skull at frame edge, a crown of bone, or a crystal key.
+The charged space between their bodies emits an ethereal magical glow — her light warm gold,
+his cold blue or silver — the two tones bleeding together at the midpoint, neither winning.
+The subtext: she was trained to destroy him. She did not expect the glow to appear when they
+stood this close.
+Background: suggestion of a fantasy environment (carved stone arch, ruined citadel, fae forest
+silhouette) in soft focus — it frames without competing.
+Color palette: deep purple or midnight blue base with blood red or emerald accent,
+bioluminescent or candlelight lighting on faces, cold silver on his armor.
+Lighting: ethereal magical glow from the space between them as primary source,
+cold moonlight rim from above, deep shadow filling the rest.
+Title '{title}' in whimsical script font, large, top third of frame.
+Author '{author}' in bold condensed secondary font below title.
+Portrait 2:3, ultra-detailed, no watermark, single dominant mobile-legible element (the magical glow).
+```
+
+#### Regression Romance / Second-Chance Time Loop
+```
+Romance novel cover, cinematic quality, muted time-displaced atmosphere.
+Primary composition: single dominant female figure OR double-exposure layered composition.
+Foreground: the heroine as she is now — standing with deliberate stillness in contemporary tailored
+power dress or period court gown, posture radiating cold possession of her own narrative.
+Her expression: cold possession — not grief, not fear, the specific expression of a woman who
+has already lived this scene and knows exactly how it ends. Jaw set, gaze forward, mouth with
+the faint certainty of someone counting down.
+Background ghost layer at 40% opacity: her past self in similar clothing but collapsed,
+defeated, or mid-fall — the moment of original betrayal, soft and translucent behind her certainty.
+Male figure: if present, turned away from camera or in soft focus at frame edge — his ignorance
+of what she knows is communicated by his averted gaze. He is not the center.
+One color break in the otherwise muted palette: blood red at the ghost layer's heart for the
+original death or betrayal moment, deep sapphire at her hands or feet for the reset point.
+The subtext: she died knowing exactly where it went wrong. She woke up with the map.
+Color palette: muted gold and grey base, desaturated, both tones blending until the color break.
+Matte quality — no neon, no high saturation. The palette communicates weight.
+Lighting: cold ambient light on the foreground figure, soft warm diffuse on the ghost layer
+behind — the past is warmer, the present colder and more certain.
+Title '{title}' in elegant serif or calligraphic script, muted gold. Author '{author}' in clean grey beneath.
+Portrait 2:3, ultra-detailed, no watermark.
+```
+
+#### Villainess Redemption / Reverse Isekai Romance
+```
+Romance novel cover, cinematic quality, opulent historical fantasy atmosphere.
+Single female figure, center-dominant, filling two-thirds of vertical frame.
+She wears elaborate historical fantasy court regalia: full ball gown with intricate beading,
+lace overlay, or embroidered panels in deep emerald or burgundy with antique gold trim —
+the dress of a condemned woman who chose to wear it anyway.
+Her expression is the critical element — achieve precisely: knowing, slightly amused, composed.
+NOT victimized. NOT action-heroine fierce. NOT tragic. She looks directly out of frame or
+slightly past the viewer as if she sees something beyond the image. The slight curve of her mouth
+and the steadiness of her gaze communicate one thing: she has read the ending and is not afraid of it.
+Male figure optional; if present, secondary — partially visible at frame edge, facing slightly away,
+unaware of what she knows.
+The subtext: she woke up as the villainess. She has read this story. The script is about to change.
+Background: imperial court interior or palace exterior, warm candlelight and antique gold,
+architecturally detailed but soft focus — the figure reads first.
+Color palette: deep emerald, burgundy, antique gold, warm cream at highlights. Rose gold overall
+register — opulent and knowing, not suffering.
+Lighting: warm candlelight from below catching the embroidery and her jaw, soft ambient court
+light filling the background, nothing harsh — she is at home here.
+Title '{title}' in calligraphic or fine-serif script, rose gold or cream, upper frame.
+Author '{author}' in smaller matching serif below.
+Portrait 2:3, ultra-detailed, no watermark.
+```
+
+#### Monster Romance / Interspecies Romance
+```
+Romance novel cover, cinematic quality, dark boundary-threshold atmosphere.
+TWO figures. Non-human male occupies the larger vertical portion: massive, scaled or shadowed,
+marked as non-human — but ONE detail is distinctly human and is the emotional pivot of the image:
+a hand extended toward her, palm open, fingers slightly curled; OR a head tilted in attention,
+ear angled toward the sound of her; OR eyes tracking her with an intensity no predator uses for prey.
+His form is dark, muted, powerful. Bioluminescent accent color (teal, amber, or violet) emanates
+from his markings, eyes, or form edges — single saturated color against the near-black,
+drawing the eye to the one human gesture he is performing.
+Human female figure: smaller in scale, placed close or just within his reach, wearing ordinary
+or torn clothing — nothing elevated that equalizes the power scale.
+Her expression: the exact moment she realizes she is the only safe person in his world.
+Not fear. Not love yet. Recognition — the thing that frightens everything else has rearranged
+itself for her specifically, and she has just understood this.
+The subtext: everyone in the village knows what lives in the forest. No one comes back.
+She is the first one they sent in who was not meant to survive.
+Background: dark forest, ruins, or boundary threshold — near-black with organic texture,
+bark or stone or collapsed archway, the boundary between the human world and his.
+Color palette: near-black base, single bioluminescent accent (her choice — teal most common),
+deep forest shadow, the warm skin tone of her face as the only human-warm element.
+Lighting: bioluminescent accent from his markings as primary source on her face,
+ambient dark engulfing everything else, her face the only warmth in the frame.
+Title '{title}' in bold or brushstroke display font in the accent color. Author '{author}' in muted grey beneath.
+Portrait 2:3, ultra-detailed, no watermark.
+```
+
+#### Dark Academia Romance
+```
+Romance novel cover, cinematic quality, candlelit institutional atmosphere.
+TWO characters in chiaroscuro — one hard candle or oil lamp source carving both faces from
+near-total shadow, warm amber light on cheekbones and brows, everything else falling into
+deep burgundy-black.
+Male figure: academic or institutional authority visible in clothing (waistcoat, open-collar dress
+shirt, reading glasses pushed up, or society insignia at lapel), body angled toward her across
+a table or in a doorway. His expression: barely-controlled want masked as intellectual contempt —
+control that is visibly costing him something. He has not decided what to do with what he knows.
+Female figure: her expression openly reads what his does not — she has found something out about
+him, and she has not yet decided what to do with it. Not fear. The specific confidence of a woman
+who holds information as currency.
+Bodies angled toward each other, the charged gap between them is visible negative space —
+deliberate and composed, the emotional argument of the image.
+Secondary props in soft focus: a single raven on a windowsill, old paper or open book between
+them on the table, one extinguished candle with smoke still rising, rain-streaked window
+showing only darkness beyond.
+The subtext: at this institution, every secret has a price. She just found out what his costs.
+Color palette: deep burgundy, candlelight amber, aged parchment, near-black.
+No neon, no digital brightness, nothing glossy. Matte finish.
+Lighting: single candle as the only source — warm amber carving cheekbones and brows,
+deep shadow filling everything else, the smoke of the extinguished candle catching the light.
+Title '{title}' in aged serif or gothic letterpress, upper frame or across the gap between figures.
+Author '{author}' in smaller matching serif.
+Portrait 2:3, ultra-detailed, no watermark.
+```
+
+#### Urban Romantasy / Contemporary Paranormal Revival
+```
+Romance novel cover, cinematic photorealistic quality, contemporary-with-wrong-detail atmosphere.
+TWO characters. Contemporary interior or urban threshold — apartment hallway, coffee shop corner,
+building lobby at night — with city skyline or rain-streaked window visible in background,
+muted and dark, the ordinary world continuing behind them.
+Male figure in contemporary clothing (dark coat, simple shirt, nothing elevated) but with ONE
+inhuman detail found after the face: iris color slightly wrong — too pale, too gold, too flat;
+OR canine teeth one millimeter too long; OR posture too still, the stillness of something that
+stopped needing to perform restfulness centuries ago; OR a shadow that does not match his position.
+His body language: ancient certainty — he is not anxious; he has survived everything and the
+experience has made him very still.
+Female figure in completely ordinary contemporary clothing (jeans, work clothes, Tuesday in a
+modern city) beside him. Her expression: raw vulnerability — the precise moment of understanding
+that something is not right about this person she thought she knew. She is not afraid yet.
+She is recalibrating.
+The subtext: she thought the city's worst problem was her rent. Then he admitted he had been
+alive since 1347. She did not leave.
+Color palette by subspecies: cool blue-grey and silver for vampire or immortal; warm amber and
+rust for shifter; deep forest green and charcoal for fae-urban. City window provides one note
+of familiar indifferent light — life continuing outside while something ancient stands in frame.
+Lighting: ambient city glow from the window as cool fill, single interior lamp as warm key
+on his inhuman detail and her face, deep shadow filling the rest.
+Title '{title}' in semi-bold contemporary sans-serif with one typographic anomaly — a slightly
+different weight on one letter, or a ligature that reads as marginally inhuman.
+Author '{author}' in clean standard sans beneath.
+Portrait 2:3, photorealistic, ultra-detailed, no watermark.
+```
+
 ---
 
 ### Escalation Strategy (if first generation is too tame)

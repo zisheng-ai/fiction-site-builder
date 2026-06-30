@@ -94,6 +94,59 @@ High-contrast moments are read more slowly and remembered longer. Build at least
 
 ---
 
+### Genre-Specific Scene Techniques
+
+These apply only when the book genre matches. Skip if the genre is not listed.
+
+#### Dual-Arc Chapter Beat (Regression / Revenge Romance)
+
+Every chapter must advance two arcs simultaneously. The chapter's primary scene serves the romance arc. The chapter's closing beat — the final paragraph, the last line of dialogue, the thing the heroine does after he leaves the room — serves the revenge or plan arc. Neither arc is permitted to stall while the other advances.
+
+When drafting chapter outlines for regression or revenge stories, require two explicit fields per beat entry:
+- `romance beat:` the emotional beat this chapter delivers for the pairing
+- `plan beat:` the revenge or intelligence move this chapter delivers
+
+If either field is empty, the chapter needs structural revision before prose begins. The chapter's final note belongs to the plan arc — that is the beat that drives the next click.
+
+#### Dramatic Irony Engine (Villainess / Transmigration)
+
+In every scene where the hero reacts to the heroine's changed behavior, write the exchange in two simultaneous registers:
+- His reaction is sincere — he is responding to a version of this woman he has never encountered before. Write that sincerity as real.
+- Her response is calculated — she is managing the gap between who he thinks she is and who she actually is.
+
+When he says something that lands as genuine, write her internal response in **two explicit layers**: the surface layer (what the original villainess would have felt — the emotion that matches the face she shows him) and the true layer (what she actually feels as someone who has read the ending). The dramatic irony lives in the gap between those two layers. When the gap collapses — when what she performs and what she feels become the same thing — that is the scene where the romance arc turns.
+
+#### Information-Asymmetry Pacing (Regression Stories)
+
+The heroine's future knowledge must be rationed across chapters. Before writing prose, plot the information reveal schedule:
+- Which chapter does she deploy each piece of future knowledge?
+- What does she deliberately withhold even from the reader?
+- What does she discover mid-story that her future memory got wrong?
+
+The reader should always be slightly behind her plan — catching up, never fully ahead. Each chapter reveals one deployment and hints at the next without naming it. If the reader holds the complete plan by chapter three, forward tension collapses. The withheld variable — the piece of future knowledge she does not have — must appear structurally as the chapter event that breaks her certainty.
+
+#### Creature-Fixation Scene Technique (Monster Romance)
+
+When writing a scene that establishes a non-human character's fixation on the heroine, show fixation through **behavioral deviation**, never through stated emotion. Identify what this creature does in the presence of everything else — then show what he does differently with her:
+- He stays still when his instinct says move.
+- He speaks when his nature has been silence.
+- He returns when every prior pattern has been solitary.
+- He positions himself between her and something that is not a threat to him.
+
+The reader should understand the fixation from behavioral observation before any character — including the creature — names what it is. When the fixation is finally named, it should feel like confirmation, not revelation.
+
+#### The Two-Layer Performance (Regression Prose Texture)
+
+When writing from the heroine's perspective in a regression story, every physical action she performs in her younger body carries a second internal register that is decades heavier than the body performing it.
+
+She pours tea the way the original young woman would have poured it — careful, deferential, hands that have not yet been trained out of uncertainty. Inside, she is counting exits.
+
+She smiles at the woman who will betray her in chapter twelve. The smile is technically correct — it is the smile this face used to make — but behind it she is running the geometry of the room, noting which guests saw the woman arrive, logging the date as one week before the thing she has come to prevent.
+
+The contrast between the external performance (young, unformed, unremarkable) and the internal certainty (someone who has already lived this scene to its end) is the defining texture of regression fiction. Write both layers in every scene — the body performing its role, and the mind that has already seen what comes next.
+
+---
+
 ## What to Read Before Each Chapter
 
 ```
@@ -413,6 +466,10 @@ One sentence is ideal. Two is the maximum. It must reveal the core irony of the 
 | **Three escalating beats** | One [setup]. One [complication]. One [the real problem]. | "One qualifying spot. One fake relationship. One very real problem." |
 | **Plan + role + failure** | [His plan]. [Her assigned role]. [Why the role failed]. | "He had a plan. She was supposed to be a variable. She was not a variable." |
 | **She/He didn't expect** | [What she went in to do]. [What she didn't expect]. | "She crossed the Veil to complete a survey. She didn't expect to be claimed before she could cross back." |
+| **Injustice stack + reversal** | [Betrayal 1.] [Betrayal 2, shorter.] [Together, the worst thing.] [Time skip.] [She came back to do one specific thing.] | "Her sister wanted to take her place. Her stepmother wanted her erased. Together, they buried Mara so deep even her name disappeared. Five years later, she came back to collect." |
+| **Assumption-detonation-evidence** | [She assumed X.] [The detonation — one sentence.] [The evidence — physical object, preceded by a pause.] | "She thought last night was just a drunken mistake. But when she woke up, there was a strange man beside her. And on the table… two marriage certificates." |
+| **Three-beat refusal (villainess / regression — first person)** | [I woke up as (condemned identity).] [I have (knowledge advantage).] [He / They / The story (will not / does not know / is about to change) — eight words or fewer.] | "I woke up inside the body of Lady Serafine Voss, the woman who gets executed at the winter ball. I have read every chapter of this story. He doesn't know I know how it ends." |
+| **Title-as-peak-state (fantasy / progression)** | Name the protagonist's achievement state or core power mechanic, not a thematic abstraction. | "Hundredfold Dominion", "The Last Cartographer of the Shattered Court", "Iron Sovereign" |
 
 ### Description (4–6 sentences)
 
@@ -426,6 +483,57 @@ Back-cover copy, not a plot summary. Each sentence has a job:
 | **4 — The third variable** | What neither planned for | This is the actual story. The thing the arrangement didn't account for. Must be specific, not vague. |
 | **5 — Stakes (optional)** | What happens if they fail or succeed | Only include if it sharpens the hook. Cut if it reads like a plot outline. |
 | **6 — The feeling (optional)** | The emotional impossibility in one image | One sentence that makes the reader feel the situation rather than understand it. |
+
+### Genre-Specific Synopsis Formulas
+
+Use these instead of the standard 6-sentence table when the genre has a dedicated structure.
+
+#### Formula G — Regression / Revenge Double-Arc Synopsis
+
+| Sentence | Job |
+|----------|-----|
+| **1 — The death** | She died — name the moment and who was responsible, in specific terms. Not "she was betrayed" but "she drank the poison her husband poured into her tea." |
+| **2 — The reset** | She woke at a named specific past moment — the morning before, the week of, the day of — and name exactly what she now carries forward. |
+| **3 — His role then vs. now** | What he was to her before, and the specific way he is already reacting to a version of her he was never supposed to meet. |
+| **4 — The plan with a contradiction** | What she intends to change, stated in terms of both the revenge arc and the romance arc simultaneously. The plan must visibly contain a contradiction she has not admitted to herself. |
+| **5 — The withheld variable** | The one thing her future knowledge cannot account for — the crack in her certainty. Name the category, not the content. |
+| **Closing beat** | The question the reader must click to answer — not "will she succeed" but the specific question raised by the contradiction in sentence 4. |
+
+#### Formula H — Villainess / Transmigration Synopsis
+
+| Sentence | Job |
+|----------|-----|
+| **1 — The inherited doom** | She transmigrated into the villainess — name the specific concrete fate she has inherited (execution, exile, public humiliation — be precise). |
+| **2 — Her knowledge advantage** | She has read the original story; name the most dangerous piece of that knowledge she now holds. |
+| **3 — His reaction to someone new** | His role in the original story vs. the complication — what he was supposed to do to the villainess she inhabits, and how he is already reacting differently. |
+| **4 — The performance problem** | She must act like the villainess she inhabits while quietly becoming someone else — name the specific context where this is hardest to maintain. |
+| **5 — The withheld variable** | The one plot event her future knowledge got wrong — the gap between the story she read and the story she is now living. |
+| **Closing beat (dramatic irony)** | The reader knows she knows; the hero does not. State the gap as a single sentence. |
+
+#### Formula I — Monster Romance / Creature-Fixation Synopsis
+
+| Sentence | Job |
+|----------|-----|
+| **1 — The world's rule** | What everyone knows about this creature — what is feared, what always happens. Stated as settled cultural fact. |
+| **2 — Her arrival** | Why she was sent, why she was considered expendable, what she expected. |
+| **3 — The behavioral anomaly** | What he did differently with her specifically — not a stated emotion but a specific action that deviated from every prior account. |
+| **4 — The intimacy engine** | What they cannot communicate with words and what they have begun to communicate through proximity, repeated action, and shared gesture. |
+| **5 — The withheld variable** | The thing about him she does not yet understand, or the thing about herself he recognized before she did. |
+| **Closing beat** | The double question: what does unconditional devotion cost when the one offering it is not human, and what does it cost her to accept it? |
+
+---
+
+### Self-Aware Genre Declaration (Fantasy / Sci-Fi / Progression — closing sentence only)
+
+After 3–4 sentences of plot hook, close the synopsis for fantasy, sci-fi, or progression titles with one sentence that names the emotional register and genre promise explicitly. This sentence is for the recommendation algorithm and the reader's genre filter — it is not literary, it is pitch:
+
+**Formula:** `This is a [genre adjective] [genre noun] about [emotional core 1], [emotional core 2], and [protagonist's transformation or peak state].`
+
+**Example:** "This is a cinematic sci-fi progression saga about strategy, bloodline, and the birth of a monarch in ruins."
+
+**Rule:** use ONLY as the final sentence, never as the opening. Do NOT use for romance titles — the hook sentence performs this function through emotional identification instead.
+
+---
 
 ### Suspense Layer — The Information Gap (Required)
 
