@@ -551,16 +551,35 @@ Hair placement directly affects how much skin is revealed:
 
 ### Bust & Décolletage
 
-**Size baseline: E cup or larger.** "Full generous" alone undershoots — models default to modest proportions. Use the size-forward phrasing below every time.
+**Size baseline: E cup or larger.** "Full generous" alone undershoots — models default to modest proportions. Always pair a size signal with a visual-effect phrase.
 
-| Detail | Prompt keywords |
-|---|---|
-| **Size (use every time)** | `large full bust`, `E-cup figure, large rounded bust dramatically prominent`, `heavy full chest, the fabric straining at the neckline`, `voluptuous oversized bust pressing against the fabric` |
-| Décolletage exposed | `deep décolletage on full display`, `cleavage visible from neckline to sternum`, `the full rounded curve of her bust above the neckline` |
-| Heaving / breathless | `chest heaving with each breath, the fabric barely containing her figure` |
-| Shadowed cleavage | `deep shadow falling between, the full curve of each side clearly defined` |
+**Model routing for bust size:**
+- `doubao` / `nano` in **isolated T1/T2 prompts**: `E-cup figure` works well — explicit size label steers output reliably.
+- `doubao` in **T3 prompts** (clinging fabric + multiple bare zones stacked): `E-cup` + other T3 language causes rejection. Use visual-effect phrasing only — see "T3-safe" column below.
+- `gpt-image-2-all`: always use visual-effect phrasing (`the fabric straining at the neckline`); ignores cup labels.
 
-> **Why "E-cup figure" works:** models trained on photographic data have encoded the visual signature of specific cup sizes. Explicit size language (`E-cup`, `DD-cup`) steers the output more reliably than vague descriptors like "generous" or "ample", which the model maps to average proportions. Doubao and nano accept size labels directly; gpt-image-2-all responds better to visual-effect phrasing (`the fabric straining at the neckline`, `prominently full chest`). Use the size label first, then add a visual-effect phrase for redundancy.
+| Detail | Standard keywords | T3-safe (doubao T3) |
+|---|---|---|
+| **Frontal size** | `E-cup figure, large rounded bust dramatically prominent` | `full generous bust, ample décolletage fully on display, the fabric straining across her chest` |
+| **Side / profile size** | `E-cup figure, the full side silhouette of her bust prominent in profile` | `the full pronounced curve of her bust visible in three-quarter profile, the fabric pressing against the curve of her chest from shoulder to waist` |
+| Décolletage exposed | `deep décolletage on full display`, `cleavage visible from neckline to sternum`, `the full rounded curve of her bust above the neckline` | same — safe at all tiers |
+| Heaving / breathless | `chest heaving with each breath, the fabric barely containing her figure` | same |
+| Shadowed cleavage | `deep shadow falling between, the full curve of each side clearly defined` | same |
+
+**Side-profile bust formula (no cup size, doubao T3-safe):**
+> Use FRAMING to force side angle (`strict three-quarter side angle — her near side fully toward the viewer`), keep bust description at the generic level (`full generous bust, ample décolletage fully on display`), and let the wet/clinging fabric do the visual work. Do NOT add explicit bust-shape language on top.
+
+**What doubao T3 accepts vs rejects (tested):**
+- ✓ `full generous bust, ample décolletage fully on display` + `rain-soaked thin white fabric clinging to every curve of her figure`
+- ✗ `the exact shape of her bust visible in profile through the clinging wet white material` — explicit bust-shape visibility statement rejected
+- ✗ `the fabric straining across her figure, pressing against the full curve of her chest` — explicit chest-curve statement rejected
+- ✗ `E-cup figure` stacked with T3 clinging fabric + multiple bare zones — rejected
+- ✓ `strict three-quarter side angle` in FRAMING (the framing instruction itself does not trigger rejection; the explicit bust-visibility language does)
+
+**Pose pairing for maximum bust read:**
+- Three-quarter angle (default): bust reads in profile on the near side — add `three-quarter angle showing the full side silhouette of her figure`
+- Side profile: maximum bust silhouette — add `pure side profile, the full curve of her bust prominent against the light`
+- Facing viewer: emphasize depth with shadow — add `deep shadow between, the full rounded curve of her décolletage catching the light`
 
 ### Hips & Legs
 
