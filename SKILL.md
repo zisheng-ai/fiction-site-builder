@@ -85,6 +85,7 @@ Starts after Phase 0. Runs in parallel with Track B.
 | A0 | Niche Research | `fiction-niche-researcher.md` | `outputs/{site-slug}/{book-slug}/niche-research.json` |
 | A1 | Write | see modes below | chapters, outline, world, tracking |
 | A2 | Cover | `story-cover.md` + `cover-styles.md` | `public/covers/{book-title}/cover/cover_v1.png` per book |
+| A2.5 | Illustrations | `story-illustrations.md` + `cover-allure-elements.md` | `public/illustrations/{book-slug}/ch-{NNN}.png` (0–3 per book) |
 | A3 | Quality Pass | `story-review.md` + `story-deslop.md` | review report, AI flavor removed |
 
 A0 runs once per book (not once per site). Required for each new book unless the user has explicitly stated the genre, tropes, and premise. A0's `differentiation_angle` and `competitive_brief` feed directly into A1's story brief.
@@ -94,6 +95,13 @@ A0 runs once per book (not once per site). Required for each new book unless the
 - **Long-form:** `references/story-long-write.md` → `chapters/ch-NNN-{title}.md` + `tracking/`
 - **Short-form:** `references/story-short-write.md` → `prose.md`, `setup.md`, `beat-outline.md`
 - **Import:** `references/story-import.md` → split chapters, reconstructed `world/`, `outline/`, `tracking/`
+
+**A2.5 rules:**
+- **Optional** — runs only when the user requests illustrations, or on a full pipeline run after A1 is complete.
+- Never on short-form stories (no chapter files to illustrate).
+- Illustrations are T4 (default) or T5 (dorsal only). Never T1/T2/T3 for illustrations.
+- Maximum 3 illustrations per book. A book may have 0.
+- Does not block the Pre-Launch Gate — a site may launch without illustrations.
 
 A3 is optional unless the user requests a review or the quality gate fails.
 
@@ -126,6 +134,8 @@ Optional phases (load only when the brief requires):
 | Multiple books in A1 | All books run concurrently |
 | Chapters within a book (A1) | Expand outline first → parallel chapters → continuity pass |
 | Covers across books (A2) | Batch all books in one round, not one-at-a-time |
+| Illustrations across books (A2.5) | All books in parallel — one Agent call per book |
+| Illustrations within a book (A2.5) | All 1–3 peak chapters in parallel — background processes |
 | B2 + B3 | Design tokens and data schema are independent |
 | B5 + B6 | Share one `pnpm run build` — do not run two concurrent builds |
 
@@ -153,9 +163,10 @@ If any book is missing a cover at launch time, run A2 immediately — do not pro
 | "Write a short story" / `/story-short-write` | 0 (skip if exists), A1 short-form, A3 (if requested) |
 | "Add one book to existing site" | A1 long-form (single book), A2 (single book) |
 | "Generate covers" / `/story-cover` | A2 only |
+| "Add illustrations" / "Generate illustrations" | A2.5 only |
 | "Import manuscript" / `/story-import` | A1 import only |
 | "Review prose" / `/story-review` | A3 only |
-| "Build the site" / full pipeline | 0 → Track A + Track B in parallel |
+| "Build the site" / full pipeline | 0 → Track A + Track B in parallel; A2.5 after A2 if user requests illustrations |
 
 **New-site book count:** When building a full pipeline for a brand-new site with no existing content, default to **8 books**. Run A0 for all 8 in parallel (one Agent call per book), then A1 for all 8 in parallel. Genre and topic are selected independently per book by random sampling from the high-demand genre pool — repetition across books is allowed and expected. Do not attempt to maximize genre variety across the site; just pick whatever has strong demand for each book independently.
 
@@ -209,6 +220,7 @@ Use the `Agent` tool for every delegation task, whether single or parallel. To r
 | A1 — multiple books in parallel | Multiple `Agent` calls in one response, one per book |
 | A1 — chapters within a book | Expand outline first → multiple `Agent` calls in one response (one per chapter) → continuity pass |
 | A2 — cover batch across all books | Multiple `Agent` calls in one response, one per book |
+| A2.5 — illustrations across all books | Multiple `Agent` calls in one response, one per book |
 | Track A + Track B launched together | Two `Agent` calls in one response |
 | B5 + B6 against the same build | Two `Agent` calls in one response |
 
@@ -319,7 +331,8 @@ Load references only when entering that phase. Do not preload all references at 
 - `story-review.md` — multi-perspective structural and prose review.
 - `story-deslop.md` — AI-flavor detection and removal (7 gates).
 - `story-cover.md` + `cover-styles.md` — cover generation via apiyi `gpt-image-2-all` (SVG fallback if no API key).
-- `cover-allure-elements.md` — visual-appeal vocabulary for covers; §0 is a lightweight monetization risk note (avoid only outright explicit content).
+- `cover-allure-elements.md` — visual-appeal vocabulary for covers and illustrations; §0 is a lightweight monetization risk note (avoid only outright explicit content).
+- `story-illustrations.md` + `cover-allure-elements.md` — in-chapter illustration generation (A2.5); T4/T5 tier; peak scene selection; IllustrationBlock component pattern.
 
 **Site build references (load for publishing tasks):**
 - `tech-stack.md` — choose the implementation stack before writing any code.
@@ -355,8 +368,12 @@ Load references only when entering that phase. Do not preload all references at 
     BookCard.tsx
     ChapterNav.tsx
     ThemeToggle.tsx             # DaisyUI data-theme switcher
+    IllustrationBlock.tsx       # inline chapter illustration (A2.5, optional)
   public/
     covers/                     # cover images (A2)
+    illustrations/              # in-chapter illustrations (A2.5, optional)
+      {book-slug}/
+        ch-{NNN}.png            # 0–3 per book, at peak dramatic moments
     logo.png / logo.svg         # site logo — PNG if APIYI_API_KEY set, else SVG (B2)
     favicon-32x32.png / favicon.svg  # favicon (B2)
 ```
