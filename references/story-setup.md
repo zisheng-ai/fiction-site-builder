@@ -101,6 +101,30 @@ When setting up a **new project** (no existing content):
 6. Create `tracking/threads.md`, `tracking/timeline.md`, `tracking/character-status.md` — start empty.
 7. If a reference book exists, run `/story-import` or manually create `reference/{book-title}/` files.
 
+## .gitignore
+
+Every site is its own git repo (registered as a submodule of the `fictions` parent). Write a `.gitignore` at the project root **before the initial commit** — build output, dependencies, generated collections, and local env must never be committed:
+
+```gitignore
+.next/
+out/
+node_modules/
+.content-collections/
+*.tsbuildinfo
+.env.local
+.DS_Store
+```
+
+- `.next/`, `out/` — Next.js build output
+- `node_modules/` — dependencies (restored via `pnpm install`)
+- `.content-collections/` — generated typed collections (rebuilt at `pnpm build`)
+- `*.tsbuildinfo` — TypeScript incremental build cache
+- `.env.local` — local secrets (e.g. `APIYI_API_KEY`); never commit
+- `.DS_Store` — macOS Finder metadata
+
+Chapter markdown under `content/` **is** committed — it is the source content, not build output.
+
+
 ## Writing Target
 
 When building a fiction site from scratch, write **N books** in total, where N is the user-specified count (default 5 if not specified). Writing and site build run in parallel — site setup (stack, design, data) starts immediately after Phase 0 and does not wait for books to be written.

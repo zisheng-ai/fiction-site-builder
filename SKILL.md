@@ -373,7 +373,7 @@ Load references only when entering that phase. Do not preload all references at 
     covers/                     # cover images (A2)
     illustrations/              # in-chapter illustrations (A2.5, optional)
       {book-slug}/
-        ch-{NNN}.png            # 0–3 per book, at peak dramatic moments
+        ch-{NNN}.png            # 0–5 per book, at peak dramatic moments
     logo.png / logo.svg         # site logo — PNG if APIYI_API_KEY set, else SVG (B2)
     favicon-32x32.png / favicon.svg  # favicon (B2)
 ```
