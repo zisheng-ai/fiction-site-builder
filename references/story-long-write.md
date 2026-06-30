@@ -315,6 +315,49 @@ Agents without this context will default to closed-door or will skip heat beats 
 - No three consecutive sentences starting with the same subject.
 - If AI flavor is detected, flag the chapter for the Phase 4 deslop pass — do not run `/story-deslop` inline here. Phase 4 (`references/story-deslop.md`) is loaded separately and runs after all chapters are written.
 
+## Book Description & Tagline (Required — write before cover generation)
+
+After chapters are complete, write the `tagline` and `description` fields for `src/lib/books.ts`. These appear on the book detail page and are the primary click trigger for every reader who arrives at the site. Apply the same hook standards as the cover: tension + question + desire, all three.
+
+### Tagline (1–3 short sentences)
+
+One sentence is ideal. Two is the maximum. It must reveal the core irony of the situation — what she came for vs. what she got, what was supposed to be simple vs. what it became.
+
+**Banned:** genre labels ("enemies-to-lovers", "fated mates", "dark romance"), passive descriptions ("a story about"), vague emotional promises ("a journey of self-discovery").
+
+**Patterns — pick the one that fits:**
+
+| Pattern | Formula | Example |
+|---------|---------|---------|
+| **Action → consequence** | [what she did] → [the thing that happened because of it] | "She mapped his world. He had no defense against that." |
+| **Intent + ironic reversal** | [what she came to do]. [what he did instead]. | "She came to end him. He made her the only person he trusted." |
+| **Three escalating beats** | One [setup]. One [complication]. One [the real problem]. | "One qualifying spot. One fake relationship. One very real problem." |
+| **Plan + role + failure** | [His plan]. [Her assigned role]. [Why the role failed]. | "He had a plan. She was supposed to be a variable. She was not a variable." |
+| **She/He didn't expect** | [What she went in to do]. [What she didn't expect]. | "She crossed the Veil to complete a survey. She didn't expect to be claimed before she could cross back." |
+
+### Description (4–6 sentences)
+
+Back-cover copy, not a plot summary. Each sentence has a job:
+
+| Sentence | Job | What it must do |
+|----------|-----|----------------|
+| **1 — Protagonist state** | Who she is + why she's there | Names the character + the specific ordinary-world goal. Not "a woman who" — a person doing a specific thing. |
+| **2 — The collision** | What went wrong when he entered | The inciting event in one sentence. What changed. "She didn't expect X." "X happened instead." |
+| **3 — The exchange** | What each needs from the other | "He needs [X]. She needs [Y]." The transactional logic of the forced proximity. |
+| **4 — The third variable** | What neither planned for | This is the actual story. The thing the arrangement didn't account for. Must be specific, not vague. |
+| **5 — Stakes (optional)** | What happens if they fail or succeed | Only include if it sharpens the hook. Cut if it reads like a plot outline. |
+| **6 — The feeling (optional)** | The emotional impossibility in one image | One sentence that makes the reader feel the situation rather than understand it. |
+
+**Quality check — one-second test:** if someone reads only the tagline and the first sentence of description, do they feel something and want to know more? If the answer is only "this sounds like a romance novel" — rewrite. The goal is "I need to know how this ends."
+
+**Banned patterns:**
+- Trope labels in reader-facing copy: `enemies-to-lovers`, `fake dating`, `fated mates`, `alpha male`
+- Passive construction: "a story is told of...", "discover the world of..."
+- Vague stakes: "everything they know will be tested", "nothing will ever be the same"
+- Placeholder description: do not ship a `description: ""` or `description: "Coming soon."`
+
+---
+
 ## After All Chapters Written → Cover Generation (automatic, no prompt)
 
-When all planned chapters are complete (or the user's requested batch is done), **immediately load `story-cover.md` and generate the cover** — do not ask whether to proceed. This is always the next step after the final chapter is saved.
+After the `tagline` and `description` are written and added to `src/lib/books.ts`, **immediately load `story-cover.md` and generate the cover** — do not ask whether to proceed. This is always the next step after the final chapter is saved.

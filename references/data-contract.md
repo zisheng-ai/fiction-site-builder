@@ -167,7 +167,8 @@ type Book = {
   title: string;
   author?: string;
   language: Language;
-  description: string;
+  description: string;      // back-cover copy, 4-6 sentences — follow drama hook formula in story-long-write.md §"Book Description & Tagline"
+  tagline?: string;         // 1-3 sentence hook — see tagline patterns in story-long-write.md
   cover?: string;          // URL or relative path to cover image
   genres: string[];
   status: "ongoing" | "completed" | "hiatus";
