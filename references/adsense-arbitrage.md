@@ -182,7 +182,7 @@ Track and optimize:
 
 ## 7. Build-time checklist (wire into B4–B6)
 
-- [ ] Covers, hero images, titles, synopses contain no outright explicit/pornographic content (§1.1); suggestive/擦边 allure is fine.
+- [ ] Covers, hero images, titles, synopses contain no outright explicit/pornographic content (§1.1); suggestive allure is fine.
 - [ ] Privacy / Terms / About / Contact pages exist and are footer-linked on every route (§5).
 - [ ] Google-certified CMP / cookie consent wired (§1.5).
 - [ ] Every ad slot reserves explicit size (no CLS) (§3.3).
@@ -191,5 +191,118 @@ Track and optimize:
 - [ ] No ad is mistakable for the Next/TOC control; clear gap maintained (§1.4).
 - [ ] Chapter change does a full reload so ads reinit and a fresh pageview counts (§2.1).
 - [ ] (If used) in-chapter pagination keeps each page content-rich and compliant (§2.2).
-- [ ] Meta Pixel + CAPI installed; engaged-session event fires (§4.1).
+- [ ] Meta Pixel installed; `NEXT_PUBLIC_META_PIXEL_ID` set before build (§4.1 impl).
 - [ ] Landing chapter LCP < 2.5s, no interstitial before content (§4.2).
+- [ ] `og:image` set on all chapter and book detail pages; `metadataBase` set in root layout (§4 impl).
+- [ ] End-of-last-chapter shows cross-book recommendation grid, not a dead-end link (§2.3 impl).
+- [ ] `<link rel="prefetch">` added for next chapter URL on every chapter page (§2.1 impl).
+
+---
+
+## 8. Implementation patterns (Next.js App Router + static export)
+
+### 8.1 Meta Pixel — `layout.tsx`
+
+Fires `PageView` on every full-reload chapter navigation automatically:
+
+```tsx
+export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://yoursite.com'),
+  // ...
+}
+
+// In <head>:
+{process.env.NEXT_PUBLIC_META_PIXEL_ID && (
+  <script
+    dangerouslySetInnerHTML={{
+      __html: `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','${process.env.NEXT_PUBLIC_META_PIXEL_ID}');fbq('track','PageView');`,
+    }}
+  />
+)}
+```
+
+Set in `.env.local`: `NEXT_PUBLIC_META_PIXEL_ID=your_pixel_id` and `NEXT_PUBLIC_SITE_URL=https://yoursite.com`. Must be set at **build time** for static export.
+
+### 8.2 OG image — `generateMetadata` in chapter and book pages
+
+```ts
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? ''
+return {
+  title: `${chapter.title} - ${book.title}`,
+  description: `Read Chapter ${n} of ${book.title} by ${book.author}.`,
+  openGraph: {
+    title: `${chapter.title} — ${book.title}`,
+    description: `Read Chapter ${n} of ${book.title} by ${book.author}.`,
+    images: [{ url: `${siteUrl}${book.cover}`, width: 848, height: 1280, alt: book.title }],
+    type: 'article',
+    siteName: 'Your Site Name',
+  },
+  twitter: { card: 'summary_large_image' },
+}
+```
+
+The book cover (portrait 2:3) doubles as the FB link preview — no separate OG image asset needed.
+
+### 8.3 Next-chapter prefetch — chapter `page.tsx`
+
+```tsx
+return (
+  <>
+    {next && <link rel="prefetch" href={`/book/${slug}/chapter/${next.order}`} />}
+    <div className="min-h-screen bg-base-100">
+      ...
+    </div>
+  </>
+)
+```
+
+Next.js App Router hoists `<link rel="prefetch">` from Server Components into `<head>` automatically.
+
+### 8.4 Cross-book recommendation at end of book
+
+Replace the dead-end "Back to book page" with a 3-book grid. Import `books` (already used in `generateStaticParams`) and filter out the current book:
+
+```tsx
+{!next && (
+  <div className="my-10 border border-base-300 rounded-2xl px-6 py-10">
+    <p className="text-base font-semibold text-base-content text-center mb-1">
+      You&apos;ve finished <em>{book.title}</em>.
+    </p>
+    <p className="text-xs text-base-content/40 uppercase tracking-widest text-center mb-8">Keep reading</p>
+    <div className="grid grid-cols-3 gap-4">
+      {books.filter(b => b.slug !== slug).slice(0, 3).map(b => (
+        <HardLink key={b.slug} href={`/book/${b.slug}/chapter/1`} className="flex flex-col items-center gap-2 group">
+          <div className="w-full rounded-lg overflow-hidden shadow-md" style={{ aspectRatio: '2/3' }}>
+            <img src={b.cover} alt={b.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          </div>
+          <span className="text-[11px] font-semibold text-center text-base-content group-hover:text-primary transition-colors line-clamp-2 leading-tight">
+            {b.title}
+          </span>
+        </HardLink>
+      ))}
+    </div>
+  </div>
+)}
+```
+
+Link directly to chapter 1 of each book — not the book detail page — to minimize the click-to-reading funnel.
+
+### 8.5 Trust pages — minimal viable set
+
+Each trust page follows the same shell: site header `<Link href="/">← Site Name</Link>` + content + footer with trust nav links. Footer pattern:
+
+```tsx
+<footer className="border-t border-base-300 mt-16">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+    <p className="text-[13px] text-base-content/40">&copy; {new Date().getFullYear()} Site Name</p>
+    <nav className="flex gap-5">
+      <Link href="/about" className="text-[13px] text-base-content/40 hover:text-base-content/70 transition-colors">About</Link>
+      <Link href="/privacy" className="text-[13px] text-base-content/40 hover:text-base-content/70 transition-colors">Privacy</Link>
+      <Link href="/terms" className="text-[13px] text-base-content/40 hover:text-base-content/70 transition-colors">Terms</Link>
+      <Link href="/contact" className="text-[13px] text-base-content/40 hover:text-base-content/70 transition-colors">Contact</Link>
+    </nav>
+  </div>
+</footer>
+```
+
+Privacy Policy must explicitly name: the ad network (Google AdSense or Google Ad Manager), Meta Pixel, cookies, and user rights. Terms must state: fiction content, 18+ audience, no reproduction. Contact must show a reachable email.
