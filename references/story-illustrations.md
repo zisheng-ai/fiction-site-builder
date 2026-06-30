@@ -8,17 +8,19 @@ Reference for Phase A2.5 — in-chapter illustration generation. Load when the u
 
 ## What Illustrations Are (and Are Not)
 
-**In-chapter illustrations** are full-width images embedded inside the chapter reader at the single highest-tension moment of a chapter. They are T4 or T5 tier — maximum-allure, maximum-intimacy images that would be too risky for a cover that gets scanned by Meta / AdSense crawlers.
+**In-chapter illustrations** are full-width images embedded inside the chapter reader at the single highest-tension moment of a chapter. They use T3 or T4 tier — more intense than a standard cover (never used as ad creatives) but without the no-fabric extremity of T5.
 
 | Covers (A2) | Illustrations (A2.5) |
 |---|---|
-| T3 by default | T4 by default, T5 optional |
+| T3 by default | T3 or T4 (randomly assigned per illustration) |
 | Hero image on book-detail and home pages | Embedded inside the chapter reader only |
 | Scanned by ad-review crawlers | Never surfaced as an ad creative or meta-image |
 | `public/covers/` | `public/illustrations/` |
 | One per book | Maximum 3 per book, minimum 0 |
 
-**T1, T2, T3 are never used for illustrations.** The whole point of the illustration tier is that it lives inside a chapter and never becomes a cover — so there is no reason to restrain it to cover-safe tiers.
+**T5 is never used for illustrations.** T5's no-fabric dorsal composition is too sparse as an inline scene image — it reads as a standalone art piece, not as a chapter moment. T3 and T4 produce more scene-grounded, immersive results.
+
+**Tier assignment per illustration:** randomly pick T3 or T4 independently for each illustration in the book. This produces variety across the novel — some peak moments are charged-but-clothed (T3), others are post-decision (T4). Do not use the same tier for all 3 illustrations in a book.
 
 ---
 
@@ -105,14 +107,16 @@ Illustration prompts differ from cover prompts in three ways:
 2. Replace "book cover" framing with "intimate scene illustration" framing
 3. Include scene-specific context (location, specific costume state, character position from the actual prose)
 
-### Step 1 — Build the base from the T4 or T5 assembly block
+### Step 1 — Randomly assign tier and pull the assembly block
 
-Default to **T4**. Use T5 only when the scene prose describes the characters as completely unclothed and the dorsal framing fits the scene.
+For each illustration, randomly pick **T3 or T4**. Do not use the same tier for every illustration in a single book.
 
-Pull the assembly block from `cover-allure-elements.md`:
+Pull the corresponding assembly block from `cover-allure-elements.md`:
 
+- **T3 assembly block** (garment failing, charged anticipation, surrender-imminent)
 - **T4 assembly block** (clothing has left, nominal drape remains, post-decision emotional register)
-- **T5 assembly block** (no fabric, dorsal, body-position coverage only)
+
+**Never use T5 for illustrations.**
 
 ### Step 2 — Add character anchors from `world/characters/`
 
@@ -190,13 +194,14 @@ python3 /tmp/gen_cover_model.py \
 
 | Tier | Primary | Fallback |
 |---|---|---|
+| T3 | `doubao-seedream-5-0-260128` | `nano-banana-pro` |
 | T4 | `doubao-seedream-5-0-260128` | `nano-banana-pro` |
-| T5 | `doubao-seedream-5-0-260128` | `nano-banana-pro` |
 
-- doubao may stochastically reject T4 — retry once before falling to nano
-- doubao rejects T5 frontal consistently — use T5 dorsal assembly block only
-- nano at T4: post-event framing bypasses filter → ~T2 output (acceptable fallback)
-- gpt: do not attempt T4/T5 for illustrations
+- doubao is reliable at T3 and T4; may stochastically reject T4 — retry once before falling to nano
+- nano at T3: silently ignores clinging-fabric keywords → T1-level output (acceptable for a chapter illustration)
+- nano at T4: post-event framing bypasses nano's filter → ~T2 output (acceptable fallback)
+- gpt: do not attempt T3 or T4 for illustrations (rejects T3 clinging-fabric trigger, rejects T4)
+- T5 is never used for illustrations
 
 **Run all illustrations for a book in parallel** (one background process per chapter):
 
@@ -306,6 +311,6 @@ A2.5 is **optional at initial launch** — run it when the user requests it or a
 ## Reference Loading
 
 Only load this file when entering A2.5. It depends on:
-- `cover-allure-elements.md` (T4/T5 assembly blocks — must be loaded alongside this file)
+- `cover-allure-elements.md` (T3 and T4 assembly blocks — must be loaded alongside this file)
 - The book's `outline/outline.md` and `tracking/context.md`
 - The book's `world/characters/` (for character anchors in the prompt)

@@ -99,7 +99,7 @@ A0 runs once per book (not once per site). Required for each new book unless the
 **A2.5 rules:**
 - **Optional** — runs only when the user requests illustrations, or on a full pipeline run after A1 is complete.
 - Never on short-form stories (no chapter files to illustrate).
-- Illustrations are T4 (default) or T5 (dorsal only). Never T1/T2/T3 for illustrations.
+- Illustrations use T3 or T4, randomly assigned per illustration. Never T1, T2, or T5.
 - Maximum 3 illustrations per book. A book may have 0.
 - Does not block the Pre-Launch Gate — a site may launch without illustrations.
 
