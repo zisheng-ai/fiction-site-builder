@@ -1567,14 +1567,16 @@ Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 
 Exposure is **stochastic** — the same prompt rolls different skin levels each generation, so a tame result is not a spec failure, it's RNG. To get a reliably high result you must **bake the tier fragments into the prompt**, not leave them to chance and not treat them as a reactive afterthought.
 
-Three named tiers, all strictly above the §0 floor (no nipples / genitals / sex acts). **Default for production = T3.** Start there and let the model's content filter be the only thing that pulls you back.
+Four named tiers, all strictly above the §0 floor (no nipples / genitals / sex acts). **Default for production = T3.** Start there and let the model's content filter be the only thing that pulls you back. T4 exists for doubao-only production runs where the account is established and the audience is fully warmed.
 
 **Model × Tier compatibility (tested):**
-- `gpt-image-2-all` — passes T1, T2; **rejects T3** (explicit content-safety refusal)
-- `doubao-seedream-5-0-260128` — passes T1, T2, T3 ✓ — **the only reliable T3 model**
-- `nano-banana-pro` — accepts T3 without refusal, but **silently ignores clothing-state keywords** (`torn`, `slipped`, `fallen`, `clinging to every curve`) and defaults to intact conservative clothing (~T1 exposure) regardless of what the prompt says; do NOT expect torn/wet/bare-back output from nano
+- `gpt-image-2-all` — passes T1, T2; **rejects T3** (explicit content-safety refusal); T4 is far above its threshold
+- `doubao-seedream-5-0-260128` — passes T1, T2, T3 ✓ — **the only reliable T3/T4 model**
+- `nano-banana-pro` — accepts T3/T4 without refusal, but **silently ignores clothing-state keywords** (`torn`, `slipped`, `fallen`, `clinging to every curve`) and defaults to intact conservative clothing (~T1 exposure) regardless of what the prompt says; do NOT expect torn/wet/bare-back output from nano
 
 **T3 fallback path:** gpt rejects → doubao (not nano). Nano cannot produce T3 clothing exposure under any prompt. Use nano only as a last resort when both gpt and doubao fail, and accept that the result will be T1-level allure.
+
+**T4 model restriction:** doubao only. Never attempt T4 with gpt or nano.
 
 ---
 
@@ -1656,7 +1658,35 @@ The 8 dimensions:
 | **Environment** | Primal, elemental, intimate to the point of erasure. Rain, darkness, fire, moonlight — the environment amplifies desire, it does not decorate the scene. The world outside them barely exists. | `heavy rain pouring down, both of them soaked, cobblestones reflecting silver moonlight`, `single candle or streetlamp, everything beyond them in total darkness`, `moonlight the only light source, cutting hard shadows across wet bare skin`, `steam rising between them in the cold air`, `the dark so complete their faces are all that's lit` |
 
 **T3 assembly block:**
-> *leather jacket torn open and fallen off one shoulder, bare back fully exposed, rain-soaked fabric clinging to every curve of her figure — man behind her, shirt completely off, powerful bare torso pressing against her, one hand gripping her bare waist with fingers pressing into her skin, the other cupping her jaw. Bodies flush together, zero space, skin to skin. Her expression: fierce surrender — she knows this is the point of no return and her body has already answered. Heavy rain, cobblestones reflecting silver moonlight, the world beyond them dissolved into darkness.*
+> *white silk dress torn down the side, held by one shoulder strap — bare back fully exposed, rain-soaked thin white fabric transparent and clinging to every curve of her figure — man behind her, shirt completely off, powerful bare torso pressing against her, one hand gripping her bare waist with fingers pressing into her skin, the other cupping her jaw. Bodies flush together, zero space, skin to skin. Her expression: fierce surrender — she knows this is the point of no return and her body has already answered. Heavy rain, cobblestones reflecting silver moonlight, the world beyond them dissolved into darkness.*
+
+> **Note:** `white dress` produces more allure than `leather jacket` even with identical `torn/slipping` modifiers — light fabric renders as transparent when wet; dark leather renders as opaque coverage. Always prefer white/sheer/light fabric for the female lead's primary garment.
+
+---
+
+#### T4 — Limit *(doubao only)*
+
+**Use for:** doubao confirmed, established ad account with a warm track record, maximum-intensity dark romance / mafia / paranormal covers where T3 is the floor not the ceiling.
+
+**Viewer feeling:** "buying this right now" — zero hesitation, pure instinct click
+
+**Key differentiator from T3:** T3 shows a garment in the process of failing. T4 shows the aftermath — clothing has already left, only a nominal draping element remains, and the emotional register shifts from surrender-imminent to surrender-complete. The world beyond the two figures has ceased to exist entirely.
+
+| Dimension | T4 specification | Prompt keywords |
+|---|---|---|
+| **Clothing state** | Clothing has already left. One nominal draping element — a single silk sheet corner, a sheer panel, a wisp of fabric — covers only the minimum required by §0. The garment's function as coverage has ended; it exists only as a composition element. | `white silk sheet corner draped loosely across her hip, barely held in place`, `dress fallen to the floor, a single sheer panel the only remaining cover`, `one wisp of translucent fabric across her, everything else bare`, `the sheer drape the only thing between her and nothing at all` |
+| **Skin zones** | Every zone simultaneously except §0-protected: full back from nape to base of spine, full legs from hip to foot, bare midriff, full side silhouette, collarbone, shoulder, upper chest, the curve of her hip. The frame reads as total skin with a single covered point. | `entire bare back from nape to the base of the spine`, `the full curve of her hip and waist`, `long bare legs from hip to foot`, `bare shoulder, collarbone, midriff, and hip all simultaneously visible`, `full-length silhouette — skin from shoulder to ankle` |
+| **Fabric behavior** | The fabric has stopped being clothing and become a prop. It drapes, drifts, or pools in a way that emphasizes what it is not covering. Gravity-assisted, wind-caught, or fallen to the floor. | `sheer silk barely moving, covering nothing it was meant to cover`, `fallen white fabric pooled on the floor below her feet`, `single translucent panel drifting off her shoulder with nothing to hold it`, `the drape so light it shifts with each breath, covering only the absolute minimum` |
+| **Body contact** | Maximum skin-to-skin across the full torso. His bare chest against her entire bare back from shoulder to hip — no fabric between them at any contact point. Or post-intimacy hold: she rests against him, both bare, his arm drawn possessively across her. | `his bare chest pressed against her entire bare back — skin to skin from shoulder to hip, no fabric, no gap`, `her bare back to his bare torso, his hand flat against her bare stomach`, `both bare, her shoulder at his jaw, his arm drawn across her, possessive and absolute` |
+| **Male figure** | Bare from the waist up; lower half out of frame or implied. His body is the environment — she exists against his skin, and his torso is the visual ground for her figure. Every muscle lit by the single light source. | `bare from the waist up, everything below in shadow and out of frame`, `his torso the only surface she rests against, muscles carved by a single amber light`, `bare chest and shoulder, jaw set — she reads as a composition against his skin` |
+| **Camera framing** | Skin-ratio crop. Skin:background at 80:20 or higher. Two bodies filling the frame, camera so close that edges and environment dissolve to pure abstracted color. The frame stops just above §0 territory — negative space exists only to create ambiguity, not to show environment. | `ultra-tight hip-to-crown crop, both bodies filling the frame, background pure warm bokeh`, `camera inches from the subject — the edge of the frame creates the only ambiguity`, `composition where bare skin fills 80% of the image and the background is warm abstraction`, `cropped at the hip, torsos and faces filling the rest, no environment visible` |
+| **Emotional register** | Post-decision, not pre-decision. The fight is over. The expression is completion rather than anticipation — eyes closed, head fallen back, the specific quiet of someone who stopped pretending they didn't want this. Or the possessive aftermath: he is certain, consuming, looking at her like the question was never in doubt. | `eyes closed, head fallen back, the look of someone who has stopped fighting and found it was the right choice`, `expression of total surrender — not defeat, arrival`, `she is not thinking about consequences; she has become the moment`, `his expression: certain, consuming, possessive — the question was answered before she thought to ask it`, `the specific peace of a surrender that was always going to happen` |
+| **Environment** | The environment has ceased to exist. One warm light source (amber candle, single streetlamp, sliver of moonlight) illuminates only skin. Everything beyond the two figures is pure darkness or pure shallow bokeh. The only world is them. | `single amber candle, its warmth on bare skin and nothing else — the room has gone to darkness`, `moonlight the only light, cutting across bare shoulders and dissolving everything beyond`, `bokeh so shallow the background is pure warm abstraction`, `the world outside the frame doesn't exist; there is only light on skin and shadow on everything else` |
+
+**T4 assembly block:**
+> *white silk sheet corner barely draped across her hip — entire bare back from nape to the curve of her spine, long bare legs from hip to foot, her shoulder at his jaw. His bare chest her only backdrop, skin to skin from shoulder to hip, no fabric between them anywhere. Ultra-tight crop: skin fills the frame, background gone to warm amber abstraction. Single candle the only light source. Her expression: not surrender but arrival — eyes closed, the look of someone who stopped fighting and found it was right. His: certain, possessive, the question was always already answered.*
+
+> **Model compatibility:** doubao is the only reliable T4 model. gpt rejects at T3; T4 is far above its threshold. nano silently ignores torn/clinging/slipped keywords at T3 and defaults to T1 output — T4 uses different framing ("fabric has already left") so the behavior may differ; include nano in test rounds to verify, but treat the result as a T1 baseline comparison rather than a T4 output.
 
 ---
 
@@ -1667,6 +1697,7 @@ The 8 dimensions:
 | New ad account, first creative, unknown audience | T1 |
 | Retargeting warm audience, established account | T2 |
 | All production covers (default) | **T3** |
+| doubao confirmed, warm account, max intensity needed | **T4** (doubao only) |
 | gpt rejected T3 → try doubao first | still T3, different model |
 | doubao also rejected T3 | T2 with doubao |
 | All models reject T2 | T1 with any model |
