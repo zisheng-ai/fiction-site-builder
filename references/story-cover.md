@@ -162,9 +162,10 @@ keep title and author name inside the central safe area (inner ~85%), no waterma
 - Figure: `voluptuous hourglass figure`, `impossibly cinched waist`, `full generous bust`, `ample décolletage on full display`
 - Clothing: maximally revealing for the genre — torn, slipped, soaked, sheer, or barely-there (see `references/cover-allure-elements.md` Skin & Clothing Vocabulary)
 - Skin: as much bare skin as the §0 floor allows — bare back, bare legs, bare midriff, bare shoulders, extreme neckline
-- Pose: use top-three poses from `references/cover-allure-elements.md` Poses table; bodies must be in physical contact
+- Pose: use top-three **frontal** poses from `references/cover-allure-elements.md` Poses table; bodies must be in physical contact; from-behind poses (marked ▲) are accents, not defaults — at most 1 in 3 covers
+- Framing: state the camera frame explicitly in every prompt — "full-body shot, both figures from feet to crown" or "medium shot from hip to crown". Never allow the model to default to a face-only crop.
 
-A modest, fully-clothed, or non-contact pose is a quality gate failure. Exposure is stochastic — a tame roll is RNG, not the spec; the fix is baking in higher-tier fragments, never accepting the weak roll. Hard floor: no nipples, no genitals, no sex acts (§0 in `cover-allure-elements.md`). Everything above that floor: push it.
+A modest, fully-clothed, non-contact, or head-shot-only composition is a quality gate failure. Exposure is stochastic — a tame roll is RNG, not the spec; the fix is baking in higher-tier fragments, never accepting the weak roll. Hard floor: no nipples, no genitals, no sex acts (§0 in `cover-allure-elements.md`). Everything above that floor: push it.
 
 **Drama rule — MANDATORY (see Drama Hook section in `cover-allure-elements.md`):** allure without drama is a fashion photo, not a book cover. Every prompt must include:
 - A specific emotional expression from the Expression Rules table (never neutral/pleasant)
@@ -173,7 +174,7 @@ A modest, fully-clothed, or non-contact pose is a quality gate failure. Exposure
 - The "one-second test": a viewer must feel something — not just notice someone attractive
 
 Title font styles and author name styles are in `references/cover-styles.md` per genre.
-Offer 2–3 composition variants (close-up portrait / full body / pure scene) on first generation.
+Default composition: **full-body or medium shot** — both figures visible from hip to crown minimum. Close-up portrait (face and chest only) is a secondary variant, not the default. Pure scene (no figures) only for thriller/horror genres.
 
 ## Step 3 — Generate cover
 

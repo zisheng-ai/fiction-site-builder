@@ -170,19 +170,210 @@ Everything short of explicit (suggestive poses, deep cleavage, figure-forward bo
 
 ---
 
+### Swimwear / Beachwear
+
+- **Visual:** Bikini or one-piece, sun-bronzed skin, beach / poolside setting
+- **Best for:** contemporary romance (beach arc, resort arc), summer chick-lit, sports romance
+- **Prompt options:**
+
+  ```
+  Bikini standard:
+  young woman in minimal string bikini, sun-bronzed figure, voluptuous curves,
+  golden-hour beach, ocean waves blurred background, warm amber rim light sculpting her silhouette
+
+  High-tension scene:
+  woman in tiny string bikini, wet from the ocean, fabric clinging to every curve,
+  man standing close behind her, hand at her bare waist, both looking toward the horizon,
+  tropical beach sunset, warm amber and coral light
+  ```
+
+- **Allure tips:** wet skin beats dry skin every time — add `just emerged from the water, skin glistening, salt-damp hair`. High-cut bottoms (`high-cut bikini bottom`) and a barely-there top (`barely-there triangle top`) maximize skin without hitting the §0 floor.
+- **Genre variants:** one-piece / monokini for sports/swimmer heroines; wetsuit half-unzipped for surfing / diving arcs.
+
+---
+
+### Cocktail Dress / Evening Gown
+
+- **Visual:** Backless / deep-V satin or velvet gown, formal event
+- **Best for:** billionaire romance, Cinderella arc, masquerade / gala setting
+- **Prompt:**
+  ```
+  woman in backless floor-length satin evening gown, plunging neckline to sternum,
+  bare back fully exposed almost to waist, skin catching the chandelier light,
+  dramatic grand ballroom background, crystal chandelier bokeh, cold blue shadow + warm amber rim light
+  ```
+
+---
+
+### Leather / Biker
+
+- **Visual:** Black fitted leather jacket, leather pants or miniskirt, boots
+- **Best for:** paranormal romance, urban fantasy, biker MC romance, dark contemporary
+- **Prompt:**
+  ```
+  woman in black fitted leather jacket falling off one bare shoulder, skin-tight leather pants,
+  heavy boots, leather jacket partially open revealing bare midriff,
+  urban nighttime street, neon backlight, hard-edged rim light catching the leather sheen
+  ```
+- **Allure tip:** jacket slipping off = instant skin reveal with zero filter risk. Pair with `no shirt underneath, jacket barely covering her chest`.
+
+---
+
+### Corset / Victorian
+
+- **Visual:** Boned corset (lace-up back), full skirt or nothing below, cinched waist
+- **Best for:** historical romance, dark fantasy, vampire romance, regency drama
+- **Prompt:**
+  ```
+  woman in steel-boned black lace corset, back laces loosening and falling open,
+  impossibly cinched waist, skirts pooling on stone floor,
+  candlelit castle corridor, dramatic chiaroscuro, cool stone grey + warm amber candle glow
+  ```
+- **Variants:** underbust corset + sheer chemise; torn corset mid-conflict scene; red velvet corset for court drama.
+
+---
+
+### Military Uniform
+
+- **Visual:** Fitted officer jacket with medals/epaulettes, tight trousers, cap
+- **Best for:** historical war romance, paranormal (wolf pack / vampire army), sci-fi military
+- **Prompt:**
+  ```
+  tall woman in fitted military officer uniform, dark navy jacket with gold epaulettes and medals,
+  form-fitting trousers, sharp authoritative expression, jaw set, eyes cold and commanding,
+  war-room or battlefield background, cinematic dramatic lighting
+  ```
+- **Male variant (dominant hero):** `tall man in battle-worn military coat, medals catching firelight, looking down at her with quiet possession`
+
+---
+
+### Crop Top + High-Waist
+
+- **Visual:** Knotted crop top or bandeau, high-waist jeans/skirt, bare midriff
+- **Best for:** contemporary romance, college romance, summer arc
+- **Prompt:**
+  ```
+  young woman in knotted white crop top, bare midriff fully exposed, high-waist denim shorts,
+  golden-hour street, warm backlight outlining her silhouette,
+  man's hand at her bare waist drawing her close
+  ```
+- **Allure tip:** maximize the midriff gap — `crop top barely reaching the ribs, several inches of bare stomach visible`. Works well with the Rain-drenched pose (soaked crop top clings).
+
+---
+
+### Sheer / Lace Overlay
+
+- **Visual:** Sheer fabric layer over minimal undergarment, silhouette visible through fabric
+- **Best for:** contemporary romance, dark romance bedroom scenes, billionaire arc
+- **Prompt:**
+  ```
+  woman in flowing sheer white lace overlay, curves fully visible through the translucent fabric,
+  minimal silk underlayer, bare shoulders, loose hair,
+  luxury bedroom or rooftop at dusk, warm diffused backlight creating a glowing silhouette effect
+  ```
+- **Allure tip:** `backlit sheer fabric outlining every curve of her silhouette` is the key phrase — the model renders the silhouette without triggering the nudity filter.
+
+---
+
+### Sportswear / Athleisure
+
+- **Visual:** Sports bra + high-waist leggings, gym / training setting
+- **Best for:** sports romance (MMA, football, tennis), fitness-adjacent contemporary
+- **Prompt:**
+  ```
+  woman in black sports bra and high-waist compression leggings,
+  athletic physique, bare midriff, light sheen of exertion on skin,
+  gym or boxing ring background, hard overhead light + cool fill
+  ```
+- **Conflict variant:** `man in corner of the ring, arms crossed, watching her with an expression that has nothing to do with the fight`
+
+---
+
+### Ripped / Destroyed Denim
+
+- **Visual:** Shredded denim jacket or cutoffs, plenty of skin through the tears
+- **Best for:** contemporary romance, rock-band romance, rebel arc
+- **Prompt:**
+  ```
+  woman in heavily distressed denim jacket worn open with nothing underneath,
+  ripped cutoff denim shorts showing upper thigh, confident rebellious expression,
+  concert venue or urban rooftop, warm stage light rim, cool shadow
+  ```
+
+---
+
+### Kimono (Open / Slipping)
+
+- **Visual:** Silk kimono loosely draped, obi half-untied, shoulder slipping
+- **Best for:** historical Japanese romance, paranormal (kitsune/yokai), contemporary Japan-set
+- **Prompt:**
+  ```
+  woman in silk kimono, fabric slipping off one bare shoulder, obi loosening at the waist,
+  bare collarbone and upper chest revealed, hair in loose updo with pins falling out,
+  traditional inn room with shoji screen, moonlight through paper screen diffused soft blue-white
+  ```
+
+---
+
+### Fantasy Armor / Battle Maiden
+
+- **Visual:** Fitted plate or leather armor, strategically minimal coverage, weapon
+- **Best for:** dark fantasy, cultivation fantasy (female lead), isekai
+- **Prompt:**
+  ```
+  warrior woman in dark fantasy battle armor — fitted breastplate leaving midriff and arms bare,
+  leather pauldrons, thigh-high armored boots, long dark hair blowing back,
+  battlefield or throne room background, dramatic stormy sky, silver rim light on the armor edges
+  ```
+- **Allure tip:** `form-fitting armor sculpted to her figure, every curve of her body outlined in the metal`
+
+---
+
+### Wet White Shirt (Classic)
+
+- **Visual:** Thin white shirt soaked through, no bra implied, every contour visible
+- **Best for:** any genre — rain scene, pool scene, confrontation mid-storm
+- **Prompt:**
+  ```
+  woman in white button-down shirt completely drenched in rain,
+  wet fabric transparent and clinging to every curve of her figure,
+  shirt open at the collar, chest heaving, eyes locked on him with fierce emotion,
+  rainy street, cold blue-white rain light, warm amber window glow behind her
+  ```
+- **Note:** among the highest-yield allure phrases for gpt-image-2-all. Apply whenever a scene has rain or water.
+
+---
+
 ## Poses
+
+### Camera Framing — State Explicitly in Every Prompt
+
+Front-facing compositions outperform side-profile and back-view on scroll-stop rate. **Frontal = default. Side profile = accent only.**
+
+| Frame | When to use | Prompt fragment to include |
+|-------|-------------|---------------------------|
+| **Full body** (first choice) | Always — shows clothing, figure, and both characters fully | `full-body shot, both figures visible head to toe, full torso and legs in frame, facing the viewer` |
+| **Medium shot** (second choice) | When scene focus is the charged space between faces | `medium shot, both figures from hip to crown, three-quarter view facing camera` |
+| **Close-up** (accent only) | Only when pose is inherently face-to-face (chin tilt, forehead press) | `tight crop on faces and upper chest` |
+
+**Never default to close-up.** If the prompt describes bodies pressing together, the frame must show those bodies. If the pose puts the man behind the woman, use it as a dramatic accent (1 in 3 covers), not a default.
+
+### Pose Reference
 
 | Pose | Scene | Safe prompt keywords |
 |---|---|---|
-| **Wall pin** | Man stands over woman against wall, faces close | `man leaning one arm against wall over woman, woman back pressed to wall, faces close but not touching, charged tension, dramatic side lighting` |
-| **Chair pin** | Man leans over woman seated in chair | `dominant figure leaning over seated woman in chair, intense close proximity, power dynamic, controlled expression` |
-| **Rain-soaked** | Wet hair clinging to face and neck, raw emotion | `rain-soaked figure, wet hair clinging to face and neck, damp clothing, emotionally raw upward gaze, neon-lit rainy night street, silver rain threads in light` |
-| **Look back over shoulder** | Three-quarter turn, cheekbone catching light | `looking back over shoulder with mysterious expression, cheekbone catching soft light, hair swept by motion, cinematic depth of field` |
-| **Pure side profile** | Side face only, jawline and neckline | `pure side profile, elegant jawline and neckline, downcast or distant gaze, moody window light from one side` |
-| **Off-shoulder** | Neckline slightly off one shoulder | `off-shoulder silhouette, elegantly bare collarbone and shoulder line, soft light on skin, fabric gathered gracefully` |
-| **Billowing skirt** | Outdoor / wind, dynamic movement | `skirt billowing in wind, fabric flowing dramatically, legs partially visible through motion, golden hour backlight` |
-| **Downcast gaze** | Eyes lowered, eyelashes catching light | `downcast eyes, eyelashes catching light, subtle vulnerability, soft chin shadow` |
-| **Bedside morning light** | Pillow / bed edge, silk morning light | `bedside morning light, figure half-reclining or sitting at edge, disheveled hair, sheer curtain filtering golden hour, intimate quiet atmosphere` |
+| **Wall pin — frontal cage** | Woman's back to wall, man's arms on either side, she faces viewer fully | `woman's back pressed to wall, man's arms planted on either side forming a cage around her — she faces the viewer fully, dress and figure readable, he leans in from the front, bodies an inch apart` |
+| **Frontal chest press** | Chest-to-chest, both facing camera | `man and woman chest-to-chest facing the viewer, his hands gripping both her hips pulling her flush against him, her hands fisted in his open shirt, full-body shot from hip to crown, every curve of her dress pressed hard against him` |
+| **Power lift — face level** | Lifted to eye level, dynamic | `man's hands gripping her waist lifting her until their faces are level, her legs hanging with skirt riding up, both facing the viewer, her hands on his shoulders, full-body shot` |
+| **Standing confrontation** | Face to face, charged gap visible | `two figures face to face, bodies close but not touching, both in three-quarter view facing camera, full torsos and legs visible, his hand reaching toward her jaw not yet touching, her chin raised in defiance` |
+| **Chair pin** | Man leans over woman seated in chair | `dominant figure leaning over seated woman in chair, she faces viewer, intense close proximity, power dynamic, controlled expression, medium shot` |
+| **Rain-soaked** | Wet hair clinging to face and neck, raw emotion | `rain-soaked figure, wet hair clinging to face and neck, damp clinging clothing outlining figure, emotionally raw upward gaze facing viewer, neon-lit rainy night street, full body visible` |
+| **Look back over shoulder** *(accent)* | Three-quarter turn, cheekbone catching light | `looking back over shoulder with mysterious expression, cheekbone catching soft light, hair swept by motion, cinematic depth of field` |
+| **Pure side profile** *(accent only)* | Side face only, jawline and neckline | `pure side profile, elegant jawline and neckline, downcast or distant gaze, moody window light from one side` |
+| **Off-shoulder** | Neckline slightly off one shoulder | `off-shoulder silhouette facing the viewer, elegantly bare collarbone and shoulder line, soft light on skin, fabric gathered gracefully, medium shot` |
+| **Billowing skirt** | Outdoor / wind, dynamic movement | `skirt billowing in wind, fabric flowing dramatically, legs fully visible through motion, golden hour backlight, full-body shot facing viewer` |
+| **Downcast gaze** | Eyes lowered, eyelashes catching light | `downcast eyes, eyelashes catching light, subtle vulnerability, soft chin shadow, medium shot facing camera` |
+| **Bedside morning light** | Pillow / bed edge, silk morning light | `bedside morning light, figure half-reclining or sitting at edge facing viewer, disheveled hair, sheer curtain filtering golden hour, intimate quiet atmosphere` |
 
 ---
 
@@ -322,20 +513,23 @@ Everything not on this list is **in play**. Push it.
 
 ### Poses — Ordered Highest to Lowest Intensity (all within §0 floor)
 
-Default to the **top three**. Only drop lower if the genre explicitly calls for restraint.
+Default to the **top three** — all frontal. From-behind poses (marked ▲) are dramatic accents, not defaults — use at most 1 in 3 covers. Always pair a pose with the Camera Framing instruction above.
 
 | Pose | Prompt Formula |
 |------|---------------|
-| **Possessive hold — full press** | `man standing behind woman, bare chest pressed to her bare back, one forearm low across her abdomen pulling her into him, his other hand gripping her jaw and tilting her face up toward his, her head thrown back against his shoulder, lips parted, eyes half-closed in surrender, her dress slipped off both shoulders` |
-| **Against-the-wall — bodies locked** | `man's body pinning woman to the wall, his thigh pressed between her legs, one hand flat on the wall above her, the other gripping her waist and pulling her hips into him, her leg hooked around his, fingers twisted in his open shirt, faces one centimeter apart, both breathing hard` |
-| **Chin tilt — almost-collision** | `man's large hand cupping woman's jaw, thumb pressing her lower lip open, tilting her face up to his until their lips are a breath apart, her hands clutching his open shirt, arching her body into his, eyes barely open, raw wanting expression` |
-| **Hip grip — full press from behind** | `man's hands gripping both her hips from behind, pulling her back firmly against him, her dress riding up to mid-thigh, her head turned back toward him over her shoulder, lips parted, one hand reaching back to grip his thigh` |
-| **Neck exposure — arched** | `woman's head thrown completely back, throat fully arched, man's lips pressed to her neck, his hand gripping her hair at the root, his other hand flat on her bare stomach, her back arched hard into him, fingers digging into his arm` |
-| **Rain-drenched — bodies merged** | `two figures pressed chest to chest in heavy rain, soaked fabric clinging to and outlining every curve of her body, his hands gripping her waist and the back of her thigh, her leg wrapped around his hip, both faces turned toward each other, lips nearly touching` |
-| **Bed — morning after tension** | `woman sitting at bed edge wrapped only in a white sheet clutched to her chest, sheet loose and slipping, bare shoulders and legs from mid-thigh down fully visible, knees pressed together, expression of shock and conflict; man behind her on the rumpled bed, shirt off, watching her with controlled intensity` |
-| **Torn aftermath — disheveled** | `woman's gown slipped completely off one shoulder and falling, man's hand at her bare waist skin-to-skin, her hair unraveled, both breathing heavily in dim candlelight, her expression: desire and defiance` |
-| **Kneeling power dynamic** | `woman kneeling on floor, hands on man's thighs as she looks up at him, her dress draped and falling open at one side, his hand loose in her hair, gaze commanding` |
-| **Bridal carry — slipped** | `man carrying woman, her bare legs draped over his arm, her gown fallen to barely cover her upper thighs, one shoulder strap slipped, her head against his shoulder, half-lidded eyes, hand resting on his bare chest` |
+| **Frontal chest press** | `man and woman chest-to-chest, his hands gripping both her hips pulling her flush against him, her hands fisted in his open shirt, both at three-quarter angle facing the viewer — full-body shot hip to crown, her voluptuous figure pressed into him, every curve of her dress against his chest` |
+| **Against-the-wall — bodies locked** | `man's body pinning woman to the wall, his thigh pressed between her legs, one hand flat on the wall above her, the other gripping her waist and pulling her hips into him, her leg hooked around his, fingers twisted in his open shirt, faces one centimeter apart, both breathing hard — medium shot, she faces viewer, full torsos visible` |
+| **Power lift — face level** | `man's hands gripping her waist lifting her until their faces are level, her legs hanging with dress riding up to bare the thigh, both facing the viewer, her hands gripping his shoulders, full-body shot` |
+| **Chin tilt — almost-collision** | `man's large hand cupping woman's jaw, thumb pressing her lower lip open, tilting her face up to his until their lips are a breath apart, her hands clutching his open shirt, arching her body into his, eyes barely open, raw wanting expression — medium shot showing both torsos, not a head crop` |
+| **Standing confrontation — charged gap** | `man and woman face to face, bodies one inch apart but not touching, both at three-quarter angle facing the viewer, his hand reaching toward her jaw not yet making contact, her chin raised in defiance, his expression of absolute certainty — full-body shot, legs and clothing fully visible` |
+| **Rain-drenched — bodies merged** | `two figures pressed chest to chest in heavy rain facing the viewer, soaked fabric clinging to and outlining every curve of her body, his hands gripping her waist and the back of her thigh, her leg wrapped around his hip, lips nearly touching — full-body shot` |
+| **Torn aftermath — disheveled** | `woman's gown slipped completely off one shoulder and falling, man's hand at her bare waist skin-to-skin, her hair unraveled, both facing viewer in dim candlelight, her expression: desire and defiance — medium shot` |
+| **Kneeling power dynamic** | `woman kneeling on floor facing the viewer, hands on man's thighs as she looks up at him, her dress draped and falling open at one side, his hand loose in her hair, gaze commanding — full body visible` |
+| **▲ Possessive hold — full press** *(from behind — accent only)* | `man standing behind woman, bare chest pressed to her bare back, one forearm low across her abdomen pulling her into him, his other hand gripping her jaw and tilting her face up toward his, her head thrown back against his shoulder, lips parted, eyes half-closed in surrender, her dress slipped off both shoulders` |
+| **▲ Hip grip — full press from behind** *(from behind — accent only)* | `man's hands gripping both her hips from behind, pulling her back firmly against him, her dress riding up to mid-thigh, her head turned back toward him over her shoulder, lips parted, one hand reaching back to grip his thigh` |
+| **▲ Neck exposure — arched** *(from behind — accent only)* | `woman's head thrown completely back, throat fully arched, man's lips pressed to her neck, his hand gripping her hair at the root, his other hand flat on her bare stomach, her back arched hard into him, fingers digging into his arm` |
+| **Bed — morning after tension** | `woman sitting at bed edge wrapped only in a white sheet clutched to her chest, sheet loose and slipping, bare shoulders and legs from mid-thigh down fully visible, knees pressed together, expression of shock and conflict; man beside or in front of her, shirt off, watching her with controlled intensity — she faces viewer` |
+| **Bridal carry — slipped** | `man carrying woman in frontal three-quarter view, her bare legs draped over his arm, her gown fallen to barely cover her upper thighs, one shoulder strap slipped, her head against his shoulder, half-lidded eyes, hand resting on his bare chest — full-body shot` |
 
 ---
 
@@ -344,21 +538,22 @@ Default to the **top three**. Only drop lower if the genre explicitly calls for 
 #### Dark Romance / Billionaire Romance
 ```
 Romance novel cover, cinematic photorealistic quality, dark dramatic luxury atmosphere.
+FRAMING: full-body shot, both figures visible from feet to crown, three-quarter angle facing viewer.
 TWO characters. Powerful man in charcoal suit with shirt fully open revealing his
 defined chest, one hand gripping the woman's jaw from below tilting her face up to his,
-his other hand gripping her bare lower back pulling her hips flush against him.
+his other hand gripping her bare lower back pulling her hips flush against him from the front.
+Both figures face the viewer — full torsos, legs, and clothing visible in frame.
 His expression: cold, absolute, the expression of a man accustomed to getting exactly
 what he wants and currently deciding whether to take it — controlled hunger, dangerous patience.
-Woman in a floor-length backless gown — back completely bare to just above the tailbone,
-extreme décolletage plunging to the sternum, her voluptuous figure dramatically silhouetted;
+Woman in a floor-length backless gown — extreme décolletage plunging to the sternum,
+thigh-high slit baring the full leg, her voluptuous hourglass figure against his suit;
 her fingers clutching his lapel — not to pull him closer, not to push him away, the ambiguity
 is the story; lips parted and trembling, eyes half-closed, expression of someone losing an
 argument she made with herself three months ago.
 Faces one centimeter apart. The moment before everything changes.
-Background: luxury penthouse, floor-to-ceiling city lights at night, the entire city below
-them like it's theirs — his world, her mistake, both of their undoing.
+Background: luxury penthouse, floor-to-ceiling city lights at night, the entire city below.
 Color palette: charcoal, midnight black, ivory skin, single amber candlelight slash.
-Lighting: single hard side light carving her bare back and his jaw out of darkness, everything else shadow.
+Lighting: single hard side light carving her bare legs and his jaw out of darkness.
 Title '{title}' in elegant silver serif at top. Author '{author}' at bottom.
 Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 ```
@@ -366,49 +561,51 @@ Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 #### Paranormal / Shifter Romance
 ```
 Romance novel cover, cinematic photorealistic quality, dark paranormal atmosphere.
+FRAMING: full-body shot, both figures visible from feet to crown, three-quarter angle facing viewer.
 TWO characters. Man with powerful bare muscular torso — shirt completely removed,
-defined abs and chest catching moonlight — standing behind woman, bare chest pressed
-to her back, one forearm low across her abdomen pulling her possessively into him,
-his other hand gripping her jaw and tilting her face to the side toward his.
+defined abs and chest catching moonlight — standing beside woman, his body pressed
+against her side, one forearm low across her abdomen pulling her into him, his other
+hand gripping her jaw and tilting her face toward his. Both figures oriented toward the
+viewer so the full silhouette of both is readable — his bare chest and abs visible,
+her voluptuous figure from feet to crown.
 His expression: absolute cold possession, eyes glowing amber, jaw tight with
 barely-contained instinct — the expression of a man who has claimed something and
-the world can argue later. Eyes locked on her with total certainty.
+the world can argue later.
 Woman in a torn flowing ivory dress — one shoulder completely bare, neckline
 plunging to the sternum, fabric clinging to and slipping from her voluptuous hourglass
-figure; her head turned toward him, lips parted and trembling, eyes wide with the
-expression of someone who knows this is dangerous and cannot make herself stop.
+figure; lips parted and trembling, eyes wide with the expression of someone who knows
+this is dangerous and cannot make herself stop.
 One hand gripping his forearm — fingers pressing in, knuckles white — not pulling
 away, holding on. A glowing silver wolf tattoo on her wrist visible in the moonlight.
-The emotional subtext of the image: she is losing a fight she started against herself.
+The emotional subtext: she is losing a fight she started against herself.
 Background: moonlit forest clearing, full moon through ancient oak trees, silver-blue
-mist pooling at ground level, isolation — no one is coming to interrupt this.
-Color palette: cold silver moonlight, deep forest black-green, warm amber from his
-eyes casting a slash of gold on her cheek, ivory skin, blue-white mist.
-Lighting: cold silver rim light sculpting both figures from behind, warm amber glow
-from his eyes, the only warmth in a cold scene.
-Title '{title}' in weathered silver fantasy serif with faint glow. Author '{author}' at bottom in small white serif.
+mist pooling at ground level — both full figures visible against the mist.
+Color palette: cold silver moonlight, deep forest black-green, warm amber from his eyes, ivory skin.
+Lighting: cold silver rim light from the side sculpting both figures, warm amber glow from his eyes.
+Title '{title}' in weathered silver fantasy serif with faint glow. Author '{author}' at bottom.
 Portrait 2:3, photorealistic, ultra-detailed, no watermark, text inside central safe area inner 85%.
 ```
 
 #### Vampire Romance
 ```
 Romance novel cover, cinematic photorealistic quality, gothic dark romance atmosphere.
-TWO characters. Man in dark Victorian coat, pale aristocratic face, standing behind woman
-whose head is thrown completely back — throat fully arched and exposed, pulse line visible.
-His lips pressed to her neck (grazing, not biting), one hand gripping her hair at the root,
-the other splayed possessively across her bare stomach pulling her hard against him.
-His expression: cold absolute possession, the expression of someone for whom centuries
-of patience has led to this exact moment — he is not rushing, he is certain.
-Woman in deep burgundy gown with extreme plunging neckline and bare back to the waist —
-one shoulder slipped, fabric barely clinging to her voluptuous figure; eyes closed,
-lips parted in complete overwhelmed surrender, back arched so her chest lifts toward the light,
+FRAMING: medium-to-full-body shot, both figures from hip to crown facing viewer at three-quarter angle.
+TWO characters. Man in dark Victorian coat, pale aristocratic face, standing beside woman
+at a slight angle — his face turned toward her neck from the side closest to the viewer,
+lips grazing her exposed throat. Her head tilts away from him — toward the camera —
+so her face is visible to the viewer: eyes closed, lips parted in complete overwhelmed surrender.
+His profile is visible at the edge, cold absolute possession; her full face catches the candlelight.
+One hand gripping her hair at the root, the other splayed possessively across her bare stomach
+pulling her against him — both his hand and her exposed midriff visible to the viewer.
+Woman in deep burgundy gown with extreme plunging neckline — one shoulder slipped,
+fabric barely clinging to her voluptuous figure, back arched so her chest lifts toward the light,
 fingers pressing into his forearm — not pulling away, anchoring herself.
+Both figures from hip to crown clearly in frame — her dress, his coat, her bare shoulders and chest.
 The emotional subtext: she came here to fight and forgot why the moment he touched her.
 Background: candlelit gothic stone chamber, scattered rose petals on cold floor, centuries of silence.
-A single stained-glass window above casts fractured violet and red light — the only color in the dark.
-Color palette: deep burgundy, ivory skin, black, warm gold candlelight, fractured violet from stained glass.
-Lighting: warm candlelight on her arched throat and exposed chest, his angled jaw casting a long shadow,
-the stained-glass violet catching her bare shoulder — all else shadow.
+A single stained-glass window above casts fractured violet and red light.
+Color palette: deep burgundy, ivory skin, black, warm gold candlelight, fractured violet.
+Lighting: warm candlelight on her throat and exposed chest, violet from stained glass catching her shoulder.
 Title '{title}' in gothic elegant serif. Author '{author}' at bottom.
 Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 ```
@@ -416,8 +613,11 @@ Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 #### Fantasy Romance / Dark Fae
 ```
 Romance novel cover, cinematic fantasy photorealistic quality, dark ethereal atmosphere.
+FRAMING: medium-to-full-body shot, both figures from hip to crown, three-quarter angle facing viewer.
 TWO characters. Fae male in dark armor or black robes with silver detail, inhumanly beautiful
 pointed features, his hand at the woman's jaw tilting her face up to his, faces one inch apart.
+Both figures face the viewer — the jaw-tilt brings their faces together while keeping both bodies
+visible and forward-facing, clothing and figures readable from hip to crown.
 His expression: cold ancient amusement and absolute want — the expression of someone who has
 never been told no and finds it unexpectedly interesting that she is trying.
 Woman in sheer silver flowing gown with deep plunging neckline, bare shoulders, bare midriff —
@@ -429,10 +629,9 @@ Magical light pulses between their faces in the charged space — her human warm
 a visible current of power exchange.
 The subtext: she bargained for something else entirely. She didn't read the fine print.
 Background: moonlit ancient fae ruins, crumbling carved stone arches, silver-violet magical mist
-pooling at ground level, bioluminescent flowers growing from the cracks — beautiful and wrong.
+pooling at ground level, bioluminescent flowers growing from the cracks.
 Color palette: deep midnight violet, silver, ivory complexion, black armor, bioluminescent teal accents.
-Lighting: silver magical glow from the charged space between their faces, full moonlight from above,
-violet shadow sculpting the ruins — all else dark and silver.
+Lighting: silver magical glow from the charged space between their faces, full moonlight from above.
 Title '{title}' in silver fantasy script with faint magical glow. Author '{author}' at bottom.
 Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 ```
@@ -440,21 +639,22 @@ Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 #### Mafia / Cartel / Organized Crime Romance
 ```
 Romance novel cover, cinematic photorealistic quality, high-contrast dark thriller romance.
-TWO characters. Man in sharp charcoal suit, one hand gripping her bare hip from the side,
-the other lifting her jaw with two fingers — tilting her face up to his.
+FRAMING: full-body shot, both figures visible from feet to crown, three-quarter angle facing viewer.
+TWO characters. Man in sharp charcoal suit, one hand gripping her bare hip from the front,
+the other lifting her jaw with two fingers — tilting her face up to his. Both figures face the
+viewer, full length of their bodies in frame — his suit, her dress, her bare leg through the slit.
 His expression: cold certainty and barely-leashed danger, the expression of a man
 who has made a decision about her and she has not been consulted.
-Woman in a sleek fitted micro-mini dress, thigh-high slit and deep plunging neckline,
-voluptuous figure pressed against him — her chin raised to meet his gaze, not in fear,
+Woman in a sleek fitted micro-mini dress, thigh-high slit baring the full leg, deep plunging neckline,
+voluptuous figure pressed against him from the front — her chin raised to meet his gaze, not in fear,
 in defiance; her hand gripping his lapel, the gesture contradicting her expression:
 her eyes say she wants to fight him. Her body has already surrendered.
 The subtext: she walked into his world with a plan. She did not plan for him.
 Background: luxury rooftop terrace at night, the entire city stretched below — empire and
-risk and consequence all in one skyline behind them. Low storm clouds rolling in from the
-distance. Neon wash from below catching the rain-wet railing.
+risk and consequence all in one skyline behind them. Neon wash catching the rain-wet railing.
 Color palette: deep black, sharp white dress, muted gold, single red accent (her lipstick, his ring).
-Lighting: harsh dramatic cold side light from the city below carving his jaw and her cheekbone
-out of shadow — everything else is threat and darkness.
+Lighting: harsh dramatic cold side light from the city below carving his jaw and her bare leg
+out of shadow — her full figure catching the neon.
 Title '{title}' in bold condensed serif. Author '{author}' at bottom.
 Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 ```
@@ -462,20 +662,23 @@ Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 #### Contemporary Romance (Fake Dating / Marriage of Convenience)
 ```
 Romance novel cover, cinematic photorealistic quality, intimate contemporary atmosphere.
+FRAMING: medium shot, both figures from hip to crown facing viewer — NOT a face-only crop.
 TWO characters. Man in casual open-collar shirt or rolled-sleeve button-down,
-forehead pressed to woman's forehead — noses nearly grazing, both eyes closed or barely open.
-His hand cradling her bare jaw, her hand pressed flat to his chest over his heart — she can feel
-his pulse. Both breathing slow. The held breath of the moment before they stop pretending.
+bodies pressed together, his hand cradling her bare jaw tilting her face up to his,
+faces close — noses nearly grazing, eyes barely open.
+Her hand pressed flat to his chest over his heart — she can feel his pulse.
+The held breath of the moment before they stop pretending.
 His expression: guarded and already lost — a man who agreed to a deal and did not expect to mean it.
-Her expression: surrender under protest — brows furrowed slightly, lips parted, the face of someone
-who knows this was supposed to be fake and can no longer find the line.
-She is wearing a silk slip dress with one strap slipped; his open shirt showing his chest against
-the intimacy of her bare shoulder — skin to skin in a moment that was supposed to be business.
+Her expression: surrender under protest — brows furrowed slightly, lips parted.
+She is wearing a silk slip dress with one strap slipped, bare shoulder visible, waist and hips in frame;
+his open shirt showing his chest — skin to skin in a moment that was supposed to be business.
+Medium shot from hip to crown so both figures' bodies are in frame — dress, slipped strap,
+his open chest — NOT cropped to faces alone.
 The subtext: the contract said sixty days. She stopped counting at fourteen.
-Background: warm golden interior — a luxury hotel room, rain-streaked window behind them, city
-lights soft and blurred, unmade bed in peripheral. Every detail says the story is bigger than the arrangement.
-Color palette: warm amber, ivory skin, soft cream shadows, champagne gold from the window light.
-Lighting: golden hour through rain-streaked glass, soft diffused warm glow, intimate and close.
+Background: warm golden interior — a luxury hotel room, rain-streaked window, city
+lights soft and blurred, unmade bed in peripheral.
+Color palette: warm amber, ivory skin, soft cream shadows, champagne gold.
+Lighting: golden hour through rain-streaked glass, soft diffused warm glow.
 Title '{title}' in warm elegant serif. Author '{author}' at bottom.
 Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 ```
@@ -483,22 +686,20 @@ Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 #### Sports Romance
 ```
 Romance novel cover, cinematic photorealistic quality, charged competitive atmosphere.
-TWO characters. He stands in front of her, bare chest or fitted athletic shirt open,
-muscular torso visible — sweat-sheened, still running warm from competition. He looks down
-at her with controlled intensity, jaw tight, not letting himself look away.
+FRAMING: full-body shot, both figures from feet to crown, three-quarter angle facing the viewer.
+TWO characters facing each other and angled toward the viewer — both bodies fully readable.
+He bare chest or fitted athletic shirt torn open, muscular torso and abs fully visible —
+sweat-sheened, still running warm from competition. He looks at her with controlled intensity,
+jaw tight, not letting himself look away.
 His expression: defiance + desire — he's been told she's off-limits and cannot find a reason
 that still makes sense. Eyes dark, decision already made.
-She in fitted athletic wear — sports bra, high-waist leggings, bare midriff, figure forward —
-chin raised to meet his gaze, neither backing down; her hand gripping his jersey or forearm,
-her expression mirroring his: they have been in each other's orbit for too long for this to
-stay competitive. She is losing the same fight he is.
-Background: golden-hour empty stadium tunnel, dramatic light shafts from above cutting through
-dust, the roar of the crowd muffled behind closed doors. Their conflict exists in the silence
-between the public performance and who they are when nobody is watching.
-Color palette: warm amber and deep gold from the light shafts, deep shadow, team colors as
-single saturated accent on her wear.
-Lighting: directional hard golden athletic light sculpting his bare torso and her midriff, deep
-contrast shadows, sweat-sheened skin catching every beam.
+She facing him at camera angle, in fitted athletic wear — sports bra, high-waist leggings,
+bare midriff fully exposed, voluptuous figure forward — chin raised to meet his gaze;
+her hand gripping his jersey or forearm. Full body visible — her athletic figure from feet to crown,
+his bare torso, both fully in frame.
+Background: golden-hour empty stadium tunnel, dramatic light shafts from above cutting through dust.
+Color palette: warm amber and deep gold, deep shadow, team colors as accent on her wear.
+Lighting: directional golden light sculpting his bare torso and her bare midriff, both catching every beam.
 Title '{title}' in bold condensed athletic serif. Author '{author}' at bottom.
 Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 ```
@@ -506,25 +707,21 @@ Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 #### Accidental Marriage / Woke Up Wed (Contemporary)
 ```
 Romance novel cover, cinematic photorealistic quality, charged morning-after atmosphere.
+FRAMING: medium shot, both figures from hip to crown, both facing toward the viewer.
 TWO characters. Man in rumpled dress shirt with two buttons open, sleeves half-rolled —
-the remains of last night's suit. He stands at the edge of the bed or a window,
-arms crossed, expression unreadable, looking at her with controlled intensity,
-trying to fit her into a story that makes sense.
+facing toward the viewer and toward her, expression unreadable, controlled intensity.
 His expression: shocked recognition — the expression of a man who woke up to a consequence
 he cannot undo and is deciding whether he wants to.
-Woman sitting on the edge of the luxury hotel bed, wrapped in a white sheet clutched to
-her chest — bare shoulders and legs from mid-thigh down fully visible, hair disheveled,
-still in last night's makeup slightly smudged; holding up a marriage certificate with
-one hand, expression of raw vulnerability — lips parted, eyes wide, the look of someone
-whose life just divided into before and after.
+Woman sitting on the edge of the luxury hotel bed facing the viewer, wrapped in a white sheet
+clutched to her chest — bare shoulders and legs from mid-thigh down fully visible, hair disheveled,
+last night's makeup slightly smudged; holding up a marriage certificate with one hand,
+expression of raw vulnerability — lips parted, eyes wide.
+Both figures in medium shot, full torsos and faces readable, seated her / standing him
+both oriented toward camera.
 Two champagne flutes on the nightstand. One overturned. Scattered rose petals.
-The story is not "what happened last night." The story is "what happens now."
-Background: floor-to-ceiling luxury hotel penthouse windows, golden morning city skyline
-behind her silhouette, the world outside continuing as if everything is normal.
-Color palette: ivory white sheet, warm golden morning light, charcoal gray of his shirt,
-the harsh white of the marriage certificate she is holding.
-Lighting: golden sunrise pouring through panoramic windows, warm rim light on her bare
-shoulders and the document in her hand, cool fill on him in the shadow.
+Background: floor-to-ceiling luxury hotel penthouse windows, golden morning city skyline.
+Color palette: ivory white sheet, warm golden morning light, charcoal gray of his shirt.
+Lighting: golden sunrise through panoramic windows, warm rim light on her bare shoulders.
 Title '{title}' in warm contemporary serif. Author '{author}' at bottom.
 Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 ```
@@ -532,24 +729,23 @@ Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 #### Revenge Return / Secret Children (Family Drama Romance)
 ```
 Romance novel cover, cinematic photorealistic quality, high-stakes emotional drama atmosphere.
+FRAMING: full-body shot, primary figure from feet to crown, facing the viewer.
 TWO characters — or ONE if drama context calls for it. Primary: woman in elegant power dress
-or tailored suit, standing straight, chin raised — returned from exile and dressed like a reckoning.
-Her expression: cold possession of her own narrative — the expression of a woman who was
-destroyed and rebuilt herself into something they cannot recognize and cannot stop.
-Eyes sharp, jaw set, a ghost of a smile that contains six years of planning.
-Optional secondary character: the man from her past, standing behind her or to her side,
-expression of stunned recognition — he is seeing someone he thought he knew and realizing
-he never did. His hand half-raised toward her, caught between reaching and not daring.
-If children are visible: small shoes or a child's hand in hers at the edge of frame — not the
+or tailored suit, standing straight facing the viewer, chin raised — returned from exile and
+dressed like a reckoning. Her full figure visible — dress, heels, the posture of someone
+who rebuilt herself into something they cannot stop.
+Her expression: cold possession of her own narrative — jaw set, a ghost of a smile
+that contains six years of planning. Eyes facing the viewer.
+Optional secondary character: the man from her past, to her side facing slightly away
+or toward her with stunned recognition — he is seeing someone he thought he knew.
+His hand half-raised toward her, caught between reaching and not daring.
+If children are visible: a child's hand in hers at the edge of frame — not the
 subject, but the subtext: proof of everything they tried to erase.
 The subtext: they erased her name. She came back as a headline.
-Background: grand family estate entrance or a glass-and-marble corporate lobby — symbols of
-the world she was removed from. The doors are open because she walked in, not because she
-was invited. Autumn leaves or cold winter light — time has passed.
-Color palette: deep cold teal or steel blue dress, ivory marble, warm amber interior light,
-cool dramatic exterior light — the contrast of the world inside and the woman who came back from outside.
-Lighting: cold overcast light from above catching her face and jaw in a hard single source,
-warm interior amber framing her from behind — she is the only warm thing in a cold place.
+Background: grand family estate entrance or a glass-and-marble corporate lobby.
+The doors are open because she walked in, not because she was invited.
+Color palette: deep cold teal or steel blue dress, ivory marble, warm amber interior light.
+Lighting: cold overcast light catching her full figure from crown to feet — she is the center.
 Title '{title}' in sharp contemporary serif — clean lines, authority. Author '{author}' at bottom.
 Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 ```
