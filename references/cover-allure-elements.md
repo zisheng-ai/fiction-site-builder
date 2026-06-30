@@ -660,7 +660,17 @@ Hair placement directly affects how much skin is revealed:
 | Tall and imposing | `looming above her`, `so tall she has to look up`, `towering frame` |
 | Fighter's build | `fighter's build, compact and explosive`, `heavy shoulders, thick neck` |
 
-### Bare Torso (T3 default)
+### Male Torso State — pick by genre, not always bare
+
+**Default mistake: making the male shirtless for every T3 cover.** Bare torso reads as appropriate for paranormal/shifter/beach scenes but absurd in office romance, historical, or formal-setting covers. Choose the torso state that fits the scene — a partially undone shirt can be more charged than bare skin, because the *process of undoing* carries more tension than the already-done result.
+
+| Tier | State | When to use | Prompt keywords |
+|---|---|---|---|
+| **T1 — Clothed** | Full shirt, jacket, or suit on | Office romance, historical, formal scene, cold-weather setting | `charcoal open-collar shirt, sleeves rolled to the forearm`, `dark suit jacket, white shirt beneath, collar button undone`, `fitted black turtleneck`, `leather coat, chest covered` |
+| **T2 — Partially undone** | Shirt open at chest / jacket with no shirt / tie loosened | Contemporary drama, any genre after a conflict scene, "about to happen" moment | `shirt unbuttoned halfway, chest partially exposed`, `open shirt hanging off his shoulders with nothing underneath, edges framing his torso`, `suit jacket on, dress shirt collar open and tie loosened`, `flannel shirt hanging open, bare chest beneath` |
+| **T3 — Bare torso** | Shirt fully removed | Paranormal / shifter / vampire (supernatural heat), beach/pool, action aftermath, post-fight scene | `shirt completely removed, powerful bare chest`, `bare torso rain-slicked and gleaming`, `bare chest pressing against her back, skin against skin` |
+
+**Bare-torso detail bank (use when T3 is the right choice):**
 
 | Detail | Prompt keywords |
 |---|---|
@@ -671,6 +681,16 @@ Hair placement directly affects how much skin is revealed:
 | Lit dramatically | `chest lit by a single light source, all else shadow`, `rim light catching the edge of his shoulder and pec` |
 | Pressing against her | `bare chest pressing against her back`, `skin against skin, no space between them` |
 | Scarred | `old scars across his ribs`, `a long scar bisecting his left pectoral` |
+
+**T2 partial-undone detail bank (often more tension than T3):**
+
+| Detail | Prompt keywords |
+|---|---|
+| Open shirt chest | `shirt open to mid-chest, one button at a time — the implication clear`, `a V of bare chest visible, shirt hanging loose` |
+| Rolled sleeves | `shirt sleeves shoved to the elbow, forearms corded with muscle, veins prominent` |
+| Jacket-on, shirtless beneath | `leather jacket on his bare torso, chest visible between the open lapels` |
+| Collar + tie | `collar open, tie pulled loose and hanging, the last defense down`, `the tie is gone; shirt half-untucked, collar undone to the second button` |
+| Suit coming apart | `jacket discarded, shirt untucked at the back, the composed man dissolving` |
 
 ### Arms & Hands
 
@@ -748,7 +768,7 @@ When building any character description, fill in this template mentally before w
 - [ ] Eyes: type + expression
 - [ ] Hair: style + state (dry / wet / disheveled)
 - [ ] Build keyword
-- [ ] Torso state (T3 = shirt off)
+- [ ] Torso state (T1=collared shirt / T2=open/partial / T3=bare — match the genre and scene, not always bare)
 - [ ] Hand / arm position and what they're gripping or bracing
 - [ ] Posture / stance relative to her (looming / caging / pulling in)
 
