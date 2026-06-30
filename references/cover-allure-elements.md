@@ -1587,16 +1587,16 @@ Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 
 Exposure is **stochastic** — the same prompt rolls different skin levels each generation, so a tame result is not a spec failure, it's RNG. To get a reliably high result you must **bake the tier fragments into the prompt**, not leave them to chance and not treat them as a reactive afterthought.
 
-Four named tiers, all strictly above the §0 floor (no nipples / genitals / sex acts). **Default for production = T3.** Start there and let the model's content filter be the only thing that pulls you back. T4 exists for doubao-only production runs where the account is established and the audience is fully warmed.
+Four named tiers, all strictly above the §0 floor (no nipples / genitals / sex acts). **Default for production = T3.** Start there and let the model's content filter be the only thing that pulls you back. T4 is a documented ceiling — currently exceeds all three models' safe zones for the female clothing dimension, but its post-event framing unlocks unexpectedly higher nano output than T3 framing does.
 
 **Model × Tier compatibility (tested):**
-- `gpt-image-2-all` — passes T1, T2; **rejects T3** (explicit content-safety refusal); T4 is far above its threshold
-- `doubao-seedream-5-0-260128` — passes T1, T2, T3 ✓ — **the only reliable T3/T4 model**
-- `nano-banana-pro` — accepts T3/T4 without refusal, but **silently ignores clothing-state keywords** (`torn`, `slipped`, `fallen`, `clinging to every curve`) and defaults to intact conservative clothing (~T1 exposure) regardless of what the prompt says; do NOT expect torn/wet/bare-back output from nano
+- `gpt-image-2-all` — passes T1, T2; **rejects T3** (explicit content-safety refusal); rejects T4 (far above threshold)
+- `doubao-seedream-5-0-260128` — passes T1, T2, T3 ✓ — **the only reliable T3 model**; **rejects T4** (first tested rejection — "output may contain sensitive information")
+- `nano-banana-pro` — accepts T3/T4 without refusal, but **silently ignores clothing-state keywords** (`torn`, `slipped`, `fallen`, `clinging to every curve`) at T3 framing → T1-level output. **T4 framing exception:** T4's post-event language ("clothing has already left", "nominal drape") bypasses nano's keyword filter and produces ~T2-level output — bare back, draping fabric, male bare torso. Use T4 framing with nano to get T2 without writing T2 keywords explicitly.
 
-**T3 fallback path:** gpt rejects → doubao (not nano). Nano cannot produce T3 clothing exposure under any prompt. Use nano only as a last resort when both gpt and doubao fail, and accept that the result will be T1-level allure.
+**T3 fallback path:** gpt rejects → doubao (not nano). Nano cannot produce T3 clothing exposure using T3 keywords. Use nano only as a last resort when both gpt and doubao fail, and accept T1–T2-level allure.
 
-**T4 model restriction:** doubao only. Never attempt T4 with gpt or nano.
+**T4 findings:** doubao also rejects T4 as currently defined. T4 currently has no model that reliably produces the specified output. Its value is: (a) the post-event framing unlocks ~T2 from nano; (b) it documents the aspirational ceiling above T3 for when future models handle it.
 
 ---
 
@@ -1706,7 +1706,7 @@ The 8 dimensions:
 **T4 assembly block:**
 > *white silk sheet corner barely draped across her hip — entire bare back from nape to the curve of her spine, long bare legs from hip to foot, her shoulder at his jaw. His bare chest her only backdrop, skin to skin from shoulder to hip, no fabric between them anywhere. Ultra-tight crop: skin fills the frame, background gone to warm amber abstraction. Single candle the only light source. Her expression: not surrender but arrival — eyes closed, the look of someone who stopped fighting and found it was right. His: certain, possessive, the question was always already answered.*
 
-> **Model compatibility:** doubao is the only reliable T4 model. gpt rejects at T3; T4 is far above its threshold. nano silently ignores torn/clinging/slipped keywords at T3 and defaults to T1 output — T4 uses different framing ("fabric has already left") so the behavior may differ; include nano in test rounds to verify, but treat the result as a T1 baseline comparison rather than a T4 output.
+> **Model compatibility (tested):** No model currently produces the T4 clothing spec reliably. gpt: rejects. doubao: rejects (first doubao rejection encountered). nano: technically passes and produces ~T2 output — the post-event framing ("clothing has already left", "nominal drape") bypasses nano's keyword filter, yielding better results than T3 framing. If you need better-than-T3 from nano, use T4 framing; accept ~T2 output. For T4-spec output, wait for a capable model.
 
 ---
 
