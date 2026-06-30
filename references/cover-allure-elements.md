@@ -1741,26 +1741,29 @@ Five named tiers, all strictly above the §0 floor (no nipples / genitals / sex 
 
 | Tier | Primary model | Fallback |
 |---|---|---|
-| T1 | `doubao-seedream-5-0-260128` | retry once |
-| T2 | `doubao-seedream-5-0-260128` | retry once |
-| T3 | `doubao-seedream-5-0-260128` | retry once |
-| T4 | `doubao-seedream-5-0-260128` | retry once |
+| T1 | `gpt-image-2-all` (cover cascade) → `doubao-seedream-5-0-260128` | retry doubao → `nano-banana-pro` (blank-prevention) |
+| T2 | `gpt-image-2-all` (cover cascade) → `doubao-seedream-5-0-260128` | retry doubao → `nano-banana-pro` (blank-prevention) |
+| T3 | `doubao-seedream-5-0-260128` | retry once → `nano-banana-pro` (blank-prevention) |
+| T4 | `doubao-seedream-5-0-260128` | retry once → `nano-banana-pro` (blank-prevention) |
 | T5 | `doubao-seedream-5-0-260128` | retry once |
 
-**nano-banana-pro — test reference only, not used in production:**
-- Silently downgrades T3 keywords to ~T1 output; T4 post-event framing → ~T2 at best.
+> `doubao-seedream-5-0-260128` is the workhorse at **every** tier. `gpt-image-2-all` leads the **cover cascade** at T1/T2 only (cleanest title text); at T3+ it hard-rejects and the cascade falls to doubao. nano is the terminal blank-prevention fallback at all tiers — **there is no SVG fallback below it.**
+
+**nano-banana-pro — terminal blank-prevention fallback only (not a finished asset):**
+- Silently downgrades T3 keywords to ~T1 output; T4 post-event framing → ~T2 at best; square 1024×1024 (not 2:3).
 - Stochastic IndexError (soft rejection) at T3+; retry usually fails. Output quality significantly below doubao at all tiers.
-- **Included in model-test compare pages for reference, but NOT used for any production cover.**
+- Used **only** as the cascade's last resort so *some* image exists — always flag for manual review, never ship unsigned-off. Also included in model-test compare pages for reference.
 
-**gpt-image-2-all — boundary confirmed, excluded entirely:**
-- Passes T1/T2 cleanly; rejects T3+ consistently (clinging-fabric / multi-zone bare skin). Rejection is deterministic at T3+, not stochastic — retry does not help.
-- **Not included in model tests or production. Excluded.**
+**gpt-image-2-all — excluded at T3+ only (still the cover cascade's first choice at T1/T2):**
+- Passes T1/T2 cleanly with the cleanest title text and best brief adherence — it leads the cover cascade and produces most T2 covers.
+- Rejects T3+ deterministically (clinging-fabric / multi-zone bare skin); retry does not help, so the cascade falls to doubao for every T3 cover and all illustrations.
+- **Not used for T3+ output of any kind.**
 
-**Why doubao only:**
-- `doubao-seedream-5-0-260128` — primary for all tiers; stochastic filter (retry once on rejection); best output quality at T3+; 1664×2496 JPEG output.
+**Why doubao for the allure tiers:**
+- `doubao-seedream-5-0-260128` — primary at T3/T4/T5 and the cover-cascade fallback at T1/T2; stochastic filter (retry once on rejection); best output quality at T3+; 1664×2496 JPEG output.
 - On rejection: retry once with identical prompt. If second attempt also rejects, adjust prompt to remove the triggering clause (see "What doubao T3 accepts vs rejects" table above), then generate.
 
-**Fallback cascade:** retry doubao once → adjust prompt (remove result-description clauses) → generate.
+**Fallback cascade:** gpt (T1/T2) → doubao (retry once → adjust prompt) → nano (blank-prevention). No SVG fallback.
 
 ---
 

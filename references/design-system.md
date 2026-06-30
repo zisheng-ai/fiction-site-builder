@@ -176,59 +176,73 @@ Never use placeholder text, generic emoji, or external icon libraries. Always ge
 **MANDATORY — run this bash command first. Do not skip it. Do not assume the result.**
 
 ```bash
-[ -n "$APIYI_API_KEY" ] && echo "API_PATH=apiyi" || echo "API_PATH=claude_svg"
+[ -n "$APIYI_API_KEY" ] && echo "API_PATH=apiyi" || echo "API_PATH=skip"
 ```
 
-**If the output is `API_PATH=apiyi` → you MUST use the apiyi curl path below. Generating SVG when the key is present is wrong.**
+**If the output is `API_PATH=apiyi` → you MUST use the apiyi curl path below.**
 
-If the output is `API_PATH=claude_svg` → print the warning below, then fall back to Claude SVG:
+If the output is `API_PATH=skip` → print the warning below, then **skip logo/favicon generation and continue** (no SVG fallback — a dev placeholder holds the slot until a later pass):
 ```
-\033[33m⚠ WARNING: APIYI_API_KEY is not set. Falling back to SVG logo/favicon generation.\033[0m
-\033[33m  To enable AI-generated assets via gpt-image-2-all, get an API key at:\033[0m
+\033[33m⚠ WARNING: APIYI_API_KEY is not set. Skipping logo/favicon generation (no SVG fallback).\033[0m
+\033[33m  Assets require apiyi. Get an API key at:\033[0m
 \033[33m  https://api.apiyi.com/register/?aff_code=ijv5\033[0m
 \033[33m  Then set: export APIYI_API_KEY="your-key"\033[0m
 ```
 
 ### apiyi path (APIYI_API_KEY is set)
 
-Generate logo and favicon via `gpt-image-2-all`. Both are square motif images — use `1024x1024`.
+Generate logo and favicon via `gpt-image-2-all`, falling through to `nano-banana-pro` on failure (blank-prevention). Both are square motif images — use `1024x1024`. **Generate the two assets in parallel** — launch both as background processes, then `wait`.
 
 ```bash
 mkdir -p public
 
-# Logo prompt: single symbolic motif for the site genre, transparent or dark background,
-# no text, suitable for nav bar. Square composition, clean edges.
-# Claude constructs this based on site genre and visual register before running curl
+# Generic asset generator: gpt-image-2-all → nano-banana-pro fallback.
+# Handles both b64_json (PNG) and url (JPEG) responses. Returns 0 on success.
+gen_asset_apiyi() {
+  local prompt="$1" out="$2"
+  local pj; pj=$(printf '%s' "$prompt" | python3 -c 'import json,sys;print(json.dumps(sys.stdin.read().strip()))')
+  for model in "gpt-image-2-all" "nano-banana-pro"; do
+    curl -s --max-time 300 https://api.apiyi.com/v1/images/generations \
+      -H "Content-Type: application/json" \
+      -H "Authorization: Bearer $APIYI_API_KEY" \
+      -d "{\"model\":\"$model\",\"prompt\":$pj,\"n\":1,\"size\":\"1024x1024\"}" \
+    | OUT="$out" python3 -c "
+import sys, json, base64, os, urllib.request
+out = os.environ['OUT']
+raw = sys.stdin.read()
+if not raw.strip(): sys.exit(1)
+data = json.loads(raw)
+if 'error' in data or not data.get('data'): sys.exit(2)
+item = data['data'][0]
+if item.get('b64_json'):
+    b = item['b64_json']; b = b.split(',',1)[1] if ',' in b else b
+    open(out,'wb').write(base64.b64decode(b))
+elif item.get('url'):
+    urllib.request.urlretrieve(item['url'], out)
+else: sys.exit(3)
+" && return 0
+  done
+  return 1
+}
+
+# Logo: single symbolic motif for the site genre, no text, suitable for nav bar.
 LOGO_PROMPT="{genre-appropriate motif — e.g. glowing sword on dark background for xianxia}"
-
-LOGO_URL=$(curl -s https://api.apiyi.com/v1/images/generations \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $APIYI_API_KEY" \
-  -d "{\"model\":\"gpt-image-2-all\",\"prompt\":$(echo "$LOGO_PROMPT" | python3 -c 'import json,sys;print(json.dumps(sys.stdin.read().strip()))'),\"n\":1,\"size\":\"1024x1024\"}" \
-  | python3 -c "import sys,json;print(json.load(sys.stdin)['data'][0]['url'])")
-curl -s "$LOGO_URL" -o public/logo_raw.png
-echo "logo saved"
-
-# Favicon prompt: same motif, ultra-simplified, readable at 32px
-# Claude constructs this as a simplified version of the logo prompt
+# Favicon: same motif, ultra-simplified, readable at 32px.
 FAVICON_PROMPT="{same motif, minimal, high contrast, no text, works at tiny size}"
 
-FAVICON_URL=$(curl -s https://api.apiyi.com/v1/images/generations \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $APIYI_API_KEY" \
-  -d "{\"model\":\"gpt-image-2-all\",\"prompt\":$(echo "$FAVICON_PROMPT" | python3 -c 'import json,sys;print(json.dumps(sys.stdin.read().strip()))'),\"n\":1,\"size\":\"1024x1024\"}" \
-  | python3 -c "import sys,json;print(json.load(sys.stdin)['data'][0]['url'])")
-curl -s "$FAVICON_URL" -o public/favicon_raw.png
-echo "favicon saved"
+# Parallel generation — both assets at once
+gen_asset_apiyi "$LOGO_PROMPT"    public/logo_raw.png    && echo "logo saved"    &
+gen_asset_apiyi "$FAVICON_PROMPT" public/favicon_raw.png && echo "favicon saved" &
+wait
 
-# Resize
-ffmpeg -i public/logo_raw.png -vf scale=256:256 public/logo.png -y \
-  || sips -z 256 256 public/logo_raw.png --out public/logo.png
-ffmpeg -i public/favicon_raw.png -vf scale=32:32 public/favicon-32x32.png -y \
-  || sips -z 32 32 public/favicon_raw.png --out public/favicon-32x32.png
-ffmpeg -i public/favicon_raw.png -vf scale=180:180 public/apple-touch-icon.png -y \
-  || sips -z 180 180 public/favicon_raw.png --out public/apple-touch-icon.png
-rm public/logo_raw.png public/favicon_raw.png
+# Resize (skip any asset whose generation failed — file absent)
+[ -f public/logo_raw.png ] && { ffmpeg -i public/logo_raw.png -vf scale=256:256 public/logo.png -y \
+  || sips -z 256 256 public/logo_raw.png --out public/logo.png; }
+[ -f public/favicon_raw.png ] && { ffmpeg -i public/favicon_raw.png -vf scale=32:32 public/favicon-32x32.png -y \
+  || sips -z 32 32 public/favicon_raw.png --out public/favicon-32x32.png; \
+  ffmpeg -i public/favicon_raw.png -vf scale=180:180 public/apple-touch-icon.png -y \
+  || sips -z 180 180 public/favicon_raw.png --out public/apple-touch-icon.png; }
+rm -f public/logo_raw.png public/favicon_raw.png
 ```
 
 Wire up in `src/app/layout.tsx`:
@@ -241,25 +255,11 @@ export const metadata: Metadata = {
 }
 ```
 
-### Claude SVG fallback (APIYI_API_KEY not set — confirmed by entry check)
+### No SVG fallback
 
-**Only enter this section if the entry check above returned `API_PATH=claude_svg`. If APIYI_API_KEY is set, go back and use the apiyi curl path.**
+There is **no SVG fallback** for logo/favicon. When `APIYI_API_KEY` is unset, or both `gpt-image-2-all` and `nano-banana-pro` fail, **skip the asset and continue** — a dev placeholder holds the slot until a later generation pass. Never write `public/logo.svg` / `public/favicon.svg`.
 
-Claude writes SVG files directly. Both must reflect the site's visual register and genre (see `cover-styles.md`).
-
-- **`public/logo.svg`** — single motif, works at nav-bar size and 32px. No text in the SVG itself.
-- **`public/favicon.svg`** — same motif, simplified for small sizes.
-
-Wire up in `src/app/layout.tsx`:
-```ts
-export const metadata: Metadata = {
-  icons: { icon: '/favicon.svg' },
-}
-```
-
-SVG favicons are supported by all modern browsers. Acceptable as a launch asset when the API is unavailable.
-
-**Never ship a site with the default Next.js favicon or a missing logo.** Development previews may use placeholders; launch requires real assets.
+**Never ship a launched site with the default Next.js favicon or a missing logo** — but a skipped asset does not block the build; it is flagged for a follow-up pass.
 
 ---
 

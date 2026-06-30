@@ -101,13 +101,13 @@ Use for adding one book to an already-launched site. Skip logo and favicon steps
 
 **apiyi path (preferred):** `curl` to `https://api.apiyi.com/v1/images/generations` with model `gpt-image-2-all`. Response `b64_json` already includes `data:image/png;base64,` prefix — strip it before decoding. See Step 3 and `references/apiyi.md` for full API reference.
 
-**Claude SVG fallback:** When `APIYI_API_KEY` is not set, Claude writes a styled SVG cover directly. Acceptable as a launch asset when the API is unavailable.
+**No SVG fallback.** When `APIYI_API_KEY` is not set, skip cover generation for the book (print the warning, continue the pipeline) — never write a styled SVG cover.
 
 ## Environment Variables
 
 | Variable | Required | Notes |
 |---|---|---|
-| `APIYI_API_KEY` | No | API key for `api.apiyi.com`. If unset, falls back to SVG cover. Get one at https://api.apiyi.com/register/?aff_code=ijv5 |
+| `APIYI_API_KEY` | No | API key for `api.apiyi.com`. If unset, cover generation is **skipped** (no SVG fallback) — the pipeline continues and the cover slot is filled later. Get one at https://api.apiyi.com/register/?aff_code=ijv5 |
 | `BOOK_DIR` | Yes | Output directory, e.g. `./public/covers/{book-title}` |
 
 ## Step 1 — Resolve required info (no prompt)
@@ -272,29 +272,32 @@ printf '%s' "$PROMPT" > "$BOOK_DIR/cover_v1.prompt.txt"
 | `lips pressed against` | `faces close, the moment before` |
 | `erotic`, `sexual`, `explicit` | `alluring`, `intimate atmosphere`, `romantic tension` |
 
-Re-run the full cascade once with the softened prompt. If every model still fails → SVG fallback.
+Re-run the full cascade once with the softened prompt. If every model (gpt → doubao → nano) still fails, **skip the book and continue the batch** — no SVG fallback. nano is the cascade's terminal blank-prevention model; there is nothing below it.
 
 On any other API error: log the response, skip this book, continue batch.
 
-### SVG fallback
+### Terminal fallback — nano (no SVG)
 
-When `APIYI_API_KEY` is not set, or the cascade fails on both the original and softened prompt, Claude writes a styled SVG cover directly:
-- `viewBox="0 0 480 720"` (2:3)
-- Large centered title text, small author name at bottom, genre-appropriate gradient background, simple symbolic motif
-- Output path: `$BOOK_DIR/cover_v1.svg`
-- Print: `⚠ SVG fallback — $OUTPUT_PATH`
+The cascade's last resort is `nano-banana-pro` (rank 3) — it accepts T2/T3 prompts without refusal, so it almost always returns *some* image (silently downgraded to ~T1 square, flag for manual review). There is **no SVG fallback** below it:
+- If `APIYI_API_KEY` is not set → skip the cover (warning + continue), since every cascade model needs the key.
+- If nano itself also fails → skip the book, log the reason, continue the batch.
+- Never write a styled `.svg` cover.
 
 ### B3 batch flow
 
-For each book in `BOOKS`, run Steps 1–3 in sequence. Build the prompt inline per book — do not pre-build a map:
+**Generate all books in parallel** — one background process per book, then `wait`. Build the prompt inline per book — do not pre-build a map:
 
 ```bash
 for bookSlug in "${BOOKS[@]}"; do
-  BOOK_DIR="public/covers/${bookSlug}"
-  # Steps 1.5 + 2: detect genre, build PROMPT string for this book
-  PROMPT="$(build_cover_prompt "$bookSlug")"  # inline per Step 2 template
-  # Step 3: apiyi curl or SVG fallback
+  (
+    BOOK_DIR="public/covers/${bookSlug}"
+    # Steps 1.5 + 2: detect genre, roll T2/T3 tier, build PROMPT string for this book
+    PROMPT="$(build_cover_prompt "$bookSlug")"  # inline per Step 2 template
+    # Step 3: apiyi cascade (gpt → doubao → nano); skip on no key / total failure
+  ) > "/tmp/cover_${bookSlug}.log" 2>&1 &
 done
+wait
+rm -f /tmp/cover_*.log
 ```
 
 `build_cover_prompt` is not a real function — it represents executing Steps 1.5 and 2 inline for each book before the curl call.
