@@ -4,7 +4,7 @@ Load this reference when the user wants to import an existing novel (partial or 
 
 ## Purpose
 
-Reverse-engineer a user-provided manuscript into a complete writing project — `world/`, `outline/`, `chapters/`, `tracking/` — so that the story can be continued using `/story-long-write` or `/story-short-write`, and published using the fiction-h5-builder pipeline.
+Reverse-engineer a user-provided manuscript into a complete writing project — `world/`, `outline/`, `chapters/`, `tracking/` — so that the story can be continued using `/story-long-write` or `/story-short-write`, and published using the fiction-site-builder pipeline.
 
 The deliverable is a **writable project**, not just an analysis.
 
