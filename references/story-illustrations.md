@@ -48,7 +48,19 @@ Place illustrations only at the **3 highest-stakes dramatic peaks** of the novel
 
 Read `content/{book-slug}/outline/outline.md` and `content/{book-slug}/tracking/context.md` to identify candidate scenes. Use these criteria:
 
-### Qualifying peak types (pick the strongest 1–3 across the book)
+### Placement rule — front / middle / back
+
+Illustrations must be **evenly distributed** across the novel. For a book with N chapters, target one illustration in each third:
+
+| Slot | Target range | What to look for |
+|---|---|---|
+| **Front** | chapters 3 – ⌊N/3⌋ | First moment of undeniable attraction; first deliberate touch; the scene where the leads stop pretending they don't notice each other |
+| **Middle** | chapters ⌊N/3⌋+1 – ⌊2N/3⌋ | Emotional turning point; a confession or betrayal that resets the relationship; the moment the protagonist stops fighting |
+| **Back** | chapters ⌊2N/3⌋+1 – N−3 | Near-climax or climactic surrender; the scene readers came for; the point of no return |
+
+**Never place two illustrations within 2 chapters of each other.** If no qualifying scene exists in a slot, leave that slot empty — do not force a scene that doesn't earn it.
+
+### Qualifying peak types (one per slot)
 
 | Peak type | Description | Example moment |
 |---|---|---|
