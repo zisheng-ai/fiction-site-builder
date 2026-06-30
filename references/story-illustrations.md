@@ -119,18 +119,27 @@ public/
 Illustration prompts differ from cover prompts in three ways:
 1. No title, author, or text overlay instructions
 2. Replace "book cover" framing with "intimate scene illustration" framing
-3. Include scene-specific context (location, specific costume state, character position from the actual prose)
+3. Include scene-specific context (location, body position, emotional beat from the actual prose) — but **not** the literal wardrobe; garment state always comes from the tier (see mistake #2 below)
+
+> ### ⚠️ The allure tier is the point — do not write a tame "emotional" scene
+>
+> An illustration at T3/T4 must be **visibly 擦边** — the same skin/garment exposure a T3/T4 cover would have. A plot-faithful but visually modest image is a **failure**, even if the emotional beat is right. The single hard limit is the **§0 floor** (no visible nipples/areola/genitals, no sex acts) — everything below that ceiling should be pushed.
+>
+> Three mistakes that produced tame output in the past (all banned):
+> 1. **Writing a tier *label* instead of pulling the tier *block*.** `T4 intensity: a deliberate first kiss, deeper emotional intimacy` is NOT a T4 prompt — it describes a feeling, not an image. You MUST copy the actual T3/T4 assembly block (clothing-state + skin-zones + fabric-behavior vocabulary) from `cover-allure-elements.md`.
+> 2. **Letting the prose's literal costume win.** If the prose says she wears an "oversized sweater" or "practical layered clothing," that does **not** carry into the image. The tier's clothing-state spec **replaces** the literal costume — re-cast the garment to the tier (rain-soaked clinging silk, fallen panels, nominal drape) with a plausible in-scene reason. Keep the *location, body position, and emotional beat* from the prose; re-dress the characters to the tier.
+> 3. **Adding suppressive negatives.** Never write `fully clothed`, `no nudity`, `modest`, `tasteful`, or `no explicit content` into an illustration prompt. The only constraint is the §0 floor, expressed the §0 way (covered by fabric edge / shadow / body position) — never as a blanket "clothed" instruction, which collapses the image to ~T0.
 
 ### Step 1 — Randomly assign tier and pull the assembly block
 
 For each illustration, randomly pick **T3 or T4**. Do not use the same tier for every illustration in a single book.
 
-Pull the corresponding assembly block from `cover-allure-elements.md`:
+**Copy the corresponding assembly block from `cover-allure-elements.md` verbatim as the spine of the prompt** — do not paraphrase it into a one-line "intensity" description:
 
-- **T3 assembly block** (garment failing, charged anticipation, surrender-imminent)
-- **T4 assembly block** (clothing has left, nominal drape remains, post-decision emotional register)
+- **T3 assembly block** (garment failing — torn/wet/clinging, charged anticipation, surrender-imminent; apply the validated techniques: fabric departure, two-panel deep V, body arch + barely-containing, rim light on silhouette)
+- **T4 assembly block** (clothing has left, one nominal drape remains, maximum skin zones, post-decision emotional register)
 
-**Never use T5 for illustrations.**
+**Never use T5 for illustrations.** **Never downgrade the block's clothing/skin language to fit the prose's literal wardrobe — re-dress the scene to the tier (see mistake #2 above).**
 
 ### Step 2 — Add character anchors from `world/characters/`
 
