@@ -1068,7 +1068,32 @@ Quick-reference: which scene types pair naturally with each genre.
 
 Front-facing compositions outperform side-profile and back-view on scroll-stop rate. **Frontal = default. Side profile = accent only.**
 
-**Anti-pattern — "facing each other" side-profile trap:** When a prompt says two characters are "facing each other," models render both in pure side profile — two faces looking at each other from the side, neither looking at the camera. This kills allure. The fix: **both characters face the viewer**, even in a charged confrontation. Use `both at three-quarter angle toward the viewer` or `she faces the viewer, his gaze cutting toward her from the side`. Never write `facing each other` without also anchoring both figures to the viewer.
+### Face Direction Rule — the most commonly broken rule
+
+**Default failure mode:** two characters rendered in pure side profile facing each other, neither face readable to the viewer. The model treats "bodies close together" as "looking at each other" unless explicitly overridden.
+
+**Rule: her face always toward the viewer. His gaze toward her, not the camera — but his face must still be partially readable.**
+
+Write gaze direction explicitly for both characters every time:
+
+| Character | Correct | Wrong |
+|---|---|---|
+| **Female lead** | `her face turned outward toward the viewer` / `her expression directed at the camera` / `facing the viewer, her gaze forward` | `her face tilted toward his` / `looking up at him` / `gazing at him` |
+| **Male lead** | `his gaze on her — the side of her face, her throat, her hair` / `looking at her from above, his jaw at her temple` / `his face at three-quarter angle, readable to the viewer` | `looking at her face-to-face` / `their eyes meeting` / `facing her` |
+
+**The jaw-tilt trap:** `his hand at her jaw tilting her face toward his` is the single most common gaze-lock trigger. It is in almost every T3 pose description and almost always produces face-to-face. Replace it with:
+> `his hand at her jaw — steadying, not directing — her face turns outward toward the viewer, not toward him`
+
+Or remove the jaw-tilt entirely and describe his hand position without a direction:
+> `his hand cupping her jaw from the side, thumb at her cheekbone — her face remains toward the viewer`
+
+**Pattern for man-behind-woman (the most common T3 pose):**
+> `she faces the viewer directly — her expression toward the camera. He stands behind her, his face above and to one side of hers, his jaw at her temple — looking at her, not the camera, his face readable at three-quarter angle to the viewer. His gaze is on her. Hers is on the viewer.`
+
+**Pattern for man-beside-woman:**
+> `both at three-quarter angle toward the viewer — neither in side profile. She faces camera. He faces slightly toward her but his face reads to the viewer. Neither is looking at the other's eyes — the tension is in the proximity, not a gaze lock.`
+
+**Anti-pattern — "facing each other" side-profile trap:** When a prompt says two characters are "facing each other," models render both in pure side profile — two faces looking at each other from the side, neither looking at the camera. This kills allure. The fix: **both characters face the viewer**, even in a charged confrontation. Use `both at three-quarter angle toward the viewer` or `she faces the viewer, his gaze on the side of her face`. Never write `facing each other` without also anchoring both figures to the viewer.
 
 | Frame | When to use | Prompt fragment to include |
 |-------|-------------|---------------------------|
@@ -1644,16 +1669,19 @@ Five named tiers, all strictly above the §0 floor (no nipples / genitals / sex 
 
 | Tier | Primary model | Fallback |
 |---|---|---|
-| T1 | `gpt-image-2-all` | `doubao-seedream-5-0-260128` |
-| T2 | `gpt-image-2-all` | `doubao-seedream-5-0-260128` |
+| T1 | `doubao-seedream-5-0-260128` | `nano-banana-pro` |
+| T2 | `doubao-seedream-5-0-260128` | `nano-banana-pro` |
 | T3 | `doubao-seedream-5-0-260128` | `nano-banana-pro` |
 | T4 | `doubao-seedream-5-0-260128` | `nano-banana-pro` |
 | T5 | `doubao-seedream-5-0-260128` | `nano-banana-pro` |
 
-**Why this routing:**
-- `gpt-image-2-all` — passes T1, T2 cleanly; rejects T3 (clinging-fabric trigger) and T4
-- `doubao-seedream-5-0-260128` — the only model that reliably produces T3; also accepts T4 (content filter may occasionally reject — retry or fall to nano)
-- `nano-banana-pro` — silently ignores T3 clothing keywords (`torn`, `slipped`, `clinging`) → T1-level output. T4's post-event language ("clothing has already left", "nominal drape") bypasses this filter → ~T2 output. Use nano as T4 fallback when doubao rejects; never use nano with T3 keywords.
+**gpt-image-2-all — boundary confirmed, excluded from production testing:**
+- Passes T1/T2 cleanly; rejects T3+ consistently (clinging-fabric / multi-zone bare skin). Retry does not help — rejection is deterministic at T3+.
+- **No longer included in model tests or compare pages.** Production covers use doubao (primary) + nano (fallback) only.
+
+**Why doubao/nano only:**
+- `doubao-seedream-5-0-260128` — primary for all tiers; stochastic filter (retry once on rejection); best output quality at T3+.
+- `nano-banana-pro` — fallback; silently downgrades T3 keywords to ~T1 output; T4 post-event framing bypasses filter → ~T2. Always run as fallback, never as primary for T3+.
 
 **Fallback cascade:** if primary model rejects, try the fallback in the same row. If fallback also rejects, drop one tier.
 
@@ -1737,7 +1765,7 @@ The 8 dimensions:
 | **Environment** | Primal, elemental, intimate to the point of erasure. Rain, darkness, fire, moonlight — the environment amplifies desire, it does not decorate the scene. The world outside them barely exists. | `heavy rain pouring down, both of them soaked, cobblestones reflecting silver moonlight`, `single candle or streetlamp, everything beyond them in total darkness`, `moonlight the only light source, cutting hard shadows across wet bare skin`, `steam rising between them in the cold air`, `the dark so complete their faces are all that's lit` |
 
 **T3 assembly block:**
-> *flowing white silk dress slipping off one bare shoulder, rain-soaked translucent fabric clinging to every curve of her body, the wet silk transparent against her skin, the full skirt heavy with rain. Her back arched in a long elegant curve, pressing her chest forward — chest heaving with each breath, the fabric barely containing her figure. Bare back exposed, bare shoulder. Man behind her, shirt completely off, powerful bare torso pressing against her, one hand gripping her bare waist with fingers pressing into her skin, the other cupping her jaw. Bodies flush together, zero space, skin to skin. Her expression: fierce surrender — she knows this is the point of no return and her body has already answered. Heavy rain, cobblestones reflecting silver moonlight; silver rim light tracing the full curve of her silhouette. The world beyond them dissolved into darkness.*
+> *flowing white silk dress slipping off one bare shoulder, rain-soaked translucent fabric clinging to every curve of her body, the wet silk transparent against her skin, the full skirt heavy with rain. Her back arched in a long elegant curve, pressing her chest forward — chest heaving with each breath, the fabric barely containing her figure. Bare back exposed, bare shoulder. Man behind her, shirt completely off, powerful bare torso pressing against her, one hand gripping her bare waist with fingers pressing into her skin, the other hand at the side of her jaw — steadying, not directing — her face turned outward toward the viewer, not toward him. She faces the camera. He looks at her from above, his jaw at her temple, his face readable at three-quarter angle. Bodies flush together, zero space, skin to skin. Her expression: fierce surrender — she knows this is the point of no return and her body has already answered. Heavy rain, cobblestones reflecting silver moonlight; silver rim light tracing the full curve of her silhouette. The world beyond them dissolved into darkness.*
 
 > **Style note:** prefer a full flowing skirt over a body-con or short cut — the test-1 doubao image (best result in this series) was a full-length white dress the model chose instinctively. A flowing skirt reads as more romantic and produces more dramatic fabric movement in rain scenes. Not mandatory — body-con and short cuts are valid at T2/T3 for contemporary genres.
 
