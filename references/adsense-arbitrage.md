@@ -36,7 +36,7 @@ Facebook crawls the **destination URL**, not just the ad creative; AdSense scans
 - **No cloaking:** never serve FB's crawler a tame page and users a racier one — detected, and causes permanent account loss.
 - **Allowed:** everything short of explicit — suggestive poses, deep cleavage, figure-forward bodies, wet/rain looks, bed-sheet morning scenes, almost-kiss tension. Push allure hard.
 
-This is the governing register for `story-cover.md` and `cover-allure-elements.md` (§0). Use the safe-wording rules in `cover-allure-elements.md` to get maximum spice without tripping the `gpt-image-2-vip` keyword filter.
+This is the governing register for `story-cover.md` and `cover-allure-elements.md` (§0). Use the safe-wording rules in `cover-allure-elements.md` to get maximum spice without tripping the `gpt-image-2-all` keyword filter.
 
 ### 1.2 No cloaking, no bridge/doorway pages
 

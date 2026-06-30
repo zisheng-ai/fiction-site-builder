@@ -172,13 +172,13 @@ If the Bash tool is unavailable (not a Claude Code session), stop immediately an
 ERROR: fiction-site-builder requires Claude Code. Re-invoke from a Claude Code session.
 ```
 
-**Cover image generation (A2):** Calls `https://api.apiyi.com/v1/images/generations` with model `gpt-image-2-vip` via curl. Requires `APIYI_API_KEY` in the environment. If not set, Claude generates a styled SVG cover as fallback — no external API required.
+**Cover image generation (A2):** Calls `https://api.apiyi.com/v1/images/generations` with model `gpt-image-2-all` via curl. Requires `APIYI_API_KEY` in the environment. If not set, Claude generates a styled SVG cover as fallback — no external API required.
 
 ```bash
 [ -n "$APIYI_API_KEY" ] && echo "apiyi path" || echo "SVG fallback"
 ```
 
-**Logo and favicon (B2):** Same `APIYI_API_KEY` check as A2. If set, generates PNG assets via `gpt-image-2-vip`; if not set, yellow warning + Claude writes SVG fallback.
+**Logo and favicon (B2):** Same `APIYI_API_KEY` check as A2. If set, generates PNG assets via `gpt-image-2-all`; if not set, yellow warning + Claude writes SVG fallback.
 
 ## Phase Execution Protocol
 
@@ -316,7 +316,7 @@ Load references only when entering that phase. Do not preload all references at 
 - `story-import.md` — import and split an existing manuscript into project structure.
 - `story-review.md` — multi-perspective structural and prose review.
 - `story-deslop.md` — AI-flavor detection and removal (7 gates).
-- `story-cover.md` + `cover-styles.md` — cover generation via apiyi `gpt-image-2-vip` (SVG fallback if no API key).
+- `story-cover.md` + `cover-styles.md` — cover generation via apiyi `gpt-image-2-all` (SVG fallback if no API key).
 - `cover-allure-elements.md` — visual-appeal vocabulary for covers; §0 is a lightweight monetization risk note (avoid only outright explicit content).
 
 **Site build references (load for publishing tasks):**

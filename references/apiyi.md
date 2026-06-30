@@ -19,7 +19,7 @@ Rate limits: 3,000 RPM · 1M TPM · 100 concurrent requests. `429` → exponenti
 
 ## Models
 
-### gpt-image-2-vip (primary — use this for all covers)
+### gpt-image-2-all (primary — use this for all covers)
 
 - **Price:** $0.03/image flat across all 30 sizes (4K does not cost extra)
 - **Generation time:** 90–150s typical; configure `--max-time 300` minimum
@@ -57,7 +57,7 @@ curl "https://api.apiyi.com/v1/images/generations" \
   -H "Authorization: Bearer $APIYI_API_KEY" \
   --max-time 300 \
   -d '{
-    "model": "gpt-image-2-vip",
+    "model": "gpt-image-2-all",
     "prompt": "...",
     "size": "848x1280"
   }'
@@ -103,7 +103,7 @@ curl "https://api.apiyi.com/v1/images/generations" \
   }'
 ```
 
-Use gpt-image-1 only when a non-preset aspect ratio is needed. Default to gpt-image-2-vip.
+Use gpt-image-1 only when a non-preset aspect ratio is needed. Default to gpt-image-2-all.
 
 ---
 

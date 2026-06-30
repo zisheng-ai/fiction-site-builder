@@ -2,7 +2,7 @@
 
 Reference for `story-cover.md`. Visual allure elements for fiction cover generation — AI prompt engineering guide.
 
-Use for: romance, thriller, contemporary, drama, and light novel covers requiring strong visual appeal within gpt-image-2-vip policy.
+Use for: romance, thriller, contemporary, drama, and light novel covers requiring strong visual appeal within gpt-image-2-all policy.
 
 ---
 
@@ -12,7 +12,7 @@ Use for: romance, thriller, contemporary, drama, and light novel covers requirin
 
 Only keep in mind the two things that cause hard, irreversible damage (and that the image API will refuse to generate anyway):
 
-- **Actual nudity / explicit content** — exposed genitals or nipples, sex acts, or imagery that reads as pornographic. This trips the `gpt-image-2-vip` filter, and on a live site can get the Facebook ad account permanently banned and AdSense disabled.
+- **Actual nudity / explicit content** — exposed genitals or nipples, sex acts, or imagery that reads as pornographic. This trips the `gpt-image-2-all` filter, and on a live site can get the Facebook ad account permanently banned and AdSense disabled.
 - **Cloaking** — never show FB's crawler a tame page and users a racier one.
 
 Everything short of explicit (suggestive poses, deep cleavage, figure-forward bodies, wet/rain looks, bed-sheet morning scenes) is fair game — push it as hard as the visual appeal benefits from. Use the safe-wording rules later in this file to avoid tripping the generator's own keyword filter while still getting the spice.
@@ -188,7 +188,7 @@ Everything short of explicit (suggestive poses, deep cleavage, figure-forward bo
 
 ## English Romance Cover Playbook
 
-Maximum-allure formulas for English romance novel covers within gpt-image-2-vip policy.  
+Maximum-allure formulas for English romance novel covers within gpt-image-2-all policy.  
 **Core rule: always use physical contact. Bodies pressed together is the minimum; aim for poses where removing the prompt description would make the image read as explicit.**
 
 ---

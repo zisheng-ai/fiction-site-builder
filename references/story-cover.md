@@ -17,7 +17,7 @@ Load this reference when the user asks to generate a novel cover (/story-cover, 
 If the output is `API_PATH=claude_svg` → print the warning below, then use the SVG fallback:
 ```
 \033[33m⚠ WARNING: APIYI_API_KEY is not set. Falling back to SVG cover generation.\033[0m
-\033[33m  To enable photorealistic covers via gpt-image-2-vip, get an API key at:\033[0m
+\033[33m  To enable photorealistic covers via gpt-image-2-all, get an API key at:\033[0m
 \033[33m  https://api.apiyi.com/register/?aff_code=ijv5\033[0m
 \033[33m  Then set: export APIYI_API_KEY="your-key"\033[0m
 ```
@@ -90,7 +90,7 @@ Use for adding one book to an already-launched site. Skip logo and favicon steps
 
 ## Generation Method
 
-**apiyi path (preferred):** `curl` to `https://api.apiyi.com/v1/images/generations` with model `gpt-image-2-vip`. Response `b64_json` already includes `data:image/png;base64,` prefix — strip it before decoding. See Step 3 and `references/apiyi.md` for full API reference.
+**apiyi path (preferred):** `curl` to `https://api.apiyi.com/v1/images/generations` with model `gpt-image-2-all`. Response `b64_json` already includes `data:image/png;base64,` prefix — strip it before decoding. See Step 3 and `references/apiyi.md` for full API reference.
 
 **Claude SVG fallback:** When `APIYI_API_KEY` is not set, Claude writes a styled SVG cover directly. Acceptable as a launch asset when the API is unavailable.
 
@@ -128,7 +128,7 @@ Cover ratio: **2:3 portrait**. Generate at `848x1280` (1K Fast tier — sufficie
 
 The genre determines composition template, color palette, character design, and typography style. The visual register determines render quality language (photorealistic film-still vs. hyperrealistic 3D render).
 
-**For romance/drama genres: allure elements are MANDATORY, not optional.** Load `references/cover-allure-elements.md` and apply the highest-intensity pose from the appropriate genre section. The target is maximum implication within gpt-image-2-vip policy — bodies pressed together, visible skin, explicit physical contact (grip, hold, almost-kiss). A cover where two people are simply standing near each other fails this gate.
+**For romance/drama genres: allure elements are MANDATORY, not optional.** Load `references/cover-allure-elements.md` and apply the highest-intensity pose from the appropriate genre section. The target is maximum implication within gpt-image-2-all policy — bodies pressed together, visible skin, explicit physical contact (grip, hold, almost-kiss). A cover where two people are simply standing near each other fails this gate.
 
 - **Romance / Drama genres:** use `references/cover-allure-elements.md` (Costume Elements, Poses, and English Romance Playbook). Pick the genre-specific prompt formula, select the highest-intensity pose that fits the book's synopsis, and follow the Escalation Strategy if the output looks tame.
 
@@ -172,7 +172,7 @@ Parameters:
 
 `image-gen` skill execution flow:
 1. Check `APIYI_API_KEY` → present: use apiyi; absent: SVG fallback
-2. `curl --max-time 300` calls `gpt-image-2-vip` (90–150s typical; 300s minimum per apiyi docs), base64-decoded and written as PNG
+2. `curl --max-time 300` calls `gpt-image-2-all` (90–150s typical; 300s minimum per apiyi docs), base64-decoded and written as PNG
 3. Prompt saved to same directory as `.prompt.txt`
 4. On content filter (`invalid_prompt`): replace triggering terms using the skill's word list and retry once
 5. Retry fails → SVG fallback (480×720 viewBox, includes title/author/gradient background)

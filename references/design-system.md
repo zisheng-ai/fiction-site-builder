@@ -184,14 +184,14 @@ Never use placeholder text, generic emoji, or external icon libraries. Always ge
 If the output is `API_PATH=claude_svg` → print the warning below, then fall back to Claude SVG:
 ```
 \033[33m⚠ WARNING: APIYI_API_KEY is not set. Falling back to SVG logo/favicon generation.\033[0m
-\033[33m  To enable AI-generated assets via gpt-image-2-vip, get an API key at:\033[0m
+\033[33m  To enable AI-generated assets via gpt-image-2-all, get an API key at:\033[0m
 \033[33m  https://api.apiyi.com/register/?aff_code=ijv5\033[0m
 \033[33m  Then set: export APIYI_API_KEY="your-key"\033[0m
 ```
 
 ### apiyi path (APIYI_API_KEY is set)
 
-Generate logo and favicon via `gpt-image-2-vip`. Both are square motif images — use `1024x1024`.
+Generate logo and favicon via `gpt-image-2-all`. Both are square motif images — use `1024x1024`.
 
 ```bash
 mkdir -p public
@@ -204,7 +204,7 @@ LOGO_PROMPT="{genre-appropriate motif — e.g. glowing sword on dark background 
 LOGO_URL=$(curl -s https://api.apiyi.com/v1/images/generations \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $APIYI_API_KEY" \
-  -d "{\"model\":\"gpt-image-2-vip\",\"prompt\":$(echo "$LOGO_PROMPT" | python3 -c 'import json,sys;print(json.dumps(sys.stdin.read().strip()))'),\"n\":1,\"size\":\"1024x1024\"}" \
+  -d "{\"model\":\"gpt-image-2-all\",\"prompt\":$(echo "$LOGO_PROMPT" | python3 -c 'import json,sys;print(json.dumps(sys.stdin.read().strip()))'),\"n\":1,\"size\":\"1024x1024\"}" \
   | python3 -c "import sys,json;print(json.load(sys.stdin)['data'][0]['url'])")
 curl -s "$LOGO_URL" -o public/logo_raw.png
 echo "logo saved"
@@ -216,7 +216,7 @@ FAVICON_PROMPT="{same motif, minimal, high contrast, no text, works at tiny size
 FAVICON_URL=$(curl -s https://api.apiyi.com/v1/images/generations \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $APIYI_API_KEY" \
-  -d "{\"model\":\"gpt-image-2-vip\",\"prompt\":$(echo "$FAVICON_PROMPT" | python3 -c 'import json,sys;print(json.dumps(sys.stdin.read().strip()))'),\"n\":1,\"size\":\"1024x1024\"}" \
+  -d "{\"model\":\"gpt-image-2-all\",\"prompt\":$(echo "$FAVICON_PROMPT" | python3 -c 'import json,sys;print(json.dumps(sys.stdin.read().strip()))'),\"n\":1,\"size\":\"1024x1024\"}" \
   | python3 -c "import sys,json;print(json.load(sys.stdin)['data'][0]['url'])")
 curl -s "$FAVICON_URL" -o public/favicon_raw.png
 echo "favicon saved"
