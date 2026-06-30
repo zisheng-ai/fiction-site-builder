@@ -344,9 +344,638 @@ Everything short of explicit (suggestive poses, deep cleavage, figure-forward bo
 
 ---
 
-## Poses
+## Face, Hair & Body Reference
 
-### Camera Framing — State Explicitly in Every Prompt
+Character design is where most covers fail silently — the costume is interesting but the face is generic, the hair has no character, the hands look wrong. This section gives per-element keyword libraries so every visible feature is described with the same precision as the costume.
+
+**Usage:** pick one option per element per character. Combine across elements freely. Always specify for both the female lead and the male lead.
+
+---
+
+## Female Lead — Face
+
+### Eye Shape
+
+| Type | Visual | Prompt keywords |
+|---|---|---|
+| Almond / classic | Balanced, slightly upward tilt at outer corner | `almond-shaped eyes`, `classic oval eye shape` |
+| Upturned / fox eyes | Strong upward tilt at outer corner, seductive | `upturned fox eyes`, `sharp outer corners tilting upward`, `cat-eye shaped` |
+| Downturned / doe eyes | Outer corners drop, soft and vulnerable | `downturned doe eyes`, `gentle drooping outer corner`, `wide innocent eye shape` |
+| Round / wide | Large iris, lots of white visible, expressive | `large round eyes`, `wide open expressive eyes`, `big luminous eyes` |
+| Hooded | Heavy lid, mysterious, mature | `hooded eyelids`, `heavy-lidded bedroom eyes`, `partially lidded gaze` |
+| Monolid | Smooth lid with no upper crease | `monolid eye shape`, `smooth upper lid, no crease` |
+
+### Eye Color
+
+| Color | Prompt keywords |
+|---|---|
+| Deep brown / black | `deep dark brown eyes`, `near-black irises`, `obsidian eyes` |
+| Amber / honey | `warm amber eyes`, `honey-gold irises catching the light` |
+| Green / hazel | `forest green eyes`, `hazel eyes shifting gold in the light` |
+| Grey / silver | `pale grey eyes`, `silver irises`, `storm-grey eyes` |
+| Blue | `deep ocean blue eyes`, `pale ice-blue irises`, `vivid cobalt eyes` |
+| Violet / unusual | `violet eyes`, `otherworldly lavender irises` (paranormal) |
+| Glowing (supernatural) | `eyes glowing faintly gold`, `irises lit from within with silver light` |
+
+### Eye Expression — pair with Emotional Register tier
+
+| Expression | Prompt keywords |
+|---|---|
+| Desire / want | `eyes dark with barely-suppressed desire`, `pupils dilated, gaze heavy with want` |
+| Defiance | `eyes hard and challenging, chin raised`, `gaze that dares him to try` |
+| Vulnerability | `eyes glistening, the beginning of tears held back`, `wide eyes, lower lip trembling` |
+| Shock / recognition | `eyes wide, lips parted — the expression of someone who just understood everything` |
+| Surrender | `eyes half-closed, lashes casting shadows — has stopped looking for a way out` |
+| Cold possession (male) | `eyes that see only her — calm, certain, absolute` |
+
+### Lashes & Brows
+
+| Element | Prompt keywords |
+|---|---|
+| Full lashes | `thick dark lashes casting shadows on her cheekbones` |
+| Wet lashes (crying / rain) | `lashes clumped with rain`, `tears caught on lashes, not yet fallen` |
+| Strong brows | `bold dark brows, slightly furrowed` |
+| Arched brows | `high arched brows giving her an imperious look`, `one brow lifted in challenge` |
+| Soft brows | `soft natural brows slightly raised in vulnerability` |
+
+### Lips & Mouth
+
+| Type | Prompt keywords |
+|---|---|
+| Full / plump | `full lips`, `plump lower lip`, `pillowy mouth` |
+| Defined cupid's bow | `sharp cupid's bow`, `defined upper lip with a pronounced peak` |
+| Thin / elegant | `elegant fine lips`, `refined mouth` |
+| **Parted (key allure signal)** | `lips slightly parted`, `mouth open just enough to catch a breath`, `parted lips, the bottom one bitten` |
+| Bitten lower lip | `lower lip caught between her teeth`, `she bites her lower lip — not quite hiding it` |
+| Trembling | `lower lip trembling, barely held still` |
+| Swollen (aftermath) | `lips red and slightly swollen`, `mouth that looks kissed` |
+
+**Lip color (add to any above):**
+- Natural: `lips naturally pink`, `bare lips, no color needed`
+- Bold: `deep red lip`, `dark wine-stained lips`, `crimson mouth`
+- Smeared: `red lip slightly smeared at the corner` (aftermath / disarray)
+- Gloss: `lips shining as if just licked`
+
+### Cheeks & Skin
+
+| Element | Prompt keywords |
+|---|---|
+| Flush / blush | `cheeks flushed pink`, `color high in her cheeks — anger or want, impossible to tell` |
+| Pale / porcelain | `porcelain skin`, `pale flawless complexion`, `skin almost translucent in the moonlight` |
+| Warm / golden | `warm golden skin`, `sun-kissed complexion`, `honey-toned skin` |
+| Deep / rich | `deep brown skin with warm undertones`, `rich dark complexion catching the rim light` |
+| Wet / rain-slicked | `skin glistening with rain`, `wet skin catching every light source` |
+| Freckles | `faint dusting of freckles across the nose and cheeks` |
+| Scar / mark | `a thin scar across the cheekbone`, `a small beauty mark at the corner of the mouth` |
+
+### Jawline & Face Shape
+
+| Type | Prompt keywords |
+|---|---|
+| Soft / oval | `soft oval face`, `gentle jawline`, `rounded chin` |
+| Defined / strong | `defined jawline`, `sharp cheekbones`, `angular face with strong bone structure` |
+| Heart-shaped | `heart-shaped face, wider at the temples, narrowing to a pointed chin` |
+| Square | `square jaw`, `strong square face shape` |
+
+---
+
+## Female Lead — Hair
+
+### Length
+
+| Length | Prompt keywords |
+|---|---|
+| Very long | `hair falling past her waist`, `floor-length cascading hair` |
+| Long | `long hair to mid-back`, `hair past her shoulders` |
+| Medium | `hair to the collarbone`, `shoulder-length hair` |
+| Short / pixie | `short cropped hair`, `pixie cut`, `hair cut close at the nape` |
+| Bob | `sharp chin-length bob`, `blunt bob` |
+
+### Texture & Wave
+
+| Texture | Prompt keywords |
+|---|---|
+| Dead straight | `poker-straight hair`, `pin-straight hair with a mirror finish` |
+| Sleek straight | `sleek straight hair`, `glossy straight strands` |
+| Wavy | `loose waves`, `tousled beach waves`, `soft undulating waves` |
+| Curly | `loose curls`, `ringlet curls`, `corkscrew curls` |
+| Coily / natural | `tight natural coils`, `voluminous natural hair` |
+| Disheveled / wild | `wild tangled hair`, `hair in beautiful disarray`, `loose strands everywhere` |
+| Wind-blown | `hair blown back by the wind`, `strands whipping across her face` |
+| Rain-soaked | `hair dark and heavy with rain, clinging to her neck and collarbone`, `soaked strands plastered to her cheek` |
+
+### Style & Arrangement
+
+| Style | Prompt keywords |
+|---|---|
+| Loose / down | `hair loose and falling free`, `hair down, framing her face` |
+| Half-up | `hair half-pulled-up, the rest falling loose`, `messy half-updo with strands escaping` |
+| High ponytail | `high tight ponytail`, `sleek high ponytail pulling her face taut` |
+| Low ponytail | `low loose ponytail`, `hair pulled back at the nape` |
+| Braid | `loose side braid`, `thick plait over one shoulder`, `messy braid coming undone` |
+| Bun | `high bun with loose strands escaping`, `low chignon with a few tendrils falling free` |
+| Updo (formal) | `elaborate updo`, `swept-up hairstyle with jeweled pins`, `hair pinned high with pieces falling loose` |
+| Coming undone | `updo coming undone, strands cascading`, `pins slipping, hair falling loose mid-scene` |
+| Twin tails | `high twin tails`, `low twin braids` |
+| Over one shoulder | `all hair swept dramatically over one shoulder` |
+
+### Color
+
+| Color | Prompt keywords |
+|---|---|
+| Black | `jet black hair`, `blue-black hair with a glossy sheen`, `midnight black hair` |
+| Dark brown | `dark chestnut hair`, `deep espresso brown` |
+| Brown | `warm brown hair`, `rich chocolate hair` |
+| Blonde | `golden blonde hair`, `platinum blonde`, `honey blonde with natural highlights` |
+| Red | `deep auburn hair`, `vivid copper red`, `dark wine-red hair` |
+| Silver / white | `silver-white hair`, `moonlight-white hair` (supernatural/fantasy) |
+| Ombre / highlighted | `dark roots fading to blonde tips`, `subtle caramel highlights through brown hair` |
+| Unnatural (fantasy) | `iridescent purple hair`, `ink-black hair with blue shimmer in the light`, `hair that shifts color in the moonlight` |
+
+### Hair as Allure Signal
+
+Hair placement directly affects how much skin is revealed:
+
+| Effect | Prompt keywords |
+|---|---|
+| Expose neck (max allure) | `hair swept entirely off the neck and over one shoulder`, `hair pulled back, leaving her neck and nape bare` |
+| Cascade over bare back | `long hair cascading over her bare back, dark strands against pale skin` |
+| Stick to wet skin | `wet strands clinging to her throat and collarbone`, `rain-soaked hair plastered to her neck` |
+| Veil / partial cover | `hair falling forward over one eye`, `a curtain of hair shielding part of her face` |
+| Lifted by breeze | `hair lifting off her shoulders in the wind, baring her neck` |
+| Gripped (by him) | `his hand in her hair, pulling it back to expose her throat` |
+
+---
+
+## Female Lead — Body & Limbs
+
+### Build
+
+**Hard constraint: voluptuous curves are required; obesity / heavy-set / plus-size body types are NOT. Every build below implies a slender, toned frame with dramatic curves — never a heavy or overweight body. Bake `slim toned waist` or `narrow waist` into every prompt alongside any curve description.**
+
+| Build | Prompt keywords |
+|---|---|
+| Hourglass (default for allure) | `voluptuous hourglass figure, slim toned waist dramatically cinched, full generous bust, long shapely legs` |
+| Petite hourglass | `petite but curvy figure, tiny narrow waist, pronounced curves on a small slender frame` |
+| Athletic | `athletic figure, toned and lean, defined abs and flat stomach, slim waist, strong shapely legs` |
+| Slender / willowy | `slender elegant figure, narrow waist, long-limbed and willowy, subtle feminine curves` |
+| Tall | `tall slender figure, long-legged, narrow waist, voluptuous curves` |
+
+### Waist
+
+| Detail | Prompt keywords |
+|---|---|
+| Cinched (allure default) | `impossibly cinched waist`, `waist so narrow it emphasizes the curve of her hips` |
+| Bare | `bare midriff`, `exposed waist`, `skin visible from ribs to hips` |
+| Gripped | `his hand spanning her bare waist`, `fingers wrapped around her waist`, `thumb pressing into the soft skin just above her hip` |
+
+### Bust & Décolletage
+
+| Detail | Prompt keywords |
+|---|---|
+| Emphasized | `full generous bust`, `ample bust`, `prominent chest` |
+| Décolletage exposed | `deep décolletage on full display`, `cleavage visible from neckline to sternum`, `the curve of her chest above the fabric` |
+| Heaving / breathless | `chest heaving with each breath`, `rapid shallow breathing visible` |
+| Shadowed cleavage | `shadow falling between, suggesting more than is shown` |
+
+### Hips & Legs
+
+| Detail | Prompt keywords |
+|---|---|
+| Wide hips | `generous hips`, `pronounced hip curve`, `hips that flare from the waist` |
+| Bare legs | `legs bare from upper thigh down`, `long bare legs`, `bare legs from hip to ankle` |
+| Upper thigh exposed | `upper thigh bare and visible`, `thigh fully exposed through the split`, `skin visible to the upper inner thigh` |
+| Crossed legs | `legs crossed, one knee over the other, skirt riding up` |
+| One leg raised | `one leg raised, wrapping around him`, `thigh hooked over his hip` |
+| Long legs | `impossibly long legs`, `legs that go on forever` |
+
+### Arms & Hands
+
+| Detail | Prompt keywords |
+|---|---|
+| Bare arms | `bare arms`, `sleeveless, arms fully visible` |
+| Reaching / grasping | `hand reaching up to grip his collar`, `fingers curling into his shirt` |
+| Gripping him | `fingers gripping his bare chest`, `hand pressed flat against his sternum`, `nails digging lightly into his shoulder` |
+| Pushing / pulling conflict | `one hand pushing at his chest — the other pulling him closer`, `hands that can't decide` |
+| Wrist grabbed | `his hand wrapped around her wrist`, `wrist caught in his grip, held still` |
+| Arms raised | `arms raised above her head`, `wrists pinned above her` |
+| Tattoos | `forearm covered in delicate tattoos`, `full sleeve tattoo`, `tattoos glowing with supernatural light` |
+| Glowing mark | `a glowing mark on her inner wrist`, `the brand on her palm pulsing with light` |
+| Hands on his chest | `both palms flat on his bare chest`, `fingers splayed against his skin` |
+| Nail details | `long painted nails`, `dark nail polish`, `nails curling into his skin` |
+
+### Back & Spine
+
+| Detail | Prompt keywords |
+|---|---|
+| Full bare back | `back completely bare from neckline to tailbone`, `spine fully exposed` |
+| Arched back | `back arched in a long elegant curve`, `spine curving as she leans into him` |
+| His hand on her back | `his palm flat against her bare back`, `hand spread across the small of her bare back` |
+| Spine detail | `the line of her spine catching the rim light`, `vertebrae visible under the light` |
+| Goosebumps | `fine goosebumps rising along her bare back` |
+
+### Neck & Throat
+
+| Detail | Prompt keywords |
+|---|---|
+| Bare / exposed | `neck bare and exposed`, `long elegant neck fully visible` |
+| Thrown back | `head thrown back, throat exposed`, `neck arched back in abandon` |
+| Pulse visible | `pulse visible at the base of her throat`, `a vein at her neck standing out` |
+| His face at her neck | `his face buried at her neck`, `lips at her throat`, `breath against the side of her neck` |
+| Hand at throat | `his hand lightly at her throat, thumb at her jaw` |
+
+---
+
+## Male Lead — Face
+
+### Jaw & Bone Structure
+
+| Type | Prompt keywords |
+|---|---|
+| Sharp / chiseled | `sharp angular jawline`, `chiseled jaw`, `prominent cheekbones cutting hard shadows` |
+| Square / strong | `square jaw`, `broad strong jaw`, `heavy masculine jawline` |
+| Refined | `refined bone structure`, `elegant angular face` |
+| Rough / rugged | `rugged unshaven jaw`, `rough-hewn features`, `craggy masculine face` |
+
+### Stubble & Facial Hair
+
+| Style | Prompt keywords |
+|---|---|
+| Clean-shaven | `clean-shaven jaw`, `smooth jawline` |
+| 5 o'clock shadow | `dark shadow of stubble`, `day-old stubble`, `five-o-clock shadow` |
+| Short beard | `close-cropped beard`, `neatly trimmed short beard` |
+| Full beard | `full dark beard, well-kept`, `thick beard` |
+| Rough scruff | `unshaven rough scruff`, `several days of neglected stubble` |
+
+### Eyes (male)
+
+| Type | Prompt keywords |
+|---|---|
+| Intense / hooded | `hooded intense gaze`, `heavy-lidded eyes that miss nothing` |
+| Cold / calculating | `cold calculating gaze`, `eyes that evaluate rather than feel` |
+| Possessive | `dark possessive gaze`, `eyes of a man who has decided she is his` |
+| Burning | `eyes burning with controlled intensity`, `gaze that could set something on fire` |
+| Supernatural | `eyes glowing faintly gold`, `irises lit amber from within`, `wolf-gold eyes` |
+
+### Male Hair
+
+| Style | Prompt keywords |
+|---|---|
+| Short / cropped | `close-cropped dark hair`, `military cut`, `short neat hair` |
+| Medium / tousled | `dark disheveled hair`, `tousled hair falling across his forehead` |
+| Swept back | `hair swept back`, `slicked back`, `pushed back off his face` |
+| Long | `long dark hair past his jaw`, `hair tied back loosely` |
+| Wet / rain-soaked | `hair dark and heavy with rain`, `rain-soaked strands falling across his brow` |
+
+---
+
+## Male Lead — Body & Limbs
+
+### Build
+
+| Build | Prompt keywords |
+|---|---|
+| Powerfully built (default) | `powerfully built`, `broad shoulders tapering to a narrow waist`, `massive frame` |
+| Athletic / lean | `lean athletic build`, `long-muscled and fast-looking` |
+| Tall and imposing | `looming above her`, `so tall she has to look up`, `towering frame` |
+| Fighter's build | `fighter's build, compact and explosive`, `heavy shoulders, thick neck` |
+
+### Bare Torso (T3 default)
+
+| Detail | Prompt keywords |
+|---|---|
+| Defined chest | `powerful bare chest`, `broad bare chest with defined pectorals` |
+| Carved abs | `carved abs`, `stomach cut with muscle` |
+| V-line | `the V of his obliques visible above his waistband` |
+| Rain-slicked | `bare chest rain-slicked and gleaming`, `wet skin catching the only light` |
+| Lit dramatically | `chest lit by a single light source, all else shadow`, `rim light catching the edge of his shoulder and pec` |
+| Pressing against her | `bare chest pressing against her back`, `skin against skin, no space between them` |
+| Scarred | `old scars across his ribs`, `a long scar bisecting his left pectoral` |
+
+### Arms & Hands
+
+| Detail | Prompt keywords |
+|---|---|
+| Muscled forearms | `forearms corded with muscle`, `thick muscled forearms, veins visible` |
+| Gripping | `hand wrapped around her waist`, `hand gripping her hip`, `fingers pressed into her bare skin` |
+| At her jaw | `hand cupping her jaw, thumb at the corner of her mouth`, `lifting her chin with two fingers` |
+| In her hair | `fist in her hair pulling her head back`, `hand gathering her hair, moving it off her neck` |
+| Against the wall | `forearm braced against the wall beside her head`, `caging her in with both arms` |
+| Reaching for her | `hand reaching for her`, `arm outstretched, fingers just grazing her wrist` |
+| Tattoos | `sleeve tattoo covering one arm from wrist to shoulder`, `tribal tattoo across the back of his hand` |
+
+### Posture & Stance
+
+| Type | Prompt keywords |
+|---|---|
+| Dominant / looming | `looming above her`, `standing over her, all his height used deliberately`, `using his body to crowd her space` |
+| Caging | `one arm braced against the wall behind her head, the other at her waist — nowhere for her to go` |
+| Pulling her in | `arm locked around her, drawing her body flush against his`, `pulling her against him with no intention of letting go` |
+| Kneeling to her | `kneeling at her feet, looking up at her`, `dropping to one knee — a different kind of power` |
+| Turned away | `standing with his back to her, tension visible in his shoulders` (unresolved conflict) |
+| Carrying | `carrying her against his chest`, `her body cradled against his bare chest` |
+
+---
+
+## Skin, Tone & Texture Reference
+
+### Female Skin
+
+| Quality | Prompt keywords |
+|---|---|
+| Luminous | `luminous skin`, `skin that seems lit from within` |
+| Dewy | `dewy soft skin`, `fresh-looking skin with a natural glow` |
+| Wet / rain-slicked | `skin glistening with rain`, `rainwater running down her bare shoulder`, `wet skin catching every light source` |
+| Flushed | `skin flushed with heat`, `pink rising from her collarbone to her cheeks` |
+| Pale & dramatic | `near-translucent pale skin in the moonlight`, `alabaster skin` |
+| Warm tone | `warm honey-toned skin`, `golden complexion catching the amber light` |
+| Dark & radiant | `rich dark skin gleaming in the candlelight`, `deep brown complexion catching the rim light` |
+| Goosebumps | `fine goosebumps along her bare arms and back` |
+| Sweat / heat | `a sheen of exertion on her skin`, `light sweat catching the spotlight` |
+
+### Lighting on Skin (dramatically affects how much allure reads through)
+
+| Light type | Effect | Prompt keywords |
+|---|---|---|
+| Rim light | Traces the edge of bare skin, maximally revealing silhouette | `silver rim light tracing the curve of her bare shoulder`, `rim light outlining her figure against the darkness` |
+| Moonlight | Hard, cold, high-drama for paranormal/fantasy | `moonlight falling across her bare back`, `cold moonlight making her skin glow` |
+| Candlelight | Warm, intimate, shadows deepen cleavage | `candlelight pooling in the hollow of her collarbone`, `warm amber candlelight deepening every shadow` |
+| Rain backlight | Wet skin acts as a light diffuser | `rain-slicked skin diffusing the streetlight`, `wet skin catching every ambient light source` |
+| Spotlight (dramatic) | Isolates the figure, erases background | `single spotlight from above, all else in shadow`, `hard single-source light carving shadow and highlight` |
+| Dawn / morning | Soft, golden, intimate morning-after feel | `soft golden morning light`, `early light streaming through sheer curtains across her bare shoulders` |
+
+---
+
+## Quick-Reference Cheat Sheet
+
+When building any character description, fill in this template mentally before writing the prompt. Skip nothing — a blank slot defaults to generic, which reads as boring.
+
+**Female lead checklist:**
+- [ ] Eye shape + color + expression keyword
+- [ ] Lashes / brows detail
+- [ ] Lips: type + color + state (parted / bitten / trembling)
+- [ ] Skin tone + quality (luminous / wet / flushed)
+- [ ] Hair: length + texture + style + color + placement (where does it sit relative to bare skin?)
+- [ ] Build keyword
+- [ ] Clothing state (Tier T1/T2/T3 fragment from Exposure Tiers)
+- [ ] Which skin zones are visible
+- [ ] Hand / arm position and what they're doing
+- [ ] Emotional register expression keyword
+
+**Male lead checklist:**
+- [ ] Jaw / bone structure keyword
+- [ ] Stubble / facial hair state
+- [ ] Eyes: type + expression
+- [ ] Hair: style + state (dry / wet / disheveled)
+- [ ] Build keyword
+- [ ] Torso state (T3 = shirt off)
+- [ ] Hand / arm position and what they're gripping or bracing
+- [ ] Posture / stance relative to her (looming / caging / pulling in)
+
+---
+
+## Scene Reference
+
+A scene has four layers that work together: **Location**, **Time & Atmosphere**, **Lighting**, and **Props & Details**. Specify all four. A cover with a precisely described scene reads as cinematic; a cover with a vague background reads as stock. Use the same keyword-library approach as Face/Hair/Body — pick one entry per layer, combine freely.
+
+**Rule:** the scene must amplify the emotion between the figures, not just decorate behind them. Ask "does this environment make the situation feel more dangerous / more intimate / more forbidden?" — if not, pick a different scene.
+
+---
+
+### Location Bank
+
+#### Urban / City
+
+| Scene | Visual signature | Prompt keywords |
+|---|---|---|
+| Rain-slicked alley | Narrow urban canyon, cobblestones, neon reflections, mist | `rain-slicked cobblestone alley`, `narrow street with glowing shop signs reflecting in puddles`, `urban alley, brick walls, mist rising from the wet ground` |
+| Rooftop terrace | City sprawl below, open sky, wind | `luxury rooftop terrace, the entire city stretched below`, `rooftop at night, city lights blurred to bokeh`, `rain-exposed rooftop, skyline visible in every direction` |
+| Penthouse interior | Floor-to-ceiling glass, city as wallpaper | `floor-to-ceiling windows, city at night forty floors below`, `penthouse interior, panoramic glass wall, the city a galaxy of lights behind them` |
+| City street at night | Wet pavement, streetlamps, moving cars blurred | `wet city street at night, streetlamps casting pools of amber light`, `urban night street, passing headlights streaked to abstract lines` |
+| Parking garage | Concrete, harsh fluorescent or single headlight, shadows | `empty parking garage, single headlight beam cutting through darkness`, `concrete columns casting hard shadows, fluorescent flicker` |
+| Subway / underground | Tiled walls, harsh overhead light, urban grit | `subway platform, harsh fluorescent overhead, tiled walls`, `underground corridor, motion blur of passing train` |
+| Fire escape | Metal grating, brick exterior, city below | `fire escape on a brick building, city visible through the metal grating below`, `iron fire escape, rain dripping through the grating` |
+| Shoreditch / London street | Victorian brick, gas lamp style, London skyline | `Shoreditch cobblestone street, Victorian brick buildings, full moon over London rooftops`, `East London alley, weathered brick, distant shard of the Gherkin` |
+
+#### Upscale / Wealth
+
+| Scene | Visual signature | Prompt keywords |
+|---|---|---|
+| Grand ballroom | Chandeliers, marble floors, formal crowd blurred | `grand ballroom, crystal chandelier bokeh, marble floors reflecting the light`, `formal gala, candelabras, blurred crowd of onlookers in the distance` |
+| Estate / manor | Stone façade, manicured grounds, old money | `grand family estate entrance, stone columns and iron gates`, `private manor library, mahogany shelves floor to ceiling, fireplace glow` |
+| Luxury bedroom | Silk sheets, ambient glow, high-thread-count | `luxury bedroom, rumpled silk sheets, dim bedside lamp`, `penthouse bedroom, floor-to-ceiling windows, morning city light on unmade sheets` |
+| Corporate tower | Glass and steel, power aesthetic | `glass-and-steel executive floor, city visible through the windows`, `corporate lobby, marble and chrome, high ceilings` |
+| Yacht deck | Open water, horizon, movement | `yacht deck at sunset, open ocean horizon`, `deck of a private yacht at night, stars above, black water below` |
+| Private jet interior | Cream leather, altitude implied | `private jet interior, cream leather seats, night sky visible in the oval window` |
+
+#### Nature / Outdoor
+
+| Scene | Visual signature | Prompt keywords |
+|---|---|---|
+| Moonlit forest | Ancient trees, silver light shafts, mist on ground | `moonlit forest, full moon filtering through ancient oak canopy`, `silver light shafts through dark trees, mist drifting at ground level` |
+| Forest clearing | Open sky in the trees, exposed, vulnerable | `forest clearing at night, full moon overhead, ring of dark trees encircling them` |
+| Cliff edge / coastal | Sea below, wind, dramatic horizon | `cliff edge above crashing sea, spray visible in the air`, `coastal clifftop, ocean horizon at dusk, wind pulling at her hair` |
+| Rain in the open | No shelter, total exposure to the downpour | `caught in heavy rain, no shelter, cobblestones flooding`, `open street, rain pouring straight down, both of them completely soaked` |
+| Garden / estate grounds | Night garden, stone path, hedgerows | `moonlit garden, stone path through formal hedgerows`, `private garden at dusk, roses in silhouette` |
+| Snowy exterior | Cold, isolation, breath visible | `snow-covered street, breath misting in the cold air`, `winter exterior, bare trees, snowfall visible as soft blur` |
+| Desert / arid | Heat shimmer, dramatic sky, isolation | `arid landscape, sun low on the horizon, heat shimmer`, `desert at night, vast star field, no civilization visible` |
+
+#### Gothic / Dark Fantasy
+
+| Scene | Visual signature | Prompt keywords |
+|---|---|---|
+| Gothic castle interior | Stone, torch/candlelight, cold shadows | `gothic castle interior, stone archways, torchlight casting flickering orange shadows`, `great hall, cold stone floor, tapestries on dark walls` |
+| Castle exterior | Battlements, storm sky, isolation | `castle battlements at night, storm clouds rolling in`, `gothic spire against a full moon, gargoyles silhouetted` |
+| Dungeon / vault | Arched stone ceiling, damp walls, single torch | `stone vault, single torch in a wall bracket, shadows heavy`, `dungeon corridor, iron door ajar, cold blue light from a slit window` |
+| Ancient ruins | Crumbling arches, vines, supernatural mist | `moonlit ancient ruins, crumbling carved stone arches`, `fae ruins, stone worn smooth, silver-violet magical mist rising between the columns` |
+| Dark forest / cursed wood | Twisted trees, no light penetration, supernatural | `cursed forest, gnarled dark trees, silver moonlight unable to reach the ground`, `bone-white tree trunks, mist at ground level, silence that has weight` |
+| Cemetery | Headstones, iron fence, moonlight | `old cemetery, iron fence, moonlight on marble headstones`, `gothic graveyard, overgrown, a single mausoleum lit by the moon` |
+| Underground cave / cavern | Mineral formations, bioluminescence, echo space | `underground cavern, bioluminescent crystals casting blue-green light`, `cave chamber, stalactites above, an underground pool reflecting pale light` |
+
+#### Historical / Period
+
+| Scene | Visual signature | Prompt keywords |
+|---|---|---|
+| Imperial court | Gilded interiors, lacquer and jade, candlelight | `imperial court interior, gilded columns, lanterns casting warm amber light`, `palace throne room, incense smoke, silks and jade` |
+| 1930s Shanghai | Art Deco interior, neon Chinese signage, rain | `1930s Shanghai ballroom, art deco chandeliers, neon signs visible through rain-streaked windows` |
+| Regency drawing room | Fireplace, mahogany, formal propriety | `Regency-era drawing room, fireplace crackling, candlelight on mahogany`, `Georgian townhouse interior, tall windows, formal furniture` |
+| Victorian street | Gas lamps, cobblestone, fog | `Victorian London street, gas lamp halos in the fog`, `Dickensian alley, wet cobblestones, carriage sounds implied` |
+| Feudal Japan | Shoji screen, tatami, moon garden | `traditional Japanese inn room, shoji screen with moonlight filtering through`, `zen garden at night, raked gravel, stone lantern` |
+| Medieval great hall | Long tables, firepit, rush torches | `medieval great hall, long oak tables cleared, firepit at center, rush torches on stone walls` |
+
+#### Fantasy / Supernatural
+
+| Scene | Visual signature | Prompt keywords |
+|---|---|---|
+| Fae realm / enchanted | Impossible colours, floating light, magic | `enchanted forest, floating bioluminescent spores, colours no natural forest has`, `fae court, crystalline trees, diffused magical light` |
+| Volcanic / infernal | Lava glow, ash fall, extreme heat | `volcanic landscape, lava flow in the distance casting red-orange glow`, `infernal setting, ash falling slowly, heat shimmer rising from cracked ground` |
+| Underwater / deep sea | Refracted light, suspended particles, pressure | `underwater, diffused surface light from above, suspended particles catching the light`, `deep sea, bioluminescent creatures in the distance` |
+| Cloud / sky realm | Open sky, cloud floor, light above and below | `above the clouds, sunrise light from below, infinite sky in every direction` |
+| Celestial / cosmic | Stars as backdrop, nebula colors, vastness | `star field as backdrop, nebula colors in deep blue and purple`, `edge of a celestial body, planet curve below, stars above` |
+
+---
+
+### Time & Atmosphere
+
+Time of day sets the emotional register before the figures even appear. Pick one and commit.
+
+| Time / Weather | Mood | Prompt keywords |
+|---|---|---|
+| **Golden hour (dusk)** | Romance, warmth, nostalgia, endings | `golden hour, the sun just below the horizon, amber light everywhere`, `last light of the day, long warm shadows` |
+| **Full night, clear** | Mystery, intimacy, freedom | `deep night, stars visible, everything past the lamplight in shadow`, `clear night, moon high, crisp dark shadows` |
+| **Full night, overcast** | Tension, danger, no escape | `overcast night, no moon visible, everything in cold grey-black`, `heavy cloud cover, the city the only light source` |
+| **Heavy rain** | Primal, urgent, inhibitions gone | `heavy rain pouring straight down`, `the kind of rain that ends arguments by making them irrelevant`, `curtains of rain, puddles everywhere, no point in running` |
+| **Light rain / mist** | Melancholy, charged, beautiful sadness | `light rain beginning, surfaces starting to glisten`, `mist rolling in`, `drizzle catching in her hair` |
+| **Storm (lightning)** | Violence, revelation, climax | `storm, lightning visible in the distance`, `thunder implied, everything lit briefly in blue-white`, `storm sky, clouds bruised purple and green` |
+| **Dawn** | Aftermath, new beginning, fragile hope | `first light, pale gold at the horizon`, `pre-dawn darkness giving way to the palest blue`, `dawn light catching the tops of buildings` |
+| **Morning after** | Intimacy, consequence, quiet intensity | `full morning light, warm and clear`, `late morning, bright and unambiguous`, `the kind of morning light that makes everything visible` |
+| **Winter / snow** | Isolation, purity, cold vulnerability | `snowfall, soft and silent`, `breath misting in cold air`, `snow on every surface, absolute quiet` |
+| **Heat / summer night** | Sensuality, unguarded, humidity | `summer night, air still and warm`, `heat shimmer rising even after dark`, `the kind of night where clothing feels like too much` |
+| **Fog / smog** | Concealment, isolation, unreality | `thick London fog, visibility to five metres`, `smog-diffused city light, everything soft-edged`, `fog isolating them from the rest of the world` |
+
+---
+
+### Lighting Reference
+
+Lighting is not decoration — it directly controls how much allure reads from the image. Specify the light source explicitly.
+
+#### Primary Light Sources
+
+| Source | Quality | Prompt keywords |
+|---|---|---|
+| **Full moon** | Hard, cold, silver — ideal for paranormal | `full silver moon as sole light source`, `moonlight cutting hard through the darkness`, `cold silver moonlight on wet skin` |
+| **Streetlamp / gas lamp** | Amber pool, isolates figures from dark surround | `single streetlamp casting an amber pool around them`, `gas lamp halo in the fog`, `sodium streetlight, warm yellow against the cold night` |
+| **Neon signs** | Urban, coloured, modern or noir | `neon signs reflecting in wet pavement`, `pink and blue neon backlight`, `neon glow from a bar sign, colour washing over them` |
+| **Candlelight** | Warm, intimate, deepens shadow in cleavage | `candlelight, warm amber, shadows pooling in every hollow`, `cluster of candles at eye level, warm light flickering`, `single candle, everything past a metre in darkness` |
+| **Fireplace / bonfire** | Orange, dancing, primal | `fireplace glow, orange light dancing across their faces`, `bonfire behind them, sparks rising`, `the only fire for miles` |
+| **Lightning flash** | Harsh, momentary, reveals everything | `lightning flash freezing the scene in blue-white`, `lit for one second by lightning, then dark again` |
+| **Car headlights** | Harsh frontal, high-contrast, urban drama | `headlights catching them from the side`, `car passing, a single sweep of light`, `caught in headlights, nowhere to go` |
+| **Dawn / sunset sky** | Gradient, cinematic, large-scale | `golden sunrise behind them, silhouettes against the brightening sky`, `sunset gradient filling the sky — amber to deep purple` |
+| **Bioluminescence** | Fantasy, cold blue-green, supernatural | `bioluminescent glow from the water or the forest floor`, `blue-green light with no identifiable source` |
+
+#### Lighting Techniques (add to any source)
+
+| Technique | Effect on allure | Prompt keywords |
+|---|---|---|
+| **Rim light** | Traces every edge of bare skin — maximally revealing silhouette | `silver rim light tracing the curve of her bare shoulder`, `hard rim light outlining their bodies against the dark background` |
+| **Chiaroscuro** | Deep shadow + bright highlight, dramatic contrast | `chiaroscuro lighting, half her face in shadow`, `strong single-source chiaroscuro, extreme contrast` |
+| **Backlight / contre-jour** | Silhouette, sheer fabric glows, halo effect | `backlit, their silhouettes against the light source`, `contre-jour, sheer fabric glowing with backlight` |
+| **Under-light** | Supernatural, unsettling, glow from below | `light source below eye level, casting unfamiliar shadows upward` |
+| **Split lighting** | One half lit, one half shadow — tension visible | `split lighting, half her face gold and half in cold shadow` |
+| **Diffused / soft** | Intimate, morning-after, no hard shadows | `diffused soft light, no hard shadows`, `light scattered through sheer curtains` |
+| **Spotlight** | Isolates figures, erases background | `single overhead spotlight, background in total darkness`, `stage-light quality, as if the world has narrowed to just them` |
+
+#### Light Colour & Temperature
+
+| Temperature | Feel | Prompt keywords |
+|---|---|---|
+| Warm amber | Intimate, safe, candle/firelight quality | `warm amber light`, `orange-gold tones` |
+| Cold silver/blue | Danger, the supernatural, clarity that exposes | `cold silver light`, `blue-white clarity`, `icy light that shows everything` |
+| Golden | Romance, nostalgia, desire | `golden light`, `honey-warm glow` |
+| Red-orange | Danger, passion, fire | `deep red-orange glow`, `fire-lit, everything hot and saturated` |
+| Neon mixed | Urban, modern, disorienting | `neon colour cast, pink and blue mixed light`, `urban colour pollution` |
+| Desaturated / grey | Grief, aftermath, cold clarity | `desaturated palette`, `grey-blue cold light, colour bled out` |
+
+---
+
+### Atmosphere & Weather Detail
+
+Add these to any scene to increase the sense of physical presence:
+
+| Element | Prompt keywords |
+|---|---|
+| Rain threads | `individual rain threads visible against the light`, `rain caught in the lamplight, each drop a silver thread` |
+| Mist / fog | `mist rising from the wet ground`, `fog rolling in, softening everything past ten feet` |
+| Steam / breath | `breath misting in the cold air`, `steam rising from a grate in the street` |
+| Wet surfaces | `every surface glistening`, `puddles reflecting the sky`, `cobblestones mirror-wet` |
+| Smoke / incense | `incense smoke drifting`, `cigarette smoke hanging in the still air`, `smoke from a distant fire` |
+| Wind | `wind pulling at her hair`, `a gust catching the hem of her dress`, `the kind of wind that makes stillness impossible` |
+| Leaves / petals | `cherry blossom petals drifting`, `autumn leaves in the air`, `rose petals on the ground` |
+| Snow | `snowflakes caught in the light`, `snow falling silently`, `a fine layer of snow on every surface` |
+| Sparks | `embers drifting upward from a fire`, `sparks visible in the air` |
+| Lightning | `lightning visible at the horizon`, `a single lightning strike illuminating everything` |
+
+---
+
+### Props & Scene Detail
+
+Props anchor the scene in a specific world and genre. Choose 2–4 maximum — more reads as cluttered.
+
+#### Wealth / Power Props
+
+| Prop | Prompt keywords |
+|---|---|
+| Champagne | `champagne flute with golden bubbles`, `uncorked bottle on the floor nearby` |
+| Jewellery | `scattered jewels on the surface nearby`, `a diamond bracelet at the edge of frame` |
+| Expensive watch | `the face of a luxury watch catching the light` |
+| Contract / documents | `a signed contract on the desk between them` |
+| Chess piece | `a lone chess piece on the board, overturned` |
+
+#### Romance / Aftermath Props
+
+| Prop | Prompt keywords |
+|---|---|
+| Rumpled sheets | `rumpled silk sheets`, `the evidence of a bed slept in` |
+| Lipstick smear | `red lipstick on a glass`, `lipstick slightly smeared at the corner of her mouth` |
+| Spilled wine | `wine glass on its side, a dark stain spreading` |
+| Roses | `dark red roses, one dropped on the floor`, `rose petals scattered` |
+| Candles (spent) | `candles burned low, wax pooled`, `one candle still burning` |
+| Phone (ignored) | `phone face-down on the table, notifications ignored` |
+
+#### Urban / Gritty Props
+
+| Prop | Prompt keywords |
+|---|---|
+| Rain puddle | `a deep puddle reflecting the figures and the sky above them` |
+| Fire escape grating | `the shadow grid of fire escape grating across the scene` |
+| Neon sign | `a bar sign in neon just out of frame, colour spilling in` |
+| Newspaper / litter | `wet newspaper plastered to the ground` |
+| Motorbike | `a motorbike leaning against the wall` |
+
+#### Gothic / Fantasy Props
+
+| Prop | Prompt keywords |
+|---|---|
+| Candelabra | `iron candelabra with tall tapers`, `wax dripping` |
+| Ancient tome / scroll | `an open ancient tome on the stone floor` |
+| Glowing artefact | `a glowing artefact on a plinth nearby` |
+| Crown | `a crown discarded on the floor`, `crown in her hand, not on her head` |
+| Sword / weapon | `a sword thrust into the stone floor between them`, `weapon on the ground, no longer in anyone's hand` |
+| Magic circle | `a glowing sigil on the floor beneath them` |
+| Shattered mirror | `shattered mirror, their reflections broken across a hundred shards` |
+
+#### Historical Props
+
+| Prop | Prompt keywords |
+|---|---|
+| Fan (period) | `a folded fan in her hand`, `fan dropped at her feet` |
+| Letter / seal | `a sealed letter on the table`, `broken wax seal beside it` |
+| Oil lamp | `an oil lamp on the writing desk, casting warm light` |
+| Inkwell / quill | `inkwell and quill, a half-finished letter` |
+| Carriage outside | `the sound of a departing carriage implied by the window` |
+
+---
+
+### Scene × Genre Matrix
+
+Quick-reference: which scene types pair naturally with each genre.
+
+| Genre | Primary scenes | Atmosphere | Lighting |
+|---|---|---|---|
+| Paranormal Romance | Moonlit forest, gothic castle, city alley (London), ruins | Heavy rain, full moon, mist | Cold silver moonlight, single streetlamp, rim light |
+| Contemporary Romance | Penthouse, rooftop, city street, luxury bedroom | Clear night, golden hour, light rain | Warm amber, city bokeh, candlelight |
+| Dark Romance / Mafia | Parking garage, estate, industrial, abandoned space | Overcast night, fog, cigarette smoke | Harsh headlights, chiaroscuro, cold blue |
+| Billionaire Romance | Penthouse, corporate tower, grand ballroom, yacht | Clear night, golden hour | Chandelier bokeh, floor-to-ceiling city lights, spotlight |
+| Historical Court | Imperial court, palace, manor drawing room | Candlelit interior, evening, snow outside | Candlelight, fireplace, warm amber |
+| Dark Fantasy | Gothic castle, ancient ruins, cursed forest, cave | Storm, magical mist, ash fall | Torch, bioluminescence, lightning, supernatural glow |
+| Cultivation / Xianxia | Mountain peak, ancient temple, celestial realm | Dawn mist, cloud sea, moonlight | Gold sunrise, silver moonlight, qi/energy glow |
+| Thriller / Crime | Urban alley, parking garage, rooftop, police precinct | Night, rain, fog | Neon, headlights, single harsh overhead |
+| Sports Romance | Stadium tunnel, gym, locker room, outdoor track | Golden hour, bright morning | Hard overhead spot, golden hour backlight |
+| Academy Romance | Campus corridor, rooftop at dusk, classroom at night | Cherry blossom, golden afternoon, evening | Warm interior light, late afternoon slant |
+
+---
+
+## Poses
 
 Front-facing compositions outperform side-profile and back-view on scroll-stop rate. **Frontal = default. Side profile = accent only.**
 
@@ -916,19 +1545,116 @@ Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 
 ### Exposure Tiers (擦边分级 — pick the highest the model accepts)
 
-Exposure is **stochastic** — the same prompt rolls different skin levels each generation, so a tame result is not a spec failure, it's RNG. To get a reliably high result you must **bake the tier fragments into the prompt**, not leave them to chance and not treat them as a reactive afterthought. Three named tiers, all strictly above the §0 floor (no nipples / genitals / sex acts):
+Exposure is **stochastic** — the same prompt rolls different skin levels each generation, so a tame result is not a spec failure, it's RNG. To get a reliably high result you must **bake the tier fragments into the prompt**, not leave them to chance and not treat them as a reactive afterthought.
 
-| Tier | Name | Bake these fragments into every prompt at this tier |
+Three named tiers, all strictly above the §0 floor (no nipples / genitals / sex acts). **Default for production = T3.** Start there and let the model's content filter be the only thing that pulls you back.
+
+**Model × Tier compatibility (tested):**
+- `gpt-image-2-all` — passes T1, T2; rejects T3
+- `doubao-seedream-5-0-260128` — passes T1, T2, T3 ✓
+- `nano-banana-pro` — passes T1, T2, T3 ✓
+
+When T3 is rejected by the primary model, fall to doubao before softening the tier.
+
+---
+
+#### How to use this guide
+
+Each tier is defined across **8 dimensions**. Write one fragment per dimension into the prompt — do not omit any. Later tiers replace earlier ones per dimension; write T3's version of each dimension directly, do not stack T1+T2+T3.
+
+The 8 dimensions:
+1. **Clothing state** — garment integrity and coverage
+2. **Skin zones exposed** — which body areas are visible
+3. **Fabric behavior** — how the material behaves under the scene conditions
+4. **Body contact** — physical distance and touch between figures
+5. **Male figure** — his clothing state and physical presence
+6. **Camera framing** — shot distance and composition
+7. **Emotional register** — expression, posture, internal state
+8. **Environment** — setting, atmosphere, amplifiers
+
+---
+
+#### T1 — Suggestive
+
+**Use for:** cold FB traffic, new ad accounts, covers for light/sweet romance, first creative in a new account.
+
+**Viewer feeling:** "they're clearly into each other — I want to know what happens"
+
+| Dimension | T1 specification | Prompt keywords |
 |---|---|---|
-| **T1** | Suggestive | `off-shoulder gown slipping`, `elegant deep neckline`, `close charged proximity`, `bare shoulders and collarbone` |
-| **T2** | Bold | T1 **plus** `deep plunging neckline to the sternum`, `ample décolletage fully on display`, `bodies pressed flush together, zero space between them`, `his hand gripping her bare waist` |
-| **T3** | Maximum (default for covers) | T2 **plus** `dress torn / slipped / fallen — bare shoulder + bare back + upper thigh exposed`, `wet fabric clinging to and outlining every curve of her figure`, `his shirt completely off, powerful bare torso pressing against her`, `close-up crop at chest and face filling the frame`, `raw physical want, one second before the point of no return` |
+| **Clothing state** | One revealing element only — neckline OR shoulder slip, not both. Everything else intact. | `off-shoulder gown with one shoulder elegantly slipped`, `low-cut gown showing collarbone and upper chest` |
+| **Skin zones** | Shoulders + collarbone + upper chest only. No midriff, no back, no legs past the knee. | `bare shoulders and collarbone`, `upper chest visible above the neckline`, `the curve of her throat catching the light` |
+| **Fabric behavior** | Structured and dry. Fabric follows her silhouette but does not cling or reveal. | `fitted elegant gown with clean draping`, `tailored dress, fabric holding its shape` |
+| **Body contact** | Close proximity without touching, or a single light non-intimate touch (hand on arm, fingertips at elbow). Tension is suggested, not enacted. | `standing close, barely inches apart`, `his hand resting lightly at her elbow`, `their shoulders almost touching` |
+| **Male figure** | Fully clothed. Open collar at most — no bare skin below the throat. Dominant but composed. | `dark button-down shirt, top button open`, `fitted jacket, composed posture`, `dress shirt, sleeves rolled to the forearm` |
+| **Camera framing** | Full body or three-quarter shot. Both figures visible head to near-foot. Environment visible and part of the composition. | `full body portrait, both figures`, `three-quarter shot with environment framing them` |
+| **Emotional register** | Controlled desire — the look that says something is being held back. No surrender, no desperation. | `smoldering eye contact`, `jaw tight, expression of a man holding himself in check`, `her lips slightly parted, pulse visible at her throat`, `the look of two people pretending they're not thinking about it` |
+| **Environment** | Beautiful and lightly charged. Evening light, city skyline, garden at dusk. Romantic but not primal. | `warm golden-hour backlight`, `city lights soft and blurred behind them`, `candlelit interior, soft warm glow` |
 
-**Default for production covers = T3.** Do not start tame and escalate only if it looks weak — start at T3 and let the model's content filter be the only thing that pulls it back. T3 is intentionally pitched **above** what a lucky T2 roll produces, so output reliably clears the highest previous results. The only reason to drop a tier is an actual model rejection: on `invalid_prompt` / `safety` / `rejected`, fall to the cascade's more permissive models first (they usually pass T3), and only soften the tier as the last resort before SVG.
+**T1 assembly block:**
+> *off-shoulder silk gown, collarbone and bare shoulders in candlelight — tall man in fitted dark jacket, top button undone, standing close behind her without touching. His eyes on her profile hold everything he isn't saying. Warm amber interior, city visible through tall windows.*
 
-**A/B testing across rounds:** when running model comparison rounds, assign a **different tier per round** (round 1 → T1, round 2 → T2, round 3 → T3) so each model's ceiling is mapped — which tier it renders cleanly, where it starts refusing or distorting anatomy. Keep the tier identical across all models within a round so the round is a fair comparison. Record which (model × tier) combinations pass; the production default is the highest tier the chosen model clears without rejection or anatomy breakage.
+---
 
-Stop only at the §0 floor. Never soften a prompt to "be safe" unless the model actually rejects it.
+#### T2 — Bold
+
+**Use for:** retargeting warm audiences, accounts with history, dark/contemporary romance where the synopsis is clearly adult.
+
+**Viewer feeling:** "I need this book right now"
+
+| Dimension | T2 specification | Prompt keywords |
+|---|---|---|
+| **Clothing state** | Two simultaneous revealing elements — neckline AND one of: shoulder slip, bare back, bare midriff, high slit. Garment is intact but strategically minimal. | `deep plunging neckline to the sternum`, `open-back dress, spine bare from neckline to tailbone`, `crop top leaving midriff fully bare`, `thigh-high slit fully open revealing upper thigh`, `halter neck leaving entire back exposed` |
+| **Skin zones** | Cleavage + one secondary zone simultaneously. At minimum: full décolletage + (bare back OR bare legs to upper thigh OR bare midriff). | `ample décolletage fully on display`, `back bare to the waist`, `legs bare from the upper thigh down`, `bare stomach and hip visible at the waist` |
+| **Fabric behavior** | Fitted or slightly damp. Fabric suggests the body beneath without fully mapping it. A hint of cling. | `silk dress conforming to her curves`, `damp fabric outlining her figure`, `sheer overlay hinting at the silhouette beneath it`, `thin fabric pulling slightly against her as she moves` |
+| **Body contact** | Bodies touching or gripped. One explicit hand on bare skin. Physical tension is undeniable and visible. | `bodies pressed together`, `his hand gripping her bare waist`, `fingers curled around her hip`, `her back against his chest, his arm drawn across her collarbone`, `his hand at the bare small of her back` |
+| **Male figure** | Shirt open to mid-chest or partially undone. Bare forearms, sternum, or chest visible. Physical presence is imposing. | `shirt open at the collar revealing bare chest`, `sleeves rolled, forearms corded with tension`, `jacket shrugged off, shirt half-undone`, `shirt open to the third button, chest catching the light` |
+| **Camera framing** | Waist-up dominant. Bodies fill two-thirds of frame. Faces close in the upper portion. | `waist-up shot, both bodies filling the frame`, `faces inches apart in the upper third`, `tight three-quarter crop emphasizing the physical closeness` |
+| **Emotional register** | Barely-controlled desire crossing into action. One of them is losing the fight. | `lips parted, eyes dark with barely-suppressed desire`, `defiance crumbling into want`, `chin raised but eyes betraying surrender`, `jaw tight, the look of a man who has already decided`, `she grips his wrist — not pushing it away` |
+| **Environment** | Charged atmosphere. Rain beginning, intimate dim setting, heat haze, tension before a storm. | `light rain starting, cobblestones beginning to glisten`, `dim bar, warm amber spot lighting`, `night air heavy and still`, `the moment before something irreversible` |
+
+**T2 assembly block:**
+> *deep-plunge wrap dress, décolletage fully on display, thigh-high slit open — man behind her, hand gripping her bare hip, shirt open to mid-chest, face against her hair. She grips his wrist. Not pushing it away. Light rain misting the rooftop, city blurred forty floors below.*
+
+---
+
+#### T3 — Maximum *(production default)*
+
+**Use for:** all production covers by default. Dark romance, paranormal romance, billionaire/MC/mafia romance, any genre where physical intensity is core to the premise. This is the floor for production output, not a ceiling — it is intentionally pitched above the highest result a lucky T2 roll can produce.
+
+**Viewer feeling:** "this is exactly what I came here for" — instant click, immediate scroll stop
+
+| Dimension | T3 specification | Prompt keywords |
+|---|---|---|
+| **Clothing state** | Garment failing in multiple places simultaneously. Torn AND slipped AND barely covering. The clothing is in the process of leaving, not covering. Multiple garment failures visible at once. | `leather jacket torn open and fallen completely off one shoulder`, `dress ripped down the side, held by one strap`, `blouse falling open, fabric pulling away`, `shirt slipped entirely off both shoulders and falling`, `torn fabric barely covering her, the last thing between her and nothing` |
+| **Skin zones** | Three or more zones simultaneously. Bare shoulder + bare back + upper thigh + midriff. The exposure feels total — the viewer's eye has nowhere to rest that isn't skin. | `bare shoulder, bare back from neckline to tailbone`, `upper thigh fully exposed through the torn slit`, `bare midriff and the curve of her hip`, `skin visible from collarbone to hip`, `the entire curve of her back in the moonlight` |
+| **Fabric behavior** | Wet, clinging, or sheer — fabric that maps the body rather than covering it. The material has stopped functioning as clothing. | `rain-soaked fabric transparent and clinging to every curve of her figure`, `wet silk outlining the exact shape of her body`, `sheer fabric leaving nothing to imagination`, `damp clothing pressing against her skin, every line visible`, `wet thin shirt clinging to her chest` |
+| **Body contact** | Zero gap. Multiple simultaneous contact points. Skin-to-skin wherever possible. Bodies intertwined, not merely touching. | `bodies pressed flush together, zero space between them, skin to skin`, `one hand gripping her bare waist with fingers pressing into her skin, the other cupping her jaw`, `her bare back against his bare chest`, `thigh locked against thigh, her hip against his`, `hand splayed across the bare small of her back pulling her flush against him` |
+| **Male figure** | Shirt entirely off. Bare torso in full contact with her. His physical mass is the visual anchor — her body reads against his. Rain-slicked or lit so every muscle is visible. | `shirt completely removed, powerful bare chest and carved abs`, `bare torso pressing against her back, rain-slicked in the moonlight`, `powerful bare chest, muscles catching the only light source`, `bare shoulder at her eyeline, her face turned up toward his jaw` |
+| **Camera framing** | Extreme close-up. Faces and bodies fill the frame — there is no wasted space, no environment visible except as abstract light and color. | `extreme close-up, bodies from mid-thigh to crown filling the entire frame`, `tight portrait crop, background dissolved to near-abstraction`, `faces in the upper third, bodies pressed together filling the rest`, `camera so close the background is pure shallow bokeh` |
+| **Emotional register** | The point of no return. One of them has stopped fighting and the other knows it. Surrender and raw physical want are visible in every line of the body, not just the face. | `raw physical want, the moment one second before the point of no return`, `expression of total abandon — head thrown back, eyes closed, has stopped fighting it`, `the look of a man who is certain, consuming, possessive — she is already his`, `her expression: she knows this is wrong and her body doesn't care`, `both of them past the point where words would help` |
+| **Environment** | Primal, elemental, intimate to the point of erasure. Rain, darkness, fire, moonlight — the environment amplifies desire, it does not decorate the scene. The world outside them barely exists. | `heavy rain pouring down, both of them soaked, cobblestones reflecting silver moonlight`, `single candle or streetlamp, everything beyond them in total darkness`, `moonlight the only light source, cutting hard shadows across wet bare skin`, `steam rising between them in the cold air`, `the dark so complete their faces are all that's lit` |
+
+**T3 assembly block:**
+> *leather jacket torn open and fallen off one shoulder, bare back fully exposed, rain-soaked fabric clinging to every curve of her figure — man behind her, shirt completely off, powerful bare torso pressing against her, one hand gripping her bare waist with fingers pressing into her skin, the other cupping her jaw. Bodies flush together, zero space, skin to skin. Her expression: fierce surrender — she knows this is the point of no return and her body has already answered. Heavy rain, cobblestones reflecting silver moonlight, the world beyond them dissolved into darkness.*
+
+---
+
+#### Tier selection guide
+
+| Scenario | Tier |
+|---|---|
+| New ad account, first creative, unknown audience | T1 |
+| Retargeting warm audience, established account | T2 |
+| All production covers (default) | **T3** |
+| gpt rejected T3 → try doubao first | still T3, different model |
+| doubao also rejected T3 | T2 with doubao |
+| All models reject T2 | T1 with any model |
+| All models reject T1 | SVG fallback |
+
+**A/B testing across rounds:** assign a **different tier per round** (round 1 → T1, round 2 → T2, round 3 → T3). Keep tier identical across all models within a round for fair comparison. Record which (model × tier) combinations produce clean output without rejection or anatomy distortion.
+
+**Never preemptively soften.** A prompt that hasn't been rejected is not "too much." Default to T3, trust the model cascade to fall through, and only drop a tier when every model at that tier has explicitly rejected. Stop only at the §0 floor.
 
 ---
 

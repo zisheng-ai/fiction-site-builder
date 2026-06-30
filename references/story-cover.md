@@ -159,7 +159,7 @@ keep title and author name inside the central safe area (inner ~85%), no waterma
 **Multi-character rule:** two is the floor for romance/drama, not the ceiling. When the synopsis supports it — a love triangle, rival suitors, a betrayer, a pack/court arrayed behind the leads — render three or more figures. A third figure that introduces tension (a jealous third party, a looming antagonist, a rival pressing in) reads as more dramatic conflict than a clean two-person embrace and is encouraged. Keep one clear focal pairing so the composition still has a center; arrange extra figures to amplify the central power dynamic, not to crowd it out.
 
 **Female figure rule — MANDATORY:** the female character must be visually magnetic — impossible to scroll past. **Default exposure = Tier T3 (Maximum)** — bake the T3 fragments from the Exposure Tiers table (`references/cover-allure-elements.md`) directly into the prompt; do not rely on the model rolling a lucky exposed result. Required elements, every time:
-- Figure: `voluptuous hourglass figure`, `impossibly cinched waist`, `full generous bust`, `ample décolletage on full display`
+- Figure: `voluptuous hourglass figure, slim toned waist dramatically cinched, full generous bust, long shapely legs` — curves are dramatic but the figure is NOT heavy or overweight; the waist must read as narrow against the hips and bust
 - Clothing: maximally revealing for the genre — torn, slipped, soaked, sheer, or barely-there (see `references/cover-allure-elements.md` Skin & Clothing Vocabulary)
 - Skin: as much bare skin as the §0 floor allows — bare back, bare legs, bare midriff, bare shoulders, extreme neckline
 - Pose: use top-three **frontal** poses from `references/cover-allure-elements.md` Poses table; bodies must be in physical contact; from-behind poses (marked ▲) are accents, not defaults — at most 1 in 3 covers
@@ -255,6 +255,7 @@ printf '%s' "$PROMPT" > "$BOOK_DIR/cover_v1.prompt.txt"
 | `bodies pressed flush together` | `close proximity, charged tension` |
 | `gripping her hip`, `hand on her bare hip` | `hand at her waist` |
 | `wet transparent fabric`, `see-through wet` | `rain-soaked fabric, damp clothing` |
+| `clinging to and outlining every curve` | `rain-soaked clothing pressed against her silhouette` |
 | `lips pressed against` | `faces close, the moment before` |
 | `erotic`, `sexual`, `explicit` | `alluring`, `intimate atmosphere`, `romantic tension` |
 
