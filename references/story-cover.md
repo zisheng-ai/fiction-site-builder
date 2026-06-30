@@ -156,7 +156,19 @@ keep title and author name inside the central safe area (inner ~85%), no waterma
 | Cultivation Fantasy / Sci-Fi / Historical War Epic | Single protagonist (Lone Hero template). One character only. |
 | Isekai / Slice of Life | Single protagonist or duo — match the book's genre composition. |
 
-**Female figure rule — MANDATORY:** every female character must read as attractive and figure-forward — curvy, hot silhouette with a full bust (`full bust`, `ample bust`, `generous décolletage`, `voluptuous curvaceous figure`, `hourglass figure`), plus a low-cut, cleavage-revealing neckline (`deep plunging neckline`, `low-cut bodice, deep cleavage on display`). Push the allure hard; a plain or modest look is not acceptable. Use the safe wording in `references/cover-allure-elements.md` so the appeal lands without tripping the image generator's keyword filter — avoid only the explicit terms (`huge breasts`, `large breasts`, `big tits`, `exposed breast`, `nipple`). See `references/cover-allure-elements.md` §0 for the (lightweight) monetization risk note.
+**Female figure rule — MANDATORY:** the female character must be visually magnetic — impossible to scroll past. Required elements, every time:
+- Figure: `voluptuous hourglass figure`, `impossibly cinched waist`, `full generous bust`, `ample décolletage on full display`
+- Clothing: maximally revealing for the genre — torn, slipped, soaked, sheer, or barely-there (see `references/cover-allure-elements.md` Skin & Clothing Vocabulary)
+- Skin: as much bare skin as the §0 floor allows — bare back, bare legs, bare midriff, bare shoulders, extreme neckline
+- Pose: use top-three poses from `references/cover-allure-elements.md` Poses table; bodies must be in physical contact
+
+A modest, fully-clothed, or non-contact pose is a quality gate failure. Hard floor: no nipples, no genitals, no sex acts (§0 in `cover-allure-elements.md`). Everything above that floor: push it.
+
+**Drama rule — MANDATORY (see Drama Hook section in `cover-allure-elements.md`):** allure without drama is a fashion photo, not a book cover. Every prompt must include:
+- A specific emotional expression from the Expression Rules table (never neutral/pleasant)
+- A visible power dynamic between the two characters
+- At least one environmental element that amplifies the emotional stakes
+- The "one-second test": a viewer must feel something — not just notice someone attractive
 
 Title font styles and author name styles are in `references/cover-styles.md` per genre.
 Offer 2–3 composition variants (close-up portrait / full body / pure scene) on first generation.
