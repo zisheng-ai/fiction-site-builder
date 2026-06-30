@@ -97,11 +97,12 @@ A0 runs once per book (not once per site). Required for each new book unless the
 - **Import:** `references/story-import.md` → split chapters, reconstructed `world/`, `outline/`, `tracking/`
 
 **A2.5 rules:**
-- **Optional** — runs only when the user requests illustrations, or on a full pipeline run after A1 is complete.
+- **Runs by default on a full pipeline run** — once a book has its cover (A2) and ≥ 10 chapters, generate its illustrations automatically. Do **not** wait for the user to ask, and do **not** prompt. Skip only for short-form stories, or if the user has explicitly opted out of illustrations.
+- As a standalone step, runs when the user requests illustrations ("Add illustrations" / "Generate illustrations").
 - Never on short-form stories (no chapter files to illustrate).
 - Illustrations use T3 or T4, randomly assigned per illustration. Never T1, T2, or T5.
-- Maximum 5 illustrations per book. A book may have 0.
-- Does not block the Pre-Launch Gate — a site may launch without illustrations.
+- Up to 5 illustrations per book, placed at the highest-stakes peaks (see `story-illustrations.md` for slot distribution). A book may have 0 only when no scene earns one — never skip the phase itself.
+- Does not block the Pre-Launch Gate — but a full pipeline run is expected to produce illustrations for its long-form books.
 
 A3 is optional unless the user requests a review or the quality gate fails.
 
@@ -135,7 +136,7 @@ Optional phases (load only when the brief requires):
 | Chapters within a book (A1) | Expand outline first → parallel chapters → continuity pass |
 | Covers across books (A2) | Batch all books in one round, not one-at-a-time |
 | Illustrations across books (A2.5) | All books in parallel — one Agent call per book |
-| Illustrations within a book (A2.5) | All 1–3 peak chapters in parallel — background processes |
+| Illustrations within a book (A2.5) | All peak chapters (up to 5) in parallel — background processes |
 | B2 + B3 | Design tokens and data schema are independent |
 | B5 + B6 | Share one `pnpm run build` — do not run two concurrent builds |
 
@@ -155,6 +156,8 @@ All of the following must be true before go-live (after B6 passes):
 
 If any book is missing a cover at launch time, run A2 immediately — do not prompt the user.
 
+If a full pipeline run reaches launch with no illustrations generated for its long-form books, run A2.5 before go-live — do not prompt the user. (Illustrations are not a hard gate, but a full run should not silently skip them.)
+
 ### Scope-to-phase mapping
 
 | User intent | Phases to run |
@@ -166,7 +169,7 @@ If any book is missing a cover at launch time, run A2 immediately — do not pro
 | "Add illustrations" / "Generate illustrations" | A2.5 only |
 | "Import manuscript" / `/story-import` | A1 import only |
 | "Review prose" / `/story-review` | A3 only |
-| "Build the site" / full pipeline | 0 → Track A + Track B in parallel; A2.5 after A2 if user requests illustrations |
+| "Build the site" / full pipeline | 0 → Track A + Track B in parallel; **A2.5 runs automatically after A2 for every long-form book** (skip only on explicit opt-out) |
 
 **New-site book count:** When building a full pipeline for a brand-new site with no existing content, default to **8 books**. Run A0 for all 8 in parallel (one Agent call per book), then A1 for all 8 in parallel. Genre and topic are selected independently per book by random sampling from the high-demand genre pool — repetition across books is allowed and expected. Do not attempt to maximize genre variety across the site; just pick whatever has strong demand for each book independently.
 
@@ -332,7 +335,7 @@ Load references only when entering that phase. Do not preload all references at 
 - `story-deslop.md` — AI-flavor detection and removal (7 gates).
 - `story-cover.md` + `cover-styles.md` — cover generation via apiyi `gpt-image-2-all` (SVG fallback if no API key).
 - `cover-allure-elements.md` — visual-appeal vocabulary for covers and illustrations; §0 is a lightweight monetization risk note (avoid only outright explicit content).
-- `story-illustrations.md` + `cover-allure-elements.md` — in-chapter illustration generation (A2.5); T4/T5 tier; peak scene selection; IllustrationBlock component pattern.
+- `story-illustrations.md` + `cover-allure-elements.md` — in-chapter illustration generation (A2.5); T3/T4 tier (never T5); peak scene selection; IllustrationBlock component pattern.
 
 **Site build references (load for publishing tasks):**
 - `tech-stack.md` — choose the implementation stack before writing any code.
