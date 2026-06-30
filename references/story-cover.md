@@ -9,20 +9,20 @@ Load this reference when the user asks to generate a novel cover (/story-cover, 
 **MANDATORY — run this bash command before anything else. Do not skip it. Do not assume the result.**
 
 ```bash
-[ -n "$APIYI_API_KEY" ] && echo "API_PATH=apiyi" || echo "API_PATH=claude_svg"
+[ -n "$APIYI_API_KEY" ] && echo "API_PATH=apiyi" || echo "API_PATH=skip"
 ```
 
-**If the output is `API_PATH=apiyi` → you MUST use the apiyi curl path below. Generating SVG when the key is present is wrong.**
+**If the output is `API_PATH=apiyi` → you MUST use the apiyi curl path below.**
 
-If the output is `API_PATH=claude_svg` → print the warning below, then use the SVG fallback:
+If the output is `API_PATH=skip` → print the warning below, then **skip cover generation for this book and continue the pipeline** (no SVG fallback — leave the cover to be filled in later):
 ```
-\033[33m⚠ WARNING: APIYI_API_KEY is not set. Falling back to SVG cover generation.\033[0m
-\033[33m  To enable photorealistic covers via gpt-image-2-all, get an API key at:\033[0m
+\033[33m⚠ WARNING: APIYI_API_KEY is not set. Skipping cover generation (no SVG fallback).\033[0m
+\033[33m  Covers require apiyi. Get an API key at:\033[0m
 \033[33m  https://api.apiyi.com/register/?aff_code=ijv5\033[0m
 \033[33m  Then set: export APIYI_API_KEY="your-key"\033[0m
 ```
 
-Both paths produce a file at `{BOOK_DIR}/cover_v1.png` (or `.svg` for the SVG fallback). Do not block the pipeline in either case.
+The apiyi path produces a file at `{BOOK_DIR}/cover_v1.png`. When the key is missing, no file is produced — do not block the pipeline; the book launches without a cover and the slot is flagged for a later pass.
 
 ## Modes
 
@@ -67,13 +67,22 @@ If the pen name cannot be found in any of these files, substitute `"The Author"`
 
 ### B3 — Generate covers
 
-For each book in `BOOKS`:
+**MANDATORY — generate all covers in parallel.** Never loop books sequentially. Launch one background process per book (`gen_cover_apiyi ... &`), then `wait` for all to finish. For each book:
 1. Read `content/{book-title}/world/worldbuilding.md` to extract genre and tone.
 2. Run genre detection (Step 1.5 below) to select cover style.
-3. Build the cover prompt (Step 2 below) substituting the book's title, genre, and characters.
-4. Run Step 3 (apiyi curl or Claude SVG fallback).
+3. Roll the cover tier (T2 or T3, per the Female figure rule) and build the cover prompt (Step 2 below) substituting the book's title, genre, and characters.
+4. Run Step 3 (apiyi cascade: gpt → doubao → nano).
 5. Verify the output file exists.
 6. Log: `✓ {book-title} — cover saved` or `⚠ {book-title} — cover skipped: {reason}`.
+
+```bash
+# parallel batch — one process per book, then wait
+for BOOK in "${BOOKS[@]}"; do
+  ( BOOK_DIR="public/covers/$BOOK"; build_and_generate_cover "$BOOK" ) > "/tmp/cover_$BOOK.log" 2>&1 &
+done
+wait
+rm -f /tmp/cover_*.log
+```
 
 ### Batch completion checklist
 
