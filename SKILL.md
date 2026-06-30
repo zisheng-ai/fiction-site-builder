@@ -1,6 +1,6 @@
 ---
 name: fiction-site-builder
-description: write fiction and build the reading site end-to-end. use when the user asks to write a novel or short story (long-form novel / 长篇小说, short-form story / 短篇小说, write chapters, continue writing, story setup, import a manuscript, review prose, remove AI flavor), or asks for a mobile-first fiction reading site, web novel H5, work list/detail/catalog/reader pages, markdown chapters, multilingual reading sites in english/spanish/japanese/korean, or a simple fiction site for social traffic campaigns. do not use for creator dashboards, ranking systems, bookshelf platforms, or reader community features unless the user explicitly asks for those.
+description: write fiction and build the reading site end-to-end. use when the user asks to write a novel or short story (long-form novel, short-form story, write chapters, continue writing, story setup, import a manuscript, review prose, remove AI flavor), or asks for a mobile-first fiction reading site, web novel H5, work list/detail/catalog/reader pages, markdown chapters, multilingual reading sites in english/spanish/japanese/korean, or a simple fiction site for social traffic campaigns. do not use for creator dashboards, ranking systems, bookshelf platforms, or reader community features unless the user explicitly asks for those.
 ---
 
 # Fiction H5 Builder
@@ -97,7 +97,7 @@ Starts after Phase 0. Runs in parallel with Track A.
 | B1 | Stack | `tech-stack.md` | chosen stack with one-line rationale |
 | B2 | Design | `design-system.md` | tone, palette, type system, `public/logo.svg`, `public/favicon.svg` |
 | B3 | Data | `data-contract.md` | content-collections schema |
-| B4 | Build | `ui-components.md` + `reader-ux.md` | working site with all required pages |
+| B4 | Build | `references/ui-components.md` + `reader-ux.md` | working site with all required pages |
 | B5 | Performance | `performance.md` | Core Web Vitals targets met, images optimized |
 | B6 | QA | `qa-checklist.md` | automated QA pass; screenshots on failure only |
 
@@ -210,7 +210,7 @@ Use the `Agent` tool for every delegation task, whether single or parallel. To r
 Track B phases carry no model override and inherit the session model regardless.
 
 **Rules (apply in both modes):**
-- **Within a phase: act autonomously.** Invoke all required tools (image generation, file writes, bash commands) without asking the user. Never surface a "please run X" or "待处理" prompt mid-phase — just do it.
+- **Within a phase: act autonomously.** Invoke all required tools (image generation, file writes, bash commands) without asking the user. Never surface a "please run X" prompt mid-phase — just do it.
 - **Between phases: summarize and continue.** At each phase boundary, print a one-line summary of what was produced and move to the next phase. Do not wait for user confirmation unless the user explicitly says to pause.
 - Parallel-safe phases may be executed in the same turn — announce both at the start and summarize both at the end.
 - Sequential phases run back-to-back without pausing for confirmation.
@@ -303,7 +303,7 @@ Load references only when entering that phase. Do not preload all references at 
 - `tech-stack.md` — choose the implementation stack before writing any code.
 - `design-system.md` — plan design identity before building any UI.
 - `data-contract.md` — define data models and @content-collections setup.
-- `ui-components.md` — visual and component quality floor during build.
+- `references/ui-components.md` — visual and component quality floor during build.
 - `reader-ux.md` — chapter page UX requirements during build.
 - `performance.md` — Core Web Vitals, loading strategy, image optimization.
 - `qa-checklist.md` — final automated QA and screenshot verification (failures only).

@@ -1,6 +1,6 @@
 # Story Short Write
 
-Load this reference when the user asks to write a short story (短篇) or flash fiction.
+Load this reference when the user asks to write a short story or flash fiction.
 
 ## Niche Research Input
 
@@ -16,7 +16,7 @@ Before writing a new short story, check `outputs/{site-slug}/{book-slug}/niche-r
 2. **One twist, total commitment**: Every line of setup exists for the twist. No sub-plots, no world-building.
 3. **Every sentence earns its place**: If a sentence doesn't advance plot, build toward the twist, or raise emotion — cut it.
 4. **Opening 3 sentences are everything**: Hook or lose the reader. Ending creates shareability.
-5. **Default first-person**: `我` creates the strongest reader identification in web fiction.
+5. **Default first-person**: First-person narration creates the strongest reader identification in web fiction.
 
 ## Emotion Targets
 
@@ -24,12 +24,12 @@ Pick one before starting. The entire story structure flows from this choice.
 
 | Target emotion | Best for | Difficulty | Market heat |
 | --- | --- | --- | --- |
-| Lingering regret (意难平) | Romance, missed connection | Medium | High |
-| Twist shock (反转震撼) | Suspense, identity reversal | Hard | High |
-| Cathartic release (爽感释放) | Face-slapping, reversal of fortune | Easy | Medium |
-| Healing warmth (治愈温暖) | Growth, family, friendship | Medium | Medium |
-| Creeping dread (细思极恐) | Psychological, suspense | Hard | Low-Medium |
-| Resonant emotion (共鸣感动) | Realist, workplace, marriage | Medium | High |
+| Lingering regret | Romance, missed connection | Medium | High |
+| Twist shock | Suspense, identity reversal | Hard | High |
+| Cathartic release | Face-slapping, reversal of fortune | Easy | Medium |
+| Healing warmth | Growth, family, friendship | Medium | Medium |
+| Creeping dread | Psychological, suspense | Hard | Low-Medium |
+| Resonant emotion | Realist, workplace, marriage | Medium | High |
 
 ## Writing Process
 

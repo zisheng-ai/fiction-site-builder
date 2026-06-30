@@ -134,11 +134,11 @@ Fiction sites target readers who tap out of boredom — the color palette must f
 
 | Genre | Hue direction | Example primary (light) |
 | --- | --- | --- |
-| 都市/现言/甜宠 | Hot pink → magenta | `#ec4b9b`, `#e91e8c`, `#d946ef` |
-| 古言/西幻 | Warm coral → rose | `#f43f5e`, `#fb7185`, `#e879a0` |
-| 玄幻/仙侠 | Electric violet → indigo | `#8b5cf6`, `#7c3aed`, `#6366f1` |
-| 悬疑/灵异 | Deep violet → crimson | `#9333ea`, `#dc2626`, `#be185d` |
-| 科幻 | Electric cyan → indigo | `#06b6d4`, `#3b82f6`, `#6366f1` |
+| Urban Drama / Contemporary Romance | Hot pink → magenta | `#ec4b9b`, `#e91e8c`, `#d946ef` |
+| Historical / Dark Fantasy | Warm coral → rose | `#f43f5e`, `#fb7185`, `#e879a0` |
+| Cultivation Fantasy | Electric violet → indigo | `#8b5cf6`, `#7c3aed`, `#6366f1` |
+| Thriller / Horror | Deep violet → crimson | `#9333ea`, `#dc2626`, `#be185d` |
+| Sci-Fi | Electric cyan → indigo | `#06b6d4`, `#3b82f6`, `#6366f1` |
 
 Vary lightness and exact hue by ±10% each time — two romance sites should look visually distinct even if both use hot pink family.
 
@@ -146,14 +146,14 @@ Vary lightness and exact hue by ±10% each time — two romance sites should loo
 
 **Use system font stack only. No webfonts, no `@fontsource`, no Google Fonts.**
 
-System fonts load instantly, never fail in China or restricted networks, and cover all CJK characters out of the box. The visual difference from a webfont is negligible compared to the reliability and bundle-size gains.
+System fonts load instantly, cover all target language characters out of the box, and add zero bytes to the bundle. The visual difference from a webfont is negligible compared to the reliability and bundle-size gains.
 
 Define one variable in `globals.css` and apply it to `body`:
 
 ```css
 :root {
   --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
-             "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+             "Hiragino Sans", "Yu Gothic UI", "Malgun Gothic", sans-serif;
 }
 body {
   font-family: var(--font-ui);

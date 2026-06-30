@@ -182,10 +182,29 @@ Maximum-allure formulas for English romance novel covers within gpt-image-2-vip 
 
 ---
 
+### Figure Vocabulary (MANDATORY for every female character — use aggressively)
+
+Every female character description MUST include a curvy, hot figure. This is not optional —
+a flat or plain body description fails the allure gate. Combine at least one bust + one
+silhouette keyword in every female prompt.
+
+**Bust (allowed — minimum D-cup):** `full D-cup bust`, `large D-cup chest`, `ample D-cup bust`, `full bust`, `generous décolletage`, `voluptuous chest`, `busty silhouette` — 罩杯至少 D，可写 `D-cup` / `DD-cup` / `E-cup`，不要低于 D 或留空
+**Silhouette (allowed):** `hourglass figure`, `voluptuous curvaceous figure`, `full hips and narrow waist`, `sultry curves`, `bombshell physique`, `long toned legs`
+
+**Cleavage / exposure (allowed — push hard here):** `deep plunging neckline down to the sternum`, `low-cut neckline revealing deep cleavage`, `deep V-neckline framing the décolletage`, `plunging bodice, full cleavage on display`, `tight bodice pushing the bust up, prominent cleavage`
+
+> 罩杯下限：每个女性角色至少写 **D 罩杯**（`full D-cup bust` / `large D-cup chest`），可往上写 `DD-cup` / `E-cup`，绝不留空或低于 D。
+> 想加大「漏胸程度」时，重点叠加 cleavage / neckline 这一类**服装开口**描述词（`deep plunging neckline`、`low-cut`、`deep cleavage`、`tight bodice pushing the bust up`），
+> 再配合 bust 形体词（`full D-cup bust` / `ample bust`），即可在不越线的前提下最大化展示效果。
+> 安全写法：用 `voluptuous / curvaceous / hourglass / full bust / generous décolletage / deep cleavage` 这类形体+服装开口描述词，
+> 不要用 `huge breasts`、`large breasts`、`big tits`、`exposed breast`、`nipple` 等会触发过滤的露骨词。形体词 + 低胸服装词组合即可表达「身材火辣 + 大幅漏胸」。
+
 ### Skin & Clothing Vocabulary (allowed — use aggressively)
 
 **Female:**
 - `backless evening gown, back gracefully revealed to the lower back`
+- `deep plunging neckline down to the sternum, full cleavage on display`
+- `low-cut bodice, tight fit pushing the bust up, prominent deep cleavage`
 - `deep V-neckline, décolletage catching the light`
 - `thigh-high slit in gown, leg partially visible through the opening`
 - `off-shoulder gown, collarbone and one shoulder elegantly uncovered`
@@ -349,6 +368,7 @@ Do NOT add explicit content. The goal is maximum implication through body langua
 | 年龄 | `teenage`, `underage`, `minor`, `high school girl`, `loli`, `young teen` | `young woman`, `elegant woman`, `college-aged woman`, `sophisticated` |
 | 制服+年龄绑定 | `high school uniform`, `teenage school girl` | `academy uniform`, `preparatory school uniform`, `Japanese-style school blazer` |
 | 裸露 | `naked`, `nude`, `topless`, `exposed breast` | `off-shoulder`, `bare collarbone`, `elegant neckline`, `decolletage` |
+| 形体 | `huge breasts`, `large breasts`, `big tits`, `busty` (露骨) | `full bust`, `ample bust`, `generous décolletage`, `voluptuous curvaceous figure`, `hourglass figure` |
 | 情色 | `erotic`, `sexual`, `explicit`, `lewd` | `alluring`, `intimate atmosphere`, `charged tension`, `romantic` |
 | 湿透透视 | `see-through wet shirt`, `wet transparent fabric` | `rain-soaked fabric`, `damp clothing`, `wet silk clinging` |
 

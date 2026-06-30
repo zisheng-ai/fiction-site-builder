@@ -1,6 +1,6 @@
 # Story Cover
 
-Load this reference when the user asks to generate a novel cover (封面, /story-cover, cover generation), or when Phase 3 of the pipeline is entered.
+Load this reference when the user asks to generate a novel cover (/story-cover, cover generation), or when Phase 3 of the pipeline is entered.
 
 **Execution principle: invoke tools directly. Never surface a "please run X" prompt to the user mid-phase. Call the image generation tool, write the file, log the result — then move on.**
 
@@ -123,22 +123,21 @@ Cover ratio: **2:3 portrait**. Generate at `848x1280` (1K Fast tier — sufficie
 
 **Then: detect per-book genre** by scanning the book title (and synopsis if available) against the keyword table in `references/cover-styles.md`.
 - One match → use it
-- Multiple matches → priority order: 仙侠 > 西幻 > 古言 > 现言 > 都市 > 悬疑 > 科幻 > 历史 > 灵异 > 轻小说
+- Multiple matches → priority order: Cultivation Fantasy > Dark Fantasy > Historical > Thriller > Contemporary Romance > Urban Drama > Sci-Fi > Horror > Isekai
 - No match → default to the site's primary genre
 
 The genre determines composition template, color palette, character design, and typography style. The visual register determines render quality language (photorealistic film-still vs. hyperrealistic 3D render).
 
 **For romance/drama genres: allure elements are MANDATORY, not optional.** Load `references/cover-allure-elements.md` and apply the highest-intensity pose from the appropriate genre section. The target is maximum implication within gpt-image-2-vip policy — bodies pressed together, visible skin, explicit physical contact (grip, hold, almost-kiss). A cover where two people are simply standing near each other fails this gate.
 
-- **Chinese web novel genres (都市/现言/甜宠/轻小说):** use Sections 一–三 (uniform types, 壁咚, rain-soaked, bedside morning).
-- **English romance genres (Dark Romance, Billionaire, Paranormal, Shifter, Vampire, Fantasy Romance, Mafia, Sports, Contemporary):** use Section 六 (English Romance Playbook). Pick the genre-specific prompt formula, select the highest-intensity pose that fits the book's synopsis, and follow the Escalation Strategy if the output looks tame.
+- **Romance / Drama genres:** use `references/cover-allure-elements.md` (Costume Elements, Poses, and English Romance Playbook). Pick the genre-specific prompt formula, select the highest-intensity pose that fits the book's synopsis, and follow the Escalation Strategy if the output looks tame.
 
 ## Step 2 — Build the prompt
 
 All prompt text in English. Structure: text layer + style layer + visual layer.
 
 ```
-Chinese web novel cover, [genre style from cover-styles.md].
+[Genre style from cover-styles.md].
 Title text '{book-title}' at top center in [title font style for genre].
 Author name '{pen-name}' at bottom center in [author name style for genre].
 [genre style tags]. [character description]. [background description].
@@ -151,32 +150,34 @@ keep title and author name inside the central safe area (inner ~85%), no waterma
 
 | Genre | Characters in prompt |
 |---|---|
-| 都市 / 现言 / 甜宠 / 古言 | TWO characters — describe BOTH explicitly: male (position, expression, clothing) AND female (position, expression, clothing). Single-character prompts produce single-character covers for these genres. |
-| 西幻 | TWO characters — male in dark armored robes, female in dark dress with crown; side-by-side or pressed together. |
-| 悬疑 / 灵异 | TWO figures — protector + protected, or supernatural presence + ordinary person. May be partial silhouette. |
-| 玄幻 / 仙侠 / 科幻 / 历史 | Single protagonist (Lone Hero template). One character only. |
-| 轻小说 | Single protagonist or duo — match the book's gender composition. |
+| Urban Drama / Contemporary Romance / Historical Court Drama | TWO characters — describe BOTH explicitly: male (position, expression, clothing) AND female (position, expression, clothing). Single-character prompts produce single-character covers for these genres. |
+| Dark Fantasy | TWO characters — male in dark armored robes, female in dark dress with crown; side-by-side or pressed together. |
+| Thriller / Horror | TWO figures — protector + protected, or supernatural presence + ordinary person. May be partial silhouette. |
+| Cultivation Fantasy / Sci-Fi / Historical War Epic | Single protagonist (Lone Hero template). One character only. |
+| Isekai / Slice of Life | Single protagonist or duo — match the book's genre composition. |
+
+**Female figure rule — MANDATORY:** every female character description must include a curvy, hot figure with a **minimum D-cup bust** (`full D-cup bust` / `large D-cup chest`, may go up to `DD-cup` / `E-cup` — never below D or left unspecified), plus `generous décolletage` + `hourglass figure` / `voluptuous curvaceous figure`, AND a low-cut, cleavage-revealing neckline (`deep plunging neckline down to the sternum`, `low-cut bodice, deep cleavage on display`). Push the cleavage/exposure hard — a high or modest neckline is not acceptable. Use the safe figure + cleavage vocabulary in `references/cover-allure-elements.md` — never the explicit words (`huge breasts`, `large breasts`, `big tits`, `exposed breast`, `nipple`) which trigger the content filter.
 
 Title font styles and author name styles are in `references/cover-styles.md` per genre.
 Offer 2–3 composition variants (close-up portrait / full body / pure scene) on first generation.
 
 ## Step 3 — Generate cover
 
-**生图逻辑由全局 `image-gen` skill 统一处理**（API 调用、重试、SVG fallback、安全过滤）。本 step 只负责传参。
+**Image generation is handled by the global `image-gen` skill** (API call, retry, SVG fallback, content filter). This step only passes parameters.
 
-参数：
+Parameters:
 - `output` = `public/covers/{book-title}/cover_v1.png`
 - `size` = `848x1280`
-- `prompt` = Step 2 构建的完整 prompt
+- `prompt` = the complete prompt built in Step 2
 
-`image-gen` skill 执行流程：
-1. 检查 `APIYI_API_KEY` → 有则走 apiyi，无则 SVG fallback
-2. `curl --max-time 200` 调用 `gpt-image-2-vip`，base64 解码写入 PNG
-3. prompt 写入同目录 `.prompt.txt`
-4. 若触发安全过滤（`invalid_prompt`）：按 skill 内置词表替换触发词后自动重试一次
-5. 重试仍失败 → SVG fallback（480×720 viewBox，含标题/作者/背景渐变）
+`image-gen` skill execution flow:
+1. Check `APIYI_API_KEY` → present: use apiyi; absent: SVG fallback
+2. `curl --max-time 200` calls `gpt-image-2-vip`, base64-decoded and written as PNG
+3. Prompt saved to same directory as `.prompt.txt`
+4. On content filter (`invalid_prompt`): replace triggering terms using the skill's word list and retry once
+5. Retry fails → SVG fallback (480×720 viewBox, includes title/author/gradient background)
 
-安全过滤词替换规则见 `.claude/skills/image-gen/SKILL.md`（项目内）。
+Content filter replacement rules: see `.claude/skills/image-gen/SKILL.md`.
 
 On API error: log the response, skip this book, continue batch.
 

@@ -273,7 +273,7 @@ Fields: `title` (string), `chapter` or `order` (number), `bookId` (string), `lan
 
 - Sanitize all Markdown/HTML before rendering user-provided content. Never render raw HTML from chapter files as trusted HTML without sanitization.
 - Preserve paragraph breaks (`\n\n` → `<p>` tags or double line break).
-- Do not render author notes (bracketed `【...】` or `（...）` prefixed with `作者`) inside the main prose column unless requested.
+- Do not render author notes (author-note blocks, typically prefixed with "Author's Note:" or similar) inside the main prose column unless requested.
 - Exclude internal writing files from all reader-facing routes by default.
 - Handle missing or empty `content` gracefully: show "This chapter has no content yet." instead of a blank page.
 

@@ -14,13 +14,13 @@ Run the applicable gates based on severity (see Severity Levels below).
 
 | Gate | Problem | Signal |
 | --- | --- | --- |
-| A | Banned words / high-frequency clichés | "眼中闪过一丝" "深吸一口气" "嘴角勾起一抹" |
-| B | Template sentence patterns | 否定铺垫+肯定翻转, "带着…", "声音不大却…", consecutive parallel structures ≥3 |
-| C | Telling not showing (psychology) | "他感到" "她意识到" "内心涌起" without grounding action |
+| A | Banned words / high-frequency clichés | "something flickered in his eyes" "he drew a deep breath" "the corner of his mouth curved" |
+| B | Template sentence patterns | negation-then-reversal setups, "with a ...", "his voice was low but ...", consecutive parallel structures ≥3 |
+| C | Telling not showing (psychology) | "he felt" "she realized" "emotion surged inside her" without grounding action |
 | D | Uniform rhythm / paragraph length | Every paragraph 4–6 sentences, identical beat |
-| E | Flat dialogue tags | "说道/问道/笑道" on nearly every line |
+| E | Flat dialogue tags | "said/asked/smiled" on nearly every line |
 | F | Moral summary endings | Last paragraph summarizes or moralizes what just happened |
-| G | Narrator intrusion / god-view | "她不知道的是…" / "之所以…是因为" / evaluative aside that steps outside character POV |
+| G | Narrator intrusion / god-view | "What she didn't know was..." / "The reason he ... was because..." / evaluative aside that steps outside character POV |
 
 ## Severity Levels
 
@@ -38,9 +38,9 @@ Deletion cap by severity: Mild ≤15%, Moderate ≤25%, Severe ≤35% of the pas
 | --- | --- | --- |
 | Paragraph length | 1–3 sentences; occasional 1-sentence standalone | 4–6 sentences, uniform |
 | Dialogue tags | 60%+ tagless, action-attributed | Nearly every line tagged |
-| Emotion | Body action ("手在抖") | Direct statement ("很紧张") |
-| Simile | Everyday ("像哈士奇护食") | Literary ("如寒冰般") |
-| Filler words | Colloquial ("嘤" "嘶" "靠") | Almost none |
+| Emotion | Body action ("his hands shook") | Direct statement ("he was terrified") |
+| Simile | Everyday ("like a dog guarding its bowl") | Literary ("like crystalline ice") |
+| Filler words | Colloquial ("God", "damn", "ugh") | Almost none |
 | Detail | Specific, concrete | Vague and thorough |
 | Parallel structure | At most 1–2, never 3+ consecutive | 3–5 in a row is standard |
 | Endings | Action or dialogue | Summary or uplift |
@@ -49,12 +49,12 @@ Deletion cap by severity: Mild ≤15%, Moderate ≤25%, Severe ≤35% of the pas
 
 | AI-flavored phrase | Natural alternative |
 | --- | --- |
-| 深吸一口气 | 胸口起伏了一下 / delete |
-| 眼中闪过一丝… | 他垂下眼 / 眯起眼 |
-| 嘴角勾起一抹… | 笑了一下，没到眼底 / 乐了 |
-| 仿佛/犹如/宛若 | 像… / white-describe |
-| 不禁… | direct action |
-| 缓缓开口 | 说 / action-then-dialogue |
+| he drew a deep breath | his chest rose / delete |
+| something flickered in his eyes | he looked away / narrowed his eyes |
+| the corner of his mouth curved | he smiled — it didn't reach his eyes / he laughed |
+| as if / as though / as though woven from | plain comparison or literal description |
+| couldn't help but | direct action verb |
+| slowly opened his mouth | just use dialogue / action-then-dialogue |
 
 ## Three-Pass Method
 

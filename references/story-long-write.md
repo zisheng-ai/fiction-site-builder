@@ -96,7 +96,7 @@ Use this for adding one chapter to an existing book (incremental update only).
 
 ```md
 ---
-title: "第一章：夜渡"
+title: "Chapter One: Night Crossing"
 chapter: 1
 ---
 

@@ -7,8 +7,8 @@ Run this checklist before any final delivery. For unattended execution, automate
 Run these checks before go-live. These are **not** blockers for development preview.
 
 - [ ] `content/` has ≥ 5 book directories (initial site launch).
-- [ ] Each book has ≥ 10 chapter files in `content/{book-title}/chapters/` (中篇 minimum).
-- [ ] Each chapter is ≥ 1,500 Chinese characters or 1,200 English words — no stub content.
+- [ ] Each book has ≥ 10 chapter files in `content/{book-title}/chapters/`.
+- [ ] Each chapter is ≥ 1,200 words — no stub content.
 - [ ] `outline/outline.md` exists and contains a real arc outline (not empty or stub-only).
 - [ ] `world/worldbuilding.md` exists and describes the world, genre, and tone.
 - [ ] `tracking/context.md` exists and reflects the last written chapter.
@@ -70,7 +70,7 @@ check "next/finish link present" sh -c "curl -s '${BASE}/book/${BOOK_SLUG}/chapt
 # Only test prev-chapter link if chapter 2 actually exists
 CHAPTER2_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "${BASE}/book/${BOOK_SLUG}/chapter/2/")
 if [ "$CHAPTER2_STATUS" = "200" ]; then
-  check "prev chapter link present" sh -c "curl -s '${BASE}/book/${BOOK_SLUG}/chapter/2/' | grep -qiE 'Previous|上一章|Prev'"
+  check "prev chapter link present" sh -c "curl -s '${BASE}/book/${BOOK_SLUG}/chapter/2/' | grep -qiE 'Previous|Prev'"
 else
   echo "- prev chapter link (skipped — only 1 chapter found)"
 fi

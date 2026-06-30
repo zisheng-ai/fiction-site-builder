@@ -14,14 +14,14 @@ Before creating the project structure for a new book, check `outputs/{site-slug}
 
 Before creating any files, determine where the project lives:
 
-- **Default**: create a new folder named after the site/project in the current working directory. Example: if the project is called "幻夜书阁", create `./幻夜书阁/` and work inside it.
-- **Exception**: if the user explicitly says to use the current directory (e.g. "就在这里", "in this folder", "current directory"), skip folder creation and treat `.` as the project root.
+- **Default**: create a new folder named after the site/project in the current working directory. Example: if the project is called "midnight-fable", create `./midnight-fable/` and work inside it.
+- **Exception**: if the user explicitly says to use the current directory (e.g. "in this folder", "current directory", "here"), skip folder creation and treat `.` as the project root.
 
 Never write files directly into the current directory unless the user explicitly requests it.
 
 ## Project Directory Structure
 
-Long-form novel (长篇) — place under `content/{book-title}/`:
+Long-form novel — place under `content/{book-title}/`:
 
 ```
 content/{book-title}/
@@ -51,7 +51,7 @@ content/{book-title}/
 └── resources/                 # optional research
 ```
 
-Short-form story (短篇) — place under `content/short/{story-title}/`:
+Short-form story — place under `content/short/{story-title}/`:
 
 ```
 content/short/{story-title}/
@@ -105,9 +105,9 @@ When setting up a **new project** (no existing content):
 
 When building a fiction site from scratch, write **N books** in total, where N is the user-specified count (default 5 if not specified). Writing and site build run in parallel — site setup (stack, design, data) starts immediately after Phase 0 and does not wait for books to be written.
 
-Each book must reach 中篇 level before it can be included in the site build:
+Each book must reach minimum content level before it can be included in the site build:
 - ≥ 10 chapters per book
-- ≥ 1,500 Chinese characters or 1,200 English words per chapter
+- ≥ 1,200 words per chapter
 
 Run `/story-cover` to generate covers. This can run incrementally as books are completed, or in one batch before launch.
 

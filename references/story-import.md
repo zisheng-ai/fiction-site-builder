@@ -19,18 +19,18 @@ Ask the user:
 
 Auto-detect:
 - Total chapter count and word count from the file
-- Chapter delimiter format (e.g. `第N章`, `Chapter N`, `###`)
+- Chapter delimiter format (e.g. `Chapter N`, `###`)
 - Length classification (see below)
 
 Confirm detections with the user before proceeding.
 
 ## Length Classification
 
-| Signal | Long-form (长篇) | Short-form (短篇) |
+| Signal | Long-form | Short-form |
 | --- | --- | --- |
 | Explicit chapter markers | Multiple discrete chapters | Single file or ≤3 chapters |
-| Word count | >30,000 characters | ≤30,000 characters |
-| User declaration | "long-form" / "长篇" / "长篇小说" | "short-form" / "短篇" / "短故事" |
+| Word count | >30,000 words | ≤30,000 words |
+| User declaration | "long-form" / "novel" | "short-form" / "short story" |
 
 User declaration overrides auto-detection. Confirm classification with the user.
 
