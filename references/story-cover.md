@@ -175,23 +175,65 @@ Offer 2–3 composition variants (close-up portrait / full body / pure scene) on
 
 ## Step 3 — Generate cover
 
-**Image generation is handled by the global `image-gen` skill** (API call, retry, SVG fallback, content filter). This step only passes parameters.
+Set `BOOK_DIR="public/covers/{book-title}"` and `OUTPUT_PATH="$BOOK_DIR/cover_v1.png"` before running.
 
-Parameters:
-- `output` = `public/covers/{book-title}/cover_v1.png`
-- `size` = `848x1280`
-- `prompt` = the complete prompt built in Step 2
+### apiyi path
 
-`image-gen` skill execution flow:
-1. Check `APIYI_API_KEY` → present: use apiyi; absent: SVG fallback
-2. `curl --max-time 300` calls `gpt-image-2-all` (90–150s typical; 300s minimum per apiyi docs), base64-decoded and written as PNG
-3. Prompt saved to same directory as `.prompt.txt`
-4. On content filter (`invalid_prompt`): replace triggering terms using the skill's word list and retry once
-5. Retry fails → SVG fallback (480×720 viewBox, includes title/author/gradient background)
+```bash
+mkdir -p "$BOOK_DIR"
+PROMPT_JSON=$(printf '%s' "$PROMPT" | python3 -c 'import json,sys; print(json.dumps(sys.stdin.read().strip()))')
 
-Content filter replacement rules: see `.claude/skills/image-gen/SKILL.md`.
+curl -s --max-time 300 https://api.apiyi.com/v1/images/generations \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $APIYI_API_KEY" \
+  -d "{\"model\":\"gpt-image-2-all\",\"prompt\":$PROMPT_JSON,\"size\":\"848x1280\"}" \
+| OUTPUT_PATH="$OUTPUT_PATH" python3 -c "
+import sys, json, base64, os
+output_path = os.environ['OUTPUT_PATH']
+raw = sys.stdin.read()
+if not raw.strip():
+    print('ERROR: empty response (timeout)')
+    sys.exit(1)
+data = json.loads(raw)
+if 'error' in data:
+    msg = data['error']['message'] if isinstance(data['error'], dict) else str(data['error'])
+    print('API_ERROR:' + msg)
+    sys.exit(2)
+b64 = data['data'][0]['b64_json']
+if ',' in b64:
+    b64 = b64.split(',', 1)[1]
+with open(output_path, 'wb') as f:
+    f.write(base64.b64decode(b64))
+print('SAVED:' + str(os.path.getsize(output_path)))
+"
 
-On API error: log the response, skip this book, continue batch.
+# Save prompt alongside cover
+printf '%s' "$PROMPT" > "$BOOK_DIR/cover_v1.prompt.txt"
+```
+
+**On `API_ERROR` containing `invalid_prompt` / `safety` / `rejected`:** replace triggering terms in `$PROMPT` and retry once:
+
+| Replace | With |
+|---|---|
+| `bare back exposed` | `off-shoulder gown, collarbone catching the light` |
+| `exposed breast`, `topless`, `naked`, `nude` | `off-shoulder`, `elegant neckline`, `décolletage` |
+| `bodies pressed flush together` | `close proximity, charged tension` |
+| `gripping her hip`, `hand on her bare hip` | `hand at her waist` |
+| `wet transparent fabric`, `see-through wet` | `rain-soaked fabric, damp clothing` |
+| `lips pressed against` | `faces close, the moment before` |
+| `erotic`, `sexual`, `explicit` | `alluring`, `intimate atmosphere`, `romantic tension` |
+
+Retry once with the softened prompt. If it fails again → SVG fallback.
+
+On any other API error: log the response, skip this book, continue batch.
+
+### SVG fallback
+
+When `APIYI_API_KEY` is not set or both attempts fail, Claude writes a styled SVG cover directly:
+- `viewBox="0 0 480 720"` (2:3)
+- Large centered title text, small author name at bottom, genre-appropriate gradient background, simple symbolic motif
+- Output path: `$BOOK_DIR/cover_v1.svg`
+- Print: `⚠ SVG fallback — $OUTPUT_PATH`
 
 ### B3 batch flow
 
