@@ -6,6 +6,19 @@ Use for: romance, thriller, contemporary, drama, and light novel covers requirin
 
 ---
 
+## 0. Monetization risk note (read before generating)
+
+**Default business model: Facebook paid traffic + AdSense/AdX arbitrage** (see `references/adsense-arbitrage.md` §1). The cover is the landing-page hero image and is scanned by **both** Meta's ad-review crawler and AdSense's brand-safety classifier. Suggestive, "擦边" covers — cleavage, curvy/busty figures, off-shoulder, low-cut necklines, charged proximity — are **allowed**: maximize visual appeal aggressively.
+
+Only keep in mind the two things that cause hard, irreversible damage (and that the image API will refuse to generate anyway):
+
+- **Actual nudity / explicit content** — exposed genitals or nipples, sex acts, or imagery that reads as pornographic. This trips the `gpt-image-2-vip` filter, and on a live site can get the Facebook ad account permanently banned and AdSense disabled.
+- **Cloaking** — never show FB's crawler a tame page and users a racier one.
+
+Everything short of explicit (suggestive poses, deep cleavage, figure-forward bodies, wet/rain looks, bed-sheet morning scenes) is fair game — push it as hard as the visual appeal benefits from. Use the safe-wording rules later in this file to avoid tripping the generator's own keyword filter while still getting the spice.
+
+---
+
 ## Costume Elements
 
 ### Academy / School Uniform

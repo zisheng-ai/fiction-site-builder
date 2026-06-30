@@ -16,6 +16,15 @@ The site must load fast, read comfortably on mobile, and get out of the reader's
 **Goal 2 — Reading comfort above visual complexity.**
 Typography, spacing, and contrast are non-negotiable. Interactive reader controls (theme switcher, font-size stepper) are optional enhancements — not requirements. A well-set fixed type scale beats a broken control panel every time.
 
+## Business Model — Paid-Traffic Arbitrage
+
+Every site built by this skill is, by default, a **Facebook-traffic + AdSense/AdX arbitrage** property: buy a click on Meta ads, monetize a multi-pageview reading session with display ads, profit on the spread. This reframes two things:
+
+- **Profit = (viewable session RPM × pageviews per session) − Facebook CPC.** The build directly controls pageview depth (chapter model, cliffhangers, pagination, prefetch) and viewable RPM (ad layout, density, viewability, lazy-load). Treat these as revenue engineering — see `references/adsense-arbitrage.md`.
+- **Account survival is a top constraint.** Both Facebook and AdSense scan the landing page. Suggestive/擦边 covers are fine and encouraged for CTR; only outright explicit/pornographic imagery, cloaking, missing trust pages, or runaway ad density get the Facebook ad account banned or AdSense restricted/disabled. See `references/adsense-arbitrage.md` §1 and `references/cover-allure-elements.md` §0.
+
+Load `references/adsense-arbitrage.md` whenever building, laying out ads, directing covers, or wiring Facebook tracking.
+
 ## Operating Principles
 
 - The chapter page is the product. Every other page is a path to it.
@@ -97,9 +106,9 @@ Starts after Phase 0. Runs in parallel with Track A.
 | B1 | Stack | `tech-stack.md` | chosen stack with one-line rationale |
 | B2 | Design | `design-system.md` | tone, palette, type system, `public/logo.svg`, `public/favicon.svg` |
 | B3 | Data | `data-contract.md` | content-collections schema |
-| B4 | Build | `references/ui-components.md` + `reader-ux.md` | working site with all required pages |
-| B5 | Performance | `performance.md` | Core Web Vitals targets met, images optimized |
-| B6 | QA | `qa-checklist.md` | automated QA pass; screenshots on failure only |
+| B4 | Build | `references/ui-components.md` + `reader-ux.md` + `adsense-arbitrage.md` | working site with all required pages, ad slots, trust pages, FB tracking |
+| B5 | Performance | `performance.md` + `adsense-arbitrage.md` | Core Web Vitals targets met, images optimized, ad CLS/lazy-load tuned |
+| B6 | QA | `qa-checklist.md` | automated QA pass; ad-layout + policy-compliance checks; screenshots on failure only |
 
 B1 → B2 → B3 → B4 are sequential. B5 and B6 run in parallel against the same build — run `pnpm run build` once, then check both.
 
@@ -263,6 +272,15 @@ Do not deliver a build if any of these are true.
 - Initial JS bundle exceeds 200KB for a prototype.
 - Cover images are not optimized (`next/image` or equivalent).
 
+**Monetization & ad-policy (paid-traffic arbitrage — see `references/adsense-arbitrage.md`):**
+- Any cover, hero image, or imagery is outright explicit / pornographic — exposed genitals or nipples, sex acts, graphic nudity (suggestive/擦边 allure is fine; only hardcore content gets the ad account banned and AdSense disabled).
+- Privacy Policy, Terms, About, or Contact page is missing or not footer-linked (AdSense approval + FB quality requirement).
+- No cookie-consent / Google-certified CMP wired.
+- An ad slot has no reserved size (causes CLS), or the above-the-fold ad is lazy-loaded (kills viewability).
+- Ad density exceeds ~3–4 units / 1,000 words, or ad area exceeds ~30% of content area on any screen.
+- An ad is visually/spatially mistakable for the Next/TOC control, or any layout encourages ad clicks.
+- Chapter navigation is SPA (does not full-reload), so ads do not reinitialize and pageviews/impressions are undercounted.
+
 ## Non-Negotiables
 
 - Writing internals (`outline/`, `world/`, `tracking/`, `reference/`, `resources/`, `teardowns/`) are never exposed in reader routes, reader-facing URLs, or site navigation. Build the site as if those directories do not exist.
@@ -274,6 +292,7 @@ Do not deliver a build if any of these are true.
 - Do not add ranking, bookshelf, favorites/bookmarks, search, payment, comments, social sharing, or account modules unless explicitly requested.
 - Respect content language: set `lang`, use language-appropriate font stacks, handle CJK line flow.
 - One deliberate visual signature per build — connected to reading, books, chapters, or genre.
+- Monetized FB-traffic sites (the default): ship Privacy / Terms / About / Contact pages + cookie consent, and reserve size on every ad slot. Suggestive/擦边 covers are allowed; avoid only outright explicit/pornographic imagery (see `references/cover-allure-elements.md` §0). Trust pages, ad-layout, and no-cloaking compliance still apply everywhere.
 
 ## Performance Baseline
 
@@ -298,6 +317,7 @@ Load references only when entering that phase. Do not preload all references at 
 - `story-review.md` — multi-perspective structural and prose review.
 - `story-deslop.md` — AI-flavor detection and removal (7 gates).
 - `story-cover.md` + `cover-styles.md` — cover generation via apiyi `gpt-image-2-vip` (SVG fallback if no API key).
+- `cover-allure-elements.md` — visual-appeal vocabulary for covers; §0 is a lightweight monetization risk note (avoid only outright explicit content).
 
 **Site build references (load for publishing tasks):**
 - `tech-stack.md` — choose the implementation stack before writing any code.
@@ -307,6 +327,7 @@ Load references only when entering that phase. Do not preload all references at 
 - `reader-ux.md` — chapter page UX requirements during build.
 - `performance.md` — Core Web Vitals, loading strategy, image optimization.
 - `qa-checklist.md` — final automated QA and screenshot verification (failures only).
+- `adsense-arbitrage.md` — Facebook-traffic + AdSense/AdX arbitrage playbook: profit model, account-survival compliance, pageview-depth and ad-layout/viewability tactics, FB tracking, trust pages. Load whenever building, laying out ads, directing covers, or wiring tracking.
 - `product-surface.md` — IA and URL structure (optional, load when needed).
 - `internationalization.md` — language and font decisions (optional, load when needed).
 

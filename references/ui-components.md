@@ -48,7 +48,7 @@ Any of these is a quality gate failure:
 
 **Bottom bar TOC button behavior:** navigates to the book detail page and scrolls to the chapter list anchor — does not open a drawer. The book detail chapter list container must have `id="toc"`.
 
-Column ratio `minmax(96px, 0.75fr) minmax(136px, 1.12fr)`. TOC button font-size uses `!text-[13px]` to override btnBase default, ensuring "Table of contents" fits on a single line on mobile.
+Column ratio `minmax(96px, 0.75fr) minmax(136px, 1.12fr)`. TOC button font-size uses `!text-[12px]` to override btnBase default. Text may wrap on very narrow viewports — do not add `whitespace-nowrap`.
 
 ```tsx
 // bottom bar grid
@@ -61,7 +61,7 @@ Column ratio `minmax(96px, 0.75fr) minmax(136px, 1.12fr)`. TOC button font-size 
   <a
     href={`/book/${bookSlug}#toc`}
     onClick={(e) => { e.preventDefault(); window.location.href = `/book/${bookSlug}#toc` }}
-    className={`${btnBase} !text-[13px]`}
+    className={`${btnBase} !text-[12px]`}
   >
     Table of contents
   </a>

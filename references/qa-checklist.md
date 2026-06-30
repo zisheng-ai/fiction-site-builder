@@ -170,3 +170,34 @@ Automated grep over build output:
 - [ ] Initial JS bundle is below 200KB gzipped.
 - [ ] No uncompressed image over 200KB on the home page.
 - [ ] No external font CDN requests on the reader page unless explicitly required.
+
+## Monetization & Ad-Policy Checks (paid-traffic arbitrage)
+
+Run for every monetized FB-traffic site. See `references/adsense-arbitrage.md`. Account survival depends on these.
+
+**Content compliance (Facebook + AdSense scan the landing page):**
+
+- [ ] No cover, hero image, or imagery is outright explicit / pornographic — no exposed genitals or nipples, sex acts, or graphic nudity (suggestive/擦边 allure is allowed; see `cover-allure-elements.md` §0).
+- [ ] No "click here", arrows, or images placed to bait ad clicks; no content encourages clicking ads.
+
+**Trust pages (AdSense approval + FB quality):**
+
+- [ ] `/privacy`, `/terms`, `/about`, `/contact` pages exist and respond 200.
+- [ ] All four are linked in the footer of every page.
+- [ ] Privacy Policy mentions cookies, Google/AdSense + third-party vendors, and (if used) the Meta Pixel.
+- [ ] Cookie-consent / Google-certified CMP banner is present.
+
+**Ad layout & Core Web Vitals:**
+
+- [ ] Every ad slot reserves explicit `min-height` / `aspect-ratio` before load — assert CLS < 0.1.
+- [ ] The above-the-fold ad loads immediately (not lazy-loaded); below-fold ads use IntersectionObserver lazy-load.
+- [ ] Ad density ≤ ~3–4 units / 1,000 words and ad area < ~30% of content area per screen.
+- [ ] No ad is visually/spatially mistakable for the Next or TOC control (clear gap maintained).
+- [ ] Ads do not push chapter content below the fold on mobile (390×844).
+- [ ] No pop-up or pre-content interstitial before the chapter renders.
+
+**Pageview depth & tracking:**
+
+- [ ] Chapter navigation does a full reload (`window.location.href`) so ads reinitialize and a fresh pageview counts.
+- [ ] Meta Pixel (and CAPI if configured) fires `PageView` and the engaged-session event.
+- [ ] Landing chapter LCP < 2.5s on mid-range Android/4G.

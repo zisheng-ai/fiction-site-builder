@@ -294,7 +294,7 @@ function applySize(index) {
 - Preserve reading position in `localStorage` for prototypes; durable backend for real products.
 - Reader controls must be reachable with one thumb on mobile.
 - Do not require login before basic reading unless the user explicitly asks for a gated product.
-- Do not show ads, pop-ups, or banners inside the reader without explicit user request.
+- Display ads are expected on monetized sites (the default arbitrage model — see `references/adsense-arbitrage.md`): place AdSense/AdX slots below the header, in-content within the reading flow, end-of-chapter, and as a mobile sticky anchor. Keep each slot's size reserved (no CLS), keep a clear gap from the Next/TOC controls, never let an ad be mistakable for navigation, and never let ads push chapter content below the fold. Pop-ups and pre-content interstitials remain forbidden.
 
 ## Accessibility
 

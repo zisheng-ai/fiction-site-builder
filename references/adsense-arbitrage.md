@@ -1,0 +1,195 @@
+# AdSense / AdX Arbitrage Playbook (Facebook Traffic)
+
+Load this reference whenever the site's purpose is **paid-traffic monetization** — i.e. buying traffic on Facebook (Meta) ads and monetizing reading sessions with AdSense + AdX. This is the default business model for every site built by this skill (see CLAUDE.md ad accounts). Apply it during Phase B1–B6 and at content/cover direction time.
+
+> **One sentence:** the site is a machine that converts a Facebook click (cost) into multiple viewable ad impressions across a reading session (revenue). Everything below exists to widen that margin **without** getting the ad account or the AdSense account banned.
+
+---
+
+## 0. Profit model — what we are actually optimizing
+
+```
+Profit per visit = (viewable session RPM)  ×  (pageviews per session) / 1000  −  Facebook CPC  −  overhead
+```
+
+The build can move two of the three levers directly:
+
+| Lever | Owner | Where this skill helps |
+|---|---|---|
+| Facebook CPC in | campaign / creative / targeting | keep landing page approvable (cheap, compliant) — see §1 |
+| **Pageviews per session** | the site | chapter model, pagination, cliffhangers, prefetch — see §2 |
+| **Viewable session RPM** | the site | ad layout, density, viewability, lazy-load, refresh — see §3 |
+
+A site is only profitable when `session RPM × PV/session` clears the CPC. Two below-average levers kill the margin even if the third is great. Treat layout and pageview depth as **revenue engineering**, not decoration.
+
+---
+
+## 1. Account-survival guardrails (READ FIRST — non-negotiable)
+
+A banned Facebook ad account or a disabled AdSense account ends the business. These rules **override every aesthetic, allure, or CTR suggestion anywhere else in this skill.**
+
+### 1.1 Content safety (Facebook + AdSense both scan the landing page)
+
+Facebook crawls the **destination URL**, not just the ad creative; AdSense scans the whole site. Suggestive / "擦边" covers and imagery — cleavage, curvy/busty figures, off-shoulder, low-cut, charged proximity — are **allowed and encouraged** for click appeal. The only hard line is outright explicit content:
+
+- **Forbidden (hard ban):** actual nudity (exposed genitals/nipples), sex acts, graphic/pornographic imagery. This both trips the image generator's own filter and, on a live site, risks a **permanent Facebook ad-account ban** and **AdSense disable**.
+- **No cloaking:** never serve FB's crawler a tame page and users a racier one — detected, and causes permanent account loss.
+- **Allowed:** everything short of explicit — suggestive poses, deep cleavage, figure-forward bodies, wet/rain looks, bed-sheet morning scenes, almost-kiss tension. Push allure hard.
+
+This is the governing register for `story-cover.md` and `cover-allure-elements.md` (§0). Use the safe-wording rules in `cover-allure-elements.md` to get maximum spice without tripping the `gpt-image-2-vip` keyword filter.
+
+### 1.2 No cloaking, no bridge/doorway pages
+
+Showing FB's crawler one page and users another, or sending paid traffic to a thin redirect page, is detected and causes **permanent** account loss. The page the ad points to is the page users and crawlers both get.
+
+### 1.3 Inventory-value rules (AdSense)
+
+- Do **not** run more ad area than publisher content. Keep **ad pixels < 30% of content pixels** per screen.
+- No low-value / replicated / auto-generated thin pages. **Every paginated screen must carry substantial original prose** (see §2.2) — pagination purely to multiply ad slots is a policy violation.
+- Ads must not push content below the fold on mobile (FB low-quality + Google page-experience penalty).
+
+### 1.4 No deceptive placement / no click encouragement
+
+- Ads must never be styleable-mistakable for the "Next →" button, TOC, or nav. Keep a clear visual + spatial gap between any ad and the Next control.
+- Never label, arrow, or arrange content to push ad clicks. No "click here", no images adjacent to ads that bait clicks.
+
+### 1.5 Consent + trust pages (AdSense approval + FB quality)
+
+- A Google-certified **CMP / cookie-consent** is required to serve personalized ads in EEA/UK; without it demand drops to non-personalized only.
+- Site MUST have: **Privacy Policy, Terms, About, Contact** (and a Cookie notice). AdSense approval fails and FB flags "low quality" without them. Link them in the footer of every page.
+
+---
+
+## 2. Pageviews per session — the #1 arbitrage lever
+
+The chapter model already multiplies pageviews. Push it harder (within §1.3):
+
+### 2.1 Forward momentum (already core to this skill)
+
+- Cliffhanger chapter endings (Zeigarnik effect) — see `story-long-write.md` pacing. The unresolved loop is what makes the next pageview involuntary.
+- Forward-only nav (no Previous), vivid Next button — see `reader-ux.md`.
+- **Full-page navigation on chapter change** (`window.location.href`, not SPA) so AdSense/AdX reinitialize and count a fresh pageview with fresh impressions — already required in `reader-ux.md`.
+- Prefetch the next chapter at ~80% scroll so the next pageview feels instant.
+
+### 2.2 In-chapter pagination (optional, high-impact — use only if it stays compliant)
+
+Split a long chapter into sequential **pages of ~600–900 words each**, each a real route (`/book/{slug}/chapter/{n}/p/{k}`) with a full-reload "Continue reading →" control.
+
+- Each page is a fresh pageview → fresh ad impressions, multiplying RPM-per-chapter.
+- **Compliance gate (§1.3):** every page must hold substantial prose (≥ ~500 words of real content), keep ad-area < 30% of content, and never strand the reader on a near-empty page. Pagination that creates thin pages is a ban--worthy inventory-value violation — when in doubt, fewer/longer pages.
+- Keep the same cliffhanger discipline at page breaks, not just chapter breaks.
+
+### 2.3 End-of-content continuation
+
+- End of chapter → prominent Next.
+- End of book → "Continue with {next book}" / related-title cards to restart the loop instead of dead-ending.
+
+**Target: ≥ 2.5–4 pageviews per session.** Below ~2 the arbitrage rarely clears CPC.
+
+---
+
+## 3. Ad layout, density & viewability — the RPM lever
+
+Map the CLAUDE.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via `AdsenseSlot`) onto these positions. Layout structure matters more than raw ad count — moving a unit to a better slot can double its CPM; adding a 6th+ unit usually cannibalizes the others.
+
+### 3.1 Placement map
+
+| Position | Viewability | Notes |
+|---|---|---|
+| Just below header (top of content) | 85–95% | one premium above-the-fold unit; **load immediately, never lazy-load this one** |
+| In-content, after first screen / every N paragraphs | 75–90% | the workhorse — inside the natural reading path |
+| End-of-chapter (above the sticky Next bar) | high | catches the "decide to continue" pause; keep clear gap from Next button (§1.4) |
+| Mobile sticky **anchor** (bottom) | very high | one anchor; reliably viewable & refreshable |
+| Desktop sticky **side-rail** | high | uses empty side space; never a static sidebar (low viewability) |
+
+### 3.2 Density ceiling (compliance + diminishing returns)
+
+- **≤ 3–4 ad units per 1,000 words** of chapter content.
+- **Ad pixels < 30% of content pixels** per screen (FB + AdSense inventory-value).
+- RPM typically peaks around 5 units; beyond that each added unit adds ~2–4% and erodes engagement + page-experience. Cutting the weakest slot often **raises** total RPM.
+
+### 3.3 CLS protection (Core Web Vitals = cheaper FB traffic + SEO)
+
+- Every ad slot wrapper reserves explicit `min-height` / `aspect-ratio` matching the largest expected creative **before** it loads. (CLAUDE.md `AdSlot` min sizes already do this for q1–q4; keep it.)
+- A jumping layout when an ad loads tanks CLS, raises bounce, and raises effective CPC.
+
+### 3.4 Lazy-load config (IntersectionObserver)
+
+| Slot position | Strategy |
+|---|---|
+| Above-the-fold (header unit) | load immediately, **no delay** |
+| Mid-content | `rootMargin` 200–400px (load just before it enters viewport) |
+| Below-the-fold / footer | `rootMargin` 300–500px |
+
+Misconfigured lazy-load on the above-fold unit actively destroys viewability and CPM — the one rule people get wrong.
+
+### 3.5 Viewability & refresh
+
+- Target **viewability ≥ 70%** (advertisers bid markedly higher; 40%→70% ≈ +30% RPM). Don't chase 95% at the cost of fill rate.
+- Refresh ads only when the unit is **in the viewport** and after **≥ 30s active dwell**. Sticky/anchor units are the safe place to refresh because they stay viewable.
+- Never refresh on a hidden tab or an off-screen unit.
+
+---
+
+## 4. Facebook side — tracking & landing
+
+### 4.1 Tracking
+
+- **Meta Pixel + Conversions API (CAPI)**: Pixel alone loses signal to iOS/ad-blockers; CAPI (server-side) recovers it. Run both, deduplicated by event ID.
+- Events to fire: `PageView`, `ViewContent` (chapter open), scroll-depth (e.g. 50/90%), `NextChapter` / page-advance, and a custom "engaged session" (≥ N pageviews or ≥ M seconds) as the optimization signal.
+- Optimize the FB campaign toward the **engaged/value event**, not raw landing PageView — that is what trains delivery toward profitable readers.
+- UTM-tag every campaign; keep `campaign → landing chapter` mapping for ROAS attribution.
+
+### 4.2 Landing page choice
+
+- Land on a **strong hook chapter** (often chapter 1, or the highest-tension opening) — not the home page. The faster a reader is inside prose, the more pageviews follow.
+- Landing page must: LCP < 2.5s on mid-range Android/4G, have footer trust links (§1.5), no pre-content interstitial, no deceptive pop-ups (FB "disruptive" + Google Better-Ads). A bottom anchor ad is fine; a full-screen interstitial before content is not.
+
+---
+
+## 5. Required trust pages (build in B4)
+
+Add these routes/pages to every monetized site — they are gating requirements, not optional:
+
+- `/privacy` — Privacy Policy (mentions cookies, AdSense/Google & third-party vendors, Meta Pixel, data use)
+- `/terms` — Terms of Use
+- `/about` — About (a real description of the site/brand)
+- `/contact` — Contact (a reachable email/form)
+- Cookie-consent banner wired to a Google-certified CMP
+- Footer on every page links all of the above.
+
+Without these, AdSense approval fails and Facebook flags the domain as low quality.
+
+---
+
+## 6. KPIs & iteration
+
+Track and optimize:
+
+| Metric | Target / note |
+|---|---|
+| Session RPM (viewable) | the headline revenue number |
+| Pageviews / session | ≥ 2.5–4 |
+| Ad viewability | ≥ 70% |
+| CLS / LCP | CLS < 0.1, LCP < 2.5s (cheaper FB delivery + SEO) |
+| Facebook CPC | the cost side — drive down via creative/targeting |
+| **ROAS** = ad revenue ÷ FB spend | must be > 1 with margin; the whole game |
+
+- Change layout via **50/50 A/B** (AdSense Experiments or a feature flag), run **≥ 14–21 days** to cover weekly + seasonal cycles, roll out only if RPM lift > 5% **with no engagement degradation**.
+- Re-test placements every 6–12 months — demand and behavior drift; set-and-forget loses 8–15% RPM over two years.
+
+---
+
+## 7. Build-time checklist (wire into B4–B6)
+
+- [ ] Covers, hero images, titles, synopses contain no outright explicit/pornographic content (§1.1); suggestive/擦边 allure is fine.
+- [ ] Privacy / Terms / About / Contact pages exist and are footer-linked on every route (§5).
+- [ ] Google-certified CMP / cookie consent wired (§1.5).
+- [ ] Every ad slot reserves explicit size (no CLS) (§3.3).
+- [ ] Above-fold unit loads immediately; mid/below units lazy-load with correct `rootMargin` (§3.4).
+- [ ] Ad density ≤ 3–4 / 1,000 words and ad-pixels < 30% of content (§1.3, §3.2).
+- [ ] No ad is mistakable for the Next/TOC control; clear gap maintained (§1.4).
+- [ ] Chapter change does a full reload so ads reinit and a fresh pageview counts (§2.1).
+- [ ] (If used) in-chapter pagination keeps each page content-rich and compliant (§2.2).
+- [ ] Meta Pixel + CAPI installed; engaged-session event fires (§4.1).
+- [ ] Landing chapter LCP < 2.5s, no interstitial before content (§4.2).
