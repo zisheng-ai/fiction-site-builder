@@ -147,6 +147,150 @@ The contrast between the external performance (young, unformed, unremarkable) an
 
 ---
 
+## Chapter Hook-Out Framework — The Next Button
+
+The hook-out is the most commercially important sentence in any chapter. It is the only sentence the reader evaluates before deciding whether to stay. Every chapter must end on forward pull, never on resolution.
+
+**Core rule:** end mid-tension, not mid-resolution. The reader should feel like the chapter ended one beat too early — which means they must click Next to get the beat they were promised.
+
+**Forbidden endings (rewrite flag — any of these = the chapter fails the hook-out gate):**
+- Summary sentences: "It had been a long day." / "She had a lot to think about."
+- Emotional generalization: "She felt hopeful for the first time in months." / "He finally felt at peace."
+- Scene-closing clichés: "She closed her eyes and let herself breathe." / "She fell into a dreamless sleep."
+- Perfect resolution: "Everything was going to be fine." / "She let it go."
+- Going to sleep / waking up as the chapter's final beat
+- Any sentence that begins with "She/He finally…" and then resolves
+
+---
+
+### The 10 Hook-Out Techniques
+
+Pick the one technique per chapter that fits the emotional beat. Do not use the same technique twice in a row.
+
+#### 1. Mid-Motion Cut
+Cut inside an action, not at its completion. The reader's own momentum carries them to the next chapter.
+
+**When:** Any chapter where something physical is about to happen. Best for early-arc chapters.
+
+**Formula:** Describe the action beginning. Cut before it completes. Never write what happens next.
+> *She reached for the door handle. Her hand closed around cold metal.*
+
+---
+
+#### 2. Withheld Reaction
+Something significant happens. The chapter ends before the protagonist reacts. The reader must know.
+
+**When:** Revelation moments, confrontations, admissions. The event is the beat; the reaction is the next chapter's opening.
+
+**Formula:** [The event / the thing said.] [One physical stillness detail.] END.
+> *He said it. All of it. She stood very still.*
+
+---
+
+#### 3. Planted Bomb
+The chapter appears to resolve. The final sentence retroactively recolors everything the reader just experienced.
+
+**When:** Best at chapter midpoints in the arc — when the reader thinks they understand the situation and the narrative needs to destabilize.
+
+**Formula:** [Resolution paragraph — the reader thinks it's over.] [Final 1-2 sentences that shatter the premise.]
+> *She locked the apartment and didn't look back. Three floors below, someone had been watching her window for two hours.*
+
+---
+
+#### 4. Ticking Clock
+A deadline that didn't exist in the opening paragraph appears in the final paragraph.
+
+**When:** Any chapter where the stakes need to escalate. Especially effective after quiet intimacy chapters — the contrast between the warmth of the scene and the sudden time pressure is the hook.
+
+**Formula:** [Closing action.] [New deadline, stated specifically — not vague.] [Character acknowledges she doesn't have enough time.]
+> *The deal was done. Her phone buzzed once. Forty-eight hours, the message said. She understood, for the first time, that she had miscounted.*
+
+---
+
+#### 5. Decision at the Threshold
+The character stands at the choice. The chapter ends before the decision is made.
+
+**When:** Any chapter whose arc is a character being pushed toward a decision. End at the maximum pressure point, not after.
+
+**Formula:** [Forces converge on the character.] [She knows what she has to do / what she's about to do.] [END before she does it — she does not move.]
+> *She had the evidence. She had the exit. She had, finally, after seven months, the window. She did not move.*
+
+---
+
+#### 6. His Last Line
+His dialogue or action is the chapter's final note. His words are still in the air when the chapter ends. The protagonist does not get to respond.
+
+**When:** Any chapter-ending exchange between the pairing. The reader is left holding his words, with no release.
+
+**Formula:** [Exchange builds.] [His final line — specific, charged, or ambiguous.] [Her response reduced to one physical detail only — no interior, no speech.]
+> *"I'll be here when you decide," he said. She heard the door close. She did not look.*
+
+---
+
+#### 7. Overheard / Discovered Truth
+The character learns something they weren't supposed to know. The chapter ends before they process it or act.
+
+**When:** Mystery reveals, accidental discoveries, eavesdropped conversations. The discovery is the beat; the response is the hook.
+
+**Formula:** [Discovery moment.] [The fact stated in one sentence, flat.] [Physical stillness — the body receiving what the mind hasn't processed yet.] END.
+> *The file was open on his desk. Her name was in it — not as a contact, not as a reference. As the target.*
+
+---
+
+#### 8. False Resolution + Detonation
+Appear to fully close the chapter's tension in the penultimate paragraph. Destroy it in the final two sentences.
+
+**When:** Late-arc chapters, chapters after a major emotional win. Let the reader exhale — then pull the floor.
+
+**Formula:** [Full resolution paragraph — sell it.] [Line break.] [Final 1-2 sentences that erase the resolution entirely.]
+> *She'd handled it. She told herself that on the walk home, in the elevator, standing at the bathroom mirror.*
+>
+> *Her phone rang with a number she hadn't seen in two years.*
+
+---
+
+#### 9. Body's Unfinished Business
+The physical tension between the pairing is at maximum. The chapter cuts on held breath, not on exhale.
+
+**When:** Any chapter ending in physical proximity between the pairing without resolution. The most effective hook for romance — the reader is physiologically pulled forward.
+
+**Formula:** [Maximum proximity established.] [One precise physical detail: his hand, her breath, the distance between them.] [Neither moves.] [One environmental detail that underlines the silence.] END.
+> *His hand was still at her jaw. She had not stepped back. Outside, the city was doing what cities do at 2 AM — making noise to cover everything that wasn't being said.*
+
+---
+
+#### 10. The Unanswered Question
+One sharp, specific question — not rhetorical — that the reader cannot answer without clicking Next.
+
+**When:** Chapters that end on character insight or partial revelation. The insight opens the question; the chapter ends with the question open.
+
+**Formula:** [Chapter beat resolves.] [The question emerges from the resolution — voiced or as internal monologue.] [No answer. The chapter ends on the question itself.]
+> *She got in the car. She put the key in the ignition. She sat there for a long time with one thought she couldn't dismiss: if he'd known all along, why had he said nothing?*
+
+---
+
+### Technique Selection by Chapter Position
+
+| Position | Recommended techniques | Avoid |
+|----------|----------------------|-------|
+| Ch 1–4 (early) | Mid-Motion Cut, Ticking Clock, Overheard Truth, Planted Bomb | False Resolution (reader not invested enough), Body's Unfinished Business (too early for physical tension) |
+| Ch 5–(N-3) (mid) | Withheld Reaction, Decision at Threshold, His Last Line, Body's Unfinished Business, Unanswered Question | Mid-Motion Cut (loses impact when overused) |
+| Last 3 chapters | False Resolution + Detonation, Planted Bomb, Decision at Threshold | Ticking Clock (too mechanical at the end), Unanswered Question if it's the final chapter |
+| Final chapter | Allowed to resolve — but the last paragraph must still earn the close | Any forbidden ending from the list above |
+
+---
+
+### Hook-Out Rewrite Protocol (if an existing chapter fails the gate)
+
+1. Read the chapter's final 3 paragraphs.
+2. Identify the chapter's primary emotional turn (what changed from opening to close).
+3. Ask: *what does the reader most want to know right now that this chapter hasn't answered?*
+4. Select the technique that withholds exactly that answer.
+5. Rewrite the final 1–3 paragraphs only. Do not touch the rest of the chapter.
+6. Verify: the new ending must end the chapter one beat before the reader expected it to end.
+
+---
+
 ## What to Read Before Each Chapter
 
 ```
@@ -441,6 +585,7 @@ Agents without this context will default to closed-door or will skip heat beats 
 - Hook-out: does it create forward pull? Reader must want the next chapter.
 - No consecutive paragraphs with identical rhythm or length.
 - No three consecutive sentences starting with the same subject.
+- **Hook-out gate:** does the final sentence / final paragraph use one of the 10 named techniques from §"Chapter Hook-Out Framework"? Any forbidden ending (summary, emotional generalization, going to sleep, "finally…resolved") is a mandatory rewrite — do not ship the chapter until this passes.
 - **One-paragraph test:** does the opening paragraph make the reader feel something in the first three sentences? If it only establishes setting or backstory, cut to the tension.
 - **Named emotion check:** does every scene with the central pairing have a specific named emotional state (from the Named Emotion table in §"Scene-Level Drama")? Generic emotions ("nervous", "angry", "interested") are a rewrite flag.
 - **Power dynamic check:** is it clear who is certain and who is conflicted? If both characters feel equally balanced, the scene has no subtext.
