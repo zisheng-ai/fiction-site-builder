@@ -157,6 +157,8 @@ If any book is missing a cover at launch time, run A2 immediately — do not pro
 | "Review prose" / `/story-review` | A3 only |
 | "Build the site" / full pipeline | 0 → Track A + Track B in parallel |
 
+**New-site book count:** When building a full pipeline for a brand-new site with no existing content, default to **8 books**. Run A0 for all 8 in parallel (one Agent call per book), then A1 for all 8 in parallel. Genre and topic are selected independently per book by random sampling from the high-demand genre pool — repetition across books is allowed and expected. Do not attempt to maximize genre variety across the site; just pick whatever has strong demand for each book independently.
+
 For review and redesign tasks, start at the relevant phase and load only the references covering the failing areas.
 
 ## Environment Prerequisites

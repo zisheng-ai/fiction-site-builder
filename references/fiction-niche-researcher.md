@@ -4,6 +4,8 @@
 
 Run this reference **once per book**, not once per site. A site can have multiple books, each with its own niche research.
 
+**Multi-book sites:** When generating multiple books for the same site, run this independently for each book. Selecting the same genre cluster as another book on the site is acceptable — genre repetition is allowed and expected. Optimize each book for demand independently; do not coordinate genres or try to maximize variety across the site.
+
 Load and run whenever:
 - Starting a new book (first book on a new site, or adding a book to an existing site)
 - `outputs/{site-slug}/{book-slug}/niche-research.json` does not exist
