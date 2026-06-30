@@ -383,6 +383,56 @@ Prose formatting rules:
 - No `……` or `——` in the prose product — rewrite as action, short sentence, or line break
 - No chapter summaries or author notes inline
 
+## Title Craft — Book & Chapter Titles
+
+Titles are clickable surface area. A reader sees the book title before the cover loads, and scans the chapter list before committing to read. Both must do work, not just label.
+
+### Book Titles
+
+The book title appears on the home grid, the book detail hero, browser tabs, and every share card. It is the single most-repeated piece of text for the book. It must promise a specific emotional experience — not describe the plot.
+
+**The bar:** a strong book title creates a question or a tension the reader wants resolved. "Convenient Husband" works because *convenient* and *husband* are in productive conflict. "The Garden" does not work as a book title — it describes a location, promises nothing.
+
+| Pattern | Mechanism | Examples |
+|---------|-----------|----------|
+| **Possessive + charged noun** | Ownership implies a power dynamic | *The CEO's Obsession*, *The Devil's Debt* |
+| **Oxymoron / productive conflict** | Two words that shouldn't sit together | *Convenient Husband*, *Borrowed Time*, *Cartel Prince* |
+| **Loaded object as metaphor** | A concrete object that carries the whole theme | *Mark of the Moon*, *Iron Veil*, *Blood and Velvet* |
+| **Stakes-in-two-words** | Names the irreversible thing | *Protocol Zero*, *Dead Frequency*, *The Last Crown* |
+| **Threat/promise verb phrase** | Implies action already in motion | *Alpha Claimed*, *Dragon in Debt* |
+
+**Banned book titles:**
+- Pure location or object with no charge: *The Garden*, *The House*, *The Library*
+- Character name alone (unless the name itself is iconic to the premise)
+- Generic genre words: *Desire*, *Passion*, *Forbidden*, *Temptation* — these signal "every romance" and rank for nothing
+- Abstract emotion nouns: *Longing*, *Yearning*, *Hope*
+
+**Test:** say the title aloud, then ask "a story about what?" If the answer is fully contained in the title with no tension left, the title is flat. The title should make someone *ask* the question, not answer it.
+
+### Chapter Titles
+
+Chapter titles appear in the book detail chapter list — the reader scans them to gauge momentum before committing. A list of flat nouns ("The Arrival", "Names", "The Garden") reads as low-energy and kills scroll-through. A list of charged titles makes the reader want to read just to find out what each one means.
+
+**Core rule:** a chapter title should be a small hook — it raises a question the chapter answers, or names a turn without giving it away. It must never spoil the chapter's turn.
+
+| Technique | What it does | Examples |
+|-----------|-------------|----------|
+| **The loaded fragment** | A phrase pulled from the chapter's most charged line | *The Real Reason*, *What Stays*, *Speaking for Herself* |
+| **The countdown / number** | A specific number that implies a clock or stakes | *Seven Days*, *Forty-Seven Steps*, *Twelve Marks* |
+| **The withheld noun** | Names a thing without explaining it | *The Hackney Claim*, *Pack Recognition*, *The List* |
+| **The quiet menace** | Innocuous words made ominous by the genre | *Documented*, *Something Permanent*, *Below Again* |
+| **The line of dialogue** | A short charged quote from the chapter | *"I Know About the Mark"*, *"You Knew"* |
+
+**Banned chapter titles:**
+- Bare setting labels: *The Garden*, *The Hall*, *The Arrival*, *Night* — a place is not a hook
+- Generic beats: *The Meeting*, *The Talk*, *The Decision* — names the function, not the tension
+- Single flat nouns with no charge: *Names*, *Morning*, *Home*
+- Titles that spoil the turn: if the chapter's twist is that he betrays her, do not title it *The Betrayal*
+
+**Pattern across the chapter list:** vary the techniques down the list — don't title every chapter with a number, or every chapter with a fragment. The list itself should have rhythm. Escalate menace as the arc climbs: early chapters can be quieter, late-arc titles should feel heavier.
+
+**Test:** read the full chapter list top to bottom as if it were a table of contents on the book detail page. Does it build? Does each title make you mildly curious? If three consecutive titles are flat nouns, rewrite them.
+
 ## Chapter Count Planning
 
 When writing a new book, decide the total chapter count before expanding the outline. Pick a number in the 10–20 range that fits the story's scope. **Never pick the same number as another book in the same site.** Treat the count as a story decision, not a quota:
