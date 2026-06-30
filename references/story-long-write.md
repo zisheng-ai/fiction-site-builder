@@ -19,6 +19,81 @@ Continuing an existing book (adding chapters): skip this gate.
 3. **Modular assembly**: Each chapter = hook + escalation + turn + hook-out. Each beat has a proven formula.
 4. **Load only what's needed**: Before writing, read only the files relevant to this chapter's conflict and characters. Never load the full book.
 
+## Scene-Level Drama — The Click Standard
+
+Every scene must pass the same test as the cover image: **tension + question + desire, all three present**. A scene with only desire is erotica. A scene with only tension is thriller. A scene with only question is mystery. Romance requires all three simultaneously.
+
+### The One-Paragraph Test
+
+Read the opening paragraph of every scene. Ask: *does the reader feel something in the first three sentences?* If the answer is only "I understand where we are" — the scene starts too early. Cut to the moment tension is already present.
+
+---
+
+### Named Emotion Requirement
+
+**Banned:** generic emotional states — "she felt nervous", "he was angry", "she was confused", "he seemed interested". These communicate the emotion's name, not the experience of it.
+
+**Required:** emotions with internal contradiction — the character feels one thing and does or says or wants something else. Name the specific state before writing the scene.
+
+| Named state | Internal contradiction | How it reads on the page |
+|-------------|----------------------|--------------------------|
+| **Barely-controlled want** | He desires; his body is fighting it | Jaw tight, deliberate distance, too-controlled voice, won't look at her directly |
+| **Surrender under protest** | She's giving in; her mind still argues | She moves closer while cataloguing every reason not to, stops herself, moves again |
+| **Defiance + desire** | She refuses to admit she wants this | Chin up, eye contact held too long, contempt in her voice that doesn't match her pulse |
+| **Raw vulnerability** | He's exposed; he hasn't decided if he'll survive it | Short sentences, no deflection, the absence of his usual armor |
+| **Cold possession** | He's certain; she hasn't been asked | Calm, unhurried, his attention on her like she's already decided |
+| **Overwhelmed surrender** | She stopped fighting; she knows it | Head back, stops explaining herself, asks for nothing, takes instead |
+| **Shocked recognition** | He understands something he can't undo | Goes still, the thing he was about to say dies before it leaves his mouth |
+
+Use the named state as the scene's emotional throughline. Every action, beat of dialogue, and internal observation should be filtered through it.
+
+---
+
+### Power Dynamic — Make It Visible
+
+The gap between characters is the subtext readers are buying. It must be legible without being stated.
+
+- **Who moves, who stays still** — movement is agency; stillness is reaction or restraint
+- **Who speaks, who goes quiet** — silence is not neutral; it means something specific in the scene
+- **Who is certain, who is conflicted** — asymmetric emotional states are magnetic; symmetry is flat
+- **Who is watching, who is being watched** — the one who looks has the power until the one being looked at notices
+
+**Prose formula:**
+- ❌ `He stood behind her.`
+- ✅ `He stood behind her. She felt him there before she heard him — the shift in the air, the particular quality of attention that made the back of her neck go warm. He didn't speak. He didn't have to.`
+
+Show the dynamic through the body's involuntary response, not through description of the other person.
+
+---
+
+### Environmental Drama — Setting Amplifies Emotion
+
+The setting is not backdrop. It is a second character that pushes the primary emotion forward. Before writing any scene, ask: *does this location make the stakes harder or easier?*
+
+| Emotional beat | Environment choice | What it adds |
+|---------------|-------------------|--------------|
+| Forbidden / dangerous | Enclosed space (elevator, car, his office after hours) | No exit; the proximity is inescapable |
+| Wealth / power gap | His space, her rules broken | She is on his territory; the power imbalance is architectural |
+| Aftermath / intimacy | Her familiar space, suddenly strange | The ordinary world is now contaminated with him |
+| Forced vulnerability | Public place, private crisis | She cannot hide and cannot leave |
+| Supernatural stakes | A boundary space (threshold, forest edge, between worlds) | The rules of the normal world do not apply here |
+
+If the setting could be swapped with any other location without changing the scene — change the setting.
+
+---
+
+### Contrast — The Scene's Composition
+
+High-contrast moments are read more slowly and remembered longer. Build at least two of these into any pivotal scene:
+
+- **His control / her chaos** (or reversed) — one character's composure against the other's fracture
+- **Public face / private reality** — what they show the room vs. what the reader knows
+- **What is said / what is meant** — dialogue that runs parallel to the subtext, not identical to it
+- **The ordinary detail / the extraordinary stakes** — mundane action (pouring a drink, adjusting a cuff) against the weight of what is actually happening
+- **Speed: slow body / fast mind** — physical movement slows to micro-beats while internal monologue accelerates
+
+---
+
 ## What to Read Before Each Chapter
 
 ```
@@ -313,6 +388,10 @@ Agents without this context will default to closed-door or will skip heat beats 
 - Hook-out: does it create forward pull? Reader must want the next chapter.
 - No consecutive paragraphs with identical rhythm or length.
 - No three consecutive sentences starting with the same subject.
+- **One-paragraph test:** does the opening paragraph make the reader feel something in the first three sentences? If it only establishes setting or backstory, cut to the tension.
+- **Named emotion check:** does every scene with the central pairing have a specific named emotional state (from the Named Emotion table in §"Scene-Level Drama")? Generic emotions ("nervous", "angry", "interested") are a rewrite flag.
+- **Power dynamic check:** is it clear who is certain and who is conflicted? If both characters feel equally balanced, the scene has no subtext.
+- **Setting check:** does the location amplify the emotional stakes, or could it be any room? If it's interchangeable, change it.
 - If AI flavor is detected, flag the chapter for the Phase 4 deslop pass — do not run `/story-deslop` inline here. Phase 4 (`references/story-deslop.md`) is loaded separately and runs after all chapters are written.
 
 ## Book Description & Tagline (Required — write before cover generation)
