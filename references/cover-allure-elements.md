@@ -1123,7 +1123,7 @@ Quick-reference: which scene types pair naturally with each genre.
 
 ## Poses
 
-Front-facing compositions outperform side-profile and back-view on scroll-stop rate. **Frontal = default. Side profile = accent only.**
+Front-facing compositions outperform side-profile and back-view on scroll-stop rate, but **same-site visual repetition kills diversity** — do not default to the same pose across all books. Rotate through the full table; no pose repeats for 2 consecutive books on the same site.
 
 ### Face Direction Rule — the most commonly broken rule
 
@@ -1327,9 +1327,17 @@ Everything not on this list is **in play**. Push it.
 
 ---
 
-### Poses — Ordered Highest to Lowest Intensity (all within §0 floor)
+### Poses — Full Table (all within §0 floor)
 
-Default to the **top three** — all frontal. From-behind poses (marked ▲) are dramatic accents, not defaults — use at most 1 in 3 covers. Always pair a pose with the Camera Framing instruction above.
+Pick the pose assigned in the Batch Diversity Plan (story-cover.md Step 1.6). In single-book mode, pick freely from the table — no pose is the fixed default. From-behind poses (marked ▲) cap at **2 per site**. Always pair with the Camera Framing instruction above.
+
+**Solo compositions** (no male required):
+
+| Pose | Prompt Formula |
+|------|---------------|
+| **Solo power pose** | `woman standing alone facing viewer, three-quarter angle, chin slightly raised, one hand at her hip or holding an object relevant to the story, expression of fierce authority or barely-contained emotion — full-body shot, environment behind her amplifying tone` |
+| **Solo atmospheric** | `woman seen from behind or three-quarter rear, facing into a dramatic environment — stormy sea, gothic cityscape, moonlit ruins — full figure visible, environment dominant, sense of scale and solitude` |
+| **Solo intimate** | `woman alone, seated or reclining, facing viewer with a quiet charged expression — morning light, disheveled hair, silk sheet or minimal garment — medium shot, emotional register over action` |
 
 | Pose | Prompt Formula |
 |------|---------------|

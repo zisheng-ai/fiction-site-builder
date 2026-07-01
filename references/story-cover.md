@@ -139,7 +139,55 @@ The genre determines composition template, color palette, character design, and 
 
 **For romance/drama genres: allure elements are MANDATORY, not optional.** Load `references/cover-allure-elements.md` and apply the highest-intensity pose from the appropriate genre section. The target is maximum implication within gpt-image-2-all policy — bodies pressed together, visible skin, explicit physical contact (grip, hold, almost-kiss). A cover where two people are simply standing near each other fails this gate.
 
-- **Romance / Drama genres:** use `references/cover-allure-elements.md` (Costume Elements, Poses, and English Romance Playbook). Pick the genre-specific prompt formula, select the highest-intensity pose that fits the book's synopsis, and follow the Escalation Strategy if the output looks tame.
+- **Romance / Drama genres:** use `references/cover-allure-elements.md` (Costume Elements, Poses, and English Romance Playbook). Pick the genre-specific prompt formula, select the pose assigned in Step 1.6, and follow the Escalation Strategy if the output looks tame.
+
+## Step 1.6 — Batch Diversity Plan (batch mode only)
+
+**Before generating any covers, assign each book a unique slot in a diversity grid.** Two covers on the same site must not share the same composition type AND pose. Log the plan before running the batch.
+
+### Composition types — assign one per book, rotate across the batch
+
+| Type | When to use | Character count |
+|------|-------------|-----------------|
+| **Solo** | Strong single-POV heroine; atmospheric/thriller; no prominent male lead in synopsis | 1 (female lead only) |
+| **Duo** | Standard romance/drama — male + female leads in scene | 2 |
+| **Trio** | Love triangle, rival over shoulder, court/pack dynamic with 3+ key figures | 3+ |
+| **Environmental** | Thriller, mystery, horror — figure(s) small against a dramatic landscape/setting | 1–2, environment dominant |
+
+- Across any batch of ≥3 books: at least **one Solo or Trio** cover must appear.
+- Do not assign the same type to more than 2 consecutive books.
+
+### Camera framing — rotate across the batch
+
+| Frame | Prompt fragment | Cap per site |
+|-------|----------------|-------------|
+| Full body (feet to crown) | `full-body shot, both figures visible head to toe` | No cap |
+| Medium (hip to crown) | `medium shot, from hip to crown` | No cap |
+| Close-up / intimate crop | `tight crop on faces and upper chest` | ≤2 per site |
+| Side-profile body + face forward | `pure side-profile body, face turned toward viewer` | ≤2 per site |
+
+- No more than 2 covers per site may use the same framing.
+
+### Pose — rotate through the full Poses table
+
+- Assign each book a pose from `cover-allure-elements.md` Poses table.
+- **No pose may repeat for 2 consecutive books** in the same batch.
+- From-behind poses (marked ▲) cap at **2 per site** (not "1 in 3" — the cap is a count, not a ratio).
+- Solo covers: pick any solo-friendly pose: Solo power pose, Solo atmospheric, Downcast gaze, Billowing skirt, Rain-soaked.
+
+### Color palette / environment — vary across the batch
+
+No two books on the same site should share the same dominant palette. Assign from:
+`warm amber candlelight` · `cold silver moonlight` · `neon rain street` · `golden morning light` · `dark dramatic penthouse` · `moody gothic stone` · `coastal golden-hour` · `stark high-contrast black-and-white accent`
+
+Log the diversity plan like this before generating:
+```
+Book 1 (alpha-claimed): Solo | full-body | Rain-soaked pose | neon rain street
+Book 2 (blood-and-velvet): Duo | medium | Frontal chest press | warm amber candlelight
+Book 3 (convenient-husband): Duo | close-up | Chin tilt almost-collision | golden morning light
+Book 4 (crimson-court): Trio | full-body | Standing confrontation | cold silver moonlight
+...
+```
 
 ## Step 2 — Build the prompt
 
@@ -155,24 +203,33 @@ Professional book cover, high detail digital painting, portrait [ratio] ratio,
 keep title and author name inside the central safe area (inner ~85%), no watermark
 ```
 
-**Character count rule — must follow before writing `[character description]`:**
+**Character count — use the composition type assigned in Step 1.6:**
 
-| Genre | Characters in prompt |
+| Composition type | Characters | Notes |
+|---|---|---|
+| **Solo** | 1 (female lead) | Powerful solo poses: dramatic expression, environment-forward, no male required. Valid for any genre when the heroine's arc stands alone. |
+| **Duo** | 2 (female + male) | Standard romance/drama. Describe both explicitly. |
+| **Trio** | 3+ | Love triangle, rival figure, pack/court arrayed behind the leads. Keep a clear focal pairing; extra figures amplify tension. |
+| **Environmental** | 1–2, small against scene | Figure(s) partially subsumed by the dramatic environment. Best for thriller/mystery/gothic. |
+
+**Genre defaults when Step 1.6 has not been run (single-book mode):**
+
+| Genre | Default count |
 |---|---|
-| Urban Drama / Contemporary Romance / Historical Court Drama | TWO OR MORE characters — describe EACH explicitly: position, expression, clothing. At minimum male AND female. Single-character prompts produce single-character covers for these genres. |
-| Dark Fantasy | TWO OR MORE characters — male in dark armored robes, female in dark dress with crown; side-by-side or pressed together. A third figure (rival, dark king, betrayer) is welcome where it sharpens the conflict. |
-| Thriller / Horror | TWO OR MORE figures — protector + protected, or supernatural presence + ordinary person. May be partial silhouette. |
-| Cultivation Fantasy / Sci-Fi / Historical War Epic | Single protagonist (Lone Hero template), but a confronting rival/antagonist may be added for stakes. |
-| Isekai / Slice of Life | Single protagonist, duo, or small group — match the book's genre composition. |
+| Urban Drama / Contemporary Romance / Historical Court Drama | Duo (2), or Trio when synopsis has a rival/triangle |
+| Dark Fantasy / Paranormal | Duo or Trio — a third figure (antagonist, rival) is welcome |
+| Thriller / Horror | Solo or Environmental — protector + protected optional |
+| Cultivation Fantasy / Sci-Fi / War Epic | Solo protagonist; rival/antagonist may be added |
+| Isekai / Slice of Life | Solo, Duo, or small group — match the synopsis |
 
-**Multi-character rule:** two is the floor for romance/drama, not the ceiling. When the synopsis supports it — a love triangle, rival suitors, a betrayer, a pack/court arrayed behind the leads — render three or more figures. A third figure that introduces tension (a jealous third party, a looming antagonist, a rival pressing in) reads as more dramatic conflict than a clean two-person embrace and is encouraged. Keep one clear focal pairing so the composition still has a center; arrange extra figures to amplify the central power dynamic, not to crowd it out.
+**A third figure adds more tension than a clean two-person embrace** when the synopsis offers it. Keep one clear focal pairing; place the third figure to threaten or intrude (watching from behind, reaching between them, turned away in betrayal).
 
 **Female figure rule — MANDATORY:** the female character must be visually magnetic — impossible to scroll past. **Exposure = randomly T2 (Bold) or T3 (Maximum), picked independently per cover** — for each cover, roll T2 or T3 and bake that tier's assembly block from the Exposure Tiers table (`references/cover-allure-elements.md`) directly into the prompt; do not rely on the model rolling a lucky exposed result. Across a batch of books, this produces a mix of T2 and T3 covers (do not make every cover the same tier). Required elements, every time:
 - Figure: `voluptuous hourglass figure, slim toned waist dramatically cinched, large full bust dramatically prominent, E-cup figure, long shapely legs` — curves are dramatic but the figure is NOT heavy or overweight; the waist must read as narrow against the hips and bust; bust baseline is E cup or larger — "full generous" alone undershoots, use explicit size language. (At T3, drop explicit `E-cup` per the doubao T3-safe rule — use visual-effect phrasing only; see `cover-allure-elements.md`.)
 - Clothing: maximally revealing for the assigned tier — T2 = two simultaneous revealing elements (deep neckline + bare back/midriff/high slit); T3 = garment failing in multiple places (torn, slipped, soaked, sheer). See `references/cover-allure-elements.md` Skin & Clothing Vocabulary
 - Skin: as much bare skin as the assigned tier allows within the §0 floor — T2 = cleavage + one secondary zone; T3 = three or more zones (bare back, legs, midriff, shoulders, extreme neckline)
-- Pose: use top-three **frontal** poses from `references/cover-allure-elements.md` Poses table; bodies must be in physical contact; from-behind poses (marked ▲) are accents, not defaults — at most 1 in 3 covers
-- Framing: state the camera frame explicitly in every prompt — "full-body shot, both figures from feet to crown" or "medium shot from hip to crown". Never allow the model to default to a face-only crop.
+- Pose: use the pose assigned in Step 1.6 (batch) or pick freely from the full Poses table in `references/cover-allure-elements.md` (single-book). No pose is a fixed default — rotate through the table. From-behind poses (marked ▲) cap at 2 per site.
+- Framing: use the camera frame assigned in Step 1.6 (batch) or pick per-book (single-book). State it explicitly in every prompt. Never allow the model to default to a face-only crop.
 
 A modest, fully-clothed, non-contact, or head-shot-only composition is a quality gate failure. Exposure is stochastic — a tame roll is RNG, not the spec; the fix is baking in higher-tier fragments, never accepting the weak roll. Hard floor: no nipples, no genitals, no sex acts (§0 in `cover-allure-elements.md`). Everything above that floor: push it.
 
@@ -249,8 +306,11 @@ else MODEL_USED=""; echo "ALL_MODELS_FAILED — skipping book"
 fi
 echo "MODEL_USED=$MODEL_USED"
 
-# Save prompt alongside cover
-printf '%s' "$PROMPT" > "$BOOK_DIR/cover_v1.prompt.txt"
+# Save metadata JSON alongside cover
+printf '{"model":"%s","size":"%s","prompt":%s}\n' \
+  "$MODEL_USED" "$SIZE" \
+  "$(printf '%s' "$PROMPT" | python3 -c 'import json,sys; print(json.dumps(sys.stdin.read().strip()))')" \
+  > "${BOOK_DIR}.json"
 ```
 
 **Post-process by model used:**
@@ -348,10 +408,25 @@ done
 ## Output Location
 
 ```
-public/covers/{book-title}/cover_v1.png        ← main cover, served as /covers/{book-title}/cover_v1.png
-public/covers/{book-title}/cover_v1.prompt.txt ← prompt used
+public/covers/{book-slug}.png   ← cover image, served as /covers/{book-slug}.png
+public/covers/{book-slug}.json  ← metadata: model, size, prompt (all in one file)
 ```
 
-Served from `public/` — no CDN needed. The site builder reads `Book.cover` as `/covers/{book-title}/cover_v1.png`.
+JSON format:
+```json
+{ "model": "gpt-image-2-all", "size": "848x1280", "prompt": "..." }
+```
+
+Served from `public/` — no CDN needed. The site builder reads `Book.cover` as `/covers/{book-slug}.png`.
+
+After generation, write the JSON alongside the image:
+```bash
+printf '{"model":"%s","size":"%s","prompt":%s}' \
+  "$MODEL_USED" "$SIZE" \
+  "$(printf '%s' "$PROMPT" | python3 -c 'import json,sys; print(json.dumps(sys.stdin.read().strip()))')" \
+  > "$BOOK_DIR/${BOOK_SLUG}.json"
+```
+
+Note: the old `cover_v1.prompt.txt` file is no longer used — prompt is stored in the JSON.
 
 Site logo and favicon are **not** part of this phase. They are generated in Phase 6 (Design plan) via `references/design-system.md`.
