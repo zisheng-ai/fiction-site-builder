@@ -315,7 +315,11 @@ printf '{"model":"%s","size":"%s","prompt":%s}\n' \
 
 **Post-process by model used:**
 - `doubao-seedream-5-0-260128` → crop the bottom-right `AI生成` watermark. Trim a corner strip (the tag sits in the bottom ~6% / right ~22%); easiest is `sips`/ImageMagick to crop ~7% off the bottom, then the author-name band still clears it. Verify the watermark is gone before shipping.
-- `nano-banana-pro` → output is square 1024×1024; reframe to 2:3 by center-cropping width or padding top/bottom with the gradient, keeping title + author inside the safe area. Note: nano silently downgrades T3+ to ~T1 allure.
+- `nano-banana-pro` → output is square 1024×1024; center-crop width to get 2:3 (683×1024):
+  ```bash
+  sips -c 1024 683 "$OUTPUT"   # crops to 683×1024 (2:3), centered
+  ```
+  Note: nano silently downgrades T3+ to ~T1 allure.
 - `gpt-image-2-all` → no post-process needed.
 
 **If the whole cascade fails on content safety** (`API_ERROR` containing `invalid_prompt` / `safety` / `rejected` from the primary, and the fallbacks also reject): replace triggering terms in `$PROMPT` and re-run the cascade once:
