@@ -96,7 +96,7 @@ Map the CLAUDE.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via
 
 | Position | Viewability | Notes |
 |---|---|---|
-| Just below header (top of content) | 85–95% | one premium above-the-fold unit; **load immediately, never lazy-load this one** |
+| Just below header (top of content) | 85–95% | one premium above-the-fold unit; **load immediately, never lazy-load this one**. Keep it actually visible on first mobile screen — large hero images or chapter covers can push it below the fold. |
 | In-content, after first screen / every N paragraphs | 75–90% | the workhorse — inside the natural reading path |
 | End-of-chapter (above the sticky Next bar) | high | catches the "decide to continue" pause; keep clear gap from Next button (§1.4) |
 | Mobile sticky **anchor** (bottom) | very high | one anchor; reliably viewable & refreshable |
@@ -107,6 +107,11 @@ Map the CLAUDE.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via
 - **≤ 3–4 ad units per 1,000 words** of chapter content.
 - **Ad pixels < 30% of content pixels** per screen (FB + AdSense inventory-value).
 - RPM typically peaks around 5 units; beyond that each added unit adds ~2–4% and erodes engagement + page-experience. Cutting the weakest slot often **raises** total RPM.
+- **Recommended dynamic layout** (measure chapter word count before rendering ads):
+  - < 1,000 words: q1 (top) + q5 (bottom) only
+  - 1,000–2,000 words: q1 + q2 + q5
+  - > 2,000 words: q1 + q2 + q3 + q5
+  - Avoid a fourth mid-content unit; it sits too close to q5 and adds clutter without meaningful RPM lift.
 
 ### 3.3 CLS protection (Core Web Vitals = cheaper FB traffic + SEO)
 
@@ -398,14 +403,54 @@ export default function AdSlot({ path, id, sizes, strategy = 'lazy', className =
 }
 ```
 
-Placement mapping:
+Placement mapping (use chapter word count to decide how many mid-content slots to render):
 
 ```tsx
-// chapter page
+// chapter page — split content based on word count first
+function wordCount(text: string): number {
+  return text.split(/\s+/).filter(Boolean).length
+}
+
+function splitContent(content: string): string[] {
+  const paras = content.split(/\n{2,}/).filter(p => p.trim())
+  const words = wordCount(content)
+  if (words < 1000) return [content]
+  if (words < 2000) {
+    const mid = Math.floor(paras.length / 2)
+    return [
+      paras.slice(0, mid).join('\n\n'),
+      paras.slice(mid).join('\n\n'),
+    ].filter(Boolean)
+  }
+  const q = Math.floor(paras.length / 3)
+  return [
+    paras.slice(0, q).join('\n\n'),
+    paras.slice(q, q * 2).join('\n\n'),
+    paras.slice(q * 2).join('\n\n'),
+  ].filter(Boolean)
+}
+
+// render
 <AdSlot path="/23294357175/q1" id="div-gpt-ad-1782711338284-0" sizes={[[250,250],[300,250],[336,280]]} strategy="immediate" />
-<AdSlot path="/23294357175/q2" id="div-gpt-ad-1782711428179-0" sizes={[[250,250],[336,280],[300,250]]} strategy="near" />
-<AdSlot path="/23294357175/q3" id="div-gpt-ad-1782711490041-0" sizes={[[250,250],[336,280],[300,250]]} strategy="near" />
-<AdSlot path="/23294357175/q4" id="div-gpt-ad-1782711562651-0" sizes={[[336,280],[250,250],[300,250]]} strategy="near" />
+
+{contentParts.length === 1 ? (
+  <div className="prose-reader">{/* full chapter */}</div>
+) : contentParts.length === 2 ? (
+  <>
+    <div className="prose-reader">{contentParts[0]}</div>
+    <AdSlot path="/23294357175/q2" id="div-gpt-ad-1782711428179-0" sizes={[[250,250],[336,280],[300,250]]} strategy="near" />
+    <div className="prose-reader">{contentParts[1]}</div>
+  </>
+) : (
+  <>
+    <div className="prose-reader">{contentParts[0]}</div>
+    <AdSlot path="/23294357175/q2" id="div-gpt-ad-1782711428179-0" sizes={[[250,250],[336,280],[300,250]]} strategy="near" />
+    <div className="prose-reader">{contentParts[1]}</div>
+    <AdSlot path="/23294357175/q3" id="div-gpt-ad-1782711490041-0" sizes={[[250,250],[336,280],[300,250]]} strategy="near" />
+    <div className="prose-reader">{contentParts[2]}</div>
+  </>
+)}
+
 <AdSlot path="/23294357175/q5" id="div-gpt-ad-1782711618925-0" sizes={['fluid']} strategy="lazy" />
 ```
 
