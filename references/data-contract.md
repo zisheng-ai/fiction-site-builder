@@ -38,10 +38,8 @@ my-novel-site/
 │       └── {title}/
 │           └── prose.md
 ├── public/
-│   └── covers/                   ← cover images, served as static assets
-│       └── {book-title}/
-│           └── cover/
-│               └── cover_v1.png
+│   └── covers/                   ← cover images, flat structure: one file per book
+│       └── {book-slug}.png       ← served as /covers/{slug}.png
 ├── content-collections.ts        ← collection definitions
 ├── src/
 │   ├── app/
@@ -161,23 +159,26 @@ export default async function ChapterPage({ params }: { params: Promise<{ slug: 
 ```ts
 type Language = "en" | "es" | "ja" | "ko" | "zh";
 
+type HeroStyle = "cinematic" | "gradient" | "atmospheric";
+// cinematic: full-bleed cover image hero with text overlay
+// gradient: centered cover card with color gradient backdrop (heroColor sets the tint)
+// atmospheric: blurred cover background with sharp cover card on top
+
+type BookStatus = "ongoing" | "completed";
+
 type Book = {
-  id: string;
   slug: string;
   title: string;
-  author?: string;
-  language: Language;
-  description: string;      // back-cover copy, 4-6 sentences — follow drama hook formula in story-long-write.md §"Book Description & Tagline"
-  tagline?: string;         // 1-3 sentence hook — see tagline patterns in story-long-write.md
-  cover?: string;          // URL or relative path to cover image
+  author: string;
+  tagline: string;           // 1-3 sentence hook — see tagline patterns in story-long-write.md
+  description: string;       // back-cover copy, 4-6 sentences — follow drama hook formula in story-long-write.md §"Book Description & Tagline"
   genres: string[];
-  status: "ongoing" | "completed" | "hiatus";
-  wordCount?: number;
-  chapterCount?: number;
-  latestChapterId?: string;
-  updatedAt?: string;      // ISO 8601
-  sourceType?: "fiction-long" | "fiction-short" | "cms";
-  sourcePath?: string;     // relative path to the book's source directory
+  cover: string;             // /covers/{slug}.png — always flat path, always required at launch
+  status: BookStatus;
+  chapterCount: number;      // MUST equal the actual number of .md files in content/{slug}/chapters/
+  heroStyle: HeroStyle;
+  heroColor?: string;        // CSS color string, only used when heroStyle === "gradient"
+  featured?: boolean;        // optional: pin to top of home page grid
 };
 
 type Volume = {
@@ -247,7 +248,7 @@ short/{title}/prose.md        →  Book (one chapter, status: "completed")
 outline/outline.md            →  internal only; not shown to readers
 world/characters/*.md         →  internal only; optional public character page if user requests
 tracking/*.md                 →  internal only
-cover output                  →  Book.cover  (saved to public/covers/<book-title>/cover_v1.png, served as /covers/<book-title>/cover_v1.png)
+cover output                  →  Book.cover  (saved to public/covers/{slug}.png, served as /covers/{slug}.png — flat, not nested)
 ```
 
 ## Chapter Frontmatter Schema

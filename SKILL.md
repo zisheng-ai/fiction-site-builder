@@ -307,6 +307,7 @@ Do not deliver a build if any of these are true.
 - Any required page (home, book detail, reader) is missing.
 - Initial JS bundle exceeds 200KB for a prototype.
 - Cover images are not optimized (`next/image` or equivalent).
+- `chapterCount` in `books.ts` does not equal the actual number of `.md` files in `content/{slug}/chapters/`. Always derive the count from the filesystem at build time or keep in sync manually — a stale value breaks chapter progress indicators and reader UX.
 
 **Monetization & ad-policy (paid-traffic arbitrage — see `references/adsense-arbitrage.md`):**
 - Any cover, hero image, or imagery is outright explicit / pornographic — exposed genitals or nipples, sex acts, graphic nudity (suggestive/擦边 allure is fine; only hardcore content gets the ad account banned and AdSense disabled).
@@ -394,7 +395,7 @@ Load references only when entering that phase. Do not preload all references at 
     ThemeToggle.tsx             # DaisyUI data-theme switcher
     IllustrationBlock.tsx       # inline chapter illustration (A2.5, optional)
   public/
-    covers/                     # cover images (A2)
+    covers/                     # cover images (A2) — flat: {slug}.png per book
     illustrations/              # in-chapter illustrations (A2.5, optional)
       {book-slug}/
         ch-{NNN}.png            # 0–5 per book, at peak dramatic moments
@@ -402,7 +403,7 @@ Load references only when entering that phase. Do not preload all references at 
     favicon-32x32.png           # favicon — PNG via apiyi (B2); no SVG fallback
 ```
 
-Cover images (`public/covers/{book-title}/cover/cover_v1.png`) are generated in A2 via the apiyi cascade (gpt → doubao → nano), all books in parallel. Logo and favicon follow the same pattern in B2 — PNG via apiyi (gpt → nano), generated in parallel. **No SVG fallback** anywhere: if `APIYI_API_KEY` is unset or the cascade fails, the asset is skipped (warning + continue) and flagged for a later pass. During development only, CSS placeholders are acceptable — never ship a launch without real assets.
+Cover images (`public/covers/{slug}.png` — flat, one file per book) are generated in A2 via the apiyi cascade (gpt → doubao → nano), all books in parallel. Logo and favicon follow the same pattern in B2 — PNG via apiyi (gpt → nano), generated in parallel. **No SVG fallback** anywhere: if `APIYI_API_KEY` is unset or the cascade fails, the asset is skipped (warning + continue) and flagged for a later pass. During development only, CSS placeholders are acceptable — never ship a launch without real assets.
 
 For a review or redesign task, the output is a findings report and patch set, not a full scaffold.
 
