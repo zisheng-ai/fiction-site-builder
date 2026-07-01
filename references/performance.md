@@ -314,3 +314,30 @@ import { Analytics } from '@vercel/analytics/react'
 ```
 
 Both components inject a minimal script that runs after the page is interactive — they do not block first paint or affect LCP.
+
+---
+
+## Pitfall: Internal npm Registry in pnpm Lockfile
+
+If the development machine has a corporate or internal npm registry set as the global pnpm registry (e.g. Alibaba's `registry.npm.alibaba-inc.com`), pnpm bakes the registry's tarball URLs into `pnpm-lock.yaml`. Vercel's CI cannot reach an internal network and the build fails with `ERR_SOCKET_TIMEOUT` when fetching packages.
+
+**Symptom**: Vercel build log shows errors like:
+```
+WARN GET https://registry.anpm.alibaba-inc.com/@vercel/analytics/-/analytics-x.x.x.tgz
+ERR_SOCKET_TIMEOUT ... Socket timeout
+Error: Command "pnpm install" exited with 1
+```
+
+**Fix**: add a project-level `.npmrc` at the site root to override the global registry, then regenerate the lockfile:
+
+```ini
+# .npmrc
+registry=https://registry.npmjs.org
+```
+
+```bash
+rm pnpm-lock.yaml
+pnpm install --registry https://registry.npmjs.org
+```
+
+The `--registry` flag is required because pnpm's own global config (`pnpm config set registry`) takes precedence over `.npmrc`; passing it on the CLI overrides everything. Commit both `.npmrc` and the regenerated `pnpm-lock.yaml`. The lockfile should contain only `integrity` hashes, not `tarball` URLs pointing to the internal host.
