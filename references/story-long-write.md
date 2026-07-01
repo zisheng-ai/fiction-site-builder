@@ -46,6 +46,11 @@ Read the opening paragraph of every scene. Ask: *does the reader feel something 
 | **Cold possession** | He's certain; she hasn't been asked | Calm, unhurried, his attention on her like she's already decided |
 | **Overwhelmed surrender** | She stopped fighting; she knows it | Head back, stops explaining herself, asks for nothing, takes instead |
 | **Shocked recognition** | He understands something he can't undo | Goes still, the thing he was about to say dies before it leaves his mouth |
+| **Creeping wrongness** | Something is off; she cannot name it yet | Mundane actions slow to half-speed; she catalogues details without knowing why; the reader sees the accumulation before she does |
+| **Investigative hunger** | She needs to know; the compulsion has overridden caution | Pushes where she shouldn't; the scene's obstacle is her own relentlessness; she asks one question too many |
+| **Cold certainty** | She knows the answer; she is the only one in the room who cannot say it aloud | Every word measured; acts normally in front of the wrong person; the effort of the performance is what the reader feels |
+| **Witnessed guilt** | She has seen something she wasn't meant to see | Hyper-awareness of being observed; the performance of not-knowing; internal monologue running beneath a composed face |
+| **Calculated exposure** | She lets herself be seen — deliberately — to watch how someone reacts | The self-revelation is a trap; the reader knows; the target doesn't |
 
 Use the named state as the scene's emotional throughline. Every action, beat of dialogue, and internal observation should be filtered through it.
 
@@ -79,6 +84,9 @@ The setting is not backdrop. It is a second character that pushes the primary em
 | Aftermath / intimacy | Her familiar space, suddenly strange | The ordinary world is now contaminated with him |
 | Forced vulnerability | Public place, private crisis | She cannot hide and cannot leave |
 | Supernatural stakes | A boundary space (threshold, forest edge, between worlds) | The rules of the normal world do not apply here |
+| Hidden truth in plain sight | A domestic space with something wrong | The familiar is where betrayal lands hardest; the tea table and the poison occupy the same frame |
+| Isolation + limited suspect pool | Remote or enclosed location (fog-bound manor, snowbound estate, island) | No exit; the danger is among the finite number of people in the room; every character's absence is a clue |
+| Gothic weight of history | A space with a sealed past (old house, locked room, ruined chapel) | The setting knows the answer; the protagonist's job is to make it speak; resist the urge to describe — let the space act |
 
 If the setting could be swapped with any other location without changing the scene — change the setting.
 
@@ -712,6 +720,68 @@ Agents without this context will default to closed-door or will skip heat beats 
 
 ---
 
+## Mystery Dread Register
+
+Apply this section when the genre is Mystery, Cosy Mystery, Gothic, Literary Thriller, or any non-romance genre where atmosphere and suspense — rather than romantic tension — are the primary escalation axis.
+
+The dread register is the mystery genre's structural parallel to romance heat: it is the accumulation of wrongness across chapters that the reader tracks, consciously or not, until the climax delivers. Manage it with the same deliberateness as a romance heat arc.
+
+### Target Dread Level
+
+| Level | Definition | When to use |
+|-------|-----------|-------------|
+| **Subtle unease** | One wrong detail per scene; easily explained away; protagonist dismisses it | Opening chapters (Ch 1–4); establish the ordinary world, then begin contaminating it |
+| **Mounting wrongness** | Multiple unexplained details that don't connect yet; protagonist notices but cannot theorize | Mid-book (Ch 5–N-4); the accumulation is the tension |
+| **Confirmed threat** | The protagonist knows something is wrong and names it; the reader is ahead of the other characters | Late arc (N-3 onward); now the tension is "when will she act" not "is something wrong" |
+| **Climax dread** | The full picture is visible; the protagonist faces it directly | Final 1–2 chapters; dread resolves into confrontation or revelation |
+
+---
+
+### The 4 Dread Techniques
+
+**1. Delay the explanation**
+A wrong detail should arrive in the scene *before* the scene provides a reason for it. The protagonist notices — and then something else happens that distracts her. The detail sits unresolved in the reader's memory. Never explain a dread detail in the same paragraph it appears.
+
+**2. The unreliable ordinary**
+Dread lands hardest on familiar objects and routines. A clock that stopped. A chair that is always warm. A portrait whose expression she can't quite remember. The uncanny ordinary is more disturbing than anything overtly supernatural, because the reader cannot dismiss it.
+
+**3. Atmospheric echo**
+Setting should reflect and amplify the protagonist's emotional state — but always one beat ahead of where she is. The weather turns before she feels afraid. The room feels smaller before she understands why. Environment predicts; the protagonist catches up.
+
+**4. The witness burden**
+When the protagonist has seen something she was not meant to see, write the burden of that knowledge as a physical weight: how she speaks differently, how she positions herself in rooms, what she notices that she did not notice before. The reader must feel the effort of her composure.
+
+---
+
+### Dread Pacing Across a Full Novel
+
+| Chapter range | Expected dread beat |
+|--------------|---------------------|
+| Ch 1–3 | The ordinary world, intact. One wrong detail in the final scene — small, unexplained. |
+| Ch 4–7 | Two or three more wrong details. No pattern visible yet. One red herring introduced. |
+| Ch 8–(N-4) | The impossible clue appears. Her current theory cannot accommodate it. She files it without understanding it. |
+| Ch (N-3)–(N-2) | The pattern becomes visible. She names what is wrong. Confirmed threat level. |
+| Final 2 chapters | Confrontation, revelation, or both. The accumulated dread discharges in one climax scene. |
+
+In a 14-chapter mystery, the "impossible clue" should appear no later than chapter 9. Readers who reach chapter 12 without a clue that breaks their theory begin to feel the book has no puzzle — only narrative.
+
+---
+
+### Applying to Parallel Writing (Mystery)
+
+When spawning agents for parallel chapter writing in a mystery book, pass each agent its dread arc position:
+
+```
+Dread arc position: Ch-{N} of {total}
+Expected dread beat this chapter: {ordinary world / first wrong detail / accumulation / impossible clue / confirmed threat / climax confrontation}
+Planted clues so far (from tracking/threads.md): {list of clue slugs and where planted}
+Current wrong theory (from tracking/context.md): {what the protagonist currently believes}
+```
+
+Agents without this context will default to neutral narration and will not plant or recall clues. Always provide it.
+
+---
+
 ## Quality Check Before Saving
 
 - Hook: does it drop into motion? No weather, backstory, or setup.
@@ -799,6 +869,17 @@ Use these instead of the standard 6-sentence table when the genre has a dedicate
 | **4 — The intimacy engine** | What they cannot communicate with words and what they have begun to communicate through proximity, repeated action, and shared gesture. |
 | **5 — The withheld variable** | The thing about him she does not yet understand, or the thing about herself he recognized before she did. |
 | **Closing beat** | The double question: what does unconditional devotion cost when the one offering it is not human, and what does it cost her to accept it? |
+
+#### Formula J — Mystery / Whodunit Synopsis
+
+| Sentence | Job |
+|----------|-----|
+| **1 — The discovery** | The crime or wrong that opens the story — stated in physical, specific terms: who found what, where, in what condition. Not "a murder occurred" but the precise detail of how she came upon it. |
+| **2 — Her position** | Why she is the one investigating — her relationship to the crime, why official channels have failed or excluded her, what access or knowledge she has that professional investigators lack. |
+| **3 — The suspects** | The limited pool of people who could have done it — named by relationship, not by name. Each carries a visible motive. Do not reveal the killer; do not exclude the killer. |
+| **4 — The wrong theory** | The explanation the room accepts and why she initially accepts it or resists it. Name the misdirection — the reader should be able to see the trap without yet knowing it is one. |
+| **5 — The impossible clue** | The one piece of evidence that cannot fit the obvious explanation. Named but not explained — this is what the reader must click to understand. |
+| **Closing beat** | The stakes if she fails — specific, personal, mortal or social. Not "justice" in the abstract; the named person or thing endangered by the wrong answer. |
 
 ---
 
