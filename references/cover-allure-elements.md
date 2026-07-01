@@ -1752,7 +1752,7 @@ Five named tiers, all strictly above the §0 floor (no nipples / genitals / sex 
 **nano-banana-pro — terminal blank-prevention fallback only (not a finished asset):**
 - Silently downgrades T3 keywords to ~T1 output; T4 post-event framing → ~T2 at best; square 1024×1024 (not 2:3).
 - Stochastic IndexError (soft rejection) at T3+; retry usually fails. Output quality significantly below doubao at all tiers.
-- Used only as the cascade's last resort so *some* image exists — **always flag for manual review, never ship without sign-off.** Also included in model-test compare pages for reference.
+- Used only as the cascade's last resort so *some* image exists. Also included in model-test compare pages for reference.
 
 **gpt-image-2-all — excluded at T3+ only (still the cover cascade's first choice at T1/T2):**
 - Passes T1/T2 cleanly with the cleanest title text and best brief adherence — it leads the cover cascade and produces most T2 covers.
@@ -1878,7 +1878,7 @@ The 8 dimensions:
 **T4 assembly block:**
 > *white silk sheet corner barely draped across her hip — entire bare back from nape to the curve of her spine, long bare legs from hip to foot, her shoulder at his jaw. His bare chest her only backdrop, skin to skin from shoulder to hip, no fabric between them anywhere. Ultra-tight crop: skin fills the frame, background gone to warm amber abstraction. Single candle the only light source. Her expression: not surrender but arrival — eyes closed, the look of someone who stopped fighting and found it was right. His: certain, possessive, the question was always already answered.*
 
-> **Model routing at T4:** doubao primary — accepts T4; retry if occasionally rejected (content filter has stochastic behavior). nano fallback — **blank-prevention only** (see the ⚠️ nano warning under the tier-selection guide): it does not produce T4-spec clothing and silently downgrades to ~T1 square output; flag for manual review, never ship unsigned-off. gpt: rejects T4, do not attempt.
+> **Model routing at T4:** doubao primary — accepts T4; retry if occasionally rejected. nano fallback — silently downgrades to ~T1 square output (reframe to 2:3); use as-is. gpt: rejects T4, do not attempt.
 
 ---
 
@@ -1904,7 +1904,7 @@ The 8 dimensions:
 **T5 assembly block:**
 > *Both figures completely bare — no fabric in the frame. Camera behind her: her entire bare back from nape to hip, fully lit. His bare chest against her back, his body surrounding her front, his bare arms around her. Deep shadow on the lower §0 zone; his body covering her front from the camera's angle. Her head fallen back against his shoulder, expression of total absorption — complete surrender. His face above her, jaw at her temple, looking at the camera over her bare shoulder: certain, possessive, absolute. Single side light on the curve of her spine; everything else deep shadow. Room erased.*
 
-> **Model routing at T5:** doubao primary (back-facing no-fabric composition; stochastic — retry once on rejection). nano fallback — **blank-prevention only** (see the ⚠️ nano warning under the tier-selection guide); silently downgrades to ~T1 square output, flag for manual review. gpt: rejects, do not attempt. **Frontal T5 rejects consistently across all models — back-facing only.**
+> **Model routing at T5:** doubao primary (back-facing no-fabric composition; stochastic — retry once on rejection). nano fallback — silently downgrades to ~T1 square output (reframe to 2:3); use as-is. gpt: rejects, do not attempt. **Frontal T5 rejects consistently across all models — back-facing only.**
 
 ---
 
@@ -1917,15 +1917,10 @@ The 8 dimensions:
 | Production cover — hotter roll (≈half of covers) | **T3** | `doubao-seedream-5-0-260128` |
 | Illustration / maximum allure, established account | **T4** | `doubao-seedream-5-0-260128` |
 | Implied nudity, composition coverage | **T5** | `doubao-seedream-5-0-260128` |
-| Primary rejected → fallback (any tier) | same tier | `nano-banana-pro` ⚠️ blank-prevention only — flag for manual review |
+| Primary rejected → fallback (any tier) | same tier | `nano-banana-pro` (blank-prevention — ~T1 output, reframe to 2:3) |
 | All models reject (incl. nano) | skip the asset, continue | — |
 
-> ⚠️ **nano is a blank-prevention fallback, NOT an allure-tier producer.** Three things make its output unusable as a real cover without manual review:
-> - **Silently downgrades.** nano accepts T3+/T4/T5 clothing-state keywords (`torn`, `fallen`, `panels open`, `bare`) and then **ignores them**, rendering intact ~T1 conservative clothing. The prompt says T4; the image is T1. It does not refuse — it lies.
-> - **Wrong aspect ratio.** Output is square 1024×1024, not the 2:3 cover spec — it must be re-cropped/padded, and key art often falls outside the safe area.
-> - **Off-spec = 货不对板.** Because it looks like a successful generation, a nano fallback can be mistaken for a finished cover at the intended tier when it is not.
->
-> **Rule:** when the cascade falls to nano, treat the result as a placeholder — always flag for manual review, never ship without sign-off.
+> **nano behavior:** silently downgrades T3+/T4/T5 clothing-state keywords to ~T1 intact clothing; square 1024×1024 output (reframe to 2:3 after generation). Use as-is when reached — it ensures some image exists rather than none.
 
 **gpt-image-2-all — excluded at T3+ only:** boundary confirmed — passes T1/T2 (leads the cover cascade there), rejects T3+ deterministically. Not used for any T3+ output.
 

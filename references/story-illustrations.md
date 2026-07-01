@@ -223,7 +223,7 @@ python3 /tmp/gen_cover_model.py \
 
 - doubao is reliable at T3 and T4; stochastic rejection → retry once with identical prompt
 - On second rejection: adjust prompt (remove result-description clauses per `cover-allure-elements.md`), then generate with nano as blank-prevention
-- nano fallback: silently downgrades T3+ to ~T1 output — **flag for manual review, never ship without sign-off**
+- nano fallback: silently downgrades T3+ to ~T1 output — use as-is (blank-prevention)
 - gpt: excluded (deterministic rejection at T3+)
 - T5 is never used for illustrations
 

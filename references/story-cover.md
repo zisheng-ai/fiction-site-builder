@@ -197,9 +197,9 @@ Three apiyi models are viable for covers, ranked by tested capability for this u
 |---|---|---|---|---|
 | 1 (primary) | `gpt-image-2-all` | `848x1280` | `b64_json` (PNG) | True 2:3, cleanest title text, best brief adherence, no watermark. Most reliable — but the strictest content filter. |
 | 2 (fallback) | `doubao-seedream-5-0-260128` | `1664x2496` | `url` (JPEG) | Highest visual quality + strongest allure, true 2:3, far more permissive filter. **Stamps an `AI生成` watermark in the bottom-right corner — must crop it (see post-process).** Needs ≥3.7M px, hence the large size. |
-**nano-banana-pro — terminal blank-prevention fallback only (not a finished asset):**
-- Silently downgrades T3+ prompts to ~T1 output; square 1024×1024 (wrong aspect ratio for covers).
-- Use only when gpt and doubao (×2) both fail. Output must be **flagged for manual review — never ship without sign-off.**
+**nano-banana-pro — terminal blank-prevention fallback:**
+- Silently downgrades T3+ prompts to ~T1 output; square 1024×1024 (wrong aspect ratio for covers — reframe to 2:3 after generation).
+- Use only when gpt and doubao (×2) both fail.
 
 ### apiyi path
 
@@ -244,7 +244,7 @@ print('SAVED:' + str(os.path.getsize(output_path)))
 if   gen_cover_apiyi "gpt-image-2-all"            "848x1280";  then MODEL_USED="gpt-image-2-all"
 elif gen_cover_apiyi "doubao-seedream-5-0-260128" "1664x2496"; then MODEL_USED="doubao-seedream-5-0-260128"
 elif gen_cover_apiyi "doubao-seedream-5-0-260128" "1664x2496"; then MODEL_USED="doubao-seedream-5-0-260128"  # retry once
-elif gen_cover_apiyi "nano-banana-pro"            "1024x1024"; then MODEL_USED="nano-banana-pro"  # blank-prevention — ~T1 square, flag for manual review
+elif gen_cover_apiyi "nano-banana-pro"            "1024x1024"; then MODEL_USED="nano-banana-pro"  # blank-prevention — ~T1 square output, reframe to 2:3
 else MODEL_USED=""; echo "ALL_MODELS_FAILED — skipping book"
 fi
 echo "MODEL_USED=$MODEL_USED"
@@ -255,7 +255,7 @@ printf '%s' "$PROMPT" > "$BOOK_DIR/cover_v1.prompt.txt"
 
 **Post-process by model used:**
 - `doubao-seedream-5-0-260128` → crop the bottom-right `AI生成` watermark. Trim a corner strip (the tag sits in the bottom ~6% / right ~22%); easiest is `sips`/ImageMagick to crop ~7% off the bottom, then the author-name band still clears it. Verify the watermark is gone before shipping.
-- `nano-banana-pro` → output is square 1024×1024; reframe to 2:3 by center-cropping width or padding top/bottom with the gradient, keeping title + author inside the safe area. **Flag for manual review — nano silently downgrades T3+ to ~T1; never ship without sign-off.**
+- `nano-banana-pro` → output is square 1024×1024; reframe to 2:3 by center-cropping width or padding top/bottom with the gradient, keeping title + author inside the safe area. Note: nano silently downgrades T3+ to ~T1 allure.
 - `gpt-image-2-all` → no post-process needed.
 
 **If the whole cascade fails on content safety** (`API_ERROR` containing `invalid_prompt` / `safety` / `rejected` from the primary, and the fallbacks also reject): replace triggering terms in `$PROMPT` and re-run the cascade once:
@@ -280,7 +280,7 @@ On any other API error: log the response, skip this book, continue batch.
 The cascade ends at `nano-banana-pro`. There is **no SVG fallback**:
 - If `APIYI_API_KEY` is not set → skip the cover (warning + continue).
 - If nano also fails → skip the book, log the reason, continue the batch.
-- A nano result is a placeholder — reframe to 2:3, flag for manual review, never ship without sign-off.
+- A nano result is usable as-is — reframe to 2:3 after generation.
 - Never write a styled `.svg` cover.
 
 ### B3 batch flow
