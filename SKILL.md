@@ -140,6 +140,25 @@ Optional phases (load only when the brief requires):
 | B2 + B3 | Design tokens and data schema are independent |
 | B5 + B6 | Share one `pnpm run build` — do not run two concurrent builds |
 
+### Post-Build Deliverables (required after B6)
+
+After B6 passes, generate two files before closing the session:
+
+**`README.md`** — site reference card for this repo:
+- 域名, 语言, 调性, 广告 header fields
+- Book list table: slug, title, chapter count
+- Tech stack one-liner
+- Dev commands (`pnpm dev`, `pnpm build`)
+
+**`TODO.md`** — outstanding work for this site:
+- Deployment status (未部署 / 已上线 + domain)
+- Per-book chapter gap: list any book with fewer than 18 chapters and how many are missing
+- Books missing illustrations
+- Any `chapterCount` in `books.ts` that differs from the actual file count
+- Ad and analytics setup items still pending
+
+Both files must be written. If the site is a new build, start with the expected state (all chapters to write, not yet deployed). If the site is updated, reflect the current delta.
+
 ### Pre-Launch Gate
 
 All of the following must be true before go-live (after B6 passes):
@@ -353,6 +372,8 @@ Load references only when entering that phase. Do not preload all references at 
 
 ```
 <project>/
+  README.md                     # site reference card (generated after B6)
+  TODO.md                       # outstanding work (generated after B6)
   content/                      # all writing outputs live here
     {book-title}/
       chapters/                 # ch-001-{title}.md, ch-002-{title}.md, ...
