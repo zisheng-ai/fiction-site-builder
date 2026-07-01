@@ -16,7 +16,7 @@ Reference for Phase A2.5 — in-chapter illustration generation. Load when the u
 | Hero image on book-detail and home pages | Embedded inside the chapter reader only |
 | Scanned by ad-review crawlers | Never surfaced as an ad creative or meta-image |
 | `public/covers/` | `public/illustrations/` |
-| One per book | 3–6 per book |
+| One per book | 5–7 per book |
 
 **T5 is never used for illustrations.** T5's no-fabric dorsal composition is too sparse as an inline scene image — it reads as a standalone art piece, not as a chapter moment. T3 and T4 produce more scene-grounded, immersive results.
 
@@ -36,9 +36,9 @@ The difference from covers is the *tier* used, not the floor.
 
 ---
 
-## Budget: 3–6 Illustrations Per Book
+## Budget: 5–7 Illustrations Per Book
 
-Place illustrations at the **highest-stakes dramatic peaks** of the novel — 3 is the practical minimum for a full-length romance arc, 6 is the ceiling. 4–5 well-placed illustrations are typical.
+Place illustrations at the **highest-stakes dramatic peaks** of the novel — 5 is the practical minimum for a full-length romance arc, 7 is the ceiling. 5–6 well-placed illustrations are typical.
 
 **Never add an illustration just to meet a quota.** The image must earn its placement; if a slot has no qualifying peak, leave it empty and make up the count elsewhere.
 
@@ -48,9 +48,9 @@ Place illustrations at the **highest-stakes dramatic peaks** of the novel — 3 
 
 Read `content/{book-slug}/outline/outline.md` and `content/{book-slug}/tracking/context.md` to identify candidate scenes. Use these criteria:
 
-### Placement rule — 6 slots across the novel
+### Placement rule — 6 primary slots + 1 bonus slot
 
-Illustrations must be **evenly distributed** across the novel. For a book with N chapters, divide into 6 equal zones and target at most one illustration per zone:
+Illustrations must be **evenly distributed** across the novel. For a book with N chapters, divide into 6 equal zones and target at most one illustration per zone. Fill S1–S6 first; only add a 7th (S7 — anywhere in the novel, highest-tension scene not yet illustrated) when the story has an exceptional peak that clearly outranks the already-placed ones:
 
 | Slot | Target range | What to look for |
 |---|---|---|
