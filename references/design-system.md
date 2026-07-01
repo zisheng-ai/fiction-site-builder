@@ -242,6 +242,13 @@ wait
   || sips -z 32 32 public/favicon_raw.png --out public/favicon-32x32.png; \
   ffmpeg -i public/favicon_raw.png -vf scale=180:180 public/apple-touch-icon.png -y \
   || sips -z 180 180 public/favicon_raw.png --out public/apple-touch-icon.png; }
+# Compress PNG assets with pngquant (skip silently if not installed or file would grow)
+command -v pngquant >/dev/null 2>&1 && {
+  [ -f public/logo.png ]          && pngquant --quality=65-85 --ext .png --force --skip-if-larger public/logo.png || true
+  [ -f public/favicon-32x32.png ] && pngquant --quality=65-85 --ext .png --force --skip-if-larger public/favicon-32x32.png || true
+  [ -f public/apple-touch-icon.png ] && pngquant --quality=65-85 --ext .png --force --skip-if-larger public/apple-touch-icon.png || true
+}
+
 rm -f public/logo_raw.png public/favicon_raw.png
 ```
 
