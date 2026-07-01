@@ -218,12 +218,12 @@ python3 /tmp/gen_cover_model.py \
 
 | Tier | Primary | Fallback |
 |---|---|---|
-| T3 | `doubao-seedream-5-0-260128` | retry once → skip |
-| T4 | `doubao-seedream-5-0-260128` | retry once → skip |
+| T3 | `doubao-seedream-5-0-260128` | retry once → `nano-banana-pro` (blank-prevention) |
+| T4 | `doubao-seedream-5-0-260128` | retry once → `nano-banana-pro` (blank-prevention) |
 
 - doubao is reliable at T3 and T4; stochastic rejection → retry once with identical prompt
-- On second rejection: adjust prompt (remove result-description clauses per `cover-allure-elements.md`), retry once more; if still rejected → skip the slot
-- **nano-banana-pro: never used in production** (model-test only; silently downgrades T3+ to ~T1 output)
+- On second rejection: adjust prompt (remove result-description clauses per `cover-allure-elements.md`), then generate with nano as blank-prevention
+- nano fallback: silently downgrades T3+ to ~T1 output — **flag for manual review, never ship without sign-off**
 - gpt: excluded (deterministic rejection at T3+)
 - T5 is never used for illustrations
 
