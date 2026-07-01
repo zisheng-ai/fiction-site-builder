@@ -26,10 +26,10 @@ The default reader ships with a focused set of controls. Add font size, density,
 
 Always fixed (`position: fixed; top: 0`), `height: 56px`, `bg-base-100/95 backdrop-blur-sm`, `border-b border-base-300`.
 
-**Layout — left: cover thumbnail | center: book + chapter title | right: TOC icon + theme toggle**
+**Layout — left: site logo | center: book + chapter title | right: TOC icon + theme toggle**
 
 ```
-[ cover img ]   [ Book Title (xs, muted)    ]   [ ≡ ]  [ ☽ ]
+[ site logo ]   [ Book Title (xs, muted)    ]   [ ≡ ]  [ ☽ ]
                 [ Ch. 1 - Chapter Title (sm)]
 ```
 
@@ -37,7 +37,7 @@ Always fixed (`position: fixed; top: 0`), `height: 56px`, `bg-base-100/95 backdr
 - **Center slot** — two-line text block: book title in `11px` muted, chapter title in `13px` medium. Truncate both.
 - **Right slot** — two icon buttons (TOC list-icon, dark mode toggle). Use `btn btn-ghost btn-sm btn-circle`.
 
-No back arrow (`<`) anywhere in the header. The cover thumbnail IS the back link.
+No back arrow (`<`) anywhere in the header. The site logo IS the back link to home (`/`).
 
 Add `padding-top: 56px` (or `pt-14`) to the chapter content wrapper so it clears the fixed header.
 

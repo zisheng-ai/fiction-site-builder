@@ -65,13 +65,13 @@ git add -A && git commit -m "feat: initial commit"
 gh repo create zisheng-ai/{site-name} --private --source=. --remote=origin --push
 
 # 3. Register as submodule in the fictions parent repo
-git -C /Users/zisheng/Desktop/zisheng-ai/fictions submodule add --force \
+git -C /Users/zisheng/github/fictions submodule add --force \
   https://github.com/zisheng-ai/{site-name}.git {site-name}
 
 # 4. Commit the submodule entry in the parent repo
-git -C /Users/zisheng/Desktop/zisheng-ai/fictions add .gitmodules {site-name}
-git -C /Users/zisheng/Desktop/zisheng-ai/fictions commit -m "feat: add {site-name} as submodule"
-git -C /Users/zisheng/Desktop/zisheng-ai/fictions push
+git -C /Users/zisheng/github/fictions add .gitmodules {site-name}
+git -C /Users/zisheng/github/fictions commit -m "feat: add {site-name} as submodule"
+git -C /Users/zisheng/github/fictions push
 ```
 
 Replace `{site-name}` with the actual project directory name (kebab-case). Skip this block if the site already has a remote configured.
@@ -84,7 +84,7 @@ Starts after Phase 0. Runs in parallel with Track B.
 | --- | --- | --- | --- |
 | A0 | Niche Research | `fiction-niche-researcher.md` | `outputs/{site-slug}/{book-slug}/niche-research.json` |
 | A1 | Write | see modes below | chapters, outline, world, tracking |
-| A2 | Cover | `story-cover.md` + `cover-styles.md` | `public/covers/{book-title}/cover/cover_v1.png` per book |
+| A2 | Cover | `story-cover.md` + `cover-styles.md` | `public/covers/{book-title}/cover_v1.png` (PNG) + `public/covers/{book-title}.webp` (final) per book |
 | A2.5 | Illustrations | `story-illustrations.md` + `cover-allure-elements.md` | `public/illustrations/{book-slug}/ch-{NNN}.webp` (5–7 per book) |
 | A3 | Quality Pass | `story-review.md` + `story-deslop.md` | review report, AI flavor removed |
 
@@ -113,7 +113,7 @@ Starts after Phase 0. Runs in parallel with Track A.
 | Phase | Name | Reference | Output |
 | --- | --- | --- | --- |
 | B1 | Stack | `tech-stack.md` | chosen stack with one-line rationale |
-| B2 | Design | `design-system.md` | tone, palette, type system, `public/logo.svg`, `public/favicon.svg` |
+| B2 | Design | `design-system.md` | tone, palette, type system, `public/logo.png`, `public/favicon-32x32.png` |
 | B3 | Data | `data-contract.md` | content-collections schema |
 | B4 | Build | `references/ui-components.md` + `reader-ux.md` + `adsense-arbitrage.md` | working site with all required pages, ad slots, trust pages, FB tracking |
 | B5 | Performance | `performance.md` + `adsense-arbitrage.md` | Core Web Vitals targets met, images optimized, ad CLS/lazy-load tuned |
@@ -171,7 +171,7 @@ All of the following must be true before go-live (after B6 passes):
 | `outline/outline.md` exists and non-empty | A1 output |
 | `world/worldbuilding.md` exists and non-empty | A1 output |
 | `tracking/context.md` exists | A1 output |
-| Cover image for every book | `public/covers/{book-title}/cover/cover_v1.png` |
+| Cover image for every book | `public/covers/{book-title}/cover_v1.png` |
 
 If any book is missing a cover at launch time, run A2 immediately — do not prompt the user.
 
