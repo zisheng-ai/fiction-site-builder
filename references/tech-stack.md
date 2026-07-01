@@ -10,8 +10,8 @@ Always use **Next.js 16 + Tailwind CSS 4 + DaisyUI 5 + @content-collections**. N
 | `tailwindcss` | `^4` |
 | `@tailwindcss/postcss` | `^4` |
 | `daisyui` | `^5` |
-| `@content-collections/core` | `^0.15` |
-| `@content-collections/next` | `^0.3` |
+| `@content-collections/core` | `^0.15.2` |
+| `@content-collections/next` | `^0.2.11` |
 
 - App Router + `output: 'export'` for static hosting.
 - Fiction content is managed by `@content-collections`. Define collections in `content-collections.ts` → import fully-typed `allChapters` / `allShortStories` directly in pages. No manual `fs` reads, no hand-written parsers.

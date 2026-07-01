@@ -19,7 +19,7 @@ Use [`@content-collections`](https://www.content-collections.dev/) as the conten
 **Install:**
 
 ```bash
-pnpm add @content-collections/core@^0.15 @content-collections/next@^0.3
+pnpm add @content-collections/core@^0.15.2 @content-collections/next@^0.2.11
 ```
 
 **Project layout:**
