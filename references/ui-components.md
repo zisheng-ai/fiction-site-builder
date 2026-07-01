@@ -368,13 +368,10 @@ export function generateMetadata({ params }: Props): Metadata {
       title: book.title,
       description: book.description,
       images: [{ url: book.cover, width: 800, height: 1200, alt: book.title }],
+      type: 'book',
+      siteName: 'SITE_NAME',
     },
-    twitter: {
-      card: 'summary_large_image',
-      title: book.title,
-      description: book.description,
-      images: [book.cover],
-    },
+    twitter: { card: 'summary_large_image' },
   }
 }
 
