@@ -282,8 +282,7 @@ data = json.loads(raw)
 if 'error' in data:
     msg = data['error']['message'] if isinstance(data['error'], dict) else str(data['error'])
     print('API_ERROR:' + msg); sys.exit(2)
-if not data.get('data'):
-    print('SOFT_REJECT: empty data array (model declined silently)'); sys.exit(2)
+if not data.get('data'): print('SOFT_REJECT: empty data array (model declined silently)'); sys.exit(2)
 item = data['data'][0]
 if item.get('b64_json'):
     b64 = item['b64_json']
@@ -313,14 +312,24 @@ printf '{"model":"%s","size":"%s","prompt":%s}\n' \
   > "${BOOK_DIR}.json"
 ```
 
-**Post-process by model used:**
-- `doubao-seedream-5-0-260128` → crop the bottom-right `AI生成` watermark. Trim a corner strip (the tag sits in the bottom ~6% / right ~22%); easiest is `sips`/ImageMagick to crop ~7% off the bottom, then the author-name band still clears it. Verify the watermark is gone before shipping.
-- `nano-banana-pro` → output is square 1024×1024; center-crop width to get 2:3 (683×1024):
+**Post-process by model used (final target: ~848×1280 true 2:3 portrait, ≤ 300 KB):**
+- `gpt-image-2-all` → already 848×1280 PNG; convert to JPEG quality 85 or run `pngquant --quality=75-85 --force`.
+- `doubao-seedream-5-0-260128` → crop the bottom-right `AI生成` watermark, then resize to 848 px wide (maintaining 2:3):
   ```bash
-  sips -c 1024 683 "$OUTPUT"   # crops to 683×1024 (2:3), centered
+  sips -c 2321 1664 "$OUTPUT"                 # crop ~7% from bottom to clear watermark, output stays ~1664x2321
+  sips -z 1280 848 "$OUTPUT"                  # resize to 848x1280 (2:3)
+  ```
+- `nano-banana-pro` → output is square 1024×1024; center-crop width to get 2:3, then resize up to 848×1280:
+  ```bash
+  sips -c 1024 683 "$OUTPUT"                  # crops to 683x1024 (2:3), centered
+  sips -z 1280 848 "$OUTPUT"                  # resize to 848x1280
   ```
   Note: nano silently downgrades T3+ to ~T1 allure.
-- `gpt-image-2-all` → no post-process needed.
+
+**Final compression / format choice:**
+- Prefer JPEG: `sips -s format jpeg -s formatOptions 85 "$OUTPUT" --out "${OUTPUT%.png}.jpg"`, then rename books.ts cover path to `/covers/{slug}.jpg`.
+- If the site must keep `.png` extensions, run `pngquant --quality=75-85 --force "$OUTPUT"`.
+- Either way, every shipped cover must be ≤ 300 KB on disk. If still larger, lower JPEG quality to 80 or resize to 683×1024.
 
 **If the whole cascade fails on content safety** (`API_ERROR` containing `invalid_prompt` / `safety` / `rejected` from the primary, and the fallbacks also reject): replace triggering terms in `$PROMPT` and re-run the cascade once:
 
