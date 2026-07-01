@@ -161,9 +161,7 @@ export default function robots(): MetadataRoute.Robots {
 
 Both files are automatically served at `/sitemap.xml` and `/robots.txt` by the framework — no `next.config` change required.
 
-### 2. vercel.json Cache Headers
-
-Static media assets (covers and illustrations) are content-addressed and never change after upload. Set them to be cached at the edge for one year:
+### 2. vercel.json Cache Headers + Security
 
 **`vercel.json`** at the project root:
 
@@ -171,16 +169,7 @@ Static media assets (covers and illustrations) are content-addressed and never c
 {
   "headers": [
     {
-      "source": "/covers/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
-      "source": "/illustrations/(.*)",
+      "source": "/(covers|illustrations)/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -188,11 +177,17 @@ Static media assets (covers and illustrations) are content-addressed and never c
         }
       ]
     }
+  ],
+  "rewrites": [
+    { "source": "/covers/:file.json", "destination": "/___blocked___" },
+    { "source": "/illustrations/:book/:file.json", "destination": "/___blocked___" }
   ]
 }
 ```
 
-This reduces origin bandwidth and ensures repeat visitors get covers from the CDN edge with zero latency.
+**Cache headers**: covers and illustrations are content-addressed and never change after upload — one combined pattern caches both at the CDN edge for one year, eliminating origin bandwidth on repeat visits.
+
+**Rewrites (security)**: each image generation also produces a `.json` sidecar that contains the full AI prompt. Rewriting `.json` requests to a non-existent path causes Vercel to return a natural 404, blocking prompt exposure without affecting image delivery. The two patterns cover the flat cover structure (`/covers/{slug}.json`) and the nested illustration structure (`/illustrations/{book}/{file}.json`).
 
 ### 3. CookieBanner
 
