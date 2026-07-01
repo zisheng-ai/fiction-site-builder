@@ -8,7 +8,7 @@ Reference for `story-cover.md`. Visual allure elements for fiction cover generat
 
 ## 0. Monetization risk note (read before generating)
 
-**Default business model: Facebook paid traffic + AdSense/AdX arbitrage** (see `references/adsense-arbitrage.md` §1). The cover is the landing-page hero image and is scanned by **both** Meta's ad-review crawler and AdSense's brand-safety classifier. Suggestive, "擦边" covers — cleavage, curvy/busty figures, off-shoulder, low-cut necklines, charged proximity — are **allowed**: maximize visual appeal aggressively.
+**Default business model: Facebook paid traffic + AdSense/AdX arbitrage** (see `references/adsense-arbitrage.md` §1). The cover is the landing-page hero image and is scanned by **both** Meta's ad-review crawler and AdSense's brand-safety classifier. Suggestive, risqué covers — cleavage, curvy/busty figures, off-shoulder, low-cut necklines, charged proximity — are **allowed**: maximize visual appeal aggressively.
 
 Only keep in mind the two things that cause hard, irreversible damage (and that the image API will refuse to generate anyway):
 
@@ -1739,7 +1739,7 @@ Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 
 ---
 
-### Exposure Tiers (擦边分级 — pick the highest the model accepts)
+### Exposure Tiers (pick the highest the model accepts)
 
 Exposure is **stochastic** — the same prompt rolls different skin levels each generation, so a tame result is not a spec failure, it's RNG. To get a reliably high result you must **bake the tier fragments into the prompt**, not leave them to chance and not treat them as a reactive afterthought.
 

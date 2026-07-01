@@ -181,14 +181,6 @@ The genre determines composition template, color palette, character design, and 
 No two books on the same site should share the same dominant palette. Assign from:
 `warm amber candlelight` · `cold silver moonlight` · `neon rain street` · `golden morning light` · `dark dramatic penthouse` · `moody gothic stone` · `coastal golden-hour` · `stark high-contrast black-and-white accent`
 
-Log the diversity plan like this before generating (note: ≤2 Duos across the full batch):
-```
-Book 1 (alpha-claimed):      Solo        | full-body | Rain-soaked pose          | neon rain street
-Book 2 (blood-and-velvet):   Duo         | medium    | Frontal chest press       | warm amber candlelight
-Book 3 (convenient-husband): Environmental | full-body | figure in gothic doorway | cold silver moonlight
-Book 4 (crimson-court):      Trio        | full-body | Standing confrontation     | golden morning light
-Book 5 (iron-sovereign):     Solo        | close-up  | Downcast gaze             | stark high-contrast
-```
 
 ## Step 2 — Build the prompt
 

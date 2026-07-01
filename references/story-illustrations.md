@@ -54,7 +54,7 @@ The illustration framework differs by genre. **Romance** uses the allure-tier sy
 - Fantasy → §Genre: Fantasy
 - Sci-Fi / Dystopian → §Genre: Sci-Fi
 
-For non-romance genres: the §0 floor still applies (no explicit sexual content), but the allure-tier framework, T3/T4 assembly blocks, and all "擦边" guidance do not apply. Skip §Peak Scene Selection through §Prompt Construction and go directly to the relevant genre section.
+For non-romance genres: the §0 floor still applies (no explicit sexual content), but the allure-tier framework, T3/T4 assembly blocks, and all risqué-allure guidance do not apply. Skip §Peak Scene Selection through §Prompt Construction and go directly to the relevant genre section.
 
 ---
 
@@ -120,13 +120,13 @@ The site renderer splits chapter content on this marker and renders `Illustratio
 public/
   illustrations/
     {book-slug}/
-      ch-{NNN}.png      # e.g. ch-007.png — matches chapter file ch-007-*
+      ch-{NNN}.webp     # e.g. ch-007.webp — matches chapter file ch-007-*
       ch-{NNN}.json     # metadata: model, size, prompt (all in one file)
 ```
 
 - `{book-slug}` matches the `content/{book-slug}/` directory name
-- `{NNN}` is the zero-padded chapter number from the chapter filename (`ch-007-title.md` → `ch-007.png`)
-- Always PNG, always a single file per illustrated chapter
+- `{NNN}` is the zero-padded chapter number from the chapter filename (`ch-007-title.md` → `ch-007.webp`)
+- Always shipped as lossy **WebP q78**, always a single file per illustrated chapter (the PNG straight from the model is the intermediate; the WebP is the deliverable)
 - JSON format matches cover convention: `{"model": "...", "size": "...", "prompt": "..."}`
 - Write the JSON immediately after saving the PNG — never use a separate `.prompt.txt` file
 
@@ -141,7 +141,7 @@ Illustration prompts differ from cover prompts in three ways:
 
 > ### ⚠️ The allure tier is the point — do not write a tame "emotional" scene
 >
-> An illustration at T3/T4 must be **visibly 擦边** — the same skin/garment exposure a T3/T4 cover would have. A plot-faithful but visually modest image is a **failure**, even if the emotional beat is right. The single hard limit is the **§0 floor** (no visible nipples/areola/genitals, no sex acts) — everything below that ceiling should be pushed.
+> An illustration at T3/T4 must be **visibly risqué** — the same skin/garment exposure a T3/T4 cover would have. A plot-faithful but visually modest image is a **failure**, even if the emotional beat is right. The single hard limit is the **§0 floor** (no visible nipples/areola/genitals, no sex acts) — everything below that ceiling should be pushed.
 >
 > Three mistakes that produced tame output in the past (all banned):
 > 1. **Writing a tier *label* instead of pulling the tier *block*.** `T4 intensity: a deliberate first kiss, deeper emotional intimacy` is NOT a T4 prompt — it describes a feeling, not an image. You MUST copy the actual T3/T4 assembly block (clothing-state + skin-zones + fabric-behavior vocabulary) from `cover-allure-elements.md`.
@@ -272,7 +272,7 @@ OUTDIR="public/illustrations/{book-slug}"
 mkdir -p "$OUTDIR"
 
 (
-  OUTPUT="$OUTDIR/ch-{NNN}.png"
+  OUTPUT="$OUTDIR/ch-{NNN}.png"   # intermediate — post-process (A2.5-4) resizes then converts to ch-{NNN}.webp
   if   gen_illus_apiyi "gpt-image-2-all"            "848x1280" "$OUTPUT"; then MODEL_USED="gpt-image-2-all"; SIZE="848x1280"
   elif gen_illus_apiyi "doubao-seedream-5-0-260128" "1664x2496" "$OUTPUT"; then MODEL_USED="doubao-seedream-5-0-260128"; SIZE="1664x2496"
   elif gen_illus_apiyi "doubao-seedream-5-0-260128" "1664x2496" "$OUTPUT"; then MODEL_USED="doubao-seedream-5-0-260128"; SIZE="1664x2496"
@@ -292,42 +292,54 @@ rm -f /tmp/illus_*.log
 
 ### A2.5-4: Post-process
 
-**Target dimensions and file size:** every illustration should end at **664×996** (display 2:3) and be ≤ 300 KB on disk.
+**Target dimensions and file size:** every illustration should end at **664×996** (display 2:3), shipped as lossy **WebP q78**, ≤ 300 KB on disk. Resize/crop first with `sips` on the PNG, then convert the final PNG to WebP q78 (prefer `cwebp`, fall back to Pillow). The `.png` is the intermediate; the `.webp` is the deliverable.
 
-**If model was `gpt-image-2-all`:** output is already 848×1280 PNG. Resize to 664×996 and convert to JPEG quality 85:
+```bash
+# Resize/crop a PNG (in place) → final ch-{NNN}.webp at q78. Prefer cwebp; fall back to Pillow.
+to_webp_illus() {
+  local src="$1" dst="$2" q="${3:-78}"
+  if command -v cwebp &>/dev/null; then
+    cwebp -quiet -q "$q" "$src" -o "$dst"
+  else
+    python3 -c "from PIL import Image; im=Image.open('$src'); im.save('$dst','webp',quality=$q,method=6)"
+  fi
+}
+```
+
+**If model was `gpt-image-2-all`:** output is already 848×1280 PNG. Resize to 664×996, then convert:
 
 ```bash
 sips -z 996 664 input.png --out input.png
-sips -s format jpeg -s formatOptions 85 input.png --out input.jpg
+to_webp_illus input.png "ch-${NNN}.webp" 78
 ```
 
-If the site expects `.png` extensions, convert back to PNG after resize: `sips -s format png input.png --out input.png`, then run `pngquant --quality=75-85 --force input.png`.
-
-**If model was `doubao-seedream-5-0-260128`:** crop watermark and resize:
+**If model was `doubao-seedream-5-0-260128`:** crop watermark, resize, then convert:
 
 ```bash
 # $w and $h are the original dimensions after download (usually 1664 x 2496 or close)
 sips -c $((h * 93 / 100)) $w input.png --out input.png   # crop ~7% from bottom
 sips -z 996 664 input.png --out input.png                 # resize to 664x996
-pngquant --quality=75-85 --ext .png --force input.png
+to_webp_illus input.png "ch-${NNN}.webp" 78
 ```
 
-**If model was `nano-banana-pro`:** crop square to 2:3 and resize:
+**If model was `nano-banana-pro`:** crop square to 2:3, resize, then convert:
 
 ```bash
 sips -c 1024 683 input.png --out input.png   # → 683×1024 (2:3), centered
 sips -z 996 664 input.png --out input.png    # → 664×996
-pngquant --quality=75-85 --ext .png --force input.png
+to_webp_illus input.png "ch-${NNN}.webp" 78
 ```
+
+**Never use lossless WebP** — on photographic art it is larger than the source PNG. Always lossy q78.
 
 **Verify and report**
 
-After cropping/compressing each file, check:
-- Width is 664 px, height 996 px
+After cropping/converting each file, check:
+- Final `.webp` width is 664 px, height 996 px
 - File size ≤ 300 KB
 - Watermark is gone (doubao) — if still visible, increase bottom crop to ~10%
 
-If a file exceeds 300 KB, lower JPEG quality to 80 or use stronger pngquant compression.
+If a file exceeds 300 KB, lower the WebP quality to ~72 and re-convert.
 
 ---
 
@@ -421,13 +433,13 @@ interface Props {
 }
 
 export default function IllustrationBlock({ bookSlug, chapterNum }: Props) {
-  const filePath = join(process.cwd(), 'public', 'illustrations', bookSlug, `ch-${chapterNum}.png`)
+  const filePath = join(process.cwd(), 'public', 'illustrations', bookSlug, `ch-${chapterNum}.webp`)
   if (!existsSync(filePath)) return null
 
   return (
     <figure className="illustration-block">
       <LightboxImage
-        src={`/illustrations/${bookSlug}/ch-${chapterNum}.png`}
+        src={`/illustrations/${bookSlug}/ch-${chapterNum}.webp`}
         alt=""
         width={664}
         height={996}

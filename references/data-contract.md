@@ -39,7 +39,7 @@ my-novel-site/
 │           └── prose.md
 ├── public/
 │   └── covers/                   ← cover images, flat structure: one file per book
-│       └── {book-slug}.png       ← served as /covers/{slug}.png
+│       └── {book-slug}.webp      ← served as /covers/{slug}.webp (lossy WebP q82)
 ├── content-collections.ts        ← collection definitions
 ├── src/
 │   ├── app/
@@ -173,7 +173,7 @@ type Book = {
   tagline: string;           // 1-3 sentence hook — see tagline patterns in story-long-write.md
   description: string;       // back-cover copy, 4-6 sentences — follow drama hook formula in story-long-write.md §"Book Description & Tagline"
   genres: string[];
-  cover: string;             // /covers/{slug}.png — always flat path, always required at launch
+  cover: string;             // /covers/{slug}.webp — always flat path, always required at launch
   status: BookStatus;
   chapterCount: number;      // MUST equal the actual number of .md files in content/{slug}/chapters/
   heroStyle: HeroStyle;
@@ -248,7 +248,7 @@ short/{title}/prose.md        →  Book (one chapter, status: "completed")
 outline/outline.md            →  internal only; not shown to readers
 world/characters/*.md         →  internal only; optional public character page if user requests
 tracking/*.md                 →  internal only
-cover output                  →  Book.cover  (saved to public/covers/{slug}.png, served as /covers/{slug}.png — flat, not nested)
+cover output                  →  Book.cover  (saved to public/covers/{slug}.webp, served as /covers/{slug}.webp — flat, not nested)
 ```
 
 ## Chapter Frontmatter Schema

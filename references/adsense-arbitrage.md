@@ -30,7 +30,7 @@ A banned Facebook ad account or a disabled AdSense account ends the business. Th
 
 ### 1.1 Content safety (Facebook + AdSense both scan the landing page)
 
-Facebook crawls the **destination URL**, not just the ad creative; AdSense scans the whole site. Suggestive / "擦边" covers and imagery — cleavage, curvy/busty figures, off-shoulder, low-cut, charged proximity — are **allowed and encouraged** for click appeal. The only hard line is outright explicit content:
+Facebook crawls the **destination URL**, not just the ad creative; AdSense scans the whole site. Suggestive / risqué covers and imagery — cleavage, curvy/busty figures, off-shoulder, low-cut, charged proximity — are **allowed and encouraged** for click appeal. The only hard line is outright explicit content:
 
 - **Forbidden (hard ban):** actual nudity (exposed genitals/nipples), sex acts, graphic/pornographic imagery. This both trips the image generator's own filter and, on a live site, risks a **permanent Facebook ad-account ban** and **AdSense disable**.
 - **No cloaking:** never serve FB's crawler a tame page and users a racier one — detected, and causes permanent account loss.

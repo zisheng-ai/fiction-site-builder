@@ -17,7 +17,7 @@ Slow page loads lose readers before the first chapter. Fiction reading sites hav
 - Build the site (`pnpm run build`).
 - Check the build output for warnings about large JS bundles or unoptimized images.
 - Run automated smoke tests with `curl` against the started server (see `qa-checklist.md`).
-- Verify cover images are under 80KB and use WebP/AVIF where possible.
+- Verify cover images are WebP (lossy q82) and comfortably under 300KB (q82 typically lands ~50–60KB).
 
 **Deep audit (only when user explicitly asks):**
 - Test on simulated mobile (Moto G4 equivalent) at Slow 3G in Chrome DevTools Lighthouse. Do not test only on fast desktop connections.
@@ -32,20 +32,24 @@ Book covers are the heaviest assets on the home and detail pages.
 - Always set `width` and `height` on `<img>` to prevent CLS during load.
 - Use `loading="lazy"` for below-fold covers on the home page.
 - Use `fetchpriority="high"` on the first visible cover image.
-- Prefer WebP with JPEG fallback via `<picture>`.
+- Ship covers and illustrations as lossy WebP — no `<picture>`/JPEG fallback needed (WebP is supported by every modern browser).
 - CSS cover placeholders are acceptable when no image is provided. They must use flat color or subtle texture, not heavy gradients or box shadows.
 
-**Cover compression (B5 step):** AI-generated covers are PNG and typically 400–800 KB. Run sips to convert to JPEG at quality 75 — this consistently brings covers under 150 KB with no visible loss at display size:
+**Cover compression (B5 step):** AI-generated covers are PNG and typically 400–800 KB. Convert to lossy **WebP q82** — this consistently brings covers to ~50–60 KB with no visible loss at display size. Prefer `cwebp`, fall back to Pillow:
 
 ```bash
 for f in public/covers/*/cover_v1.png; do
-  out="${f%.png}.jpg"
-  sips -Z 800 --setProperty format jpeg --setProperty formatOptions 75 "$f" --out "$out"
-  rm "$f"
+  slug="$(basename "$(dirname "$f")")"
+  out="public/covers/${slug}.webp"
+  if command -v cwebp &>/dev/null; then
+    cwebp -quiet -q 82 "$f" -o "$out"
+  else
+    python3 -c "from PIL import Image; im=Image.open('$f'); im.save('$out','webp',quality=82,method=6)"
+  fi
 done
 ```
 
-After conversion, update all `cover` paths in `src/lib/books-data/*.ts` from `.png` to `.jpg` and rebuild.
+**Never use lossless WebP** — on photographic covers it is ~3× larger than the source PNG. After conversion, ensure all `cover` paths in `src/lib/books.ts` use `.webp` and rebuild.
 
 ## Fonts
 

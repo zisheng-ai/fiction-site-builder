@@ -21,7 +21,7 @@ Typography, spacing, and contrast are non-negotiable. Interactive reader control
 Every site built by this skill is, by default, a **Facebook-traffic + AdSense/AdX arbitrage** property: buy a click on Meta ads, monetize a multi-pageview reading session with display ads, profit on the spread. This reframes two things:
 
 - **Profit = (viewable session RPM × pageviews per session) − Facebook CPC.** The build directly controls pageview depth (chapter model, cliffhangers, pagination, prefetch) and viewable RPM (ad layout, density, viewability, lazy-load). Treat these as revenue engineering — see `references/adsense-arbitrage.md`.
-- **Account survival is a top constraint.** Both Facebook and AdSense scan the landing page. Suggestive/擦边 covers are fine and encouraged for CTR; only outright explicit/pornographic imagery, cloaking, missing trust pages, or runaway ad density get the Facebook ad account banned or AdSense restricted/disabled. See `references/adsense-arbitrage.md` §1 and `references/cover-allure-elements.md` §0.
+- **Account survival is a top constraint.** Both Facebook and AdSense scan the landing page. Suggestive covers are fine and encouraged for CTR; only outright explicit/pornographic imagery, cloaking, missing trust pages, or runaway ad density get the Facebook ad account banned or AdSense restricted/disabled. See `references/adsense-arbitrage.md` §1 and `references/cover-allure-elements.md` §0.
 
 Load `references/adsense-arbitrage.md` whenever building, laying out ads, directing covers, or wiring Facebook tracking.
 
@@ -85,7 +85,7 @@ Starts after Phase 0. Runs in parallel with Track B.
 | A0 | Niche Research | `fiction-niche-researcher.md` | `outputs/{site-slug}/{book-slug}/niche-research.json` |
 | A1 | Write | see modes below | chapters, outline, world, tracking |
 | A2 | Cover | `story-cover.md` + `cover-styles.md` | `public/covers/{book-title}/cover/cover_v1.png` per book |
-| A2.5 | Illustrations | `story-illustrations.md` + `cover-allure-elements.md` | `public/illustrations/{book-slug}/ch-{NNN}.png` (5–7 per book) |
+| A2.5 | Illustrations | `story-illustrations.md` + `cover-allure-elements.md` | `public/illustrations/{book-slug}/ch-{NNN}.webp` (5–7 per book) |
 | A3 | Quality Pass | `story-review.md` + `story-deslop.md` | review report, AI flavor removed |
 
 A0 runs once per book (not once per site). Required for each new book unless the user has explicitly stated the genre, tropes, and premise. A0's `differentiation_angle` and `competitive_brief` feed directly into A1's story brief.
@@ -145,13 +145,13 @@ Optional phases (load only when the brief requires):
 After B6 passes, generate two files before closing the session:
 
 **`README.md`** — site reference card for this repo:
-- 域名, 语言, 调性, 广告 header fields
+- domain, language, tone, ads header fields
 - Book list table: slug, title, chapter count
 - Tech stack one-liner
 - Dev commands (`pnpm dev`, `pnpm build`)
 
 **`TODO.md`** — outstanding work for this site:
-- Deployment status (未部署 / 已上线 + domain)
+- Deployment status (Not deployed / Live + domain)
 - Per-book chapter gap: list any book with fewer than 18 chapters and how many are missing
 - Books missing illustrations
 - Any `chapterCount` in `books.ts` that differs from the actual file count
@@ -310,7 +310,7 @@ Do not deliver a build if any of these are true.
 - `chapterCount` in `books.ts` does not equal the actual number of `.md` files in `content/{slug}/chapters/`. Always derive the count from the filesystem at build time or keep in sync manually — a stale value breaks chapter progress indicators and reader UX.
 
 **Monetization & ad-policy (paid-traffic arbitrage — see `references/adsense-arbitrage.md`):**
-- Any cover, hero image, or imagery is outright explicit / pornographic — exposed genitals or nipples, sex acts, graphic nudity (suggestive/擦边 allure is fine; only hardcore content gets the ad account banned and AdSense disabled).
+- Any cover, hero image, or imagery is outright explicit / pornographic — exposed genitals or nipples, sex acts, graphic nudity (suggestive allure is fine; only hardcore content gets the ad account banned and AdSense disabled).
 - Privacy Policy, Terms, About, or Contact page is missing or not footer-linked (AdSense approval + FB quality requirement).
 - No cookie-consent / Google-certified CMP wired.
 - An ad slot has no reserved size (causes CLS), or the above-the-fold ad is lazy-loaded (kills viewability).
@@ -329,7 +329,7 @@ Do not deliver a build if any of these are true.
 - Do not add ranking, bookshelf, favorites/bookmarks, search, payment, comments, social sharing, or account modules unless explicitly requested.
 - Respect content language: set `lang`, use language-appropriate font stacks, handle CJK line flow.
 - One deliberate visual signature per build — connected to reading, books, chapters, or genre.
-- Monetized FB-traffic sites (the default): ship Privacy / Terms / About / Contact pages + cookie consent, and reserve size on every ad slot. Suggestive/擦边 covers are allowed; avoid only outright explicit/pornographic imagery (see `references/cover-allure-elements.md` §0). Trust pages, ad-layout, and no-cloaking compliance still apply everywhere.
+- Monetized FB-traffic sites (the default): ship Privacy / Terms / About / Contact pages + cookie consent, and reserve size on every ad slot. Suggestive covers are allowed; avoid only outright explicit/pornographic imagery (see `references/cover-allure-elements.md` §0). Trust pages, ad-layout, and no-cloaking compliance still apply everywhere.
 
 ## Performance Baseline
 
@@ -396,15 +396,15 @@ Load references only when entering that phase. Do not preload all references at 
     ThemeToggle.tsx             # DaisyUI data-theme switcher
     IllustrationBlock.tsx       # inline chapter illustration (A2.5, optional)
   public/
-    covers/                     # cover images (A2) — flat: {slug}.png per book
+    covers/                     # cover images (A2) — flat: {slug}.webp per book (lossy WebP q82)
     illustrations/              # in-chapter illustrations (A2.5, optional)
       {book-slug}/
-        ch-{NNN}.png            # 0–5 per book, at peak dramatic moments
+        ch-{NNN}.webp           # 0–5 per book, at peak dramatic moments (lossy WebP q78)
     logo.png                    # site logo — PNG via apiyi (B2); no SVG fallback
     favicon-32x32.png           # favicon — PNG via apiyi (B2); no SVG fallback
 ```
 
-Cover images (`public/covers/{slug}.png` — flat, one file per book) are generated in A2 via the apiyi cascade (gpt → doubao → nano), all books in parallel. Logo and favicon follow the same pattern in B2 — PNG via apiyi (gpt → nano), generated in parallel. **No SVG fallback** anywhere: if `APIYI_API_KEY` is unset or the cascade fails, the asset is skipped (warning + continue) and flagged for a later pass. During development only, CSS placeholders are acceptable — never ship a launch without real assets.
+Cover images (`public/covers/{slug}.webp` — flat, one file per book, lossy WebP q82) are generated in A2 via the apiyi cascade (gpt → doubao → nano), all books in parallel. Logo and favicon follow the same pattern in B2 — PNG via apiyi (gpt → nano), generated in parallel. **No SVG fallback** anywhere: if `APIYI_API_KEY` is unset or the cascade fails, the asset is skipped (warning + continue) and flagged for a later pass. During development only, CSS placeholders are acceptable — never ship a launch without real assets.
 
 For a review or redesign task, the output is a findings report and patch set, not a full scaffold.
 

@@ -169,7 +169,7 @@ Run for every monetized FB-traffic site. See `references/adsense-arbitrage.md`. 
 
 **Content compliance (Facebook + AdSense scan the landing page):**
 
-- [ ] No cover, hero image, or imagery is outright explicit / pornographic — no exposed genitals or nipples, sex acts, or graphic nudity (suggestive/擦边 allure is allowed; see `cover-allure-elements.md` §0).
+- [ ] No cover, hero image, or imagery is outright explicit / pornographic — no exposed genitals or nipples, sex acts, or graphic nudity (suggestive allure is allowed; see `cover-allure-elements.md` §0).
 - [ ] No "click here", arrows, or images placed to bait ad clicks; no content encourages clicking ads.
 
 **Trust pages (AdSense approval + FB quality):**
