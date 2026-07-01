@@ -219,7 +219,6 @@ After B6 passes, generate `TODO.md` in the project root listing every post-launc
 - [ ] Select which ad account to use for this site (reuse existing account or apply for a new one)
 - [ ] Confirm AdSense slots (ca-pub-XXXXXXXX) serving after deployment
 - [ ] Confirm AdX slots (/XXXXXXXXX) serving after deployment — omit if AdX not wired
-- [ ] Verify Cookie Consent banner satisfies Google CMP requirements
 
 ## Analytics
 - [ ] Add Google Analytics 4 (GA4) script (G-XXXXXXXX) to layout.tsx
