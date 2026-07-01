@@ -783,6 +783,69 @@ sci-fi scene illustration, cold editorial palette, intimate emotional register w
 
 ---
 
+---
+
+## Genre: Contemporary Drama / Family Drama / Medical Drama
+
+### Peak Scene Selection (Drama)
+
+| Slot | Target range | What to look for |
+|---|---|---|
+| **S1 — The first crack** | chapters 1 – ⌊N×0.20⌋ | The moment the surface normal (E1) first shows a crack (E2); one character perceives something is wrong and does not name it; the image is a face at the edge of knowing |
+| **S2 — The approach** | chapters ⌊N×0.20⌋+1 – ⌊N×0.40⌋ | She moves toward the thing she has been avoiding; the specific resistance visible on her face; a threshold moment before she commits |
+| **S3 — Partial truth out** | chapters ⌊N×0.40⌋+1 – ⌊N×0.55⌋ | Something adjacent to the central secret is now in the open (E3); a relationship must reconfigure; the characters are recalibrating |
+| **S4 — The witness moment** | chapters ⌊N×0.55⌋+1 – ⌊N×0.70⌋ | She sees something she was not meant to see; or she is in a space that demonstrates the gap between her claim and her acknowledged place |
+| **S5 — Confrontation** | chapters ⌊N×0.70⌋+1 – ⌊N×0.85⌋ | The central concealment is directly in the room (E4); avoidance is no longer possible; the image is two characters in the same space with nowhere to go |
+| **S6 — Earned reckoning** | chapters ⌊N×0.85⌋+1 – N | The truth is held by everyone it belongs to (E5); not necessarily reconciliation; the cost is acknowledged; the image is stillness after the reckoning |
+
+**Qualifying peak types (Drama):**
+| Peak type | Description |
+|---|---|
+| **The threshold** | Figure at a doorway or corridor — not inside, not outside; what is on the other side is the visual weight |
+| **Witnessed distance** | Two characters in the same frame, not touching, not looking at each other; the space between them is the subject |
+| **The unclaimed space** | She is in a room where she has a claim that is not acknowledged; the room demonstrates the gap |
+| **The almost-said** | One character facing another; she has just not-said the true thing; the expression carries the weight of the withheld |
+
+### Prompt Construction (Drama)
+
+No allure tiers. Drama illustrations use **emotional register**:
+
+| Level | Definition | When to use |
+|---|---|---|
+| **D1 — Interior, still** | The protagonist alone with a knowledge or a grief; the exterior is quiet; the interior state is the visual subject | S1, S2, S6 |
+| **D2 — Relational pressure** | Two characters in the same space under emotional pressure; the composition captures the gap or the tension between them | S3, S4, S5 |
+| **D3 — Institutional weight** | The setting carries the scene's pressure — hospital corridor, family home, the room that proves she doesn't belong; character is human-scale inside a charged environment | S1, S4 |
+
+**Step 1 — Select register (D1/D2/D3) based on slot.**
+
+**Step 2 — Zero allure:** no bare skin, no intimate contact, no romantic body language. Ordinary clothes. Stillness over gesture.
+
+**Step 3 — Add scene-specific context:**
+```
+{location: "hospital corridor, evening — fluorescent overhead, window at the far end showing a dark sky", "family home hallway, morning — a coat she recognizes hanging by the door that she wasn't told about"}
+{the specific moment — "she stands at the door of the room, her hand not yet on the handle", "they are both at the table, not eating, not talking, both looking at the third seat"}
+{emotional register — quiet dread, still grief, the specific stillness of managed emotion, the expression of someone who has just understood something they cannot unknow}
+```
+
+**Step 4 — Add genre framing:**
+```
+editorial drama scene illustration, desaturated palette, cold-warm contrast, quiet emotional weight, observational composition, no allure, no text, no title, no watermark
+```
+
+Adjust by register:
+- D1 (interior, still): `quiet literary scene illustration, muted palette, figure alone with interior weight, natural or institutional light, no text, no title, no watermark`
+- D3 (institutional): `editorial drama illustration, institutional setting, human-scale figure in charged environment, cold fluorescent and warm distance, no text, no title, no watermark`
+
+**Complete example (S4 — Witness moment, D3):**
+```
+Hospital corridor, evening. Fluorescent overhead light. She stands at the far end of the corridor — not at the door yet, not close enough for the number on the door to be readable. The corridor is empty except for her. She is holding nothing. Her coat is still on. She is looking at the door at the end of the corridor and she is not moving toward it.
+[protagonist: practical coat, hair unstyled, flat shoes — no styling toward beauty; the clothes of someone who came directly from something else]
+The corridor is long. She is small in it. The door is the entire point.
+editorial drama scene illustration, desaturated institutional palette, cold overhead fluorescent with warm light visible under the door at the far end, quiet observational framing, no allure, no text, no title, no watermark
+```
+
+---
+
 ## Reference Loading
 
 Only load this file when entering A2.5. It depends on:

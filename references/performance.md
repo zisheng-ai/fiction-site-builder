@@ -251,30 +251,48 @@ Banner text template: `"{Site Name} uses cookies to personalise content and ads.
 
 ### 4. OG Image
 
-The `openGraph` metadata in `src/app/layout.tsx` must include a fallback `images` entry pointing to the site logo. This image is shown by social platforms (Twitter/X, Facebook, Discord) when sharing the homepage URL and no page-specific OG image is available.
+Three-layer requirement. Every layer must be covered before launch:
 
-In `src/app/layout.tsx`:
+| Layer | Where | Image | URL form |
+|---|---|---|---|
+| **Homepage** | `layout.tsx` openGraph | `logo.png` (512×512) | Absolute (`https://`) |
+| **Book detail** | `book/[slug]/page.tsx` generateMetadata | `book.cover` (848×1280) | Relative OK — resolved by `metadataBase` |
+| **Chapter** | `book/[slug]/chapter/[n]/page.tsx` generateMetadata | `book.cover` (848×1280) | Relative OK — resolved by `metadataBase` |
+
+**`metadataBase` is the key**: set it once in `layout.tsx` with the real domain, and all relative OG image URLs in child pages resolve to absolute automatically. No `siteUrl` env var needed.
+
+**`src/app/layout.tsx`** — homepage fallback (logo, absolute URL):
 
 ```ts
 export const metadata: Metadata = {
-  // ... other fields ...
+  metadataBase: new URL('https://your-domain.com'),  // hardcode real domain
   openGraph: {
-    // ... other fields ...
-    images: [
-      {
-        url: 'https://your-domain.com/logo.png',
-        width: 512,
-        height: 512,
-      },
-    ],
+    siteName: 'Your Site Name',
+    type: 'website',
+    images: [{ url: 'https://your-domain.com/logo.png', width: 512, height: 512, alt: 'Your Site Name' }],
   },
 }
 ```
 
-Requirements:
-- `logo.png` must exist at `public/logo.png` (served from the root path).
-- Dimensions: 512×512px minimum. Square format is safe for all platforms.
-- The URL must be absolute (include the full `https://` domain).
+**`src/app/book/[slug]/page.tsx`** and **`src/app/book/[slug]/chapter/[n]/page.tsx`** — book cover (relative path resolved by metadataBase):
+
+```ts
+openGraph: {
+  title: book.title,
+  description: book.description,
+  images: [{ url: book.cover, width: 848, height: 1280, alt: book.title }],
+  type: 'book',  // or 'article' for chapter pages
+  siteName: 'Your Site Name',
+},
+twitter: { card: 'summary_large_image' },
+```
+
+**Chapter page without explicit OG image** is acceptable — Next.js falls back to the root layout's `logo.png`. But setting `book.cover` on chapter pages is preferred for better FB/Twitter previews.
+
+Rules:
+- `logo.png` must exist at `public/logo.png`. Dimensions: 512×512 minimum, square is safe for all platforms.
+- `book.cover` is `/covers/{slug}.webp` — a relative path. With `metadataBase` set, Next.js outputs an absolute URL in the built HTML. Verify by grepping `og:image` in `out/` after build.
+- The book cover (portrait 2:3, 848×1280) doubles as the FB link preview for book and chapter pages — no separate OG image asset needed.
 
 ### 5. Speed Insights + Analytics
 

@@ -229,28 +229,45 @@ Then add the Pixel script in `<head>` when the campaign goes live:
   }}
 />
 
-### 8.2 OG image — `generateMetadata` in chapter and book pages
+### 8.2 OG image — three layers required
 
-`metadataBase` in `layout.tsx` resolves relative paths to absolute URLs automatically — no `siteUrl` variable needed:
+Set `metadataBase` once in `layout.tsx` — all relative OG image paths in child pages resolve to absolute automatically. No `siteUrl` env var needed.
 
+**Layer 1 — Homepage (`layout.tsx`):** logo as fallback for any page without a specific OG image:
 ```ts
-// layout.tsx: metadataBase: new URL('https://yoursite.com')
-
-return {
-  title: `${chapter.title} - ${book.title}`,
-  description: `Read Chapter ${n} of ${book.title} by ${book.author}.`,
-  openGraph: {
-    title: `${chapter.title} — ${book.title}`,
-    description: `Read Chapter ${n} of ${book.title} by ${book.author}.`,
-    images: [{ url: book.cover, width: 848, height: 1280, alt: book.title }],  // relative path, resolved by metadataBase
-    type: 'article',
-    siteName: 'Your Site Name',
-  },
-  twitter: { card: 'summary_large_image' },
-}
+metadataBase: new URL('https://yoursite.com'),
+openGraph: {
+  siteName: 'Your Site Name',
+  type: 'website',
+  images: [{ url: 'https://yoursite.com/logo.png', width: 512, height: 512, alt: 'Your Site Name' }],
+},
 ```
 
-The book cover (portrait 2:3) doubles as the FB link preview — no separate OG image asset needed.
+**Layer 2 — Book detail page (`book/[slug]/page.tsx`):**
+```ts
+openGraph: {
+  title: book.title,
+  description: book.description,
+  images: [{ url: book.cover, width: 848, height: 1280, alt: book.title }],  // relative path OK, metadataBase resolves it
+  type: 'book',
+  siteName: 'Your Site Name',
+},
+twitter: { card: 'summary_large_image' },
+```
+
+**Layer 3 — Chapter page (`book/[slug]/chapter/[n]/page.tsx`):**
+```ts
+openGraph: {
+  title: `${chapter.title} — ${book.title}`,
+  description: `Read Chapter ${n} of ${book.title} by ${book.author}.`,
+  images: [{ url: book.cover, width: 848, height: 1280, alt: book.title }],  // same cover as book page
+  type: 'article',
+  siteName: 'Your Site Name',
+},
+twitter: { card: 'summary_large_image' },
+```
+
+The book cover (portrait 2:3, 848×1280) doubles as the FB link preview for book and chapter pages — no separate OG asset needed. Chapter page may omit `images` and fall back to the layout logo, but setting `book.cover` is preferred. See `references/performance.md` §4 for the full requirements table.
 
 ### 8.3 Next-chapter prefetch — chapter `page.tsx`
 
