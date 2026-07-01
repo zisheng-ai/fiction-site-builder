@@ -35,6 +35,18 @@ Book covers are the heaviest assets on the home and detail pages.
 - Prefer WebP with JPEG fallback via `<picture>`.
 - CSS cover placeholders are acceptable when no image is provided. They must use flat color or subtle texture, not heavy gradients or box shadows.
 
+**Cover compression (B5 step):** AI-generated covers are PNG and typically 400–800 KB. Run sips to convert to JPEG at quality 75 — this consistently brings covers under 150 KB with no visible loss at display size:
+
+```bash
+for f in public/covers/*/cover_v1.png; do
+  out="${f%.png}.jpg"
+  sips -Z 800 --setProperty format jpeg --setProperty formatOptions 75 "$f" --out "$out"
+  rm "$f"
+done
+```
+
+After conversion, update all `cover` paths in `src/lib/books-data/*.ts` from `.png` to `.jpg` and rebuild.
+
 ## Fonts
 
 - Prefer system font stacks for body text. Do not load a web font for body reading — system stacks render faster and are often better for CJK.

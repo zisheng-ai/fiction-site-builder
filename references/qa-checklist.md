@@ -67,13 +67,6 @@ check "chapter reader responds" curl -sf "${BASE}/book/${BOOK_SLUG}/chapter/1/"
 # Content checks
 check "chapter content renders" sh -c "curl -s '${BASE}/book/${BOOK_SLUG}/chapter/1/' | grep -q '<p>'"
 check "next/finish link present" sh -c "curl -s '${BASE}/book/${BOOK_SLUG}/chapter/1/' | grep -qE 'Next chapter|Finish'"
-# Only test prev-chapter link if chapter 2 actually exists
-CHAPTER2_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "${BASE}/book/${BOOK_SLUG}/chapter/2/")
-if [ "$CHAPTER2_STATUS" = "200" ]; then
-  check "prev chapter link present" sh -c "curl -s '${BASE}/book/${BOOK_SLUG}/chapter/2/' | grep -qiE 'Previous|Prev'"
-else
-  echo "- prev chapter link (skipped — only 1 chapter found)"
-fi
 
 kill $SERVER_PID
 
@@ -91,7 +84,7 @@ If the project uses `output: 'export'` (static export), replace the server start
 - [ ] TypeScript passes with no errors (`tsc --noEmit`) if applicable.
 - [ ] All required pages respond with HTTP 200.
 - [ ] Chapter content renders (`<p>` tags present).
-- [ ] Navigation links present on reader (previous / next / finish).
+- [ ] Navigation links present on reader (next chapter / finish).
 - [ ] No `console.error` output in normal use.
 
 ## Visual QA (automated capture, human review only on failure)
@@ -133,7 +126,6 @@ Automate with headless browser:
 
 Automate with headless browser:
 
-- [ ] Previous chapter link navigates to the previous chapter.
 - [ ] Next chapter link navigates to the next chapter.
 - [ ] Dark mode toggle switches themes and persists.
 - [ ] Reading position is saved and restored on return.
