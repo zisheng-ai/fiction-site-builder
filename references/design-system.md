@@ -191,21 +191,22 @@ If the output is `API_PATH=skip` → print the warning below, then **skip logo/f
 
 ### apiyi path (APIYI_API_KEY is set)
 
-Generate logo and favicon via `gpt-image-2-all`, falling through to `nano-banana-pro` on failure (blank-prevention). Both are square motif images — use `1024x1024`. **Generate the two assets in parallel** — launch both as background processes, then `wait`.
+Generate logo and favicon via `gpt-image-2-all`, retrying once on failure — then skip if both attempts fail. Both are square motif images — use `1024x1024`. **Generate the two assets in parallel** — launch both as background processes, then `wait`. **nano-banana-pro is not used in production** (model-test only).
 
 ```bash
 mkdir -p public
 
-# Generic asset generator: gpt-image-2-all → nano-banana-pro fallback.
+# Generic asset generator: gpt-image-2-all × 2 attempts.
+# nano-banana-pro is NOT in the production cascade (model-test only).
 # Handles both b64_json (PNG) and url (JPEG) responses. Returns 0 on success.
 gen_asset_apiyi() {
   local prompt="$1" out="$2"
   local pj; pj=$(printf '%s' "$prompt" | python3 -c 'import json,sys;print(json.dumps(sys.stdin.read().strip()))')
-  for model in "gpt-image-2-all" "nano-banana-pro"; do
+  for attempt in 1 2; do
     curl -s --max-time 300 https://api.apiyi.com/v1/images/generations \
       -H "Content-Type: application/json" \
       -H "Authorization: Bearer $APIYI_API_KEY" \
-      -d "{\"model\":\"$model\",\"prompt\":$pj,\"n\":1,\"size\":\"1024x1024\"}" \
+      -d "{\"model\":\"gpt-image-2-all\",\"prompt\":$pj,\"n\":1,\"size\":\"1024x1024\"}" \
     | OUT="$out" python3 -c "
 import sys, json, base64, os, urllib.request
 out = os.environ['OUT']
@@ -222,7 +223,7 @@ elif item.get('url'):
 else: sys.exit(3)
 " && return 0
   done
-  return 1
+  return 1  # both attempts failed — caller skips the asset
 }
 
 # Logo: single symbolic motif for the site genre, no text, suitable for nav bar.
@@ -264,7 +265,7 @@ export const metadata: Metadata = {
 
 ### No SVG fallback
 
-There is **no SVG fallback** for logo/favicon. When `APIYI_API_KEY` is unset, or both `gpt-image-2-all` and `nano-banana-pro` fail, **skip the asset and continue** — a dev placeholder holds the slot until a later generation pass. Never write `public/logo.svg` / `public/favicon.svg`.
+There is **no SVG fallback and no nano fallback** for logo/favicon. When `APIYI_API_KEY` is unset, or both gpt attempts fail, **skip the asset and continue** — a dev placeholder holds the slot until a later generation pass. Never write `public/logo.svg` / `public/favicon.svg`. Never fall through to `nano-banana-pro` — it is model-test only.
 
 **Never ship a launched site with the default Next.js favicon or a missing logo** — but a skipped asset does not block the build; it is flagged for a follow-up pass.
 

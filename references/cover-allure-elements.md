@@ -1741,18 +1741,18 @@ Five named tiers, all strictly above the §0 floor (no nipples / genitals / sex 
 
 | Tier | Primary model | Fallback |
 |---|---|---|
-| T1 | `gpt-image-2-all` (cover cascade) → `doubao-seedream-5-0-260128` | retry doubao → `nano-banana-pro` (blank-prevention) |
-| T2 | `gpt-image-2-all` (cover cascade) → `doubao-seedream-5-0-260128` | retry doubao → `nano-banana-pro` (blank-prevention) |
-| T3 | `doubao-seedream-5-0-260128` | retry once → `nano-banana-pro` (blank-prevention) |
-| T4 | `doubao-seedream-5-0-260128` | retry once → `nano-banana-pro` (blank-prevention) |
-| T5 | `doubao-seedream-5-0-260128` | retry once |
+| T1 | `gpt-image-2-all` (cover cascade) → `doubao-seedream-5-0-260128` | retry doubao → skip |
+| T2 | `gpt-image-2-all` (cover cascade) → `doubao-seedream-5-0-260128` | retry doubao → skip |
+| T3 | `doubao-seedream-5-0-260128` | retry once → skip |
+| T4 | `doubao-seedream-5-0-260128` | retry once → skip |
+| T5 | `doubao-seedream-5-0-260128` | retry once → skip |
 
-> `doubao-seedream-5-0-260128` is the workhorse at **every** tier. `gpt-image-2-all` leads the **cover cascade** at T1/T2 only (cleanest title text); at T3+ it hard-rejects and the cascade falls to doubao. nano is the terminal blank-prevention fallback at all tiers — **there is no SVG fallback below it.**
+> `doubao-seedream-5-0-260128` is the workhorse at **every** tier. `gpt-image-2-all` leads the **cover cascade** at T1/T2 only (cleanest title text); at T3+ it hard-rejects and the cascade falls to doubao. When all attempts fail → skip the asset and continue. There is no nano fallback and no SVG fallback.
 
-**nano-banana-pro — terminal blank-prevention fallback only (not a finished asset):**
+**nano-banana-pro — model testing only, never used in production:**
 - Silently downgrades T3 keywords to ~T1 output; T4 post-event framing → ~T2 at best; square 1024×1024 (not 2:3).
-- Stochastic IndexError (soft rejection) at T3+; retry usually fails. Output quality significantly below doubao at all tiers.
-- Used **only** as the cascade's last resort so *some* image exists — always flag for manual review, never ship unsigned-off. Also included in model-test compare pages for reference.
+- Stochastic IndexError (soft rejection) at T3+. Output quality significantly below doubao at all tiers.
+- **Never include in any production cascade** — only use for model comparison tests (compare.html). A nano output shipped as a T3+ creative is 货不对板.
 
 **gpt-image-2-all — excluded at T3+ only (still the cover cascade's first choice at T1/T2):**
 - Passes T1/T2 cleanly with the cleanest title text and best brief adherence — it leads the cover cascade and produces most T2 covers.
@@ -1763,7 +1763,7 @@ Five named tiers, all strictly above the §0 floor (no nipples / genitals / sex 
 - `doubao-seedream-5-0-260128` — primary at T3/T4/T5 and the cover-cascade fallback at T1/T2; stochastic filter (retry once on rejection); best output quality at T3+; 1664×2496 JPEG output.
 - On rejection: retry once with identical prompt. If second attempt also rejects, adjust prompt to remove the triggering clause (see "What doubao T3 accepts vs rejects" table above), then generate.
 
-**Fallback cascade:** gpt (T1/T2) → doubao (retry once → adjust prompt) → nano (blank-prevention). No SVG fallback.
+**Fallback cascade:** gpt (T1/T2) → doubao (retry once → adjust prompt → retry) → skip. No nano fallback. No SVG fallback.
 
 ---
 
@@ -1917,15 +1917,15 @@ The 8 dimensions:
 | Production cover — hotter roll (≈half of covers) | **T3** | `doubao-seedream-5-0-260128` |
 | Illustration / maximum allure, established account | **T4** | `doubao-seedream-5-0-260128` |
 | Implied nudity, composition coverage | **T5** | `doubao-seedream-5-0-260128` |
-| Primary rejected → fallback (any tier) | same tier | `nano-banana-pro` ⚠️ blank-prevention only |
-| All models reject (incl. nano) | skip the asset, continue | — |
+| Primary rejected → retry | same tier | same model (retry once) |
+| All attempts fail | skip the asset, continue | — no nano, no SVG |
 
-> ⚠️ **nano is a blank-prevention fallback, NOT an allure-tier producer.** It is kept in the cascade only so that *some* image exists rather than none when doubao hard-rejects. Three things make its output unusable as a real cover without manual review:
-> - **Silently downgrades.** nano accepts T3+/T4/T5 clothing-state keywords (`torn`, `fallen`, `panels open`, `bare`) and then **ignores them**, rendering intact ~T1 conservative clothing. The prompt says T4; the image is T1. It does not refuse — it lies.
-> - **Wrong aspect ratio.** Output is square 1024×1024, not the 2:3 cover spec — it must be re-cropped/padded, and key art often falls outside the safe area.
-> - **Off-spec = 货不对板.** Because it looks like a successful generation, a nano fallback can be mistaken for a finished cover at the intended tier when it is not.
+> ⚠️ **nano-banana-pro is NOT in the production cascade.** Three reasons:
+> - **Silently downgrades.** nano accepts T3+/T4/T5 clothing-state keywords and ignores them — renders intact ~T1 conservative clothing. The prompt says T4; the image is T1.
+> - **Wrong aspect ratio.** Square 1024×1024, not 2:3.
+> - **货不对板.** Looks like a successful generation but is off-spec at every allure tier.
 >
-> **Rule:** when the cascade falls to nano, treat the result as a placeholder. Prefer re-running the doubao cascade once more (upstream stochastic rejections often clear) before accepting nano output, and always flag a nano cover for manual review. Never ship a nano cover as a final T3+ creative unsigned-off.
+> **Rule:** nano is for model-test compare pages only. The production cascade ends at doubao (retry once) → skip.
 
 **gpt-image-2-all — excluded at T3+ only:** boundary confirmed — passes T1/T2 (leads the cover cascade there), rejects T3+ deterministically. Not used for any T3+ output.
 
