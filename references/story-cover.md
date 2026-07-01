@@ -154,8 +154,9 @@ The genre determines composition template, color palette, character design, and 
 | **Trio** | Love triangle, rival over shoulder, court/pack dynamic with 3+ key figures | 3+ |
 | **Environmental** | Thriller, mystery, horror — figure(s) small against a dramatic landscape/setting | 1–2, environment dominant |
 
-- Across any batch of ≥3 books: at least **one Solo or Trio** cover must appear.
+- **Duo cap: maximum 2 Duo covers per site.** A batch of 5 books must have ≥3 non-Duo covers (Solo, Trio, or Environmental).
 - Do not assign the same type to more than 2 consecutive books.
+- Every batch must include at least one Environmental cover.
 
 ### Camera framing — rotate across the batch
 
@@ -180,13 +181,13 @@ The genre determines composition template, color palette, character design, and 
 No two books on the same site should share the same dominant palette. Assign from:
 `warm amber candlelight` · `cold silver moonlight` · `neon rain street` · `golden morning light` · `dark dramatic penthouse` · `moody gothic stone` · `coastal golden-hour` · `stark high-contrast black-and-white accent`
 
-Log the diversity plan like this before generating:
+Log the diversity plan like this before generating (note: ≤2 Duos across the full batch):
 ```
-Book 1 (alpha-claimed): Solo | full-body | Rain-soaked pose | neon rain street
-Book 2 (blood-and-velvet): Duo | medium | Frontal chest press | warm amber candlelight
-Book 3 (convenient-husband): Duo | close-up | Chin tilt almost-collision | golden morning light
-Book 4 (crimson-court): Trio | full-body | Standing confrontation | cold silver moonlight
-...
+Book 1 (alpha-claimed):      Solo        | full-body | Rain-soaked pose          | neon rain street
+Book 2 (blood-and-velvet):   Duo         | medium    | Frontal chest press       | warm amber candlelight
+Book 3 (convenient-husband): Environmental | full-body | figure in gothic doorway | cold silver moonlight
+Book 4 (crimson-court):      Trio        | full-body | Standing confrontation     | golden morning light
+Book 5 (iron-sovereign):     Solo        | close-up  | Downcast gaze             | stark high-contrast
 ```
 
 ## Step 2 — Build the prompt
@@ -214,12 +215,14 @@ keep title and author name inside the central safe area (inner ~85%), no waterma
 
 **Genre defaults when Step 1.6 has not been run (single-book mode):**
 
-| Genre | Default count |
+| Genre | Default composition |
 |---|---|
-| Urban Drama / Contemporary Romance / Historical Court Drama | Duo (2), or Trio when synopsis has a rival/triangle |
-| Dark Fantasy / Paranormal | Duo or Trio — a third figure (antagonist, rival) is welcome |
-| Thriller / Horror | Solo or Environmental — protector + protected optional |
-| Cultivation Fantasy / Sci-Fi / War Epic | Solo protagonist; rival/antagonist may be added |
+| Urban Drama / Contemporary Romance / Historical Court Drama | Duo — but if this is the 2nd+ Romance/Drama book in a batch, upgrade to Trio or Environmental instead |
+| Dark Fantasy / Paranormal | Trio (antagonist or rival as third figure) preferred over Duo |
+| Thriller / Mystery | Environmental (figure small against dramatic setting) or Solo |
+| Horror | Environmental or Solo — figure against supernatural backdrop |
+| Sci-Fi / Dystopian | Solo (protagonist in environment) or Environmental (dystopian cityscape dominant) |
+| Cultivation Fantasy / War Epic | Solo protagonist; rival/antagonist as second figure optional |
 | Isekai / Slice of Life | Solo, Duo, or small group — match the synopsis |
 
 **A third figure adds more tension than a clean two-person embrace** when the synopsis offers it. Keep one clear focal pairing; place the third figure to threaten or intrude (watching from behind, reaching between them, turned away in betrayal).
@@ -312,8 +315,8 @@ printf '{"model":"%s","size":"%s","prompt":%s}\n' \
   > "${BOOK_DIR}.json"
 ```
 
-**Post-process by model used (final target: ~848×1280 true 2:3 portrait, ≤ 300 KB):**
-- `gpt-image-2-all` → already 848×1280 PNG; convert to JPEG quality 85 or run `pngquant --quality=75-85 --force`.
+**Post-process by model used (final target: ~848×1280 true 2:3 portrait; final WebP ≤ 300 KB):**
+- `gpt-image-2-all` → already 848×1280 PNG; no resize needed. Final WebP conversion happens in Step 3.5.
 - `doubao-seedream-5-0-260128` → crop the bottom-right `AI生成` watermark, then resize to 848 px wide (maintaining 2:3):
   ```bash
   sips -c 2321 1664 "$OUTPUT"                 # crop ~7% from bottom to clear watermark, output stays ~1664x2321
@@ -326,10 +329,10 @@ printf '{"model":"%s","size":"%s","prompt":%s}\n' \
   ```
   Note: nano silently downgrades T3+ to ~T1 allure.
 
-**Final compression / format choice:**
-- Prefer JPEG: `sips -s format jpeg -s formatOptions 85 "$OUTPUT" --out "${OUTPUT%.png}.jpg"`, then rename books.ts cover path to `/covers/{slug}.jpg`.
-- If the site must keep `.png` extensions, run `pngquant --quality=75-85 --force "$OUTPUT"`.
-- Either way, every shipped cover must be ≤ 300 KB on disk. If still larger, lower JPEG quality to 80 or resize to 683×1024.
+**Final format — WebP only (see Step 3.5):**
+- Every shipped cover is lossy **WebP at quality 82**, served as `/covers/{slug}.webp`. This is the single delivery format — no JPEG, no PNG, no format branching.
+- WebP q82 brings AI covers to ~50–60 KB with no visible loss at display size (well under the ≤ 300 KB cap). If a cover is still > 300 KB after conversion, resize to 683×1024 and re-convert.
+- **Never use lossless WebP.** On photographic covers lossless WebP is ~3× *larger* than the source PNG — always lossy q82.
 
 **If the whole cascade fails on content safety** (`API_ERROR` containing `invalid_prompt` / `safety` / `rejected` from the primary, and the fallbacks also reject): replace triggering terms in `$PROMPT` and re-run the cascade once:
 
@@ -375,33 +378,43 @@ rm -f /tmp/cover_*.log
 
 `build_cover_prompt` is not a real function — it represents executing Steps 1.5 and 2 inline for each book before the curl call.
 
-## Step 3.5 — Compress the cover
+## Step 3.5 — Convert the cover to WebP
 
-Run immediately after Step 3, before quality check. Do not skip.
+Run immediately after Step 3, before quality check. Do not skip. This produces the final shipped asset: `public/covers/{book-slug}.webp` (flat path, lossy WebP q82). The nested `cover_v1.png` is the intermediate — the WebP is the deliverable.
 
 ```bash
-COVER_FILE="$BOOK_DIR/cover_v1.png"
-if [ -f "$COVER_FILE" ]; then
-  if ! command -v pngquant &>/dev/null; then
-    if ! brew install pngquant -q; then
-      echo "⚠ pngquant install failed — skipping compression for $COVER_FILE"
-    fi
+# Convert one cover PNG → final flat WebP at q82. Prefer cwebp; fall back to Pillow.
+to_webp_cover() {
+  local src="$1" dst="$2" q="${3:-82}"
+  if command -v cwebp &>/dev/null; then
+    cwebp -quiet -q "$q" "$src" -o "$dst"
+  else
+    python3 -c "from PIL import Image; im=Image.open('$src'); im.save('$dst','webp',quality=$q,method=6)"
   fi
-  if command -v pngquant &>/dev/null; then
-    BEFORE=$(stat -f%z "$COVER_FILE" 2>/dev/null || stat -c%s "$COVER_FILE")
-    pngquant --quality=80-90 --ext .png --force "$COVER_FILE"
-    AFTER=$(stat -f%z "$COVER_FILE" 2>/dev/null || stat -c%s "$COVER_FILE")
-    echo "✓ pngquant: ${BEFORE}B → ${AFTER}B (-$(( (BEFORE-AFTER)*100/BEFORE ))%)"
+}
+
+COVER_SRC="$BOOK_DIR/cover_v1.png"
+COVER_OUT="public/covers/${bookSlug}.webp"   # flat served path
+if [ -f "$COVER_SRC" ]; then
+  if ! command -v cwebp &>/dev/null && ! python3 -c "import PIL" &>/dev/null; then
+    brew install webp -q || echo "⚠ cwebp install failed — install webp or Pillow"
   fi
+  to_webp_cover "$COVER_SRC" "$COVER_OUT" 82
+  BEFORE=$(stat -f%z "$COVER_SRC" 2>/dev/null || stat -c%s "$COVER_SRC")
+  AFTER=$(stat -f%z "$COVER_OUT" 2>/dev/null || stat -c%s "$COVER_OUT")
+  echo "✓ webp q82: ${BEFORE}B → ${AFTER}B (-$(( (BEFORE-AFTER)*100/BEFORE ))%)"
 fi
 ```
+
+**Never use lossless WebP** (`cwebp -lossless` / `Image.save(..., lossless=True)`) — on photographic covers it is ~3× larger than the source PNG. Always lossy q82.
 
 For **batch mode**, run this loop after all covers are generated:
 
 ```bash
 for bookSlug in "${BOOKS[@]}"; do
-  COVER_FILE="public/covers/${bookSlug}/cover_v1.png"
-  # same snippet as above with COVER_FILE set per book
+  COVER_SRC="public/covers/${bookSlug}/cover_v1.png"
+  COVER_OUT="public/covers/${bookSlug}.webp"
+  # same to_webp_cover call as above with COVER_SRC / COVER_OUT set per book
 done
 ```
 
@@ -421,7 +434,7 @@ done
 ## Output Location
 
 ```
-public/covers/{book-slug}.png   ← cover image, served as /covers/{book-slug}.png
+public/covers/{book-slug}.webp  ← cover image (lossy WebP q82), served as /covers/{book-slug}.webp
 public/covers/{book-slug}.json  ← metadata: model, size, prompt (all in one file)
 ```
 
@@ -430,7 +443,7 @@ JSON format:
 { "model": "gpt-image-2-all", "size": "848x1280", "prompt": "..." }
 ```
 
-Served from `public/` — no CDN needed. The site builder reads `Book.cover` as `/covers/{book-slug}.png`.
+Served from `public/` — no CDN needed. The site builder reads `Book.cover` as `/covers/{book-slug}.webp`.
 
 After generation, write the JSON alongside the image:
 ```bash
