@@ -53,6 +53,7 @@ The illustration framework differs by genre. **Romance** uses the allure-tier sy
 - Horror → §Genre: Horror
 - Fantasy → §Genre: Fantasy
 - Sci-Fi / Dystopian → §Genre: Sci-Fi
+- Contemporary Drama / Family Drama / Medical Drama → §Genre: Drama
 
 For non-romance genres: the §0 floor still applies (no explicit sexual content), but the allure-tier framework, T3/T4 assembly blocks, and all risqué-allure guidance do not apply. Skip §Peak Scene Selection through §Prompt Construction and go directly to the relevant genre section.
 

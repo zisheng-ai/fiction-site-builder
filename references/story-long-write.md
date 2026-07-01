@@ -2,7 +2,7 @@
 
 Load this reference when the user asks to write, continue, or revise long-form novel chapters.
 
-**Before writing:** load the relevant genre file alongside this reference — `genre-romance.md`, `genre-mystery.md`, `genre-horror.md`, `genre-fantasy.md`, or `genre-scifi.md`. Genre-specific named emotional states, scene techniques, escalation registers, and synopsis formulas are there, not here.
+**Before writing:** load the relevant genre file alongside this reference — `genre-romance.md`, `genre-mystery.md`, `genre-horror.md`, `genre-fantasy.md`, `genre-scifi.md`, or `genre-drama.md`. Genre-specific named emotional states, scene techniques, escalation registers, and synopsis formulas are there, not here.
 
 ## Niche Research Input
 

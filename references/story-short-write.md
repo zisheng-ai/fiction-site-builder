@@ -2,7 +2,7 @@
 
 Load this reference when the user asks to write a short story or flash fiction.
 
-**Genre-specific short form guidance** is in the relevant genre file — `genre-romance.md` (Romance Heat Level short form), `genre-mystery.md` (Mystery & Suspense short form), `genre-horror.md` (Short Form Horror), `genre-fantasy.md` (Short Form Fantasy), `genre-scifi.md` (Short Form Sci-Fi & Dystopian). Load the relevant genre file alongside this reference.
+**Genre-specific short form guidance** is in the relevant genre file — `genre-romance.md` (Romance Heat Level short form), `genre-mystery.md` (Mystery & Suspense short form), `genre-horror.md` (Short Form Horror), `genre-fantasy.md` (Short Form Fantasy), `genre-scifi.md` (Short Form Sci-Fi & Dystopian), `genre-drama.md` (Short Form Drama). Load the relevant genre file alongside this reference.
 
 ## Niche Research Input
 

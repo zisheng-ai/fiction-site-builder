@@ -91,6 +91,8 @@ Each genre has its own community, demand signals, and trope language. Pick the g
 | **Horror** | Haunted location + unreliable senses + isolation; folk horror + outsider | `#horrorreads` `#horrorbooks` Reddit `r/horrorlit` |
 | **Epic / Dark Fantasy** | Chosen burden + political intrigue + magic cost; fae court + mortal bargain | `#epicfantasy` `#darkfantasy` Reddit `r/Fantasy` |
 | **Sci-Fi / Dystopian** | Resistance cell + surveillance state + one person who sees the truth; first contact | `#dystopian` `#scifi` Reddit `r/scifi` |
+| **Contemporary Drama** | Secret child / hidden lineage + family reckoning; second-chance reunion after an old wrong; grief and inheritance | `#familydrama` `#emotionalfiction` `#secretbaby` Pinterest + Facebook Groups |
+| **Medical Drama** | Deathbed revelation + caregiver relationship; hospital diagnosis that forces family truth; donor / recipient identity | `#medicaldrama` `#hospitalstory` TikTok + Pinterest emotional content |
 
 Prefer combinations where:
 - At least two tropes or tension angles overlap (readers search the intersection, not just one)
@@ -198,6 +200,8 @@ Fiction sites can be approved for AdSense. Most genre fiction qualifies. A small
 | Horror | Low–Moderate | Niche audience; some advertiser avoidance of dark content |
 | Fantasy / Sci-Fi | Low–Moderate | Narrower audience; entertainment and tech advertiser crossover |
 | Literary Fiction | Low | Small audience; low commercial advertiser interest |
+| Contemporary Drama / Family Drama | Moderate | Female 25–50; family, home, lifestyle advertisers; high session time from emotionally engaged readers |
+| Medical Drama | Low–Moderate | Broad demographic (F 25–55); healthcare, insurance, wellness advertisers; emotionally sticky content |
 
 ---
 
