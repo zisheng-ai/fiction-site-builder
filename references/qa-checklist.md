@@ -215,9 +215,9 @@ After B6 passes, generate `TODO.md` in the project root listing every post-launc
 - [ ] Deploy to CDN (Vercel / Cloudflare Pages) — publish the `out/` directory
 - [ ] Bind custom domain, configure DNS
 
-## Ad accounts
-- [ ] Submit site for Google AdSense review (publisher ID: ca-pub-XXXXXXXX)
-- [ ] Confirm AdX slots (/XXXXXXXXX) serving after approval
+## Ads
+- [ ] Confirm AdSense slots (ca-pub-XXXXXXXX) serving after deployment
+- [ ] Confirm AdX slots (/XXXXXXXXX) serving after deployment
 - [ ] Verify Cookie Consent banner satisfies Google CMP requirements
 
 ## Traffic
@@ -238,4 +238,6 @@ After B6 passes, generate `TODO.md` in the project root listing every post-launc
 - [ ] Plan next batch of chapters or new books
 ```
 
-Fill in the actual publisher IDs and ad-network paths from the project's books-data or CLAUDE.md. Only include sections relevant to what was actually built (e.g. omit the AdX row if AdX was not wired up).
+Fill in the actual publisher IDs and ad-network paths from the project's CLAUDE.md. Only include sections relevant to what was actually built (e.g. omit the AdX row if AdX was not wired up).
+
+**Important:** Ad accounts are shared across sites — do NOT include a "apply for / submit for review" step. The accounts already exist; the only post-launch action is confirming the slots serve correctly after the new domain goes live.
