@@ -318,11 +318,83 @@ When building the site (B4), implement `IllustrationBlock` and wire it into the 
 
 ### IllustrationBlock component
 
+`IllustrationBlock` is a server component that checks file existence, then delegates rendering to `LightboxImage` (a client component). This composition keeps the server-side `existsSync` out of the client bundle while enabling interactive lightbox/download.
+
+```tsx
+// src/components/LightboxImage.tsx
+'use client'
+
+import { useState, useEffect, useCallback } from 'react'
+
+interface Props {
+  src: string
+  alt: string
+  width?: number
+  height?: number
+  className?: string
+  style?: React.CSSProperties
+  loading?: 'lazy' | 'eager'
+}
+
+export default function LightboxImage({ src, alt, width, height, className, style, loading = 'lazy' }: Props) {
+  const [open, setOpen] = useState(false)
+  const close = useCallback(() => setOpen(false), [])
+
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') close() }
+    document.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => { document.removeEventListener('keydown', onKey); document.body.style.overflow = '' }
+  }, [open, close])
+
+  async function download() {
+    try {
+      const res = await fetch(src)
+      const blob = await res.blob()
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = src.split('/').pop() ?? 'image.png'
+      a.click()
+      URL.revokeObjectURL(url)
+    } catch { window.open(src, '_blank') }
+  }
+
+  return (
+    <>
+      <img src={src} alt={alt} width={width} height={height}
+        className={`lb-trigger${className ? ` ${className}` : ''}`}
+        style={style} loading={loading} onClick={() => setOpen(true)} />
+      {open && (
+        <div className="lb-overlay" onClick={e => { if (e.target === e.currentTarget) close() }}>
+          <div className="lb-box">
+            <div className="lb-toolbar">
+              <button className="lb-btn" onClick={download} aria-label="Save image">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+              </button>
+              <button className="lb-btn" onClick={close} aria-label="Close">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+              </button>
+            </div>
+            <img src={src} alt={alt} className="lb-img" />
+          </div>
+        </div>
+      )}
+    </>
+  )
+}
+```
+
 ```tsx
 // src/components/IllustrationBlock.tsx
-import Image from 'next/image'
 import { existsSync } from 'fs'
 import { join } from 'path'
+import LightboxImage from './LightboxImage'
 
 interface Props {
   bookSlug: string
@@ -335,13 +407,12 @@ export default function IllustrationBlock({ bookSlug, chapterNum }: Props) {
 
   return (
     <figure className="illustration-block">
-      <Image
+      <LightboxImage
         src={`/illustrations/${bookSlug}/ch-${chapterNum}.png`}
         alt=""
         width={664}
         height={996}
         className="illustration-img"
-        loading="lazy"
       />
     </figure>
   )
@@ -362,6 +433,31 @@ export default function IllustrationBlock({ bookSlug, chapterNum }: Props) {
   border-radius: 8px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
 }
+
+/* Lightbox */
+.lb-trigger { cursor: zoom-in; }
+.lb-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,.85);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px; animation: lb-in .2s ease;
+}
+@keyframes lb-in { from { opacity: 0 } to { opacity: 1 } }
+.lb-box { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; max-width: min(90vw, 800px); }
+.lb-toolbar { display: flex; gap: 8px; }
+.lb-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(255,255,255,.12); border: none; cursor: pointer; color: #fff; transition: background .15s;
+}
+.lb-btn:hover { background: rgba(255,255,255,.24); }
+.lb-img {
+  max-width: 100%; max-height: calc(90vh - 60px);
+  border-radius: 10px; object-fit: contain;
+  box-shadow: 0 24px 80px rgba(0,0,0,.6); animation: lb-scale-in .2s ease;
+}
+@keyframes lb-scale-in { from { transform: scale(.94); opacity: 0 } to { transform: scale(1); opacity: 1 } }
 ```
 
 ### Chapter renderer split
