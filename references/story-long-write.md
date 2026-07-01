@@ -71,7 +71,7 @@ Universal principle: if the setting could be swapped with any other location wit
 
 High-contrast moments are read more slowly and remembered longer. Build at least two of these into any pivotal scene:
 
-- **His control / her chaos** (or reversed) — one character's composure against the other's fracture
+- **Control vs. chaos** — one character's composure against the other's fracture
 - **Public face / private reality** — what they show the room vs. what the reader knows
 - **What is said / what is meant** — dialogue that runs parallel to the subtext, not identical to it
 - **The ordinary detail / the extraordinary stakes** — mundane action (pouring a drink, adjusting a cuff) against the weight of what is actually happening
@@ -153,13 +153,14 @@ The character stands at the choice. The chapter ends before the decision is made
 
 ---
 
-#### 6. His Last Line
-His dialogue or action is the chapter's final note. His words are still in the air when the chapter ends. The protagonist does not get to respond.
+#### 6. The Unanswered Line
+The other character's dialogue or action is the chapter's final note. Their words are still in the air when the chapter ends. The protagonist does not get to respond.
 
-**When:** Any chapter-ending exchange between the pairing. The reader is left holding his words, with no release.
+**When:** Any chapter-ending exchange between two characters. Works in any genre — romance (the love interest's charged admission), mystery (the suspect's ambiguous denial), horror (the antagonist's threat), thriller (the ally's revelation). The reader is left holding the words, with no release.
 
-**Formula:** [Exchange builds.] [His final line — specific, charged, or ambiguous.] [Her response reduced to one physical detail only — no interior, no speech.]
+**Formula:** [Exchange builds.] [Their final line — specific, charged, or ambiguous.] [Protagonist's response reduced to one physical detail only — no interior, no speech.]
 > *"I'll be here when you decide," he said. She heard the door close. She did not look.*
+> *"We both know what you found," the inspector said. The room went very quiet.*
 
 ---
 
@@ -188,7 +189,7 @@ Appear to fully close the chapter's tension in the penultimate paragraph. Destro
 #### 9. Body's Unfinished Business
 The physical tension between the pairing is at maximum. The chapter cuts on held breath, not on exhale.
 
-**When:** Any chapter ending in physical proximity between the pairing without resolution. The most effective hook for romance — the reader is physiologically pulled forward.
+**When:** Any chapter ending in unresolved physical proximity — romance (near-kiss, held breath), horror (hunter and hunted inches apart), thriller (confrontation that hasn't broken yet). The reader is physiologically pulled forward.
 
 **Formula:** [Maximum proximity established.] [One precise physical detail: his hand, her breath, the distance between them.] [Neither moves.] [One environmental detail that underlines the silence.] END.
 > *His hand was still at her jaw. She had not stepped back. Outside, the city was doing what cities do at 2 AM — making noise to cover everything that wasn't being said.*
@@ -452,7 +453,7 @@ Back-cover copy, not a plot summary. Each sentence has a job:
 |----------|-----|----------------|
 | **1 — Protagonist state** | Who she is + why she's there | Names the character + the specific ordinary-world goal. Not "a woman who" — a person doing a specific thing. |
 | **2 — The collision** | What went wrong when he entered | The inciting event in one sentence. What changed. "She didn't expect X." "X happened instead." |
-| **3 — The exchange** | What each needs from the other | "He needs [X]. She needs [Y]." The transactional logic of the forced proximity. |
+| **3 — The exchange** | What each needs from the other | "[Character A] needs [X]. [Character B] needs [Y]." The transactional logic of the forced proximity or central conflict. |
 | **4 — The third variable** | What neither planned for | This is the actual story. The thing the arrangement didn't account for. Must be specific, not vague. |
 | **5 — Stakes (optional)** | What happens if they fail or succeed | Only include if it sharpens the hook. Cut if it reads like a plot outline. |
 | **6 — The feeling (optional)** | The emotional impossibility in one image | One sentence that makes the reader feel the situation rather than understand it. |
