@@ -8,7 +8,7 @@ Load this reference when the user asks to write, continue, or revise long-form n
 
 Before writing the first chapter of a new book, check `outputs/{site-slug}/{book-slug}/niche-research.json`:
 
-- **Exists** → read `differentiation_angle`, `selected_tropes`, `competitive_brief[].beat_action`, and `producibility` (target chapters, words per chapter, heat level). These constrain the story brief.
+- **Exists** → read `differentiation_angle`, `selected_tropes`, `competitive_brief[].beat_action`, and `producibility` (target chapters, words per chapter, intensity_level). These constrain the story brief.
 - **Does not exist + user gave explicit genre/tropes/premise** → proceed directly; document them in `tracking/context.md`.
 - **Does not exist + no explicit brief** → run `fiction-niche-researcher.md` first, then return here.
 
@@ -79,7 +79,7 @@ High-contrast moments are read more slowly and remembered longer. Build at least
 
 ---
 
-**Genre-specific scene techniques** are in the relevant genre file. Load `genre-romance.md` for regression/villainess/creature-fixation techniques; `genre-mystery.md` for clue architecture, investigation pacing, gothic atmosphere, and Regency social constraint.
+**Genre-specific scene techniques** are in the relevant genre file. Load `genre-romance.md` for regression/villainess/creature-fixation techniques; `genre-mystery.md` for clue architecture, investigation pacing, gothic atmosphere, and Regency social constraint; `genre-horror.md` for reveal architecture, monster problem, and terror pacing; `genre-fantasy.md` for council scenes, battle chapters, cost scenes, and world-building economy; `genre-scifi.md` for inciting violation, compliance scenes, scale reveals, and resistance cell dynamics.
 
 ---
 
@@ -211,7 +211,7 @@ One sharp, specific question — not rhetorical — that the reader cannot answe
 | Position | Recommended techniques | Avoid |
 |----------|----------------------|-------|
 | Ch 1–4 (early) | Mid-Motion Cut, Ticking Clock, Overheard Truth, Planted Bomb | False Resolution (reader not invested enough), Body's Unfinished Business (too early for physical tension) |
-| Ch 5–(N-3) (mid) | Withheld Reaction, Decision at Threshold, His Last Line, Body's Unfinished Business, Unanswered Question | Mid-Motion Cut (loses impact when overused) |
+| Ch 5–(N-3) (mid) | Withheld Reaction, Decision at Threshold, The Unanswered Line, Body's Unfinished Business, Unanswered Question | Mid-Motion Cut (loses impact when overused) |
 | Last 3 chapters | False Resolution + Detonation, Planted Bomb, Decision at Threshold | Ticking Clock (too mechanical at the end), Unanswered Question if it's the final chapter |
 | Final chapter | Allowed to resolve — but the last paragraph must still earn the close | Any forbidden ending from the list above |
 

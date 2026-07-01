@@ -186,7 +186,8 @@ Track and optimize:
 - [ ] Privacy / Terms / About / Contact pages exist and are footer-linked on every route (§5).
 - [ ] Google-certified CMP / cookie consent wired (§1.5).
 - [ ] Every ad slot reserves explicit size (no CLS) (§3.3).
-- [ ] Above-fold unit loads immediately; mid/below units lazy-load with correct `rootMargin` (§3.4).
+- [ ] Above-fold unit loads immediately; mid/below units lazy-load with correct `rootMargin` (§3.4, §8.6).
+- [ ] Ad components from §8.6 are used unchanged; never revert to mount-time `display()`/`push({})` for all slots.
 - [ ] Ad density ≤ 3–4 / 1,000 words and ad-pixels < 30% of content (§1.3, §3.2).
 - [ ] No ad is mistakable for the Next/TOC control; clear gap maintained (§1.4).
 - [ ] Chapter change does a full reload so ads reinit and a fresh pageview counts (§2.1).
@@ -309,3 +310,205 @@ Each trust page follows the same shell: site header `<Link href="/">← Site Nam
 ```
 
 Privacy Policy must explicitly name: the ad network (Google AdSense or Google Ad Manager), cookies, and user rights. Add Meta Pixel mention only if Pixel is actually installed. Terms must state: fiction content, 18+ audience, no reproduction. Contact page must exist and be reachable — a dedicated email is fine, but for independently-operated sites a note directing DMCA requests to the domain WHOIS contact is acceptable.
+
+### 8.6 Lazy-loaded ad components (REQUIRED for viewability)
+
+All ad units must lazy-load based on viewport position. Loading every slot on mount destroys Active View viewability and lowers eCPM. Use `IntersectionObserver` with the strategies from §3.4.
+
+#### AdX / GAM — `AdSlot.tsx`
+
+```tsx
+'use client'
+
+import { useEffect, useRef, useState } from 'react'
+
+type Size = [number, number] | 'fluid'
+type Strategy = 'immediate' | 'near' | 'lazy'
+
+type Props = {
+  path: string
+  id: string
+  sizes: Size[]
+  strategy?: Strategy
+  className?: string
+}
+
+declare global {
+  interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    googletag: any
+  }
+}
+
+const ROOT_MARGIN: Record<Strategy, string | undefined> = {
+  immediate: undefined,
+  near: '300px',
+  lazy: '500px',
+}
+
+export default function AdSlot({ path, id, sizes, strategy = 'lazy', className = '' }: Props) {
+  const [shouldLoad, setShouldLoad] = useState(strategy === 'immediate')
+  const wrapperRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (shouldLoad) return
+    const el = wrapperRef.current
+    if (!el || typeof IntersectionObserver === 'undefined') {
+      setShouldLoad(true)
+      return
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: ROOT_MARGIN[strategy] }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [shouldLoad, strategy])
+
+  useEffect(() => {
+    if (!shouldLoad) return
+    window.googletag = window.googletag || { cmd: [] }
+    window.googletag.cmd.push(() => {
+      const slot = window.googletag.defineSlot(path, sizes, id)
+      if (!slot) return
+      slot.addService(window.googletag.pubads())
+      window.googletag.display(id)
+    })
+    return () => {
+      window.googletag?.cmd.push(() => {
+        const slot = window.googletag.pubads().getSlots()
+          .find((s: { getSlotElementId: () => string }) => s.getSlotElementId() === id)
+        if (slot) window.googletag.destroySlots([slot])
+      })
+    }
+  }, [shouldLoad, path, id])
+  // `sizes` is omitted from deps: callers pass inline arrays and the config is static per id.
+
+  const isFluid = sizes.includes('fluid')
+  return (
+    <div ref={wrapperRef} className={`flex justify-center my-6 ${className}`}>
+      <div id={id} style={isFluid ? undefined : { minWidth: 250, minHeight: 250 }} />
+    </div>
+  )
+}
+```
+
+Placement mapping:
+
+```tsx
+// chapter page
+<AdSlot path="/23294357175/q1" id="div-gpt-ad-1782711338284-0" sizes={[[250,250],[300,250],[336,280]]} strategy="immediate" />
+<AdSlot path="/23294357175/q2" id="div-gpt-ad-1782711428179-0" sizes={[[250,250],[336,280],[300,250]]} strategy="near" />
+<AdSlot path="/23294357175/q3" id="div-gpt-ad-1782711490041-0" sizes={[[250,250],[336,280],[300,250]]} strategy="near" />
+<AdSlot path="/23294357175/q4" id="div-gpt-ad-1782711562651-0" sizes={[[336,280],[250,250],[300,250]]} strategy="near" />
+<AdSlot path="/23294357175/q5" id="div-gpt-ad-1782711618925-0" sizes={['fluid']} strategy="lazy" />
+```
+
+#### AdSense — `AdsenseSlot.tsx`
+
+```tsx
+'use client'
+
+import { useEffect, useRef, useState } from 'react'
+
+declare global {
+  interface Window {
+    adsbygoogle: unknown[]
+  }
+}
+
+type Strategy = 'immediate' | 'near' | 'lazy'
+
+type Props = {
+  slot: string
+  strategy?: Strategy
+  className?: string
+}
+
+const ROOT_MARGIN: Record<Strategy, string | undefined> = {
+  immediate: undefined,
+  near: '300px',
+  lazy: '500px',
+}
+
+export default function AdsenseSlot({ slot, strategy = 'lazy', className = '' }: Props) {
+  const [shouldLoad, setShouldLoad] = useState(strategy === 'immediate')
+  const insRef = useRef<HTMLModElement>(null)
+
+  useEffect(() => {
+    if (shouldLoad) return
+    const el = insRef.current
+    if (!el || typeof IntersectionObserver === 'undefined') {
+      setShouldLoad(true)
+      return
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: ROOT_MARGIN[strategy] }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [shouldLoad, strategy])
+
+  useEffect(() => {
+    if (!shouldLoad) return
+    try {
+      window.adsbygoogle = window.adsbygoogle || []
+      window.adsbygoogle.push({})
+    } catch {
+      // blocked by ad blocker
+    }
+  }, [shouldLoad, slot])
+
+  return (
+    <div className={`flex justify-center my-6 overflow-hidden ${className}`}>
+      <ins
+        ref={insRef}
+        className="adsbygoogle"
+        style={{ display: 'block' }}
+        data-ad-client="ca-pub-5417273853283747"
+        data-ad-slot={slot}
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      />
+    </div>
+  )
+}
+```
+
+### 8.7 Layout viewport and empty-div collapse
+
+Export an explicit viewport in `app/layout.tsx` so mobile ad sizing and viewability measurement are correct:
+
+```tsx
+import type { Metadata, Viewport } from 'next'
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+}
+```
+
+For AdX sites, enable `collapseEmptyDivs` in the GPT init so unfilled slots collapse instead of leaving blank 250×250 placeholders that count against viewability:
+
+```tsx
+<script
+  dangerouslySetInnerHTML={{
+    __html: `window.googletag=window.googletag||{cmd:[]};googletag.cmd.push(function(){googletag.setConfig({singleRequest:true});googletag.pubads().setForceSafeFrame(true);googletag.pubads().collapseEmptyDivs(true);googletag.enableServices();});`,
+  }}
+/>
+```
+
+### 8.8 Refresh rule (optional)
+
+Only refresh ads when the unit is in the viewport and the tab has been active for ≥ 30 seconds. Sticky/anchor units are the safest refresh surface because they remain viewable. Do not refresh below-the-fold units.

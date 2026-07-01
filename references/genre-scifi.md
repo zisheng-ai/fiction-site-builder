@@ -149,6 +149,7 @@ When spawning agents for parallel chapter writing, pass each agent its hope arc 
 ```
 Hope arc position: Ch-{N} of {total}
 Expected hope beat: {compliant despair / ember / organized / crisis / earned possibility}
+Next hope beat this chapter: {what should shift in the protagonist's relationship to hope or despair — a small gain, a cost, a revelation, a loss}
 Premise visibility: {what the reader currently understands about the speculative premise}
 Scale of the problem (what the protagonist knows): {local / regional / systemic}
 Resistance status (from tracking/threads.md): {what has been built, what has been lost}

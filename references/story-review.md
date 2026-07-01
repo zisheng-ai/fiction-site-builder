@@ -26,6 +26,8 @@ Fallback: none | missing agents -> solo | agent tool unavailable -> solo
 
 ## Review Dimensions
 
+**Before reviewing:** load the relevant genre file — `genre-romance.md`, `genre-mystery.md`, `genre-horror.md`, `genre-fantasy.md`, or `genre-scifi.md`. The genre file's escalation register (Heat Level / Dread Register / Terror Register / Wonder Register / Hope Arc) is needed to audit whether genre-specific pacing is progressing correctly across chapters.
+
 ### 1. Structure Audit
 
 - Does each chapter have a hook, escalation, turn, and hook-out?
@@ -33,8 +35,9 @@ Fallback: none | missing agents -> solo | agent tool unavailable -> solo
 - Are any chapters filler — nothing changes from beginning to end?
 - Is the arc pacing consistent, or does the middle sag?
 - Are all planted foreshadows tracked and resolved (or intentionally open)?
+- **Genre register check:** is the genre's escalation register (from the genre file) advancing correctly? Romance: heat level climbing toward the peak scene. Mystery: dread register building through investigation arc. Horror: terror register escalating from unease → dread → terror → horror. Fantasy: wonder register expanding as the world reveals itself. Sci-Fi: hope arc moving from compliant despair toward earned possibility.
 
-Flag: chapters with no turn, chapters that end on summary/reflection, back-to-back low-stakes chapters.
+Flag: chapters with no turn, chapters that end on summary/reflection, back-to-back low-stakes chapters, genre register stalling or resetting without narrative cause.
 
 ### 2. Character Audit
 

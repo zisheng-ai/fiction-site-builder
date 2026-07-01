@@ -72,7 +72,7 @@ Save as `content/short/{story-title}/beat-outline.md` from the project root.
 Write full prose section by section following the beat outline. Save all to `content/short/{story-title}/prose.md` from the project root.
 
 Prose formatting:
-- Adjacent paragraphs: single `\n` between them — no blank lines
+- Adjacent paragraphs: blank line between them (`\n\n`). CommonMark collapses a single `\n` into a space — do not use single newlines between paragraphs.
 - Dialogue: half-width double quotes `""`
 - Section markers: `### 1.` / `### 2.` — consistent throughout
 - No `……` or `——` — rewrite as action, short sentence, or line break

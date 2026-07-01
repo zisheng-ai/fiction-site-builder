@@ -14,7 +14,7 @@ Run the applicable gates based on severity (see Severity Levels below).
 
 | Gate | Problem | Signal |
 | --- | --- | --- |
-| A | Banned words / high-frequency clichés | "something flickered in his eyes" "he drew a deep breath" "the corner of his mouth curved" |
+| A | Banned words / high-frequency clichés | "something flickered in his eyes" "he drew a deep breath" "the corner of his mouth curved" — all patterns apply equally with he/she/they/their variants |
 | B | Template sentence patterns | negation-then-reversal setups, "with a ...", "his voice was low but ...", consecutive parallel structures ≥3 |
 | C | Telling not showing (psychology) | "he felt" "she realized" "emotion surged inside her" without grounding action |
 | D | Uniform rhythm / paragraph length | Every paragraph 4–6 sentences, identical beat |
