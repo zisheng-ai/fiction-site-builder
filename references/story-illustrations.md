@@ -783,8 +783,6 @@ sci-fi scene illustration, cold editorial palette, intimate emotional register w
 
 ---
 
----
-
 ## Genre: Contemporary Drama / Family Drama / Medical Drama
 
 ### Peak Scene Selection (Drama)
