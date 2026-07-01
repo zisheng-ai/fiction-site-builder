@@ -117,7 +117,7 @@ Starts after Phase 0. Runs in parallel with Track A.
 | B3 | Data | `data-contract.md` | content-collections schema |
 | B4 | Build | `references/ui-components.md` + `reader-ux.md` + `adsense-arbitrage.md` | working site with all required pages, ad slots, trust pages, FB tracking |
 | B5 | Performance | `performance.md` + `adsense-arbitrage.md` | Core Web Vitals targets met, images optimized, ad CLS/lazy-load tuned |
-| B6 | QA | `qa-checklist.md` | automated QA pass; ad-layout + policy-compliance checks; screenshots on failure only |
+| B6 | QA | `qa-checklist.md` + `references/lighthouse-qa.md` | automated QA pass; Lighthouse median scores meet thresholds; ad-layout + policy-compliance checks; screenshots on failure only |
 
 B1 → B2 → B3 → B4 are sequential. B5 and B6 run in parallel against the same build — run `pnpm run build` once, then check both.
 
@@ -365,6 +365,7 @@ Load references only when entering that phase. Do not preload all references at 
 - `reader-ux.md` — chapter page UX requirements during build.
 - `performance.md` — Core Web Vitals, loading strategy, image optimization.
 - `qa-checklist.md` — final automated QA and screenshot verification (failures only).
+- `lighthouse-qa.md` — Lighthouse performance/accessibility/best-practices/SEO thresholds and runbook.
 - `adsense-arbitrage.md` — Facebook-traffic + AdSense/AdX arbitrage playbook: profit model, account-survival compliance, pageview-depth and ad-layout/viewability tactics, FB tracking, trust pages. Load whenever building, laying out ads, directing covers, or wiring tracking.
 - `product-surface.md` — IA and URL structure (optional, load when needed).
 - `internationalization.md` — language and font decisions (optional, load when needed).
