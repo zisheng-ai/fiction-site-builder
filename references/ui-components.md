@@ -361,7 +361,21 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: Props): Metadata {
   const book = getBook(params.slug)
   if (!book) return {}
-  return { title: book.title, description: book.description }
+  return {
+    title: book.title,
+    description: book.description,
+    openGraph: {
+      title: book.title,
+      description: book.description,
+      images: [{ url: book.cover, width: 800, height: 1200, alt: book.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: book.title,
+      description: book.description,
+      images: [book.cover],
+    },
+  }
 }
 
 // ── shared: synopsis + chapter list ─────────────────────────────────────────
