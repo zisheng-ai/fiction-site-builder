@@ -220,11 +220,6 @@ After B6 passes, generate `TODO.md` in the project root listing every post-launc
 - [ ] Confirm AdX slots (/XXXXXXXXX) serving after deployment
 - [ ] Verify Cookie Consent banner satisfies Google CMP requirements
 
-## Traffic
-- [ ] Add Meta Pixel to `src/app/layout.tsx` (Facebook Business Manager)
-- [ ] Configure Facebook Conversions API (CAPI)
-- [ ] Create Facebook ad campaigns targeting book detail or chapter-1 landing pages
-
 ## Analytics
 - [ ] Add Google Analytics 4 (GA4) script (G-XXXXXXXX) to layout.tsx
 - [ ] Register site in Google Search Console, submit sitemap
