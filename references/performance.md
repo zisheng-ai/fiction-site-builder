@@ -108,3 +108,196 @@ When implementing:
 - Cache the home page and last-visited book detail.
 - Show an offline fallback page for uncached routes.
 - Do not cache chapter content speculatively (pre-cache the whole book) unless the user asks — it wastes mobile data.
+
+## Vercel Deployment Checklist
+
+Five standards every fiction site deployed to Vercel must satisfy before going live.
+
+### 1. sitemap.ts + robots.ts
+
+Use Next.js App Router's native metadata route files — no third-party package needed.
+
+Place both files directly under `src/app/`:
+
+**`src/app/sitemap.ts`** — imports the books array, generates URLs for every book detail page and every chapter page. All URLs end with `/` (matches `trailingSlash: true` in next.config):
+
+```ts
+import { MetadataRoute } from 'next'
+import { books } from '@/lib/books'
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const base = 'https://your-domain.com'
+  const staticPages: MetadataRoute.Sitemap = [
+    { url: base + '/', changeFrequency: 'weekly', priority: 1.0 },
+    { url: base + '/about/', changeFrequency: 'yearly', priority: 0.3 },
+    { url: base + '/privacy/', changeFrequency: 'yearly', priority: 0.2 },
+    { url: base + '/terms/', changeFrequency: 'yearly', priority: 0.2 },
+    { url: base + '/contact/', changeFrequency: 'yearly', priority: 0.2 },
+  ]
+  const bookPages: MetadataRoute.Sitemap = books.flatMap(book => [
+    { url: `${base}/book/${book.slug}/`, changeFrequency: 'weekly' as const, priority: 0.8 },
+    ...Array.from({ length: book.chapterCount }, (_, i) => ({
+      url: `${base}/book/${book.slug}/chapter/${i + 1}/`,
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    })),
+  ])
+  return [...staticPages, ...bookPages]
+}
+```
+
+**`src/app/robots.ts`** — points search engines at `/sitemap.xml`:
+
+```ts
+import { MetadataRoute } from 'next'
+
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: { userAgent: '*', allow: '/' },
+    sitemap: 'https://your-domain.com/sitemap.xml',
+  }
+}
+```
+
+Both files are automatically served at `/sitemap.xml` and `/robots.txt` by the framework — no `next.config` change required.
+
+### 2. vercel.json Cache Headers
+
+Static media assets (covers and illustrations) are content-addressed and never change after upload. Set them to be cached at the edge for one year:
+
+**`vercel.json`** at the project root:
+
+```json
+{
+  "headers": [
+    {
+      "source": "/covers/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/illustrations/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
+}
+```
+
+This reduces origin bandwidth and ensures repeat visitors get covers from the CDN edge with zero latency.
+
+### 3. CookieBanner
+
+Each site needs its own cookie-consent banner with a site-specific localStorage key so consent state is isolated per domain.
+
+**`src/components/CookieBanner.tsx`**:
+
+```tsx
+'use client'
+import { useEffect, useState } from 'react'
+
+// Use a site-specific key, e.g. "vt-cookie-consent" for Velvet Throne,
+// "mf-cookie-consent" for Midnight Fable, etc.
+const CONSENT_KEY = 'vt-cookie-consent'
+
+export default function CookieBanner() {
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    if (!localStorage.getItem(CONSENT_KEY)) setVisible(true)
+  }, [])
+
+  if (!visible) return null
+
+  const accept = () => {
+    localStorage.setItem(CONSENT_KEY, '1')
+    setVisible(false)
+  }
+
+  return (
+    <div className="fixed bottom-0 left-0 right-0 z-50 bg-base-200 border-t border-base-300 p-4 flex flex-col sm:flex-row items-center gap-3 text-sm">
+      <p className="flex-1 text-base-content/80">
+        {/* Replace "Velvet Throne" with the actual site name */}
+        Velvet Throne uses cookies to personalise content and ads.
+      </p>
+      <button onClick={accept} className="btn btn-primary btn-sm shrink-0">
+        Accept
+      </button>
+    </div>
+  )
+}
+```
+
+Import and render `<CookieBanner />` at the end of the `<body>` in `src/app/layout.tsx`:
+
+```tsx
+import CookieBanner from '@/components/CookieBanner'
+// ...
+<body>
+  {children}
+  <CookieBanner />
+</body>
+```
+
+Banner text template: `"{Site Name} uses cookies to personalise content and ads."`
+
+### 4. OG Image
+
+The `openGraph` metadata in `src/app/layout.tsx` must include a fallback `images` entry pointing to the site logo. This image is shown by social platforms (Twitter/X, Facebook, Discord) when sharing the homepage URL and no page-specific OG image is available.
+
+In `src/app/layout.tsx`:
+
+```ts
+export const metadata: Metadata = {
+  // ... other fields ...
+  openGraph: {
+    // ... other fields ...
+    images: [
+      {
+        url: 'https://your-domain.com/logo.png',
+        width: 512,
+        height: 512,
+      },
+    ],
+  },
+}
+```
+
+Requirements:
+- `logo.png` must exist at `public/logo.png` (served from the root path).
+- Dimensions: 512×512px minimum. Square format is safe for all platforms.
+- The URL must be absolute (include the full `https://` domain).
+
+### 5. Speed Insights + Analytics
+
+Vercel Speed Insights collects real-user Core Web Vitals (LCP, INP, CLS) and surfaces them in the Vercel dashboard. Vercel Analytics tracks page views and visitor trends. Both are GDPR-friendly (no cookies, no cross-site tracking) and complement GA4 rather than replace it.
+
+**Install:**
+
+```bash
+pnpm add @vercel/speed-insights @vercel/analytics
+```
+
+**`src/app/layout.tsx`** — import and render both components inside `<body>`:
+
+```tsx
+import { SpeedInsights } from '@vercel/speed-insights/next'
+import { Analytics } from '@vercel/analytics/react'
+// ...
+<body>
+  {children}
+  <CookieBanner />
+  <SpeedInsights />
+  <Analytics />
+</body>
+```
+
+Both components inject a minimal script that runs after the page is interactive — they do not block first paint or affect LCP.
