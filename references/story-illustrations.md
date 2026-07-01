@@ -44,7 +44,21 @@ Place illustrations at the **highest-stakes dramatic peaks** of the novel — 5 
 
 ---
 
-## Peak Scene Selection
+## Genre Routing
+
+The illustration framework differs by genre. **Romance** uses the allure-tier system below (T3/T4) — peak scenes are intimacy peaks; prompts use `cover-allure-elements.md` assembly blocks.
+
+**All other genres** use the genre-specific sections at the bottom of this file instead of the T3/T4 system:
+- Mystery / Cosy Mystery → §Genre: Mystery
+- Horror → §Genre: Horror
+- Fantasy → §Genre: Fantasy
+- Sci-Fi / Dystopian → §Genre: Sci-Fi
+
+For non-romance genres: the §0 floor still applies (no explicit sexual content), but the allure-tier framework, T3/T4 assembly blocks, and all "擦边" guidance do not apply. Skip §Peak Scene Selection through §Prompt Construction and go directly to the relevant genre section.
+
+---
+
+## Peak Scene Selection (Romance)
 
 Read `content/{book-slug}/outline/outline.md` and `content/{book-slug}/tracking/context.md` to identify candidate scenes. Use these criteria:
 
@@ -75,7 +89,7 @@ Illustrations must be **evenly distributed** across the novel. For a book with N
 ### Disqualifying conditions (skip the scene)
 
 - Chapter is still building tension — the peak hasn't landed yet
-- Scene is plot-focused (fight, reveal, travel) without intimacy
+- Scene is plot-focused (fight, reveal, travel) without intimacy **[Romance only — for other genres, plot-focused scenes ARE the qualifying scenes; see §Genre Routing]**
 - Scene has already been illustrated in this book (no two illustrations within 2 chapters of each other)
 - Fewer than 3 chapters remain after this scene (end-of-book illustrations feel anticlimactic)
 
@@ -118,7 +132,7 @@ public/
 
 ---
 
-## Prompt Construction
+## Prompt Construction (Romance)
 
 Illustration prompts differ from cover prompts in three ways:
 1. No title, author, or text overlay instructions
@@ -506,6 +520,253 @@ const contentParts = splitContent(mainContent)  // existing paragraph-split func
 | Full pipeline (new site) | A2.5 runs after A2, before A3 |
 
 A2.5 is **optional at initial launch** — run it when the user requests it or after A1 is complete for at least one book with a completed arc. Do not block the Pre-Launch Gate on illustrations — a site can launch with zero illustrations.
+
+---
+
+## Genre: Mystery
+
+### Peak Scene Selection (Mystery)
+
+Use the same 6-slot distribution as romance (one illustration per sixth of the novel). Peak types differ entirely:
+
+| Slot | Target range | What to look for |
+|---|---|---|
+| **S1 — Discovery** | chapters 1 – ⌊N×0.17⌋ | The protagonist first encounters the crime, wrong, or anomaly — the scene she cannot un-see |
+| **S2 — Commitment** | chapters ⌊N×0.17⌋+1 – ⌊N×0.33⌋ | She commits to finding the truth; first active investigation; the moment she stops dismissing and starts pursuing |
+| **S3 — False certainty** | chapters ⌊N×0.33⌋+1 – ⌊N×0.5⌋ | She believes she has the answer; peak of the wrong theory; before the collapse — she is alone with her conviction |
+| **S4 — Impossible clue** | chapters ⌊N×0.5⌋+1 – ⌊N×0.67⌋ | The piece of evidence that cannot fit; the moment she holds something that breaks her theory — she doesn't yet know why |
+| **S5 — Revelation** | chapters ⌊N×0.67⌋+1 – ⌊N×0.83⌋ | The connection made; she understands; the scene immediately after or during her deduction — the look of someone who now knows |
+| **S6 — Confrontation** | chapters ⌊N×0.83⌋+1 – N−2 | Direct face-to-face with the culprit or consequence; the highest-tension scene in the investigation arc |
+
+**Qualifying peak types (Mystery):**
+| Peak type | Description |
+|---|---|
+| **The charged space** | Protagonist alone in a location with significant meaning — the crime scene, the victim's room, the sealed archive; the image is her and the space |
+| **The weight of knowing** | She holds evidence or has just understood something; the image captures the knowledge on her face and in her posture |
+| **The confrontation** | Direct face-to-face with the culprit, the suspect, or the person who holds the answer; maximum emotional tension between two characters |
+| **The gothic moment** | A scene where the setting itself is the subject — she is small in a charged landscape (dark manor, misty moor, sealed room); atmosphere-first |
+
+### Prompt Construction (Mystery)
+
+No allure tiers. Mystery illustrations use **atmospheric drama intensity** instead:
+
+| Level | Definition | When to use |
+|---|---|---|
+| **L1 — Charged atmosphere** | The setting is the subject; the character is present but the scene's weight comes from the location and its implications | S1, S4 |
+| **L2 — Emotional weight** | The character's knowledge or emotion is the subject; the setting amplifies it; the image captures what she knows | S2, S3, S5 |
+| **L3 — Direct tension** | Two characters in direct confrontation; the power balance is visible; maximum emotional charge between them | S6 |
+
+**Step 1 — Select intensity level (L1/L2/L3) based on slot.**
+
+**Step 2 — Add character anchors:** pull female lead description. For confrontation scenes, include antagonist physical description. Keep to expression + 2 physical details — posture and expression carry more than appearance in mystery illustrations.
+
+**Step 3 — Add scene-specific context:**
+```
+{location: specific and period-appropriate — "Victorian drawing room, late afternoon light through lace curtains", "fog-bound cobblestone street, single gas lamp"}
+{the object or evidence in the scene, if any}
+{protagonist's posture and expression — the emotional register of the moment}
+```
+
+**Step 4 — Add genre framing:**
+```
+dramatic scene illustration, painterly chiaroscuro palette, period editorial atmosphere, single figure with emotional weight, no text, no title, no watermark
+```
+
+For gothic/atmospheric peak (L1): replace with:
+```
+gothic atmosphere illustration, dark editorial palette, figure small against charged landscape, mist and shadow, no text, no title, no watermark
+```
+
+**Complete example (S5 — Revelation, L2):**
+```
+Victorian study, late evening, single oil lamp on the writing desk casting warm amber light against deep shadow. Shelves of leather-bound ledgers behind her. She stands at the desk, one hand flat on an open letter, the other at her mouth — not shock but recognition, the look of someone who has just understood what she was looking at all along.
+[female lead: dark upswept hair, sharp grey eyes, posture precise even in shock]
+Scene: the letter is open; the evidence is there; she is the only one in the room.
+dramatic scene illustration, painterly chiaroscuro palette, period editorial atmosphere, single figure with emotional weight, no text, no title, no watermark
+```
+
+---
+
+## Genre: Horror
+
+### Peak Scene Selection (Horror)
+
+| Slot | Target range | What to look for |
+|---|---|---|
+| **S1 — First wrong thing** | chapters 1 – ⌊N×0.17⌋ | The anomaly she cannot explain away; the first undeniable evidence that something is wrong — she is alone in the space with it |
+| **S2 — Confirmed threat** | chapters ⌊N×0.17⌋+1 – ⌊N×0.33⌋ | The threat is real and present; no longer deniable; the protagonist in direct proximity to the danger for the first time |
+| **S3 — First cost** | chapters ⌊N×0.33⌋+1 – ⌊N×0.5⌋ | Someone or something is taken or harmed; the threat has demonstrated its power; the aftermath scene |
+| **S4 — Isolation peak** | chapters ⌊N×0.5⌋+1 – ⌊N×0.67⌋ | Protagonist at maximum vulnerability — resources depleted, help cut off, alone; the scene before the final act |
+| **S5 — Partial reveal** | chapters ⌊N×0.67⌋+1 – ⌊N×0.83⌋ | The nature of the threat becomes visible for the first time in a meaningful way; the character's face as she sees it |
+| **S6 — Confrontation** | chapters ⌊N×0.83⌋+1 – N−2 | Direct confrontation with the threat; survival uncertain; the highest-tension scene in the horror arc |
+
+**Qualifying peak types (Horror):**
+| Peak type | Description |
+|---|---|
+| **The charged space** | The wrong place — the basement, the attic, the room that should be empty; the protagonist alone in it; the image is her and the space's wrongness |
+| **The witness moment** | She has seen something; the image captures what seeing it has done to her face and body; the thing itself may be implied but not fully shown |
+| **The threat proximity** | The threat is close — behind, above, implied in the frame's negative space; the character's body response to proximity |
+| **The confrontation** | The protagonist facing the threat directly; maximum tension; survival in the balance |
+
+### Prompt Construction (Horror)
+
+No allure tiers. Horror illustrations use **fear intensity level**:
+
+| Level | Definition | When to use |
+|---|---|---|
+| **F1 — Atmospheric dread** | The setting is wrong; the threat is implied or absent from frame; the image is the charged space | S1, S4 |
+| **F2 — Witnessed fear** | The protagonist's face and body register what she has seen or heard; she is the subject; the threat is off-frame or implied | S2, S3, S5 |
+| **F3 — Direct confrontation** | Threat is present in the frame, partially or fully; maximum tension; the protagonist and the threat in the same image | S6 |
+
+**Step 1 — Select fear level (F1/F2/F3) based on slot.**
+
+**Step 2 — Add character anchors:** protagonist physical description with emphasis on expression and posture — "wide eyes, one hand on the wall, body angled toward the exit." Keep the threat description vague at F1/F2 (implied by shadow, wrong angle, negative space); only partially describe at F3.
+
+**Step 3 — Add scene-specific context:**
+```
+{location: specific and wrong — "basement stairwell, single bare bulb, walls close", "attic with covered furniture, moonlight through a broken pane"}
+{what she has just seen or heard — stated as effect, not cause}
+{her body position — where she is looking, what her hands are doing}
+```
+
+**Step 4 — Add genre framing:**
+```
+horror scene illustration, dark atmospheric palette, high contrast shadow, visceral emotional tension, figure in charged space, no text, no title, no watermark
+```
+
+For atmospheric/no-figure peak (F1): replace with:
+```
+horror atmosphere illustration, dark editorial palette, wrong space with implied presence, deep shadow and single light source, no text, no title, no watermark
+```
+
+**Complete example (S2 — Confirmed threat, F2):**
+```
+Old house hallway, night, single wall sconce at the far end casting yellow light. She stands in the middle of the hall, turned halfway toward the camera — not fleeing, not yet, stopped by something. Her eyes are open very wide. One hand is flat against the wallpaper. She has heard something that has made her stop.
+[protagonist: pale, dark hair loose, wearing a heavy robe — it's the middle of the night]
+The threat is not visible. The hall behind her is dark beyond the light's reach.
+horror scene illustration, dark atmospheric palette, high contrast shadow, visceral emotional tension, figure in charged space, no text, no title, no watermark
+```
+
+---
+
+## Genre: Fantasy
+
+### Peak Scene Selection (Fantasy)
+
+| Slot | Target range | What to look for |
+|---|---|---|
+| **S1 — Wonder encounter** | chapters 1 – ⌊N×0.17⌋ | The protagonist's first direct encounter with the impossible; the scene where the world reveals its scale to her for the first time |
+| **S2 — Power in use** | chapters ⌊N×0.17⌋+1 – ⌊N×0.33⌋ | First significant use of power or magic with visible cost or consequence; the system in action at a high-stakes moment |
+| **S3 — Alliance shift** | chapters ⌊N×0.33⌋+1 – ⌊N×0.5⌋ | A key relationship shifts irrevocably — alliance formed, betrayal revealed, loyalty declared; the emotional turning point of the character web |
+| **S4 — Battle or confrontation** | chapters ⌊N×0.5⌋+1 – ⌊N×0.67⌋ | A major physical confrontation; the protagonist in the middle of the world's violence; the stakes made visible through action |
+| **S5 — The cost** | chapters ⌊N×0.67⌋+1 – ⌊N×0.83⌋ | She pays the highest price yet — loss, sacrifice, the magic's bill due; the scene immediately after or during the cost |
+| **S6 — Climax confrontation** | chapters ⌊N×0.83⌋+1 – N−2 | The final confrontation; the world's fate in the balance; the protagonist at the peak of what she is capable of |
+
+**Qualifying peak types (Fantasy):**
+| Peak type | Description |
+|---|---|
+| **The wonder moment** | She stands before something vast and impossible; the image is her small against the world's scale |
+| **Power in action** | Magic or power visually manifested; the protagonist as its source or its target; the cost written on her body |
+| **The battle beat** | A specific moment in combat — not the whole battle but one precise moment of maximum tension |
+| **The sacrifice or cost** | What was given; what was lost; the aftermath of a choice that cannot be undone |
+
+### Prompt Construction (Fantasy)
+
+No allure tiers. Fantasy illustrations use **epic scale level**:
+
+| Level | Definition | When to use |
+|---|---|---|
+| **E1 — Intimate scale** | Two or three figures; emotional and relational stakes; the world is background | S3, S5 |
+| **E2 — Dramatic action** | One or two figures in direct action; power, magic, or combat as the visual subject | S2, S4 |
+| **E3 — Epic scale** | The protagonist small against the world; the landscape or impossible thing is the subject | S1, S6 |
+
+**Step 1 — Select scale level (E1/E2/E3) based on slot.**
+
+**Step 2 — Add character anchors:** protagonist in period-appropriate fantasy attire; emphasize posture and visual drama over physical description. For battle or power scenes, include any visual manifestation of the power system (light, shadow, energy, symbol).
+
+**Step 3 — Add scene-specific context:**
+```
+{location: the fantasy environment — "ruined fortress at the edge of a storm-lit cliff", "dark forest clearing, ancient stone circle, one shaft of cold moonlight"}
+{the specific action or moment — "she stands at the summit, the army visible in the valley below", "she reaches toward the fragment and the air around it distorts"}
+{the emotional register of the moment — triumph, grief, resolve, terror, wonder}
+```
+
+**Step 4 — Add genre framing:**
+```
+fantasy scene illustration, epic cinematic palette, dramatic lighting, atmospheric fantasy world, no text, no title, no watermark
+```
+
+Adjust by scale:
+- E1 (intimate): `fantasy scene illustration, painterly warm palette, intimate emotional register, period fantasy setting, no text, no title, no watermark`
+- E3 (epic scale): `epic fantasy illustration, vast cinematic scale, figure small against world, dramatic sky and landscape, no text, no title, no watermark`
+
+**Complete example (S1 — Wonder encounter, E3):**
+```
+Ancient stone bridge spanning a chasm of mist, the far side lost in cloud. She stands at the midpoint of the bridge, very small against the scale — one hand on the worn parapet, her head tilted up at something enormous above the cloud line. The sky above is fractured: two moons visible through a rift in the cloud cover, one pale, one amber. She has never seen this before. Her posture is not fear — it is the specific stillness of someone whose understanding of the world has just changed.
+[protagonist: practical travelling clothes, hair loose from a long journey, weathered pack visible]
+epic fantasy illustration, vast cinematic scale, figure small against world, dramatic sky and impossible vista, no text, no title, no watermark
+```
+
+---
+
+## Genre: Sci-Fi & Dystopian
+
+### Peak Scene Selection (Sci-Fi / Dystopian)
+
+| Slot | Target range | What to look for |
+|---|---|---|
+| **S1 — Inciting violation** | chapters 1 – ⌊N×0.17⌋ | The moment the system reveals its violence; the protagonist witnesses the thing she cannot un-see; she is changed by what she sees |
+| **S2 — Commitment** | chapters ⌊N×0.17⌋+1 – ⌊N×0.33⌋ | She joins the resistance or takes the first act of defiance; the point of no safe return |
+| **S3 — Scale reveal** | chapters ⌊N×0.33⌋+1 – ⌊N×0.5⌋ | She understands for the first time how large the problem is; alone with that understanding; the image of someone who now knows the scope |
+| **S4 — Crisis** | chapters ⌊N×0.5⌋+1 – ⌊N×0.67⌋ | What she built is at risk; the system has found her; she is at maximum exposure and vulnerability |
+| **S5 — Impossible choice** | chapters ⌊N×0.67⌋+1 – ⌊N×0.83⌋ | She faces the decision where both options cost something she cannot afford; the moment before she chooses |
+| **S6 — Confrontation** | chapters ⌊N×0.83⌋+1 – N−2 | The final act of resistance or the direct confrontation with the system; the world's trajectory at stake |
+
+**Qualifying peak types (Sci-Fi):**
+| Peak type | Description |
+|---|---|
+| **The witness moment** | She sees the system's violence; the image is her face as she watches something she cannot deny |
+| **The system made visible** | The architecture of the wrong world — the compliance checkpoint, the controlled space — with her inside it; the oppression is the visual subject |
+| **The resistance act** | A moment of active defiance; the protagonist doing the thing she was told not to do |
+| **The scale encounter** | She stands before the full scope of the premise — the vast infrastructure of the wrong world, the scale of what must be changed |
+
+### Prompt Construction (Sci-Fi / Dystopian)
+
+No allure tiers. Sci-fi illustrations use **stakes level**:
+
+| Level | Definition | When to use |
+|---|---|---|
+| **K1 — Personal stakes** | The protagonist alone with her knowledge or her choice; interior emotional register externalized | S3, S5 |
+| **K2 — Direct action** | She is doing something — resisting, witnessing, deciding; the action is the visual subject | S1, S2, S4 |
+| **K3 — Systemic scale** | The system's scale is visible; she is human-scale against the world's machinery | S6 |
+
+**Step 1 — Select stakes level (K1/K2/K3) based on slot.**
+
+**Step 2 — Add character anchors:** protagonist in world-appropriate attire (utilitarian, system-assigned, or deliberately non-conforming); emphasize posture and expression. For systemic-scale scenes, the environment often carries more visual weight than the character.
+
+**Step 3 — Add scene-specific context:**
+```
+{location: the speculative world's specific environment — "grey compliance hall, fluorescent ceiling, numbered booths", "rooftop above the city at night, the tower's signal beams visible across the skyline"}
+{the specific action or moment — "she stands at the terminal, the file open, her hands not yet moving", "she is one face in a crowd all facing the same direction, the only one not looking where she should"}
+{the emotional register — controlled fear, cold resolve, shock, determination, grief}
+```
+
+**Step 4 — Add genre framing:**
+```
+sci-fi scene illustration, stark cinematic palette, high contrast shadow and artificial light, human figure in systemic environment, no text, no title, no watermark
+```
+
+Adjust by scale:
+- K1 (personal): `sci-fi scene illustration, cold editorial palette, intimate emotional register, controlled technological environment, no text, no title, no watermark`
+- K3 (systemic): `dystopian scale illustration, stark cinematic palette, human-scale figure against vast system architecture, cold and overwhelming, no text, no title, no watermark`
+
+**Complete example (S3 — Scale reveal, K1):**
+```
+Server room or archive, deep underground — rows of identical units extending beyond the visible frame. Cold white overhead light. She stands at the end of one row, a data tablet in her hand, looking up at the extent of what she is reading about. She has just understood how large this is. Her face is completely still — not shock, but the specific controlled expression of someone who has just stopped being surprised and started calculating.
+[protagonist: standard-issue grey work uniform, hair back, the tablet glowing in her hands]
+The room is vast. She is small in it. The data on the tablet is the point — but the room is the revelation.
+sci-fi scene illustration, cold editorial palette, intimate emotional register within vast systemic space, artificial light and deep shadow, no text, no title, no watermark
+```
 
 ---
 
