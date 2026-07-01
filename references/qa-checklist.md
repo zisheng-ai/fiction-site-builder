@@ -201,3 +201,41 @@ Run for every monetized FB-traffic site. See `references/adsense-arbitrage.md`. 
 - [ ] Chapter navigation does a full reload (`window.location.href`) so ads reinitialize and a fresh pageview counts.
 - [ ] Meta Pixel (and CAPI if configured) fires `PageView` and the engaged-session event.
 - [ ] Landing chapter LCP < 2.5s on mid-range Android/4G.
+
+## Post-Pipeline TODO.md
+
+After B6 passes, generate `TODO.md` in the project root listing every post-launch task that cannot be automated. Create this file automatically — do not prompt the user.
+
+**Required sections:**
+
+```markdown
+# TODO — Post-launch manual checklist
+
+## Deployment
+- [ ] Deploy to CDN (Vercel / Cloudflare Pages) — publish the `out/` directory
+- [ ] Bind custom domain, configure DNS
+
+## Ad accounts
+- [ ] Submit site for Google AdSense review (publisher ID: ca-pub-XXXXXXXX)
+- [ ] Confirm AdX slots (/XXXXXXXXX) serving after approval
+- [ ] Verify Cookie Consent banner satisfies Google CMP requirements
+
+## Traffic
+- [ ] Add Meta Pixel to `src/app/layout.tsx` (Facebook Business Manager)
+- [ ] Configure Facebook Conversions API (CAPI)
+- [ ] Create Facebook ad campaigns targeting book detail or chapter-1 landing pages
+
+## Analytics
+- [ ] Add Google Analytics 4 (GA4) script (G-XXXXXXXX) to layout.tsx
+- [ ] Register site in Google Search Console, submit sitemap
+
+## Asset optimisation
+- [ ] Compress `public/logo.png` with pngquant if > 100 KB:
+      pngquant --quality=65-85 --ext .png --force public/logo.png
+
+## Content expansion
+- [ ] Add Open Graph images per book for social sharing
+- [ ] Plan next batch of chapters or new books
+```
+
+Fill in the actual publisher IDs and ad-network paths from the project's books-data or CLAUDE.md. Only include sections relevant to what was actually built (e.g. omit the AdX row if AdX was not wired up).
