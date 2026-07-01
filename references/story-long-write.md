@@ -23,6 +23,8 @@ Continuing an existing book (adding chapters): skip this gate.
 
 Every scene must pass the same test as the cover image: **tension + question + desire, all three present**. A scene with only desire is erotica. A scene with only tension is thriller. A scene with only question is mystery. Romance requires all three simultaneously.
 
+**Non-romance genres use a reduced set:** Mystery and thriller require tension + question but not desire. Gothic requires tension + atmospheric dread (desire is optional). Regency romance follows the full romance standard but filtered through period social constraint — desire is present but must be displaced into gesture, language, and proximity rather than stated directly.
+
 ### The One-Paragraph Test
 
 Read the opening paragraph of every scene. Ask: *does the reader feel something in the first three sentences?* If the answer is only "I understand where we are" — the scene starts too early. Cut to the moment tension is already present.
@@ -144,6 +146,88 @@ She pours tea the way the original young woman would have poured it — careful,
 She smiles at the woman who will betray her in chapter twelve. The smile is technically correct — it is the smile this face used to make — but behind it she is running the geometry of the room, noting which guests saw the woman arrive, logging the date as one week before the thing she has come to prevent.
 
 The contrast between the external performance (young, unformed, unremarkable) and the internal certainty (someone who has already lived this scene to its end) is the defining texture of regression fiction. Write both layers in every scene — the body performing its role, and the mind that has already seen what comes next.
+
+#### Clue Architecture (Mystery / Cosy Mystery)
+
+A clue is a piece of information that is **meaningful in retrospect** but not obviously significant in the moment. Plant it early, inside a scene that has its own non-mystery reason to exist. The reader must be able to look back and say "it was there." They must not be able to look forward and say "it is the answer."
+
+**The three-layer planting method:**
+- **Layer 1 — Embed in action:** the clue appears as part of something the protagonist is already doing (not a dedicated "notice the clue" scene). If she's pouring tea, the clue is on the tea table. If she's leaving the manor, the clue is by the door.
+- **Layer 2 — Mis-direct the attention:** immediately after the clue appears, give the protagonist (and reader) a more obvious, emotionally charged thing to focus on. The clue is true; the obvious thing is a red herring or a distraction.
+- **Layer 3 — Callback with weight:** when the clue is revealed as significant, bring it back with the original scene's sensory detail intact. The reader's recognition ("the teacup!") is the reward.
+
+**Red herring rules:**
+- A red herring must be a genuine possibility, not a trick. If the reader feels cheated on re-read, it was a bad red herring.
+- Give the red herring suspect a motive, an opportunity, and one piece of incriminating evidence — just not the right combination.
+- Red herrings are closed in scenes that give the protagonist (and reader) genuine satisfaction — closing a false lead is a mini-resolution that resets momentum.
+
+**Clue pacing across chapters:**
+| Chapter range | Clue activity |
+|---|---|
+| Ch 1–3 | Plant 2–3 clues inside normal scenes. No investigation yet. |
+| Ch 4–8 | First active investigation. One red herring opened, one closed. One clue recalled and re-examined. |
+| Ch 9–(N-3) | Clues accumulate. At least one "impossible" clue that contradicts the current theory. |
+| Final 3 chapters | The solution synthesis — the protagonist must connect at least 3 planted clues. No new clues after Ch (N-2). |
+
+**The impossible clue:** every mystery needs one piece of evidence that cannot fit the protagonist's current theory. This is the engine of the final-act reframe. Plant it mid-story when the protagonist is still confident in her wrong theory — she will notice it and file it as anomalous, not yet understanding its weight.
+
+---
+
+#### Investigation Pacing (Mystery / Literary Thriller)
+
+Mystery chapters are not romance chapters with investigation bolted on. The structural unit is different: **discovery → interpretation → obstacle → redirect**.
+
+| Beat | What it is | What it must do |
+|---|---|---|
+| **Discovery** | A new piece of information arrives | Must arrive through action, not narration. She finds it, overhears it, is handed it unwillingly. |
+| **Interpretation** | She processes what it means | Short — one strong inference, one question it opens, one thing it changes about her theory. Never more than 3 paragraphs. |
+| **Obstacle** | Something blocks the next logical step | The witness won't talk. The evidence is missing. The door is locked. The person who knew is dead. |
+| **Redirect** | She chooses the next move | End the chapter here — on the decision, not after it. This is the hook-out. |
+
+**Dead end as forward motion:** a chapter that ends with the protagonist's theory proven wrong is not a failed chapter. It is structurally identical to a romantic reversal — the reader has learned something and is reoriented. Write dead ends with the same care as discoveries.
+
+**Withholding from the reader:** the protagonist must sometimes know more than she shares with the reader, and the reader must know this. The gap between what she knows and what she says — especially to suspects — is a source of sustained tension. Use third-person limited perspective to create this gap: she thinks in inference, not in certainty; she speaks in less than she knows.
+
+---
+
+#### Gothic Atmosphere Writing
+
+In gothic fiction, the setting is a character. It does not merely host events — it predicts them, distorts them, and reflects the protagonist's psychological state. Every scene must ask: **does this location know something she doesn't?**
+
+**The three modes of gothic atmosphere:**
+
+| Mode | What it does | How to write it |
+|---|---|---|
+| **Pathetic fallacy** | Setting mirrors internal state | Storm when she is afraid; unnatural calm when something is wrong; the house responds before she does |
+| **Architectural threat** | Physical space constrains or traps | Rooms that cannot be found twice; doors that don't open from the inside; corridors that change |
+| **The uncanny ordinary** | Familiar objects behave wrongly | A clock that stops at the same hour; a portrait whose expression she can't remember; a chair that is always warm |
+
+**Dread accumulation rule:** gothic dread builds by **layering unexplained details** across chapters, not by one big event. Early chapters: one wrong thing, easily explained away. Mid-book: three wrong things, not yet connected. Late: the protagonist understands the pattern — and the pattern is worse than any single event.
+
+**The unreliable sensation:** gothic protagonists doubt their own perception. Build in one scene per act where the reader cannot be certain whether what she experienced was real. The ambiguity is not a trick — it is the genre's central tension. Resolve it clearly only in the climax.
+
+**Period constraint for gothic:** if set in a historical period, the protagonist's options for agency are limited by social convention. She cannot simply leave, call the police, or tell everyone what she knows. The gothic's power comes partly from this constraint — the horror is partly that she is *trapped* by propriety as much as by the house.
+
+---
+
+#### Regency Social Constraint as Dramatic Engine
+
+In Regency fiction, social reputation is not a background detail — it is a structural force with the power to destroy characters. Write it as such.
+
+**The stakes:** a woman's reputation is her only currency. A single public misstep — being seen alone with a man, refusing an advantageous match, being rumoured to have done something she didn't — can be a life sentence of poverty, social exile, or an unwanted marriage. These are not merely inconveniences; they are the era's version of mortal stakes.
+
+**Social tension techniques:**
+
+| Technique | What it does | How to write it |
+|---|---|---|
+| **The public scene** | Everything important happens with witnesses | A conversation in a ballroom is a negotiation under observation. Every word is both its surface meaning and a performance for the room. |
+| **The chaperoned proximity** | Forced intimacy within strict limits | Ten minutes alone in a conservatory is charged precisely because it is ten minutes — not because they can touch, but because they cannot. |
+| **The withheld title / form of address** | Formality as emotional distance and intimacy | Switching from surname to Christian name is an act of trust or transgression; note when it happens and why. |
+| **The cut direct** | Social weaponization | Being publicly ignored by a social superior is a punishment. Being the one who delivers it is a power move. Write both sides. |
+
+**Period language:** Regency prose should feel period-appropriate without being impenetrable. Avoid anachronisms (no modern idioms). Use formal address (Mr. / Miss / Lord / Lady) consistently in dialogue. Internal monologue may be more modern in register than spoken dialogue.
+
+**The Regency heroine's intelligence problem:** intelligent women in this period could not act openly on their intelligence without social cost. The dramatic engine is often her working around her own constraint — using the only tools available (observation, conversation, social positioning, letter-writing, carefully managed perception) to achieve goals she could not pursue directly.
 
 ---
 

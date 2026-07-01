@@ -10,6 +10,7 @@ Reference for `story-cover.md`. Genre-to-visual-style mapping for cover image ge
 |---|---|---|
 | **Cinematic Drama** | AI film-still quality, photorealistic real actors, high contrast, emotion-first composition | Site hosts Urban Drama / Contemporary Romance / Thriller / Historical Court Drama content — contemporary or historical drama where characters feel human and real |
 | **Dark Fantasy Illustration** | Hyperrealistic 3D render, near-black atmospheric background, gold/silver metallic typography, epic world elements | Site hosts Cultivation Fantasy / Dark Fantasy / Sci-Fi content — power systems, fantasy worlds, sci-fi |
+| **British Literary** | Painterly period photography or fine-art editorial, warm muted tones and compositional restraint — understated rather than dramatic | Site hosts Regency / Historical / Cosy Mystery / Gothic / Literary Thriller — British-flavoured, period-grounded, atmosphere-first rather than power-first |
 
 Determine which register fits the site during **Phase 6 (Design plan)** and record it in the design-system notes. All Phase 3 cover generation for that site uses the same register.
 
@@ -23,6 +24,7 @@ Both registers target **photorealistic or hyperrealistic 3D render quality** —
 
 - **Cinematic Drama** (Urban Drama / Contemporary Romance / Thriller / Historical Court Drama): AI-generated film-still quality. Characters look like real actors in a directed scene. High contrast, shallow depth of field, emotion-first composition. Think: prestige drama movie poster or streaming series thumbnail.
 - **Dark Fantasy Illustration** (Cultivation Fantasy / Dark Fantasy / Sci-Fi): Hyperrealistic 3D render, dark gradient background (deep black → navy/purple), character in detailed fantasy or sci-fi attire, dramatic atmospheric lighting. Gold/silver/chrome metallic typography is large and dominant in the lower 35% of the frame.
+- **British Literary** (Regency / Historical / Cosy Mystery / Gothic / Literary Thriller): Painterly period photography or fine-art editorial quality. Warm cream, muted sage, deep burgundy or charcoal palettes depending on sub-genre. Atmosphere and period detail are the primary subjects; characters are composed and restrained rather than dramatic. Think: BBC period drama production still, literary fiction hardcover jacket.
 
 **Shared quality keywords (include in every prompt):**
 `photorealistic, ultra-detailed, cinematic lighting, 8K render, professional book cover, shallow depth of field, dramatic atmosphere`
@@ -41,6 +43,10 @@ Pick the template that best matches the book's core tension. These mirror the re
 | **Grand Humiliation** | Contemporary Romance / Urban Drama gala/elite society arcs | **TWO characters.** Glamorous dominant figure in deep-V plunging neckline floor-length gown (thigh-high slit, jeweled décolletage, red lips, chandelier jewels) stands elevated or turns away in contempt while a male figure kneels or collapses crying at her feet. Grand ballroom setting: chandeliers, champagne tower, roses, crowd of onlookers. |
 | **Lone Hero** | Cultivation Fantasy / Sci-Fi / Historical War Epic | **ONE character.** Single powerful protagonist fills center-left frame, facing slightly away from camera. Epic world behind: ruined city + energy portal (sci-fi), snowy mountains + dark castle (fantasy), cloud sea + ancient pagodas (cultivation). Title in large metallic font occupies lower 35% of frame. |
 | **Duo Confrontation** | Dark Fantasy / Historical Court Drama romance + power | **TWO characters.** Two characters pressed together — powerful male behind or beside protected female. Dark dramatic background. Matching detailed costumes. Both look into distance or at camera with intensity. |
+| **Manor Portrait** | Regency / Historical Mystery | **ONE character.** Female figure in period dress (empire waist or Victorian) at estate exterior or formal garden; grand manor or gothic house behind her; soft atmospheric mist or golden afternoon light. Expression composed but with tension in the eyes. |
+| **The Parlour Secret** | Cosy Mystery / Historical Mystery | **ONE character + props.** Woman at writing desk or armchair; period tea service visible; sealed letter, medicine bottle, or hidden key prominent in foreground; expression knowing or alarmed; warm afternoon window light or candlelight. |
+| **Moors at Dusk** | Gothic / Gothic Romance | **ONE character / landscape dominant.** Solitary female silhouette small against windswept moors, ruined abbey battlements, or cliff edge; dramatic sky (storm clouds, pale moon, rolling fog); figure is emotionally isolated against scale of landscape. |
+| **Cold Evidence** | Literary Thriller | **ONE character + object.** Subject holds or faces a single charged object (sealed document, decoded letter, photograph, key); near-minimalist background; chiaroscuro; expression unreadable or calculating. |
 
 ---
 
@@ -58,6 +64,10 @@ Pick the template that best matches the book's core tension. These mirror the re
 | war / army / general / battle / soldier / medieval / crusade / knight / siege / conquer | Historical War Epic | `cinematic historical war epic, dramatic battlefield lighting, iron and fire` |
 | ghost / haunted / demon / curse / ritual / possession / spirit / necromancer / eldritch / horror | Horror | `dark horror atmosphere, eerie green glow, cinematic supernatural tension` |
 | isekai / reincarnated / another world / hero / quest / level / guild / academy / otome | Isekai / Slice of Life | `vibrant anime-adjacent illustration, bright colors, expressive characters` |
+| regency / viscount / viscountess / ton / debutante / season / dowager / duchy / courtship / beau monde / london season | Regency | `painterly regency period photography, warm candlelight and garden light, empire-waist period dress, fine-art editorial` |
+| vicar / village / manor / poison / cosy / cozy / spinster / gossip / parlour / drawing room / whodunit / clue / suspect | Cosy Mystery | `warm british editorial photography, afternoon window light, period prop detail, understated atmosphere` |
+| moors / abbey / gothic / haunted / sealed / ruin / curse / governess / dark manor / secret room / spectre | Gothic | `dark atmospheric gothic photography, windswept moors, cold moonlight, fog and shadow, painterly composition` |
+| spy / barrister / espionage / crown / cold war / traitor / diplomat / classified / whitehall / decoded / cipher / double agent | Literary Thriller | `cold literary thriller editorial, stark chiaroscuro, single charged object, controlled and spare atmosphere` |
 
 ---
 
@@ -75,6 +85,10 @@ Pick the template that best matches the book's core tension. These mirror the re
 | Historical War Epic | `heavy stone-carved serif in deep red-gold` |
 | Horror | `eerie dripping gothic in sickly green-black` |
 | Isekai / Slice of Life | `colorful cartoon outlined bubbly font with star accents` |
+| Regency | `elegant italic serif in warm ivory or antique gold, fine decorative hairline rule above and below, period-formal` |
+| Cosy Mystery | `warm antiqued serif in deep burgundy or forest green, subtle decorative flourish, approachable but precise` |
+| Gothic | `tall condensed serif in pale silver or faded white, slightly irregular letterpress texture, eerie elegance` |
+| Literary Thriller | `stark modern serif in cold white or deep charcoal, minimal ornament, compressed letter-spacing` |
 
 ---
 
@@ -92,6 +106,10 @@ Pick the template that best matches the book's core tension. These mirror the re
 | Historical War Epic | `small dignified white serif, double red horizontal line` |
 | Horror | `small faded grey-green, slightly tilted, dripping ink line above` |
 | Isekai / Slice of Life | `small playful rounded white, pastel outline, star decorations` |
+| Regency | `small refined italic serif in cream-gold, thin double hairline rule, period-restrained` |
+| Cosy Mystery | `small neat roman serif in muted sage or burgundy, tiny botanical or magnifying glass motif, warm and precise` |
+| Gothic | `small faded pale-grey serif, slightly irregular baseline, thin shadow underline` |
+| Literary Thriller | `small clean modern serif in cool grey, no ornament, cold and authoritative` |
 
 ---
 
@@ -178,6 +196,38 @@ Pick the template that best matches the book's core tension. These mirror the re
 - **Background:** Fantasy isekai world, sparkling academy, starry night sky
 - **Lighting:** `magical particle sparkles, soft luminous backlighting, vivid colored light`
 - **Composition:** Character facing forward, friendly expression, colorful background
+
+### Regency
+- **Render style:** Painterly period photography / fine-art editorial. Warm, texturally rich, compositionally restrained.
+- **Colors:** Warm cream, blush, cornflower blue, soft sage; ivory and antique gold accent; muted saturation throughout
+- **Characters:** Female in empire-waist gown with gloves, upswept hair, composed expression with underlying tension. Male in Regency coat and cravat, formal posture.
+- **Background:** Country estate exterior, formal garden, candlelit ballroom, London drawing room, Vauxhall Gardens at dusk
+- **Lighting:** `warm afternoon sunlight through tall sash windows, soft golden candlelight for interiors, dappled garden light for exteriors, overcast English sky`
+- **Composition:** Manor Portrait (female alone with estate behind) or Duo Confrontation (social tension between the pair, period costumes matching)
+
+### Cosy Mystery
+- **Render style:** Warm British editorial photography. High detail on period props and domestic atmosphere. Interior-focused.
+- **Colors:** Warm amber, sage green, cream, deep burgundy; muted and autumnal rather than vivid; fireplace and afternoon light palette
+- **Characters:** Female amateur detective — composed, perceptive expression, period-appropriate dress (Victorian or Edwardian). Charged prop in foreground (letter, poison bottle, hidden key, cryptic note).
+- **Background:** Cottage parlour, manor library, vicarage garden, village tea room, stone-walled church interior
+- **Lighting:** `warm afternoon window light, low fireplace glow, soft fog outside mullioned windows, overcast garden light`
+- **Composition:** Parlour Secret template — interior scene with prominent prop and knowing expression; or single figure on misty village lane
+
+### Gothic
+- **Render style:** Dark atmospheric photography with dramatic compositing. Atmosphere and landscape are the primary subjects.
+- **Colors:** Near-black → deep indigo and forest green; pale moonsilver and fog; single accent of deep crimson or amber lantern glow
+- **Characters:** Female figure in period dress, alone, small against the landscape. Expression fearful or quietly determined.
+- **Background:** Windswept moors, ruined abbey, gothic manor silhouetted at night, fog-covered cemetery, dark cliff edge above churning sea
+- **Lighting:** `cold moonlight breaking through storm clouds, single lantern glow in deep shadow, mist swallowing the middle distance, lightning suggestion in sky`
+- **Composition:** Moors at Dusk — figure occupies lower quarter of frame; dramatic sky and landscape dominate the upper 65%; the solitude is architectural
+
+### Literary Thriller
+- **Render style:** Cold editorial photography. Controlled, spare, intelligent atmosphere. Period British or cold-war era.
+- **Colors:** Deep charcoal, cold white, pale grey; single accent of aged paper yellow or deep red; desaturated throughout
+- **Characters:** Protagonist (male or female) holding or facing a single charged object — classified document, decoded letter, photograph, key. Expression unreadable or calculating.
+- **Background:** Whitehall corridor, study interior with papers, rain-slicked London street, classified archive room, train platform at night
+- **Lighting:** `cold overhead office light, stark window backlight, single angled desk lamp in near-dark room, wet street lamp reflection`
+- **Composition:** Cold Evidence template — figure and object in two-thirds of frame; spare background; title in cold condensed serif, authoritative
 
 ---
 
