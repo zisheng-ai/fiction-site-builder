@@ -107,11 +107,14 @@ public/
   illustrations/
     {book-slug}/
       ch-{NNN}.png      # e.g. ch-007.png — matches chapter file ch-007-*
+      ch-{NNN}.json     # metadata: model, size, prompt (all in one file)
 ```
 
 - `{book-slug}` matches the `content/{book-slug}/` directory name
 - `{NNN}` is the zero-padded chapter number from the chapter filename (`ch-007-title.md` → `ch-007.png`)
 - Always PNG, always a single file per illustrated chapter
+- JSON format matches cover convention: `{"model": "...", "size": "...", "prompt": "..."}`
+- Write the JSON immediately after saving the PNG — never use a separate `.prompt.txt` file
 
 ---
 
