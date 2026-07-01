@@ -204,40 +204,72 @@ For each selected chapter, insert `<!-- ILLUSTRATION -->` at the correct positio
 
 ### A2.5-3: Generate images
 
-Use the Python script at `/tmp/gen_cover_model.py`:
+Use inline curl — same pattern as cover generation (`story-cover.md`). **Do NOT use `/tmp/gen_cover_model.py`** — that script is for model capability testing only (`tests/image-model-tests/`), never for production asset generation.
 
 ```bash
-OUTDIR="public/illustrations/{book-slug}"
-mkdir -p "$OUTDIR"
-
-python3 /tmp/gen_cover_model.py \
-  "doubao-seedream-5-0-260128" \
-  "1664x2496" \
-  "$OUTDIR/ch-{NNN}.png" \
-  "$PROMPT"
+gen_illus_apiyi() {
+  local model="$1" size="$2" output_path="$3"
+  local prompt_json
+  prompt_json=$(printf '%s' "$PROMPT" | python3 -c 'import json,sys; print(json.dumps(sys.stdin.read().strip()))')
+  curl -s --max-time 300 https://api.apiyi.com/v1/images/generations \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer $APIYI_API_KEY" \
+    -d "{\"model\":\"$model\",\"prompt\":$prompt_json,\"size\":\"$size\"}" \
+  | OUTPUT_PATH="$output_path" python3 -c "
+import sys, json, base64, os, urllib.request
+output_path = os.environ['OUTPUT_PATH']
+raw = sys.stdin.read()
+if not raw.strip(): print('ERROR: empty response'); sys.exit(1)
+data = json.loads(raw)
+if 'error' in data:
+    msg = data['error']['message'] if isinstance(data['error'], dict) else str(data['error'])
+    print('API_ERROR:' + msg); sys.exit(2)
+if not data.get('data'): print('SOFT_REJECT'); sys.exit(2)
+item = data['data'][0]
+if item.get('b64_json'):
+    b64 = item['b64_json']
+    if ',' in b64: b64 = b64.split(',', 1)[1]
+    with open(output_path, 'wb') as f: f.write(base64.b64decode(b64))
+elif item.get('url'):
+    urllib.request.urlretrieve(item['url'], output_path)
+else:
+    print('UNKNOWN_FORMAT'); sys.exit(3)
+print('SAVED:' + str(os.path.getsize(output_path)))
+"
+}
 ```
 
 **Model routing for illustrations:**
 
 | Tier | Primary | Fallback |
 |---|---|---|
-| T3 | `doubao-seedream-5-0-260128` | retry once → `nano-banana-pro` (blank-prevention) |
-| T4 | `doubao-seedream-5-0-260128` | retry once → `nano-banana-pro` (blank-prevention) |
+| T3 | `doubao-seedream-5-0-260128` `1664x2496` | retry once → `nano-banana-pro` `1024x1024` |
+| T4 | `doubao-seedream-5-0-260128` `1664x2496` | retry once → `nano-banana-pro` `1024x1024` |
 
-- doubao is reliable at T3 and T4; stochastic rejection → retry once with identical prompt
-- On second rejection: adjust prompt (remove result-description clauses per `cover-allure-elements.md`), then generate with nano as blank-prevention
-- nano fallback: silently downgrades T3+ to ~T1 output — use as-is (blank-prevention)
+- doubao: reliable at T3/T4; stochastic rejection → retry once with identical prompt
+- On second rejection: soften prompt per `cover-allure-elements.md` safe-wording rules, then use nano as blank-prevention
+- nano: silently downgrades T3+ to ~T1 — use as-is (blank-prevention only)
 - gpt: excluded (deterministic rejection at T3+)
-- T5 is never used for illustrations
 
-**Run all illustrations in parallel** — across every chapter AND every book being illustrated. Launch one background process per illustration (all books' chapters together), then a single `wait`. Never generate illustrations one at a time or book-by-book in sequence.
+**Run all illustrations in parallel** — one background process per illustration across all books, then a single `wait`:
 
 ```bash
-# one background process per illustration — all books, all chapters at once
-python3 /tmp/gen_cover_model.py "doubao-seedream-5-0-260128" "1664x2496" \
-  "public/illustrations/{book-slug}/ch-{NNN}.png" "$PROMPT_1" > /tmp/illus_{book-slug}_ch{NNN}.log 2>&1 &
+OUTDIR="public/illustrations/{book-slug}"
+mkdir -p "$OUTDIR"
 
-# repeat for every illustrated chapter across every book...
+(
+  OUTPUT="$OUTDIR/ch-{NNN}.png"
+  if   gen_illus_apiyi "doubao-seedream-5-0-260128" "1664x2496" "$OUTPUT"; then MODEL_USED="doubao-seedream-5-0-260128"; SIZE="1664x2496"
+  elif gen_illus_apiyi "doubao-seedream-5-0-260128" "1664x2496" "$OUTPUT"; then MODEL_USED="doubao-seedream-5-0-260128"; SIZE="1664x2496"
+  elif gen_illus_apiyi "nano-banana-pro"            "1024x1024" "$OUTPUT"; then MODEL_USED="nano-banana-pro"; SIZE="1024x1024"
+  else echo "ALL_FAILED ch-{NNN}"; exit 0; fi
+  # Write metadata JSON
+  PROMPT_JSON=$(printf '%s' "$PROMPT" | python3 -c 'import json,sys; print(json.dumps(sys.stdin.read().strip()))')
+  printf '{"model":"%s","size":"%s","prompt":%s}\n' "$MODEL_USED" "$SIZE" "$PROMPT_JSON" \
+    > "$OUTDIR/ch-{NNN}.json"
+) > /tmp/illus_{book-slug}_ch{NNN}.log 2>&1 &
+
+# repeat for every chapter across every book...
 
 wait
 rm -f /tmp/illus_*.log
