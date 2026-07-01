@@ -2,6 +2,8 @@
 
 Load this reference when the user asks to write, continue, or revise long-form novel chapters.
 
+**Before writing:** load the relevant genre file alongside this reference — `genre-romance.md`, `genre-mystery.md`, `genre-horror.md`, `genre-fantasy.md`, or `genre-scifi.md`. Genre-specific named emotional states, scene techniques, escalation registers, and synopsis formulas are there, not here.
+
 ## Niche Research Input
 
 Before writing the first chapter of a new book, check `outputs/{site-slug}/{book-slug}/niche-research.json`:
@@ -21,9 +23,7 @@ Continuing an existing book (adding chapters): skip this gate.
 
 ## Scene-Level Drama — The Click Standard
 
-Every scene must pass the same test as the cover image: **tension + question + desire, all three present**. A scene with only desire is erotica. A scene with only tension is thriller. A scene with only question is mystery. Romance requires all three simultaneously.
-
-**Non-romance genres use a reduced set:** Mystery and thriller require tension + question but not desire. Gothic requires tension + atmospheric dread (desire is optional). Regency romance follows the full romance standard but filtered through period social constraint — desire is present but must be displaced into gesture, language, and proximity rather than stated directly.
+Every scene must pass the same test as the cover image: **tension + question + desire, all three present**. Every scene must deliver at least two of the three simultaneously. Which two (or three) depends on the genre — see the relevant genre file for the genre-specific Click Standard.
 
 ### The One-Paragraph Test
 
@@ -37,39 +37,17 @@ Read the opening paragraph of every scene. Ask: *does the reader feel something 
 
 **Required:** emotions with internal contradiction — the character feels one thing and does or says or wants something else. Name the specific state before writing the scene.
 
+**Genre-specific named states are in the relevant genre file.** Load `genre-romance.md`, `genre-mystery.md`, `genre-horror.md`, `genre-fantasy.md`, or `genre-scifi.md` for the complete table for your genre.
+
+Universal examples (apply to any genre):
+
 | Named state | Internal contradiction | How it reads on the page |
 |-------------|----------------------|--------------------------|
-| **Barely-controlled want** | He desires; his body is fighting it | Jaw tight, deliberate distance, too-controlled voice, won't look at her directly |
-| **Surrender under protest** | She's giving in; her mind still argues | She moves closer while cataloguing every reason not to, stops herself, moves again |
-| **Defiance + desire** | She refuses to admit she wants this | Chin up, eye contact held too long, contempt in her voice that doesn't match her pulse |
-| **Raw vulnerability** | He's exposed; he hasn't decided if he'll survive it | Short sentences, no deflection, the absence of his usual armor |
-| **Cold possession** | He's certain; she hasn't been asked | Calm, unhurried, his attention on her like she's already decided |
-| **Overwhelmed surrender** | She stopped fighting; she knows it | Head back, stops explaining herself, asks for nothing, takes instead |
-| **Shocked recognition** | He understands something he can't undo | Goes still, the thing he was about to say dies before it leaves his mouth |
-| **Creeping wrongness** | Something is off; she cannot name it yet | Mundane actions slow to half-speed; she catalogues details without knowing why; the reader sees the accumulation before she does |
-| **Investigative hunger** | She needs to know; the compulsion has overridden caution | Pushes where she shouldn't; the scene's obstacle is her own relentlessness; she asks one question too many |
-| **Cold certainty** | She knows the answer; she is the only one in the room who cannot say it aloud | Every word measured; acts normally in front of the wrong person; the effort of the performance is what the reader feels |
-| **Witnessed guilt** | She has seen something she wasn't meant to see | Hyper-awareness of being observed; the performance of not-knowing; internal monologue running beneath a composed face |
-| **Calculated exposure** | She lets herself be seen — deliberately — to watch how someone reacts | The self-revelation is a trap; the reader knows; the target doesn't |
+| **Shock recognition** | She understands something that changes the frame; the understanding is complete before she can speak | Goes still; what she was about to do or say dies before it happens; one physical detail only |
+| **Performed calm** | She is not calm; she is performing calm for a specific person in the room | Voice measured; choices deliberate; the reader sees the effort the other character doesn't |
+| **Deferred grief** | Something has been lost; she knows; she cannot stop moving long enough to feel it | Acts with unusual efficiency; the grief leaks through one small wrong detail in her behavior |
 
 Use the named state as the scene's emotional throughline. Every action, beat of dialogue, and internal observation should be filtered through it.
-
----
-
-### Power Dynamic — Make It Visible
-
-The gap between characters is the subtext readers are buying. It must be legible without being stated.
-
-- **Who moves, who stays still** — movement is agency; stillness is reaction or restraint
-- **Who speaks, who goes quiet** — silence is not neutral; it means something specific in the scene
-- **Who is certain, who is conflicted** — asymmetric emotional states are magnetic; symmetry is flat
-- **Who is watching, who is being watched** — the one who looks has the power until the one being looked at notices
-
-**Prose formula:**
-- ❌ `He stood behind her.`
-- ✅ `He stood behind her. She felt him there before she heard him — the shift in the air, the particular quality of attention that made the back of her neck go warm. He didn't speak. He didn't have to.`
-
-Show the dynamic through the body's involuntary response, not through description of the other person.
 
 ---
 
@@ -77,18 +55,15 @@ Show the dynamic through the body's involuntary response, not through descriptio
 
 The setting is not backdrop. It is a second character that pushes the primary emotion forward. Before writing any scene, ask: *does this location make the stakes harder or easier?*
 
-| Emotional beat | Environment choice | What it adds |
-|---------------|-------------------|--------------|
-| Forbidden / dangerous | Enclosed space (elevator, car, his office after hours) | No exit; the proximity is inescapable |
-| Wealth / power gap | His space, her rules broken | She is on his territory; the power imbalance is architectural |
-| Aftermath / intimacy | Her familiar space, suddenly strange | The ordinary world is now contaminated with him |
-| Forced vulnerability | Public place, private crisis | She cannot hide and cannot leave |
-| Supernatural stakes | A boundary space (threshold, forest edge, between worlds) | The rules of the normal world do not apply here |
-| Hidden truth in plain sight | A domestic space with something wrong | The familiar is where betrayal lands hardest; the tea table and the poison occupy the same frame |
-| Isolation + limited suspect pool | Remote or enclosed location (fog-bound manor, snowbound estate, island) | No exit; the danger is among the finite number of people in the room; every character's absence is a clue |
-| Gothic weight of history | A space with a sealed past (old house, locked room, ruined chapel) | The setting knows the answer; the protagonist's job is to make it speak; resist the urge to describe — let the space act |
+**Genre-specific environment types are in the relevant genre file.** Load the genre file for environments mapped to your genre's emotional beats.
 
-If the setting could be swapped with any other location without changing the scene — change the setting.
+Universal principle: if the setting could be swapped with any other location without changing the scene — change the setting.
+
+| Emotional beat | Universal environment choice | What it adds |
+|---------------|------------------------------|--------------|
+| Forced proximity | Enclosed space with no easy exit (elevator, car, small room) | No escape; whatever is between them must be dealt with here |
+| Power imbalance | The antagonist's space, not the protagonist's | She is on his territory; the power imbalance is architectural |
+| Aftermath | Her familiar space, now contaminated by what happened | The ordinary world is no longer neutral |
 
 ---
 
@@ -104,138 +79,7 @@ High-contrast moments are read more slowly and remembered longer. Build at least
 
 ---
 
-### Genre-Specific Scene Techniques
-
-These apply only when the book genre matches. Skip if the genre is not listed.
-
-#### Dual-Arc Chapter Beat (Regression / Revenge Romance)
-
-Every chapter must advance two arcs simultaneously. The chapter's primary scene serves the romance arc. The chapter's closing beat — the final paragraph, the last line of dialogue, the thing the heroine does after he leaves the room — serves the revenge or plan arc. Neither arc is permitted to stall while the other advances.
-
-When drafting chapter outlines for regression or revenge stories, require two explicit fields per beat entry:
-- `romance beat:` the emotional beat this chapter delivers for the pairing
-- `plan beat:` the revenge or intelligence move this chapter delivers
-
-If either field is empty, the chapter needs structural revision before prose begins. The chapter's final note belongs to the plan arc — that is the beat that drives the next click.
-
-#### Dramatic Irony Engine (Villainess / Transmigration)
-
-In every scene where the hero reacts to the heroine's changed behavior, write the exchange in two simultaneous registers:
-- His reaction is sincere — he is responding to a version of this woman he has never encountered before. Write that sincerity as real.
-- Her response is calculated — she is managing the gap between who he thinks she is and who she actually is.
-
-When he says something that lands as genuine, write her internal response in **two explicit layers**: the surface layer (what the original villainess would have felt — the emotion that matches the face she shows him) and the true layer (what she actually feels as someone who has read the ending). The dramatic irony lives in the gap between those two layers. When the gap collapses — when what she performs and what she feels become the same thing — that is the scene where the romance arc turns.
-
-#### Information-Asymmetry Pacing (Regression Stories)
-
-The heroine's future knowledge must be rationed across chapters. Before writing prose, plot the information reveal schedule:
-- Which chapter does she deploy each piece of future knowledge?
-- What does she deliberately withhold even from the reader?
-- What does she discover mid-story that her future memory got wrong?
-
-The reader should always be slightly behind her plan — catching up, never fully ahead. Each chapter reveals one deployment and hints at the next without naming it. If the reader holds the complete plan by chapter three, forward tension collapses. The withheld variable — the piece of future knowledge she does not have — must appear structurally as the chapter event that breaks her certainty.
-
-#### Creature-Fixation Scene Technique (Monster Romance)
-
-When writing a scene that establishes a non-human character's fixation on the heroine, show fixation through **behavioral deviation**, never through stated emotion. Identify what this creature does in the presence of everything else — then show what he does differently with her:
-- He stays still when his instinct says move.
-- He speaks when his nature has been silence.
-- He returns when every prior pattern has been solitary.
-- He positions himself between her and something that is not a threat to him.
-
-The reader should understand the fixation from behavioral observation before any character — including the creature — names what it is. When the fixation is finally named, it should feel like confirmation, not revelation.
-
-#### The Two-Layer Performance (Regression Prose Texture)
-
-When writing from the heroine's perspective in a regression story, every physical action she performs in her younger body carries a second internal register that is decades heavier than the body performing it.
-
-She pours tea the way the original young woman would have poured it — careful, deferential, hands that have not yet been trained out of uncertainty. Inside, she is counting exits.
-
-She smiles at the woman who will betray her in chapter twelve. The smile is technically correct — it is the smile this face used to make — but behind it she is running the geometry of the room, noting which guests saw the woman arrive, logging the date as one week before the thing she has come to prevent.
-
-The contrast between the external performance (young, unformed, unremarkable) and the internal certainty (someone who has already lived this scene to its end) is the defining texture of regression fiction. Write both layers in every scene — the body performing its role, and the mind that has already seen what comes next.
-
-#### Clue Architecture (Mystery / Cosy Mystery)
-
-A clue is a piece of information that is **meaningful in retrospect** but not obviously significant in the moment. Plant it early, inside a scene that has its own non-mystery reason to exist. The reader must be able to look back and say "it was there." They must not be able to look forward and say "it is the answer."
-
-**The three-layer planting method:**
-- **Layer 1 — Embed in action:** the clue appears as part of something the protagonist is already doing (not a dedicated "notice the clue" scene). If she's pouring tea, the clue is on the tea table. If she's leaving the manor, the clue is by the door.
-- **Layer 2 — Mis-direct the attention:** immediately after the clue appears, give the protagonist (and reader) a more obvious, emotionally charged thing to focus on. The clue is true; the obvious thing is a red herring or a distraction.
-- **Layer 3 — Callback with weight:** when the clue is revealed as significant, bring it back with the original scene's sensory detail intact. The reader's recognition ("the teacup!") is the reward.
-
-**Red herring rules:**
-- A red herring must be a genuine possibility, not a trick. If the reader feels cheated on re-read, it was a bad red herring.
-- Give the red herring suspect a motive, an opportunity, and one piece of incriminating evidence — just not the right combination.
-- Red herrings are closed in scenes that give the protagonist (and reader) genuine satisfaction — closing a false lead is a mini-resolution that resets momentum.
-
-**Clue pacing across chapters:**
-| Chapter range | Clue activity |
-|---|---|
-| Ch 1–3 | Plant 2–3 clues inside normal scenes. No investigation yet. |
-| Ch 4–8 | First active investigation. One red herring opened, one closed. One clue recalled and re-examined. |
-| Ch 9–(N-3) | Clues accumulate. At least one "impossible" clue that contradicts the current theory. |
-| Final 3 chapters | The solution synthesis — the protagonist must connect at least 3 planted clues. No new clues after Ch (N-2). |
-
-**The impossible clue:** every mystery needs one piece of evidence that cannot fit the protagonist's current theory. This is the engine of the final-act reframe. Plant it mid-story when the protagonist is still confident in her wrong theory — she will notice it and file it as anomalous, not yet understanding its weight.
-
----
-
-#### Investigation Pacing (Mystery / Literary Thriller)
-
-Mystery chapters are not romance chapters with investigation bolted on. The structural unit is different: **discovery → interpretation → obstacle → redirect**.
-
-| Beat | What it is | What it must do |
-|---|---|---|
-| **Discovery** | A new piece of information arrives | Must arrive through action, not narration. She finds it, overhears it, is handed it unwillingly. |
-| **Interpretation** | She processes what it means | Short — one strong inference, one question it opens, one thing it changes about her theory. Never more than 3 paragraphs. |
-| **Obstacle** | Something blocks the next logical step | The witness won't talk. The evidence is missing. The door is locked. The person who knew is dead. |
-| **Redirect** | She chooses the next move | End the chapter here — on the decision, not after it. This is the hook-out. |
-
-**Dead end as forward motion:** a chapter that ends with the protagonist's theory proven wrong is not a failed chapter. It is structurally identical to a romantic reversal — the reader has learned something and is reoriented. Write dead ends with the same care as discoveries.
-
-**Withholding from the reader:** the protagonist must sometimes know more than she shares with the reader, and the reader must know this. The gap between what she knows and what she says — especially to suspects — is a source of sustained tension. Use third-person limited perspective to create this gap: she thinks in inference, not in certainty; she speaks in less than she knows.
-
----
-
-#### Gothic Atmosphere Writing
-
-In gothic fiction, the setting is a character. It does not merely host events — it predicts them, distorts them, and reflects the protagonist's psychological state. Every scene must ask: **does this location know something she doesn't?**
-
-**The three modes of gothic atmosphere:**
-
-| Mode | What it does | How to write it |
-|---|---|---|
-| **Pathetic fallacy** | Setting mirrors internal state | Storm when she is afraid; unnatural calm when something is wrong; the house responds before she does |
-| **Architectural threat** | Physical space constrains or traps | Rooms that cannot be found twice; doors that don't open from the inside; corridors that change |
-| **The uncanny ordinary** | Familiar objects behave wrongly | A clock that stops at the same hour; a portrait whose expression she can't remember; a chair that is always warm |
-
-**Dread accumulation rule:** gothic dread builds by **layering unexplained details** across chapters, not by one big event. Early chapters: one wrong thing, easily explained away. Mid-book: three wrong things, not yet connected. Late: the protagonist understands the pattern — and the pattern is worse than any single event.
-
-**The unreliable sensation:** gothic protagonists doubt their own perception. Build in one scene per act where the reader cannot be certain whether what she experienced was real. The ambiguity is not a trick — it is the genre's central tension. Resolve it clearly only in the climax.
-
-**Period constraint for gothic:** if set in a historical period, the protagonist's options for agency are limited by social convention. She cannot simply leave, call the police, or tell everyone what she knows. The gothic's power comes partly from this constraint — the horror is partly that she is *trapped* by propriety as much as by the house.
-
----
-
-#### Regency Social Constraint as Dramatic Engine
-
-In Regency fiction, social reputation is not a background detail — it is a structural force with the power to destroy characters. Write it as such.
-
-**The stakes:** a woman's reputation is her only currency. A single public misstep — being seen alone with a man, refusing an advantageous match, being rumoured to have done something she didn't — can be a life sentence of poverty, social exile, or an unwanted marriage. These are not merely inconveniences; they are the era's version of mortal stakes.
-
-**Social tension techniques:**
-
-| Technique | What it does | How to write it |
-|---|---|---|
-| **The public scene** | Everything important happens with witnesses | A conversation in a ballroom is a negotiation under observation. Every word is both its surface meaning and a performance for the room. |
-| **The chaperoned proximity** | Forced intimacy within strict limits | Ten minutes alone in a conservatory is charged precisely because it is ten minutes — not because they can touch, but because they cannot. |
-| **The withheld title / form of address** | Formality as emotional distance and intimacy | Switching from surname to Christian name is an act of trust or transgression; note when it happens and why. |
-| **The cut direct** | Social weaponization | Being publicly ignored by a social superior is a punishment. Being the one who delivers it is a power move. Write both sides. |
-
-**Period language:** Regency prose should feel period-appropriate without being impenetrable. Avoid anachronisms (no modern idioms). Use formal address (Mr. / Miss / Lord / Lady) consistently in dialogue. Internal monologue may be more modern in register than spoken dialogue.
-
-**The Regency heroine's intelligence problem:** intelligent women in this period could not act openly on their intelligence without social cost. The dramatic engine is often her working around her own constraint — using the only tools available (observation, conversation, social positioning, letter-writing, carefully managed perception) to achieve goals she could not pursue directly.
+**Genre-specific scene techniques** are in the relevant genre file. Load `genre-romance.md` for regression/villainess/creature-fixation techniques; `genre-mystery.md` for clue architecture, investigation pacing, gothic atmosphere, and Regency social constraint.
 
 ---
 
@@ -565,223 +409,6 @@ Word counts are targets, not uniform quotas. Let each chapter breathe according 
 
 Always overwrite `context.md` after each chapter. Do not append history — the file is a rolling handoff.
 
-## Romance Heat Level
-
-Apply this section whenever the genre is romance or contains a romantic sub-plot (Dark Romance, Billionaire, Paranormal, Shifter, Vampire, Fantasy Romance, Mafia, Sports, Contemporary, or any genre with a central pairing).
-
-### Target Heat Level
-
-**Default: steamy / closed-door at peak, non-graphic.** Matches `fiction-niche-researcher.md` AdSense safety policy.
-
-| Level | Definition | Policy |
-|-------|-----------|--------|
-| Sweet / closed-door | Tension only; intimacy implied off-page | Always safe |
-| **Steamy / closed-door at peak** | **Build tension with sensation, breath, skin, pressure through proximity, touch, and kisses; fade-to-black or closed-door at the peak moment of intimacy — stop before explicit sexual acts** | **Default — use this** |
-| Explicit | Describes sex acts in anatomical detail | AdSense violation — never use |
-
-"Closed-door at peak" means: the reader feels the heat building — pulse, breath, contact, charged dialogue — but the camera cuts away at the peak intimate moment. They know what happened; they were not in the room for it. First kisses and make-out buildup are written through; escalated intimacy fades at the threshold.
-
----
-
-### The 5 Tension Techniques
-
-**1. Slow the clock**
-Intimate moments run at 10× the normal time. Break actions into micro-beats. Sentence fragments are correct here — they signal the body overriding the mind.
-
-> *He reached out. Stopped. His fingertips hovered one centimeter from her jaw.*
-> *She didn't breathe.*
-> *He touched her anyway.*
-
-**2. Body-first, thought-second**
-Physical sensation comes before emotional interpretation. Never name the emotion first; let the body report it.
-
-> Wrong: *She felt desire rising in her chest.*
-> Right: *Her pulse beat in her throat. She pressed her palm flat to the wall to keep from stepping closer.*
-
-**3. The charged gap**
-What isn't said or done carries as much weight as what is. Silence, held breath, and a character's decision NOT to move are tension. Use them.
-
-> *He could have kissed her. They both knew it. He didn't.*
-
-**4. Escalating contact**
-Each physical touch must be a step up from the last. Track the progression across the scene and across the chapter arc: eye contact → accidental touch → intentional touch → held contact → skin → breath → lips. Don't skip rungs. Don't repeat rungs.
-
-**5. Internal resistance**
-The character wants what they will not admit — to themselves or to the reader. Both the want and the resistance must be legible on the page simultaneously.
-
-> *She told herself it was the wine. It was not the wine. She knew it was not the wine.*
-
----
-
-### Scene Types and How to Write Them
-
-#### Pre-contact tension (most common — use in every chapter with the pairing present)
-
-Write the charged air before anything happens. Proximity, awareness of the other person's body, involuntary physical response, and the effort to hide it.
-
-Key beats:
-- Character notices the other's specific detail (jaw, hands, the way they move) — not generic attractiveness
-- Physical symptom: pulse, heat, the urge to close distance or increase it
-- Dialogue that says one thing and means another
-- One character nearly acts — then doesn't
-
-#### First significant touch
-
-This is a chapter-level event. Give it space. Slow the clock entirely.
-
-- Name every sensation: temperature, pressure, texture, involuntary response
-- Show the moment before (held breath, decision) and the moment after (stillness, recalibration)
-- Keep internal monologue to short fragments — the body is louder than the mind here
-
-#### Almost-kiss / interrupted moment
-
-The most commercially effective beat in romance. Withhold the payoff.
-
-Structure:
-1. Close the distance in increments (half a step, leaning in, the breath mingling)
-2. Write the threshold — the millisecond before contact
-3. Interrupt (external: phone, knock, third party; or internal: one character pulls back)
-4. Show the aftermath — the air after the interruption is charged differently than before
-
-Never interrupt and immediately resolve. The tension from an interrupted moment must carry forward.
-
-#### First kiss
-
-Write through it fully. A first kiss is not a fade point — stay in the scene through contact, response, and separation.
-
-Beats:
-- The initiation (who moves first, how)
-- The first contact: pressure, heat, the precise physical detail
-- The second beat: one person's response — deeper, still, pulling back slightly then returning
-- The internal recognition: the character understands something has changed
-- The end of the kiss: how they separate, what the air between them feels like now
-
-Keep it under 400 words. Longer is not more intense — it dilutes.
-
-#### Escalated physical scene (make-out, pre-intimacy)
-
-Build the escalation of contact — clothing, hands, skin — with sensory specificity (temperature, texture, pressure). **Fade-to-black or closed-door at the peak moment.** Do not write through the threshold; cut to aftermath or use a warm fade line. This is the AdSense-safe ceiling.
-
-**Fade technique:**
-> *His hand found the edge of her dress. She exhaled — barely sound, barely breath.*
-> *— and then there was nothing but heat, and his voice saying her name.*
-
-**Cut-to-aftermath technique:**
-> *Later, she would not remember who had moved first. She would remember only the window light falling across his collarbone, and how she had not looked away.*
-
-Both are correct. The fade is warmer; the cut is more literary. Match to the chapter's emotional register.
-
----
-
-### Vocabulary: Use / Avoid
-
-**Use freely:**
-`skin`, `heat`, `pulse`, `breath`, `jaw`, `throat`, `collarbone`, `waist`, `hip`, `back`, `hands`, `fingers`, `lips`, `mouth`, `exhale`, `shiver`, `pressure`, `weight`, `warmth`, `close`, `closer`, `the space between them`, `his hands on her`, `her fingers in his shirt / against his chest`
-
-**Use sparingly (once per scene maximum):**
-`desire`, `want`, `need`, `ache` — these name the emotion directly; they're most powerful when used once, at the scene's peak
-
-**Avoid (AI cliché or explicitly sexual):**
-`throbbing`, `heaving`, `moist`, `quivering`, `manhood`, `womanhood`, `grinding`, `explicit anatomical terms` — any of these kills the scene's credibility or crosses the AdSense line
-
-**Avoid (too vague / closed-door register):**
-`they made love` (without any preceding sensation), `one thing led to another`, `the night passed between them` — these are soft fade-outs that feel evasive rather than deliberate
-
----
-
-### Heat Pacing Across a Full Novel
-
-Romance readers track the heat arc the same way they track plot. Structure it:
-
-| Chapter range | Expected heat beats |
-|--------------|---------------------|
-| Ch 1–4 | Awareness only. Character notices the other; no physical contact yet. |
-| Ch 5–8 | First accidental touch or forced proximity. One interrupted moment. |
-| Ch 9–13 | Escalating contact. First significant touch. Almost-kiss or interrupted kiss. |
-| Ch 14–16 | First kiss (if not earlier). Scene with real physical escalation. Emotional crisis interrupts. |
-| Final 2–3 chapters | Resolution of both emotional and physical tension. Closed-door fade at peak if the arc supports it. |
-
-In an 18-chapter book, the first kiss should land no later than chapter 14. Readers who reach chapter 16 without it begin to feel cheated.
-
----
-
-### Applying to Parallel Writing
-
-When spawning agents for parallel chapter writing, pass each agent its position in the heat arc:
-
-```
-Heat arc position: Ch-{N} of {total}
-Expected heat beat this chapter: {awareness only / first touch / almost-kiss / first kiss / escalated contact / aftermath}
-Previous heat beat (from tracking/context.md): {last physical beat that happened}
-Next expected beat (from outline): {what the reader is waiting for}
-```
-
-Agents without this context will default to closed-door or will skip heat beats entirely. Always provide it.
-
----
-
-## Mystery Dread Register
-
-Apply this section when the genre is Mystery, Cosy Mystery, Gothic, Literary Thriller, or any non-romance genre where atmosphere and suspense — rather than romantic tension — are the primary escalation axis.
-
-The dread register is the mystery genre's structural parallel to romance heat: it is the accumulation of wrongness across chapters that the reader tracks, consciously or not, until the climax delivers. Manage it with the same deliberateness as a romance heat arc.
-
-### Target Dread Level
-
-| Level | Definition | When to use |
-|-------|-----------|-------------|
-| **Subtle unease** | One wrong detail per scene; easily explained away; protagonist dismisses it | Opening chapters (Ch 1–4); establish the ordinary world, then begin contaminating it |
-| **Mounting wrongness** | Multiple unexplained details that don't connect yet; protagonist notices but cannot theorize | Mid-book (Ch 5–N-4); the accumulation is the tension |
-| **Confirmed threat** | The protagonist knows something is wrong and names it; the reader is ahead of the other characters | Late arc (N-3 onward); now the tension is "when will she act" not "is something wrong" |
-| **Climax dread** | The full picture is visible; the protagonist faces it directly | Final 1–2 chapters; dread resolves into confrontation or revelation |
-
----
-
-### The 4 Dread Techniques
-
-**1. Delay the explanation**
-A wrong detail should arrive in the scene *before* the scene provides a reason for it. The protagonist notices — and then something else happens that distracts her. The detail sits unresolved in the reader's memory. Never explain a dread detail in the same paragraph it appears.
-
-**2. The unreliable ordinary**
-Dread lands hardest on familiar objects and routines. A clock that stopped. A chair that is always warm. A portrait whose expression she can't quite remember. The uncanny ordinary is more disturbing than anything overtly supernatural, because the reader cannot dismiss it.
-
-**3. Atmospheric echo**
-Setting should reflect and amplify the protagonist's emotional state — but always one beat ahead of where she is. The weather turns before she feels afraid. The room feels smaller before she understands why. Environment predicts; the protagonist catches up.
-
-**4. The witness burden**
-When the protagonist has seen something she was not meant to see, write the burden of that knowledge as a physical weight: how she speaks differently, how she positions herself in rooms, what she notices that she did not notice before. The reader must feel the effort of her composure.
-
----
-
-### Dread Pacing Across a Full Novel
-
-| Chapter range | Expected dread beat |
-|--------------|---------------------|
-| Ch 1–3 | The ordinary world, intact. One wrong detail in the final scene — small, unexplained. |
-| Ch 4–7 | Two or three more wrong details. No pattern visible yet. One red herring introduced. |
-| Ch 8–(N-4) | The impossible clue appears. Her current theory cannot accommodate it. She files it without understanding it. |
-| Ch (N-3)–(N-2) | The pattern becomes visible. She names what is wrong. Confirmed threat level. |
-| Final 2 chapters | Confrontation, revelation, or both. The accumulated dread discharges in one climax scene. |
-
-In a 14-chapter mystery, the "impossible clue" should appear no later than chapter 9. Readers who reach chapter 12 without a clue that breaks their theory begin to feel the book has no puzzle — only narrative.
-
----
-
-### Applying to Parallel Writing (Mystery)
-
-When spawning agents for parallel chapter writing in a mystery book, pass each agent its dread arc position:
-
-```
-Dread arc position: Ch-{N} of {total}
-Expected dread beat this chapter: {ordinary world / first wrong detail / accumulation / impossible clue / confirmed threat / climax confrontation}
-Planted clues so far (from tracking/threads.md): {list of clue slugs and where planted}
-Current wrong theory (from tracking/context.md): {what the protagonist currently believes}
-```
-
-Agents without this context will default to neutral narration and will not plant or recall clues. Always provide it.
-
----
-
 ## Quality Check Before Saving
 
 - Hook: does it drop into motion? No weather, backstory, or setup.
@@ -791,8 +418,8 @@ Agents without this context will default to neutral narration and will not plant
 - No three consecutive sentences starting with the same subject.
 - **Hook-out gate:** does the final sentence / final paragraph use one of the 10 named techniques from §"Chapter Hook-Out Framework"? Any forbidden ending (summary, emotional generalization, going to sleep, "finally…resolved") is a mandatory rewrite — do not ship the chapter until this passes.
 - **One-paragraph test:** does the opening paragraph make the reader feel something in the first three sentences? If it only establishes setting or backstory, cut to the tension.
-- **Named emotion check:** does every scene with the central pairing have a specific named emotional state (from the Named Emotion table in §"Scene-Level Drama")? Generic emotions ("nervous", "angry", "interested") are a rewrite flag.
-- **Power dynamic check:** is it clear who is certain and who is conflicted? If both characters feel equally balanced, the scene has no subtext.
+- **Named emotion check:** does every pivotal scene have a specific named emotional state (from the genre file's Named Emotion table)? Generic emotions ("nervous", "angry", "interested") are a rewrite flag.
+- **Dynamic check:** is it clear who holds the power in this scene and who is off-balance? If all characters feel equally matched, the scene has no subtext.
 - **Setting check:** does the location amplify the emotional stakes, or could it be any room? If it's interchangeable, change it.
 - If AI flavor is detected, flag the chapter for the Phase 4 deslop pass — do not run `/story-deslop` inline here. Phase 4 (`references/story-deslop.md`) is loaded separately and runs after all chapters are written.
 
@@ -815,9 +442,6 @@ One sentence is ideal. Two is the maximum. It must reveal the core irony of the 
 | **Three escalating beats** | One [setup]. One [complication]. One [the real problem]. | "One qualifying spot. One fake relationship. One very real problem." |
 | **Plan + role + failure** | [His plan]. [Her assigned role]. [Why the role failed]. | "He had a plan. She was supposed to be a variable. She was not a variable." |
 | **She/He didn't expect** | [What she went in to do]. [What she didn't expect]. | "She crossed the Veil to complete a survey. She didn't expect to be claimed before she could cross back." |
-| **Injustice stack + reversal** | [Betrayal 1.] [Betrayal 2, shorter.] [Together, the worst thing.] [Time skip.] [She came back to do one specific thing.] | "Her sister wanted to take her place. Her stepmother wanted her erased. Together, they buried Mara so deep even her name disappeared. Five years later, she came back to collect." |
-| **Assumption-detonation-evidence** | [She assumed X.] [The detonation — one sentence.] [The evidence — physical object, preceded by a pause.] | "She thought last night was just a drunken mistake. But when she woke up, there was a strange man beside her. And on the table… two marriage certificates." |
-| **Three-beat refusal (villainess / regression — first person)** | [I woke up as (condemned identity).] [I have (knowledge advantage).] [He / They / The story (will not / does not know / is about to change) — eight words or fewer.] | "I woke up inside the body of Lady Serafine Voss, the woman who gets executed at the winter ball. I have read every chapter of this story. He doesn't know I know how it ends." |
 | **Title-as-peak-state (fantasy / progression)** | Name the protagonist's achievement state or core power mechanic, not a thematic abstraction. | "Hundredfold Dominion", "The Last Cartographer of the Shattered Court", "Iron Sovereign" |
 
 ### Description (4–6 sentences)
@@ -833,53 +457,7 @@ Back-cover copy, not a plot summary. Each sentence has a job:
 | **5 — Stakes (optional)** | What happens if they fail or succeed | Only include if it sharpens the hook. Cut if it reads like a plot outline. |
 | **6 — The feeling (optional)** | The emotional impossibility in one image | One sentence that makes the reader feel the situation rather than understand it. |
 
-### Genre-Specific Synopsis Formulas
-
-Use these instead of the standard 6-sentence table when the genre has a dedicated structure.
-
-#### Formula G — Regression / Revenge Double-Arc Synopsis
-
-| Sentence | Job |
-|----------|-----|
-| **1 — The death** | She died — name the moment and who was responsible, in specific terms. Not "she was betrayed" but "she drank the poison her husband poured into her tea." |
-| **2 — The reset** | She woke at a named specific past moment — the morning before, the week of, the day of — and name exactly what she now carries forward. |
-| **3 — His role then vs. now** | What he was to her before, and the specific way he is already reacting to a version of her he was never supposed to meet. |
-| **4 — The plan with a contradiction** | What she intends to change, stated in terms of both the revenge arc and the romance arc simultaneously. The plan must visibly contain a contradiction she has not admitted to herself. |
-| **5 — The withheld variable** | The one thing her future knowledge cannot account for — the crack in her certainty. Name the category, not the content. |
-| **Closing beat** | The question the reader must click to answer — not "will she succeed" but the specific question raised by the contradiction in sentence 4. |
-
-#### Formula H — Villainess / Transmigration Synopsis
-
-| Sentence | Job |
-|----------|-----|
-| **1 — The inherited doom** | She transmigrated into the villainess — name the specific concrete fate she has inherited (execution, exile, public humiliation — be precise). |
-| **2 — Her knowledge advantage** | She has read the original story; name the most dangerous piece of that knowledge she now holds. |
-| **3 — His reaction to someone new** | His role in the original story vs. the complication — what he was supposed to do to the villainess she inhabits, and how he is already reacting differently. |
-| **4 — The performance problem** | She must act like the villainess she inhabits while quietly becoming someone else — name the specific context where this is hardest to maintain. |
-| **5 — The withheld variable** | The one plot event her future knowledge got wrong — the gap between the story she read and the story she is now living. |
-| **Closing beat (dramatic irony)** | The reader knows she knows; the hero does not. State the gap as a single sentence. |
-
-#### Formula I — Monster Romance / Creature-Fixation Synopsis
-
-| Sentence | Job |
-|----------|-----|
-| **1 — The world's rule** | What everyone knows about this creature — what is feared, what always happens. Stated as settled cultural fact. |
-| **2 — Her arrival** | Why she was sent, why she was considered expendable, what she expected. |
-| **3 — The behavioral anomaly** | What he did differently with her specifically — not a stated emotion but a specific action that deviated from every prior account. |
-| **4 — The intimacy engine** | What they cannot communicate with words and what they have begun to communicate through proximity, repeated action, and shared gesture. |
-| **5 — The withheld variable** | The thing about him she does not yet understand, or the thing about herself he recognized before she did. |
-| **Closing beat** | The double question: what does unconditional devotion cost when the one offering it is not human, and what does it cost her to accept it? |
-
-#### Formula J — Mystery / Whodunit Synopsis
-
-| Sentence | Job |
-|----------|-----|
-| **1 — The discovery** | The crime or wrong that opens the story — stated in physical, specific terms: who found what, where, in what condition. Not "a murder occurred" but the precise detail of how she came upon it. |
-| **2 — Her position** | Why she is the one investigating — her relationship to the crime, why official channels have failed or excluded her, what access or knowledge she has that professional investigators lack. |
-| **3 — The suspects** | The limited pool of people who could have done it — named by relationship, not by name. Each carries a visible motive. Do not reveal the killer; do not exclude the killer. |
-| **4 — The wrong theory** | The explanation the room accepts and why she initially accepts it or resists it. Name the misdirection — the reader should be able to see the trap without yet knowing it is one. |
-| **5 — The impossible clue** | The one piece of evidence that cannot fit the obvious explanation. Named but not explained — this is what the reader must click to understand. |
-| **Closing beat** | The stakes if she fails — specific, personal, mortal or social. Not "justice" in the abstract; the named person or thing endangered by the wrong answer. |
+**Genre-specific synopsis formulas** are in the relevant genre file. Load `genre-romance.md` for Formulas G/H/I (regression, villainess, monster romance); `genre-mystery.md` for Formula J; `genre-fantasy.md` for Formula K; `genre-scifi.md` for the sci-fi/dystopian formula; `genre-horror.md` for the horror formula.
 
 ---
 
