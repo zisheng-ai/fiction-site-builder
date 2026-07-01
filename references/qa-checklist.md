@@ -211,6 +211,9 @@ After B6 passes, generate `TODO.md` in the project root listing every post-launc
 - [ ] Select which ad account to use for this site (reuse existing account or apply for a new one)
 - [ ] Confirm AdSense slots (ca-pub-XXXXXXXX) serving after deployment
 - [ ] Confirm AdX slots (/XXXXXXXXX) serving after deployment — omit if AdX not wired
+- [ ] Replace the custom CookieBanner with a Google-certified CMP (e.g. Cookiebot free tier)
+  - **Why:** The built-in CookieBanner is just a localStorage flag — not a certified CMP. For sites targeting EU/UK users, AdSense requires a certified CMP to serve personalised ads; without one, EU traffic gets non-personalised ads only, which have significantly lower eCPM.
+  - **How:** Sign up for Cookiebot (free tier covers 1 domain), bind the domain in their dashboard, paste two script tags into `layout.tsx` `<head>`, remove the `<CookieBanner />` component.
 
 ## Analytics
 - [ ] Add Google Analytics 4 (GA4) script (G-XXXXXXXX) to layout.tsx
