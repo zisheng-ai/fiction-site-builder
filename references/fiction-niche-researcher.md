@@ -37,12 +37,12 @@ Fiction traffic is platform-driven, not search-driven. Pick your distribution ch
 | --- | --- | --- | --- |
 | **TikTok BookTok (EN)** | F 18–34, US/UK/AU | Short clips, quotes, trope tags | Viral, spiky, social |
 | **Pinterest (EN)** | F 25–44, US | Aesthetic boards, cover art, quote cards | Evergreen, steady |
-| **Reddit r/RomanceBooks, r/fantasyromance** | F 20–35 | Community recs, discussion threads | Referral, high intent |
+| **Reddit r/RomanceBooks, r/Fantasy, r/horrorlit, r/mysterybooks, r/scifibooks** | Varies by genre | Community recs, discussion threads | Referral, high intent |
 | **Wattpad** | F 13–25, global | Long serialized reads | Organic, loyal |
 | **Webnovel / Fizzo** | M+F 18–30, SEA/CN | Fast-paced chapters, power fantasy | In-app only, hard to funnel externally |
-| **Facebook Groups (romance, werewolf, mafia)** | F 30–50, US | Group posts, share-fests | Referral, high-volume for EN romance |
+| **Facebook Groups (romance, horror, mystery, dark fantasy)** | F 30–50, US | Group posts, share-fests | Referral, high-volume |
 
-Default target: **English, TikTok BookTok + Pinterest + Facebook romance groups**, US-dominant. Highest ad RPM for romance/drama content.
+Default target: **English, US-dominant**. Platform selection depends on genre — romance/drama leans TikTok BookTok + Pinterest + Facebook groups; mystery/thriller leans Reddit + Goodreads; horror/fantasy leans Reddit + Discord community + Pinterest. Pick the platform where your genre's readers already gather; highest ad RPM comes from matching audience intent to advertiser vertical.
 
 ### What platform choice affects downstream
 
@@ -62,15 +62,15 @@ Generate at least 3× more candidates than you need before scoring any.
 ### Where to find demand signals
 
 **Social platforms (highest signal for fiction):**
-- TikTok: search `#[trope]` (e.g. `#darkromance`, `#alpharomance`, `#ceoromance`, `#mafiaromance`) — check total views and recency of top videos. Views >50M on a trope tag = proven demand.
-- Pinterest: search the trope as a phrase — pin volume and board freshness signal sustained interest.
-- Reddit: `r/RomanceBooks`, `r/fantasyromance`, `r/ifyoulikeblank` — search the trope and read what readers say they can't find enough of. "Does anyone know more books like X?" is a gap signal.
-- Facebook groups: search "dark romance books," "werewolf romance," "billionaire romance" — group size and post frequency indicate audience depth.
+- TikTok: search `#[genre/trope]` — check total views and recency of top videos. Views >50M on a genre tag = proven demand. Examples: `#darkromance`, `#mysterythriller`, `#horrorreads`, `#epicfantasy`, `#dystopianfiction`.
+- Pinterest: search the genre or trope as a phrase — pin volume and board freshness signal sustained interest.
+- Reddit: `r/RomanceBooks`, `r/fantasyromance`, `r/horrorlit`, `r/scifi`, `r/Fantasy`, `r/ifyoulikeblank` — search the trope and read what readers say they can't find enough of. "Does anyone know more books like X?" is a gap signal.
+- Facebook groups: search your genre keywords — group size and post frequency indicate audience depth. Examples: "dark romance books," "horror fiction fans," "fantasy book club."
 
 **Fiction platforms:**
 - Wattpad trending list by genre — what's rising this week vs. last month.
 - Webnovel/GoodNovel hot list — fast-rising titles signal demand.
-- Amazon Kindle Unlimited romance bestsellers — the commercial market lags BookTok trends by 3–6 months; use as confirmation, not discovery.
+- Amazon Kindle Unlimited bestsellers by genre — the commercial market lags social trends by 3–6 months; use as confirmation, not discovery.
 
 **Community signals:**
 - Reddit AMA threads and "what tropes do you want MORE of" posts.
@@ -79,25 +79,28 @@ Generate at least 3× more candidates than you need before scoring any.
 
 ### Candidate types to prefer
 
-| Genre cluster | Hot trope combinations | BookTok hashtag signal |
+Each genre has its own community, demand signals, and trope language. Pick the genre that fits the **target site's tone** (see `CLAUDE.md` site table) first, then find the best trope angle within that genre.
+
+| Genre | Hot trope / angle combinations | Primary platform signal |
 | --- | --- | --- |
-| Dark Romance | Enemies to lovers + forced proximity + possessive hero | `#darkromance` 15B+ views |
-| Paranormal Romance | Alpha werewolf + fated mates + rejected mate arc | `#wolfromance` `#materomance` |
-| Billionaire / CEO | Cold CEO + contract marriage + secret baby | `#ceoromance` `#billionaireromance` |
-| Mafia / Cartel | Morally grey villain + capture romance + revenge arc | `#mafiaromance` |
-| Fantasy Romance | Enemies to lovers + chosen one + magic bond | `#fantasyromance` |
-| Reverse Harem | One FMC + multiple MMCs + slow burn group dynamic | `#reverseharem` `#whychoose` |
-| Sports Romance | Rival athletes + forced proximity + public tension | `#sportsromance` |
+| **Romance — Dark / Mafia** | Enemies to lovers + forced proximity + possessive hero; morally grey captor | `#darkromance` 15B+ TikTok views |
+| **Romance — Paranormal** | Alpha werewolf + fated mates + rejected mate arc | `#wolfromance` `#materomance` |
+| **Romance — Contemporary** | Cold CEO + contract marriage; rivals to lovers; small-town second chance | `#ceoromance` `#sportsromance` |
+| **Mystery / Cosy Mystery** | Amateur detective + closed setting + cast of suspects; cold case revival | `#mysterythriller` Reddit `r/cozynoir` |
+| **Thriller / Suspense** | Unreliable narrator + hidden identity + ticking clock | `#psychologicalthriller` `#thrillerbooks` |
+| **Horror** | Haunted location + unreliable senses + isolation; folk horror + outsider | `#horrorreads` `#horrorbooks` Reddit `r/horrorlit` |
+| **Epic / Dark Fantasy** | Chosen burden + political intrigue + magic cost; fae court + mortal bargain | `#epicfantasy` `#darkfantasy` Reddit `r/Fantasy` |
+| **Sci-Fi / Dystopian** | Resistance cell + surveillance state + one person who sees the truth; first contact | `#dystopian` `#scifi` Reddit `r/scifi` |
 
 Prefer combinations where:
-- At least two tropes overlap (readers search for the intersection, not just one trope)
-- The combination has visible BookTok community around it
-- There's a clear emotional arc you can structure as a chapter cliff-hanger pattern
+- At least two tropes or tension angles overlap (readers search the intersection, not just one)
+- There is a visible reader community around the combination (subreddit, hashtag, Facebook group)
+- There is a clear escalating arc you can structure as chapter-ending hooks
 
 Avoid:
-- Single-trope stories with no combination angle (low differentiation)
-- Tropes where the top 20 Wattpad stories have 100M+ reads each (too saturated to break through organically)
-- Genres that require proprietary world-building too complex to execute quickly (hard sci-fi, epic secondary-world fantasy with maps and constructed languages)
+- Single-angle stories with no combination (low differentiation)
+- Sub-genres where the top titles have 100M+ Wattpad reads (too saturated to break through organically)
+- Stories that require deep proprietary world-building before the first hook — if you can't open in medias res in chapter 1, reconsider scope
 
 ---
 
@@ -135,7 +138,7 @@ For the top 3–5 existing titles in your target genre × trope combo:
 | Reader comments | What are readers praising? What are they asking for that the story doesn't give them? |
 | Cover and title conventions | What visual/naming patterns does this sub-genre use? You need to fit in before you can stand out. |
 | Prose style | Is the market's standard first-person present or third-person past? How short are the chapters? |
-| Weakness to exploit | Thin world-building, weak FMC agency, slow pacing, abrupt ending, no heat — pick one weakness to beat |
+| Weakness to exploit | Thin world-building, weak protagonist agency, slow pacing, abrupt ending, unresolved tension — pick one weakness to beat |
 
 Record one `differentiation_angle` per candidate: the specific thing your story does that the top titles don't. This feeds the story brief in A1.
 
@@ -149,8 +152,8 @@ A niche you can't write well at speed is not viable regardless of demand.
 | --- | --- |
 | **Genre fluency** | Have you read (or is Claude trained on) enough titles in this sub-genre to replicate the emotional beats, pacing, and dialogue register? |
 | **World complexity** | How much world-building is required before the first chapter? Contemporary = zero. Paranormal = light. Epic fantasy = heavy. |
-| **Chapter structure** | Does this genre follow predictable chapter patterns (meeting → tension → almost-moment → cliffhanger)? Predictable structure = easier to produce at volume. |
-| **Heat level** | Sweet / closed door = easiest. Steamy / closed-door at peak = default and AdSense-safe. Explicit = policy risk. Default to steamy with fade-to-black at the peak intimate moment — see Step 4. |
+| **Chapter structure** | Does this genre follow recognizable chapter patterns? Romance: meeting → tension → almost-moment → cliffhanger. Mystery: discovery → investigation → red herring → revelation. Horror: normalcy → unease → escalation → confrontation. Predictable genre structure = easier to produce at volume. |
+| **Content intensity** | Romance: steamy / closed-door at peak = AdSense-safe default; explicit = policy risk. Horror: graphic violence → AdSense-safe if not gratuitous. All genres: no explicit sex, no graphic content sexualizing minors. See Step 4 for full policy rules. |
 | **Target chapter count** | Can the story be told in 15–20 chapters at 1 500–2 000 words each? If yes, it's producible in one session. If it needs 50+ chapters, plan for serialized delivery. |
 
 Score producibility 1–5. Below 3 = reject unless you have a specific reason to proceed.
@@ -159,7 +162,7 @@ Score producibility 1–5. Below 3 = reject unless you have a specific reason to
 
 ## Step 4: AdSense Policy Safety Assessment
 
-Fiction sites can be approved for AdSense. Most romance content qualifies. A small set of content types does not.
+Fiction sites can be approved for AdSense. Most genre fiction qualifies. A small set of content types does not.
 
 ### Disqualified content (hard rejection)
 
@@ -180,7 +183,9 @@ Fiction sites can be approved for AdSense. Most romance content qualifies. A sma
 | Vampire / supernatural with graphic blood scenes | Borderline violence | Keep blood atmospheric, not gratuitous |
 | Reverse harem / polyamory | Generally fine for AdSense; some ad networks flag | Proceed; just avoid explicit scenes |
 
-Default heat level for AdSense safety: **steamy but not explicit.** Sexual tension, implied scenes, fade-to-black or closed-door at the peak moment. Readers understand; AdSense approves.
+**For romance genres:** Default to steamy but not explicit — sexual tension, implied scenes, fade-to-black or closed-door at the peak intimate moment. Readers understand; AdSense approves.
+
+**For non-romance genres (mystery, horror, fantasy, sci-fi):** Sexual content is not the primary risk. Watch for graphic violence, torture, or body horror as the primary content — atmospheric tension is fine, sustained gore is not.
 
 ### Advertiser demand by fiction genre
 
@@ -189,9 +194,10 @@ Default heat level for AdSense safety: **steamy but not explicit.** Sexual tensi
 | Romance (all sub-genres) | Moderate–High | Female 18–45 audience; beauty, fashion, relationship product advertisers |
 | Paranormal / Fantasy Romance | Moderate | Broad demographic; entertainment product advertisers |
 | Dark Romance / Mafia | Moderate | Some advertiser exclusions due to content tone; partially offset by high session time |
-| Thriller / Mystery | Moderate | Book, streaming, and home product advertisers |
-| Sci-Fi | Low–Moderate | Narrower audience; tech advertiser crossover |
-| Literary / Nliterary | Low | Small audience; low commercial advertiser interest |
+| Cosy Mystery / Thriller | Moderate | Book, streaming, and home product advertisers |
+| Horror | Low–Moderate | Niche audience; some advertiser avoidance of dark content |
+| Fantasy / Sci-Fi | Low–Moderate | Narrower audience; entertainment and tech advertiser crossover |
+| Literary Fiction | Low | Small audience; low commercial advertiser interest |
 
 ---
 
@@ -213,18 +219,20 @@ Score each candidate 1–5 on all five dimensions. Select only candidates averag
 
 ## Output
 
-Write `outputs/{site-slug}/{book-slug}/niche-research.json`:
+Write `outputs/{site-slug}/{book-slug}/niche-research.json`.
+
+**Romance example:**
 
 ```json
 {
   "site_slug": "velvet-throne",
-  "primary_platform": "tiktok-booktok | pinterest | reddit | wattpad | facebook-groups",
+  "primary_platform": "tiktok-booktok | pinterest | facebook-groups",
   "target_language": "en",
   "target_market": "en-us",
   "selected_genre": "Dark Romance",
   "selected_tropes": ["CEO / billionaire", "enemies to lovers", "forced proximity"],
   "demand_validation": {
-    "tiktok_tag_views": "15B+ (#darkromance)",
+    "social_signal": "TikTok #darkromance 15B+ views",
     "existing_titles_confirmed": ["Title A", "Title B", "Title C"],
     "community_gap_evidence": "Reddit r/RomanceBooks: 'Why is there no dark CEO romance where the female lead actually has leverage?'"
   },
@@ -242,7 +250,7 @@ Write `outputs/{site-slug}/{book-slug}/niche-research.json`:
     "genre_fluency": 5,
     "world_complexity": "contemporary — zero setup",
     "chapter_structure": "meeting → power struggle → almost-moment → cliffhanger",
-    "heat_level": "steamy / closed-door at explicit moments",
+    "intensity_level": "steamy / closed-door at explicit moments",
     "target_chapters": 18,
     "words_per_chapter": 1700
   },
@@ -258,9 +266,60 @@ Write `outputs/{site-slug}/{book-slug}/niche-research.json`:
     "differentiation": 4,
     "adsense_safety": 4
   },
-  "decision": "select | reject | needs research"
+  "decision": "select"
 }
 ```
+
+**Cosy Mystery example:**
+
+```json
+{
+  "site_slug": "london-pages",
+  "primary_platform": "pinterest | reddit | facebook-groups",
+  "target_language": "en-GB",
+  "target_market": "en-gb",
+  "selected_genre": "Cosy Mystery",
+  "selected_tropes": ["amateur sleuth", "small village", "found family", "recurring cast"],
+  "demand_validation": {
+    "social_signal": "TikTok #cozymystery 500M+ views; Reddit r/mysterybooks active community",
+    "existing_titles_confirmed": ["The Thursday Murder Club", "Richard Osman village series", "A Flicker in the Dark"],
+    "community_gap_evidence": "Reddit r/mysterybooks: 'Need more cosy mysteries with a quirky protagonist who isn't a professional detective'"
+  },
+  "competitive_brief": [
+    {
+      "title": "The Thursday Murder Club",
+      "platform": "Amazon KU + Reddit",
+      "reads": "Bestseller",
+      "weakness": "Large ensemble cast is hard to track for new readers",
+      "beat_action": "Tight 2-person duo as core sleuths — easier reader attachment"
+    }
+  ],
+  "differentiation_angle": "A retired archivist discovers murder patterns hidden inside historical documents — each crime unlocks a secret from the village's past",
+  "producibility": {
+    "genre_fluency": 4,
+    "world_complexity": "small English village — minimal setup, recurring locations",
+    "chapter_structure": "discovery → investigation → red herring → clue reveal → confrontation",
+    "intensity_level": "low — no explicit content, minimal on-page violence",
+    "target_chapters": 20,
+    "words_per_chapter": 1800
+  },
+  "adsense_policy": {
+    "explicit_content": false,
+    "high_risk_notes": "None — cosy mystery is the most AdSense-safe fiction genre",
+    "advertiser_demand_tier": "moderate"
+  },
+  "score": {
+    "reader_demand": 4,
+    "trope_freshness": 4,
+    "producibility": 4,
+    "differentiation": 5,
+    "adsense_safety": 5
+  },
+  "decision": "select"
+}
+```
+
+The `decision` field accepts: `"select" | "reject" | "needs research"`
 
 ---
 

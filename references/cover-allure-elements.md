@@ -2,7 +2,7 @@
 
 Reference for `story-cover.md`. Visual allure elements for fiction cover generation — AI prompt engineering guide.
 
-Use for: romance, thriller, contemporary, drama, and light novel covers requiring strong visual appeal within gpt-image-2-all policy.
+**Scope: romance, contemporary drama, and light novel covers only.** For Horror, Fantasy, Mystery, and Sci-Fi covers, this file does not apply — those genres use atmosphere, scale, and dread instead of allure. See `story-cover.md` §4 for non-romance genre composition guidelines.
 
 ---
 

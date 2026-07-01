@@ -149,8 +149,8 @@ The genre determines composition template, color palette, character design, and 
 
 | Type | When to use | Character count |
 |------|-------------|-----------------|
-| **Solo** | Strong single-POV heroine; atmospheric/thriller; no prominent male lead in synopsis | 1 (female lead only) |
-| **Duo** | Standard romance/drama — male + female leads in scene | 2 |
+| **Solo** | Strong single-POV protagonist; atmospheric/thriller/horror/sci-fi; story doesn't require a second prominent character | 1 (protagonist only) |
+| **Duo** | Two-character focus — both leads present; romance, drama, fantasy duo, detective pair, allies | 2 |
 | **Trio** | Love triangle, rival over shoulder, court/pack dynamic with 3+ key figures | 3+ |
 | **Environmental** | Thriller, mystery, horror — figure(s) small against a dramatic landscape/setting | 1–2, environment dominant |
 
@@ -207,8 +207,8 @@ keep title and author name inside the central safe area (inner ~85%), no waterma
 
 | Composition type | Characters | Notes |
 |---|---|---|
-| **Solo** | 1 (female lead) | Powerful solo poses: dramatic expression, environment-forward, no male required. Valid for any genre when the heroine's arc stands alone. |
-| **Duo** | 2 (female + male) | Standard romance/drama. Describe both explicitly. |
+| **Solo** | 1 (protagonist) | Powerful solo poses: dramatic expression, environment-forward. Valid for any genre when the protagonist's arc stands alone. |
+| **Duo** | 2 (two leads) | Two-character focus; romance, drama, fantasy duo, detective pair, or allies. Describe both explicitly. |
 | **Trio** | 3+ | Love triangle, rival figure, pack/court arrayed behind the leads. Keep a clear focal pairing; extra figures amplify tension. |
 | **Environmental** | 1–2, small against scene | Figure(s) partially subsumed by the dramatic environment. Best for thriller/mystery/gothic. |
 
