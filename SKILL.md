@@ -123,12 +123,12 @@ B1 → B2 → B3 → B4 are sequential. B5 and B6 run in parallel against the sa
 
 **B4 gate:** at least one book with ≥ 10 chapters must exist before starting B4. B1–B3 may run while writing is still in progress.
 
-### B4 — Facebook Pixel
+### B4 — Facebook Pixel (optional)
 
-During B4, wire Facebook Pixel before declaring the build complete. Read the parent project `fictions/CLAUDE.md` and look for the `facebook_pixel.id` configuration.
+During B4, check the parent project `fictions/CLAUDE.md` for a `facebook_pixel.id` configuration. This step is **optional** — if the parent project does not specify a Pixel ID, skip the code change and only record it in `TODO.md`.
 
 - **If configured**: add the Facebook Pixel base code to `src/app/layout.tsx` `<head>` using `next/script` with `strategy="afterInteractive"`. Use the exact Pixel ID from `fictions/CLAUDE.md`. Include both the `<Script>` block and the `<noscript>` fallback image.
-- **If not configured**: do not add any Pixel code. Instead, add a pending item to the site's `TODO.md` under `Analytics & Ads`:
+- **If not configured**: do not add any Pixel code. Instead, add a pending item to the site's `TODO.md` under `分析与广告`:
   ```
   - [ ] 配置 Facebook Pixel（项目 CLAUDE.md 未指定 Pixel ID）
   ```
