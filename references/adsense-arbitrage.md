@@ -96,7 +96,7 @@ Map the CLAUDE.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via
 
 | Position | Viewability | Notes |
 |---|---|---|
-| Just below header (top of content) | 85–95% | one premium above-the-fold unit; reserve space and keep it actually visible on first mobile screen — large hero images or chapter covers can push it below the fold. |
+| Just below header (top of content) | 85–95% | one premium above-the-fold unit; pass `priority` to `AdsenseSlot` so it loads immediately. Reserve space and keep it actually visible on first mobile screen — large hero images or chapter covers can push it below the fold. |
 | In-content, after first screen / every N paragraphs | 75–90% | the workhorse — inside the natural reading path |
 | End-of-chapter (above the sticky Next bar) | high | catches the "decide to continue" pause; keep clear gap from Next button (§1.4) |
 | Mobile sticky **anchor** (bottom) | very high | one anchor; reliably viewable & refreshable |
@@ -180,7 +180,7 @@ Track and optimize:
 - [ ] Privacy / Terms / About / Contact pages exist and are footer-linked on every route (§5).
 - [ ] Google-certified CMP / cookie consent wired (§1.5).
 - [ ] Every ad slot reserves explicit size (no CLS) (§3.3).
-- [ ] AdSense units lazy-load via `AdsenseSlot` with 150px `rootMargin`; AdX above-fold unit loads immediately; every slot reserves explicit size (no CLS) (§3.3, §8.6).
+- [ ] AdSense units lazy-load via `AdsenseSlot` with 150px `rootMargin`; above-fold AdSense unit passes `priority` to load immediately; every slot reserves explicit size (no CLS) (§3.3, §8.6).
 - [ ] Ad components from §8.6 are used unchanged; never revert to mount-time `display()`/`push({})` for all slots.
 - [ ] Ad density ≤ 3–4 / 1,000 words and ad-pixels < 30% of content (§1.3, §3.2).
 - [ ] No ad is mistakable for the Next/TOC control; clear gap maintained (§1.4).
@@ -440,15 +440,17 @@ declare global {
 
 type Props = {
   slot: string
+  priority?: boolean
   className?: string
 }
 
-export default function AdsenseSlot({ slot, className = '' }: Props) {
-  const [shouldLoad, setShouldLoad] = useState(false)
+export default function AdsenseSlot({ slot, priority = false, className = '' }: Props) {
+  const [shouldLoad, setShouldLoad] = useState(priority)
   const insRef = useRef<HTMLModElement>(null)
 
   // Load the ad when it comes within 150px of the viewport.
   useEffect(() => {
+    if (shouldLoad) return
     const el = insRef.current
     if (!el || typeof IntersectionObserver === 'undefined') {
       setShouldLoad(true)
