@@ -104,7 +104,7 @@ A0 runs once per book (not once per site). Required for each new book unless the
 - 5–7 illustrations per book, placed at the highest-stakes peaks (see `story-illustrations.md` for slot distribution). A book may fall below 5 only when not enough scenes earn one — never skip the phase itself.
 - Does not block the Pre-Launch Gate — but a full pipeline run is expected to produce illustrations for its long-form books.
 
-A3 is optional unless the user requests a review or the quality gate fails.
+A3 runs automatically after A1 completes for every long-form book. Do not skip or prompt — deslop is a required quality pass, not optional. Skip only for short-form stories or on explicit user opt-out.
 
 ### Track B — Site
 
@@ -225,8 +225,8 @@ If a full pipeline run reaches launch with no illustrations generated for its lo
 
 | User intent | Phases to run |
 | --- | --- |
-| "Write a novel" / "Continue writing" / `/story-long-write` | 0 (skip if exists), A1 long-form, A3 (if requested) |
-| "Write a short story" / `/story-short-write` | 0 (skip if exists), A1 short-form, A3 (if requested) |
+| "Write a novel" / "Continue writing" / `/story-long-write` | 0 (skip if exists), A1 long-form, **A3 (automatic)** |
+| "Write a short story" / `/story-short-write` | 0 (skip if exists), A1 short-form (A3 skipped for short-form) |
 | "Add one book to existing site" | A1 long-form (single book), A2 (single book) |
 | "Generate covers" / `/story-cover` | A2 only |
 | "Add illustrations" / "Generate illustrations" | A2.5 only |
