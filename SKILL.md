@@ -115,7 +115,7 @@ Starts after Phase 0. Runs in parallel with Track A.
 | B1 | Stack | `tech-stack.md` | chosen stack with one-line rationale |
 | B2 | Design | `design-system.md` | tone, palette, type system, `public/logo.png`, `public/favicon-32x32.png` |
 | B3 | Data | `data-contract.md` | content-collections schema |
-| B4 | Build | `references/ui-components.md` + `reader-ux.md` + `adsense-arbitrage.md` + `seo.md` | working site with all required pages, ad slots, trust pages, Facebook Pixel, sitemap, robots, and metadata |
+| B4 | Build | `references/ui-components.md` + `reader-ux.md` + `adsense-arbitrage.md` + `seo.md` + `meta-ads-landing-requirements.md` | working site with all required pages, ad slots, trust pages, Facebook Pixel, sitemap, robots.txt, `llms.txt`, and metadata |
 | B5 | Performance | `performance.md` + `adsense-arbitrage.md` | Core Web Vitals targets met, images optimized, ad CLS/lazy-load tuned |
 | B6 | QA | `qa-checklist.md` + `references/lighthouse-qa.md` | automated QA pass; Lighthouse median scores meet thresholds; ad-layout + policy-compliance checks; screenshots on failure only |
 
@@ -368,6 +368,8 @@ Load references only when entering that phase. Do not preload all references at 
 - `story-cover.md` + `cover-styles.md` — cover generation via apiyi cascade (gpt → doubao → nano); covers roll T2/T3 per book; no SVG fallback (skip if no API key); all covers generated in parallel.
 - `cover-allure-elements.md` — visual-appeal vocabulary for covers and illustrations; §0 is a lightweight monetization risk note (avoid only outright explicit content).
 - `story-illustrations.md` + `cover-allure-elements.md` — in-chapter illustration generation (A2.5); T3/T4 tier (never T5); peak scene selection; IllustrationBlock component pattern.
+- `seo.md` — load during A0 (niche research) for keyword demand validation; and during A1 when writing book synopses (self-contained descriptions that double as meta descriptions).
+- `geo.md` — load during A0 and A1: book synopses must be written as self-contained relational sentences (not promotional copy) per GEO evidence; author pen-name entity strategy informs A0 differentiation.
 
 **Site build references (load for publishing tasks):**
 - `tech-stack.md` — choose the implementation stack before writing any code.
@@ -379,6 +381,9 @@ Load references only when entering that phase. Do not preload all references at 
 - `qa-checklist.md` — final automated QA and screenshot verification (failures only).
 - `lighthouse-qa.md` — Lighthouse performance/accessibility/best-practices/SEO thresholds and runbook.
 - `adsense-arbitrage.md` — Facebook-traffic + AdSense/AdX arbitrage playbook: profit model, account-survival compliance, pageview-depth and ad-layout/viewability tactics, FB tracking, trust pages. Load whenever building, laying out ads, directing covers, or wiring tracking.
+- `meta-ads-landing-requirements.md` — Meta/Facebook ad traffic landing page policy, account-survival rules, cloaking, trust pages, Pixel+CAPI architecture, B4 compliance checklist. Load during B4.
+- `geo.md` — `llms.txt` generation, structured data for entity disambiguation, robots.ts for AI crawlers. Load during B4.
+- `vercel-operations.md` — Vercel project setup, custom domains, cache headers, deploy hooks, `output: export` pitfalls. Load when deploying or configuring hosting.
 - `product-surface.md` — IA and URL structure (optional, load when needed).
 - `internationalization.md` — language and font decisions (optional, load when needed).
 
@@ -388,6 +393,8 @@ Load references only when entering that phase. Do not preload all references at 
 <project>/
   README.md                     # site reference card (generated after B6)
   TODO.md                       # outstanding work (generated after B6)
+  public/
+    llms.txt                    # AI crawler manifest (generated during B4, see geo.md §9)
   content/                      # all writing outputs live here
     {book-title}/
       chapters/                 # ch-001-{title}.md, ch-002-{title}.md, ...

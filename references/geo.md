@@ -509,3 +509,66 @@ AI answers are non-deterministic — the same query may return different citatio
 17. Add `areaServed` and `knowsLanguage` to Organization schema
 18. Build Spanish-Wikipedia entity presence (Gemini cites local-language authority sources for Spanish queries)
 19. Implement per-country hreflang (`es-ES`/`es-MX`) for traditional Google indexing; do not expect AI-engine routing benefit
+
+---
+
+## 9. llms.txt
+
+`llms.txt` is a draft standard (Jeremy Howard, fast.ai, 2024) analogous to `robots.txt`. It is a Markdown file served at `/llms.txt` that gives LLMs a structured, human-readable summary of the site — what it is, what content exists, and where to find it. The format was adopted quickly: Perplexity reads it, ChatGPT browsing reads it, Claude's web tool reads it. Cost: one static file, zero maintenance.
+
+### Why it matters for fiction sites
+
+The chapter reader pages will not be cited by AI engines. `llms.txt` lets you surface the *metadata layer* — site identity, book list, genre focus, author bios — in the format AI retrieval systems prefer: clean, unformatted, plain Markdown without nav bars, ads, or DOM noise.
+
+### Format spec
+
+```
+# {Site Name}
+
+> {One-sentence description of the site and its genre focus}
+
+## Books
+
+- [{Book Title}]({/book/slug}): {One-sentence synopsis, genre tags}
+- ...
+
+## About
+
+{2–3 sentences: who publishes this, what readers will find here}
+
+## Contact
+
+{contact email or /contact page URL}
+```
+
+### Implementation (Next.js static export)
+
+Create `public/llms.txt` — it is served as a static file at `/llms.txt` with no additional config required.
+
+```txt
+# Velvet Throne
+
+> Dark romance, paranormal, and billionaire fiction for readers who want intensity on every page.
+
+## Books
+
+- [The CEO's Obsession](/book/the-ceos-obsession): A billionaire forces his assistant into a contract marriage — but obsession has no exit clause. Dark romance, billionaire, contemporary.
+- [Alpha Claimed](/book/alpha-claimed): A lone wolf alpha claims a human woman as his fated mate. She didn't agree. Paranormal romance, shifter.
+...
+
+## About
+
+Velvet Throne publishes dark romance and paranormal fiction for adult readers. New chapters added weekly.
+
+## Contact
+
+https://velvet.nablepart.com/contact
+```
+
+### Rules
+
+- Keep each book entry under 30 words — AI retrieval systems truncate long entries
+- Do not include chapter URLs — AI engines do not cite fiction prose, only metadata
+- Update `llms.txt` whenever a new book is added to the site
+- `llms.txt` is **not** a substitute for `robots.txt` — serve both
+- For Spanish sites: write `llms.txt` in Spanish (the primary language), and add a separate `llms-en.txt` in English to capture English-query AI citations (+24% cross-language citation uplift)
