@@ -855,39 +855,59 @@ Both files are automatically served at `/sitemap.xml` and `/robots.txt` by the f
 
 ### 3. CookieBanner
 
-Each site needs its own cookie-consent banner with a site-specific localStorage key so consent state is isolated per domain.
+Each site needs its own cookie-consent banner with a site-specific localStorage key so consent state is isolated per domain. Choose the variant based on the site's primary market:
 
-**`src/components/CookieBanner.tsx`**:
+| Variant | When to use | Key format |
+|---------|-------------|------------|
+| **Basic** | Non-EU/UK markets (US, LatAm, etc.) — single Accept button | `{prefix}-cookie-consent` |
+| **GDPR** | EU / UK markets — Accept All / Reject All / Manage categories | `{prefix}-cookie-consent-v2` |
+
+Key prefix convention: two-letter abbreviation of the site slug (e.g. `vt` for velvet-throne, `mf` for midnight-fable, `fe` for fuego-eterno, `lp` for london-pages, `wr` for wildfire-reads).
+
+Both variants are **UI-only** — they record user preference in localStorage but do not gate or alter ad loading. The banner satisfies notice requirements; actual ad personalisation is governed by the ad network.
+
+---
+
+**Variant A — Basic** (non-EU/UK markets):
+
+Adapt text to the site language. English template: `"{Site Name} uses cookies to personalise content and ads."` Spanish template: `"{Nombre} utiliza cookies para personalizar contenido y anuncios."`
 
 ```tsx
 'use client'
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 
-// Use a site-specific key, e.g. "vt-cookie-consent" for Velvet Throne,
-// "mf-cookie-consent" for Midnight Fable, etc.
-const CONSENT_KEY = 'vt-cookie-consent'
+const CONSENT_KEY = '{prefix}-cookie-consent'
 
 export default function CookieBanner() {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    if (!localStorage.getItem(CONSENT_KEY)) setVisible(true)
+    try {
+      if (!localStorage.getItem(CONSENT_KEY)) setVisible(true)
+    } catch { setVisible(true) }
   }, [])
 
   if (!visible) return null
 
-  const accept = () => {
-    localStorage.setItem(CONSENT_KEY, '1')
+  function accept() {
+    try { localStorage.setItem(CONSENT_KEY, '1') } catch {}
     setVisible(false)
   }
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-base-200 border-t border-base-300 p-4 flex flex-col sm:flex-row items-center gap-3 text-sm">
-      <p className="flex-1 text-base-content/80">
-        {/* Replace "Velvet Throne" with the actual site name */}
-        Velvet Throne uses cookies to personalise content and ads.
+    <div className="fixed bottom-0 left-0 right-0 z-[9999] bg-base-200 border-t border-base-300 shadow-lg px-4 py-3 flex flex-col sm:flex-row items-center gap-3">
+      <p className="text-sm text-base-content flex-1 text-center sm:text-left">
+        {/* EN: "{Site Name} uses cookies to personalise content and ads." */}
+        {/* ES: "{Nombre} utiliza cookies para personalizar contenido y anuncios." */}
+        {'{Site Name}'} uses cookies to personalise content and ads.{' '}
+        <Link href="/privacy" className="underline hover:text-primary">Learn more</Link>
       </p>
-      <button onClick={accept} className="btn btn-primary btn-sm shrink-0">
+      <button
+        onClick={accept}
+        className="bg-primary text-primary-content px-4 py-2 rounded text-sm font-medium shrink-0 hover:opacity-90 transition-opacity"
+      >
+        {/* EN: Accept  ES: Aceptar */}
         Accept
       </button>
     </div>
@@ -895,7 +915,107 @@ export default function CookieBanner() {
 }
 ```
 
-Import and render `<CookieBanner />` at the end of the `<body>` in `src/app/layout.tsx`:
+---
+
+**Variant B — GDPR** (EU / UK markets):
+
+Three-button layout (Accept All / Reject All / Manage) with a category panel. Stores structured JSON so categories can be read later. The `v2` suffix in the key intentionally invalidates any legacy `v1` consent stored by an older Basic banner on the same domain.
+
+```tsx
+'use client'
+import { useEffect, useState } from 'react'
+
+type ConsentData = { analytics: boolean; advertising: boolean }
+
+const KEY = '{prefix}-cookie-consent-v2'
+
+function saveConsent(c: ConsentData) {
+  try { localStorage.setItem(KEY, JSON.stringify(c)) } catch {}
+}
+
+export default function CookieBanner() {
+  const [visible, setVisible] = useState(false)
+  const [managing, setManaging] = useState(false)
+  const [analytics, setAnalytics] = useState(false)
+  const [advertising, setAdvertising] = useState(false)
+
+  useEffect(() => {
+    try {
+      if (!localStorage.getItem(KEY)) setVisible(true)
+    } catch { setVisible(true) }
+  }, [])
+
+  if (!visible) return null
+
+  return (
+    <div className="fixed bottom-0 left-0 right-0 z-[9999] bg-base-200 border-t border-base-300 shadow-lg">
+      {!managing ? (
+        <div className="max-w-4xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+          <p className="text-sm text-base-content/80 flex-1">
+            {'{Site Name}'} uses cookies to personalise content and advertisements, and to analyse our traffic.{' '}
+            <a href="/privacy" className="text-primary underline hover:opacity-80">Privacy Policy</a>
+          </p>
+          <div className="flex items-center gap-2 flex-shrink-0 flex-wrap">
+            <button onClick={() => setManaging(true)}
+              className="px-4 h-9 rounded-lg border border-base-300 text-sm text-base-content/70 font-medium hover:border-primary hover:text-primary transition-colors">
+              Manage
+            </button>
+            <button onClick={() => { saveConsent({ analytics: false, advertising: false }); setVisible(false) }}
+              className="px-4 h-9 rounded-lg border border-base-300 bg-base-100 text-sm text-base-content font-semibold hover:bg-base-300 transition-colors">
+              Reject All
+            </button>
+            <button onClick={() => { saveConsent({ analytics: true, advertising: true }); setVisible(false) }}
+              className="px-5 h-9 rounded-lg bg-primary text-primary-content text-sm font-semibold hover:opacity-90 transition-opacity">
+              Accept All
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className="max-w-4xl mx-auto px-4 py-4 flex flex-col gap-4">
+          <p className="text-sm font-semibold text-base-content">Cookie Preferences</p>
+          <div className="flex flex-col divide-y divide-base-300">
+            <div className="flex items-center justify-between gap-4 py-3">
+              <div>
+                <p className="text-sm font-medium text-base-content">Necessary</p>
+                <p className="text-xs text-base-content/60 mt-0.5">Required for the site to function. Always active.</p>
+              </div>
+              <span className="text-xs text-base-content/40 flex-shrink-0">Always on</span>
+            </div>
+            <div className="flex items-center justify-between gap-4 py-3">
+              <div>
+                <p className="text-sm font-medium text-base-content">Analytics</p>
+                <p className="text-xs text-base-content/60 mt-0.5">Helps us understand how visitors use the site.</p>
+              </div>
+              <input type="checkbox" checked={analytics} onChange={e => setAnalytics(e.target.checked)}
+                className="checkbox checkbox-primary checkbox-sm flex-shrink-0" />
+            </div>
+            <div className="flex items-center justify-between gap-4 py-3">
+              <div>
+                <p className="text-sm font-medium text-base-content">Advertising</p>
+                <p className="text-xs text-base-content/60 mt-0.5">Enables personalised ads. Declining shows non-personalised ads only.</p>
+              </div>
+              <input type="checkbox" checked={advertising} onChange={e => setAdvertising(e.target.checked)}
+                className="checkbox checkbox-primary checkbox-sm flex-shrink-0" />
+            </div>
+          </div>
+          <div className="flex justify-end gap-2">
+            <button onClick={() => setManaging(false)}
+              className="px-4 h-9 rounded-lg border border-base-300 text-sm text-base-content/70">Back</button>
+            <button onClick={() => { saveConsent({ analytics, advertising }); setVisible(false) }}
+              className="px-5 h-9 rounded-lg bg-primary text-primary-content text-sm font-semibold hover:opacity-90 transition-opacity">
+              Save Preferences
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+```
+
+---
+
+Import and render `<CookieBanner />` at the end of `<body>` in `src/app/layout.tsx`:
 
 ```tsx
 import CookieBanner from '@/components/CookieBanner'
@@ -905,8 +1025,6 @@ import CookieBanner from '@/components/CookieBanner'
   <CookieBanner />
 </body>
 ```
-
-Banner text template: `"{Site Name} uses cookies to personalise content and ads."`
 
 ### 4. OG Image
 
