@@ -2,7 +2,7 @@
 
 Reference for `story-cover.md`. Visual allure elements for fiction cover generation — AI prompt engineering guide.
 
-**Scope: romance, contemporary drama, and light novel covers only.** For Horror, Fantasy, Mystery, and Sci-Fi covers, this file does not apply — those genres use atmosphere, scale, and dread instead of allure. See `story-cover.md` §4 for non-romance genre composition guidelines.
+**Scope: all genres.** Every cover requires some level of visual allure — T1 is the absolute floor regardless of genre. Romance / contemporary drama uses T2–T3 (mandatory, see story-cover.md Figure rule). Fantasy / historical uses T1–T2. Mystery / horror / sci-fi uses T1 (atmospheric sensuality or vulnerability). The vocabulary in this file (skin, fabric, pose, expression) applies across genres at the appropriate tier — load it whenever generating any cover or illustration.
 
 ---
 

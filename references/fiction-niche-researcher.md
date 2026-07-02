@@ -86,11 +86,16 @@ Each genre has its own community, demand signals, and trope language. Pick the g
 | **Romance — Dark / Mafia** | Enemies to lovers + forced proximity + possessive hero; morally grey captor | `#darkromance` 15B+ TikTok views |
 | **Romance — Paranormal** | Alpha werewolf + fated mates + rejected mate arc | `#wolfromance` `#materomance` |
 | **Romance — Contemporary** | Cold CEO + contract marriage; rivals to lovers; small-town second chance | `#ceoromance` `#sportsromance` |
-| **Mystery / Cosy Mystery** | Amateur detective + closed setting + cast of suspects; cold case revival | `#mysterythriller` Reddit `r/cozynoir` |
-| **Thriller / Suspense** | Unreliable narrator + hidden identity + ticking clock | `#psychologicalthriller` `#thrillerbooks` |
-| **Horror** | Haunted location + unreliable senses + isolation; folk horror + outsider | `#horrorreads` `#horrorbooks` Reddit `r/horrorlit` |
-| **Epic / Dark Fantasy** | Chosen burden + political intrigue + magic cost; fae court + mortal bargain | `#epicfantasy` `#darkfantasy` Reddit `r/Fantasy` |
-| **Sci-Fi / Dystopian** | Resistance cell + surveillance state + one person who sees the truth; first contact | `#dystopian` `#scifi` Reddit `r/scifi` |
+| **Romance — Historical / Regency** | Forbidden match across class lines; scandal + reputation at stake; enemies in ballrooms | `#regencyromance` `#historicalromance` Pinterest + Facebook Groups |
+| **Mystery — Cosy** | Amateur detective + closed setting + recurring cast of suspects; village crime + outsider protagonist | `#cozymystery` `#cozymysterybooks` Reddit `r/cozynoir` |
+| **Mystery — Literary / Gothic Thriller** | Unreliable narrator + hidden identity + psychological unravelling; ancestral estate secret | `#gothicfiction` `#literarythriller` `#psychologicalthriller` |
+| **Thriller / Suspense** | Ticking clock + hidden past + wrong-place-wrong-time; witness protection + second life | `#thrillerbooks` `#suspensereads` Reddit `r/thrillermystery` |
+| **Horror — Haunted / Folk** | Isolated location + unreliable senses + escalating dread; folk ritual + outsider who breaks the rules | `#horrorreads` `#folkhorror` Reddit `r/horrorlit` |
+| **Horror — Psychological / Domestic** | Ordinary setting turned threatening; gaslighting + confined relationship; grief that won't stay buried | `#psychologicalhorror` `#domesticthriller` TikTok + Reddit |
+| **Epic / Dark Fantasy** | Chosen burden + political intrigue + magic cost; fae court + mortal bargain; empire in collapse | `#epicfantasy` `#darkfantasy` Reddit `r/Fantasy` |
+| **Fantasy — Paranormal / Urban** | Supernatural investigator + hidden world beneath the ordinary; reluctant chosen one in a modern city | `#urbanfantasy` `#paranormalfiction` TikTok + Pinterest |
+| **Sci-Fi — Dystopian** | Resistance cell + surveillance state + one person who sees the truth; memory erasure + identity recovery | `#dystopian` `#dystopianfiction` Reddit `r/scifi` |
+| **Sci-Fi — Speculative / First Contact** | Humanity's first encounter with the non-human; technology that changes what it means to be alive | `#sciencefiction` `#scifi` Reddit `r/scifi` `r/printSF` |
 | **Contemporary Drama** | Secret child / hidden lineage + family reckoning; second-chance reunion after an old wrong; grief and inheritance | `#familydrama` `#emotionalfiction` `#secretbaby` Pinterest + Facebook Groups |
 | **Medical Drama** | Deathbed revelation + caregiver relationship; hospital diagnosis that forces family truth; donor / recipient identity | `#medicaldrama` `#hospitalstory` TikTok + Pinterest emotional content |
 
@@ -239,7 +244,7 @@ Record `suggested_title` and `suggested_slug` in `niche-research.json`.
 
 Write `outputs/{site-slug}/{book-slug}/niche-research.json`.
 
-**Romance example:**
+**Example (Dark Romance):**
 
 ```json
 {

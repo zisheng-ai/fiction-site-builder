@@ -38,7 +38,7 @@ The difference from covers is the *tier* used, not the floor.
 
 ## Budget: 5–7 Illustrations Per Book
 
-Place illustrations at the **highest-stakes dramatic peaks** of the novel — 5 is the practical minimum for a full-length romance arc, 7 is the ceiling. 5–6 well-placed illustrations are typical.
+Place illustrations at the **highest-stakes dramatic peaks** of the novel — 5 is the practical minimum for a full-length novel regardless of genre, 7 is the ceiling. 5–6 well-placed illustrations are typical.
 
 **Never add an illustration just to meet a quota.** The image must earn its placement; if a slot has no qualifying peak, leave it empty and make up the count elsewhere.
 
@@ -260,11 +260,11 @@ print('SAVED:' + str(os.path.getsize(output_path)))
 
 | Tier | Primary | Fallback |
 |---|---|---|
-| T3 | `gpt-image-2-all` `848x1280` | `doubao-seedream-5-0-260128` `1664x2496` → retry once |
-| T4 | `gpt-image-2-all` `848x1280` | `doubao-seedream-5-0-260128` `1664x2496` → retry once |
+| T3 | `doubao-seedream-5-0-260128` `1664x2496` | `doubao-seedream-5-0-260128` `1664x2496` → retry once → `gpt-image-2-all` `848x1280` |
+| T4 | `doubao-seedream-5-0-260128` `1664x2496` | `doubao-seedream-5-0-260128` `1664x2496` → retry once → `gpt-image-2-all` `848x1280` |
 
-- gpt-image-2-all: 848×1280 PNG, cleanest output, strictest content filter. Convert to JPEG quality 85 or run pngquant after generation.
-- doubao: reliable at T3/T4 but requires 1664×2496 pixel floor; stochastic rejection → retry once with identical prompt. The result must be downscaled and compressed post-generation.
+- doubao: highest visual quality and strongest allure; requires 1664×2496 pixel floor; stochastic rejection → retry once with identical prompt; watermark crop + resize required post-generation (same as covers).
+- gpt-image-2-all: cleanest title text, no watermark, strictest content filter — use when doubao fails twice.
 - On second rejection: soften prompt per `cover-allure-elements.md` safe-wording rules, then use nano as blank-prevention.
 - nano: silently downgrades T3+ to ~T1 — use as-is (blank-prevention only).
 
@@ -276,9 +276,9 @@ mkdir -p "$OUTDIR"
 
 (
   OUTPUT="$OUTDIR/ch-{NNN}.png"   # intermediate — post-process (A2.5-4) resizes then converts to ch-{NNN}.webp
-  if   gen_illus_apiyi "gpt-image-2-all"            "848x1280" "$OUTPUT"; then MODEL_USED="gpt-image-2-all"; SIZE="848x1280"
-  elif gen_illus_apiyi "doubao-seedream-5-0-260128" "1664x2496" "$OUTPUT"; then MODEL_USED="doubao-seedream-5-0-260128"; SIZE="1664x2496"
-  elif gen_illus_apiyi "doubao-seedream-5-0-260128" "1664x2496" "$OUTPUT"; then MODEL_USED="doubao-seedream-5-0-260128"; SIZE="1664x2496"
+  if   gen_illus_apiyi "doubao-seedream-5-0-260128" "1664x2496" "$OUTPUT"; then MODEL_USED="doubao-seedream-5-0-260128"; SIZE="1664x2496"
+  elif gen_illus_apiyi "doubao-seedream-5-0-260128" "1664x2496" "$OUTPUT"; then MODEL_USED="doubao-seedream-5-0-260128"; SIZE="1664x2496"  # retry once
+  elif gen_illus_apiyi "gpt-image-2-all"            "848x1280"  "$OUTPUT"; then MODEL_USED="gpt-image-2-all"; SIZE="848x1280"
   elif gen_illus_apiyi "nano-banana-pro"            "1024x1024" "$OUTPUT"; then MODEL_USED="nano-banana-pro"; SIZE="1024x1024"
   else echo "ALL_FAILED ch-{NNN}"; exit 0; fi
   # Write metadata JSON

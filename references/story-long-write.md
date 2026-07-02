@@ -471,7 +471,7 @@ Chapter titles appear in the book detail chapter list — the reader scans them 
 When writing a new book, decide the total chapter count before expanding the outline. Pick a number in the 10–20 range that fits the story's scope. **Never pick the same number as another book in the same site.** Treat the count as a story decision, not a quota:
 
 - A tight revenge arc might need 11 chapters.
-- A slow-burn romance with multiple subplots might need 17.
+- A cosy mystery with a recurring investigator and three suspects might need 14.
 - A high-stakes thriller with many POVs might run to 20.
 
 Document the chosen count in `outline/outline.md` header before writing any beat entries.
