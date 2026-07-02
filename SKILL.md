@@ -110,6 +110,16 @@ A3 is optional unless the user requests a review or the quality gate fails.
 
 Starts after Phase 0. Runs in parallel with Track A.
 
+**Before starting B1, read the reference site that matches this site's ad network:**
+
+| Ad network | Reference site | Path |
+|---|---|---|
+| nablepart AdX | velvet-throne | `/Users/zisheng/github/fictions/velvet-throne/` |
+| varygames AdSense | midnight-fable | `/Users/zisheng/github/fictions/midnight-fable/` |
+| none / unknown | velvet-throne | `/Users/zisheng/github/fictions/velvet-throne/` |
+
+Read at minimum: `next.config.ts`, `src/app/layout.tsx`, `src/components/AdSlot.tsx` (or `AdsenseSlot.tsx`), `vercel.json`, `package.json`. Copy working patterns verbatim rather than generating from scratch — this avoids version mismatches, stale API usage, and config drift. The reference site is ground truth for dependency versions, GPT init script, ad component implementation, and Next.js export config.
+
 | Phase | Name | Reference | Output |
 | --- | --- | --- | --- |
 | B1 | Stack | `tech-stack.md` | chosen stack with one-line rationale |
