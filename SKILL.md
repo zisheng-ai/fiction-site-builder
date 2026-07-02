@@ -118,7 +118,7 @@ Starts after Phase 0. Runs in parallel with Track A.
 | varygames AdSense | midnight-fable | `/Users/zisheng/github/fictions/midnight-fable/` |
 | none / unknown | velvet-throne | `/Users/zisheng/github/fictions/velvet-throne/` |
 
-Read at minimum: `next.config.ts`, `package.json`, `vercel.json`, `src/app/layout.tsx` (non-ad parts). Copy working patterns verbatim — this avoids dependency version mismatches, stale config, and Next.js export drift. Ad components (`AdSlot` / `AdsenseSlot`) are defined in `references/adsense-arbitrage.md` and should not be copied from the reference site, since AdX and AdSense implementations differ.
+Read at minimum: `next.config.ts`, `vercel.json`, `src/app/layout.tsx` (non-ad parts). Copy config structure and patterns verbatim — this avoids stale config and Next.js export drift. **Dependency versions should always be the latest** — do not copy pinned versions from `package.json`; run `pnpm add` with no version pin to get the newest release. Ad components (`AdSlot` / `AdsenseSlot`) are defined in `references/adsense-arbitrage.md` and should not be copied from the reference site.
 
 | Phase | Name | Reference | Output |
 | --- | --- | --- | --- |
