@@ -208,17 +208,26 @@ keep title and author name inside the central safe area (inner ~85%), no waterma
 
 **Genre defaults when Step 1.6 has not been run (single-book mode):**
 
-| Genre | Default composition |
+Roll a random number 1–4 to pick composition. Romance bias: Duo at 1–2, Solo at 3, Trio or Environmental at 4.
+
+| Genre | Composition pool (roll 1–4) |
 |---|---|
-| Urban Drama / Contemporary Romance / Historical Court Drama | Duo — but if this is the 2nd+ Romance/Drama book in a batch, upgrade to Trio or Environmental instead |
-| Dark Fantasy / Paranormal | Trio (antagonist or rival as third figure) preferred over Duo |
-| Thriller / Mystery | Environmental (figure small against dramatic setting) or Solo |
-| Horror | Environmental or Solo — figure against supernatural backdrop |
-| Sci-Fi / Dystopian | Solo (protagonist in environment) or Environmental (dystopian cityscape dominant) |
-| Cultivation Fantasy / War Epic | Solo protagonist; rival/antagonist as second figure optional |
-| Isekai / Slice of Life | Solo, Duo, or small group — match the synopsis |
+| Urban Drama / Contemporary Romance / Historical Court Drama | 1–2 → Duo; 3 → Solo (protagonist only, strong atmospheric); 4 → Trio or Environmental |
+| Dark Fantasy / Paranormal | 1 → Duo; 2–3 → Trio; 4 → Environmental |
+| Thriller / Mystery | 1–2 → Environmental; 3 → Solo; 4 → Duo |
+| Horror | 1–3 → Environmental or Solo; 4 → Duo (danger/threat) |
+| Sci-Fi / Dystopian | 1–2 → Solo; 3 → Environmental; 4 → Duo |
+| Cultivation Fantasy / War Epic | 1–2 → Solo; 3 → Trio; 4 → Environmental |
+| Isekai / Slice of Life | 1 → Solo; 2–3 → Duo; 4 → Trio |
+
+**Do not default to Duo.** Across any set of books on the same site, no more than 40% (rounded down) should be Duo. If the roll would produce a third Duo on a 5-book site, reroll once and take any non-Duo result.
 
 **A third figure adds more tension than a clean two-person embrace** when the synopsis offers it. Keep one clear focal pairing; place the third figure to threaten or intrude (watching from behind, reaching between them, turned away in betrayal).
+
+**Ethnicity — MANDATORY for all character descriptions:** All characters are Western / Caucasian by default. The novels feature non-Asian protagonists. Every character description must include one of these phrases to prevent Doubao from defaulting to East-Asian features:
+- Female: `Caucasian woman, Western European features, light skin`
+- Male: `Caucasian man, Western European features, light skin`
+- If the synopsis specifies a different ethnicity (e.g. Latino, Black), use that instead — but never omit ethnicity entirely.
 
 **Female figure rule — MANDATORY:** the female character must be visually magnetic — impossible to scroll past. **Exposure = randomly T2 (Bold) or T3 (Maximum), picked independently per cover** — for each cover, roll T2 or T3 and bake that tier's assembly block from the Exposure Tiers table (`references/cover-allure-elements.md`) directly into the prompt; do not rely on the model rolling a lucky exposed result. Across a batch of books, this produces a mix of T2 and T3 covers (do not make every cover the same tier). Required elements, every time:
 - Figure: `voluptuous hourglass figure, slim toned waist dramatically cinched, large full bust dramatically prominent, E-cup figure, long shapely legs` — curves are dramatic but the figure is NOT heavy or overweight; the waist must read as narrow against the hips and bust; bust baseline is E cup or larger — "full generous" alone undershoots, use explicit size language. (At T3, drop explicit `E-cup` per the doubao T3-safe rule — use visual-effect phrasing only; see `cover-allure-elements.md`.)
