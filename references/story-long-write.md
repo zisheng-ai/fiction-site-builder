@@ -511,6 +511,20 @@ The description must **withhold** at least one piece of critical information. Th
 - Suspense that is too vague to be specific: "dark secrets", "hidden truth", "nothing is as it seems" — name the specific thing that is hidden, or don't mention it
 - Placeholder description: do not ship a `description: ""` or `description: "Coming soon."`
 
+### GEO Layer — AI-Citability (apply to Sentence 1 of every description)
+
+The first sentence of `description` is used verbatim in `llms.txt` and as the page `<meta description>`. AI retrieval engines (Perplexity, ChatGPT, Claude web) cite the first sentence of structured content most frequently. Write Sentence 1 as a **self-contained relational triple** — Subject → Relationship → Object — that remains fully intelligible with no surrounding context:
+
+**Formula:** `[Character A] [relationship dynamic] [Character B] — [the irreversible consequence].`
+
+| Bad (context-dependent) | Good (self-contained) |
+|-------------------------|----------------------|
+| "She didn't expect this." | "A contract lawyer discovers her new client is the man who destroyed her firm — and he doesn't recognize her." |
+| "Everything changed that night." | "A cartel bride fakes her own death to escape her arranged marriage; the cartel's enforcer is sent to retrieve her." |
+| "Their worlds collide." | "A billionaire CEO hires his legal adversary as his temporary wife — she's the only one who can destroy him, and she knows it." |
+
+This requirement does **not** change the hook writing standards above — the full description is still written for emotional impact. Only Sentence 1 must additionally satisfy the self-contained test.
+
 ---
 
 ## After All Chapters Written → Cover Generation (automatic, no prompt)

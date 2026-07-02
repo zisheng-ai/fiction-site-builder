@@ -221,6 +221,20 @@ Score each candidate 1–5 on all five dimensions. Select only candidates averag
 
 ---
 
+## Book Title & Slug — SEO Strategy
+
+The book title becomes the URL slug (`/book/{slug}/`) and the primary `<title>` tag. A title that is both emotionally compelling and search-friendly outperforms a purely creative title for social traffic and organic discovery.
+
+**Rules:**
+- Include at least one genre-signal word in the title or subtitle when possible — readers scan for these in social feeds and search results. Examples: "Dark", "Alpha", "Devil", "Crown", "Cartel", "Veil", "Forbidden".
+- The slug is auto-derived from the title (lowercase, hyphens). Avoid titles with special characters, numbers-as-symbols, or non-Latin characters that degrade URL readability.
+- Avoid generic titles that are already saturated on Wattpad / Amazon KU (e.g. "His Obsession", "The CEO's Secret") — these attract no differentiated search intent and lose social pattern-matching against existing titles.
+- A good title can be read as a micro-teaser: "The Cartel's Bride", "Iron Veil", "Protocol Zero" — each implies a world and a conflict in 2–4 words.
+
+Record `suggested_title` and `suggested_slug` in `niche-research.json`.
+
+---
+
 ## Output
 
 Write `outputs/{site-slug}/{book-slug}/niche-research.json`.

@@ -541,34 +541,60 @@ The chapter reader pages will not be cited by AI engines. `llms.txt` lets you su
 {contact email or /contact page URL}
 ```
 
-### Implementation (Next.js static export)
+### Implementation (Next.js static export — Route Handler)
 
-Create `public/llms.txt` — it is served as a static file at `/llms.txt` with no additional config required.
+Use a Route Handler at `src/app/llms.txt/route.ts`. This is the same pattern as `sitemap.ts` / `robots.ts` — Next.js generates `out/llms.txt` at build time, reading live book data from `@/lib/books`. No manual file, no post-build script, zero maintenance.
 
-```txt
-# Velvet Throne
+```ts
+// src/app/llms.txt/route.ts
+import { books } from '@/lib/books'
 
-> Dark romance, paranormal, and billionaire fiction for readers who want intensity on every page.
+export const dynamic = 'force-static'
 
-## Books
+const BASE = 'https://velvet.nablepart.com'   // replace per site
+const SITE_NAME = 'Velvet Throne'
+const SITE_DESCRIPTION = 'Dark romance, paranormal, and billionaire fiction for readers who want intensity on every page.'
 
-- [The CEO's Obsession](/book/the-ceos-obsession): A billionaire forces his assistant into a contract marriage — but obsession has no exit clause. Dark romance, billionaire, contemporary.
-- [Alpha Claimed](/book/alpha-claimed): A lone wolf alpha claims a human woman as his fated mate. She didn't agree. Paranormal romance, shifter.
-...
+export function GET() {
+  const bookLines = books
+    .map(b => {
+      // first sentence of description only — keep each entry under 30 words
+      const oneLiner = b.description.split(/\.|\n/)[0].trim()
+      const tags = b.genres.join(', ')
+      return `- [${b.title}](${BASE}/book/${b.slug}/): ${oneLiner}. ${tags}.`
+    })
+    .join('\n')
 
-## About
+  const content = [
+    `# ${SITE_NAME}`,
+    '',
+    `> ${SITE_DESCRIPTION}`,
+    '',
+    '## Books',
+    '',
+    bookLines,
+    '',
+    '## About',
+    '',
+    `${SITE_NAME} publishes ${books[0]?.genres?.[0] ?? 'romance'} fiction for adult readers. New chapters added weekly.`,
+    '',
+    '## Contact',
+    '',
+    `${BASE}/contact/`,
+  ].join('\n')
 
-Velvet Throne publishes dark romance and paranormal fiction for adult readers. New chapters added weekly.
-
-## Contact
-
-https://velvet.nablepart.com/contact
+  return new Response(content, {
+    headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+  })
+}
 ```
+
+Update `BASE`, `SITE_NAME`, and `SITE_DESCRIPTION` per site. Everything else derives from `books.ts` automatically.
 
 ### Rules
 
 - Keep each book entry under 30 words — AI retrieval systems truncate long entries
+- Use the first sentence of `book.description` as the one-liner — not promotional copy, not taglines
 - Do not include chapter URLs — AI engines do not cite fiction prose, only metadata
-- Update `llms.txt` whenever a new book is added to the site
 - `llms.txt` is **not** a substitute for `robots.txt` — serve both
-- For Spanish sites: write `llms.txt` in Spanish (the primary language), and add a separate `llms-en.txt` in English to capture English-query AI citations (+24% cross-language citation uplift)
+- For Spanish sites: write `llms.txt` in Spanish (primary language); add a separate `public/llms-en.txt` (static file is fine for the secondary version) in English to capture English-query AI citations (+24% cross-language citation uplift)
