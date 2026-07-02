@@ -94,7 +94,7 @@ Phase 0  Setup
 
 - 创建目录结构与命名约定
 - 创建 GitHub 私有仓库
-- 在 `fictions/` 父仓库注册为 submodule
+- 在父仓库注册为 submodule（路径按你的实际项目配置）
 
 ### Track A — 内容轨道
 
@@ -136,33 +136,59 @@ Phase 0  Setup
 
 ## 安装与启用
 
-### 1. 放置 Skill 文件
+### 推荐：配合 `CLAUDE.md` 使用
 
-确保本仓库位于 Claude Code 能发现的 Skills 路径下。常见位置：
+这个 Skill 默认使用作者的个人配置（GitHub 账号、父仓库路径、参考站点等）。**建议在你的项目根目录创建 `CLAUDE.md`**，用你自己的值覆盖默认配置，例如：
+
+```markdown
+# 项目级覆盖
+
+- GitHub owner: `{your-github-username}`
+- 父仓库路径: `{/path/to/your/fictions-parent}`
+- 参考站点: `{your-reference-site}`
+```
+
+Claude Code 会同时读取 Skill 的 `SKILL.md` 和项目 `CLAUDE.md`；当两者冲突时，**以当前项目 `CLAUDE.md` 为准**。
+
+### 方式一：手动 clone
+
+**安装到 Claude Code 全局 Skills（所有项目可用）：**
 
 ```bash
-# 用户级 Skills
-~/.claude/skills/fiction-site-builder/
-
-# 或者项目级（如果仓库自带）
-~/github/skills/fiction-site-builder/
+git clone https://github.com/zisheng-ai/fiction-site-builder.git \
+  ~/.claude/skills/fiction-site-builder
 ```
 
-本仓库结构要求：
+**安装到当前项目（仅该项目可用）：**
 
-```
-fiction-site-builder/
-├── SKILL.md          # Skill 入口定义
-├── README.md         # 本文件
-├── agents/           # 可选 agent 配置
-└── references/       # 各阶段参考文档
+```bash
+mkdir -p .claude/skills
+git clone https://github.com/zisheng-ai/fiction-site-builder.git \
+  .claude/skills/fiction-site-builder
 ```
 
-### 2. 在 Claude Code 中注册
+### 方式二：通过 `npx skills` 安装
 
-Claude Code 会自动加载 `~/.claude/skills/` 下的 Skill。如果你使用项目级 Skill，需在会话中通过对应路径引用。
+**全局安装：**
 
-Skill 元数据定义在 `SKILL.md` 头部：
+```bash
+npx skills install fiction-site-builder --global
+```
+
+**安装到当前项目：**
+
+```bash
+npx skills install fiction-site-builder
+```
+
+### 注册与加载
+
+Claude Code 会自动发现以下位置的 Skill：
+
+- `~/.claude/skills/{skill-name}/`
+- `{project-root}/.claude/skills/{skill-name}/`
+
+本 Skill 的元数据定义在 `SKILL.md` 头部：
 
 ```yaml
 ---
@@ -173,7 +199,7 @@ description: write fiction and build the reading site end-to-end...
 
 启用后，Claude Code 会根据用户提问自动判断是否调用此 Skill。
 
-### 3. 环境变量
+### 环境变量
 
 封面、logo、favicon 生成需要：
 
@@ -358,4 +384,4 @@ pnpm build
 
 ## License
 
-MIT © 2026 紫升 (zisheng-ai)
+MIT License
