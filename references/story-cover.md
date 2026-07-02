@@ -275,11 +275,16 @@ Roll a random number 1–4 to pick composition. Romance bias: Duo at 1–2, Solo
 
 **Figure rule — apply by genre:**
 
-**Romance / Dark Romance / Contemporary Drama (T2–T3 mandatory):**
-The female character must be visually magnetic — impossible to scroll past. **Exposure = randomly T2 (Bold) or T3 (Maximum), picked independently per cover** — for each cover, roll T2 or T3 and bake that tier's assembly block from the Exposure Tiers table (`references/cover-allure-elements.md`) directly into the prompt. Required elements:
-- Figure: `voluptuous hourglass figure, slim toned waist dramatically cinched, large full bust dramatically prominent, E-cup figure, long shapely legs` — curves dramatic but NOT heavy; waist reads narrow against hips and bust; bust baseline E cup or larger. (At T3, drop explicit `E-cup` — use visual-effect phrasing only; see `cover-allure-elements.md`.)
-- Clothing: maximally revealing for the assigned tier — T2 = deep neckline + bare back/midriff/high slit; T3 = garment failing in multiple places (torn, slipped, soaked, sheer).
-- Skin: T2 = cleavage + one secondary zone; T3 = three or more zones (bare back, legs, midriff, shoulders, extreme neckline).
+**Romance / Dark Romance / Contemporary Drama (T2–T4, roll per cover):**
+The female character must be visually magnetic — impossible to scroll past. **Exposure = randomly T2, T3, or T4, picked independently per cover** — roll once per book and bake that tier's assembly block from the Exposure Tiers table (`references/cover-allure-elements.md`) directly into the prompt. Required elements by tier:
+
+| Element | T2 (Bold) | T3 (Maximum) | T4 (Limit) |
+|---------|-----------|--------------|------------|
+| **Clothing** | Deep neckline + bare back/midriff/high slit — two simultaneous revealing elements | Garment failing in multiple places: torn, slipped, soaked, or sheer — the garment is losing | Clothing has already left — one nominal draping element only (silk sheet corner, sheer panel, wisp of fabric) |
+| **Skin** | Cleavage + one secondary zone | Three or more zones simultaneously (bare back, legs, midriff, shoulders, extreme neckline) | Every zone simultaneously except §0-protected; frame reads as total skin with a single covered point |
+| **Figure** | `voluptuous hourglass figure, slim toned waist dramatically cinched, large full bust dramatically prominent, E-cup figure, long shapely legs` | Same figure — drop explicit `E-cup`, use visual-effect phrasing only | Same figure, described through what the drape reveals rather than the figure itself |
+| **Model** | doubao primary (gpt fallback) | doubao primary (gpt fallback) | doubao primary only — **do not attempt gpt at T4** (hard rejection); nano as terminal fallback |
+
 - Pose: use the pose assigned in Step 1.6 (batch) or pick freely from the Poses table (single-book). From-behind poses cap at 2 per site.
 - Framing: state explicitly in every prompt. Never allow the model to default to a face-only crop.
 A modest, fully-clothed, non-contact composition is a quality gate failure for romance/drama. Exposure is stochastic — bake in higher-tier fragments, never accept a weak roll. Hard floor: no nipples, no genitals, no sex acts (§0 in `cover-allure-elements.md`). Everything above that floor: push it.
@@ -365,11 +370,11 @@ print('SAVED:' + str(os.path.getsize(output_path)))
 "
 }
 
-# Capability cascade — doubao first (highest quality + allure), gpt as fallback, nano as last resort
+# Capability cascade — doubao first; gpt fallback at T2/T3 only (gpt hard-rejects T4, skip it at T4)
 if   gen_cover_apiyi "doubao-seedream-5-0-260128" "1664x2496"; then MODEL_USED="doubao-seedream-5-0-260128"
 elif gen_cover_apiyi "doubao-seedream-5-0-260128" "1664x2496"; then MODEL_USED="doubao-seedream-5-0-260128"  # retry once
-elif gen_cover_apiyi "gpt-image-2-all"            "848x1280";  then MODEL_USED="gpt-image-2-all"
-elif gen_cover_apiyi "nano-banana-pro"            "1024x1024"; then MODEL_USED="nano-banana-pro"  # blank-prevention — ~T1 square output, reframe to 2:3
+elif [ "$TIER" != "T4" ] && gen_cover_apiyi "gpt-image-2-all" "848x1280"; then MODEL_USED="gpt-image-2-all"  # skip at T4
+elif gen_cover_apiyi "nano-banana-pro"            "1024x1024"; then MODEL_USED="nano-banana-pro"  # blank-prevention
 else MODEL_USED=""; echo "ALL_MODELS_FAILED — skipping book"
 fi
 echo "MODEL_USED=$MODEL_USED"
