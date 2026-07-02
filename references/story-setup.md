@@ -76,7 +76,8 @@ content/short/{story-title}/
 | Directory | Reader sees it? |
 | --- | --- |
 | `chapters/ch-NNN-*.md` | Yes — chapter content |
-| `public/covers/<book-title>/cover_v1.png` | Yes — served as `/covers/<book-title>/cover_v1.png` |
+| `public/covers/<book-title>.webp` | Yes — served as `/covers/<book-title>.webp` |
+| `public/covers/<book-title>.json` | No — metadata for generation tracking only |
 | `world/`, `outline/`, `tracking/`, `reference/`, `resources/` | Never — writing internals |
 
 Never create routes or expose links to writing-internal directories.
@@ -145,7 +146,7 @@ Verify all of the following before go-live:
 - [ ] `outline/outline.md` is non-empty for each book.
 - [ ] `world/worldbuilding.md` is non-empty for each book.
 - [ ] `tracking/context.md` populated for each book.
-- [ ] Cover image generated for each book (Phase 3): `public/covers/{book-title}/cover_v1.png` for every book.
+- [ ] Cover image generated for each book (Phase 3): `public/covers/{book-title}.webp` for every book (flat path, no subfolders).
 - [ ] Site logo generated (Phase 6): `public/logo.png` (apiyi). No SVG fallback.
 - [ ] Favicon generated (Phase 6): `public/favicon-32x32.png` (apiyi). No SVG fallback.
 

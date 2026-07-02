@@ -12,7 +12,7 @@ Run these checks before go-live. These are **not** blockers for development prev
 - [ ] `outline/outline.md` exists and contains a real arc outline (not empty or stub-only).
 - [ ] `world/worldbuilding.md` exists and describes the world, genre, and tone.
 - [ ] `tracking/context.md` exists and reflects the last written chapter.
-- [ ] Cover image generated for each book: `public/covers/{book-title}/cover_v1.png`.
+- [ ] Cover image generated for each book: `public/covers/{book-title}.webp` (flat path, no subfolders).
 - [ ] Site logo generated: `public/logo.png` (apiyi). No SVG fallback — if skipped, flagged for a later pass.
 - [ ] Favicon generated: `public/favicon-32x32.png` (apiyi). No SVG fallback — if skipped, flagged for a later pass.
 

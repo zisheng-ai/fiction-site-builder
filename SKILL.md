@@ -84,7 +84,7 @@ Starts after Phase 0. Runs in parallel with Track B.
 | --- | --- | --- | --- |
 | A0 | Niche Research | `fiction-niche-researcher.md` | `outputs/{site-slug}/{book-slug}/niche-research.json` |
 | A1 | Write | see modes below | chapters, outline, world, tracking |
-| A2 | Cover | `story-cover.md` + `cover-styles.md` | `public/covers/{book-title}/cover_v1.png` (PNG) + `public/covers/{book-title}.webp` (final) per book |
+| A2 | Cover | `story-cover.md` + `cover-styles.md` | `public/covers/{book-title}.webp` + `public/covers/{book-title}.json` per book (flat, no subfolders) |
 | A2.5 | Illustrations | `story-illustrations.md` + `cover-allure-elements.md` | `public/illustrations/{book-slug}/ch-{NNN}.webp` (5–7 per book) |
 | A3 | Quality Pass | `story-review.md` + `story-deslop.md` | review report, AI flavor removed |
 
@@ -115,7 +115,7 @@ Starts after Phase 0. Runs in parallel with Track A.
 | B1 | Stack | `tech-stack.md` | chosen stack with one-line rationale |
 | B2 | Design | `design-system.md` | tone, palette, type system, `public/logo.png`, `public/favicon-32x32.png` |
 | B3 | Data | `data-contract.md` | content-collections schema |
-| B4 | Build | `references/ui-components.md` + `reader-ux.md` + `adsense-arbitrage.md` | working site with all required pages, ad slots, trust pages, FB tracking |
+| B4 | Build | `references/ui-components.md` + `reader-ux.md` + `adsense-arbitrage.md` + `seo.md` | working site with all required pages, ad slots, trust pages, FB tracking, sitemap, robots, and metadata |
 | B5 | Performance | `performance.md` + `adsense-arbitrage.md` | Core Web Vitals targets met, images optimized, ad CLS/lazy-load tuned |
 | B6 | QA | `qa-checklist.md` + `references/lighthouse-qa.md` | automated QA pass; Lighthouse median scores meet thresholds; ad-layout + policy-compliance checks; screenshots on failure only |
 
@@ -171,7 +171,7 @@ All of the following must be true before go-live (after B6 passes):
 | `outline/outline.md` exists and non-empty | A1 output |
 | `world/worldbuilding.md` exists and non-empty | A1 output |
 | `tracking/context.md` exists | A1 output |
-| Cover image for every book | `public/covers/{book-title}/cover_v1.png` |
+| Cover image for every book | `public/covers/{book-title}.webp` |
 
 If any book is missing a cover at launch time, run A2 immediately — do not prompt the user.
 

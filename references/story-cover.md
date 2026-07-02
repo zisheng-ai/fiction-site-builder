@@ -22,7 +22,7 @@ If the output is `API_PATH=skip` → print the warning below, then **skip cover 
 \033[33m  Then set: export APIYI_API_KEY="your-key"\033[0m
 ```
 
-The apiyi path produces a file at `{BOOK_DIR}/cover_v1.png`. When the key is missing, no file is produced — do not block the pipeline; the book launches without a cover and the slot is flagged for a later pass.
+The apiyi path writes the raw PNG to a temporary file (e.g. `/tmp/cover_{book-slug}_v1.png`). That PNG is converted to the final flat WebP and deleted immediately. No subfolders are created under `public/covers/`. When the key is missing, no file is produced — do not block the pipeline; the book launches without a cover and the slot is flagged for a later pass.
 
 ## Modes
 
@@ -117,7 +117,8 @@ Must have before proceeding: **book title**, **author pen name**, **BOOK_DIR**.
 Derive all three from project files:
 - **Book title**: directory name under `content/`
 - **Pen name**: see B2 resolution order above (worldbuilding → context → books.ts → placeholder)
-- **BOOK_DIR**: `public/covers/{book-title}/`
+- **BOOK_DIR**: not used — covers are written as flat files: `public/covers/{book-slug}.webp` and `public/covers/{book-slug}.json`
+- **Temporary PNG**: `/tmp/cover_{book-slug}_v1.png` (deleted after WebP conversion)
 
 Do not ask the user. Do not fabricate values that cannot be derived.
 
@@ -239,7 +240,16 @@ Default composition: **full-body or medium shot** — both figures visible from 
 
 ## Step 3 — Generate cover
 
-Set `BOOK_DIR="public/covers/{book-title}"` and `OUTPUT_PATH="$BOOK_DIR/cover_v1.png"` before running.
+Set the temporary output path and final asset paths before running:
+
+```bash
+COVER_TMP="/tmp/cover_${bookSlug}_v1.png"
+WEBP_OUT="public/covers/${bookSlug}.webp"
+JSON_OUT="public/covers/${bookSlug}.json"
+mkdir -p "public/covers"
+```
+
+Use `COVER_TMP` as `OUTPUT_PATH` in the apiyi generator below.
 
 ### Model capability ranking (cascade order)
 
@@ -300,11 +310,11 @@ else MODEL_USED=""; echo "ALL_MODELS_FAILED — skipping book"
 fi
 echo "MODEL_USED=$MODEL_USED"
 
-# Save metadata JSON alongside cover
+# Save metadata JSON alongside the final WebP (flat path)
 printf '{"model":"%s","size":"%s","prompt":%s}\n' \
   "$MODEL_USED" "$SIZE" \
   "$(printf '%s' "$PROMPT" | python3 -c 'import json,sys; print(json.dumps(sys.stdin.read().strip()))')" \
-  > "${BOOK_DIR}.json"
+  > "$JSON_OUT"
 ```
 
 **Post-process by model used (final target: ~848×1280 true 2:3 portrait; final WebP ≤ 300 KB):**
@@ -321,10 +331,10 @@ printf '{"model":"%s","size":"%s","prompt":%s}\n' \
   ```
   Note: nano silently downgrades T3+ to ~T1 allure.
 
-**Final format — WebP only (see Step 3.5):**
-- Every shipped cover is lossy **WebP at quality 82**, served as `/covers/{slug}.webp`. This is the single delivery format — no JPEG, no PNG, no format branching.
-- WebP q82 brings AI covers to ~50–60 KB with no visible loss at display size (well under the ≤ 300 KB cap). If a cover is still > 300 KB after conversion, resize to 683×1024 and re-convert.
-- **Never use lossless WebP.** On photographic covers lossless WebP is ~3× *larger* than the source PNG — always lossy q82.
+**Final format — flat WebP + JSON only (see Step 3.5):**
+- Every shipped cover is lossy **WebP at quality 82**, served as `/covers/{slug}.webp`. This is the single delivery format — no JPEG, no PNG, no format branching, no subfolders.
+- Metadata lives next to it as `/covers/{slug}.json`.
+- The temporary `cover_v1.png` is deleted immediately after conversion; do not keep it in `public/`.
 
 **If the whole cascade fails on content safety** (`API_ERROR` containing `invalid_prompt` / `safety` / `rejected` from the primary, and the fallbacks also reject): replace triggering terms in `$PROMPT` and re-run the cascade once:
 
@@ -356,12 +366,16 @@ The cascade ends at `nano-banana-pro`. There is **no SVG fallback**:
 **Generate all books in parallel** — one background process per book, then `wait`. Build the prompt inline per book — do not pre-build a map:
 
 ```bash
+mkdir -p public/covers
 for bookSlug in "${BOOKS[@]}"; do
   (
-    BOOK_DIR="public/covers/${bookSlug}"
+    COVER_TMP="/tmp/cover_${bookSlug}_v1.png"
+    WEBP_OUT="public/covers/${bookSlug}.webp"
+    JSON_OUT="public/covers/${bookSlug}.json"
     # Steps 1.5 + 2: detect genre, roll T2/T3 tier, build PROMPT string for this book
     PROMPT="$(build_cover_prompt "$bookSlug")"  # inline per Step 2 template
     # Step 3: apiyi cascade (gpt → doubao → nano); skip on no key / total failure
+    # Step 3.5: convert COVER_TMP → WEBP_OUT, write JSON_OUT, rm COVER_TMP
   ) > "/tmp/cover_${bookSlug}.log" 2>&1 &
 done
 wait
@@ -372,7 +386,7 @@ rm -f /tmp/cover_*.log
 
 ## Step 3.5 — Convert the cover to WebP
 
-Run immediately after Step 3, before quality check. Do not skip. This produces the final shipped asset: `public/covers/{book-slug}.webp` (flat path, lossy WebP q82). The nested `cover_v1.png` is the intermediate — the WebP is the deliverable.
+Run immediately after Step 3, before quality check. Do not skip. This produces the final shipped assets: `public/covers/{book-slug}.webp` (flat path, lossy WebP q82) and `public/covers/{book-slug}.json`. The temporary `cover_v1.png` is deleted after conversion — it is not a deliverable.
 
 ```bash
 # Convert one cover PNG → final flat WebP at q82. Prefer cwebp; fall back to Pillow.
@@ -385,28 +399,32 @@ to_webp_cover() {
   fi
 }
 
-COVER_SRC="$BOOK_DIR/cover_v1.png"
-COVER_OUT="public/covers/${bookSlug}.webp"   # flat served path
-if [ -f "$COVER_SRC" ]; then
+COVER_TMP="/tmp/cover_${bookSlug}_v1.png"
+WEBP_OUT="public/covers/${bookSlug}.webp"
+JSON_OUT="public/covers/${bookSlug}.json"
+if [ -f "$COVER_TMP" ]; then
   if ! command -v cwebp &>/dev/null && ! python3 -c "import PIL" &>/dev/null; then
     brew install webp -q || echo "⚠ cwebp install failed — install webp or Pillow"
   fi
-  to_webp_cover "$COVER_SRC" "$COVER_OUT" 82
-  BEFORE=$(stat -f%z "$COVER_SRC" 2>/dev/null || stat -c%s "$COVER_SRC")
-  AFTER=$(stat -f%z "$COVER_OUT" 2>/dev/null || stat -c%s "$COVER_OUT")
+  to_webp_cover "$COVER_TMP" "$WEBP_OUT" 82
+  BEFORE=$(stat -f%z "$COVER_TMP" 2>/dev/null || stat -c%s "$COVER_TMP")
+  AFTER=$(stat -f%z "$WEBP_OUT" 2>/dev/null || stat -c%s "$WEBP_OUT")
   echo "✓ webp q82: ${BEFORE}B → ${AFTER}B (-$(( (BEFORE-AFTER)*100/BEFORE ))%)"
+  rm -f "$COVER_TMP"   # remove the intermediate PNG; only WebP + JSON remain
 fi
 ```
 
-**Never use lossless WebP** (`cwebp -lossless` / `Image.save(..., lossless=True)`) — on photographic covers it is ~3× larger than the source PNG. Always lossy q82.
+**Never use lossless WebP** (`cwebp -lossless` / `Image.save(..., lossless=True)`) — on photographic covers it is ~3× *larger* than the source PNG. Always lossy q82. WebP q82 brings AI covers to ~50–60 KB with no visible loss at display size (well under the ≤ 300 KB cap). If a cover is still > 300 KB after conversion, resize to 683×1024 and re-convert.
 
 For **batch mode**, run this loop after all covers are generated:
 
 ```bash
 for bookSlug in "${BOOKS[@]}"; do
-  COVER_SRC="public/covers/${bookSlug}/cover_v1.png"
-  COVER_OUT="public/covers/${bookSlug}.webp"
-  # same to_webp_cover call as above with COVER_SRC / COVER_OUT set per book
+  COVER_TMP="/tmp/cover_${bookSlug}_v1.png"
+  WEBP_OUT="public/covers/${bookSlug}.webp"
+  JSON_OUT="public/covers/${bookSlug}.json"
+  # same to_webp_cover call as above with COVER_TMP / WEBP_OUT / JSON_OUT set per book
+  # then: rm -f "$COVER_TMP"
 done
 ```
 
@@ -421,14 +439,16 @@ done
 | Composition | Subject prominent, text not blocking key art |
 | Ratio correct | 2:3 portrait |
 
-**Automated pass criteria (unattended):** If `{BOOK_DIR}/cover_v1.png` exists and has portrait dimensions (height > width), mark as passed automatically. Do not regenerate unless the file is missing or obviously corrupt (0 bytes). If regeneration is needed, retry once with the same prompt; on second failure, skip and log the book as needing manual cover review.
+**Automated pass criteria (unattended):** If `public/covers/{book-slug}.webp` exists and has portrait dimensions (height > width), mark as passed automatically. Do not regenerate unless the file is missing or obviously corrupt (0 bytes). If regeneration is needed, retry once with the same prompt; on second failure, skip and log the book as needing manual cover review.
 
 ## Output Location
 
 ```
 public/covers/{book-slug}.webp  ← cover image (lossy WebP q82), served as /covers/{book-slug}.webp
-public/covers/{book-slug}.json  ← metadata: model, size, prompt (all in one file)
+public/covers/{book-slug}.json  ← metadata: model, size, prompt
 ```
+
+No subfolders are created under `public/covers/`. The temporary `cover_v1.png` is written to `/tmp/cover_{book-slug}_v1.png`, converted to WebP, and deleted in the same phase.
 
 JSON format:
 ```json
@@ -437,12 +457,12 @@ JSON format:
 
 Served from `public/` — no CDN needed. The site builder reads `Book.cover` as `/covers/{book-slug}.webp`.
 
-After generation, write the JSON alongside the image:
+After generation, write the JSON alongside the WebP:
 ```bash
 printf '{"model":"%s","size":"%s","prompt":%s}' \
   "$MODEL_USED" "$SIZE" \
   "$(printf '%s' "$PROMPT" | python3 -c 'import json,sys; print(json.dumps(sys.stdin.read().strip()))')" \
-  > "$BOOK_DIR/${BOOK_SLUG}.json"
+  > "public/covers/${bookSlug}.json"
 ```
 
 Note: the old `cover_v1.prompt.txt` file is no longer used — prompt is stored in the JSON.

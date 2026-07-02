@@ -38,14 +38,18 @@ Book covers are the heaviest assets on the home and detail pages.
 **Cover compression (B5 step):** AI-generated covers are PNG and typically 400–800 KB. Convert to lossy **WebP q82** — this consistently brings covers to ~50–60 KB with no visible loss at display size. Prefer `cwebp`, fall back to Pillow:
 
 ```bash
-for f in public/covers/*/cover_v1.png; do
-  slug="$(basename "$(dirname "$f")")"
+mkdir -p public/covers
+for f in public/covers/*.png; do
+  [ -f "$f" ] || continue
+  slug="$(basename "$f" .png)"
+  # strip any temporary prefix if present; final slug is the book slug
   out="public/covers/${slug}.webp"
   if command -v cwebp &>/dev/null; then
     cwebp -quiet -q 82 "$f" -o "$out"
   else
     python3 -c "from PIL import Image; im=Image.open('$f'); im.save('$out','webp',quality=82,method=6)"
   fi
+  rm -f "$f"
 done
 ```
 
