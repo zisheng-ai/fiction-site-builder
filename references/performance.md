@@ -1073,19 +1073,38 @@ Rules:
 
 ### 5. Speed Insights + Analytics
 
-Vercel Speed Insights collects real-user Core Web Vitals (LCP, INP, CLS) and surfaces them in the Vercel dashboard. Vercel Analytics tracks page views and visitor trends. Both are GDPR-friendly (no cookies, no cross-site tracking) and complement GA4 rather than replace it.
+Vercel Analytics tracks page views and visitor trends. It is GDPR-friendly (no cookies, no cross-site tracking) and complements GA4 rather than replace it. Vercel Speed Insights is reserved for the primary paid-traffic test site (`midnight-fable`) because adding a domain to a Vercel project for Speed Insights can incur billing on non-Pro plans. New sites should wire Analytics only unless the user explicitly asks for Speed Insights.
 
-**Install:**
+**Install Analytics only (default):**
 
 ```bash
-pnpm add @vercel/speed-insights @vercel/analytics
+pnpm add @vercel/analytics
 ```
 
-**`src/app/layout.tsx`** — import and render both components inside `<body>`:
+**`src/app/layout.tsx`** — import and render `Analytics` inside `<body>`:
+
+```tsx
+import { Analytics } from '@vercel/analytics/react'
+// ...
+<body>
+  {children}
+  <CookieBanner />
+  <Analytics />
+</body>
+```
+
+The component injects a minimal script that runs after the page is interactive — it does not block first paint or affect LCP.
+
+**Speed Insights (optional, only when explicitly requested):**
+
+If the user asks for Speed Insights on a specific site, install and import it separately:
+
+```bash
+pnpm add @vercel/speed-insights
+```
 
 ```tsx
 import { SpeedInsights } from '@vercel/speed-insights/next'
-import { Analytics } from '@vercel/analytics/react'
 // ...
 <body>
   {children}
@@ -1094,8 +1113,6 @@ import { Analytics } from '@vercel/analytics/react'
   <Analytics />
 </body>
 ```
-
-Both components inject a minimal script that runs after the page is interactive — they do not block first paint or affect LCP.
 
 ---
 

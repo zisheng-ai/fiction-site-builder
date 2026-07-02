@@ -313,15 +313,41 @@ curl -X POST "https://api.vercel.com/v1/integrations/deploy/prj_xxxx/yyyyyyyy"
 
 ## 8. Vercel Analytics and Speed Insights
 
-Both are already wired in this project. Here is the canonical pattern:
+Only `Analytics` is wired by default. `SpeedInsights` is kept for the primary paid-traffic test site (`midnight-fable`) because adding extra Vercel projects for Speed Insights can trigger billing on non-Pro plans. Add Speed Insights only when the user explicitly requests it.
 
-### Install
+### Install Analytics (default)
 
 ```bash
-pnpm add @vercel/analytics @vercel/speed-insights
+pnpm add @vercel/analytics
 ```
 
 ### `src/app/layout.tsx`
+
+```tsx
+import { Analytics } from '@vercel/analytics/react'
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>
+        {children}
+        <Analytics />
+      </body>
+    </html>
+  )
+}
+```
+
+- `Analytics` tracks page views and referrer data.
+- The component injects a tiny script that only fires on Vercel-hosted domains — it is a no-op in local dev (no data sent, no errors).
+
+### Optional: Speed Insights
+
+If the user explicitly asks for Speed Insights on a specific site:
+
+```bash
+pnpm add @vercel/speed-insights
+```
 
 ```tsx
 import { SpeedInsights } from '@vercel/speed-insights/next'
@@ -341,16 +367,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 ```
 
 - `SpeedInsights` sends Core Web Vitals (LCP, CLS, INP, FID, FCP, TTFB) to Vercel.
-- `Analytics` tracks page views and referrer data.
-- Both components inject a tiny script that only fires on Vercel-hosted domains — they are no-ops in local dev (no data sent, no errors).
-
-### Enable in Dashboard
-
-**Project → Analytics → Enable** and **Project → Speed Insights → Enable** — both require one click in the dashboard even after the package is installed. Without this step, data is silently discarded.
-
-### View data
-
-**vercel.com → Project → Analytics / Speed Insights tabs**
+- Also requires enabling in the dashboard.
 
 - Analytics: page views, unique visitors, referrers, top paths
 - Speed Insights: p75/p90 Web Vitals per route, device breakdown
