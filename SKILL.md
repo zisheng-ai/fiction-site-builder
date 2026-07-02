@@ -420,7 +420,6 @@ Load references only when entering that phase. Do not preload all references at 
 - `geo.md` — `llms.txt` generation, structured data for entity disambiguation, robots.ts for AI crawlers. Load during B4.
 - `vercel-operations.md` — Vercel project setup, custom domains, cache headers, deploy hooks, `output: export` pitfalls. Load when deploying or configuring hosting.
 - `product-surface.md` — IA and URL structure (optional, load when needed).
-- `operations-dashboard.md` — non-reader `/dashboard` route and `docs-data.ts` sync rules (load only when the site has an operations dashboard).
 - `internationalization.md` — language and font decisions (optional, load when needed).
 
 ## Output Contract
