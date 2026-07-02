@@ -179,9 +179,9 @@ Rules:
 type Language = "en" | "es" | "ja" | "ko" | "zh";
 
 type HeroStyle = "cinematic" | "gradient" | "atmospheric";
-// cinematic: full-bleed cover image hero with text overlay
-// gradient: centered cover card with color gradient backdrop (heroColor sets the tint)
-// atmospheric: blurred cover background with sharp cover card on top
+// cinematic: full-bleed cover image hero with text overlay (dark romance / thriller / paranormal)
+// gradient: centered cover card with color gradient backdrop, heroColor sets the tint (fantasy / contemporary / colorful)
+// atmospheric: blurred darkened cover bg behind a sharp floating cover card (literary / clean romance / prose-forward)
 
 type BookStatus = "ongoing" | "completed";
 

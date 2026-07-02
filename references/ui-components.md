@@ -284,17 +284,60 @@ Each book declares its hero style via the `heroStyle` field in `books.ts`. All t
 |---|---|
 | Dark romance / thriller / vampire / paranormal | `'cinematic'` |
 | Fantasy / contemporary romance / vivid colorful cover | `'gradient'` |
-| Literary fiction / clean romance / prose-first | `'editorial'` |
+| Literary fiction / clean romance / prose-first | `'atmospheric'` |
 
-When the cover lacks enough visual tension to fill the full screen, default to `'editorial'`.
+When the cover lacks enough visual tension to fill the full screen, default to `'atmospheric'`.
 
-**Top nav bar (unified across all three styles):** use the frosted glass pattern — works regardless of background (cover image, gradient, or plain color):
+**Top nav bar — transparent with scroll-aware backdrop (per-heroStyle):**
 
+The header starts **fully transparent** so the hero image/gradient shows through. It gains a frosted-glass backdrop only after the reader scrolls past 80 px. Icon treatment differs by background type:
+
+| `heroStyle` | Logo filter | ThemeToggle wrapper |
+|---|---|---|
+| `cinematic` | `drop-shadow(0 1px 4px rgba(0,0,0,0.6))` | `<div className="bg-white/15 backdrop-blur-sm rounded-full p-1.5 text-white">` |
+| `atmospheric` | `drop-shadow(0 1px 4px rgba(0,0,0,0.6))` | `<div className="bg-white/15 backdrop-blur-sm rounded-full p-1.5 text-white">` |
+| `gradient` | `drop-shadow(0 1px 3px rgba(0,0,0,0.4))` | `<div className="bg-base-100/60 backdrop-blur-sm rounded-full p-1.5">` |
+
+Implementation — add a `<style>` block and inline scroll script at the top of the hero component, and set `id="book-header"` on the `<header>`:
+
+```tsx
+// Inside each HeroXxx function, before <header>:
+<style dangerouslySetInnerHTML={{ __html: `
+  #book-header { transition: background .2s, backdrop-filter .2s, border-color .2s; }
+  #book-header.bh-scrolled {
+    background: color-mix(in oklch, var(--color-base-100) 80%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid color-mix(in oklch, var(--color-base-300) 40%, transparent);
+  }
+` }} />
+<script dangerouslySetInnerHTML={{ __html: `(function(){
+  var h = document.getElementById('book-header');
+  if (!h) return;
+  function u() { h.classList.toggle('bh-scrolled', window.scrollY > 80); }
+  window.addEventListener('scroll', u, { passive: true }); u();
+})();` }} />
+
+<header id="book-header" className="fixed top-0 left-0 right-0 z-30 h-14">
+  <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
+    <Link href="/" aria-label="Home">
+      <img src="/logo.png" alt={SITE_NAME} className="block h-8 w-auto rounded-sm"
+        style={{ filter: 'drop-shadow(0 1px 4px rgba(0,0,0,0.6))' }} />
+    </Link>
+    <div className="bg-white/15 backdrop-blur-sm rounded-full p-1.5 text-white">
+      <ThemeToggle />
+    </div>
+  </div>
+</header>
 ```
-bg-base-100/70 backdrop-blur-md border-b border-base-300/50
+
+For `gradient` heroStyle, swap the ThemeToggle wrapper and logo filter:
+```tsx
+style={{ filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.4))' }}
+// ThemeToggle wrapper:
+<div className="bg-base-100/60 backdrop-blur-sm rounded-full p-1.5">
 ```
 
-Use `text-base-content/70` for text — no need to switch between `text-white` and `text-base-content` by hero style. Adapts to light and dark themes automatically.
+> **DaisyUI v5 note:** `color-mix(in oklch, var(--color-base-100) 80%, transparent)` is the correct syntax. Do NOT use `oklch(var(--color-base-100)/0.8)` — DaisyUI v5 custom properties are already full `oklch(...)` strings, not bare channel tuples.
 
 ---
 
@@ -442,12 +485,16 @@ function CTABlock({ book, slug, chapters }: { book: Book; slug: string; chapters
 function HeroCinematic({ book, chapters, slug }: { book: Book; chapters: { order: number; title: string }[]; slug: string }) {
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-30 h-14 bg-base-100/70 backdrop-blur-md border-b border-base-300/50">
+      <style dangerouslySetInnerHTML={{ __html: `#book-header{transition:background .2s,backdrop-filter .2s,border-color .2s;}#book-header.bh-scrolled{background:color-mix(in oklch,var(--color-base-100) 80%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid color-mix(in oklch,var(--color-base-300) 40%,transparent);}` }} />
+      <script dangerouslySetInnerHTML={{ __html: `(function(){var h=document.getElementById('book-header');if(!h)return;function u(){h.classList.toggle('bh-scrolled',window.scrollY>80);}window.addEventListener('scroll',u,{passive:true});u();})();` }} />
+      <header id="book-header" className="fixed top-0 left-0 right-0 z-30 h-14">
         <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
           <Link href="/" className="shrink-0 opacity-90 hover:opacity-100 transition-opacity duration-150" aria-label="Home">
-            <img src="/logo.png" alt={siteTitle} className="block h-8 w-auto rounded-sm" />
+            <img src="/logo.png" alt={SITE_NAME} className="block h-8 w-auto rounded-sm" style={{ filter: 'drop-shadow(0 1px 4px rgba(0,0,0,0.6))' }} />
           </Link>
-          <ThemeToggle />
+          <div className="bg-white/15 backdrop-blur-sm rounded-full p-1.5 text-white">
+            <ThemeToggle />
+          </div>
         </div>
       </header>
 
@@ -480,12 +527,16 @@ function HeroGradient({ book, chapters, slug }: { book: Book; chapters: { order:
   const bg = book.heroColor ?? 'var(--p)'
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-30 h-14 bg-base-100/70 backdrop-blur-md border-b border-base-300/50">
+      <style dangerouslySetInnerHTML={{ __html: `#book-header{transition:background .2s,backdrop-filter .2s,border-color .2s;}#book-header.bh-scrolled{background:color-mix(in oklch,var(--color-base-100) 80%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid color-mix(in oklch,var(--color-base-300) 40%,transparent);}` }} />
+      <script dangerouslySetInnerHTML={{ __html: `(function(){var h=document.getElementById('book-header');if(!h)return;function u(){h.classList.toggle('bh-scrolled',window.scrollY>80);}window.addEventListener('scroll',u,{passive:true});u();})();` }} />
+      <header id="book-header" className="fixed top-0 left-0 right-0 z-30 h-14">
         <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
           <Link href="/" className="shrink-0 opacity-90 hover:opacity-100 transition-opacity duration-150" aria-label="Home">
-            <img src="/logo.png" alt={siteTitle} className="block h-8 w-auto rounded-sm" />
+            <img src="/logo.png" alt={SITE_NAME} className="block h-8 w-auto rounded-sm" style={{ filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.4))' }} />
           </Link>
-          <ThemeToggle />
+          <div className="bg-base-100/60 backdrop-blur-sm rounded-full p-1.5">
+            <ThemeToggle />
+          </div>
         </div>
       </header>
 
@@ -514,28 +565,41 @@ function HeroGradient({ book, chapters, slug }: { book: Book; chapters: { order:
   )
 }
 
-// ── editorial: cover centered on plain page background ───────────────────────
-// Cover shown in full with no gradient or background effects — clarity first.
+// ── atmospheric: blurred cover bg with sharp cover card centered ─────────────
+// Blurred, darkened, saturated cover fills the zone behind a crisp floating cover card.
 // Best for: literary fiction / clean romance / prose-forward
 
-function HeroEditorial({ book, chapters, slug }: { book: Book; chapters: { order: number; title: string }[]; slug: string }) {
+function HeroAtmospheric({ book, chapters, slug }: { book: Book; chapters: { order: number; title: string }[]; slug: string }) {
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-30 h-14 bg-base-100/70 backdrop-blur-md border-b border-base-300/50">
+      <style dangerouslySetInnerHTML={{ __html: `#book-header{transition:background .2s,backdrop-filter .2s,border-color .2s;}#book-header.bh-scrolled{background:color-mix(in oklch,var(--color-base-100) 80%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid color-mix(in oklch,var(--color-base-300) 40%,transparent);}` }} />
+      <script dangerouslySetInnerHTML={{ __html: `(function(){var h=document.getElementById('book-header');if(!h)return;function u(){h.classList.toggle('bh-scrolled',window.scrollY>80);}window.addEventListener('scroll',u,{passive:true});u();})();` }} />
+      <header id="book-header" className="fixed top-0 left-0 right-0 z-30 h-14">
         <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
           <Link href="/" className="shrink-0 opacity-90 hover:opacity-100 transition-opacity duration-150" aria-label="Home">
-            <img src="/logo.png" alt={siteTitle} className="block h-8 w-auto rounded-sm" />
+            <img src="/logo.png" alt={SITE_NAME} className="block h-8 w-auto rounded-sm" style={{ filter: 'drop-shadow(0 1px 4px rgba(0,0,0,0.6))' }} />
           </Link>
-          <ThemeToggle />
+          <div className="bg-white/15 backdrop-blur-sm rounded-full p-1.5 text-white">
+            <ThemeToggle />
+          </div>
         </div>
       </header>
 
       <div className="pt-14">
-        <div className="max-w-2xl mx-auto px-4 pt-10 pb-4 text-center">
-          <div className="relative w-36 sm:w-44 aspect-[2/3] rounded-lg overflow-hidden shadow-2xl mx-auto mb-8">
-            <Image src={book.cover} alt={book.title} fill className="object-cover" priority />
+        <div className="relative overflow-hidden pb-7">
+          <img
+            src={book.cover} alt="" aria-hidden="true"
+            className="absolute pointer-events-none select-none"
+            style={{ inset: '-5%', width: '110%', height: '110%', objectFit: 'cover', filter: 'blur(40px) brightness(0.45) saturate(1.4)' }}
+          />
+          <div className="relative z-10 flex justify-center pt-10">
+            <div className="relative w-[200px] rounded-[18px] overflow-hidden" style={{ aspectRatio: '2/3', boxShadow: '0 24px 64px rgba(0,0,0,0.55)' }}>
+              <Image src={book.cover} alt={book.title} fill className="object-cover" priority />
+            </div>
           </div>
-          <div className="flex flex-wrap justify-center gap-2 mb-4">
+        </div>
+        <div className="max-w-2xl mx-auto px-6 pt-6">
+          <div className="flex flex-wrap gap-2 mb-4">
             {book.genres.map(g => (
               <span key={g} className="inline-block rounded-full bg-primary/10 border border-primary/30 px-3 py-0.5 text-xs text-primary font-semibold">{g}</span>
             ))}
@@ -563,18 +627,18 @@ export default function BookDetailPage({ params }: Props) {
 
   return (
     <div className="min-h-screen bg-base-100">
-      {book.heroStyle === 'cinematic' && <HeroCinematic book={book} chapters={chapters} slug={params.slug} />}
-      {book.heroStyle === 'gradient'  && <HeroGradient  book={book} chapters={chapters} slug={params.slug} />}
-      {book.heroStyle === 'editorial' && <HeroEditorial  book={book} chapters={chapters} slug={params.slug} />}
+      {book.heroStyle === 'cinematic'   && <HeroCinematic   book={book} chapters={chapters} slug={params.slug} />}
+      {book.heroStyle === 'gradient'    && <HeroGradient    book={book} chapters={chapters} slug={params.slug} />}
+      {book.heroStyle === 'atmospheric' && <HeroAtmospheric book={book} chapters={chapters} slug={params.slug} />}
     </div>
   )
 }
 ```
 
 **Notes:**
-- `cinematic`: nav is fixed transparent; top scrim ensures legibility
-- `gradient`: append `33` to `heroColor` (20% alpha hex) as the gradient start to avoid heavy color
-- `editorial`: nav is standard opaque; cover is `w-36 sm:w-44` — one step smaller than gradient's `w-40 sm:w-52`
+- `cinematic`: transparent header + top scrim gradient ensures logo legibility over dark cover
+- `gradient`: append `33` to `heroColor` (20% alpha hex) as the gradient start; adaptive (not white) icon pill
+- `atmospheric`: same header treatment as cinematic; blurred bg = always dark enough for white icons
 
 **Typography hierarchy (shared across all three BelowFold styles):**
 - Genre pill: `bg-primary/10 border border-primary/30 text-primary text-xs font-semibold rounded-full px-3 py-0.5`
