@@ -136,14 +136,14 @@ Do not ask the user. Do not fabricate values that cannot be derived.
 # Character Visual Sheet — {book-title}
 
 ## Female Lead
-- Ethnicity: Caucasian woman, Western European features, light skin
+- Ethnicity: [derive from worldbuilding/synopsis — e.g. "Latina woman, olive skin" / "Black woman, deep brown skin" / "Caucasian woman, light skin" — match the character's stated or implied background]
 - Hair: [color, length, style — e.g. "dark auburn waves to mid-back"]
 - Eyes: [color — e.g. "pale green eyes"]
 - Figure: [body type — use the Female figure rule phrasing]
 - Signature: [1–2 visual markers unique to this character — e.g. "small silver scar above left brow"]
 
 ## Male Lead
-- Ethnicity: Caucasian man, Western European features, light skin
+- Ethnicity: [derive from worldbuilding/synopsis — match the character's stated or implied background]
 - Hair: [color, length — e.g. "dark brown, short-cropped"]
 - Eyes: [color]
 - Build: [e.g. "tall, broad-shouldered, lean muscular"]
@@ -153,7 +153,7 @@ Do not ask the user. Do not fabricate values that cannot be derived.
 3. **Rules:**
    - Every character prompt MUST include the exact phrasing from this sheet (copy-paste, not paraphrase).
    - The sheet is shared by A2 (covers) and A2.5 (illustrations) — once written, never regenerated unless the book's worldbuilding explicitly contradicts it.
-   - If the synopsis specifies a non-Caucasian character, use the correct ethnicity and note it in the sheet.
+   - Ethnicity is derived from the novel's worldbuilding/synopsis — there is no global default; write what fits the character.
 
 Cover ratio: **2:3 portrait**. Generate at `848x1280` (1K Fast tier — sufficient for all UI display sizes, fastest generation). No resize step needed.
 
@@ -257,10 +257,11 @@ Roll a random number 1–4 to pick composition. Romance bias: Duo at 1–2, Solo
 
 **A third figure adds more tension than a clean two-person embrace** when the synopsis offers it. Keep one clear focal pairing; place the third figure to threaten or intrude (watching from behind, reaching between them, turned away in betrayal).
 
-**Ethnicity — MANDATORY for all character descriptions:** All characters are Western / Caucasian by default. The novels feature non-Asian protagonists. Every character description must include one of these phrases to prevent Doubao from defaulting to East-Asian features:
-- Female: `Caucasian woman, Western European features, light skin`
-- Male: `Caucasian man, Western European features, light skin`
-- If the synopsis specifies a different ethnicity (e.g. Latino, Black), use that instead — but never omit ethnicity entirely.
+**Ethnicity — MANDATORY for all character descriptions:** Always derive ethnicity from the novel's worldbuilding and synopsis. Never default to any specific ethnicity. Never omit ethnicity entirely — Doubao defaults to East-Asian features without explicit guidance. Examples of correct phrasing:
+- `Caucasian woman, Western European features, light skin`
+- `Latina woman, olive skin, dark hair`
+- `Black woman, deep brown skin, natural curls`
+- Match exactly what the story says. If the worldbuilding is ambiguous, pick the most narratively fitting option and record it in `character-visuals.md`.
 
 **Female figure rule — MANDATORY:** the female character must be visually magnetic — impossible to scroll past. **Exposure = randomly T2 (Bold) or T3 (Maximum), picked independently per cover** — for each cover, roll T2 or T3 and bake that tier's assembly block from the Exposure Tiers table (`references/cover-allure-elements.md`) directly into the prompt; do not rely on the model rolling a lucky exposed result. Across a batch of books, this produces a mix of T2 and T3 covers (do not make every cover the same tier). Required elements, every time:
 - Figure: `voluptuous hourglass figure, slim toned waist dramatically cinched, large full bust dramatically prominent, E-cup figure, long shapely legs` — curves are dramatic but the figure is NOT heavy or overweight; the waist must read as narrow against the hips and bust; bust baseline is E cup or larger — "full generous" alone undershoots, use explicit size language. (At T3, drop explicit `E-cup` per the doubao T3-safe rule — use visual-effect phrasing only; see `cover-allure-elements.md`.)
