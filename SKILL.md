@@ -115,7 +115,7 @@ Starts after Phase 0. Runs in parallel with Track A.
 | B1 | Stack | `tech-stack.md` | chosen stack with one-line rationale |
 | B2 | Design | `design-system.md` | tone, palette, type system, `public/logo.png`, `public/favicon-32x32.png` |
 | B3 | Data | `data-contract.md` | content-collections schema |
-| B4 | Build | `references/ui-components.md` + `reader-ux.md` + `adsense-arbitrage.md` + `seo.md` + `meta-ads-landing-requirements.md` | working site with all required pages, ad slots, trust pages, Facebook Pixel, sitemap, robots.txt, `llms.txt`, and metadata |
+| B4 | Build | `references/ui-components.md` + `reader-ux.md` + `adsense-arbitrage.md` + `seo.md` + `meta-ads-landing-requirements.md` | working site with all required pages, trust pages, sitemap, robots.txt, `llms.txt`, and metadata; ad slots and tracking only if configured |
 | B5 | Performance | `performance.md` + `adsense-arbitrage.md` | Core Web Vitals targets met, images optimized, ad CLS/lazy-load tuned |
 | B6 | QA | `qa-checklist.md` + `references/lighthouse-qa.md` | automated QA pass; Lighthouse median scores meet thresholds; ad-layout + policy-compliance checks; screenshots on failure only |
 
@@ -123,11 +123,33 @@ B1 → B2 → B3 → B4 are sequential. B5 and B6 run in parallel against the sa
 
 **B4 gate:** at least one book with ≥ 10 chapters must exist before starting B4. B1–B3 may run while writing is still in progress.
 
+### B4 — Domain (optional)
+
+During B4, check the parent project `fictions/CLAUDE.md` site table for the domain assigned to this site.
+
+- **If domain is specified**: use it in `metadataBase`, `sitemap.ts`, and `src/lib/site.ts`.
+- **If no domain is specified**: set `metadataBase: new URL('https://PLACEHOLDER.example.com')` and record a TODO:
+  ```
+  - [ ] 配置正式域名（当前 metadataBase 为占位地址，需在 layout.tsx / src/lib/site.ts / sitemap.ts 同步更新）
+  ```
+
+### B4 — Google Ads (optional)
+
+During B4, check the parent project `fictions/CLAUDE.md` site table for the ad account assigned to this site (either nablepart AdX or varygames AdSense).
+
+- **If an ad account is specified**: wire up the full ad stack — GPT/AdSense script in `<head>`, `AdSlot` / `AdsenseSlot` components in pages, and follow `references/adsense-arbitrage.md` for slot placement and density rules.
+- **If no ad account is specified**: skip all ad code entirely — no GPT script, no AdSense script, no slot components. Record a TODO:
+  ```
+  - [ ] 配置广告账号（当前无广告代码，待确定账号类型后接入 AdX 或 AdSense）
+  ```
+
+Do not add placeholder ad markup or commented-out ad code — leave the pages clean.
+
 ### B4 — Facebook Pixel (optional)
 
 During B4, check the parent project `fictions/CLAUDE.md` for a `facebook_pixel.id` configuration. This step is **optional** — if the parent project does not specify a Pixel ID, skip the code change and only record it in `TODO.md`.
 
-- **If configured**: add the Facebook Pixel base code to `src/app/layout.tsx` `<head>` using `next/script` with `strategy="afterInteractive"`. Use the exact Pixel ID from `fictions/CLAUDE.md`. Include both the `<Script>` block and the `<noscript>` fallback image.
+- **If configured**: add the Facebook Pixel base code to `src/app/layout.tsx` `<head>` using an inline `<script dangerouslySetInnerHTML>` tag. Use the exact Pixel ID from `fictions/CLAUDE.md`. Include both the script block and the `<noscript>` fallback `<img>`.
 - **If not configured**: do not add any Pixel code. Instead, add a pending item to the site's `TODO.md` under `分析与广告`:
   ```
   - [ ] 配置 Facebook Pixel（项目 CLAUDE.md 未指定 Pixel ID）

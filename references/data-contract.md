@@ -42,6 +42,8 @@ my-novel-site/
 │       └── {book-slug}.webp      ← served as /covers/{slug}.webp (lossy WebP q82)
 ├── content-collections.ts        ← collection definitions
 ├── src/
+│   ├── lib/
+│   │   └── site.ts                      ← site-level constants (see §Site Constants below)
 │   ├── app/
 │   │   ├── page.tsx                     ← home: book list
 │   │   └── book/[slug]/
@@ -153,6 +155,23 @@ export default async function ChapterPage({ params }: { params: Promise<{ slug: 
 - Adding a new book: create `content/{book-title}/chapters/` and write chapters. `next build` picks them up automatically.
 - Adding a new short story: create `content/short/{title}/prose.md`. No config change needed.
 - Generated types live in `.content-collections/` — add to `.gitignore`.
+
+## Site Constants (`src/lib/site.ts`)
+
+Create `src/lib/site.ts` to centralize site-level constants. These values are used in at least three places (`layout.tsx`, `sitemap.ts`, `llms.txt/route.ts`) — defining them once prevents drift.
+
+```ts
+// src/lib/site.ts
+export const SITE_NAME = 'Velvet Throne'
+export const BASE_URL = 'https://velvet.nablepart.com'
+export const SITE_DESCRIPTION = 'Dark romance, paranormal, billionaire, and sci-fi fiction for readers who crave intensity.'
+export const SITE_LOCALE = 'en'
+```
+
+Rules:
+- `BASE_URL` must match `metadataBase` in `layout.tsx` — they must be kept in sync.
+- If no domain is assigned yet, use `'https://PLACEHOLDER.example.com'` and add a TODO (see SKILL.md §B4 — Domain).
+- Import from `@/lib/site` in `sitemap.ts` and `src/app/llms.txt/route.ts` instead of repeating the URL string.
 
 ## Data Models
 
