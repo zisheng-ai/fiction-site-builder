@@ -102,6 +102,23 @@ Map the CLAUDE.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via
 | Mobile sticky **anchor** (bottom) | very high | one anchor; reliably viewable & refreshable |
 | Desktop sticky **side-rail** | high | uses empty side space; never a static sidebar (low viewability) |
 
+### 3.1.1 Per-page loading rule (AdSense only)
+
+**Rule: first ad slot on every page gets `priority`; all others lazy-load by default.**
+
+| Page | First slot (priority) | Remaining slots (lazy) |
+|------|-----------------------|------------------------|
+| Home / book list | first `<AdsenseSlot>` after the hero section | all others |
+| Book detail | first `<AdsenseSlot>` above the chapter TOC | all others |
+| Chapter reader | first `<AdsenseSlot>` just below the chapter header | all others |
+
+```tsx
+<AdsenseSlot slot="..." priority />   {/* immediate — no IntersectionObserver */}
+<AdsenseSlot slot="..." />            {/* lazy — 150px rootMargin trigger */}
+```
+
+**AdX sites**: do NOT add lazy loading to `AdSlot`. GPT's `singleRequest` batches all slots in one HTTP call automatically; delaying `display()` breaks impression counting.
+
 ### 3.2 Density ceiling (compliance + diminishing returns)
 
 - **≤ 3–4 ad units per 1,000 words** of chapter content.
