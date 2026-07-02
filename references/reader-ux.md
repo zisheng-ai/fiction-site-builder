@@ -156,14 +156,14 @@ Show a 3-book recommendation grid on **every chapter** — the moment a reader f
     <p className="text-xs text-base-content/40 uppercase tracking-widest text-center mb-6">You might also like</p>
     <div className="grid grid-cols-3 gap-4">
       {books.filter(b => b.slug !== slug).slice(0, 3).map(b => (
-        <Link key={b.slug} href={`/book/${b.slug}/chapter/1`} className="flex flex-col items-center gap-2 group">
+        <HardLink key={b.slug} href={`/book/${b.slug}/chapter/1`} className="flex flex-col items-center gap-2 group">
           <div className="w-full rounded-lg overflow-hidden shadow-md" style={{ aspectRatio: '2/3' }}>
             <img src={b.cover} alt={b.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
           </div>
           <span className="text-[11px] font-semibold text-center text-base-content group-hover:text-primary transition-colors line-clamp-2 leading-tight">
             {b.title}
           </span>
-        </Link>
+        </HardLink>
       ))}
     </div>
   </div>
@@ -181,14 +181,14 @@ Show a 3-book recommendation grid on **every chapter** — the moment a reader f
     <p className="text-xs text-base-content/40 uppercase tracking-widest text-center mb-8">Keep reading</p>
     <div className="grid grid-cols-3 gap-4">
       {books.filter(b => b.slug !== slug).slice(0, 3).map(b => (
-        <Link key={b.slug} href={`/book/${b.slug}/chapter/1`} className="flex flex-col items-center gap-2 group">
+        <HardLink key={b.slug} href={`/book/${b.slug}/chapter/1`} className="flex flex-col items-center gap-2 group">
           <div className="w-full rounded-lg overflow-hidden shadow-md" style={{ aspectRatio: '2/3' }}>
             <img src={b.cover} alt={b.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
           </div>
           <span className="text-[11px] font-semibold text-center text-base-content group-hover:text-primary transition-colors line-clamp-2 leading-tight">
             {b.title}
           </span>
-        </Link>
+        </HardLink>
       ))}
     </div>
   </div>
@@ -198,7 +198,7 @@ Show a 3-book recommendation grid on **every chapter** — the moment a reader f
 Rules:
 - Links go to `/book/${b.slug}/chapter/1` so the reader starts immediately; arbitrage flows convert better when the next click lands in the reader, not on a detail page.
 - Filter out the current book (`b.slug !== slug`). Take first 3 from remaining.
-- Use `next/link` for discovery navigation (book cards, cross-book grid, home). Reserve `HardLink` / `window.location.href` for chapter reader navigation where a full reload is required to reinitialize ads and record a fresh pageview.
+- **Use `HardLink` for cross-book grid links.** The chapter reader carries in-content ad slots; a client-side `<Link>` transition would skip ad reinitialization and reduce impressions. Only pages that carry no ad slots may use `next/link` for internal navigation.
 - For Spanish sites, use "También te puede gustar" instead of "You might also like".
 
 ## Optional Enhancements
@@ -331,8 +331,9 @@ function applySize(index) {
   A plain `<a href>` without the `onClick` override is NOT sufficient in Next.js App Router — the framework hydration intercepts it for SPA routing.
 
   **When to use `HardLink` vs. `next/link`:**
-  - **Chapter reader navigation** (Next →, prev/next tap zones, keyboard shortcuts): force a full reload with `window.location.href` so ad slots reinitialize and each chapter counts as a fresh pageview.
-  - **Discovery navigation** (home → book detail, book cards, cross-book grid, TOC back to detail): use `next/link` with prefetch for instant perceived performance. Discovery pages carry the same ad slots on every route, so reinitialization is not required.
+  - **Any navigation that leaves an ad-bearing page** (home with ad slots, book detail, chapter reader): use `HardLink` / `window.location.href` so ad slots reinitialize and each destination counts as a fresh pageview.
+  - **Chapter reader navigation** (Next →, prev/next tap zones, keyboard shortcuts): force a full reload with `window.location.href` so ad slots reinitialize.
+  - **Ad-free pages only** (about, contact, privacy, terms, cookie policy, /dashboard): `next/link` with prefetch is acceptable for internal navigation because there are no ad slots to reinitialize.
 
 ## Gestures and Tap Zones (Mobile)
 
