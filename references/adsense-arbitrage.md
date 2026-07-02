@@ -108,9 +108,8 @@ Map the CLAUDE.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via
 - **Ad pixels < 30% of content pixels** per screen (FB + AdSense inventory-value).
 - RPM typically peaks around 5 units; beyond that each added unit adds ~2–4% and erodes engagement + page-experience. Cutting the weakest slot often **raises** total RPM.
 - **Recommended dynamic layout** (measure chapter word count before rendering ads):
-  - < 1,000 words: q1 (top) + q5 (bottom) only
-  - 1,000–2,000 words: q1 + q2 + q5
-  - > 2,000 words: q1 + q2 + q3 + q5
+  - All chapters: q1 (top) + q2 (mid) + q5 (bottom) — **minimum 3 ads always**
+  - > 2,000 words with ≥ 3 paragraphs: q1 + q2 + q3 + q5
   - Avoid a fourth mid-content unit; it sits too close to q5 and adds clutter without meaningful RPM lift.
 
 ### 3.3 CLS protection (Core Web Vitals = cheaper FB traffic + SEO)
@@ -118,17 +117,7 @@ Map the CLAUDE.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via
 - Every ad slot wrapper reserves explicit `min-height` / `aspect-ratio` matching the largest expected creative **before** it loads. (CLAUDE.md `AdSlot` min sizes already do this for q1–q4; keep it.)
 - A jumping layout when an ad loads tanks CLS, raises bounce, and raises effective CPC.
 
-### 3.4 Lazy-load config (IntersectionObserver)
-
-| Slot position | Strategy |
-|---|---|
-| Above-the-fold (header unit) | load immediately, **no delay** |
-| Mid-content | `rootMargin` 200–400px (load just before it enters viewport) |
-| Below-the-fold / footer | `rootMargin` 300–500px |
-
-Misconfigured lazy-load on the above-fold unit actively destroys viewability and CPM — the one rule people get wrong.
-
-### 3.5 Viewability & refresh
+### 3.4 Viewability & refresh
 
 - Target **viewability ≥ 70%** (advertisers bid markedly higher; 40%→70% ≈ +30% RPM). Don't chase 95% at the cost of fill rate.
 - Refresh ads only when the unit is **in the viewport** and after **≥ 30s active dwell**. Sticky/anchor units are the safe place to refresh because they stay viewable.
@@ -333,25 +322,23 @@ Each trust page follows the same shell: site header `<Link href="/">← Site Nam
 
 Privacy Policy must explicitly name: the ad network (Google AdSense or Google Ad Manager), cookies, and user rights. Add Meta Pixel mention only if Pixel is actually installed. Terms must state: fiction content, 18+ audience, no reproduction. Contact page must exist and be reachable — a dedicated email is fine, but for independently-operated sites a note directing DMCA requests to the domain WHOIS contact is acceptable.
 
-### 8.6 Lazy-loaded ad components (REQUIRED for viewability)
-
-All ad units must lazy-load based on viewport position. Loading every slot on mount destroys Active View viewability and lowers eCPM. Use `IntersectionObserver` with the strategies from §3.4.
+### 8.6 Ad components
 
 #### AdX / GAM — `AdSlot.tsx`
+
+Mount immediately on render — no IntersectionObserver. GPT's `singleRequest` batches all requests in one call automatically.
 
 ```tsx
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect } from 'react'
 
 type Size = [number, number] | 'fluid'
-type Strategy = 'immediate' | 'near' | 'lazy'
 
 type Props = {
   path: string
   id: string
   sizes: Size[]
-  strategy?: Strategy
   className?: string
 }
 
@@ -362,38 +349,8 @@ declare global {
   }
 }
 
-const ROOT_MARGIN: Record<Strategy, string | undefined> = {
-  immediate: undefined,
-  near: '300px',
-  lazy: '500px',
-}
-
-export default function AdSlot({ path, id, sizes, strategy = 'lazy', className = '' }: Props) {
-  const [shouldLoad, setShouldLoad] = useState(strategy === 'immediate')
-  const wrapperRef = useRef<HTMLDivElement>(null)
-
+export default function AdSlot({ path, id, sizes, className = '' }: Props) {
   useEffect(() => {
-    if (shouldLoad) return
-    const el = wrapperRef.current
-    if (!el || typeof IntersectionObserver === 'undefined') {
-      setShouldLoad(true)
-      return
-    }
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShouldLoad(true)
-          observer.disconnect()
-        }
-      },
-      { rootMargin: ROOT_MARGIN[strategy] }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [shouldLoad, strategy])
-
-  useEffect(() => {
-    if (!shouldLoad) return
     window.googletag = window.googletag || { cmd: [] }
     window.googletag.cmd.push(() => {
       const slot = window.googletag.defineSlot(path, sizes, id)
@@ -408,67 +365,64 @@ export default function AdSlot({ path, id, sizes, strategy = 'lazy', className =
         if (slot) window.googletag.destroySlots([slot])
       })
     }
-  }, [shouldLoad, path, id])
-  // `sizes` is omitted from deps: callers pass inline arrays and the config is static per id.
+  }, [path, id]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const isFluid = sizes.includes('fluid')
   return (
-    <div ref={wrapperRef} className={`flex justify-center my-6 ${className}`}>
+    <div className={`flex justify-center my-6 ${className}`}>
       <div id={id} style={isFluid ? undefined : { minWidth: 250, minHeight: 250 }} />
     </div>
   )
 }
 ```
 
-Placement mapping (use chapter word count to decide how many mid-content slots to render):
+Placement mapping — always minimum 3 ads (q1 + q2 + q5), add q3 for long chapters:
 
 ```tsx
-// chapter page — split content based on word count first
 function wordCount(text: string): number {
   return text.split(/\s+/).filter(Boolean).length
 }
 
+// Always returns ≥ 2 parts so q2 always shows
 function splitContent(content: string): string[] {
   const paras = content.split(/\n{2,}/).filter(p => p.trim())
   const words = wordCount(content)
-  if (words < 1000) return [content]
-  if (words < 2000) {
-    const mid = Math.floor(paras.length / 2)
+  if (words >= 2000 && paras.length >= 3) {
+    const q = Math.floor(paras.length / 3)
     return [
-      paras.slice(0, mid).join('\n\n'),
-      paras.slice(mid).join('\n\n'),
+      paras.slice(0, q).join('\n\n'),
+      paras.slice(q, q * 2).join('\n\n'),
+      paras.slice(q * 2).join('\n\n'),
     ].filter(Boolean)
   }
-  const q = Math.floor(paras.length / 3)
+  // All other chapters: 2 parts
+  const mid = Math.max(1, Math.floor(paras.length / 2))
   return [
-    paras.slice(0, q).join('\n\n'),
-    paras.slice(q, q * 2).join('\n\n'),
-    paras.slice(q * 2).join('\n\n'),
-  ].filter(Boolean)
+    paras.slice(0, mid).join('\n\n') || content,
+    paras.slice(mid).join('\n\n'),
+  ]
 }
 
 // render
-<AdSlot path="/23294357175/q1" id="div-gpt-ad-1782711338284-0" sizes={[[250,250],[300,250],[336,280]]} strategy="immediate" />
+<AdSlot path="/23294357175/q1" id="div-gpt-ad-1782711338284-0" sizes={[[250,250],[300,250],[336,280]]} />
 
-{contentParts.length === 1 ? (
-  <div className="prose-reader">{/* full chapter */}</div>
-) : contentParts.length === 2 ? (
+{contentParts.length >= 3 ? (
   <>
     <div className="prose-reader">{contentParts[0]}</div>
-    <AdSlot path="/23294357175/q2" id="div-gpt-ad-1782711428179-0" sizes={[[250,250],[336,280],[300,250]]} strategy="near" />
+    <AdSlot path="/23294357175/q2" id="div-gpt-ad-1782711428179-0" sizes={[[250,250],[336,280],[300,250]]} />
     <div className="prose-reader">{contentParts[1]}</div>
+    <AdSlot path="/23294357175/q3" id="div-gpt-ad-1782711490041-0" sizes={[[250,250],[336,280],[300,250]]} />
+    <div className="prose-reader">{contentParts[2]}</div>
   </>
 ) : (
   <>
     <div className="prose-reader">{contentParts[0]}</div>
-    <AdSlot path="/23294357175/q2" id="div-gpt-ad-1782711428179-0" sizes={[[250,250],[336,280],[300,250]]} strategy="near" />
+    <AdSlot path="/23294357175/q2" id="div-gpt-ad-1782711428179-0" sizes={[[250,250],[336,280],[300,250]]} />
     <div className="prose-reader">{contentParts[1]}</div>
-    <AdSlot path="/23294357175/q3" id="div-gpt-ad-1782711490041-0" sizes={[[250,250],[336,280],[300,250]]} strategy="near" />
-    <div className="prose-reader">{contentParts[2]}</div>
   </>
 )}
 
-<AdSlot path="/23294357175/q5" id="div-gpt-ad-1782711618925-0" sizes={['fluid']} strategy="lazy" />
+<AdSlot path="/23294357175/q5" id="div-gpt-ad-1782711618925-0" sizes={['fluid']} />
 ```
 
 #### AdSense — `AdsenseSlot.tsx`
@@ -561,12 +515,12 @@ export const viewport: Viewport = {
 }
 ```
 
-For AdX sites, enable `collapseEmptyDivs` in the GPT init so unfilled slots collapse instead of leaving blank 250×250 placeholders that count against viewability:
+For AdX sites, use `setConfig` to collapse unfilled slots (no deprecated `pubads()` calls):
 
 ```tsx
 <script
   dangerouslySetInnerHTML={{
-    __html: `window.googletag=window.googletag||{cmd:[]};googletag.cmd.push(function(){googletag.setConfig({singleRequest:true});googletag.pubads().setForceSafeFrame(true);googletag.pubads().collapseEmptyDivs(true);googletag.enableServices();});`,
+    __html: `window.googletag=window.googletag||{cmd:[]};googletag.cmd.push(function(){googletag.setConfig({singleRequest:true,collapseDiv:{collapse:true}});googletag.enableServices();});`,
   }}
 />
 ```
