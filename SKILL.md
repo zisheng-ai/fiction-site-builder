@@ -115,13 +115,25 @@ Starts after Phase 0. Runs in parallel with Track A.
 | B1 | Stack | `tech-stack.md` | chosen stack with one-line rationale |
 | B2 | Design | `design-system.md` | tone, palette, type system, `public/logo.png`, `public/favicon-32x32.png` |
 | B3 | Data | `data-contract.md` | content-collections schema |
-| B4 | Build | `references/ui-components.md` + `reader-ux.md` + `adsense-arbitrage.md` + `seo.md` | working site with all required pages, ad slots, trust pages, FB tracking, sitemap, robots, and metadata |
+| B4 | Build | `references/ui-components.md` + `reader-ux.md` + `adsense-arbitrage.md` + `seo.md` | working site with all required pages, ad slots, trust pages, Facebook Pixel, sitemap, robots, and metadata |
 | B5 | Performance | `performance.md` + `adsense-arbitrage.md` | Core Web Vitals targets met, images optimized, ad CLS/lazy-load tuned |
 | B6 | QA | `qa-checklist.md` + `references/lighthouse-qa.md` | automated QA pass; Lighthouse median scores meet thresholds; ad-layout + policy-compliance checks; screenshots on failure only |
 
 B1 → B2 → B3 → B4 are sequential. B5 and B6 run in parallel against the same build — run `pnpm run build` once, then check both.
 
 **B4 gate:** at least one book with ≥ 10 chapters must exist before starting B4. B1–B3 may run while writing is still in progress.
+
+### B4 — Facebook Pixel
+
+During B4, wire Facebook Pixel before declaring the build complete. Read the parent project `fictions/CLAUDE.md` and look for the `facebook_pixel.id` configuration.
+
+- **If configured**: add the Facebook Pixel base code to `src/app/layout.tsx` `<head>` using `next/script` with `strategy="afterInteractive"`. Use the exact Pixel ID from `fictions/CLAUDE.md`. Include both the `<Script>` block and the `<noscript>` fallback image.
+- **If not configured**: do not add any Pixel code. Instead, add a pending item to the site's `TODO.md` under `Analytics & Ads`:
+  ```
+  - [ ] 配置 Facebook Pixel（项目 CLAUDE.md 未指定 Pixel ID）
+  ```
+
+This Pixel setup is **project-level** and must not be hardcoded into the skill template.
 
 Optional phases (load only when the brief requires):
 - `references/internationalization.md` — when target language is not the build default
@@ -144,20 +156,20 @@ Optional phases (load only when the brief requires):
 
 After B6 passes, generate two files before closing the session:
 
-**`README.md`** — site reference card for this repo:
-- domain, language, tone, ads header fields
-- Book list table: slug, title, chapter count
-- Tech stack one-liner
-- Dev commands (`pnpm dev`, `pnpm build`)
+**`README.md`** — site reference card for this repo, written in **Chinese (中文)**:
+- 域名、语言、调性、广告账号等头部信息
+- 书目表：slug、书名、章节数、插图数
+- 技术栈一句话
+- 开发命令（`pnpm dev`、`pnpm build`）
 
-**`TODO.md`** — outstanding work for this site:
-- Deployment status (Not deployed / Live + domain)
-- Per-book chapter gap: list any book with fewer than 18 chapters and how many are missing
-- Books missing illustrations
-- Any `chapterCount` in `books.ts` that differs from the actual file count
-- Ad and analytics setup items still pending
+**`TODO.md`** — outstanding work for this site, written in **Chinese (中文)**:
+- 部署状态（未部署 / 已上线 + 域名）
+- 每本书的章节缺口：列出少于 18 章的书及缺多少章
+- 缺少插图的书
+- `books.ts` 里的 `chapterCount` 与实际文件数不一致的地方
+- 广告和分析工具中尚未完成的项
 
-Both files must be written. If the site is a new build, start with the expected state (all chapters to write, not yet deployed). If the site is updated, reflect the current delta.
+Both files must be written in **Chinese**. If the site is a new build, start with the expected state (all chapters to write, not yet deployed). If the site is updated, reflect the current delta.
 
 ### Pre-Launch Gate
 
