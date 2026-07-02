@@ -259,18 +259,81 @@ Before expanding the outline or writing chapters, the world document must have a
 ...
 ```
 
-**Required archetypes — pick at least 2 from your genre's table:**
+**Required archetypes — pick at least 3 from your genre's table of 10:**
 
-| Genre | Required archetypes (pick ≥ 2) |
-|-------|-------------------------------|
-| **Romance / Contemporary Drama** | Confidant (best friend / sibling who hears about the love interest) · Antagonist (ex, rival suitor, controlling family) · Third-angle figure (love triangle / old flame) · Matchmaker-obstacle (person who forces proximity or triggers separation) |
-| **Fantasy / Paranormal** | Mentor / elder (wizard, oracle, ancient being with forbidden knowledge) · Loyal companion / sidekick (follows the hero, reflects their arc) · Dark rival (antagonist with mirrored power or philosophy) · Trickster / ambiguous ally (may betray; true allegiance unclear until late) · Council figure (political power broker who complicates the protagonist's goal) |
-| **Mystery / Cosy Mystery / Gothic Thriller** | Red-herring suspect (appears guilty; draws reader suspicion away from truth) · Victim's inner circle (friend, colleague, or lover who reveals hidden motive) · Obstructive authority (police, constable, or institution that slows the protagonist) · Culprit (must have distinct voice and plausible alibi before the reveal) |
-| **Horror** | Skeptic (refuses to believe; dies or converts mid-story) · First victim / cautionary figure (establishes the threat's rules before the protagonist is endangered) · Local expert or keeper (historian, priest, old resident — holds the lore) · Compromised ally (possessed, coerced, or breaking down — the protagonist can't fully trust them) |
-| **Sci-Fi / Dystopian** | Resistance cell member (comrade with a distinct ideological angle — not just loyal) · True believer in the system (enforcer or idealist who sees the protagonist as the villain) · Defector (someone crossing from the opposing side, carrying secrets and distrust) · Scientist / archivist with forbidden knowledge (the one who explains what the system hid) |
-| **Historical / Regency** | Social gatekeeper (hostess, matriarch, or gossip who controls reputation access) · Rival or jealous peer (same-class competitor; different motive from the antagonist) · Confidant-servant or companion (hears secrets; lower rank = different perspective on the same events) · Outside-world figure (tradesman, foreigner, reformer — disrupts period social assumptions) |
+### Romance / Contemporary Drama
+1. **Confidant** — best friend or sibling who receives the protagonist's confessions; absorbs exposition naturally; their reactions calibrate reader sympathy
+2. **Romantic antagonist** — ex, rival suitor, or jealous third party who actively obstructs the central relationship
+3. **Love triangle point** — a credible alternative romantic option; must be genuinely appealing, not obviously wrong
+4. **Controlling authority figure** — parent, boss, or family member whose approval the protagonist needs or fears
+5. **Matchmaker / orchestrator** — person who engineers proximity between the leads, knowingly or not
+6. **Loyal ally with their own subplot** — friend or sibling with a romantic or personal arc running parallel; reinforces themes through contrast
+7. **The messenger / witness** — someone who sees something they shouldn't, or delivers news that changes the stakes
+8. **The work / world context character** — colleague, client, or professional contact who forces the leads into the same space on neutral ground
+9. **Comic relief / grounding voice** — breaks tension without undercutting it; keeps the tone from becoming relentlessly serious
+10. **The past made present** — someone from one lead's history who reveals a secret, complication, or wound the protagonist has kept hidden
 
-Secondary characters must appear in **at least 2 chapters each**. They exist to create scenes beyond "just the two leads talking" — every secondary character unlocks a scene type that is impossible without them (the confidant scene, the interrogation scene, the betrayal scene, the council standoff).
+### Fantasy / Paranormal
+1. **Mentor / elder** — wizard, oracle, ancient being, or dying sovereign who holds knowledge the protagonist must earn; their power should be declining or limited
+2. **Loyal companion / sidekick** — follows the hero without sharing their gift; reflects the arc back; can be killed to raise stakes
+3. **Dark rival** — antagonist with mirrored power, opposing philosophy, or a claim on the same destiny
+4. **Trickster / ambiguous ally** — helps and harms; true allegiance unclear until late; not evil, but not safe
+5. **Council / court figure** — political power broker who forces the protagonist to navigate institutional constraint alongside magical threat
+6. **The believer who is wrong** — someone whose faith in the old order or a false prophecy makes them dangerous despite good intentions
+7. **The outsider / mundane anchor** — someone without magic or status who grounds the story in ordinary stakes and asks the questions the reader asks
+8. **The defector from the other side** — an enemy who crosses over; brings secrets and distrust; may be a double agent
+9. **The cost-bearer** — someone who pays the price of the protagonist's choices; their suffering personalizes the moral weight of power
+10. **The keeper of the secret history** — archivist, scholar, or exile who knows what the official record erased; their knowledge arrives at exactly the wrong or right moment
+
+### Mystery / Cosy Mystery / Gothic Thriller / Literary Thriller
+1. **Red-herring suspect** — appears most guilty in the middle third; reader should genuinely believe them; their innocence must be earned, not announced
+2. **Victim's inner circle** — friend, colleague, or lover who knew the victim best and reveals hidden motive by trying to protect someone or something
+3. **Obstructive authority** — police, inspector, or institution that slows the protagonist; not incompetent — just working within different constraints
+4. **The culprit** — must have a distinct voice, established presence, and at least one sympathetic trait before the reveal; their guilt must feel inevitable in retrospect
+5. **The confidant / sounding board** — person the protagonist thinks through evidence with; voices the reader's doubts and pushes back on wild theories
+6. **The informant / reluctant witness** — knows something but has a reason to stay silent; their silence is itself a clue
+7. **The false ally** — appears to help; is concealing something (not necessarily guilt; could be shame, fear, or a separate secret)
+8. **The prior victim** — someone who encountered the threat before the protagonist did and survived, escaped, or was silenced; their experience frames the protagonist's danger
+9. **The community voice** — village gossip, pub regular, or local historian who holds the texture of a place and its grudges; provides colour and misdirection
+10. **The character who changes the case** — late-arrival figure whose testimony, death, or disappearance forces the protagonist to restart from a new angle
+
+### Horror
+1. **Skeptic** — refuses to believe until forced to; their conversion is a structural beat; their disbelief makes the early dread feel earned
+2. **First victim / cautionary figure** — establishes the threat's rules and reach before the protagonist is directly endangered
+3. **Local expert / keeper** — historian, priest, old resident, or folkloric authority who holds the lore; their knowledge is partial and costs something to access
+4. **Compromised ally** — possessed, coerced, mentally fracturing, or hiding their own infection; the protagonist cannot fully trust them
+5. **The survivor from a prior cycle** — someone who lived through this before; traumatised, credible, and possibly unreliable
+6. **The true believer / cultist** — someone who has chosen or been conditioned to serve the threat; their perspective makes the horror comprehensible without excusing it
+7. **The protector who fails** — authority figure (parent, police, doctor) whose normal-world power is useless here; their failure marks the point of no return
+8. **The innocent in danger** — child, dependent, or someone the protagonist is responsible for; their presence raises the cost of every decision
+9. **The rationaliser** — insists on explaining everything away; useful for misdirection; must eventually be confronted with the inexplicable
+10. **The one who knows and stays silent** — a character who understood the threat early and chose not to warn others; their silence is its own horror
+
+### Sci-Fi / Dystopian
+1. **Resistance cell member** — comrade with a distinct ideological angle, not just loyal; should disagree with the protagonist on method or priority
+2. **True believer in the system** — enforcer or idealist who sees the protagonist as the villain; their logic should be coherent, not cartoonish
+3. **Defector from the other side** — crossing over with secrets and earned distrust; their loyalty is perpetually in question
+4. **Scientist / archivist with forbidden knowledge** — holds what the system erased; their knowledge creates the ethical dilemma at the story's core
+5. **The compliant majority** — ordinary person who has accepted the system; their comfort makes the protagonist's resistance look irrational; their awakening (if it happens) is a turning point
+6. **The handler / watcher** — regime figure assigned to monitor the protagonist; knows more than they reveal; may be an unlikely source of help
+7. **The child of the system** — someone born after the change who has never known anything else; their innocence is both asset and vulnerability
+8. **The black marketeer / information broker** — operates in the cracks between systems; helps for price, not principle; cannot be fully trusted
+9. **The tech or protocol expert** — knows how the surveillance, the AI, or the infrastructure actually works; their knowledge is the protagonist's operational edge
+10. **The ghost of the before** — someone who remembers the old world (or was shaped by it); their nostalgia is either wisdom or blindness, and the protagonist must determine which
+
+### Historical / Regency
+1. **Social gatekeeper** — hostess, matriarch, or gossip who controls reputation access; their approval or disapproval changes what is possible for the protagonist
+2. **Rival or jealous peer** — same-class competitor with a different motive from the main antagonist; creates horizontal social pressure
+3. **Confidant-servant or companion** — hears secrets by virtue of lower rank; sees the same events from a different vantage and provides corrective irony
+4. **The reformer or outsider** — tradesman, foreigner, colonial subject, or political radical whose presence disrupts period social assumptions and forces the protagonist to examine their own position
+5. **The family obligation** — sibling, ward, or dependent whose welfare the protagonist is responsible for; their needs constrain choices and create moral conflict
+6. **The old scandal** — a person connected to a secret in the protagonist's or love interest's past; their reappearance destabilises the present
+7. **The match-maker with an agenda** — parent, aunt, or sponsor engineering a marriage for reasons that may not align with the protagonist's interests
+8. **The sympathetic enemy** — someone whose opposition is rooted in legitimate grievance, not malice; their conflict with the protagonist is the most interesting in the book
+9. **The witness to the private self** — a character who has seen the protagonist outside their public role and holds that knowledge, whether as ally, threat, or complication
+10. **The institution made human** — a character who embodies the period's dominant institution (the church, the law, the military, the court) and whose personal humanity complicates the protagonist's relationship to that power
+
+Secondary characters must appear in **at least 2 chapters each**. They exist to create scenes beyond "just the two leads talking" — every secondary character unlocks a scene type that is impossible without them.
 
 ---
 
