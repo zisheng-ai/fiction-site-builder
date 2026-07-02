@@ -143,6 +143,39 @@ Use `<dialog>` with `className="modal modal-bottom"` (DaisyUI 5). Open with `dia
 - "Previous" button appears anywhere in the reader nav.
 - On mobile ≤ 640px: maintain 60px height minimum.
 
+## Cross-Book Recommendation Grid
+
+At the end of the **last chapter** (when `next` is null), render a 3-book recommendation grid below the chapter nav to retain readers who just finished a book.
+
+```tsx
+{!next && (
+  <div className="my-10 border border-base-300 rounded-2xl px-6 py-10">
+    <p className="text-base font-semibold text-base-content text-center mb-1">
+      You&apos;ve finished <em>{book.title}</em>.
+    </p>
+    <p className="text-xs text-base-content/40 uppercase tracking-widest text-center mb-8">Keep reading</p>
+    <div className="grid grid-cols-3 gap-4">
+      {books.filter(b => b.slug !== slug).slice(0, 3).map(b => (
+        <HardLink key={b.slug} href={`/book/${b.slug}/`} className="flex flex-col items-center gap-2 group">
+          <div className="w-full rounded-lg overflow-hidden shadow-md" style={{ aspectRatio: '2/3' }}>
+            <img src={b.cover} alt={b.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          </div>
+          <span className="text-[11px] font-semibold text-center text-base-content group-hover:text-primary transition-colors line-clamp-2 leading-tight">
+            {b.title}
+          </span>
+        </HardLink>
+      ))}
+    </div>
+  </div>
+)}
+```
+
+Rules:
+- Links go to `/book/${b.slug}/` (book detail), not `/book/${b.slug}/chapter/1` — let the reader decide where to start.
+- Filter out the current book (`b.slug !== slug`). Take first 3 from remaining.
+- Use whatever link component the site uses (`HardLink`, `<a>`, or Next.js `<Link>`).
+- Last chapter only — do not add to mid-book chapters.
+
 ## Optional Enhancements
 
 Add only when explicitly requested:
