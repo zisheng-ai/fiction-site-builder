@@ -145,7 +145,32 @@ Use `<dialog>` with `className="modal modal-bottom"` (DaisyUI 5). Open with `dia
 
 ## Cross-Book Recommendation Grid
 
-At the end of the **last chapter** (when `next` is null), render a 3-book recommendation grid below the chapter nav to retain readers who just finished a book.
+Show a 3-book recommendation grid on **every chapter** — the moment a reader finishes any chapter is the highest-intent moment for cross-promotion. Render it after the next-chapter nav on mid-book chapters, and after the "You've finished" message on the last chapter.
+
+**Mid-book chapters** (`next` exists) — insert after the next-chapter nav block:
+
+```tsx
+{/* Cross-book recommendations */}
+{next && (
+  <div className="mt-10 pt-8 border-t border-base-300">
+    <p className="text-xs text-base-content/40 uppercase tracking-widest text-center mb-6">You might also like</p>
+    <div className="grid grid-cols-3 gap-4">
+      {books.filter(b => b.slug !== slug).slice(0, 3).map(b => (
+        <HardLink key={b.slug} href={`/book/${b.slug}/`} className="flex flex-col items-center gap-2 group">
+          <div className="w-full rounded-lg overflow-hidden shadow-md" style={{ aspectRatio: '2/3' }}>
+            <img src={b.cover} alt={b.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          </div>
+          <span className="text-[11px] font-semibold text-center text-base-content group-hover:text-primary transition-colors line-clamp-2 leading-tight">
+            {b.title}
+          </span>
+        </HardLink>
+      ))}
+    </div>
+  </div>
+)}
+```
+
+**Last chapter** (`!next`) — use a more conclusive heading:
 
 ```tsx
 {!next && (
@@ -174,7 +199,7 @@ Rules:
 - Links go to `/book/${b.slug}/` (book detail), not `/book/${b.slug}/chapter/1` — let the reader decide where to start.
 - Filter out the current book (`b.slug !== slug`). Take first 3 from remaining.
 - Use whatever link component the site uses (`HardLink`, `<a>`, or Next.js `<Link>`).
-- Last chapter only — do not add to mid-book chapters.
+- For Spanish sites, use "También te puede gustar" instead of "You might also like".
 
 ## Optional Enhancements
 
