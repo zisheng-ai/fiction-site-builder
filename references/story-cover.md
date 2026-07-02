@@ -171,9 +171,19 @@ Cover ratio: **2:3 portrait**. Generate at `848x1280` (1K Fast tier — sufficie
 
 The genre determines composition template, color palette, character design, and typography style. The visual register determines render quality language (photorealistic film-still vs. hyperrealistic 3D render).
 
-**For romance/drama genres: allure elements are MANDATORY, not optional.** Load `references/cover-allure-elements.md` and apply the highest-intensity pose from the appropriate genre section. The target is maximum implication within gpt-image-2-all policy — bodies pressed together, visible skin, explicit physical contact (grip, hold, almost-kiss). A cover where two people are simply standing near each other fails this gate.
+**Allure applies to ALL genres — intensity varies by genre, never zero.** A cover with no physical magnetism, no skin, and no charged atmosphere is a failure regardless of genre. Load `references/cover-allure-elements.md` for vocabulary. Apply the tier matching your genre:
 
-- **Romance / Drama genres:** use `references/cover-allure-elements.md` (Costume Elements, Poses, and English Romance Playbook). Pick the genre-specific prompt formula, select the pose assigned in Step 1.6, and follow the Escalation Strategy if the output looks tame.
+| Genre | Allure tier | What it looks like |
+|-------|-------------|-------------------|
+| Romance / Dark Romance / Contemporary Drama | **T2–T3 (mandatory, roll per cover)** | Deep neckline + bare back / torn garment + wet fabric. Maximum skin within §0 floor. See Female figure rule below. |
+| Fantasy / Paranormal / Historical | **T1–T2 (default T1, push T2 when composition allows)** | Bare shoulder, off-shoulder gown, wind-pulled fabric revealing leg, armour gap, sheer sleeve. Physical contact between figures if Duo/Trio. |
+| Mystery / Gothic Thriller / Literary Thriller | **T1 (atmospheric sensuality, not explicit)** | Figure silhouetted in revealing dress, collarbone and décolletage prominent, rain-soaked blouse, dishevelled hair, coat falling off one shoulder. Mood is dangerous + magnetic, not clinical. |
+| Horror | **T1 (vulnerability, not allure — same skin vocabulary, different emotional register)** | Pale skin exposed at throat/shoulders, torn nightgown, soaked fabric, fear-posed body that is also visually magnetic. The exposure signals danger, not invitation. |
+| Sci-Fi / Dystopian | **T1 (fit physique + utilitarian reveal)** | Form-fitting suit, cropped jacket, bare midriff under armour, short tactical garment. Physique is lean-athletic, not domestic-soft. |
+
+A cover where the figure is fully clothed, covered from neck to ankle with no body-conscious framing is a quality gate failure for **every genre**. T1 is the absolute floor — apply it even for mystery and horror. Never go below T1.
+
+- **Romance / Drama genres:** follow the full Female figure rule below (T2/T3 mandatory). Load `references/cover-allure-elements.md` Costume Elements, Poses, and English Romance Playbook. Pick the genre-specific prompt formula and follow the Escalation Strategy if the output looks tame.
 
 ## Step 1.6 — Batch Diversity Plan (batch mode only)
 

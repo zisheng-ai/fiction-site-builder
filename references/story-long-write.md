@@ -251,7 +251,7 @@ Before expanding the outline or writing chapters, the world document must have a
 ## Supporting Cast
 
 ### [Name] — [Role archetype]
-- Relationship to protagonist: [best friend / rival / mentor / family member / antagonist / love triangle point]
+- Relationship to protagonist: [see genre table below]
 - Function in story: [what tension or information do they generate?]
 - Distinct voice marker: [1 sentence — how they speak or behave differently from the leads]
 
@@ -259,14 +259,18 @@ Before expanding the outline or writing chapters, the world document must have a
 ...
 ```
 
-**Required archetypes (at least 2, pick from the list):**
-- **Confidant** — the protagonist's ally who can receive exposition naturally (best friend, sibling, roommate, partner)
-- **Antagonist / obstacle** — someone who actively opposes the protagonist's goal (rival, ex, controlling parent, corporate enemy)
-- **Third-angle figure** — creates a love-triangle threat or loyalty conflict (old flame, competitor, forbidden option)
-- **Mentor / authority** — holds knowledge or power the protagonist needs (boss, elder, detective superior, court figure)
-- **Catalyst** — appears briefly but triggers a key plot turn (witness, informant, stranger with information)
+**Required archetypes — pick at least 2 from your genre's table:**
 
-Secondary characters must appear in at least 2 chapters each. They exist to create scenes beyond "just the two leads talking" — every secondary character generates a scene type that is impossible without them.
+| Genre | Required archetypes (pick ≥ 2) |
+|-------|-------------------------------|
+| **Romance / Contemporary Drama** | Confidant (best friend / sibling who hears about the love interest) · Antagonist (ex, rival suitor, controlling family) · Third-angle figure (love triangle / old flame) · Matchmaker-obstacle (person who forces proximity or triggers separation) |
+| **Fantasy / Paranormal** | Mentor / elder (wizard, oracle, ancient being with forbidden knowledge) · Loyal companion / sidekick (follows the hero, reflects their arc) · Dark rival (antagonist with mirrored power or philosophy) · Trickster / ambiguous ally (may betray; true allegiance unclear until late) · Council figure (political power broker who complicates the protagonist's goal) |
+| **Mystery / Cosy Mystery / Gothic Thriller** | Red-herring suspect (appears guilty; draws reader suspicion away from truth) · Victim's inner circle (friend, colleague, or lover who reveals hidden motive) · Obstructive authority (police, constable, or institution that slows the protagonist) · Culprit (must have distinct voice and plausible alibi before the reveal) |
+| **Horror** | Skeptic (refuses to believe; dies or converts mid-story) · First victim / cautionary figure (establishes the threat's rules before the protagonist is endangered) · Local expert or keeper (historian, priest, old resident — holds the lore) · Compromised ally (possessed, coerced, or breaking down — the protagonist can't fully trust them) |
+| **Sci-Fi / Dystopian** | Resistance cell member (comrade with a distinct ideological angle — not just loyal) · True believer in the system (enforcer or idealist who sees the protagonist as the villain) · Defector (someone crossing from the opposing side, carrying secrets and distrust) · Scientist / archivist with forbidden knowledge (the one who explains what the system hid) |
+| **Historical / Regency** | Social gatekeeper (hostess, matriarch, or gossip who controls reputation access) · Rival or jealous peer (same-class competitor; different motive from the antagonist) · Confidant-servant or companion (hears secrets; lower rank = different perspective on the same events) · Outside-world figure (tradesman, foreigner, reformer — disrupts period social assumptions) |
+
+Secondary characters must appear in **at least 2 chapters each**. They exist to create scenes beyond "just the two leads talking" — every secondary character unlocks a scene type that is impossible without them (the confidant scene, the interrogation scene, the betrayal scene, the council standoff).
 
 ---
 
