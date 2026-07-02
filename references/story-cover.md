@@ -300,11 +300,11 @@ Three apiyi models are viable for covers, ranked by tested capability for this u
 
 | Rank | Model | Size | Response | Notes |
 |---|---|---|---|---|
-| 1 (primary) | `gpt-image-2-all` | `848x1280` | `b64_json` (PNG) | True 2:3, cleanest title text, best brief adherence, no watermark. Most reliable — but the strictest content filter. |
-| 2 (fallback) | `doubao-seedream-5-0-260128` | `1664x2496` | `url` (JPEG) | Highest visual quality + strongest allure, true 2:3, far more permissive filter. **Stamps an `AI生成` watermark in the bottom-right corner — must crop it (see post-process).** Needs ≥3.7M px, hence the large size. |
+| 1 (primary) | `doubao-seedream-5-0-260128` | `1664x2496` | `url` (JPEG) | Highest visual quality + strongest allure, most permissive content filter. **Stamps an `AI生成` watermark in the bottom-right corner — must crop it (see post-process).** Needs ≥3.7M px, hence the large size. |
+| 2 (fallback) | `gpt-image-2-all` | `848x1280` | `b64_json` (PNG) | Cleaner title text, no watermark, stricter content filter. Use when doubao fails. |
 **nano-banana-pro — terminal blank-prevention fallback:**
 - Silently downgrades T3+ prompts to ~T1 output; square 1024×1024 (wrong aspect ratio for covers — reframe to 2:3 after generation).
-- Use only when gpt and doubao (×2) both fail.
+- Use only when doubao (×2) and gpt both fail.
 
 ### apiyi path
 
@@ -344,10 +344,10 @@ print('SAVED:' + str(os.path.getsize(output_path)))
 "
 }
 
-# Capability cascade — try best model first, fall through on failure
-if   gen_cover_apiyi "gpt-image-2-all"            "848x1280";  then MODEL_USED="gpt-image-2-all"
-elif gen_cover_apiyi "doubao-seedream-5-0-260128" "1664x2496"; then MODEL_USED="doubao-seedream-5-0-260128"
+# Capability cascade — doubao first (highest quality + allure), gpt as fallback, nano as last resort
+if   gen_cover_apiyi "doubao-seedream-5-0-260128" "1664x2496"; then MODEL_USED="doubao-seedream-5-0-260128"
 elif gen_cover_apiyi "doubao-seedream-5-0-260128" "1664x2496"; then MODEL_USED="doubao-seedream-5-0-260128"  # retry once
+elif gen_cover_apiyi "gpt-image-2-all"            "848x1280";  then MODEL_USED="gpt-image-2-all"
 elif gen_cover_apiyi "nano-banana-pro"            "1024x1024"; then MODEL_USED="nano-banana-pro"  # blank-prevention — ~T1 square output, reframe to 2:3
 else MODEL_USED=""; echo "ALL_MODELS_FAILED — skipping book"
 fi
