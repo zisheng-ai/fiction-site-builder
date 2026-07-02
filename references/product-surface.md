@@ -130,3 +130,31 @@ Desktop must use a different layout, not a stretched phone screen:
 - Reader: centered column, `max-width: 680px` for Latin, `max-width: 600px` for CJK. Side catalog at ≥ 1024px.
 - Latin characters per line in the reader: 60–76 characters. Never allow the full viewport width.
 - Navigation bar horizontal, not bottom-anchored.
+
+## README
+
+Every site ships with a `README.md` in Chinese containing:
+
+1. **Header block** — domain, language, tone, ad account, deploy status
+2. **书目** — table of all books (slug, title; fuego-eterno adds chapter count and illustration count)
+3. **技术栈** — one-liner
+4. **构建记录** — build log table (see below)
+5. **开发** — local dev commands
+
+### 构建记录 (Build Record)
+
+Append a row every time a significant change is made to the site. Helps track which model built what and lets you compare output quality across models.
+
+```markdown
+## 构建记录
+
+| 阶段 | 日期 | 模型 | Token 消耗 | 耗时 |
+|------|------|------|-----------|------|
+| 初始建站 | YYYY-MM-DD | Claude Sonnet 4.6 | — | — |
+
+> 每次对站点做重大改动，在此追加一行：阶段名称、日期、使用模型、Token 消耗（如可查）、耗时（如可查）。
+```
+
+Typical stage names: `初始建站` / `内容补充` / `SEO / GEO 改造` / `Header 透明化 & 跨书推荐` / `广告接入` / `部署上线`.
+
+Place `## 构建记录` **before** `## 开发`.
