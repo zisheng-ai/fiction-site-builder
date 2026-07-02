@@ -273,14 +273,25 @@ Roll a random number 1–4 to pick composition. Romance bias: Duo at 1–2, Solo
 - `Black woman, deep brown skin, natural curls`
 - Match exactly what the story says. If the worldbuilding is ambiguous, pick the most narratively fitting option and record it in `character-visuals.md`.
 
-**Female figure rule — MANDATORY:** the female character must be visually magnetic — impossible to scroll past. **Exposure = randomly T2 (Bold) or T3 (Maximum), picked independently per cover** — for each cover, roll T2 or T3 and bake that tier's assembly block from the Exposure Tiers table (`references/cover-allure-elements.md`) directly into the prompt; do not rely on the model rolling a lucky exposed result. Across a batch of books, this produces a mix of T2 and T3 covers (do not make every cover the same tier). Required elements, every time:
-- Figure: `voluptuous hourglass figure, slim toned waist dramatically cinched, large full bust dramatically prominent, E-cup figure, long shapely legs` — curves are dramatic but the figure is NOT heavy or overweight; the waist must read as narrow against the hips and bust; bust baseline is E cup or larger — "full generous" alone undershoots, use explicit size language. (At T3, drop explicit `E-cup` per the doubao T3-safe rule — use visual-effect phrasing only; see `cover-allure-elements.md`.)
-- Clothing: maximally revealing for the assigned tier — T2 = two simultaneous revealing elements (deep neckline + bare back/midriff/high slit); T3 = garment failing in multiple places (torn, slipped, soaked, sheer). See `references/cover-allure-elements.md` Skin & Clothing Vocabulary
-- Skin: as much bare skin as the assigned tier allows within the §0 floor — T2 = cleavage + one secondary zone; T3 = three or more zones (bare back, legs, midriff, shoulders, extreme neckline)
-- Pose: use the pose assigned in Step 1.6 (batch) or pick freely from the full Poses table in `references/cover-allure-elements.md` (single-book). No pose is a fixed default — rotate through the table. From-behind poses (marked ▲) cap at 2 per site.
-- Framing: use the camera frame assigned in Step 1.6 (batch) or pick per-book (single-book). State it explicitly in every prompt. Never allow the model to default to a face-only crop.
+**Figure rule — apply by genre:**
 
-A modest, fully-clothed, non-contact, or head-shot-only composition is a quality gate failure. Exposure is stochastic — a tame roll is RNG, not the spec; the fix is baking in higher-tier fragments, never accepting the weak roll. Hard floor: no nipples, no genitals, no sex acts (§0 in `cover-allure-elements.md`). Everything above that floor: push it.
+**Romance / Dark Romance / Contemporary Drama (T2–T3 mandatory):**
+The female character must be visually magnetic — impossible to scroll past. **Exposure = randomly T2 (Bold) or T3 (Maximum), picked independently per cover** — for each cover, roll T2 or T3 and bake that tier's assembly block from the Exposure Tiers table (`references/cover-allure-elements.md`) directly into the prompt. Required elements:
+- Figure: `voluptuous hourglass figure, slim toned waist dramatically cinched, large full bust dramatically prominent, E-cup figure, long shapely legs` — curves dramatic but NOT heavy; waist reads narrow against hips and bust; bust baseline E cup or larger. (At T3, drop explicit `E-cup` — use visual-effect phrasing only; see `cover-allure-elements.md`.)
+- Clothing: maximally revealing for the assigned tier — T2 = deep neckline + bare back/midriff/high slit; T3 = garment failing in multiple places (torn, slipped, soaked, sheer).
+- Skin: T2 = cleavage + one secondary zone; T3 = three or more zones (bare back, legs, midriff, shoulders, extreme neckline).
+- Pose: use the pose assigned in Step 1.6 (batch) or pick freely from the Poses table (single-book). From-behind poses cap at 2 per site.
+- Framing: state explicitly in every prompt. Never allow the model to default to a face-only crop.
+A modest, fully-clothed, non-contact composition is a quality gate failure for romance/drama. Exposure is stochastic — bake in higher-tier fragments, never accept a weak roll. Hard floor: no nipples, no genitals, no sex acts (§0 in `cover-allure-elements.md`). Everything above that floor: push it.
+
+**Fantasy / Paranormal / Historical (T1–T2, physique-forward):**
+Figure should read as powerful, magnetic, and physically present — not demure or neutral. Describe body type in genre-appropriate terms: `athletic and lithe`, `commanding presence, tall and broad-shouldered`, `ethereal beauty, slender and graceful`. Include at least one deliberate skin detail (bare shoulder, exposed collarbone, fitted bodice, wind-pulled skirt). Clothing should be atmospheric and body-conscious — flowing but structured, battle-worn but fitted.
+
+**Mystery / Gothic Thriller / Horror (T1, atmosphere-dominant):**
+Figure reads as striking and unsettling, not conventionally alluring. Describe posture, tension in the body, pale skin at throat or collarbone, dishevelled or soaked hair, a garment that conveys vulnerability or power (not both). The body is present and magnetic but the magnetism comes from the mood, not the exposure level. Never fully covered, featureless, or portrait-cropped to face only.
+
+**Sci-Fi / Dystopian (T1, fit + utilitarian):**
+Figure is lean-athletic, not domestic-soft. Form-fitting tactical or functional clothing. At least one skin-visible detail: bare forearms, cropped jacket, midriff gap under armour. Pose carries agency — not decorative. Never passive or posed-for-beauty.
 
 **Drama rule — MANDATORY (see Drama Hook section in `cover-allure-elements.md`):** allure without drama is a fashion photo, not a book cover. Every prompt must include:
 - A specific emotional expression from the Expression Rules table (never neutral/pleasant)
