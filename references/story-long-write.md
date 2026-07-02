@@ -241,6 +241,35 @@ Load only if needed:
   reference/{book-title}/techniques.md  — only if a reference technique is needed
 ```
 
+## World & Cast Setup (required before any chapter writing)
+
+Before expanding the outline or writing chapters, the world document must have a **Supporting Cast** section. A story with only two named characters produces flat scenes and limits cover composition to Duo.
+
+**Minimum cast requirements for `world/worldbuilding.md`:**
+
+```markdown
+## Supporting Cast
+
+### [Name] — [Role archetype]
+- Relationship to protagonist: [best friend / rival / mentor / family member / antagonist / love triangle point]
+- Function in story: [what tension or information do they generate?]
+- Distinct voice marker: [1 sentence — how they speak or behave differently from the leads]
+
+### [Name] — [Role archetype]
+...
+```
+
+**Required archetypes (at least 2, pick from the list):**
+- **Confidant** — the protagonist's ally who can receive exposition naturally (best friend, sibling, roommate, partner)
+- **Antagonist / obstacle** — someone who actively opposes the protagonist's goal (rival, ex, controlling parent, corporate enemy)
+- **Third-angle figure** — creates a love-triangle threat or loyalty conflict (old flame, competitor, forbidden option)
+- **Mentor / authority** — holds knowledge or power the protagonist needs (boss, elder, detective superior, court figure)
+- **Catalyst** — appears briefly but triggers a key plot turn (witness, informant, stranger with information)
+
+Secondary characters must appear in at least 2 chapters each. They exist to create scenes beyond "just the two leads talking" — every secondary character generates a scene type that is impossible without them.
+
+---
+
 ## Parallel Writing (default for new books)
 
 Use this flow whenever writing ≥ 2 chapters from scratch. Single-chapter incremental additions use the sequential process below.
