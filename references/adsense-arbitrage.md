@@ -520,7 +520,7 @@ For AdX sites, use `setConfig` to collapse unfilled slots (no deprecated `pubads
 ```tsx
 <script
   dangerouslySetInnerHTML={{
-    __html: `window.googletag=window.googletag||{cmd:[]};googletag.cmd.push(function(){googletag.setConfig({singleRequest:true,collapseDiv:{collapse:true}});googletag.enableServices();});`,
+    __html: `window.googletag=window.googletag||{cmd:[]};googletag.cmd.push(function(){googletag.setConfig({singleRequest:true,collapseDiv:true});googletag.enableServices();});`,
   }}
 />
 ```
