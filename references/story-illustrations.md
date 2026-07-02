@@ -160,15 +160,17 @@ For each illustration, randomly pick **T3 or T4**. Do not use the same tier for 
 
 **Never use T5 for illustrations.** **Never downgrade the block's clothing/skin language to fit the prose's literal wardrobe — re-dress the scene to the tier (see mistake #2 above).**
 
-### Step 2 — Add character anchors from `world/characters/`
+### Step 2 — Add character anchors from `character-visuals.md` (canonical source)
 
-Pull the female lead and male lead descriptions. Add to the prompt:
+**Read `content/{book-slug}/world/character-visuals.md`** — this is the canonical visual sheet written during A2 (cover generation). If it does not exist, generate it now using the same Step 1.1 procedure in `story-cover.md`, then write it before continuing.
+
+Copy the descriptors **verbatim** from the sheet into the prompt — do not paraphrase:
 ```
-{female-lead physical description: hair, eyes, face shape}
-{male-lead physical description: build, hair, jaw}
+{female-lead: Ethnicity phrase, Hair phrase, Eyes phrase, Signature phrase from character-visuals.md}
+{male-lead: Ethnicity phrase, Hair phrase, Build phrase, Signature phrase from character-visuals.md}
 ```
 
-Keep this to 2–3 keywords per character — do not repeat the full character sheet.
+Keep this to 3–4 keywords per character — copy the exact wording, not a summary. Consistent phrasing across cover and all illustrations is what produces visual continuity. Never re-derive or re-describe characters from scratch.
 
 ### Step 3 — Add scene-specific context
 

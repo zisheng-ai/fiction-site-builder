@@ -122,6 +122,39 @@ Derive all three from project files:
 
 Do not ask the user. Do not fabricate values that cannot be derived.
 
+### Step 1.1 — Character Visual Sheet (canonical, required)
+
+**Before building any prompt**, resolve the character visual sheet for this book:
+
+1. **Check for existing sheet:** `content/{book-slug}/world/character-visuals.md`
+   - If it exists → read it and use the descriptors verbatim in the prompt.
+   - If it does not exist → derive from `world/worldbuilding.md` + chapters 1–3, then **write** it now.
+
+2. **Format of `character-visuals.md`:**
+
+```markdown
+# Character Visual Sheet — {book-title}
+
+## Female Lead
+- Ethnicity: Caucasian woman, Western European features, light skin
+- Hair: [color, length, style — e.g. "dark auburn waves to mid-back"]
+- Eyes: [color — e.g. "pale green eyes"]
+- Figure: [body type — use the Female figure rule phrasing]
+- Signature: [1–2 visual markers unique to this character — e.g. "small silver scar above left brow"]
+
+## Male Lead
+- Ethnicity: Caucasian man, Western European features, light skin
+- Hair: [color, length — e.g. "dark brown, short-cropped"]
+- Eyes: [color]
+- Build: [e.g. "tall, broad-shouldered, lean muscular"]
+- Signature: [1–2 visual markers]
+```
+
+3. **Rules:**
+   - Every character prompt MUST include the exact phrasing from this sheet (copy-paste, not paraphrase).
+   - The sheet is shared by A2 (covers) and A2.5 (illustrations) — once written, never regenerated unless the book's worldbuilding explicitly contradicts it.
+   - If the synopsis specifies a non-Caucasian character, use the correct ethnicity and note it in the sheet.
+
 Cover ratio: **2:3 portrait**. Generate at `848x1280` (1K Fast tier — sufficient for all UI display sizes, fastest generation). No resize step needed.
 
 ## Step 1.5 — Determine visual register and genre
