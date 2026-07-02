@@ -196,12 +196,16 @@ After B6 passes, generate two files before closing the session:
 
 **`TODO.md`** — outstanding work for this site, written in **Chinese (中文)**:
 - 部署状态（未部署 / 已上线 + 域名）
-- 每本书的章节缺口：列出少于 18 章的书及缺多少章
+- 每本书的章节缺口：列出少于目标长度（17–21 章）的书及缺多少章
 - 缺少插图的书
 - `books.ts` 里的 `chapterCount` 与实际文件数不一致的地方
 - 广告和分析工具中尚未完成的项
 
 Both files must be written in **Chinese**. If the site is a new build, start with the expected state (all chapters to write, not yet deployed). If the site is updated, reflect the current delta.
+
+### Per-Site `AGENTS.md`
+
+If a site directory contains an `AGENTS.md` file, read it before starting site work. It may contain project-specific conventions that override this skill's defaults (e.g., a non-standard Next.js version or local build rules). Treat its instructions as site-specific addenda to `SKILL.md`.
 
 ### Pre-Launch Gate
 
@@ -210,7 +214,7 @@ All of the following must be true before go-live (after B6 passes):
 | Check | Required location |
 | --- | --- |
 | ≥ 5 book directories | `content/{book-title}/` |
-| Each book has 10–20 chapters, and **no two books share the same count** | `content/{book-title}/chapters/` |
+| Each book has **17–21 chapters** (randomized per book) | `content/{book-title}/chapters/` |
 | Each chapter meets its type target (see Pacing Guidelines in `story-long-write.md`); word counts must vary naturally across chapters — never identical | A1 output |
 | `outline/outline.md` exists and non-empty | A1 output |
 | `world/worldbuilding.md` exists and non-empty | A1 output |
@@ -335,8 +339,7 @@ Do not deliver a build if any of these are true.
 
 **Content completeness:**
 - Site launches with fewer than 5 books.
-- Any book has fewer than 10 chapters or more than 20 chapters.
-- All books share the same chapter count — each book must differ.
+- Any book has fewer than 17 chapters or more than 21 chapters.
 - Any chapter falls below its type's minimum (see Pacing Guidelines in `story-long-write.md`).
 - All chapters in a book have the same word count — natural variation is required.
 - `outline/outline.md` is missing or empty for any published book.
@@ -417,6 +420,7 @@ Load references only when entering that phase. Do not preload all references at 
 - `geo.md` — `llms.txt` generation, structured data for entity disambiguation, robots.ts for AI crawlers. Load during B4.
 - `vercel-operations.md` — Vercel project setup, custom domains, cache headers, deploy hooks, `output: export` pitfalls. Load when deploying or configuring hosting.
 - `product-surface.md` — IA and URL structure (optional, load when needed).
+- `operations-dashboard.md` — non-reader `/dashboard` route and `docs-data.ts` sync rules (load only when the site has an operations dashboard).
 - `internationalization.md` — language and font decisions (optional, load when needed).
 
 ## Output Contract

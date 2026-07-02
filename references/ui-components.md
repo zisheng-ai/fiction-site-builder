@@ -129,7 +129,7 @@ The home page hero sets the site's identity before the reader sees a single book
 |---|---|
 | Dark romance / thriller / vampire / paranormal | **cinematic** — Featured Book Full-Bleed |
 | Fantasy / contemporary romance / colorful multi-genre | **gradient** — Brand Gradient Tagline |
-| Literary fiction / clean romance / prose-first / short story | **editorial** — Text-Only Editorial |
+| Literary fiction / clean romance / prose-first / short story | **atmospheric** — Text-Only Editorial |
 
 The home page hero is a site-level decision — every site uses one style. The book detail hero is per-book — each book sets its own `heroStyle` independently.
 
@@ -225,7 +225,7 @@ Notes:
 
 ---
 
-#### editorial — Text-Only Editorial
+#### atmospheric — Text-Only Editorial
 
 Plain page background. Big typographic headline + subtitle. No image, no gradient in the hero. Book grid starts immediately below.
 
@@ -344,7 +344,7 @@ style={{ filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.4))' }}
 **`books.ts` type definitions:**
 
 ```ts
-export type HeroStyle = 'cinematic' | 'gradient' | 'editorial'
+export type HeroStyle = 'cinematic' | 'gradient' | 'atmospheric'
 
 export type Book = {
   slug: string

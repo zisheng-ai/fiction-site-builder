@@ -313,7 +313,9 @@ curl -X POST "https://api.vercel.com/v1/integrations/deploy/prj_xxxx/yyyyyyyy"
 
 ## 8. Vercel Analytics and Speed Insights
 
-Only `Analytics` is wired by default. `SpeedInsights` is kept for the primary paid-traffic test site (`midnight-fable`) because adding extra Vercel projects for Speed Insights can trigger billing on non-Pro plans. Add Speed Insights only when the user explicitly requests it.
+Only `Analytics` is wired by default. `SpeedInsights` is **opt-in only** — add it only when the user explicitly requests it on a specific site. New sites should wire Analytics only.
+
+Rationale: Speed Insights requires adding the site to a Vercel project, which can trigger billing on non-Pro plans. Use it only for the primary paid-traffic test site or when the user specifically asks.
 
 ### Install Analytics (default)
 

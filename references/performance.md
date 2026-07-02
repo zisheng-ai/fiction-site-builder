@@ -859,7 +859,7 @@ Each site needs its own cookie-consent banner with a site-specific localStorage 
 
 | Variant | When to use | Key format |
 |---------|-------------|------------|
-| **Basic** | Non-EU/UK markets (US, LatAm, etc.) — single Accept button | `{prefix}-cookie-consent` |
+| **Basic** | Non-EU/UK markets (US, LatAm, etc.) — Reject + Accept buttons | `{prefix}-cookie-consent` |
 | **GDPR** | EU / UK markets — Accept All / Reject All / Manage categories | `{prefix}-cookie-consent-v2` |
 
 Key prefix convention: two-letter abbreviation of the site slug (e.g. `vt` for velvet-throne, `mf` for midnight-fable, `fe` for fuego-eterno, `lp` for london-pages, `wr` for wildfire-reads).
@@ -871,6 +871,8 @@ Both variants are **UI-only** — they record user preference in localStorage bu
 **Variant A — Basic** (non-EU/UK markets):
 
 Adapt text to the site language. English template: `"{Site Name} uses cookies to personalise content and ads."` Spanish template: `"{Nombre} utiliza cookies para personalizar contenido y anuncios."`
+
+Provide both **Reject** and **Accept** buttons. Rejecting does not block ads — it only records the preference and dismisses the banner.
 
 ```tsx
 'use client'
@@ -895,6 +897,11 @@ export default function CookieBanner() {
     setVisible(false)
   }
 
+  function reject() {
+    try { localStorage.setItem(CONSENT_KEY, '0') } catch {}
+    setVisible(false)
+  }
+
   return (
     <div className="fixed bottom-0 left-0 right-0 z-[9999] bg-base-200 border-t border-base-300 shadow-lg px-4 py-3 flex flex-col sm:flex-row items-center gap-3">
       <p className="text-sm text-base-content flex-1 text-center sm:text-left">
@@ -903,13 +910,22 @@ export default function CookieBanner() {
         {'{Site Name}'} uses cookies to personalise content and ads.{' '}
         <Link href="/privacy" className="underline hover:text-primary">Learn more</Link>
       </p>
-      <button
-        onClick={accept}
-        className="bg-primary text-primary-content px-4 py-2 rounded text-sm font-medium shrink-0 hover:opacity-90 transition-opacity"
-      >
-        {/* EN: Accept  ES: Aceptar */}
-        Accept
-      </button>
+      <div className="flex items-center gap-2 shrink-0">
+        <button
+          onClick={reject}
+          className="px-4 py-2 rounded text-sm font-medium border border-base-300 hover:border-primary hover:text-primary transition-colors"
+        >
+          {/* EN: Reject  ES: Rechazar */}
+          Reject
+        </button>
+        <button
+          onClick={accept}
+          className="bg-primary text-primary-content px-4 py-2 rounded text-sm font-medium hover:opacity-90 transition-opacity"
+        >
+          {/* EN: Accept  ES: Aceptar */}
+          Accept
+        </button>
+      </div>
     </div>
   )
 }
