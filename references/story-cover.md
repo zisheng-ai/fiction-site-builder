@@ -286,27 +286,27 @@ Bare shoulders + clutched sheet outperforms full nudity for Facebook delivery (b
 - `his jacket placed around her bare shoulders from behind`
 - `one strap fallen, hand pressed to collarbone`
 
-### Reference image — extracted prompt (high-CTR Facebook ad, billionaire dark romance)
+### Reference image — canonical T2 template (GPT-native, high-CTR Facebook ad, dark romance / billionaire)
 
-Use as a composition template for any contemporary dark romance / billionaire cover:
+**Use `gpt-image-2-all` for this template.** This is the GPT-native T2 composition — "morning-after scandal" scene. Produces prestige streaming series quality (real human faces, cinematic depth of field, no anime). Validated high-CTR for dark romance / billionaire covers.
+
+Use for any contemporary dark romance / billionaire cover at T2 tier:
 
 ```
 cinematic drama still, prestige streaming series cinematography, film-still from a high-budget production,
+real human skin and hair and faces, NO anime NO cartoon NO illustration NO digital painting NO CGI,
 luxury penthouse bedroom, floor-to-ceiling windows with city skyline at dawn, warm golden morning light,
-real human skin and faces, NO anime NO cartoon NO illustration,
 
 female lead [ethnicity] [hair], late 20s, bare shoulders,
 clutching white bedsheet to chest with both hands,
 wide [eye color] eyes looking off-camera with shocked expression, lips slightly parted,
-positioned large in foreground filling 65% of frame height,
+positioned large in foreground filling 65% of frame height, hair slightly dishevelled,
 
-male lead [ethnicity] [hair], late 20s to mid-30s,
-wearing casual [color] open-collar shirt, seated on bed behind her,
-watching her with quiet intensity, positioned smaller in mid-ground,
+male lead [ethnicity] [hair], late 20s to mid-30s, casual [color] open-collar shirt with stubble,
+seated on bed behind her, watching her with quiet intensity, positioned smaller in mid-ground, slightly soft-focus,
 
-white linen bedding, warm amber morning light, soft bokeh depth of field,
-cinematic depth of field, dark romance novel cover composition,
-photorealistic, 8k
+white linen bedding, warm amber morning light, shallow depth of field bokeh,
+cinematic drama still, dark romance novel cover composition, no text, no watermark, 9:16 vertical
 ```
 
 Substitute `[ethnicity]`, `[hair]`, `[eye color]` from the book's `character-visuals.md`.
