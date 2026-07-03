@@ -291,8 +291,9 @@ Bare shoulders + clutched sheet outperforms full nudity for Facebook delivery (b
 Use as a composition template for any contemporary dark romance / billionaire cover:
 
 ```
-photorealistic cinematic photograph, luxury penthouse bedroom,
-floor-to-ceiling windows with city skyline at dawn, warm golden morning light,
+cinematic drama still, prestige streaming series cinematography, film-still from a high-budget production,
+luxury penthouse bedroom, floor-to-ceiling windows with city skyline at dawn, warm golden morning light,
+real human skin and faces, NO anime NO cartoon NO illustration,
 
 female lead [ethnicity] [hair], late 20s, bare shoulders,
 clutching white bedsheet to chest with both hands,
@@ -322,7 +323,7 @@ Title text '{book-title}' at top center in [title font style for genre].
 Author name '{pen-name}' at bottom center in [author name style for genre].
 [genre style tags]. [character description]. [background description].
 [color palette]. [lighting].
-Professional book cover, photorealistic cinematic photograph, hyperrealistic, real human skin and faces and hair, NO anime, NO cartoon, NO illustration, NO digital painting, portrait [ratio] ratio,
+Professional book cover, cinematic drama still, prestige streaming series cinematography, film-still from a high-budget production, real human skin and faces and hair, NO anime, NO cartoon, NO illustration, NO digital painting, NO CGI, portrait [ratio] ratio,
 keep title and author name inside the central safe area (inner ~85%), no watermark
 ```
 
@@ -369,7 +370,7 @@ The female character must be visually magnetic — impossible to scroll past. **
 | **Clothing** | Deep neckline + bare back/midriff/high slit — two simultaneous revealing elements | Garment failing in multiple places: torn, slipped, soaked, or sheer — the garment is losing | Clothing has already left — one nominal draping element only (silk sheet corner, sheer panel, wisp of fabric) |
 | **Skin** | Cleavage + one secondary zone | Three or more zones simultaneously (bare back, legs, midriff, shoulders, extreme neckline) | Every zone simultaneously except §0-protected; frame reads as total skin with a single covered point |
 | **Figure** | `voluptuous hourglass figure, slim toned waist dramatically cinched, large full bust dramatically prominent, E-cup figure, long shapely legs` | Same figure — drop explicit `E-cup`, use visual-effect phrasing only | Same figure, described through what the drape reveals rather than the figure itself |
-| **Model** | doubao primary (gpt fallback) | doubao primary (gpt fallback) | doubao primary only — **do not attempt gpt at T4** (hard rejection); nano as terminal fallback |
+| **Model** | **gpt-image-2-all primary** (doubao fallback) — T2 is GPT's natural ceiling; produces Image-5-quality prestige-drama stills | doubao primary (GPT hard-rejects T3 fabric-failure/soaked/torn language) | doubao primary only — **do not attempt gpt at T3 or T4** (hard rejection); nano as terminal fallback |
 
 - Pose: use the pose assigned in Step 1.6 (batch) or pick freely from the Poses table (single-book). From-behind poses cap at 2 per site.
 - Framing: state explicitly in every prompt. Never allow the model to default to a face-only crop.
@@ -408,15 +409,15 @@ Use `COVER_TMP` as `OUTPUT_PATH` in the apiyi generator below.
 
 ### Model capability ranking (cascade order)
 
-Three apiyi models are viable for covers, ranked by tested capability for this use case (portrait 2:3, clean title text, maximum allure + drama, no watermark). The generator tries them **in this order** and falls through to the next on any failure:
+Three apiyi models are viable for covers. **GPT is now primary** — it produces cinematic drama stills (prestige streaming series quality, see Image 5 reference). The generator tries them **in this order** and falls through to the next on any failure:
 
 | Rank | Model | Size | Response | Notes |
 |---|---|---|---|---|
-| 1 (primary) | `doubao-seedream-5-0-260128` | `1664x2496` | `url` (JPEG) | Highest visual quality + strongest allure, most permissive content filter. **Stamps an `AI生成` watermark in the bottom-right corner — must crop it (see post-process).** Needs ≥3.7M px, hence the large size. |
-| 2 (fallback) | `gpt-image-2-all` | `848x1280` | `b64_json` (PNG) | Cleaner title text, no watermark, stricter content filter. Use when doubao fails. |
+| 1 (primary) | `gpt-image-2-all` | `848x1280` | `b64_json` (PNG) | **Primary.** Cinematic drama still quality — looks like a frame from a prestige streaming series. Clean output, no watermark. Max safe tier: T2 (bare shoulders + concealing element). Hard-rejects T3/T4 fabric-failure, soaked-clinging, torn-garment language — skip it for T3/T4 covers. |
+| 2 (fallback) | `doubao-seedream-5-0-260128` | `1664x2496` | `url` (JPEG) | **Fallback for T3/T4, or when GPT fails.** Most permissive content filter. **Stamps an `AI生成` watermark in the bottom-right corner — must crop it (see post-process).** |
 **nano-banana-pro — terminal blank-prevention fallback:**
 - Silently downgrades T3+ prompts to ~T1 output; square 1024×1024 (wrong aspect ratio for covers — reframe to 2:3 after generation).
-- Use only when doubao (×2) and gpt both fail.
+- Use only when gpt (×2) and doubao both fail.
 
 ### apiyi path
 
@@ -456,12 +457,22 @@ print('SAVED:' + str(os.path.getsize(output_path)))
 "
 }
 
-# Capability cascade — doubao first; gpt fallback at T2/T3 only (gpt hard-rejects T4, skip it at T4)
-if   gen_cover_apiyi "doubao-seedream-5-0-260128" "1664x2496"; then MODEL_USED="doubao-seedream-5-0-260128"
-elif gen_cover_apiyi "doubao-seedream-5-0-260128" "1664x2496"; then MODEL_USED="doubao-seedream-5-0-260128"  # retry once
-elif [ "$TIER" != "T4" ] && gen_cover_apiyi "gpt-image-2-all" "848x1280"; then MODEL_USED="gpt-image-2-all"  # skip at T4
-elif gen_cover_apiyi "nano-banana-pro"            "1024x1024"; then MODEL_USED="nano-banana-pro"  # blank-prevention
-else MODEL_USED=""; echo "ALL_MODELS_FAILED — skipping book"
+# Capability cascade — GPT primary (cinematic drama still quality); doubao fallback for T3/T4 or GPT failure
+# GPT max safe tier: T2 (bare shoulders + concealing element). Skip GPT entirely for T3/T4 (hard rejection).
+if   [ "$TIER" = "T3" ] || [ "$TIER" = "T4" ]; then
+  # T3/T4: go straight to doubao (GPT rejects fabric-failure/torn/soaked language)
+  gen_cover_apiyi "doubao-seedream-5-0-260128" "1664x2496" && MODEL_USED="doubao-seedream-5-0-260128" || \
+  gen_cover_apiyi "doubao-seedream-5-0-260128" "1664x2496" && MODEL_USED="doubao-seedream-5-0-260128" || \
+  gen_cover_apiyi "nano-banana-pro"            "1024x1024" && MODEL_USED="nano-banana-pro" || \
+  { MODEL_USED=""; echo "ALL_MODELS_FAILED — skipping book"; }
+else
+  # T1/T2: GPT first (prestige drama still), doubao fallback
+  if   gen_cover_apiyi "gpt-image-2-all"            "848x1280";  then MODEL_USED="gpt-image-2-all"
+  elif gen_cover_apiyi "gpt-image-2-all"            "848x1280";  then MODEL_USED="gpt-image-2-all"           # retry once
+  elif gen_cover_apiyi "doubao-seedream-5-0-260128" "1664x2496"; then MODEL_USED="doubao-seedream-5-0-260128"
+  elif gen_cover_apiyi "nano-banana-pro"            "1024x1024"; then MODEL_USED="nano-banana-pro"
+  else MODEL_USED=""; echo "ALL_MODELS_FAILED — skipping book"
+  fi
 fi
 echo "MODEL_USED=$MODEL_USED"
 

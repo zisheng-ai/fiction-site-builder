@@ -183,7 +183,7 @@ Replace the generic cover environment with the chapter's actual setting:
 
 Append at the end:
 ```
-photorealistic, cinematic photography style, hyperrealistic, real human skin and hair and faces, NO anime, NO cartoon, NO illustration, NO digital painting, intimate scene, warm cinematic palette, no text, no title, no watermark
+cinematic drama still, prestige streaming series cinematography, film-still from a high-budget production, real human skin and hair and faces, NO anime, NO cartoon, NO illustration, NO digital painting, NO CGI, intimate scene, warm cinematic palette, no text, no title, no watermark
 ```
 
 ### Complete example (T4)
