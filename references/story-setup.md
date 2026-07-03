@@ -142,7 +142,7 @@ Verify all of the following before go-live:
 
 - [ ] `content/` has ≥ 5 book directories.
 - [ ] Each book has ≥ 10 chapters in `chapters/`.
-- [ ] Each chapter is ≥ 1,500 characters / 1,200 words.
+- [ ] Each chapter is ≥ 1,000 words (resolution chapters may be 1,000–1,400; other types target 1,200–1,800 — see Pacing Guidelines in `story-long-write.md`).
 - [ ] `outline/outline.md` is non-empty for each book.
 - [ ] `world/worldbuilding.md` is non-empty for each book.
 - [ ] `tracking/context.md` populated for each book.

@@ -428,7 +428,7 @@ Next.js App Router automatically outputs `<meta name="viewport" content="width=d
 
 ### What is NOT a problem
 
-Chapter pages contain 1,500–4,000 words of original prose. This is not thin content. Google indexes long-form fiction chapters and can rank individual chapters for long-tail search queries like `"dark romance enemies to lovers chapter 3 read online"`.
+Chapter pages contain 1,000–1,800 words of original prose. This is not thin content — Google's thin-content threshold is around 300 words; fiction chapters are well above it. Google indexes long-form fiction chapters and can rank individual chapters for long-tail search queries like `"dark romance enemies to lovers chapter 3 read online"`.
 
 ### What IS a problem
 
