@@ -482,26 +482,30 @@ Run this command, read the output, then pick a chapter count that **does not app
 
 **WARNING: Do NOT copy the chapter count from the reference site** (`velvet-throne/` or `midnight-fable/`). Those sites are borrowed for code/component structure only. Their chapter counts are irrelevant and must never be used as a default or template.
 
-Pick a number in the 10–20 range that fits the story's scope AND is not already used on this site. Treat the count as a story decision, not a quota:
+Pick a number in the **20–26 range** that fits the story's scope AND is not already used on this site. Treat the count as a story decision, not a quota:
 
-- A tight revenge arc or psychological thriller might need 11–13 chapters.
-- A cosy mystery with recurring investigator and three suspects might need 14–15.
-- A space opera or epic fantasy with many POVs might run to 19–20.
+> **Why 20–26?** The business model is Facebook traffic arbitrage: every chapter is one pageview, and the profit equation is `RPM × pageviews/session − CPC`. More chapters = higher session-depth ceiling. A reader who finishes 6 chapters on a 22-chapter book contributes 6 pageviews; on a 14-chapter book the ceiling is lower and the long tail drops off. Target 20–26 to maximize session depth without padding.
 
-**Never default to 18.** It is the most overused count and almost certainly already taken. If you find yourself writing "18 chapters" without having run the bash command above, stop and run it first.
+- A tight psychological thriller or revenge arc: **20–21 chapters** (lean, punchy, every chapter a hard turn)
+- A paranormal/billionaire romance with full slow-burn arc: **22–23 chapters**
+- A space opera, fae epic, or multi-POV dark fantasy: **24–26 chapters**
+
+**Never default to 22.** It is the most commonly auto-selected count. If you find yourself writing "22 chapters" without having run the bash command above, stop and run it first.
 
 Document the chosen count in `outline/outline.md` header before writing any beat entries.
 
 ## Pacing Guidelines
 
-Word counts are targets, not uniform quotas. Let each chapter breathe according to its dramatic weight — a chapter that needs 4,200 words should not be trimmed to hit a round number, and a lean 1,800-word chapter is fine if it lands the turn cleanly. Vary lengths across the book so readers feel the rhythm shift.
+Word counts are targets, not uniform quotas. Let each chapter breathe according to its dramatic weight. Vary lengths across the book so readers feel the rhythm shift.
+
+> **Facebook arbitrage note:** shorter chapters increase pageviews/session. A reader finishes a 1,200-word chapter in ~5 minutes and immediately clicks Next; a 2,500-word chapter takes ~12 minutes for the same single pageview. The cliffhanger hook-out is the #1 driver of next-pageview clicks — **never sacrifice the hook-out to add word count**. Target the lower half of each range unless the scene genuinely needs more space.
 
 | Chapter type | Word count range | Dialogue ratio | Action beats |
 | --- | --- | --- | --- |
-| Opening chapter | 1,800–2,500 | 20–30% | 3+ |
-| Escalation chapter | 1,500–2,200 | 30–50% | 2–4 |
-| Climax chapter | 1,400–2,000 | 15–25% | 4–6 |
-| Resolution chapter | 1,200–1,800 | 20–40% | 1–2 |
+| Opening chapter | 1,400–1,800 | 20–30% | 3+ |
+| Escalation chapter | 1,200–1,600 | 30–50% | 2–4 |
+| Climax chapter | 1,200–1,600 | 15–25% | 4–6 |
+| Resolution chapter | 1,000–1,400 | 20–40% | 1–2 |
 
 ## Context Handoff (`tracking/context.md` template)
 

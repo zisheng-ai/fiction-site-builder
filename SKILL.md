@@ -220,7 +220,7 @@ After B6 passes, generate two files before closing the session:
 
 **`TODO.md`** — outstanding work for this site, written in **Chinese (中文)**:
 - 部署状态（未部署 / 已上线 + 域名）
-- 每本书的章节缺口：列出少于目标长度（17–21 章）的书及缺多少章
+- 每本书的章节缺口：列出少于目标长度（20–26 章）的书及缺多少章
 - 缺少插图的书
 - `books.ts` 里的 `chapterCount` 与实际文件数不一致的地方
 - 广告和分析工具中尚未完成的项
@@ -238,7 +238,7 @@ All of the following must be true before go-live (after B6 passes):
 | Check | Required location |
 | --- | --- |
 | ≥ 5 book directories | `content/{book-title}/` |
-| Each book has **17–21 chapters** (randomized per book) | `content/{book-title}/chapters/` |
+| Each book has **20–26 chapters** (randomized per book; optimized for Facebook session depth) | `content/{book-title}/chapters/` |
 | Each chapter meets its type target (see Pacing Guidelines in `story-long-write.md`); word counts must vary naturally across chapters — never identical | A1 output |
 | `outline/outline.md` exists and non-empty | A1 output |
 | `world/worldbuilding.md` exists and non-empty | A1 output |
@@ -403,7 +403,7 @@ Do not deliver a build if any of these are true.
 
 **Content completeness:**
 - Site launches with fewer than 5 books.
-- Any book has fewer than 17 chapters or more than 21 chapters.
+- Any book has fewer than 20 chapters or more than 26 chapters.
 - Any chapter falls below its type's minimum (see Pacing Guidelines in `story-long-write.md`).
 - All chapters in a book have the same word count — natural variation is required.
 - `outline/outline.md` is missing or empty for any published book.
