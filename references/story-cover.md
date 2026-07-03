@@ -124,7 +124,7 @@ Do not ask the user. Do not fabricate values that cannot be derived.
 
 ### Step 1.1 — Character Visual Sheet (canonical, required)
 
-**Before building any prompt**, resolve the character visual sheet for this book:
+**Before building any prompt**, resolve the character visual sheet for this book. Also load `references/facebook-ads.md` — the Signature and Figure fields must produce scroll-stopping images, not just accurate descriptions.
 
 1. **Check for existing sheet:** `content/{book-slug}/world/character-visuals.md`
    - If it exists → read it and use the descriptors verbatim in the prompt.
@@ -140,20 +140,21 @@ Do not ask the user. Do not fabricate values that cannot be derived.
 - Hair: [color, length, style — e.g. "dark auburn waves to mid-back"]
 - Eyes: [color — e.g. "pale green eyes"]
 - Figure: [body type — use the Female figure rule phrasing]
-- Signature: [1–2 visual markers unique to this character — e.g. "small silver scar above left brow"]
+- Signature: [1–2 FB scroll-stop visual markers: expression (parted lips / wide eyes catching something off-frame / suppressed tears), implied story (clutching something / half-turned away / caught mid-movement), or physical detail that implies narrative tension]
 
 ## Male Lead
 - Ethnicity: [derive from worldbuilding/synopsis — match the character's stated or implied background]
 - Hair: [color, length — e.g. "dark brown, short-cropped"]
 - Eyes: [color]
 - Build: [e.g. "tall, broad-shouldered, lean muscular"]
-- Signature: [1–2 visual markers]
+- Signature: [1–2 FB scroll-stop visual markers: dominant stance / world signal (suit at dawn / holographic edge / tactical gear) / implied power that creates a question in the viewer's mind]
 ```
 
 3. **Rules:**
    - Every character prompt MUST include the exact phrasing from this sheet (copy-paste, not paraphrase).
    - The sheet is shared by A2 (covers) and A2.5 (illustrations) — once written, never regenerated unless the book's worldbuilding explicitly contradicts it.
    - Ethnicity is derived from the novel's worldbuilding/synopsis — there is no global default; write what fits the character.
+   - **Signature fields must serve FB scroll-stop signal #2 (implied story) and #1 (expression)**. A Signature like "always looks a little underdressed for the room" is good — it implies narrative tension. A Signature like "blue eyes" is not a Signature, it belongs in Eyes.
 
 Cover ratio: **2:3 portrait**. Generate at `848x1280` (1K Fast tier — sufficient for all UI display sizes, fastest generation). No resize step needed.
 

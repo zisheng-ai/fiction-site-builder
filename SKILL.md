@@ -107,7 +107,7 @@ Starts after Phase 0. Runs in parallel with Track B.
 | Phase | Name | Reference | Output |
 | --- | --- | --- | --- |
 | A0 | Niche Research | `fiction-niche-researcher.md` | `outputs/{site-slug}/{book-slug}/niche-research.json` |
-| A1 | Write | see modes below | chapters, outline, world, tracking |
+| A1 | Write | see modes below + `facebook-ads.md` (taglines & hook copy) | chapters, outline, world, tracking |
 | A2 | Cover | `story-cover.md` + `cover-styles.md` + `facebook-ads.md` | `public/covers/{book-title}.webp` + `public/covers/{book-title}.json` per book (flat, no subfolders) |
 | A2.5 | Illustrations | `story-illustrations.md` + `cover-allure-elements.md` | `public/illustrations/{book-slug}/ch-{NNN}.webp` (5–7 per book) |
 | A3 | Quality Pass | `story-review.md` + `story-deslop.md` | review report, AI flavor removed |
@@ -469,6 +469,7 @@ Load references only when entering that phase. Do not preload all references at 
 - `story-cover.md` + `cover-styles.md` — cover generation via apiyi cascade (doubao → doubao-retry → gpt → nano); romance/drama covers roll T2/T3; other genres T1–T2 or T1 per genre table in story-cover.md; no SVG fallback (skip if no API key); all covers generated in parallel.
 - `cover-allure-elements.md` — visual-appeal vocabulary for covers and illustrations; §0 is a lightweight monetization risk note (avoid only outright explicit content).
 - `story-illustrations.md` + `cover-allure-elements.md` — in-chapter illustration generation (A2.5); T3/T4 tier (never T5); peak scene selection; IllustrationBlock component pattern.
+- `facebook-ads.md` — load during A1 for all tagline and hook copy writing (ensures taglines follow FB ad standards: punchy 8-word opener, setup→reversal→unresolved tension structure, 25–40 words, final line always unresolved); also load during A2 cover generation. Do not load for pure chapter prose writing.
 - `seo.md` — load during A0 (niche research) for keyword demand validation; and during A1 when writing book synopses (self-contained descriptions that double as meta descriptions).
 - `geo.md` — load during A0 and A1: book synopses must be written as self-contained relational sentences (not promotional copy) per GEO evidence; author pen-name entity strategy informs A0 differentiation.
 
