@@ -115,7 +115,7 @@ Map the CLAUDE.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via
 | After `contentParts[0]` (~20% into content) | 70–90% | **First slot.** Reader has invested ~2 min and is still engaged. Pass `priority` to `AdsenseSlot`; AdX uses normal `AdSlot` (singleRequest). |
 | In-content, every N paragraphs after the first break | 65–85% | the workhorse — inside the natural reading path |
 | End-of-chapter (before the inline Next CTA) | high | catches the "decide to continue" pause; keep clear gap from Next button (§1.4) |
-| Mobile sticky **anchor** (bottom, `position: fixed`) | very high | **AdX**: nav strip (TOC + Next) above a q5 fluid ad unit. **AdSense**: nav strip only — policy prohibits fixed-position manual units. `StickyAnchorAd` component; `<main>` uses `pb-sticky-ad` (`calc(82px + env(safe-area-inset-bottom))`). |
+| Mobile sticky **nav bar** (bottom, `position: fixed`) | — | Nav-only: TOC + Next buttons. No ads in sticky bar. `StickyNav` component; `<main>` uses `pb-sticky-ad` (`calc(82px + env(safe-area-inset-bottom))`). |
 | Desktop sticky **side-rail** | high | uses empty side space; never a static sidebar (low viewability) |
 
 ### 3.1.1 Per-page loading rule (AdSense only)
@@ -141,8 +141,8 @@ Map the CLAUDE.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via
 - **Ad pixels < 30% of content pixels** per screen (FB + AdSense inventory-value).
 - RPM typically peaks around 5 units; beyond that each added unit adds ~2–4% and erodes engagement + page-experience. Cutting the weakest slot often **raises** total RPM.
 - **Recommended dynamic layout** (measure chapter word count before rendering ads):
-  - All chapters: q1 (after part[0]) + q2 (after part[1]) + q5 fluid (in `StickyAnchorAd`) — **minimum 3 ads always**
-  - > 2,000 words with ≥ 3 paragraphs: q1 + q2 + q3 (in-content) + q5 (in `StickyAnchorAd`)
+  - All chapters: q1 (after part[0]) + q2 (after part[1]) + q5 fluid (after part[1]) — **minimum 3 ads always**
+  - > 2,000 words with ≥ 3 paragraphs: q1 + q2 + q3 + q5 fluid (all in-content, q5 after q3)
   - Do NOT place a q5 AdSlot in-content — q5 is reserved for the sticky anchor; duplicate div ids break GPT.
 
 ### 3.3 CLS protection (Core Web Vitals = cheaper FB traffic + SEO)
@@ -164,8 +164,8 @@ The single biggest viewability lever on chapter pages is WHERE the first ad slot
 
 Rule: place the **first** ad after `contentParts[0]` — the first ~20% of paragraphs (min 3, max 5 paragraphs). At this depth the reader has invested ~2 minutes and is still engaged — first-ad viewability should reach 70–90% vs < 30% pre-content.
 
-AdX layout (2-part chapters): `part[0] → q1 → part[1] → q2` + q5 fluid in `StickyAnchorAd` always visible.
-AdX layout (3-part chapters): `part[0] → q1 → part[1] → q2 → part[2] → q3` + q5 fluid in `StickyAnchorAd`.
+AdX layout (2-part chapters): `part[0] → q1 → part[1] → q2 → q5 fluid` (all in-content).
+AdX layout (3-part chapters): `part[0] → q1 → part[1] → q2 → part[2] → q3 → q5 fluid` (all in-content).
 
 AdSense layout (2-part): `part[0] → slot1(priority) → part[1] → slot2`.
 AdSense layout (3-part): `part[0] → slot1(priority) → part[1] → slot2 → part[2]`.
@@ -464,7 +464,7 @@ function splitContent(content: string): string[] {
 }
 
 // render — q1 goes AFTER part[0], not before all content
-// q4 StickyAnchorAd is mounted at the page level (outside <main>), always visible
+// StickyNav is mounted at the page level (outside <main>), nav-only
 {contentParts.length >= 3 ? (
   <>
     <div className="prose-reader">{contentParts[0]}</div>
@@ -483,18 +483,18 @@ function splitContent(content: string): string[] {
   </>
 )}
 
-{/* q5 is in StickyAnchorAd — do NOT place a second q5 AdSlot here (duplicate div id breaks GPT) */}
-{/* StickyAnchorAd — mount outside <main> before the min-h-screen wrapper div */}
+{/* q5 fluid placed in-content after last content block */}
+{/* StickyNav — mount outside <main> before the min-h-screen wrapper div (nav-only, no ads) */}
 {/* chapter <main> must use className="pb-sticky-ad" (calc(82px + env(safe-area-inset-bottom))) */}
 ```
 
-#### Sticky anchor bar — `StickyAnchorAd.tsx`
+#### Sticky anchor bar — `StickyNav.tsx`
 
 Mount outside `<main>` as a sibling before `<div className="min-h-screen">`. The bar is always visible; `<main>` uses `className="pb-sticky-ad"` (CSS utility: `calc(82px + env(safe-area-inset-bottom))`) to prevent content hiding behind it.
 
 Two variants — **AdX** (nav + q5 fluid ad) and **AdSense** (nav only; policy prohibits fixed manual units).
 
-**AdX variant** — use `<AdSlot>` directly; it handles `defineSlot + display` timing. Never write custom GPT code in StickyAnchorAd. Use q5 fluid (not q4); do NOT also place a q5 in-content.
+**All sites (AdX + AdSense)** — nav-only: TOC + Next buttons, no ads. q5 fluid goes in-content (after the last content part), never in the sticky bar.
 
 ```tsx
 'use client'
@@ -505,7 +505,7 @@ type Props = { bookSlug: string; nextChapter: number | null }
 
 const btnFont = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
 
-export default function StickyAnchorAd({ bookSlug, nextChapter }: Props) {
+export default function StickyNav({ bookSlug, nextChapter }: Props) {
   return (
     <div
       className="fixed bottom-0 left-0 right-0 z-40 bg-base-100/60 backdrop-blur-md border-t border-base-300/40"
@@ -572,7 +572,7 @@ type Props = { bookSlug: string; nextChapter: number | null }
 
 const btnFont = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
 
-export default function StickyAnchorAd({ bookSlug, nextChapter }: Props) {
+export default function StickyNav({ bookSlug, nextChapter }: Props) {
   return (
     <div
       className="fixed bottom-0 left-0 right-0 z-40 bg-base-100/60 backdrop-blur-md border-t border-base-300/40"
