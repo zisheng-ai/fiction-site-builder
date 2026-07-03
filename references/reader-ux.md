@@ -190,7 +190,7 @@ These features add UI complexity and distract from reading. Omit by default:
 
 Use conservative defaults. Readers should not need to adjust settings to find a comfortable starting point.
 
-- **Font:** system stack by default. You may load up to two Google Fonts via `next/font/google` (one reader face + one display face) when the design brief calls for distinct typography; never load a web font from a CDN `<link>`.
+- **Font:** system stack only. Do not load web fonts from any external source. `next/font/google` requires network access to Google Fonts at build time and will fail on mainland China developer machines; it also degrades performance for users in regions where Google is blocked. If a custom display font is essential, self-host it via `@fontsource` (e.g. `pnpm add @fontsource/lora`) — never depend on Google Fonts CDN at build or runtime.
 - **Prose size:** `18px` mobile → `19px` sm+.
 - **Line height:** `1.95` mobile → `2.05` sm+.
 - **Paragraph spacing:** `margin-bottom: 1.3em`.

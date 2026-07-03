@@ -53,7 +53,22 @@ Showing FB's crawler one page and users another, or sending paid traffic to a th
 - Ads must never be styleable-mistakable for the "Next →" button, TOC, or nav. Keep a clear visual + spatial gap between any ad and the Next control.
 - Never label, arrow, or arrange content to push ad clicks. No "click here", no images adjacent to ads that bait clicks.
 
-### 1.5 Consent + trust pages (AdSense approval + FB quality)
+### 1.5 Geographic IVT Protection (Mainland China)
+
+Google AdX and AdSense are both blocked in mainland China. If CN IPs reach the site:
+
+- Ad scripts load and attempt requests — none succeed.
+- Google's IVT detector sees ad requests with zero ad interactions → raises IVT flags.
+- Facebook Pixel fires PageView but conversion events never follow → FB algorithm penalizes the landing page as low-quality traffic.
+
+**Action: block CN IPs at the edge.** See `geo.md` → Mainland China Policy for the Vercel
+middleware implementation. This is not about excluding Chinese readers — the content is in
+English/Spanish and the ad accounts depend on US/AU/UK/LATAM traffic. CN traffic is pure
+liability with no revenue upside.
+
+---
+
+### 1.6 Consent + trust pages (AdSense approval + FB quality)
 
 - A Google-certified **CMP / cookie-consent** is required to serve personalized ads in EEA/UK; without it demand drops to non-personalized only.
 - Site MUST have: **Privacy Policy, Terms, About, Contact** (and a Cookie notice). AdSense approval fails and FB flags "low quality" without them. Link them in the footer of every page.
