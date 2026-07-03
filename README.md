@@ -14,6 +14,7 @@
 - [项目结构](#项目结构)
 - [环境依赖](#环境依赖)
 - [命令速查](#命令速查)
+- [地区与合规声明](#地区与合规声明)
 - [注意事项](#注意事项)
 
 ---
@@ -274,7 +275,8 @@ Claude：开始 Phase 0 → Track A + Track B 并行
 ├── public/
 │   ├── covers/                       # {slug}.webp（每本书一张）
 │   ├── illustrations/                # {book-slug}/ch-{NNN}.webp
-│   ├── logo.png
+│   ├── logo-light.png            # 亮色主题 logo（白底或透明，无内嵌圆角）
+│   ├── logo-dark.png             # 暗色主题 logo（纯黑底全幅，无内嵌圆角）
 │   ├── favicon-32x32.png
 │   └── llms.txt                      # AI 爬虫 manifest
 ├── src/
@@ -334,6 +336,41 @@ pnpm build
 ```bash
 [ -n "$APIYI_API_KEY" ] && echo "ok" || echo "skip"
 ```
+
+---
+
+## 地区与合规声明
+
+### 不支持中国大陆地区
+
+本技能生成的站点**不适合面向中国大陆用户运营**，且开发环境在大陆网络下存在明显限制：
+
+**生成站点的前端依赖（大陆均被封锁）：**
+
+| 依赖 | 域名 | 影响 |
+|---|---|---|
+| Google AdSense / AdX | `pagead2.googlesyndication.com`<br>`securepubads.g.doubleclick.net` | 广告无法展示，直接影响收益 |
+| Google Fonts | `fonts.googleapis.com`<br>`fonts.gstatic.com` | 字体加载失败，触发 fallback |
+| Facebook Pixel | `connect.facebook.net` | 转化追踪失效，影响投放优化 |
+
+**开发环境影响（从大陆开发时）：**
+
+- `pnpm install` 访问 npm 官方 registry 速度慢，建议配置镜像（`.npmrc`）
+- `apiyi.com` API 在大陆可能不稳定，建议配置代理
+- GitHub clone / push 速度受限，建议开代理或配 SSH
+- Vercel CLI 部署需代理
+
+**广告账号安全：**
+
+来自中国大陆的流量对 Google AdSense / AdX 属于低价值无效流量，大量此类流量可能触发 Google 的 invalid traffic 检测，影响账号健康。如发现大陆流量占比显著，建议在 Vercel 或 Cloudflare 层 geo-block。
+
+**内容免责：**
+
+本技能生成的所有小说内容均为 AI 创作的**虚构作品**，人物、情节、组织机构均属虚构，与现实无关。使用者负责确保内容符合目标发布地区的法律法规要求；技能作者不承担因内容引发的任何法律责任。
+
+**第三方服务：**
+
+本技能通过 `apiyi.com` 调用图像生成 API，生成的图像版权归属及使用限制以 apiyi 及其上游模型提供商的服务条款为准。
 
 ---
 
