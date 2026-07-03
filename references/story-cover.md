@@ -288,13 +288,17 @@ Bare shoulders + clutched sheet outperforms full nudity for Facebook delivery (b
 
 ### Reference image — canonical T2 template (GPT-native, high-CTR Facebook ad, dark romance / billionaire)
 
-**Use `gpt-image-2-all` for this template.** This is the GPT-native T2 composition — "morning-after scandal" scene. Produces prestige streaming series quality (real human faces, cinematic depth of field, no anime). Validated high-CTR for dark romance / billionaire covers.
+**Use `gpt-image-2-all` for this template.** This is the GPT-native T2 composition — "morning-after scandal" scene. Produces hyperrealistic photograph quality (looks like a real editorial photo, not a rendered image). Validated high-CTR for dark romance / billionaire covers.
+
+**Key quality signal: specify a real camera + lens.** This is the single most effective trigger for photorealism — the model believes it is describing a photograph, not generating art. Always include `shot on Canon EOS R5 with 85mm f/1.4 lens` (or equivalent) in the opening line. Do NOT use `cinematic drama still` or `film-still` — these pull toward stylized TV-show quality instead of raw photo realism.
 
 Use for any contemporary dark romance / billionaire cover at T2 tier:
 
 ```
-cinematic drama still, prestige streaming series cinematography, film-still from a high-budget production,
-real human skin and hair and faces, NO anime NO cartoon NO illustration NO digital painting NO CGI,
+photorealistic editorial photography, looks exactly like a real photograph taken by a professional photographer,
+shot on Canon EOS R5 with 85mm f/1.4 lens, natural skin texture with visible pores and real imperfections,
+real hair strands with natural weight and movement, candid unposed capture,
+NO CGI NO 3D render NO illustration NO painting NO anime NO cartoon NO digital art NO artwork,
 luxury penthouse bedroom, floor-to-ceiling windows with city skyline at dawn, warm golden morning light,
 
 female lead [ethnicity] [hair], late 20s, bare shoulders,
@@ -306,7 +310,7 @@ male lead [ethnicity] [hair], late 20s to mid-30s, casual [color] open-collar sh
 seated on bed behind her, watching her with quiet intensity, positioned smaller in mid-ground, slightly soft-focus,
 
 white linen bedding, warm amber morning light, shallow depth of field bokeh,
-cinematic drama still, dark romance novel cover composition, no text, no watermark, 9:16 vertical
+photorealistic photograph, editorial photography composition, no text, no watermark, 9:16 vertical
 ```
 
 Substitute `[ethnicity]`, `[hair]`, `[eye color]` from the book's `character-visuals.md`.
@@ -323,7 +327,7 @@ Title text '{book-title}' at top center in [title font style for genre].
 Author name '{pen-name}' at bottom center in [author name style for genre].
 [genre style tags]. [character description]. [background description].
 [color palette]. [lighting].
-Professional book cover, cinematic drama still, prestige streaming series cinematography, film-still from a high-budget production, real human skin and faces and hair, NO anime, NO cartoon, NO illustration, NO digital painting, NO CGI, portrait [ratio] ratio,
+photorealistic editorial photography, looks exactly like a real photograph taken by a professional photographer, shot on Canon EOS R5 with 85mm f/1.4 lens, natural skin texture with visible pores, real hair strands with natural movement, candid unposed capture, NO CGI, NO 3D render, NO illustration, NO painting, NO anime, NO cartoon, NO digital art, NO artwork, portrait [ratio] ratio,
 keep title and author name inside the central safe area (inner ~85%), no watermark
 ```
 
@@ -409,11 +413,11 @@ Use `COVER_TMP` as `OUTPUT_PATH` in the apiyi generator below.
 
 ### Model capability ranking (cascade order)
 
-Three apiyi models are viable for covers. **GPT is now primary** — it produces cinematic drama stills (prestige streaming series quality, see Image 5 reference). The generator tries them **in this order** and falls through to the next on any failure:
+Three apiyi models are viable for covers. **GPT is now primary** — with the correct photographic prompt language it produces hyperrealistic photograph quality (looks like a real editorial photo shot on a camera, not a rendered image). The generator tries them **in this order** and falls through to the next on any failure:
 
 | Rank | Model | Size | Response | Notes |
 |---|---|---|---|---|
-| 1 (primary) | `gpt-image-2-all` | `848x1280` | `b64_json` (PNG) | **Primary.** Cinematic drama still quality — looks like a frame from a prestige streaming series. Clean output, no watermark. Max safe tier: T2 (bare shoulders + concealing element). Hard-rejects T3/T4 fabric-failure, soaked-clinging, torn-garment language — skip it for T3/T4 covers. |
+| 1 (primary) | `gpt-image-2-all` | `848x1280` | `b64_json` (PNG) | **Primary.** Hyperrealistic photograph quality — with `shot on Canon EOS R5 85mm f/1.4` prompt language, output looks like a real editorial photograph (visible pores, natural hair, candid energy). Clean output, no watermark. Max safe tier: T2 (bare shoulders + concealing element). Hard-rejects T3/T4 fabric-failure, soaked-clinging, torn-garment language — skip it for T3/T4 covers. |
 | 2 (fallback) | `doubao-seedream-5-0-260128` | `1664x2496` | `url` (JPEG) | **Fallback for T3/T4, or when GPT fails.** Most permissive content filter. **Stamps an `AI生成` watermark in the bottom-right corner — must crop it (see post-process).** |
 **nano-banana-pro — terminal blank-prevention fallback:**
 - Silently downgrades T3+ prompts to ~T1 output; square 1024×1024 (wrong aspect ratio for covers — reframe to 2:3 after generation).
