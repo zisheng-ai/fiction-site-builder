@@ -262,8 +262,8 @@ print('SAVED:' + str(os.path.getsize(output_path)))
 | T3 | `doubao-seedream-5-0-260128` `1664x2496` | `doubao-seedream-5-0-260128` `1664x2496` → retry once → `gpt-image-2-all` `848x1280` |
 | T4 | `doubao-seedream-5-0-260128` `1664x2496` | `doubao-seedream-5-0-260128` `1664x2496` → retry once → `gpt-image-2-all` `848x1280` |
 
-- doubao: highest visual quality and strongest allure; requires 1664×2496 pixel floor; stochastic rejection → retry once with identical prompt; watermark crop + resize required post-generation (same as covers).
-- gpt-image-2-all: cleanest title text, no watermark, strictest content filter — use when doubao fails twice.
+- doubao: **preferred primary — fastest generation + lowest cost**. Strong allure output, accepts T3/T4 prompts. Requires 1664×2496 pixel floor; stochastic rejection → retry once with identical prompt; stamps `AI生成` watermark → crop bottom ~7% post-generation (same as covers).
+- gpt-image-2-all: slower and more expensive than doubao — use only when doubao fails twice. Stricter content filter (hard-rejects T3/T4 fabric-failure language).
 - On second rejection: soften prompt per `cover-allure-elements.md` safe-wording rules, then use nano as blank-prevention.
 - nano: silently downgrades T3+ to ~T1 — use as-is (blank-prevention only).
 
