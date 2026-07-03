@@ -507,6 +507,57 @@ Word counts are targets, not uniform quotas. Let each chapter breathe according 
 | Climax chapter | 1,200–1,600 | 15–25% | 4–6 |
 | Resolution chapter | 1,000–1,400 | 20–40% | 1–2 |
 
+## Chapter 1 — Cold-Traffic Hook Structure
+
+Chapter 1 is the only chapter a Facebook ad click will ever guarantee. Every reader who arrives from a paid ad lands here first, knowing nothing — no character names, no story world, no emotional investment. The cold-traffic reader decides in the first 200 words whether to continue or hit Back.
+
+This is a separate spec from the general "Single Chapter Writing Process." Apply it **only to ch-001**; other chapters follow the standard process.
+
+### The cold-traffic contract
+
+A warm reader (returning from organic search, book detail page, or recommendation) arrives with context. A cold-traffic reader arrives with one thing: the expectation set by the ad creative (the cover + tagline). Ch1 must immediately deliver on that expectation — the emotional register, the character type, the power dynamic — before it can ask for investment.
+
+**Violation:** opening ch1 with backstory, worldbuilding, or a secondary character meeting the protagonist. These are legitimate techniques for chapters 4–8. In ch1 they signal to the cold reader "this isn't the story I came for" and cause a bounce.
+
+### Ch1 beat structure (200-word checkpoints)
+
+| Words | Required beat | Purpose |
+|---|---|---|
+| 0–30 | Drop into motion — the protagonist is already doing something | Establishes POV and energy before the reader has time to disengage |
+| 30–100 | One concrete detail that names the protagonist's world-defining problem | Gives the reader something to care about without explaining anything |
+| 100–200 | Introduce the source of tension (person, situation, or object) | Sets the stakes; the reader must feel: "this is going wrong" |
+| 200–400 | Establish what she wants and what's blocking her — in action, not narration | Emotional identification; reader must see themselves or someone they've read before |
+| 400–700 | First unexpected turn — something changes that the protagonist did not expect | Proves the story will surprise; signals this is not a slow burn that earns nothing |
+| 700–end | Escalate one more beat; land the hook-out on an unresolved reversal | Demands ch2; the reader should not be able to stop here |
+
+### Specific rules for ch1 (do not apply to other chapters)
+
+**Line 1 ban:** never open with weather, time of day, or a description of the setting. The first sentence must name or imply the protagonist and create immediate forward motion.
+
+```
+Banned: "The city lights shimmered below as Elena stood at the penthouse window."
+Banned: "It had been three years since she last saw him."
+Required: something that implies action, conflict, or a decision already in motion.
+```
+
+**Backstory cap:** ch1 may contain at most **two** sentences of backstory in the first 500 words. Backstory is permitted only when it creates irony (what she assumed vs. what is now true) — never to explain the world.
+
+**Character introduction cap:** introduce at most **two characters** by name in ch1 (protagonist + one other). Additional named characters dilute cold-reader identification. A crowd scene in ch1 is a conversion killer.
+
+**The Facebook Promise check:** before finalizing ch1, re-read the tagline from `src/lib/books.ts`. The emotional register of ch1's opening 200 words must match the register the tagline implied. If the tagline promises a charged, high-stakes encounter, ch1 must open in that register — not in a quiet or contemplative scene that delays the promised tension.
+
+**Dialogue timing:** first dialogue should appear before word 300. Dialogue signals that something is happening between people, which is the core promise of romance fiction.
+
+### Ch1 word count target
+
+Opening chapters target **1,400–1,800 words** (from the Pacing table). For cold-traffic arbitrage, aim for the lower half (1,400–1,500): a cold reader who finishes the chapter in under 7 minutes immediately clicks Next, which is a second pageview. A longer ch1 delays that click.
+
+### The 200-word bail test
+
+After writing ch1, read only the first 200 words. Ask: if someone arrived from a Facebook ad with nothing else to go on, would they feel something and want to know what happens next? If the answer is "they would understand the setting" — rewrite from word 1. Understanding is not feeling.
+
+---
+
 ## Context Handoff (`tracking/context.md` template)
 
 ```md

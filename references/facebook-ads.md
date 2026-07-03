@@ -43,7 +43,7 @@ Campaign
 | **Ad Set** | Budget, audience, schedule, placement | Who sees it, when, for how much |
 | **Ad** | The actual image + copy the user sees | The creative itself |
 
-**Campaign objective for fiction sites:** Choose **Traffic** (sends people to your URL) or **Engagement** (optimizes for reactions and shares). Do not choose Conversions unless your Pixel is firing purchase events — which fiction sites don't have.
+**Campaign objective for fiction sites:** Start with **Traffic** objective. Once the Pixel has fired ≥ 500 `ViewContent` events (chapter opens), switch the objective to **Engagement — ViewContent** so Facebook optimizes toward readers who actually open chapters, not just people who click ads. Do not use raw `PageView` as the optimization event — it fires on landing even for instant bounces and teaches the algorithm to find clickers, not readers.
 
 **One campaign, multiple ad sets:** Run 2–3 ad sets with different audiences under one campaign. Facebook will automatically shift budget toward the best-performing one if you use CBO (see below).
 
@@ -373,6 +373,57 @@ dark mafia-romance atmosphere, photorealistic, 8k
 3. **Image composition** (same book, different scene: morning-after vs. discovery moment vs. confrontation)
 
 Never test image AND copy simultaneously in early rounds — isolate the variable.
+
+---
+
+### Optimization event — what to tell Facebook to optimize for
+
+The optimization event is the signal you hand to Facebook's algorithm: "find me more people who do *this*." The quality of that signal is the single biggest lever on Lookalike quality and CPA.
+
+**Event hierarchy (best → worst for fiction arbitrage):**
+
+| Event | What it captures | When it becomes usable |
+|---|---|---|
+| Custom "reading time" (scroll 50%+ on chapter page) | People who actually finish a chapter — highest intent | After 500+ fires (requires scroll-depth Pixel code) |
+| `ViewContent` (chapter page load) | People who clicked *and* stayed long enough to trigger the event | After 500+ fires from the Pixel base code |
+| `PageView` (any page load) | Anyone who landed — includes instant bounces | Available immediately, but lowest signal quality |
+
+**Practical ramp:**
+
+1. **Launch phase (0–499 ViewContent events):** Use Traffic objective, optimize for Landing Page Views. Do not use PageView — it fires on the landing page before the reader sees anything and rewards ad-clickers rather than story-readers.
+
+2. **Scale phase (500+ ViewContent events):** Switch to Engagement or Conversions objective, optimize for `ViewContent`. This tells Facebook to find people statistically similar to readers who opened a chapter, not just people who clicked the ad.
+
+3. **Lookalike phase (500+ people in Custom Audience):** Build a Lookalike from the `ViewContent` Custom Audience. A 1% Lookalike of chapter-openers will outperform interest targeting within 1–2 weeks on most accounts.
+
+**If volume is high enough, upgrade to a custom reading-time event:**
+
+Fire a custom event when the reader scrolls past 50% of a chapter page:
+
+```js
+// In the chapter page component (client side)
+useEffect(() => {
+  let fired = false
+  const onScroll = () => {
+    const scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight)
+    if (!fired && scrolled >= 0.5) {
+      fired = true
+      window.fbq?.('track', 'ViewContent', {
+        content_type: 'chapter',
+        content_name: chapterTitle,
+      })
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true })
+  return () => window.removeEventListener('scroll', onScroll)
+}, [chapterTitle])
+```
+
+Using `ViewContent` for scroll-50% (rather than a custom event name) keeps it inside a standard event that Conversion objectives can directly optimize for, without needing a custom conversion setup.
+
+**Why not optimize for `PageView`?**
+
+`PageView` fires as soon as the page loads — including for readers who bounce in under 3 seconds. When Facebook optimizes for PageView, it finds people who are good at clicking ads, not people who are good at reading fiction. CPM may stay low but ROAS degrades because you are buying sessions with zero chapter depth. `ViewContent` at scroll-50% costs more per event but the Lookalike it builds converts at 2–4× the ROAS of a PageView-trained audience.
 
 ---
 

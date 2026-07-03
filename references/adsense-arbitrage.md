@@ -86,18 +86,50 @@ The chapter model already multiplies pageviews. Push it harder (within §1.3):
 - **Full-page navigation on chapter change** (`window.location.href`, not SPA) so AdSense/AdX reinitialize and count a fresh pageview with fresh impressions — already required in `reader-ux.md`.
 - Prefetch the next chapter at ~80% scroll so the next pageview feels instant.
 
-### 2.2 In-chapter pagination (optional, high-impact — use only if it stays compliant)
+### 2.2 In-chapter pagination — not recommended
 
-Split a long chapter into sequential **pages of ~600–900 words each**, each a real route (`/book/{slug}/chapter/{n}/p/{k}`) with a full-reload "Continue reading →" control.
-
-- Each page is a fresh pageview → fresh ad impressions, multiplying RPM-per-chapter.
-- **Compliance gate (§1.3):** every page must hold substantial prose (≥ ~500 words of real content), keep ad-area < 30% of content, and never strand the reader on a near-empty page. Pagination that creates thin pages is a ban--worthy inventory-value violation — when in doubt, fewer/longer pages.
-- Keep the same cliffhanger discipline at page breaks, not just chapter breaks.
+Splitting one chapter into sub-pages (`/chapter/3/p/1`, `/chapter/3/p/2`) creates URL-level confusion: the reader can't tell if they're on page 2 of a chapter or chapter 2 of a book. The disruption to reading flow causes more session drop-off than the extra pageview gains. **Do not implement in-chapter pagination.** Use §2.4 instead.
 
 ### 2.3 End-of-content continuation
 
-- End of chapter → prominent Next.
+- End of chapter → prominent Next button.
 - End of book → "Continue with {next book}" / related-title cards to restart the loop instead of dead-ending.
+
+### 2.4 Alternative session-depth levers (preferred — no UX disruption)
+
+These techniques raise pageviews/session without breaking the reading experience.
+
+**A. Next-chapter teaser below the "Next →" button**
+
+After the chapter hook-out and the primary Next button, render the first 60–80 words of the next chapter in muted text, then a second "Continue reading →" link. The reader has already started reading before they realize they've decided to click. This is the single highest-impact single change for session depth on fiction sites.
+
+```tsx
+{next && (
+  <div className="next-chapter-teaser">
+    <p className="teaser-label">Next: {next.title}</p>
+    <p className="teaser-text">{next.openingSnippet}</p>
+    <a href={`/book/${slug}/chapter/${next.order}`} className="btn-next-sm">
+      Continue reading →
+    </a>
+  </div>
+)}
+```
+
+`openingSnippet` = first 2 sentences of the next chapter (strip markdown, plain text, truncate to ~80 words). Compute it at build time in `books.ts` or the content-collections schema. Cut at the last word before the 80-word mark — never in the middle of a sentence.
+
+**B. Chapter position counter in the reader header**
+
+Show `Chapter 3 / 22` in the sticky header. A reader who sees they are 13% through a 22-chapter story is psychologically further from the exit than one who has no frame. This is free: it adds no new components, just text.
+
+**C. End-of-book restart loop**
+
+After the final chapter's hook-out, instead of a dead end, render 2–3 related books (same tone, similar tropes, different title) with cover + first line + "Start reading →". This is the highest-leverage cross-book retention moment: the reader is emotionally warm and has just finished a story, making them more open to starting another than they will be at any other point.
+
+Implementation: in the book-detail page's `BelowFold`, add a `RelatedBooks` component that takes `books.filter(b => b.slug !== currentSlug).slice(0, 3)` and renders them as a row of cards. No recommendation algorithm needed — any 3 books from the same site work. The emotional warmth from finishing does the heavy lifting.
+
+**D. Chapter title list as teaser inventory**
+
+Chapter titles that create forward curiosity ("The Night He Came Back", "What the Contract Didn't Cover") pull readers from the TOC into chapters they might not have arrived at naturally. When the reader scans the chapter list and sees an intriguing title for chapter 7, they read chapter 5 and 6 faster to get there — compressing the session and deepening engagement. This is a writing standard, not a code change (see story-long-write.md §Title Craft).
 
 **Target: ≥ 2.5–4 pageviews per session.** Below ~2 the arbitrage rarely clears CPC.
 
@@ -187,6 +219,95 @@ Diagnostic signal: if AdX viewability is below 60% and match rate is ≥ 95%, th
 
 - Land on a **strong hook chapter** (often chapter 1, or the highest-tension opening) — not the home page. The faster a reader is inside prose, the more pageviews follow.
 - Landing page must: LCP < 2.5s on mid-range Android/4G, have footer trust links (§1.5), no pre-content interstitial, no deceptive pop-ups (FB "disruptive" + Google Better-Ads). A bottom anchor ad is fine; a full-screen interstitial before content is not.
+
+### 4.3 Pixel event implementation — chapter page
+
+Add this client component and drop it into every chapter page. It fires three events that cover the full optimization funnel described in §4.1 and in `facebook-ads.md §Optimization event`.
+
+```tsx
+// src/components/ChapterPixel.tsx
+'use client'
+import { useEffect, useRef } from 'react'
+
+interface Props {
+  chapterTitle: string
+  chapterOrder: number
+  bookSlug: string
+}
+
+export function ChapterPixel({ chapterTitle, chapterOrder, bookSlug }: Props) {
+  const fired50 = useRef(false)
+  const fired90 = useRef(false)
+
+  useEffect(() => {
+    // ViewContent on chapter open — fires once, on mount
+    window.fbq?.('track', 'ViewContent', {
+      content_type: 'chapter',
+      content_name: chapterTitle,
+      content_ids: [`${bookSlug}-ch${chapterOrder}`],
+    })
+
+    const onScroll = () => {
+      const ratio = window.scrollY / (document.body.scrollHeight - window.innerHeight)
+      // 50% scroll — primary optimization event (see facebook-ads.md §4.3)
+      if (!fired50.current && ratio >= 0.5) {
+        fired50.current = true
+        window.fbq?.('trackCustom', 'ChapterRead50', {
+          content_name: chapterTitle,
+          chapter_order: chapterOrder,
+        })
+      }
+      // 90% scroll — "completed chapter" signal for high-quality Lookalike
+      if (!fired90.current && ratio >= 0.9) {
+        fired90.current = true
+        window.fbq?.('trackCustom', 'ChapterCompleted', {
+          content_name: chapterTitle,
+          chapter_order: chapterOrder,
+        })
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [chapterTitle, chapterOrder, bookSlug])
+
+  return null
+}
+```
+
+In the chapter page Server Component:
+
+```tsx
+// src/app/book/[slug]/chapter/[order]/page.tsx
+import { ChapterPixel } from '@/components/ChapterPixel'
+
+export default function ChapterPage({ params }) {
+  const chapter = getChapter(params.slug, params.order)
+  return (
+    <>
+      <ChapterPixel
+        chapterTitle={chapter.title}
+        chapterOrder={chapter.order}
+        bookSlug={params.slug}
+      />
+      {/* chapter content */}
+    </>
+  )
+}
+```
+
+**Event priority for AEM configuration (Meta Business Manager → Events Manager → Aggregated Event Measurement):**
+
+Set in this order so iOS attribution flows to the highest-quality signal available:
+
+| Priority | Event | Signal quality |
+|---|---|---|
+| 1 | `ChapterCompleted` (custom) | Reader finished a chapter — highest intent |
+| 2 | `ChapterRead50` (custom) | Reader reached midpoint — proven engagement |
+| 3 | `ViewContent` (standard) | Chapter opened — lowest, but broadest volume |
+| 4 | `PageView` | Any page — fallback only |
+
+Use `ViewContent` as the campaign optimization target (standard event, usable with Conversions objective). Upgrade to `ChapterRead50` once it accumulates ≥ 500 events — it signals actual readers, not page-loaders.
 
 ---
 
