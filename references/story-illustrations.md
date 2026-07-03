@@ -299,12 +299,21 @@ rm -f /tmp/illus_*.log
 
 ```bash
 # Resize/crop a PNG (in place) → final ch-{NNN}.webp at q72. Prefer cwebp; fall back to Pillow.
+# If the WebP output is larger than the source PNG, discard it and keep the PNG renamed to .webp.
 to_webp_illus() {
   local src="$1" dst="$2" q="${3:-72}"
+  local before after
+  before=$(stat -f%z "$src" 2>/dev/null || stat -c%s "$src")
   if command -v cwebp &>/dev/null; then
     cwebp -quiet -q "$q" "$src" -o "$dst"
   else
     python3 -c "from PIL import Image; im=Image.open('$src'); im.save('$dst','webp',quality=$q,method=6)"
+  fi
+  after=$(stat -f%z "$dst" 2>/dev/null || stat -c%s "$dst")
+  if [ "$after" -ge "$before" ]; then
+    rm -f "$dst"
+    cp "$src" "$dst"
+    echo "⚠ webp larger than src (${after}B ≥ ${before}B) — kept original"
   fi
 }
 ```

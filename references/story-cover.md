@@ -475,10 +475,17 @@ if [ -f "$COVER_TMP" ]; then
   if ! command -v cwebp &>/dev/null && ! python3 -c "import PIL" &>/dev/null; then
     brew install webp -q || echo "⚠ cwebp install failed — install webp or Pillow"
   fi
-  to_webp_cover "$COVER_TMP" "$WEBP_OUT" 78
   BEFORE=$(stat -f%z "$COVER_TMP" 2>/dev/null || stat -c%s "$COVER_TMP")
+  to_webp_cover "$COVER_TMP" "$WEBP_OUT" 78
   AFTER=$(stat -f%z "$WEBP_OUT" 2>/dev/null || stat -c%s "$WEBP_OUT")
-  echo "✓ webp q78: ${BEFORE}B → ${AFTER}B (-$(( (BEFORE-AFTER)*100/BEFORE ))%)"
+  if [ "$AFTER" -ge "$BEFORE" ]; then
+    # WebP larger than source — keep original, skip WebP
+    rm -f "$WEBP_OUT"
+    cp "$COVER_TMP" "$WEBP_OUT"
+    echo "⚠ webp larger than src (${AFTER}B ≥ ${BEFORE}B) — kept original"
+  else
+    echo "✓ webp q78: ${BEFORE}B → ${AFTER}B (-$(( (BEFORE-AFTER)*100/BEFORE ))%)"
+  fi
   rm -f "$COVER_TMP"   # remove the intermediate PNG; only WebP + JSON remain
 fi
 ```
