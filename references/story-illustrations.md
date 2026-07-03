@@ -295,10 +295,10 @@ rm -f /tmp/illus_*.log
 
 ### A2.5-4: Post-process
 
-**Target dimensions and file size:** every illustration should end at **664×996** (display 2:3), shipped as lossy **WebP q72**, ≤ 300 KB on disk. Resize/crop first with `sips` on the PNG, then convert the final PNG to WebP q78 (prefer `cwebp`, fall back to Pillow). The `.png` is the intermediate; the `.webp` is the deliverable.
+**Target dimensions and file size:** every illustration should end at **664×996** (display 2:3), shipped as lossy **WebP q72**, ≤ 300 KB on disk. Resize/crop first with `sips` on the PNG, then convert the final PNG to WebP q72 (prefer `cwebp`, fall back to Pillow). The `.png` is the intermediate; the `.webp` is the deliverable.
 
 ```bash
-# Resize/crop a PNG (in place) → final ch-{NNN}.webp at q78. Prefer cwebp; fall back to Pillow.
+# Resize/crop a PNG (in place) → final ch-{NNN}.webp at q72. Prefer cwebp; fall back to Pillow.
 to_webp_illus() {
   local src="$1" dst="$2" q="${3:-72}"
   if command -v cwebp &>/dev/null; then
