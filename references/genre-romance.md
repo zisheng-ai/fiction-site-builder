@@ -368,6 +368,58 @@ One sentence is ideal. Two is the maximum. It must reveal the core irony of the 
 | **Three-beat refusal (villainess / regression — first person)** | [I woke up as (condemned identity).] [I have (knowledge advantage).] [He / They / The story (will not / does not know / is about to change) — eight words or fewer.] | "I woke up inside the body of Lady Serafine Voss, the woman who gets executed at the winter ball. I have read every chapter of this story. He doesn't know I know how it ends." |
 | **The withheld fact** | [Something happened]. [What it means is not said]. | "She found what he'd been hiding. She didn't tell him what she planned to do about it." |
 
+### Facebook Ad Hook Copy — 3-Line Feed Format
+
+Facebook/Instagram feeds truncate post text after roughly 3 lines ("See more"). The hook must land in exactly 3 lines — one situation, one turn, one gap. This is distinct from the site tagline (which can be richer and longer); this format is for organic posts and paid ad copy only.
+
+**The 3-line structure:**
+
+| Line | Role | Constraint |
+|------|------|------------|
+| **Line 1 — The situation** | State the impossible or shocking thing. Subject + what happened to her. | 8–14 words. Complete sentence. |
+| **Line 2 — The turn** | Her realization, or the detonation of her assumption. | 5–10 words. Punchy. Often starts with "But" or "She knew". |
+| **Line 3 — The gap** | A physical-evidence reveal, or a mystery cliff that cannot be answered without clicking. | End on a concrete noun, not an emotion. |
+
+**Core rules:**
+
+- **No character names** — always "She" / "Her". The reader self-inserts.
+- **No genre labels** in the copy — no "dark romance", "thriller", "enemies-to-lovers".
+- Each line is a standalone complete sentence (no dependent clauses that require the next line to parse).
+- **End on a fact or object**, not a feeling — "two marriage certificates" not "her heart shattered".
+- When line 3 is a physical reveal, use an ellipsis before the object: "On the table... two marriage certificates." The pause mimics a dramatic beat.
+- **Betrayal source matters**: the strongest hooks use the closest relationship — mother, husband, sister. "A stranger" is weak; "her own mother" is not.
+- **Moral clarity as line 2**: "She knew it was murder." One sentence. No hedging. The protagonist's clear-eyed verdict on the situation is more shocking than the situation itself.
+
+**Templates:**
+
+| Situation type | Line 1 | Line 2 | Line 3 |
+|---|---|---|---|
+| **Family betrayal** | Her own [closest person] wanted to [take something that belongs to her] to [save rival / serve someone else]. | She knew it was [moral label: murder / theft / betrayal]. | But no one could have guessed the ending! |
+| **Assumption-detonation** | She thought [the event] was just [innocent label for it]. | But when she woke up, [reality was the opposite]. | [Location]... [physical object that changes everything]. |
+| **Discovery** | She found [what he had been hiding]. | She didn't tell him [what she planned to do about it]. | [4-word consequence or object, no explanation.] |
+| **Marriage trap** | She thought [the night] was [innocent]. | But [time skip] — [man] was [beside / in front of / holding]. | [The paperwork / the ring / the contract]... already signed. |
+
+**Wild examples (observed, high-performing):**
+
+> "Her own mother wanted to take her kidney to save her sister.
+> She knew it was murder.
+> But no one could have guessed the ending!"
+
+> "She thought last night was just a drunken mistake.
+> But when she woke up, a strange man was beside her.
+> On the table... two marriage certificates."
+
+**When to use vs. tagline:**
+
+| Copy type | Where used | Length | Goal |
+|---|---|---|---|
+| **Tagline** | Book detail page, meta description, cover overlay | 1–3 sentences, richer | SEO + reader scan on the page |
+| **3-line feed hook** | Facebook/Instagram post caption, paid ad copy | Exactly 3 lines, ≤ 3 seconds to read | Stop the scroll; survive the "See more" cut |
+
+Do not reuse the site tagline verbatim as the ad caption — the cadence is different. The tagline can have irony and elegance; the feed hook must be blunt.
+
+---
+
 ### Description (4–6 sentences)
 
 Back-cover copy, not a plot summary. Each sentence has a job:
