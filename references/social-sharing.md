@@ -1,118 +1,161 @@
-# Social Sharing — Platform Limits & Card Requirements
+# Social Sharing — ShareBar Component & Platform Requirements
 
-## Character Limits
+## Tagline Length Constraint
 
-X (Twitter) is the tightest constraint. Design sharing text to fit X first.
+Taglines must be **≤ 180 characters**, single line (no `\n`).  
+This ensures `${title} — ${tagline}` fits within X's 220-char text budget for all titles.  
+Keep this limit when writing or regenerating taglines.
 
-| Platform | Limit | Notes |
-|----------|-------|-------|
-| **X** | 280 chars total | URL auto-shortened to 23 chars (t.co); **text budget = 257**. Keep `text=` ≤ 220 to be safe. |
-| SMS | 160 chars/segment | Multi-segment supported on modern phones. Body = title + "\n" + URL (~100 chars total) — fine as-is. |
-| Pinterest | 500 chars (description) | Full tagline fits. |
-| WhatsApp | ~65,000 chars | No practical limit. Include full tagline. |
-| Facebook | No hard limit | Platform scrapes OG tags; URL-only share is sufficient. |
-| Messages (iMessage) | No limit | OG-based link preview on Apple devices. |
+## ShareBar Platforms
 
-## Sharing Text Strategy
+| Platform | Share button | Image in card | Notes |
+|----------|-------------|---------------|-------|
+| **Pinterest** | ✅ | `&media=` URL param | Does NOT scrape OG; must pass `coverUrl` explicitly |
+| **X (Twitter)** | ✅ | `twitter:card: summary_large_image` | Needs Twitter Card Validator crawl for new URLs |
+| **Facebook** | ✅ | OG tags | Scrapes `og:image` automatically |
+| **WhatsApp** | ✅ | OG tags | Scrapes `og:image` automatically |
+| **Telegram** | ✅ | OG tags | Scrapes `og:image` automatically |
+| **Messages (SMS/iMessage)** | ✅ | OG tags (iMessage) | SMS is plain text only |
+| **Copy Link** | ✅ (copies text+url) | — | Copies `title\ntagline\nurl` to clipboard |
+| **Discord** | No button needed | OG tags | User pastes URL; Discord scrapes OG automatically |
 
-X is the binding constraint. Use this approach in `ShareBar.tsx`:
+## X Character Limit
 
-```ts
-// X: first tagline line only, capped at 220 chars
-const xText = `${title} — ${tagline.split('\n')[0].trim()}`.slice(0, 220)
+X total = 280 chars. URL auto-shortened to 23 chars (t.co). Text budget = **257 chars**.
+Use 220 as a safe cap: `${title} — ${tagline}`.slice(0, 220).
 
-// WhatsApp / Pinterest: full tagline is fine
-const fullText = `${title}\n${tagline}\n${pageUrl}`
-```
+With taglines ≤ 180 chars, this cap should never trigger for any title up to 36 chars.
 
-For SMS, only title + URL (no tagline).
+## Share Card (Rich Preview) Per Platform
 
-## Share Card (Rich Preview) Requirements Per Platform
-
-### Facebook, WhatsApp, iMessage, Telegram, LinkedIn
-Scrape Open Graph tags from the shared URL. No extra parameters needed.
+### Facebook, WhatsApp, iMessage, Telegram, Discord, LinkedIn
+Scrape Open Graph tags from the shared URL. No extra parameters needed in the share URL.
 
 Required OG tags (handled by Next.js `generateMetadata`):
-```
-og:title        → book.title
-og:description  → book.tagline
-og:image        → absolute URL to cover image (resolved via metadataBase)
-og:type         → "book" (detail pages) | "article" (chapter pages)
+```ts
+openGraph: {
+  title: book.title,
+  description: book.tagline,
+  images: [{ url: book.cover, width: 848, height: 1280, alt: book.title }],
+  type: 'book',          // book detail pages
+  // type: 'article',   // chapter pages
+}
 ```
 
-Image spec: minimum 200×200. Recommended 1200×630 (landscape) for best display.
-Our covers are 848×1280 (portrait) — platforms will center-crop. Acceptable.
+Image spec: 848×1280 (portrait covers) — platforms center-crop. Acceptable for all.
 
 ### X (Twitter)
-Uses Twitter Card meta tags. Set in `generateMetadata`:
+Set in `generateMetadata`:
 ```ts
 twitter: { card: 'summary_large_image' }
 ```
-Next.js automatically copies `openGraph.images` to `twitter:image` when `twitter.card` is set.
-No additional code needed as long as `metadataBase` is configured in `layout.tsx`.
-
-Twitter card types:
-- `summary` — small square image, title, description
-- `summary_large_image` — **use this** — large image above title
+Next.js copies `openGraph.images` → `twitter:image` automatically.  
+**New URLs**: use Twitter Card Validator (`cards.twitter.com/validator/`) to force a crawl.  
+The compose dialog does not preview cards until Twitter has crawled the URL.
 
 ### Pinterest
-Does NOT scrape OG tags for pinning. Requires the `&media=` URL parameter:
+Does NOT scrape OG. Requires `&media=` URL parameter in the share link:
 ```
 https://pinterest.com/pin/create/button/
-  ?url={encoded page URL}
-  &media={encoded absolute cover image URL}   ← required for image
-  &description={encoded text}
+  ?url={enc(pageUrl)}
+  &media={enc(coverUrl)}    ← absolute URL required
+  &description={enc(text)}
 ```
-`coverUrl` must be absolute (not a relative path).
 
 ### SMS / Messages
-No card preview. Body is plain text only. Keep concise: `title\npageUrl`.
+No card preview. Plain text: `title\npageUrl`.
 
 ## metadataBase Requirement
 
-All OG/Twitter image URLs must be absolute. In Next.js App Router, set `metadataBase` in `src/app/layout.tsx`:
-
+All OG/Twitter image URLs must be absolute. Set in `src/app/layout.tsx`:
 ```ts
 export const metadata: Metadata = {
   metadataBase: new URL('https://your-domain.com'),
-  // ...
 }
 ```
+This resolves relative cover paths (`/covers/book.webp`) to absolute URLs in all meta tags.  
+**Each site must have its own correct domain.** Verify before deploying.
 
-This allows relative paths like `/covers/book.webp` to resolve correctly in meta tags.
-**Each site must have its own domain in `metadataBase`.** Verify this before deploying.
+## ShareBar Component
 
-## ShareBar Component Pattern
+File: `src/components/ShareBar.tsx` — must be a client component (`'use client'`).
 
 ```tsx
-// src/components/ShareBar.tsx — client component
 'use client'
 import { useState } from 'react'
 
-// Props
 interface ShareBarProps {
   title: string      // book title
-  tagline: string    // 3-line hook (lines separated by \n)
-  coverUrl: string   // absolute URL — required for Pinterest media param
-  pageUrl: string    // absolute URL — the book detail page (not the current chapter)
+  tagline: string    // single-line hook, ≤ 180 chars
+  coverUrl: string   // absolute URL — required for Pinterest &media= param
+  pageUrl: string    // absolute URL — always the book detail page, not a chapter
+}
+
+export default function ShareBar({ title, tagline, coverUrl, pageUrl }: ShareBarProps) {
+  const [copied, setCopied] = useState(false)
+  const enc = encodeURIComponent
+
+  // X: cap at 220 to safely fit within 257-char text budget
+  const xText = `${title} — ${tagline}`.slice(0, 220)
+
+  const platforms = [
+    { key: 'pinterest', label: 'Pinterest', color: '#E60023', newTab: true,
+      href: `https://pinterest.com/pin/create/button/?url=${enc(pageUrl)}&media=${enc(coverUrl)}&description=${enc(`${title} — ${tagline}`)}` },
+    { key: 'x',         label: 'X',         color: '#000000', newTab: true,
+      href: `https://twitter.com/intent/tweet?url=${enc(pageUrl)}&text=${enc(xText)}` },
+    { key: 'facebook',  label: 'Facebook',  color: '#1877F2', newTab: true,
+      href: `https://www.facebook.com/sharer/sharer.php?u=${enc(pageUrl)}` },
+    { key: 'whatsapp',  label: 'WhatsApp',  color: '#25D366', newTab: true,
+      href: `https://wa.me/?text=${enc(`${title}\n${tagline}\n${pageUrl}`)}` },
+    { key: 'telegram',  label: 'Telegram',  color: '#229ED9', newTab: true,
+      href: `https://t.me/share/url?url=${enc(pageUrl)}&text=${enc(`${title}\n${tagline}`)}` },
+    { key: 'messages',  label: 'Messages',  color: '#34C759', newTab: false,
+      href: `sms:?body=${enc(`${title}\n${pageUrl}`)}` },
+  ]
+
+  async function copyLink() {
+    try {
+      await navigator.clipboard.writeText(`${title}\n${tagline}\n${pageUrl}`)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch { /* clipboard not available */ }
+  }
+
+  // Render: icon buttons with brand-color hover, plus Copy Link button
 }
 ```
 
-**Always share the book detail page URL** (not the current chapter URL). New readers should
-land at `/book/[slug]/` where they can start from chapter 1.
+Icon SVGs: use inline SVGs (no icon library dependency). Copy from existing site's `ShareBar.tsx`.
 
-## Placement Guidelines
+## Placement
 
-- **Book detail page** (`/book/[slug]/`): below tagline + description, above chapter count.
-- **Chapter page** (`/book/[slug]/chapter/[n]/`): after chapter content (and bottom ad),
-  before the "Next chapter" CTA. This is the highest-impulse moment.
-- **Home page**: not needed — no single book to share.
+**Book detail page** (`/book/[slug]/page.tsx`):
+```tsx
+<p className="... italic">{book.tagline}</p>
+<ShareBar title={book.title} tagline={book.tagline}
+  coverUrl={`${BASE_URL}${book.cover}`} pageUrl={`${BASE_URL}/book/${slug}/`} />
+<p className="...">{book.description}</p>    {/* description comes AFTER ShareBar */}
+```
 
-## CTA Copy
+**Chapter page** (`/book/[slug]/chapter/[n]/page.tsx`) — after chapter content and bottom ad, before "Next chapter" CTA:
+```tsx
+{/* Share */}
+<div className="my-8 py-6 border-t border-base-300 text-center">
+  <p className="text-sm text-base-content/50 mb-3">
+    {next ? <>Enjoying <em>{book.title}</em>?</> : <>Loved <em>{book.title}</em>?</>} Share it!
+  </p>
+  <div className="flex justify-center">
+    <ShareBar title={book.title} tagline={book.tagline}
+      coverUrl={`${BASE_URL}${book.cover}`} pageUrl={`${BASE_URL}/book/${slug}/`} />
+  </div>
+</div>
+```
 
-English sites:
-- Mid-book: *Enjoying [Book Title]? Share it!*
-- Last chapter: *Loved [Book Title]? Share it!*
+Spanish sites — use localised CTA: `¿Disfrutando <em>{book.title}</em>? ¡Compártelo!`
 
-Spanish sites (fuego-eterno):
-- All chapters: *¿Disfrutando [Book Title]? ¡Compártelo!*
+**Home page**: not needed — no single book to share.
+
+## Always share the book detail page URL
+
+Pass `pageUrl={`${BASE_URL}/book/${slug}/`}` everywhere — including from chapter pages.  
+New readers should land at the book detail page to start from chapter 1.

@@ -149,7 +149,7 @@ Read at minimum: `next.config.ts`, `vercel.json`, `src/app/layout.tsx` (non-ad p
 | B1 | Stack | `tech-stack.md` | chosen stack with one-line rationale |
 | B2 | Design | `design-system.md` | tone, palette, type system, `public/logo.png`, `public/favicon-32x32.png` |
 | B3 | Data | `data-contract.md` | content-collections schema |
-| B4 | Build | `references/ui-components.md` + `reader-ux.md` + `adsense-arbitrage.md` + `seo.md` + `meta-ads-landing-requirements.md` | working site with all required pages, trust pages, sitemap, robots.txt, `llms.txt`, and metadata; ad slots and tracking only if configured |
+| B4 | Build | `references/ui-components.md` + `reader-ux.md` + `adsense-arbitrage.md` + `seo.md` + `meta-ads-landing-requirements.md` + `social-sharing.md` | working site with all required pages, trust pages, sitemap, robots.txt, `llms.txt`, metadata, and ShareBar on book detail + chapter pages; ad slots and tracking only if configured |
 | B5 | Performance | `performance.md` + `adsense-arbitrage.md` | Core Web Vitals targets met, images optimized, ad CLS/lazy-load tuned |
 | B6 | QA | `qa-checklist.md` + `references/lighthouse-qa.md` | automated QA pass; Lighthouse median scores meet thresholds; ad-layout + policy-compliance checks; screenshots on failure only |
 
@@ -438,7 +438,8 @@ Do not deliver a build if any of these are true.
 - Required pages: home / book list, book detail with chapter list, chapter reader.
 - Required reader controls: fixed bottom bar with TOC (ghost) + Next → (vivid warm fill, min 60px height); no Previous button; dark mode toggle (DaisyUI `data-theme`); resume-last-chapter via localStorage.
 - Add font size control or reading progress indicator only when the brief explicitly asks for them.
-- Do not add ranking, bookshelf, favorites/bookmarks, search, payment, comments, social sharing, or account modules unless explicitly requested.
+- ShareBar (social sharing) is a standard feature — always include it. See `references/social-sharing.md`.
+- Do not add ranking, bookshelf, favorites/bookmarks, search, payment, comments, or account modules unless explicitly requested.
 - Respect content language: set `lang`, use language-appropriate font stacks, handle CJK line flow.
 - One deliberate visual signature per build — connected to reading, books, chapters, or genre.
 - Monetized FB-traffic sites (the default): ship Privacy / Terms / About / Contact pages + cookie consent, and reserve size on every ad slot. Suggestive covers are allowed; avoid only outright explicit/pornographic imagery (see `references/cover-allure-elements.md` §0). Trust pages, ad-layout, and no-cloaking compliance still apply everywhere.
