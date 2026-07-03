@@ -96,10 +96,11 @@ Map the CLAUDE.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via
 
 | Position | Viewability | Notes |
 |---|---|---|
-| Just below header (top of content) | 85–95% | one premium above-the-fold unit; pass `priority` to `AdsenseSlot` so it loads immediately. Reserve space and keep it actually visible on first mobile screen — large hero images or chapter covers can push it below the fold. |
-| In-content, after first screen / every N paragraphs | 75–90% | the workhorse — inside the natural reading path |
-| End-of-chapter (above the sticky Next bar) | high | catches the "decide to continue" pause; keep clear gap from Next button (§1.4) |
-| Mobile sticky **anchor** (bottom) | very high | one anchor; reliably viewable & refreshable |
+| Pre-content (above all text, just below header) | **< 30%** | **Avoid.** Paid-traffic users start scrolling immediately — this unit exits the viewport before the 1-second viewability threshold. Moving this slot into content can double its Active View score. |
+| After `contentParts[0]` (~20% into content) | 70–90% | **First slot.** Reader has invested ~2 min and is still engaged. Pass `priority` to `AdsenseSlot`; AdX uses normal `AdSlot` (singleRequest). |
+| In-content, every N paragraphs after the first break | 65–85% | the workhorse — inside the natural reading path |
+| End-of-chapter (before the inline Next CTA) | high | catches the "decide to continue" pause; keep clear gap from Next button (§1.4) |
+| Mobile sticky **anchor** (bottom, `position: fixed`) | very high | **AdX only** (`StickyAnchorAd` / q4). AdSense policy prohibits fixed-position manual units — omit for AdSense sites. One anchor; reliably viewable & refreshable. |
 | Desktop sticky **side-rail** | high | uses empty side space; never a static sidebar (low viewability) |
 
 ### 3.1.1 Per-page loading rule (AdSense only)
@@ -110,7 +111,7 @@ Map the CLAUDE.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via
 |------|-----------------------|------------------------|
 | Home / book list | first `<AdsenseSlot>` after the hero section | all others |
 | Book detail | first `<AdsenseSlot>` above the chapter TOC | all others |
-| Chapter reader | first `<AdsenseSlot>` just below the chapter header | all others |
+| Chapter reader | first `<AdsenseSlot>` **after `contentParts[0]`** (not above all content — pre-content viewability is < 30% on paid traffic) | all others |
 
 ```tsx
 <AdsenseSlot slot="..." priority />   {/* immediate — no IntersectionObserver */}
@@ -125,8 +126,8 @@ Map the CLAUDE.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via
 - **Ad pixels < 30% of content pixels** per screen (FB + AdSense inventory-value).
 - RPM typically peaks around 5 units; beyond that each added unit adds ~2–4% and erodes engagement + page-experience. Cutting the weakest slot often **raises** total RPM.
 - **Recommended dynamic layout** (measure chapter word count before rendering ads):
-  - All chapters: q1 (top) + q2 (mid) + q5 (bottom) — **minimum 3 ads always**
-  - > 2,000 words with ≥ 3 paragraphs: q1 + q2 + q3 + q5
+  - All chapters: q1 (after part[0]) + q2 (after part[1]) + q5 (fluid, bottom) + q4 sticky anchor — **minimum 3 ads always**
+  - > 2,000 words with ≥ 3 paragraphs: q1 + q2 + q3 + q5 (all in-content) + q4 sticky anchor
   - Avoid a fourth mid-content unit; it sits too close to q5 and adds clutter without meaningful RPM lift.
 
 ### 3.3 CLS protection (Core Web Vitals = cheaper FB traffic + SEO)
@@ -140,12 +141,21 @@ Map the CLAUDE.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via
 - Refresh ads only when the unit is **in the viewport** and after **≥ 30s active dwell**. Sticky/anchor units are the safe place to refresh because they stay viewable.
 - Never refresh on a hidden tab or an off-screen unit.
 
-**Critical: q2 early placement rule.**
-The single biggest viewability lever on chapter pages is WHERE `splitContent` puts the first mid-content ad (q2 / AdSense slot 2). Facebook paid traffic has high bounce before the halfway point — putting q2 at 50% of the chapter means the majority of paid visitors never see it.
+**Critical: first ad slot placement rule.**
+The single biggest viewability lever on chapter pages is WHERE the first ad slot (q1 for AdX / slot 1 for AdSense) appears. Two failure modes:
 
-Rule: break after **~20% of paragraphs** (min 3, max 5), not 33% or 50%. At this depth the reader has invested ~2 minutes and is still engaged — q2 viewability should reach 70–90% vs 30–50% at the halfway split.
+1. **Pre-content placement (worst):** q1 above all prose → user starts scrolling immediately, ad exits viewport in < 1s. Active View score < 30%. This was the historical default; do not repeat it.
+2. **Deep-content placement (bad):** first ad at 50%+ of chapter → only readers who finish more than half ever see it. Active View 30–50% on paid traffic.
 
-Diagnostic signal: if AdX viewability is below 60% and match rate is ≥ 95%, the problem is almost always q2/q3 placement depth, not fill. Fix the split point before investigating any other cause.
+Rule: place the **first** ad after `contentParts[0]` — the first ~20% of paragraphs (min 3, max 5 paragraphs). At this depth the reader has invested ~2 minutes and is still engaged — first-ad viewability should reach 70–90% vs < 30% pre-content.
+
+AdX layout (2-part chapters): `part[0] → q1 → part[1] → q2 → q5(fluid)` + q4 sticky anchor always visible.
+AdX layout (3-part chapters): `part[0] → q1 → part[1] → q2 → part[2] → q3 → q5(fluid)` + q4 sticky anchor.
+
+AdSense layout (2-part): `part[0] → slot1(priority) → part[1] → slot2`.
+AdSense layout (3-part): `part[0] → slot1(priority) → part[1] → slot2 → part[2]`.
+
+Diagnostic signal: if AdX viewability is below 60% and match rate is ≥ 95%, the problem is almost always first-slot placement depth, not fill. Fix the slot position before investigating any other cause.
 
 ---
 
@@ -437,27 +447,99 @@ function splitContent(content: string): string[] {
   ]
 }
 
-// render
-<AdSlot path="/23294357175/q1" id="div-gpt-ad-1782711338284-0" sizes={[[250,250],[300,250],[336,280]]} />
-
+// render — q1 goes AFTER part[0], not before all content
+// q4 StickyAnchorAd is mounted at the page level (outside <main>), always visible
 {contentParts.length >= 3 ? (
   <>
     <div className="prose-reader">{contentParts[0]}</div>
-    <AdSlot path="/23294357175/q2" id="div-gpt-ad-1782711428179-0" sizes={[[250,250],[336,280],[300,250]]} />
+    <AdSlot path="/23294357175/q1" id="div-gpt-ad-1782711338284-0" sizes={[[250,250],[300,250],[336,280]]} />
     <div className="prose-reader">{contentParts[1]}</div>
-    <AdSlot path="/23294357175/q3" id="div-gpt-ad-1782711490041-0" sizes={[[250,250],[336,280],[300,250]]} />
+    <AdSlot path="/23294357175/q2" id="div-gpt-ad-1782711428179-0" sizes={[[250,250],[336,280],[300,250]]} />
     <div className="prose-reader">{contentParts[2]}</div>
+    <AdSlot path="/23294357175/q3" id="div-gpt-ad-1782711490041-0" sizes={[[250,250],[336,280],[300,250]]} />
   </>
 ) : (
   <>
     <div className="prose-reader">{contentParts[0]}</div>
-    <AdSlot path="/23294357175/q2" id="div-gpt-ad-1782711428179-0" sizes={[[250,250],[336,280],[300,250]]} />
+    <AdSlot path="/23294357175/q1" id="div-gpt-ad-1782711338284-0" sizes={[[250,250],[300,250],[336,280]]} />
     <div className="prose-reader">{contentParts[1]}</div>
+    <AdSlot path="/23294357175/q2" id="div-gpt-ad-1782711428179-0" sizes={[[250,250],[336,280],[300,250]]} />
   </>
 )}
 
 <AdSlot path="/23294357175/q5" id="div-gpt-ad-1782711618925-0" sizes={['fluid']} />
+
+{/* StickyAnchorAd (q4) — mount outside <main> so it overlays the bottom viewport */}
+{/* See StickyAnchorAd.tsx; chapter <main> must use className="pb-sticky-ad" */}
+{/* (calc(280px + env(safe-area-inset-bottom))) to clear the ad */}
 ```
+
+#### AdX sticky anchor — `StickyAnchorAd.tsx` (AdX sites only)
+
+Mount outside `<main>` (sibling in the page return, before `<div className="min-h-screen">`). Uses q4 slot. Includes a dismiss button. `<main>` must use `className="pb-sticky-ad"` to prevent content being hidden behind it.
+
+```tsx
+'use client'
+
+import { useEffect, useRef, useState } from 'react'
+
+declare global {
+  interface Window { googletag: any }
+}
+
+export default function StickyAnchorAd() {
+  const [dismissed, setDismissed] = useState(false)
+  const defined = useRef(false)
+
+  useEffect(() => {
+    if (defined.current) return
+    defined.current = true
+    window.googletag = window.googletag || { cmd: [] }
+    window.googletag.cmd.push(() => {
+      const slot = window.googletag.defineSlot(
+        '/23294357175/q4',
+        [[336, 280], [250, 250], [300, 250]],
+        'div-gpt-ad-1782711562651-0'
+      )
+      if (!slot) return
+      slot.addService(window.googletag.pubads())
+      window.googletag.display('div-gpt-ad-1782711562651-0')
+    })
+    return () => {
+      window.googletag?.cmd.push(() => {
+        const slots = window.googletag.pubads().getSlots()
+        const slot = slots.find(
+          (s: { getSlotElementId: () => string }) =>
+            s.getSlotElementId() === 'div-gpt-ad-1782711562651-0'
+        )
+        if (slot) window.googletag.destroySlots([slot])
+      })
+    }
+  }, [])
+
+  if (dismissed) return null
+
+  return (
+    <div
+      className="fixed bottom-0 left-0 right-0 z-40 flex justify-center bg-base-100/95 backdrop-blur-sm border-t border-base-300"
+      style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+    >
+      <div className="relative py-2">
+        <div id="div-gpt-ad-1782711562651-0" style={{ minWidth: 250, minHeight: 250 }} />
+        <button
+          onClick={() => setDismissed(true)}
+          className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-base-200 text-base-content/60 text-xs flex items-center justify-center hover:bg-base-300 leading-none"
+          aria-label="Close ad"
+        >
+          ×
+        </button>
+      </div>
+    </div>
+  )
+}
+```
+
+**Do NOT add a similar fixed-position component for AdSense sites.** Google AdSense policy prohibits placing manual `<ins class="adsbygoogle">` units in fixed/sticky/floating containers. AdSense anchor ads must use Google's Auto Ads system, not manual slots.
 
 #### AdSense — `AdsenseSlot.tsx`
 
