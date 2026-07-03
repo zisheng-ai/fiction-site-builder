@@ -4,6 +4,168 @@ Load this reference when the user asks about Facebook advertising, ad copy, tagl
 
 ---
 
+## Beginner's Wiki — Facebook Ads Concepts
+
+Everything a first-time advertiser needs to know before running a single dollar. Read this section before anything else.
+
+---
+
+### Facebook Pixel — what it is and why it matters
+
+**What it is:** A small piece of JavaScript code you paste into your website's `<head>`. Once installed, it sends an event to Facebook every time someone visits a page, clicks something, or takes an action (like reading a chapter).
+
+**What it does for you:** Facebook uses this data to:
+1. Know who visited your site — so it can find more people just like them (Lookalike Audiences)
+2. Track whether someone who saw your ad actually came to your site (attribution)
+3. Optimize delivery toward people who are most likely to do what you want (read, click, stay)
+
+**Without a Pixel:** You are flying blind. Facebook shows your ad to whoever its guess says is right. With a Pixel, it learns from real visitor behavior and improves targeting automatically over time.
+
+**In this project:** The Pixel ID is set in `fictions/CLAUDE.md` under `facebook_pixel`. All sites in this project share Pixel `1549585523220726`. The code is injected in `src/app/layout.tsx`. Two events fire automatically: `PageView` on every page load.
+
+**One critical rule:** The Pixel must fire *before* any ad spend. Run at least 500–1,000 organic pageviews through the site first so the Pixel has baseline data. Cold Pixels (zero events) make the algorithm guess randomly.
+
+---
+
+### Campaign Structure — the three-level hierarchy
+
+Every Facebook ad lives inside a three-level hierarchy. Confusing these levels is the most common beginner mistake.
+
+```
+Campaign
+  └── Ad Set (one or more)
+        └── Ad (one or more)
+```
+
+| Level | You control | Analogy |
+|---|---|---|
+| **Campaign** | Objective (what you want people to do) | The goal of the entire effort |
+| **Ad Set** | Budget, audience, schedule, placement | Who sees it, when, for how much |
+| **Ad** | The actual image + copy the user sees | The creative itself |
+
+**Campaign objective for fiction sites:** Choose **Traffic** (sends people to your URL) or **Engagement** (optimizes for reactions and shares). Do not choose Conversions unless your Pixel is firing purchase events — which fiction sites don't have.
+
+**One campaign, multiple ad sets:** Run 2–3 ad sets with different audiences under one campaign. Facebook will automatically shift budget toward the best-performing one if you use CBO (see below).
+
+---
+
+### Budget Types — CBO vs ABO
+
+**ABO (Ad Set Budget Optimization):** You set a fixed daily budget on each ad set individually. If you have 3 ad sets at $10/day each, you spend $30/day total regardless of which one performs.
+
+**CBO (Campaign Budget Optimization):** You set one budget at the campaign level. Facebook automatically shifts spend toward whichever ad set is performing best that day.
+
+**For beginners: start with CBO.** It reduces the number of decisions you have to make and lets Facebook's algorithm do the optimization work. Set $20–50/day at the campaign level and let it run for at least 3–5 days before drawing conclusions.
+
+---
+
+### Audiences — the three types
+
+**Core Audience (Interest Targeting):** You manually pick demographics, interests, and behaviors. Example: Women 25–45 in the US who follow "Kindle Unlimited" or "romance novels." This is where beginners start.
+
+**Custom Audience:** Built from your own data — people who visited your site (via Pixel), people on your email list, or people who watched your video. Requires existing traffic. Not useful until you have at least 1,000 Pixel events.
+
+**Lookalike Audience:** Facebook finds new people who look statistically similar to your Custom Audience. Example: "Find me 1 million people similar to the 500 who read more than 3 chapters on my site." This is the most powerful targeting type — but requires a Custom Audience as its source first.
+
+**Practical order for fiction sites:**
+1. Start with Core Audience (interest targeting: romance readers, Kindle, specific sub-genres)
+2. After 2–4 weeks and 1,000+ Pixel events: create a Custom Audience of site visitors
+3. After Custom Audience has 500+ people: create a 1% Lookalike Audience
+
+---
+
+### Key Metrics — what each number means
+
+| Metric | What it means | What's "good" for fiction |
+|---|---|---|
+| **CPM** (Cost Per Mille) | Cost per 1,000 impressions — how much to show your ad 1,000 times | $8–20 for the US; lower = your creative is being favored |
+| **CTR** (Click-Through Rate) | % of people who saw the ad and clicked | ≥ 1.5% is solid; ≥ 3% is excellent for fiction |
+| **CPC** (Cost Per Click) | How much you pay each time someone clicks | < $0.50 is the target for arbitrage to work |
+| **Frequency** | Average number of times one person saw your ad | Keep below 3 in the first week; above 5 = audience fatigue |
+| **ROAS** | Return on Ad Spend — revenue / ad spend | Fiction arbitrage target: ROAS > 1.5× (AdSense revenue vs. ad cost) |
+| **Landing Page Views** | People who actually loaded your site (vs. just clicked) | Should be 70–80% of Link Clicks; lower = slow page load hurting you |
+
+**The metric that matters most for this business model:** CPC. Your profit equation is:
+
+```
+Profit per click = (avg pageviews per session × RPM / 1000) − CPC
+```
+
+If your RPM is $8 and users average 4 pageviews, you earn $0.032 per pageview, or ~$0.128 per session. You need CPC < $0.12 to break even. Target CPC < $0.08 to profit.
+
+---
+
+### The Learning Phase — why you must not touch the ad for 7 days
+
+When you launch a new ad set, Facebook enters a **Learning Phase**. It needs to show your ad to ~50 people who take your desired action before it knows who to target efficiently. During this phase:
+
+- Performance will be unstable and often bad
+- CPM and CPC will be higher than normal
+- The algorithm is still guessing
+
+**The rule:** Do not change your budget, audience, or ad creative during the Learning Phase. Any significant change resets the learning and you start over. Wait a minimum of 7 days and 50 optimization events before judging performance or making changes.
+
+**"Learning Limited" warning:** If Facebook shows this label, your budget is too low or your audience is too small to collect enough events. Fix: increase the daily budget or broaden the audience.
+
+---
+
+### Ad Account vs. Business Manager vs. Page
+
+These three things are different and beginners constantly confuse them.
+
+| Thing | What it is | You need it for |
+|---|---|---|
+| **Facebook Page** | Your public-facing Facebook presence | Required to run ads at all |
+| **Ad Account** | The billing account where your ads live | Running ads, setting budgets, holding your credit card |
+| **Business Manager (Meta Business Suite)** | The container that holds your Pages and Ad Accounts | Managing multiple ad accounts or giving team members access |
+
+**Practical setup:** Create one Business Manager → add your Page → create an Ad Account inside it → add your credit card to the Ad Account. Never run ads directly from a personal profile.
+
+---
+
+### What Gets Your Ad Account Banned
+
+Facebook reviews landing pages, not just creatives. Your account can be restricted or permanently banned for:
+
+| Violation | Example |
+|---|---|
+| **Misleading claims** | "Doctors hate this trick", fake endorsements, before/after comparisons |
+| **Explicit sexual content** | Nipples, genitals, sex acts in the ad image or on the landing page |
+| **Cloaking** | Showing Facebook reviewers a different page than what ad clickers see |
+| **Missing trust pages** | No Privacy Policy, no Terms of Service, no About page |
+| **Prohibited content categories** | Tobacco, weapons, MLM, payday loans — doesn't apply to fiction |
+
+**For fiction sites specifically:** Suggestive covers (bare shoulders, implied intimacy) are fine. Explicit/pornographic imagery is not. The distinction: allure and tension = fine; exposed genitals or sex acts = account ban. See `references/cover-allure-elements.md` §0 for the exact line.
+
+**If your account gets restricted:** Do not create a new account immediately — Facebook links accounts by payment method, IP, and device. First file a review appeal through Meta's support portal. Creating a second account while restricted = permanent ban.
+
+---
+
+### Attribution Window — what the numbers actually count
+
+When Facebook says "this campaign got 500 clicks," which 500? Attribution windows define how long after seeing your ad Facebook credits you a result.
+
+**Default (recommended for fiction):** 7-day click, 1-day view
+- "7-day click": if someone clicked your ad and visited your site within 7 days, it counts
+- "1-day view": if someone only saw your ad (no click) and visited within 1 day, it also counts
+
+**Why this matters:** If you compare Facebook's reported clicks to your Google Analytics sessions, they will never match. Facebook counts views; Analytics counts sessions with different cookies. Expect a 20–40% gap. Neither is wrong — they measure different things.
+
+---
+
+### Creative Fatigue — when to refresh your ads
+
+**Creative fatigue** happens when the same people see your ad too many times and stop responding. Signs:
+- CTR drops more than 30% from week 1 to week 2
+- Frequency above 4 with no new audience expansion
+- CPM rising week-over-week with stable targeting
+
+**Fix:** Create 2–3 ad variations (different tagline, same image; or different image, same copy) and run them simultaneously. Facebook will automatically favor the one with better engagement.
+
+**Rule of thumb for fiction:** Refresh creative every 3–4 weeks for ongoing campaigns. For a new site launch, prepare at least 3 image + copy variants before spending.
+
+---
+
 ## What Makes Fiction Ads Work on Facebook
 
 Fiction readers on Facebook are not searching — they are scrolling. The ad has 0.3 seconds to interrupt the feed. Everything below is built around that constraint.
