@@ -290,7 +290,7 @@ If the Bash tool is unavailable (not a Claude Code session), stop immediately an
 ERROR: fiction-site-builder requires Claude Code. Re-invoke from a Claude Code session.
 ```
 
-**Cover image generation (A2):** Calls `https://api.apiyi.com/v1/images/generations` via curl through the cascade `doubao-seedream-5-0-260128` → `doubao-seedream-5-0-260128` (retry) → `gpt-image-2-all` → `nano-banana-pro`. Requires `APIYI_API_KEY` in the environment. **No SVG fallback** — if the key is not set, cover generation is skipped (warning + continue), and the slot is filled in a later pass. All covers in a batch are generated **in parallel**.
+**Cover image generation (A2):** Calls `https://api.apiyi.com/v1/images/generations` via curl. **Model cascade depends on allure tier** (see `story-cover.md` §Model capability ranking): T1/T2 → `gpt-image-2-all` (primary, hyperrealistic editorial photo quality) → `gpt-image-2-all` (retry) → `doubao-seedream-5-0-260128` → `nano-banana-pro`. T3/T4 → `doubao-seedream-5-0-260128` (primary, GPT hard-rejects fabric-failure/torn/soaked language) → `doubao-seedream-5-0-260128` (retry) → `nano-banana-pro`. Requires `APIYI_API_KEY` in the environment. **No SVG fallback** — if the key is not set, cover generation is skipped (warning + continue), and the slot is filled in a later pass. All covers in a batch are generated **in parallel**.
 
 ```bash
 [ -n "$APIYI_API_KEY" ] && echo "apiyi path" || echo "skip (no SVG fallback)"

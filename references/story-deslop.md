@@ -56,12 +56,33 @@ Deletion cap by severity: Mild ≤15%, Moderate ≤25%, Severe ≤35% of the pas
 | couldn't help but | direct action verb |
 | slowly opened his mouth | just use dialogue / action-then-dialogue |
 
+## Triage Pass (run before any rewriting — token-saving gate)
+
+Before touching a single chapter, do a fast read-only scan of all chapters and output a severity table:
+
+```
+| Chapter | Banned words/1k | Consecutive templates | Gates triggered | Severity |
+|---------|-----------------|----------------------|-----------------|---------|
+| ch-001  | 4               | 1                    | A               | mild    |
+| ch-002  | 11              | 3                    | A B C           | moderate|
+...
+```
+
+Rules:
+- Scan by reading each chapter once — do not rewrite anything yet.
+- Assign severity (mild / moderate / severe) per the Detection table above.
+- Chapters with **zero** banned words and no Gate triggers: mark `clean` — **skip entirely**, do not process.
+- Group results: clean (skip) → mild (Pass 1 only) → moderate (Pass 1+2) → severe (all 3 passes).
+
+This triage pass typically saves 30–50% of total tokens on a full book by skipping clean chapters and limiting mild chapters to one pass.
+
 ## Three-Pass Method
 
 - **Pass 1 — Deabstract**: Gates A, C (abstract emotion), D (uniform rhythm), G (narrator intrusion)
 - **Pass 2 — Deliteralize**: Gates A (literary register), B (sentence templates)
 - **Pass 3 — Restore natural voice**: Gates D (short/long rhythm mix), E (dialogue differentiation), F (ending de-moralization), add sensory detail
 
+- Clean: skip — no passes
 - Mild: Pass 1 only
 - Moderate: Pass 1 + Pass 2
 - Severe: All 3 passes + targeted rewrites of worst paragraphs
