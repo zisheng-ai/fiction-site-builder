@@ -264,9 +264,21 @@ ERROR: fiction-site-builder requires Claude Code. Re-invoke from a Claude Code s
 **Logo and favicon (B2):** Same `APIYI_API_KEY` check as A2. If set, generates PNG assets via `doubao-seedream-5-0-260128` → `gpt-image-2-all` fallback; if not set, yellow warning + **skip** (no SVG fallback). Do **not** use `nano-banana-pro` for logo/favicon.
 
 Generate **three assets in parallel**:
-- `public/logo-light.png` — logo designed for light backgrounds (colored/dark elements on white), 1024×1024
-- `public/logo-dark.png` — logo designed for dark backgrounds (light/white elements on black), 1024×1024
-- `public/favicon-32x32.png` — icon mark only (no wordmark text), works on any background, 512×512
+- `public/logo-light.png` — square icon (no text, no wordmark) for light backgrounds (colored/dark elements on white), generate at 1920×1920 then resize to 512×512
+- `public/logo-dark.png` — square icon (no text, no wordmark) for dark backgrounds (light/white elements on black), generate at 1920×1920 then resize to 512×512
+- `public/favicon-32x32.png` — same icon style, works on any background, generate at 1024×1024 then resize to 256×256
+
+**After generation, compress all three with pngquant** (quality 80–95, speed 1):
+```bash
+sips -z 512 512 public/logo-light.png --out public/logo-light.png
+sips -z 512 512 public/logo-dark.png  --out public/logo-dark.png
+sips -z 256 256 public/favicon-32x32.png --out public/favicon-32x32.png
+pngquant --force --quality=80-95 --speed 1 --output public/logo-light.png public/logo-light.png
+pngquant --force --quality=80-95 --speed 1 --output public/logo-dark.png  public/logo-dark.png
+pngquant --force --quality=80-95 --speed 1 --output public/favicon-32x32.png public/favicon-32x32.png
+```
+
+Target sizes after compression: logo ≤ 100 KB, favicon ≤ 25 KB. Sites use static export (`output: 'export'`) so `next/image` optimization is unavailable — pre-compression is mandatory.
 
 After generating the assets, add the following CSS to `src/app/globals.css` (theme switching, no JS required):
 ```css
