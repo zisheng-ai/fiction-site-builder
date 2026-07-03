@@ -196,7 +196,14 @@ Use conservative defaults. Readers should not need to adjust settings to find a 
 - **Paragraph spacing:** `margin-bottom: 1.1em`.
 
 ```css
-.prose-reader { font-size: 19px; line-height: 1.8; }
+.prose-reader {
+  font-size: 19px;
+  line-height: 1.8;
+  max-width: 68ch;
+  margin: 0 auto;
+  word-break: break-word;
+  text-rendering: optimizeLegibility;
+}
 @media (min-width: 640px) { .prose-reader { font-size: 20px; line-height: 1.85; } }
 ```
 - Latin line-height: 1.8–1.85 (compact but trackable — optimised for social traffic landing pages).

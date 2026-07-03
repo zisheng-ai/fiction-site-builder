@@ -133,6 +133,24 @@ These numbers are practitioner aggregates, not Meta's published figures. Use as 
 - Real, original prose — not thin placeholder or auto-generated filler
 - Mobile experience matches desktop experience (no mobile-only pop-ups, no mobile-only redirects)
 
+### 3.4 Typography requirements for paid traffic landing pages
+
+Social traffic audiences have shorter attention spans than organic search readers. Typography must minimise friction in the first 5 seconds.
+
+| Property | Value | Rationale |
+|---|---|---|
+| Font family | System sans-serif stack (`-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, …`) | Zero load latency; native feel; no FOIT risk on mobile networks |
+| Font size — mobile | 19px | Below 17px increases bounce; above 21px feels low-density |
+| Font size — desktop | 20px | Slightly larger for wider viewport |
+| Line height — mobile | 1.8 | Generous enough to track across lines; below 1.7 feels cramped |
+| Line height — desktop | 1.85 | |
+| Paragraph spacing | `margin-bottom: 1.1em` | Compact beat separation; 1.3em+ is blog-style and hurts scroll depth |
+| Max line width | `max-width: 68ch` | Prevents eye-tracking fatigue on wide screens |
+| Word break | `word-break: break-word` | Prevents long names/URLs breaking the container on mobile |
+| Text rendering | `text-rendering: optimizeLegibility` | Better kerning with system fonts at body size |
+
+These values are validated across 5 live sites (midnight-fable, velvet-throne, wildfire-reads, fuego-eterno, london-pages) for Facebook traffic arbitrage. Do not revert to serif body fonts — `Georgia`/`Times` stacks increase perceived reading friction for social audiences accustomed to sans-serif mobile UI.
+
 ---
 
 ## 4. Cloaking policy
@@ -442,6 +460,7 @@ Wire these during B4 (trust pages / compliance) before running any Meta campaign
 - [ ] No redirect chain between the ad's destination URL and the final landing page
 - [ ] Meta Pixel fires `PageView` on every chapter load (via `layout.tsx`)
 - [ ] Meta Pixel fires `ViewContent` when reader reaches chapter body (client-side scroll trigger)
+- [ ] `.prose-reader` uses system sans-serif stack, ≥19px mobile, line-height 1.8, max-width 68ch, word-break break-word (see §3.4)
 
 **Content consistency**
 - [ ] Ad creative's cover matches the book on the landing page
