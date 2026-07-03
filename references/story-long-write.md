@@ -468,11 +468,27 @@ Chapter titles appear in the book detail chapter list — the reader scans them 
 
 ## Chapter Count Planning
 
-When writing a new book, decide the total chapter count before expanding the outline. Pick a number in the 10–20 range that fits the story's scope. **Never pick the same number as another book in the same site.** Treat the count as a story decision, not a quota:
+**MANDATORY FIRST STEP — check existing counts before deciding anything:**
 
-- A tight revenge arc might need 11 chapters.
-- A cosy mystery with a recurring investigator and three suspects might need 14.
-- A high-stakes thriller with many POVs might run to 20.
+```bash
+for d in content/*/chapters; do
+  book=$(basename $(dirname "$d"))
+  count=$(ls "$d"/*.md 2>/dev/null | wc -l | tr -d ' ')
+  echo "$book: $count"
+done
+```
+
+Run this command, read the output, then pick a chapter count that **does not appear in that list**. If a count appears even once, it is unavailable for this book. Do not guess — run the command.
+
+**WARNING: Do NOT copy the chapter count from the reference site** (`velvet-throne/` or `midnight-fable/`). Those sites are borrowed for code/component structure only. Their chapter counts are irrelevant and must never be used as a default or template.
+
+Pick a number in the 10–20 range that fits the story's scope AND is not already used on this site. Treat the count as a story decision, not a quota:
+
+- A tight revenge arc or psychological thriller might need 11–13 chapters.
+- A cosy mystery with recurring investigator and three suspects might need 14–15.
+- A space opera or epic fantasy with many POVs might run to 19–20.
+
+**Never default to 18.** It is the most overused count and almost certainly already taken. If you find yourself writing "18 chapters" without having run the bash command above, stop and run it first.
 
 Document the chosen count in `outline/outline.md` header before writing any beat entries.
 

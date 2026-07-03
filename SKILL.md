@@ -360,7 +360,7 @@ Use the `Agent` tool for every delegation task, whether single or parallel. To r
 
 **Model selection:**
 
-**If the `Agent` tool is available** (Claude Code — guaranteed by the prerequisite check above): delegate all chapter and prose generation with `model: 'haiku'`. Never write fiction content directly in the main context. Never prompt the user to switch models manually.
+**If the `Agent` tool is available** (Claude Code — guaranteed by the prerequisite check above): delegate all chapter. Never write fiction content directly in the main context. Never prompt the user to switch models manually.
 
 **If the `Agent` tool is not available**: write chapters sequentially in the main context. Skip parallel multi-book and multi-chapter spawning; write one chapter at a time following the Single Chapter Writing Process in `story-long-write.md`. Note: this is a degraded mode — quality and speed are both reduced.
 
