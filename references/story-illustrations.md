@@ -16,7 +16,7 @@ Reference for Phase A2.5 — in-chapter illustration generation. Load when the u
 | Hero image on book-detail and home pages | Embedded inside the chapter reader only |
 | Scanned by ad-review crawlers | Never surfaced as an ad creative or meta-image |
 | `public/covers/` | `public/illustrations/` |
-| One per book | 5–7 per book |
+| One per book | exactly 5 per book |
 
 **T5 is never used for illustrations.** T5's no-fabric dorsal composition is too sparse as an inline scene image — it reads as a standalone art piece, not as a chapter moment. T3 and T4 produce more scene-grounded, immersive results.
 
@@ -36,11 +36,11 @@ The difference from covers is the *tier* used, not the floor.
 
 ---
 
-## Budget: 5–7 Illustrations Per Book
+## Budget: Exactly 5 Illustrations Per Book
 
-Place illustrations at the **highest-stakes dramatic peaks** of the novel — 5 is the practical minimum for a full-length novel regardless of genre, 7 is the ceiling. 5–6 well-placed illustrations are typical.
+Place illustrations at the **highest-stakes dramatic peaks** of the novel — exactly 5 per book, no more. Cost of generation is real; every slot must earn it.
 
-**Never add an illustration just to meet a quota.** The image must earn its placement; if a slot has no qualifying peak, leave it empty and make up the count elsewhere.
+**Never add a 6th illustration.** If a scene doesn't earn a slot, leave that slot empty rather than adding a 6th mediocre image. 5 well-placed illustrations outperform 7 scattered ones.
 
 ---
 
@@ -63,20 +63,19 @@ For non-romance genres: the §0 floor still applies (no explicit sexual content)
 
 Read `content/{book-slug}/outline/outline.md` and `content/{book-slug}/tracking/context.md` to identify candidate scenes. Use these criteria:
 
-### Placement rule — 6 primary slots + 1 bonus slot
+### Placement rule — 5 primary slots
 
-Illustrations must be **evenly distributed** across the novel. For a book with N chapters, divide into 6 equal zones and target at most one illustration per zone. Fill S1–S6 first; only add a 7th (S7 — anywhere in the novel, highest-tension scene not yet illustrated) when the story has an exceptional peak that clearly outranks the already-placed ones:
+Illustrations must be **evenly distributed** across the novel. For a book with N chapters, divide into 5 equal zones and target exactly one illustration per zone. Stop at 5 — never exceed it.
 
 | Slot | Target range | What to look for |
 |---|---|---|
-| **S1 — Opening hook** | chapters 2 – ⌊N×0.17⌋ | First charged encounter; first moment of undeniable attraction; the scene that hooks the reader to the relationship |
-| **S2 — Rising tension** | chapters ⌊N×0.17⌋+1 – ⌊N×0.33⌋ | First deliberate touch; the moment the leads stop pretending; early push-pull moment |
-| **S3 — Midpoint shift** | chapters ⌊N×0.33⌋+1 – ⌊N×0.5⌋ | Emotional turning point; a confession or betrayal that resets the relationship; the moment the protagonist stops fighting |
-| **S4 — Late tension** | chapters ⌊N×0.5⌋+1 – ⌊N×0.67⌋ | Intimacy escalates; a secret revealed through closeness; the relationship goes private |
-| **S5 — Pre-climax** | chapters ⌊N×0.67⌋+1 – ⌊N×0.83⌋ | Near-climax; the decision point; a truth revealed through intimacy |
-| **S6 — Climax** | chapters ⌊N×0.83⌋+1 – N−2 | The scene readers came for; point of no return; final surrender |
+| **S1 — Opening hook** | chapters 2 – ⌊N×0.2⌋ | First charged encounter; first moment of undeniable attraction; the scene that hooks the reader to the relationship |
+| **S2 — Rising tension** | chapters ⌊N×0.2⌋+1 – ⌊N×0.4⌋ | First deliberate touch; the moment the leads stop pretending; early push-pull moment |
+| **S3 — Midpoint shift** | chapters ⌊N×0.4⌋+1 – ⌊N×0.6⌋ | Emotional turning point; a confession or betrayal that resets the relationship; the moment the protagonist stops fighting |
+| **S4 — Late tension** | chapters ⌊N×0.6⌋+1 – ⌊N×0.8⌋ | Intimacy escalates; a secret revealed through closeness; near-climax; the decision point |
+| **S5 — Climax** | chapters ⌊N×0.8⌋+1 – N−1 | The scene readers came for; point of no return; final surrender |
 
-**Never place two illustrations within 3 chapters of each other.** If no qualifying scene exists in a slot, leave that slot empty — do not force a scene that doesn't earn it.
+**Never place two illustrations within 3 chapters of each other.** If no qualifying scene exists in a slot, leave that slot empty — do not add a scene that doesn't earn it, and do not replace the empty slot with a 6th illustration elsewhere.
 
 ### Qualifying peak types (one per slot)
 
@@ -184,7 +183,7 @@ Replace the generic cover environment with the chapter's actual setting:
 
 Append at the end:
 ```
-intimate scene illustration, painterly warm palette, soft editorial romance art, no text, no title, no watermark
+photorealistic, cinematic photography style, hyperrealistic, real human skin and hair and faces, NO anime, NO cartoon, NO illustration, NO digital painting, intimate scene, warm cinematic palette, no text, no title, no watermark
 ```
 
 ### Complete example (T4)

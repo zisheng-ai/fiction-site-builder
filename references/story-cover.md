@@ -322,7 +322,7 @@ Title text '{book-title}' at top center in [title font style for genre].
 Author name '{pen-name}' at bottom center in [author name style for genre].
 [genre style tags]. [character description]. [background description].
 [color palette]. [lighting].
-Professional book cover, high detail digital painting, portrait [ratio] ratio,
+Professional book cover, photorealistic cinematic photograph, hyperrealistic, real human skin and faces and hair, NO anime, NO cartoon, NO illustration, NO digital painting, portrait [ratio] ratio,
 keep title and author name inside the central safe area (inner ~85%), no watermark
 ```
 

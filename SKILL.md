@@ -109,7 +109,7 @@ Starts after Phase 0. Runs in parallel with Track B.
 | A0 | Niche Research | `fiction-niche-researcher.md` | `outputs/{site-slug}/{book-slug}/niche-research.json` |
 | A1 | Write | see modes below + `facebook-ads.md` (taglines & hook copy) | chapters, outline, world, tracking |
 | A2 | Cover | `story-cover.md` + `cover-styles.md` + `facebook-ads.md` | `public/covers/{book-title}.webp` + `public/covers/{book-title}.json` per book (flat, no subfolders) |
-| A2.5 | Illustrations | `story-illustrations.md` + `cover-allure-elements.md` | `public/illustrations/{book-slug}/ch-{NNN}.webp` (5–7 per book) |
+| A2.5 | Illustrations | `story-illustrations.md` + `cover-allure-elements.md` | `public/illustrations/{book-slug}/ch-{NNN}.webp` (exactly 5 per book) |
 | A3 | Quality Pass | `story-review.md` + `story-deslop.md` | review report, AI flavor removed |
 
 A0 runs once per book (not once per site). Required for each new book unless the user has explicitly stated the genre, tropes, and premise. A0's `differentiation_angle` and `competitive_brief` feed directly into A1's story brief.
@@ -125,7 +125,7 @@ A0 runs once per book (not once per site). Required for each new book unless the
 - As a standalone step, runs when the user requests illustrations ("Add illustrations" / "Generate illustrations").
 - Never on short-form stories (no chapter files to illustrate).
 - Illustrations use T3 or T4, randomly assigned per illustration. Never T1, T2, or T5.
-- 5–7 illustrations per book, placed at the highest-stakes peaks (see `story-illustrations.md` for slot distribution). A book may fall below 5 only when not enough scenes earn one — never skip the phase itself.
+- Exactly 5 illustrations per book, placed at the highest-stakes peaks (see `story-illustrations.md` for slot distribution). Never exceed 5 — cost constraint. A book may fall below 5 only when not enough scenes earn one — never skip the phase itself.
 - Does not block the Pre-Launch Gate — but a full pipeline run is expected to produce illustrations for its long-form books.
 
 A3 runs automatically after A1 completes for every long-form book. Do not skip or prompt — deslop is a required quality pass, not optional. Skip only for short-form stories or on explicit user opt-out.
