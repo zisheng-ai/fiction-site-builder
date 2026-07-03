@@ -22,9 +22,7 @@ Keep this limit when writing or regenerating taglines.
 ## X Character Limit
 
 X total = 280 chars. URL auto-shortened to 23 chars (t.co). Text budget = **257 chars**.
-Use 220 as a safe cap: `${title} — ${tagline}`.slice(0, 220).
-
-With taglines ≤ 180 chars, this cap should never trigger for any title up to 36 chars.
+Use `${title} — ${tagline}` directly — no truncation needed with taglines ≤ 180 chars.
 
 ## Share Card (Rich Preview) Per Platform
 
@@ -95,14 +93,11 @@ export default function ShareBar({ title, tagline, coverUrl, pageUrl }: ShareBar
   const [copied, setCopied] = useState(false)
   const enc = encodeURIComponent
 
-  // X: cap at 220 to safely fit within 257-char text budget
-  const xText = `${title} — ${tagline}`.slice(0, 220)
-
   const platforms = [
     { key: 'pinterest', label: 'Pinterest', color: '#E60023', newTab: true,
       href: `https://pinterest.com/pin/create/button/?url=${enc(pageUrl)}&media=${enc(coverUrl)}&description=${enc(`${title} — ${tagline}`)}` },
     { key: 'x',         label: 'X',         color: '#000000', newTab: true,
-      href: `https://twitter.com/intent/tweet?url=${enc(pageUrl)}&text=${enc(xText)}` },
+      href: `https://twitter.com/intent/tweet?url=${enc(pageUrl)}&text=${enc(`${title} — ${tagline}`)}` },
     { key: 'facebook',  label: 'Facebook',  color: '#1877F2', newTab: true,
       href: `https://www.facebook.com/sharer/sharer.php?u=${enc(pageUrl)}` },
     { key: 'whatsapp',  label: 'WhatsApp',  color: '#25D366', newTab: true,
