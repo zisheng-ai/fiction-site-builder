@@ -226,6 +226,91 @@ No two books on the same site should share the same dominant palette. Assign fro
 `warm amber candlelight` · `cold silver moonlight` · `neon rain street` · `golden morning light` · `dark dramatic penthouse` · `moody gothic stone` · `coastal golden-hour` · `stark high-contrast black-and-white accent`
 
 
+## Step 1.7 — Facebook Ad Scroll-Stop Standards
+
+Every cover is also a Facebook ad creative. Apply these standards inside Step 2 — they are not optional and override "aesthetically nice" defaults.
+
+**The 0.3-second test (mandatory gate):** A viewer scrolling their feed at full speed must feel something in under 0.3 seconds — not just notice an attractive person. If the image would read as a fashion photo or stock portrait, it fails the test. Rewrite the prompt.
+
+### Five scroll-stop signals — bake all five into every cover prompt
+
+**1. Expression drives everything.**
+The female lead's face must carry one clear, intense emotion. Never neutral, never pleasant. Pick one and make it unmistakable:
+
+| Emotion | Prompt fragment |
+|---------|----------------|
+| Shocked / startled | `wide eyes, lips parted in shock, clutching something to her chest` |
+| Fearful + drawn-in | `wide eyes, slight tremor in the jaw, leaning back yet unable to look away` |
+| Desperate longing | `heavy-lidded gaze, parted lips, soft anguish in the brow` |
+| Cold fury | `jaw set, eyes burning with restrained fury, perfectly composed posture masking rage` |
+| Torn — wanting + terrified | `eyes full of conflict, biting lower lip, body angled away but gaze pulled back` |
+
+**2. Foreground/background depth composition (high priority for billionaire/dark romance).**
+Place the female lead large in the foreground (occupying 60–70% of frame height), male lead smaller in the background. This creates three simultaneous questions in the viewer's mind: *What did she just find out? Who is he? What happens next?*
+
+Prompt fragment: `female lead fills the foreground, male lead seated or standing behind her in the mid-ground, smaller, watching her`
+
+Never center both characters at the same scale — that reads as a wedding photo, not a thriller.
+
+**3. Implied-story read (3-word premise in 0.3 seconds).**
+The image must communicate a 3-word story premise without any text. Target premises:
+- "morning after scandal"
+- "dangerous obsession discovered"
+- "forbidden attraction exposed"
+- "power shifted overnight"
+
+Achieve this through environment + costume + expression together:
+- Morning after: rumpled bedding, warm morning light, bare shoulders, man still present
+- Dangerous obsession: she found something (document, phone, ring) — her expression reacts to it while he watches
+- Forbidden attraction: extreme physical proximity despite one character clearly trying to create distance
+
+**4. Wealth / world signal in the environment.**
+One background element must instantly communicate the story's world. The viewer shouldn't need to read the title to know if it's a billionaire romance vs. a small-town romance vs. a dark paranormal.
+
+| Story world | Environment signal |
+|-------------|-------------------|
+| Billionaire / dark romance | `floor-to-ceiling windows, city skyline at dawn, luxury penthouse suite` |
+| Mafia / cartel | `dim marble-floored study, heavy drapes, a city visible through armored glass` |
+| Military / action | `tactical vehicle interior, map-covered desk, desert light through a dusty window` |
+| Paranormal / fae | `midnight forest, bioluminescent light, stone archway with moonlight beyond` |
+| Historical / Regency | `candlelit drawing room, damask wallpaper, frost on the window beyond` |
+| Sci-fi / dystopian | `neon-lit rain-soaked city below, glass and steel, cold blue cityscape light` |
+
+**5. Partial-reveal over explicit — suggest more than it shows.**
+Bare shoulders + clutched sheet outperforms full nudity for Facebook delivery (better CTR, lower rejection risk). The viewer's imagination does more work than the image needs to. Standard partial-reveal constructions:
+
+- `bare shoulders, clutching white bedsheet or silk to her chest`
+- `silk robe slipping off one shoulder, catching at the elbow`
+- `wet blouse pressed against her figure, hair damp and dishevelled`
+- `his jacket placed around her bare shoulders from behind`
+- `one strap fallen, hand pressed to collarbone`
+
+### Reference image — extracted prompt (high-CTR Facebook ad, billionaire dark romance)
+
+Use as a composition template for any contemporary dark romance / billionaire cover:
+
+```
+photorealistic cinematic photograph, luxury penthouse bedroom,
+floor-to-ceiling windows with city skyline at dawn, warm golden morning light,
+
+female lead [ethnicity] [hair], late 20s, bare shoulders,
+clutching white bedsheet to chest with both hands,
+wide [eye color] eyes looking off-camera with shocked expression, lips slightly parted,
+positioned large in foreground filling 65% of frame height,
+
+male lead [ethnicity] [hair], late 20s to mid-30s,
+wearing casual [color] open-collar shirt, seated on bed behind her,
+watching her with quiet intensity, positioned smaller in mid-ground,
+
+white linen bedding, warm amber morning light, soft bokeh depth of field,
+cinematic depth of field, dark romance novel cover composition,
+photorealistic, 8k
+```
+
+Substitute `[ethnicity]`, `[hair]`, `[eye color]` from the book's `character-visuals.md`.
+
+---
+
 ## Step 2 — Build the prompt
 
 All prompt text in English. Structure: text layer + style layer + visual layer.
