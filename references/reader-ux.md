@@ -191,16 +191,16 @@ These features add UI complexity and distract from reading. Omit by default:
 Use conservative defaults. Readers should not need to adjust settings to find a comfortable starting point.
 
 - **Font:** system stack only. Do not load web fonts from any external source. `next/font/google` requires network access to Google Fonts at build time and will fail on mainland China developer machines; it also degrades performance for users in regions where Google is blocked. If a custom display font is essential, self-host it via `@fontsource` (e.g. `pnpm add @fontsource/lora`) — never depend on Google Fonts CDN at build or runtime.
-- **Prose size:** `18px` mobile → `19px` sm+.
-- **Line height:** `1.95` mobile → `2.05` sm+.
-- **Paragraph spacing:** `margin-bottom: 1.3em`.
+- **Prose size:** `19px` mobile → `20px` sm+.
+- **Line height:** `1.8` mobile → `1.85` sm+.
+- **Paragraph spacing:** `margin-bottom: 1.1em`.
 
 ```css
-.prose-reader { font-size: 18px; line-height: 1.95; }
-@media (min-width: 640px) { .prose-reader { font-size: 19px; line-height: 2.05; } }
+.prose-reader { font-size: 19px; line-height: 1.8; }
+@media (min-width: 640px) { .prose-reader { font-size: 20px; line-height: 1.85; } }
 ```
-- Latin line-height: 1.9–2.1 (generous — easier to track across the line).
-- Japanese/Korean line-height: 1.85–2.0.
+- Latin line-height: 1.8–1.85 (compact but trackable — optimised for social traffic landing pages).
+- Japanese/Korean line-height: 1.75–1.9.
 - Paragraph spacing: `1em` top margin between paragraphs. Enough to separate beats without the double-spaced blog-style gap.
 - Max line length: 32–38em for Latin prose; narrower for CJK (28–34em) to avoid very long line scanning.
 

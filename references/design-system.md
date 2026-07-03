@@ -152,7 +152,7 @@ Reader body typography matters more than display typography. Get body right befo
 
 **Display type:** Characterful but not decorative. Use for the site logo, book titles, and section headers only. Good choices: `Georgia`, `"Times New Roman"` (system serif, zero cost), or a self-hosted `@fontsource` package such as `@fontsource/lora` or `@fontsource/playfair-display`. Avoid `Fraunces` and `Instrument Serif` — they are LLM default display serifs, deployed without thought. **Never use `next/font/google` or load fonts from `fonts.googleapis.com` — Google Fonts CDN is blocked in mainland China and adds a build-time network dependency.**
 
-**Reader body:** Highly readable. For Latin scripts, `Georgia, "Times New Roman", Times, serif` system stack is the zero-risk default. If a custom serif body is required, self-host via `@fontsource/lora` or `@fontsource/merriweather`. For CJK, always use system stacks (see `internationalization.md`). The body face must hold up at 17px mobile with 1.75 line height for 500+ words at a time.
+**Reader body:** Use the system sans-serif stack for all scripts — zero load latency and native feel on every platform. `--font-reader: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif`. Do not use serif system stacks (`Georgia`, `Times`) or self-hosted serif fonts for body prose — they increase perceived reading friction for social traffic audiences. The body face must hold up at 19px mobile with 1.8 line height for 500+ words at a time.
 
 **UI/utility text:** `system-ui` stack for all controls, labels, and navigation. Never use display or body fonts for controls.
 
