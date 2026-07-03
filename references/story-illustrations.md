@@ -127,7 +127,7 @@ public/
 
 - `{book-slug}` matches the `content/{book-slug}/` directory name
 - `{NNN}` is the zero-padded chapter number from the chapter filename (`ch-007-title.md` → `ch-007.webp`)
-- Always shipped as lossy **WebP q78**, always a single file per illustrated chapter (the PNG straight from the model is the intermediate; the WebP is the deliverable)
+- Always shipped as lossy **WebP q72**, always a single file per illustrated chapter (the PNG straight from the model is the intermediate; the WebP is the deliverable)
 - JSON format matches cover convention: `{"model": "...", "size": "...", "prompt": "..."}`
 - Write the JSON immediately after saving the PNG — never use a separate `.prompt.txt` file
 
@@ -295,12 +295,12 @@ rm -f /tmp/illus_*.log
 
 ### A2.5-4: Post-process
 
-**Target dimensions and file size:** every illustration should end at **664×996** (display 2:3), shipped as lossy **WebP q78**, ≤ 300 KB on disk. Resize/crop first with `sips` on the PNG, then convert the final PNG to WebP q78 (prefer `cwebp`, fall back to Pillow). The `.png` is the intermediate; the `.webp` is the deliverable.
+**Target dimensions and file size:** every illustration should end at **664×996** (display 2:3), shipped as lossy **WebP q72**, ≤ 300 KB on disk. Resize/crop first with `sips` on the PNG, then convert the final PNG to WebP q78 (prefer `cwebp`, fall back to Pillow). The `.png` is the intermediate; the `.webp` is the deliverable.
 
 ```bash
 # Resize/crop a PNG (in place) → final ch-{NNN}.webp at q78. Prefer cwebp; fall back to Pillow.
 to_webp_illus() {
-  local src="$1" dst="$2" q="${3:-78}"
+  local src="$1" dst="$2" q="${3:-72}"
   if command -v cwebp &>/dev/null; then
     cwebp -quiet -q "$q" "$src" -o "$dst"
   else
@@ -333,7 +333,7 @@ sips -z 996 664 input.png --out input.png    # → 664×996
 to_webp_illus input.png "ch-${NNN}.webp" 78
 ```
 
-**Never use lossless WebP** — on photographic art it is larger than the source PNG. Always lossy q78.
+**Never use lossless WebP** — on photographic art it is larger than the source PNG. Always lossy q72.
 
 **Verify and report**
 

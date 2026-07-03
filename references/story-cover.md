@@ -483,7 +483,7 @@ if [ -f "$COVER_TMP" ]; then
 fi
 ```
 
-**Never use lossless WebP** (`cwebp -lossless` / `Image.save(..., lossless=True)`) — on photographic covers it is ~3× *larger* than the source PNG. Always lossy q82. WebP q82 brings AI covers to ~50–60 KB with no visible loss at display size (well under the ≤ 300 KB cap). If a cover is still > 300 KB after conversion, resize to 683×1024 and re-convert.
+**Never use lossless WebP** (`cwebp -lossless` / `Image.save(..., lossless=True)`) — on photographic covers it is ~3× *larger* than the source PNG. Always lossy q78. WebP q78 brings AI covers to ~50–80 KB with no visible loss at display size (well under the ≤ 300 KB cap). If a cover is still > 300 KB after conversion, resize to 683×1024 and re-convert.
 
 For **batch mode**, run this loop after all covers are generated:
 
@@ -513,7 +513,7 @@ done
 ## Output Location
 
 ```
-public/covers/{book-slug}.webp  ← cover image (lossy WebP q82), served as /covers/{book-slug}.webp
+public/covers/{book-slug}.webp  ← cover image (lossy WebP q78), served as /covers/{book-slug}.webp
 public/covers/{book-slug}.json  ← metadata: model, size, prompt
 ```
 

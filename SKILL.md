@@ -55,6 +55,30 @@ All work starts with Phase 0. After that, Track A (content) and Track B (site) r
 Reference: `references/story-setup.md`
 Output: directory structure, naming conventions, GitHub private repo, submodule registration. Skip if the project directory already exists.
 
+**`.npmrc` — MANDATORY first file (create before anything else):**
+
+The development machine uses an internal npm registry (Alibaba `registry.anpm.alibaba-inc.com`). If `.npmrc` is not present at the site root, `pnpm install` bakes internal tarball URLs into `pnpm-lock.yaml` and Vercel's CI cannot reach them — **the build fails with `ERR_SOCKET_TIMEOUT`**. This has caused production outages.
+
+```bash
+echo "registry=https://registry.npmjs.org" > .npmrc
+```
+
+Create this file **before running `pnpm install` or `pnpm add` for the first time**. If the site already exists and the lockfile contains `registry.anpm.alibaba-inc.com` URLs, fix it:
+
+```bash
+echo "registry=https://registry.npmjs.org" > .npmrc
+rm pnpm-lock.yaml
+pnpm install --registry https://registry.npmjs.org
+# Verify: grep "registry.anpm" pnpm-lock.yaml | wc -l  # must be 0
+```
+
+If `pnpm install` still bakes in internal URLs (cached resolution), replace them in-place:
+```bash
+sed -i '' 's|https://registry.anpm.alibaba-inc.com/|https://registry.npmjs.org/|g' pnpm-lock.yaml
+```
+
+Commit both `.npmrc` and the updated `pnpm-lock.yaml`.
+
 **GitHub + Submodule setup (run once per new site):**
 
 ```bash
