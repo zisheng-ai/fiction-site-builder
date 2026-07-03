@@ -303,3 +303,48 @@ Gothic short form does not resolve — it **reveals the shape of the wrongness**
 | **4 — The wrong theory** | The explanation the room accepts and why she initially accepts it or resists it. Name the misdirection — the reader should be able to see the trap without yet knowing it is one. |
 | **5 — The impossible clue** | The one piece of evidence that cannot fit the obvious explanation. Named but not explained — this is what the reader must click to understand. |
 | **Closing beat** | The stakes if she fails — specific, personal, mortal or social. Not "justice" in the abstract; the named person or thing endangered by the wrong answer. |
+
+---
+
+### Facebook Ad Hook Copy — 3-Line Feed Format
+
+Facebook/Instagram feeds truncate after ~3 lines ("See more"). The hook must land in exactly 3 lines — one situation, one turn, one gap.
+
+**The 3-line structure:**
+
+| Line | Role | Constraint |
+|------|------|------------|
+| **Line 1 — The situation** | State the discovery or the wrong thing plainly. Specific physical detail. | 8–14 words. Complete sentence. |
+| **Line 2 — The turn** | Her realization, or the thing that makes the obvious explanation impossible. | 5–10 words. Punchy. |
+| **Line 3 — The gap** | The piece of evidence that cannot be explained — or the question the reader cannot answer without clicking. | End on a concrete noun or an unanswerable question. |
+
+**Core rules:**
+
+- No character names — always "She" / "Her". The reader self-inserts.
+- No genre labels in the copy ("cozy mystery", "whodunit", "thriller").
+- The impossible clue in line 3 must be named, not explained — naming it creates the gap; explaining it closes the gap.
+- State the discovery in physical terms: "she found him in the library" not "she discovered the body."
+- The strongest mysteries have an impossible witness or an impossible object — something that requires the reader to enter the story to resolve.
+
+**Mystery-specific templates:**
+
+| Situation type | Line 1 | Line 2 | Line 3 |
+|---|---|---|---|
+| **The impossible witness** | [The person who should have been dead / absent / elsewhere] was [there / standing at the door / in the photograph]. | She had watched [them / him / her] [die / leave / disappear] [timeframe] ago. | [The physical detail that proves they were there — object, signature, fingerprint.] |
+| **The impossible clue** | Everyone agreed [the obvious answer]. | She found [the one thing that couldn't fit the obvious answer]. | [The object or fact — named, not explained.] |
+| **The wrong victim** | They found [specific description of who was found and where]. | The person they thought it was [had been seen alive / was in another country / had a different blood type]. | [The detail that proves the identification was wrong.] |
+| **The message from the dead** | [She / Her client / The victim's family] had been receiving [letters / calls / messages] from [her / him] for [timeframe]. | [He / She] had been dead for [timeframe]. | The last message arrived [this morning / yesterday / an hour ago]. |
+
+**Examples:**
+
+> "She found the letter in the victim's handwriting.
+> The victim had been dead for three weeks.
+> It was dated yesterday."
+
+> "Everyone agreed he'd acted alone.
+> She found his alibi in the evidence they'd never tested.
+> Someone had buried it on purpose."
+
+**When to use vs. synopsis:**
+- **Synopsis formula** (above): book detail page, meta description. Richer, multi-sentence structure.
+- **3-line feed hook**: Facebook/Instagram post caption, paid ad copy. Survives the "See more" cut. Do not reuse the synopsis verbatim.

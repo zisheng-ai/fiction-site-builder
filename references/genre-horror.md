@@ -230,6 +230,51 @@ Cosmic horror's AdSense advantage: it is almost entirely immune to content polic
 
 ---
 
+### Facebook Ad Hook Copy — 3-Line Feed Format
+
+Facebook/Instagram feeds truncate after ~3 lines ("See more"). The hook must land in exactly 3 lines — one situation, one turn, one gap.
+
+**The 3-line structure:**
+
+| Line | Role | Constraint |
+|------|------|------------|
+| **Line 1 — The situation** | State the wrong thing plainly. Domestic setting makes it land harder. | 8–14 words. Complete sentence. No atmospheric adjectives — let the fact do the work. |
+| **Line 2 — The turn** | Her realization of what it means. Or what she found when she looked closer. | 5–10 words. Punchy. The horror is in the implication, not the description. |
+| **Line 3 — The gap** | The unanswerable question, or the physical thing that cannot be explained. | End on a concrete detail. Never end on a feeling. |
+
+**Core rules:**
+
+- No character names — always "She" / "Her". The reader self-inserts.
+- No genre labels in the copy ("horror", "supernatural", "paranormal thriller").
+- The scary thing is named by its effect, not its nature — "it had been using her voice" not "a demon".
+- Never describe gore in the hook — dread, not forensics.
+- The gap in line 3 must be something the reader has no framework to explain. That gap is the click.
+
+**Horror-specific templates:**
+
+| Situation type | Line 1 | Line 2 | Line 3 |
+|---|---|---|---|
+| **Wrong thing already present** | She had lived in the house for [timeframe] before she noticed [the wrong detail]. | It had been there the whole time. | [The physical proof — one object or fact that cannot be explained.] |
+| **The trap** | She couldn't leave. Not because [of the obvious reason] — because [the real reason she can't name yet]. | She'd tried [number] times. | [What she found instead of the exit.] |
+| **Familiar made wrong** | Her [closest person] came home [at the usual time / the way they always did]. | Something was different. | She couldn't say what. She could only say [the one thing that was wrong — concrete, specific]. |
+| **The thing that knows her** | It had been in her home for [timeframe]. | It knew her name before she told it. | [What it had done with the information — a specific, concrete act.] |
+
+**Examples:**
+
+> "She'd lived in the house for two years before she found the room.
+> It was fully furnished.
+> Someone had been updating the calendar every week."
+
+> "Her daughter stopped speaking on a Tuesday.
+> By Thursday she was answering questions the family hadn't asked out loud.
+> By Saturday the family stopped asking questions."
+
+**When to use vs. synopsis:**
+- **Synopsis formula** (above): book detail page, meta description. Richer, multi-sentence structure.
+- **3-line feed hook**: Facebook/Instagram post caption, paid ad copy. Survives the "See more" cut. Do not reuse the synopsis verbatim.
+
+---
+
 ## Short Form Horror
 
 Horror is one of the genres that works best in short form. Flash horror (under 1,500 words), short horror (2,000–6,000 words), and the horror novelette all work because:
