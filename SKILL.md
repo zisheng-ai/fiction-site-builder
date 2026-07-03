@@ -261,7 +261,35 @@ ERROR: fiction-site-builder requires Claude Code. Re-invoke from a Claude Code s
 [ -n "$APIYI_API_KEY" ] && echo "apiyi path" || echo "skip (no SVG fallback)"
 ```
 
-**Logo and favicon (B2):** Same `APIYI_API_KEY` check as A2. If set, generates PNG assets via `gpt-image-2-all` → `nano-banana-pro` fallback (logo + favicon **in parallel**); if not set, yellow warning + **skip** (no SVG fallback).
+**Logo and favicon (B2):** Same `APIYI_API_KEY` check as A2. If set, generates PNG assets via `doubao-seedream-5-0-260128` → `gpt-image-2-all` fallback; if not set, yellow warning + **skip** (no SVG fallback). Do **not** use `nano-banana-pro` for logo/favicon.
+
+Generate **three assets in parallel**:
+- `public/logo-light.png` — logo designed for light backgrounds (colored/dark elements on white), 1024×1024
+- `public/logo-dark.png` — logo designed for dark backgrounds (light/white elements on black), 1024×1024
+- `public/favicon-32x32.png` — icon mark only (no wordmark text), works on any background, 512×512
+
+After generating the assets, add the following CSS to `src/app/globals.css` (theme switching, no JS required):
+```css
+/* Logo theme switching */
+.logo-dark { display: none; }
+[data-theme$="-dark"] .logo-light { display: none; }
+[data-theme$="-dark"] .logo-dark { display: block; }
+```
+
+Create `src/components/SiteLogo.tsx`:
+```tsx
+export function SiteLogo({ className, alt }: { className?: string; alt?: string }) {
+  const a = alt ?? 'SITE_NAME'
+  return (
+    <>
+      <img src="/logo-light.png" alt={a} className={`logo-light${className ? ' ' + className : ''}`} />
+      <img src="/logo-dark.png" alt={a} className={`logo-dark${className ? ' ' + className : ''}`} />
+    </>
+  )
+}
+```
+
+Replace all `<img src="/logo.png" ...>` (and `<Image src="/logo.png" ...>`) in the codebase with `<SiteLogo className="..." />`. The OG image in `layout.tsx` metadata stays as `logo.png` (used for social sharing, not rendered in the page). Remove any `filter: brightness(0) invert(1)` or similar filter hacks that were compensating for a single-logo approach.
 
 ## Phase Execution Protocol
 
@@ -345,8 +373,9 @@ Do not deliver a build if any of these are true.
 - `outline/outline.md` is missing or empty for any published book.
 - `world/worldbuilding.md` is missing or empty for any published book.
 - Cover image is missing for any book in the reader at launch time. (Development preview may use CSS placeholders; final launch requires real covers.)
-- Logo is missing or is the default Next.js placeholder at launch time. Required: `public/logo.png` (apiyi). No SVG fallback — if generation was skipped, flag for a later pass.
+- `public/logo-light.png` or `public/logo-dark.png` is missing at launch time. Both are required (apiyi). No SVG fallback — if generation was skipped, flag for a later pass.
 - Favicon is missing or is the default Next.js favicon at launch time. Required: `public/favicon-32x32.png` (apiyi). No SVG fallback — if generation was skipped, flag for a later pass.
+- `SiteLogo` component is missing or any `<img src="/logo.png">` reference remains (except OG metadata in layout.tsx).
 
 **Technical:**
 - Build errors or console errors exist on page load.
@@ -454,11 +483,12 @@ Load references only when entering that phase. Do not preload all references at 
     illustrations/              # in-chapter illustrations (A2.5, optional)
       {book-slug}/
         ch-{NNN}.webp           # 0–5 per book, at peak dramatic moments (lossy WebP q78)
-    logo.png                    # site logo — PNG via apiyi (B2); no SVG fallback
-    favicon-32x32.png           # favicon — PNG via apiyi (B2); no SVG fallback
+    logo-light.png              # logo for light mode — PNG via apiyi (B2); no SVG fallback
+    logo-dark.png               # logo for dark mode — PNG via apiyi (B2); no SVG fallback
+    favicon-32x32.png           # favicon (single, no light/dark) — PNG via apiyi (B2); no SVG fallback
 ```
 
-Cover images (`public/covers/{slug}.webp` — flat, one file per book, lossy WebP q82) are generated in A2 via the apiyi cascade (gpt → doubao → nano), all books in parallel. Logo and favicon follow the same pattern in B2 — PNG via apiyi (gpt → nano), generated in parallel. **No SVG fallback** anywhere: if `APIYI_API_KEY` is unset or the cascade fails, the asset is skipped (warning + continue) and flagged for a later pass. During development only, CSS placeholders are acceptable — never ship a launch without real assets.
+Cover images (`public/covers/{slug}.webp` — flat, one file per book, lossy WebP q82) are generated in A2 via the apiyi cascade (gpt → doubao → nano), all books in parallel. Logo and favicon follow the same pattern in B2 — PNG via apiyi (doubao → gpt-image-2-all), all three generated in parallel (`logo-light.png`, `logo-dark.png`, `favicon-32x32.png`). **No SVG fallback** anywhere: if `APIYI_API_KEY` is unset or the cascade fails, the asset is skipped (warning + continue) and flagged for a later pass. During development only, CSS placeholders are acceptable — never ship a launch without real assets.
 
 For a review or redesign task, the output is a findings report and patch set, not a full scaffold.
 
