@@ -115,7 +115,7 @@ Map the CLAUDE.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via
 | After `contentParts[0]` (~20% into content) | 70–90% | **First slot.** Reader has invested ~2 min and is still engaged. Pass `priority` to `AdsenseSlot`; AdX uses normal `AdSlot` (singleRequest). |
 | In-content, every N paragraphs after the first break | 65–85% | the workhorse — inside the natural reading path |
 | End-of-chapter (before the inline Next CTA) | high | catches the "decide to continue" pause; keep clear gap from Next button (§1.4) |
-| Mobile sticky **anchor** (bottom, `position: fixed`) | very high | **AdX only** (`StickyAnchorAd` / q4). AdSense policy prohibits fixed-position manual units — omit for AdSense sites. One anchor; reliably viewable & refreshable. |
+| Mobile sticky **anchor** (bottom, `position: fixed`) | very high | **AdX**: nav strip (TOC + Next) above a q5 fluid ad unit. **AdSense**: nav strip only — policy prohibits fixed-position manual units. `StickyAnchorAd` component; `<main>` uses `pb-sticky-ad` (`calc(82px + env(safe-area-inset-bottom))`). |
 | Desktop sticky **side-rail** | high | uses empty side space; never a static sidebar (low viewability) |
 
 ### 3.1.1 Per-page loading rule (AdSense only)
@@ -141,9 +141,9 @@ Map the CLAUDE.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via
 - **Ad pixels < 30% of content pixels** per screen (FB + AdSense inventory-value).
 - RPM typically peaks around 5 units; beyond that each added unit adds ~2–4% and erodes engagement + page-experience. Cutting the weakest slot often **raises** total RPM.
 - **Recommended dynamic layout** (measure chapter word count before rendering ads):
-  - All chapters: q1 (after part[0]) + q2 (after part[1]) + q5 (fluid, bottom) + q4 sticky anchor — **minimum 3 ads always**
-  - > 2,000 words with ≥ 3 paragraphs: q1 + q2 + q3 + q5 (all in-content) + q4 sticky anchor
-  - Avoid a fourth mid-content unit; it sits too close to q5 and adds clutter without meaningful RPM lift.
+  - All chapters: q1 (after part[0]) + q2 (after part[1]) + q5 fluid (in `StickyAnchorAd`) — **minimum 3 ads always**
+  - > 2,000 words with ≥ 3 paragraphs: q1 + q2 + q3 (in-content) + q5 (in `StickyAnchorAd`)
+  - Do NOT place a q5 AdSlot in-content — q5 is reserved for the sticky anchor; duplicate div ids break GPT.
 
 ### 3.3 CLS protection (Core Web Vitals = cheaper FB traffic + SEO)
 
@@ -164,8 +164,8 @@ The single biggest viewability lever on chapter pages is WHERE the first ad slot
 
 Rule: place the **first** ad after `contentParts[0]` — the first ~20% of paragraphs (min 3, max 5 paragraphs). At this depth the reader has invested ~2 minutes and is still engaged — first-ad viewability should reach 70–90% vs < 30% pre-content.
 
-AdX layout (2-part chapters): `part[0] → q1 → part[1] → q2 → q5(fluid)` + q4 sticky anchor always visible.
-AdX layout (3-part chapters): `part[0] → q1 → part[1] → q2 → part[2] → q3 → q5(fluid)` + q4 sticky anchor.
+AdX layout (2-part chapters): `part[0] → q1 → part[1] → q2` + q5 fluid in `StickyAnchorAd` always visible.
+AdX layout (3-part chapters): `part[0] → q1 → part[1] → q2 → part[2] → q3` + q5 fluid in `StickyAnchorAd`.
 
 AdSense layout (2-part): `part[0] → slot1(priority) → part[1] → slot2`.
 AdSense layout (3-part): `part[0] → slot1(priority) → part[1] → slot2 → part[2]`.
@@ -417,9 +417,10 @@ export default function AdSlot({ path, id, sizes, className = '' }: Props) {
   }, [path, id]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const isFluid = sizes.includes('fluid')
+  // fluid ads need w-full + explicit width — flex justify-center gives the inner div zero width
   return (
-    <div className={`flex justify-center my-6 ${className}`}>
-      <div id={id} style={isFluid ? undefined : { minWidth: 250, minHeight: 250 }} />
+    <div className={`${isFluid ? 'w-full' : 'flex justify-center'} my-6 ${className}`}>
+      <div id={id} style={isFluid ? { width: '100%' } : { minWidth: 250, minHeight: 250 }} />
     </div>
   )
 }
@@ -482,79 +483,147 @@ function splitContent(content: string): string[] {
   </>
 )}
 
-<AdSlot path="/23294357175/q5" id="div-gpt-ad-1782711618925-0" sizes={['fluid']} />
-
-{/* StickyAnchorAd (q4) — mount outside <main> so it overlays the bottom viewport */}
-{/* See StickyAnchorAd.tsx; chapter <main> must use className="pb-sticky-ad" */}
-{/* (calc(280px + env(safe-area-inset-bottom))) to clear the ad */}
+{/* q5 is in StickyAnchorAd — do NOT place a second q5 AdSlot here (duplicate div id breaks GPT) */}
+{/* StickyAnchorAd — mount outside <main> before the min-h-screen wrapper div */}
+{/* chapter <main> must use className="pb-sticky-ad" (calc(82px + env(safe-area-inset-bottom))) */}
 ```
 
-#### AdX sticky anchor — `StickyAnchorAd.tsx` (AdX sites only)
+#### Sticky anchor bar — `StickyAnchorAd.tsx`
 
-Mount outside `<main>` (sibling in the page return, before `<div className="min-h-screen">`). Uses q4 slot. Includes a dismiss button. `<main>` must use `className="pb-sticky-ad"` to prevent content being hidden behind it.
+Mount outside `<main>` as a sibling before `<div className="min-h-screen">`. The bar is always visible; `<main>` uses `className="pb-sticky-ad"` (CSS utility: `calc(82px + env(safe-area-inset-bottom))`) to prevent content hiding behind it.
+
+Two variants — **AdX** (nav + q5 fluid ad) and **AdSense** (nav only; policy prohibits fixed manual units).
+
+**AdX variant** — use `<AdSlot>` directly; it handles `defineSlot + display` timing. Never write custom GPT code in StickyAnchorAd. Use q5 fluid (not q4); do NOT also place a q5 in-content.
 
 ```tsx
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import AdSlot from './AdSlot'
 
-declare global {
-  interface Window { googletag: any }
-}
+type Props = { bookSlug: string; nextChapter: number | null }
 
-export default function StickyAnchorAd() {
-  const [dismissed, setDismissed] = useState(false)
-  const defined = useRef(false)
+const btnFont = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
 
-  useEffect(() => {
-    if (defined.current) return
-    defined.current = true
-    window.googletag = window.googletag || { cmd: [] }
-    window.googletag.cmd.push(() => {
-      const slot = window.googletag.defineSlot(
-        '/23294357175/q4',
-        [[336, 280], [250, 250], [300, 250]],
-        'div-gpt-ad-1782711562651-0'
-      )
-      if (!slot) return
-      slot.addService(window.googletag.pubads())
-      window.googletag.display('div-gpt-ad-1782711562651-0')
-    })
-    return () => {
-      window.googletag?.cmd.push(() => {
-        const slots = window.googletag.pubads().getSlots()
-        const slot = slots.find(
-          (s: { getSlotElementId: () => string }) =>
-            s.getSlotElementId() === 'div-gpt-ad-1782711562651-0'
-        )
-        if (slot) window.googletag.destroySlots([slot])
-      })
-    }
-  }, [])
-
-  if (dismissed) return null
-
+export default function StickyAnchorAd({ bookSlug, nextChapter }: Props) {
   return (
     <div
-      className="fixed bottom-0 left-0 right-0 z-40 flex justify-center bg-base-100/95 backdrop-blur-sm border-t border-base-300"
+      className="fixed bottom-0 left-0 right-0 z-40 bg-base-100/60 backdrop-blur-md border-t border-base-300/40"
       style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
     >
-      <div className="relative py-2">
-        <div id="div-gpt-ad-1782711562651-0" style={{ minWidth: 250, minHeight: 250 }} />
-        <button
-          onClick={() => setDismissed(true)}
-          className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-base-200 text-base-content/60 text-xs flex items-center justify-center hover:bg-base-300 leading-none"
-          aria-label="Close ad"
+      <div
+        className="max-w-3xl mx-auto px-4 py-2"
+        style={{
+          display: 'grid',
+          gap: '12px',
+          gridTemplateColumns: nextChapter !== null
+            ? 'minmax(96px, 0.75fr) minmax(136px, 1.12fr)'
+            : '1fr',
+        }}
+      >
+        <a
+          href={`/book/${bookSlug}#toc`}
+          onClick={(e) => { e.preventDefault(); window.location.href = `/book/${bookSlug}#toc` }}
+          onTouchStart={() => {}}
+          className="flex items-center justify-center gap-1.5 min-h-[44px] px-5 rounded-[14px] border-2 border-base-300 text-base-content font-extrabold text-[13px] tracking-tight hover:border-primary hover:text-primary active:scale-90 active:bg-base-300 transition-[transform,opacity,background-color,border-color] duration-75 select-none"
+          style={{ fontFamily: btnFont }}
         >
-          ×
-        </button>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="shrink-0">
+            <line x1="8" y1="6" x2="21" y2="6" /><line x1="8" y1="12" x2="21" y2="12" /><line x1="8" y1="18" x2="21" y2="18" />
+            <line x1="3" y1="6" x2="3.01" y2="6" /><line x1="3" y1="12" x2="3.01" y2="12" /><line x1="3" y1="18" x2="3.01" y2="18" />
+          </svg>
+          <span>TOC</span>
+        </a>
+        {nextChapter !== null && (
+          <a
+            href={`/book/${bookSlug}/chapter/${nextChapter}`}
+            onClick={(e) => { e.preventDefault(); window.location.href = `/book/${bookSlug}/chapter/${nextChapter}` }}
+            onTouchStart={() => {}}
+            className="flex items-center justify-center gap-1.5 min-h-[44px] px-5 rounded-[14px] bg-primary text-primary-content font-extrabold text-[15px] tracking-tight hover:opacity-90 active:scale-90 active:opacity-50 transition-[transform,opacity,background-color,border-color] duration-75 select-none"
+            style={{ fontFamily: btnFont, boxShadow: '0 8px 18px rgba(236,75,155,.18)' }}
+          >
+            <span>Next</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="shrink-0">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </a>
+        )}
+      </div>
+
+      <div className="border-t border-base-200 bg-base-100 overflow-hidden" style={{ maxHeight: 100 }}>
+        <AdSlot
+          path="/23294357175/q5"
+          id="div-gpt-ad-1782711618925-0"
+          sizes={['fluid']}
+          className="!my-0"
+        />
       </div>
     </div>
   )
 }
 ```
 
-**Do NOT add a similar fixed-position component for AdSense sites.** Google AdSense policy prohibits placing manual `<ins class="adsbygoogle">` units in fixed/sticky/floating containers. AdSense anchor ads must use Google's Auto Ads system, not manual slots.
+**AdSense variant** — same nav strip, no ad section:
+
+```tsx
+'use client'
+
+type Props = { bookSlug: string; nextChapter: number | null }
+
+const btnFont = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+
+export default function StickyAnchorAd({ bookSlug, nextChapter }: Props) {
+  return (
+    <div
+      className="fixed bottom-0 left-0 right-0 z-40 bg-base-100/60 backdrop-blur-md border-t border-base-300/40"
+      style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+    >
+      <div
+        className="max-w-3xl mx-auto px-4 py-2"
+        style={{
+          display: 'grid',
+          gap: '12px',
+          gridTemplateColumns: nextChapter !== null
+            ? 'minmax(96px, 0.75fr) minmax(136px, 1.12fr)'
+            : '1fr',
+        }}
+      >
+        <a
+          href={`/book/${bookSlug}#toc`}
+          onClick={(e) => { e.preventDefault(); window.location.href = `/book/${bookSlug}#toc` }}
+          onTouchStart={() => {}}
+          className="flex items-center justify-center gap-1.5 min-h-[44px] px-5 rounded-[14px] border-2 border-base-300 text-base-content font-extrabold text-[13px] tracking-tight hover:border-primary hover:text-primary active:scale-90 active:bg-base-300 transition-[transform,opacity,background-color,border-color] duration-75 select-none"
+          style={{ fontFamily: btnFont }}
+        >
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="shrink-0">
+            <line x1="8" y1="6" x2="21" y2="6" /><line x1="8" y1="12" x2="21" y2="12" /><line x1="8" y1="18" x2="21" y2="18" />
+            <line x1="3" y1="6" x2="3.01" y2="6" /><line x1="3" y1="12" x2="3.01" y2="12" /><line x1="3" y1="18" x2="3.01" y2="18" />
+          </svg>
+          <span>TOC</span>
+        </a>
+        {nextChapter !== null && (
+          <a
+            href={`/book/${bookSlug}/chapter/${nextChapter}`}
+            onClick={(e) => { e.preventDefault(); window.location.href = `/book/${bookSlug}/chapter/${nextChapter}` }}
+            onTouchStart={() => {}}
+            className="flex items-center justify-center gap-1.5 min-h-[44px] px-5 rounded-[14px] bg-primary text-primary-content font-extrabold text-[15px] tracking-tight hover:opacity-90 active:scale-90 active:opacity-50 transition-[transform,opacity,background-color,border-color] duration-75 select-none"
+            style={{ fontFamily: btnFont, boxShadow: '0 8px 18px rgba(0,0,0,.12)' }}
+          >
+            <span>Next</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="shrink-0">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </a>
+        )}
+      </div>
+    </div>
+  )
+}
+```
+
+**iOS `:active` note**: iOS Safari does not fire `:active` on `<a>` without a touch listener. Add `onTouchStart={() => {}}` to every button/link that uses `active:` Tailwind classes. Use `transition-[transform,opacity,background-color,border-color] duration-75` (not `transition-all`) for 75ms response.
+
+**Do NOT** add `<ins class="adsbygoogle">` or any AdSense slot inside a fixed/sticky container — AdSense policy violation.
 
 #### AdSense — `AdsenseSlot.tsx`
 
