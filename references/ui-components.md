@@ -113,6 +113,11 @@ The book list uses a responsive grid. The card is the page's primary visual unit
 
 **Quality bar:** A finished book card should look like it belongs in a native app — not a WordPress blog post list. The genre badge and proper metadata line are non-negotiable.
 
+**Pitfall — overlay divs block browser "Save Image As":** Any `<div>` with `absolute inset-0` placed on top of the cover image (gradient scrims, vignettes, etc.) intercepts right-click events. Because the card is wrapped in `<a>`, the browser shows a *link* context menu instead of an *image* one, removing "Save Image As". Always add `pointer-events-none` to every overlay inside a BookCard:
+```tsx
+<div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+```
+
 ### Book Row (Text-First List)
 - Row height: auto, minimum 72px.
 - Left: small cover thumbnail (48×72px) or genre accent strip (8px wide).
