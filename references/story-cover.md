@@ -155,6 +155,7 @@ Do not ask the user. Do not fabricate values that cannot be derived.
    - The sheet is shared by A2 (covers) and A2.5 (illustrations) — once written, never regenerated unless the book's worldbuilding explicitly contradicts it.
    - Ethnicity is derived from the novel's worldbuilding/synopsis — there is no global default; write what fits the character.
    - **Signature fields must serve FB scroll-stop signal #2 (implied story) and #1 (expression)**. A Signature like "always looks a little underdressed for the room" is good — it implies narrative tension. A Signature like "blue eyes" is not a Signature, it belongs in Eyes.
+   - **Always render all characters as real humans — regardless of their in-story nature.** If a character is an AI, hologram, ghost, demon, vampire, fae, or any non-human entity, depict them as a real human on the cover. The cover is an ad creative, not a literal story illustration. Non-human visual elements (glowing projections, CGI beings, supernatural creatures) destroy photorealism and kill Facebook CTR. Translate the character's personality and role into a real human's appearance, posture, and expression instead.
 
 Cover ratio: **2:3 portrait**. Generate at `848x1280` (1K Fast tier — sufficient for all UI display sizes, fastest generation). No resize step needed.
 
