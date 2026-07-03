@@ -401,7 +401,7 @@ printf '{"model":"%s","size":"%s","prompt":%s}\n' \
   Note: nano silently downgrades T3+ to ~T1 allure.
 
 **Final format — flat WebP + JSON only (see Step 3.5):**
-- Every shipped cover is lossy **WebP at quality 82**, served as `/covers/{slug}.webp`. This is the single delivery format — no JPEG, no PNG, no format branching, no subfolders.
+- Every shipped cover is lossy **WebP at quality 78**, served as `/covers/{slug}.webp`. This is the single delivery format — no JPEG, no PNG, no format branching, no subfolders.
 - Metadata lives next to it as `/covers/{slug}.json`.
 - The temporary `cover_v1.png` is deleted immediately after conversion; do not keep it in `public/`.
 
@@ -455,12 +455,12 @@ rm -f /tmp/cover_*.log
 
 ## Step 3.5 — Convert the cover to WebP
 
-Run immediately after Step 3, before quality check. Do not skip. This produces the final shipped assets: `public/covers/{book-slug}.webp` (flat path, lossy WebP q82) and `public/covers/{book-slug}.json`. The temporary `cover_v1.png` is deleted after conversion — it is not a deliverable.
+Run immediately after Step 3, before quality check. Do not skip. This produces the final shipped assets: `public/covers/{book-slug}.webp` (flat path, lossy WebP q78) and `public/covers/{book-slug}.json`. The temporary `cover_v1.png` is deleted after conversion — it is not a deliverable.
 
 ```bash
-# Convert one cover PNG → final flat WebP at q82. Prefer cwebp; fall back to Pillow.
+# Convert one cover PNG → final flat WebP at q78. Prefer cwebp; fall back to Pillow.
 to_webp_cover() {
-  local src="$1" dst="$2" q="${3:-82}"
+  local src="$1" dst="$2" q="${3:-78}"
   if command -v cwebp &>/dev/null; then
     cwebp -quiet -q "$q" "$src" -o "$dst"
   else
@@ -475,10 +475,10 @@ if [ -f "$COVER_TMP" ]; then
   if ! command -v cwebp &>/dev/null && ! python3 -c "import PIL" &>/dev/null; then
     brew install webp -q || echo "⚠ cwebp install failed — install webp or Pillow"
   fi
-  to_webp_cover "$COVER_TMP" "$WEBP_OUT" 82
+  to_webp_cover "$COVER_TMP" "$WEBP_OUT" 78
   BEFORE=$(stat -f%z "$COVER_TMP" 2>/dev/null || stat -c%s "$COVER_TMP")
   AFTER=$(stat -f%z "$WEBP_OUT" 2>/dev/null || stat -c%s "$WEBP_OUT")
-  echo "✓ webp q82: ${BEFORE}B → ${AFTER}B (-$(( (BEFORE-AFTER)*100/BEFORE ))%)"
+  echo "✓ webp q78: ${BEFORE}B → ${AFTER}B (-$(( (BEFORE-AFTER)*100/BEFORE ))%)"
   rm -f "$COVER_TMP"   # remove the intermediate PNG; only WebP + JSON remain
 fi
 ```
