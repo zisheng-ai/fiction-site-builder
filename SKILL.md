@@ -7,14 +7,16 @@ description: write fiction and build the reading site end-to-end. use when the u
 
 ## Three Core Goals
 
-**Goal 0 — Produce quality fiction content.**
-Write chapters that readers want to keep reading. Every sentence serves emotion, plot, or character. Remove AI flavor before publishing. Quality prose is the prerequisite for everything else.
+This skill exists to run a **Facebook paid-traffic → AdSense/AdX display-ad arbitrage** business. Every decision — what to write, how to build the site, what image to generate — is ultimately a revenue decision. The three goals below are the levers:
 
-**Goal 1 — Deliver a real reading product.**
-The site must load fast, read comfortably on mobile, and get out of the reader's way. Discovery pages exist to bring readers to chapters. The chapter page is where users stay or leave.
+**Goal 0 — Maximize pageviews per session (content lever).**
+Each chapter = one pageview = one set of ad impressions. A reader who clicks through 6 chapters generates 6× the ad revenue of a reader who clicks through 1. Everything that keeps a reader reading — prose quality, cliffhanger endings, chapter length, hook copy — is revenue engineering. Quality fiction is not an aesthetic goal; it is the mechanism by which pageviews happen.
 
-**Goal 2 — Reading comfort above visual complexity.**
-Typography, spacing, and contrast are non-negotiable. Interactive reader controls (theme switcher, font-size stepper) are optional enhancements — not requirements. A well-set fixed type scale beats a broken control panel every time.
+**Goal 1 — Maximize viewable RPM (layout lever).**
+The site must load fast, render correctly on mobile, and place ads where they are actually seen. An ad that exits the viewport in under 1 second earns 30% of the revenue of an ad that is held in view for 3+ seconds. LCP < 2.5s, first ad after the first 20% of content, full-page reload on chapter navigation so AdSense/AdX reinitialize — these are revenue numbers, not UX preferences.
+
+**Goal 2 — Maximize Facebook CTR while keeping accounts alive (creative + compliance lever).**
+The cover image is the Facebook ad creative. Its scroll-stop power determines CPC. Suggestive covers (bare shoulders, implied intimacy, allure) increase CTR and are explicitly allowed; explicit/pornographic imagery and missing trust pages get the ad account banned. Account survival is a hard constraint — a banned account ends the business. Allure is optimized to the maximum safe level, never beyond it.
 
 ## Business Model — Paid-Traffic Arbitrage
 
@@ -27,9 +29,11 @@ Load `references/adsense-arbitrage.md` whenever building, laying out ads, direct
 
 ## Operating Principles
 
+- **Every chapter must end on a cliffhanger.** This is not a style preference — it is the mechanism that makes the next pageview happen. A chapter that resolves cleanly is a chapter that ends the session. See `story-long-write.md` hook-out techniques.
+- **The cover is a Facebook ad creative first, a book cover second.** Design and generate it to stop the scroll in 0.3 seconds. Allure, composition, and implied story are CTR levers. See `cover-allure-elements.md` and `facebook-ads.md`.
+- **Landing page = Chapter 1, not the homepage.** Facebook ads link directly to ch1. The homepage is for readers who already know the site. The ch1 hook is the first pageview; if it doesn't grab, the session ends at 1.
 - The chapter page is the product. Every other page is a path to it.
 - Mobile first — not mobile only. Design and code for mobile first, then enhance for tablet and desktop with `min-width` breakpoints. Social traffic is 90% mobile so 390px must work perfectly; desktop must still get a purposeful layout.
-- One deliberate visual choice per build. Everything else supports reading.
 - Prefer the simplest tech choice that meets the brief. Complexity needs a reason.
 - Fixed good typography beats user-adjustable bad typography.
 - Content language determines layout, font, and line-flow decisions.
@@ -111,6 +115,13 @@ Starts after Phase 0. Runs in parallel with Track B.
 | A2 | Cover | `story-cover.md` + `cover-styles.md` + `facebook-ads.md` | `public/covers/{book-title}.webp` + `public/covers/{book-title}.json` per book (flat, no subfolders) |
 | A2.5 | Illustrations | `story-illustrations.md` + `cover-allure-elements.md` | `public/illustrations/{book-slug}/ch-{NNN}.webp` (exactly 5 per book) |
 | A3 | Quality Pass | `story-review.md` + `story-deslop.md` | review report, AI flavor removed |
+
+**Arbitrage role of each content phase:**
+- **A0** — identifies high-demand genres and tropes with proven Facebook CTR. The `differentiation_angle` directly affects ad creative relevance and CPC.
+- **A1** — each chapter = one pageview. Chapter length (1,200–1,600 words) and mandatory cliffhanger endings are the primary pageview/session multiplier. Taglines from `facebook-ads.md` are the ad copy.
+- **A2** — cover = Facebook ad image. CTR determines CPC. Everything else in the profit equation is downstream of whether the cover stops the scroll.
+- **A2.5** — illustrations increase scroll depth and ad viewability within a chapter page. Deeper scroll = longer time-in-view = higher Active View score = higher CPM bids from advertisers.
+- **A3** — AI-flavored prose increases bounce rate. Deslopped prose keeps readers reading past chapter 1, which is the difference between a 1-pageview session and a 4-pageview session.
 
 A0 runs once per book (not once per site). Required for each new book unless the user has explicitly stated the genre, tropes, and premise. A0's `differentiation_angle` and `competitive_brief` feed directly into A1's story brief.
 
