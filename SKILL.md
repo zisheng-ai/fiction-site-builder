@@ -108,7 +108,7 @@ Starts after Phase 0. Runs in parallel with Track B.
 | --- | --- | --- | --- |
 | A0 | Niche Research | `fiction-niche-researcher.md` | `outputs/{site-slug}/{book-slug}/niche-research.json` |
 | A1 | Write | see modes below | chapters, outline, world, tracking |
-| A2 | Cover | `story-cover.md` + `cover-styles.md` | `public/covers/{book-title}.webp` + `public/covers/{book-title}.json` per book (flat, no subfolders) |
+| A2 | Cover | `story-cover.md` + `cover-styles.md` + `facebook-ads.md` | `public/covers/{book-title}.webp` + `public/covers/{book-title}.json` per book (flat, no subfolders) |
 | A2.5 | Illustrations | `story-illustrations.md` + `cover-allure-elements.md` | `public/illustrations/{book-slug}/ch-{NNN}.webp` (5–7 per book) |
 | A3 | Quality Pass | `story-review.md` + `story-deslop.md` | review report, AI flavor removed |
 

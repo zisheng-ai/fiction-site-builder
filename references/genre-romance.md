@@ -370,6 +370,8 @@ One sentence is ideal. Two is the maximum. It must reveal the core irony of the 
 
 ### Facebook Ad Hook Copy — 3-Line Feed Format
 
+**Load `references/facebook-ads.md` for the full tagline and cover image standards.** The section below covers the 3-line organic/paid feed format only.
+
 Facebook/Instagram feeds truncate post text after roughly 3 lines ("See more"). The hook must land in exactly 3 lines — one situation, one turn, one gap. This is distinct from the site tagline (which can be richer and longer); this format is for organic posts and paid ad copy only.
 
 **The 3-line structure:**

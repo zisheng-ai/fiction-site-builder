@@ -1,6 +1,6 @@
 # Story Cover
 
-Load this reference when the user asks to generate a novel cover (/story-cover, cover generation), or when Phase 3 of the pipeline is entered.
+Load this reference when the user asks to generate a novel cover (/story-cover, cover generation), or when Phase 3 of the pipeline is entered. **Also load `references/facebook-ads.md` alongside this file — every cover is a Facebook ad creative and must pass the scroll-stop standards in Step 1.7.**
 
 **Execution principle: invoke tools directly. Never surface a "please run X" prompt to the user mid-phase. Call the image generation tool, write the file, log the result — then move on.**
 
