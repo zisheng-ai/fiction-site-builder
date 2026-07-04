@@ -15,7 +15,7 @@ Run the applicable gates based on severity (see Severity Levels below).
 | Gate | Problem | Signal |
 | --- | --- | --- |
 | A | Banned words / high-frequency clichés | "something flickered in his eyes" "he drew a deep breath" "the corner of his mouth curved" — all patterns apply equally with he/she/they/their variants |
-| B | Template sentence patterns | negation-then-reversal setups, "with a ...", "his voice was low but ...", consecutive parallel structures ≥3 |
+| B | Template sentence patterns | negation-then-reversal setups, "with a ...", "his voice was low but ...", consecutive parallel structures ≥3; see High-Frequency Patterns below |
 | C | Telling not showing (psychology) | "he felt" "she realized" "emotion surged inside her" without grounding action |
 | D | Uniform rhythm / paragraph length | Every paragraph 4–6 sentences, identical beat |
 | E | Flat dialogue tags | "said/asked/smiled" on nearly every line |
@@ -45,6 +45,47 @@ Deletion cap by severity: Mild ≤15%, Moderate ≤25%, Severe ≤35% of the pas
 | Parallel structure | At most 1–2, never 3+ consecutive | 3–5 in a row is standard |
 | Endings | Action or dialogue | Summary or uplift |
 
+## High-Frequency Patterns (Gate B priority — validated across 33 ch-001 files)
+
+Gate B structural patterns appear in ~2/3 of AI-generated chapters and are more endemic than Gate A word-level clichés. Scan for these first.
+
+### 1. Negation-reversal (most common — present in ~65% of chapters)
+
+The writer states what something is NOT before stating what it IS. Reads as hedging; removes authority from the sentence.
+
+```
+Flagged:  "Not defensive. Flat."
+Flagged:  "Not slowly. All at once."
+Flagged:  "Not fear. Something closer to recognition."
+Flagged:  "No X. No Y. Just Z."
+Rewrite:  collapse into one direct statement
+Example:  "Not defensive. Flat." → "Flat."
+Example:  "No grief, no shock. Just calculation." → "Pure calculation."
+```
+
+### 2. Consecutive same-structure sentences (≥3 in a row)
+
+Any subject-verb pattern repeated three or more consecutive times, regardless of vocabulary variation.
+
+```
+Flagged:  She'd done this. She'd seen that. She'd known better.  (She'd × 3)
+Flagged:  He left. He came back. He said nothing.  (He + verb × 3)
+Flagged:  Then she stood. Then she turned. Then she opened the door.  (Then she × 3)
+Flagged:  You speak. You listen. You decide.  (You + verb × 3)
+Fix:      Vary the third sentence's structure — change subject position, use a subordinate clause, or recast as a question.
+```
+
+### 3. Passive reflection blocks ("had always")
+
+A character reflecting on a state that has been true for a long time. Almost always tells instead of shows; interrupts scene momentum.
+
+```
+Flagged:  "She had always found silence uncomfortable."
+Flagged:  "He had always known this would happen."
+Fix:      Cut "had always" and put the character into an active moment that shows the same trait.
+Example:  "She had always found silence uncomfortable." → "The silence went on long enough that she started counting floor tiles."
+```
+
 ## Quick Replacement Reference
 
 | AI-flavored phrase | Natural alternative |
@@ -55,6 +96,11 @@ Deletion cap by severity: Mild ≤15%, Moderate ≤25%, Severe ≤35% of the pas
 | as if / as though / as though woven from | plain comparison or literal description |
 | couldn't help but | direct action verb |
 | slowly opened his mouth | just use dialogue / action-then-dialogue |
+| something in his/her chest | name the specific physical sensation or delete |
+| Not X. Y. / Not X. Just Y. | collapse into one direct statement |
+| No X. No Y. Just Z. | collapse into one direct statement |
+| had always [verb]ed | cut to an active scene beat that shows the trait |
+| exhale/inhale like [simile] | delete the action tag entirely, go to dialogue or next beat |
 
 ## Triage Pass (run before any rewriting — token-saving gate)
 

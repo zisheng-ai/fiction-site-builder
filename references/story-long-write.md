@@ -589,7 +589,11 @@ Always overwrite `context.md` after each chapter. Do not append history — the 
 - **Named emotion check:** does every pivotal scene have a specific named emotional state (from the genre file's Named Emotion table)? Generic emotions ("nervous", "angry", "interested") are a rewrite flag.
 - **Dynamic check:** is it clear who holds the power in this scene and who is off-balance? If all characters feel equally matched, the scene has no subtext.
 - **Setting check:** does the location amplify the emotional stakes, or could it be any room? If it's interchangeable, change it.
-- If AI flavor is detected, flag the chapter for the Phase 4 deslop pass — do not run `/story-deslop` inline here. Phase 4 (`references/story-deslop.md`) is loaded separately and runs after all chapters are written.
+- **Structural pattern check (Gate B — inline, do not defer):** before saving any chapter, do a 30-second scan for the two highest-frequency AI structural patterns:
+  1. **Negation-reversal** — any sentence of the form "Not X. Y." or "No X. No Y. Just Z." → collapse to one direct statement.
+  2. **Consecutive same-structure sentences ≥3** — any run of three or more sentences with the same subject-verb pattern (She'd…/She'd…/She'd…, He left./He turned./He said., Then she…/Then she…/Then she…) → vary the third sentence's structure.
+  These two patterns appear in ~65% of AI-generated chapters and are the fastest fix with the highest reader-impact return. Fix them before saving; do not defer to Phase 4.
+- If other AI flavor is detected beyond the above two patterns, flag the chapter for the Phase 4 deslop pass — do not run full deslop inline here. Phase 4 (`references/story-deslop.md`) is loaded separately and runs after all chapters are written.
 
 ## Book Description & Tagline (Required — write before cover generation)
 
