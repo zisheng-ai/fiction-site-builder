@@ -142,4 +142,4 @@ Target sizes: logo ≤ 100 KB, favicon ≤ 25 KB. Raw generated files are typica
 |------|---------|--------|
 | 429 | Rate limit | Exponential backoff, retry |
 | 5xx | Content filter or server error | No charge; retry with softened prompt once |
-| Timeout | Generation exceeded `--max-time` | Increase to 360s, retry once; then fall back to SVG |
+| Timeout | Generation exceeded `--max-time` | Increase to 360s, retry once; if it still fails, skip and flag for a later pass — no SVG fallback |

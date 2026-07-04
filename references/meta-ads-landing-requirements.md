@@ -185,7 +185,7 @@ Meta's detection has evolved past simple User-Agent blocking:
 | A/B testing two different landing pages (both fully compliant) | Allowed |
 | Serving faster cached version to bots | Allowed (same content, different delivery) |
 | Robots.txt `Disallow` on admin routes | Allowed (only public ad-destination URLs matter) |
-| Using Next.js static export with ISR for fast delivery | Allowed |
+| Using Next.js static export with CDN caching for fast delivery | Allowed |
 
 The test: is there **intentional deception of the review system**? Varying content by audience is fine; hiding violations from Meta's crawler is not.
 
@@ -317,11 +317,12 @@ Common mistakes:
 
 ### 7.4 CAPI implementation pattern (Next.js static export)
 
-Static export means no Node.js server — CAPI must be sent via a serverless function or a separate backend. Options:
+Static export means no Node.js server and no in-project `app/api/*/route.ts`. CAPI must be sent via a separate serverless/backend project, or skipped for MVP. Do not add API routes to the static export site.
 
-**Option A — Vercel Edge Function (recommended)**
+**Option A — Separate Vercel Edge Function project (recommended when CAPI is required)**
 
 ```ts
+// Separate serverless project, not inside the static export site.
 // app/api/capi/route.ts
 export const runtime = 'edge'
 
@@ -356,7 +357,7 @@ export async function POST(req: Request) {
 }
 ```
 
-Client side fires the Pixel event and posts the same `event_id` to this endpoint concurrently.
+Client side fires the Pixel event and posts the same `event_id` to the external endpoint concurrently. Configure the external endpoint URL via project configuration; do not hardcode it into the skill template.
 
 **Option B — Skip CAPI for MVP, add later**
 

@@ -219,19 +219,19 @@ Solid pure black background filling the entire square canvas to all four edges. 
 
 ### apiyi path (APIYI_API_KEY is set)
 
-Generate logo-light, logo-dark, and favicon via `gpt-image-2` (`quality: high`), falling through to `nano-banana-pro` on failure. All are `1024x1024`. **Launch all as background processes then `wait`.**
+Generate logo-light, logo-dark, and favicon via `doubao-seedream-5-0-260128`, falling through to `gpt-image-2-all` on failure. Do **not** use `nano-banana-pro` for logo/favicon. Logo requests are `1920x1920`; favicon requests are `1024x1024`. **Launch all as background processes then `wait`.**
 
 ```bash
 mkdir -p public
 
 gen_asset_apiyi() {
-  local prompt="$1" out="$2"
+  local prompt="$1" out="$2" size="$3"
   local pj; pj=$(printf '%s' "$prompt" | python3 -c 'import json,sys;print(json.dumps(sys.stdin.read().strip()))')
-  for model in "gpt-image-2" "nano-banana-pro"; do
+  for model in "doubao-seedream-5-0-260128" "gpt-image-2-all"; do
     curl -s --max-time 300 https://api.apiyi.com/v1/images/generations \
       -H "Content-Type: application/json" \
       -H "Authorization: Bearer $APIYI_API_KEY" \
-      -d "{\"model\":\"$model\",\"prompt\":$pj,\"n\":1,\"size\":\"1024x1024\",\"quality\":\"high\"}" \
+      -d "{\"model\":\"$model\",\"prompt\":$pj,\"size\":\"$size\"}" \
     | OUT="$out" python3 -c "
 import sys, json, base64, os, urllib.request
 out = os.environ['OUT']
@@ -256,22 +256,22 @@ LOGO_LIGHT_PROMPT="{flat vector motif, colored, white background, square canvas,
 LOGO_DARK_PROMPT="{flat vector motif, bright colors, solid pure black background edge-to-edge, square edges, no rounded corners}"
 FAVICON_PROMPT="{same motif, ultra-simplified, high contrast, no text, readable at 32px}"
 
-gen_asset_apiyi "$LOGO_LIGHT_PROMPT" public/logo-light_raw.png && echo "logo-light saved" &
-gen_asset_apiyi "$LOGO_DARK_PROMPT"  public/logo-dark_raw.png  && echo "logo-dark saved"  &
-gen_asset_apiyi "$FAVICON_PROMPT"    public/favicon_raw.png    && echo "favicon saved"    &
+gen_asset_apiyi "$LOGO_LIGHT_PROMPT" public/logo-light_raw.png "1920x1920" && echo "logo-light saved" &
+gen_asset_apiyi "$LOGO_DARK_PROMPT"  public/logo-dark_raw.png  "1920x1920" && echo "logo-dark saved"  &
+gen_asset_apiyi "$FAVICON_PROMPT"    public/favicon_raw.png    "1024x1024" && echo "favicon saved"    &
 wait
 
 resize() { local src="$1" dst="$2" s="$3"
   [ -f "$src" ] && { ffmpeg -i "$src" -vf scale=${s}:${s} "$dst" -y 2>/dev/null \
     || sips -z $s $s "$src" --out "$dst"; }; }
 
-resize public/logo-light_raw.png public/logo-light.png 256
-resize public/logo-dark_raw.png  public/logo-dark.png  256
-resize public/favicon_raw.png    public/favicon-32x32.png  32
+resize public/logo-light_raw.png public/logo-light.png 512
+resize public/logo-dark_raw.png  public/logo-dark.png  512
+resize public/favicon_raw.png    public/favicon-32x32.png  256
 resize public/favicon_raw.png    public/apple-touch-icon.png 180
 
 command -v pngquant >/dev/null 2>&1 && for f in public/logo-light.png public/logo-dark.png public/favicon-32x32.png public/apple-touch-icon.png; do
-  [ -f "$f" ] && pngquant --quality=65-85 --ext .png --force --skip-if-larger "$f" || true
+  [ -f "$f" ] && pngquant --force --quality=80-95 --speed 1 --ext .png --skip-if-larger "$f" || true
 done
 
 rm -f public/logo-light_raw.png public/logo-dark_raw.png public/favicon_raw.png
@@ -309,7 +309,7 @@ export const metadata: Metadata = {
 
 ### No SVG fallback
 
-There is **no SVG fallback** for logo/favicon. When `APIYI_API_KEY` is unset, or both models fail, **skip the asset and continue** — a dev placeholder holds the slot until a later generation pass. Never write `public/logo.svg` / `public/favicon.svg`.
+There is **no SVG fallback** for logo/favicon. When `APIYI_API_KEY` is unset, or both models fail, **skip the asset and continue** — a dev placeholder holds the slot until a later generation pass. Never write `public/logo.svg`, `public/favicon.svg`, or `public/logo.png` as a fallback.
 
 **Never ship a launched site with the default Next.js favicon or a missing logo** — but a skipped asset does not block the build; it is flagged for a follow-up pass.
 

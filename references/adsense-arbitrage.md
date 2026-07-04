@@ -398,7 +398,7 @@ metadataBase: new URL('https://yoursite.com'),
 openGraph: {
   siteName: 'Your Site Name',
   type: 'website',
-  images: [{ url: 'https://yoursite.com/logo.png', width: 512, height: 512, alt: 'Your Site Name' }],
+  images: [{ url: 'https://yoursite.com/logo-light.png', width: 512, height: 512, alt: 'Your Site Name' }],
 },
 ```
 

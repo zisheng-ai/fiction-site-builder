@@ -1048,13 +1048,13 @@ Three-layer requirement. Every layer must be covered before launch:
 
 | Layer | Where | Image | URL form |
 |---|---|---|---|
-| **Homepage** | `layout.tsx` openGraph | `logo.png` (512×512) | Absolute (`https://`) |
+| **Homepage** | `layout.tsx` openGraph | `logo-light.png` (512×512) | Absolute (`https://`) |
 | **Book detail** | `book/[slug]/page.tsx` generateMetadata | `book.cover` (848×1280) | Relative OK — resolved by `metadataBase` |
 | **Chapter** | `book/[slug]/chapter/[n]/page.tsx` generateMetadata | `book.cover` (848×1280) | Relative OK — resolved by `metadataBase` |
 
 **`metadataBase` is the key**: set it once in `layout.tsx` with the real domain, and all relative OG image URLs in child pages resolve to absolute automatically. No `siteUrl` env var needed.
 
-**`src/app/layout.tsx`** — homepage fallback (logo, absolute URL):
+**`src/app/layout.tsx`** — homepage fallback (logo-light, absolute URL):
 
 ```ts
 export const metadata: Metadata = {
@@ -1062,7 +1062,7 @@ export const metadata: Metadata = {
   openGraph: {
     siteName: 'Your Site Name',
     type: 'website',
-    images: [{ url: 'https://your-domain.com/logo.png', width: 512, height: 512, alt: 'Your Site Name' }],
+    images: [{ url: 'https://your-domain.com/logo-light.png', width: 512, height: 512, alt: 'Your Site Name' }],
   },
 }
 ```
@@ -1080,10 +1080,10 @@ openGraph: {
 twitter: { card: 'summary_large_image' },
 ```
 
-**Chapter page without explicit OG image** is acceptable — Next.js falls back to the root layout's `logo.png`. But setting `book.cover` on chapter pages is preferred for better FB/Twitter previews.
+**Chapter page without explicit OG image** is acceptable — Next.js falls back to the root layout's `logo-light.png`. But setting `book.cover` on chapter pages is preferred for better FB/Twitter previews.
 
 Rules:
-- `logo.png` must exist at `public/logo.png`. Dimensions: 512×512 minimum, square is safe for all platforms.
+- `logo-light.png` must exist at `public/logo-light.png`. Dimensions: 512×512 minimum, square is safe for all platforms.
 - `book.cover` is `/covers/{slug}.webp` — a relative path. With `metadataBase` set, Next.js outputs an absolute URL in the built HTML. Verify by grepping `og:image` in `out/` after build.
 - The book cover (portrait 2:3, 848×1280) doubles as the FB link preview for book and chapter pages — no separate OG image asset needed.
 

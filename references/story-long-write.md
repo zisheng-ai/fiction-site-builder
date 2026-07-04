@@ -374,7 +374,7 @@ After all chapter agents complete, do a single sequential pass:
 3. Write `tracking/context.md` from the final chapter's ending.
 4. Update `tracking/threads.md`, `tracking/timeline.md`, `tracking/character-status.md`.
 
-Keep this pass minimal. Do not run a full quality rewrite here; that is Phase 4.
+Keep this pass minimal. Do not run a full quality rewrite here; that is A3.
 
 ### Multiple books in parallel
 
@@ -594,8 +594,8 @@ Always overwrite `context.md` after each chapter. Do not append history — the 
 - **Structural pattern check (Gate B — inline, do not defer):** before saving any chapter, do a 30-second scan for the two highest-frequency AI structural patterns:
   1. **Negation-reversal** — any sentence of the form "Not X. Y." or "No X. No Y. Just Z." → collapse to one direct statement.
   2. **Consecutive same-structure sentences ≥3** — any run of three or more sentences with the same subject-verb pattern (She'd…/She'd…/She'd…, He left./He turned./He said., Then she…/Then she…/Then she…) → vary the third sentence's structure.
-  These two patterns appear in ~65% of AI-generated chapters and are the fastest fix with the highest reader-impact return. Fix them before saving; do not defer to Phase 4.
-- If other AI flavor is detected beyond the above two patterns, flag the chapter for the Phase 4 deslop pass — do not run full deslop inline here. Phase 4 (`references/story-deslop.md`) is loaded separately and runs after all chapters are written.
+  These two patterns appear in ~65% of AI-generated chapters and are the fastest fix with the highest reader-impact return. Fix them before saving; do not defer to A3.
+- If other AI flavor is detected beyond the above two patterns, flag the chapter for the A3 deslop pass — do not run full deslop inline here. A3 (`references/story-deslop.md`) is loaded separately and runs after all chapters are written.
 
 ## Book Description & Tagline (Required — write before cover generation)
 

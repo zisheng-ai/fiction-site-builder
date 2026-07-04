@@ -13,7 +13,7 @@ Reference for `story-cover.md`. Genre-to-visual-style mapping for cover image ge
 | **British Literary** | Painterly period photography or fine-art editorial, warm muted tones and compositional restraint — understated rather than dramatic | Site hosts Regency / Historical / Cosy Mystery / Gothic / Literary Thriller — British-flavoured, period-grounded, atmosphere-first rather than power-first |
 | **Emotional Drama** | Desaturated editorial photography, cold-warm contrast, threshold and outsider framing — quiet emotional weight rather than kinetic drama | Site hosts Family Drama / Secret Identity / Medical Drama / Grief Fiction — contemporary emotional fiction where the visual subject is an interior state, not an action |
 
-Determine which register fits the site during **Phase 6 (Design plan)** and record it in the design-system notes. All Phase 3 cover generation for that site uses the same register.
+Determine which register fits the site during **B2 (Design Identity)** and record it in the design-system notes. All A2 cover generation for that site uses the same register.
 
 If the site mixes genres, default to **Cinematic Drama** for realism-leaning titles and **Dark Fantasy Illustration** for genre-fantasy titles, but keep color palettes harmonized across covers so the homepage grid feels cohesive.
 

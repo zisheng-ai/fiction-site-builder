@@ -169,7 +169,7 @@ A0 runs once per book (not once per site). Required for each new book unless the
 - **Runs by default on a full pipeline run** — once a book has its cover (A2) and ≥ 10 chapters, generate its illustrations automatically. Do **not** wait for the user to ask, and do **not** prompt. Skip only for short-form stories, or if the user has explicitly opted out of illustrations.
 - As a standalone step, runs when the user requests illustrations ("Add illustrations" / "Generate illustrations").
 - Never on short-form stories (no chapter files to illustrate).
-- Illustrations use T3 or T4, randomly assigned per illustration. Never T1, T2, or T5.
+- Romance illustrations use T3 or T4, randomly assigned per illustration. Never T1, T2, or T5 for romance. Non-romance books follow the genre routing in `story-illustrations.md` instead of the allure-tier system.
 - Exactly 5 illustrations per book, placed at the highest-stakes peaks (see `story-illustrations.md` for slot distribution). Never exceed 5 — cost constraint. A book may fall below 5 only when not enough scenes earn one — never skip the phase itself.
 - Does not block the Pre-Launch Gate — but a full pipeline run is expected to produce illustrations for its long-form books.
 
@@ -380,7 +380,7 @@ export function SiteLogo({ className, alt }: { className?: string; alt?: string 
 }
 ```
 
-Replace all `<img src="/logo.png" ...>` (and `<Image src="/logo.png" ...>`) in the codebase with `<SiteLogo className="..." />`. The OG image in `layout.tsx` metadata stays as `logo.png` (used for social sharing, not rendered in the page). Remove any `filter: brightness(0) invert(1)` or similar filter hacks that were compensating for a single-logo approach.
+Replace all `<img src="/logo.png" ...>` (and `<Image src="/logo.png" ...>`) in rendered UI with `<SiteLogo className="..." />`. Use `logo-light.png` as the homepage OG fallback image unless the project explicitly creates a separate social image. Remove any `filter: brightness(0) invert(1)` or similar filter hacks that were compensating for a single-logo approach.
 
 ---
 
@@ -526,7 +526,7 @@ Do not deliver a build if any of these are true.
 - `chapterCount` in `books.ts` does not equal the actual number of `.md` files in `content/{slug}/chapters/`. Always derive the count from the filesystem at build time or keep in sync manually — a stale value breaks chapter progress indicators and reader UX.
 - `public/logo-light.png` or `public/logo-dark.png` is missing at launch time.
 - Favicon is missing or is the default Next.js favicon at launch time.
-- `SiteLogo` component is missing or any `<img src="/logo.png">` reference remains (except OG metadata in layout.tsx).
+- `SiteLogo` component is missing or any rendered `<img src="/logo.png">` reference remains.
 
 ---
 

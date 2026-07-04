@@ -1,10 +1,10 @@
 # Story Cover
 
-Load this reference when the user asks to generate a novel cover (/story-cover, cover generation), or when Phase 3 of the pipeline is entered. **Also load `references/facebook-ads.md` alongside this file — every cover is a Facebook ad creative and must pass the scroll-stop standards in Step 1.7.**
+Load this reference when the user asks to generate a novel cover (/story-cover, cover generation), or when A2 of the pipeline is entered. **Also load `references/facebook-ads.md` alongside this file — every cover is a Facebook ad creative and must pass the scroll-stop standards in Step 1.7.**
 
 **Execution principle: invoke tools directly. Never surface a "please run X" prompt to the user mid-phase. Call the image generation tool, write the file, log the result — then move on.**
 
-## Phase 3 Entry Check
+## A2 Entry Check
 
 **MANDATORY — run this bash command before anything else. Do not skip it. Do not assume the result.**
 
@@ -59,9 +59,9 @@ Read the pen name from project files in this order — do not ask the user:
 
 1. Any `content/{book}/world/worldbuilding.md` → first "Author" line
 2. Any `content/{book}/tracking/context.md` → first "Pen name" line
-3. `src/lib/books.ts` → first book's `author` field (only exists after Phase 8 site build)
+3. `src/lib/books.ts` → first book's `author` field (only exists after B4 site build)
 
-Note: `src/lib/books.ts` is generated during Phase 8 and will not exist when Phase 3 runs. Try it last, not first.
+Note: `src/lib/books.ts` is generated during B4 and will not exist when A2 runs. Try it last, not first.
 
 If the pen name cannot be found in any of these files, substitute `"The Author"` as a placeholder and log a warning. Never stop the batch to ask.
 
@@ -78,7 +78,7 @@ If the pen name cannot be found in any of these files, substitute `"The Author"`
 ```bash
 # parallel batch — one process per book, then wait
 for BOOK in "${BOOKS[@]}"; do
-  ( BOOK_DIR="public/covers/$BOOK"; build_and_generate_cover "$BOOK" ) > "/tmp/cover_$BOOK.log" 2>&1 &
+  ( mkdir -p public/covers; build_and_generate_cover "$BOOK" ) > "/tmp/cover_$BOOK.log" 2>&1 &
 done
 wait
 rm -f /tmp/cover_*.log
@@ -89,7 +89,7 @@ rm -f /tmp/cover_*.log
 - [ ] Covers exist for as many books as possible.
 - [ ] Any failed/skipped covers are logged with the book title and error reason.
 
-Missing covers are not a hard blocker for site build — the site can use CSS placeholders during development. Re-run Phase 3 later if needed. Site logo and favicon are generated in Phase 6 (Design plan) — do not block on them here.
+Missing covers are not a hard blocker for site build — the site can use CSS placeholders during development. Re-run A2 later if needed. Site logo and favicon are generated in B2 (Design Identity) — do not block on them here.
 
 ---
 
@@ -161,7 +161,7 @@ Cover ratio: **2:3 portrait**. Generate at `848x1280` (1K Fast tier — sufficie
 
 ## Step 1.5 — Determine visual register and genre
 
-**First: check the site-level visual register** (set during Phase 6 design plan, or derive from the site's dominant content type):
+**First: check the site-level visual register** (set during B2 design plan, or derive from the site's dominant content type):
 - If the site is drama/romance-dominant → **Cinematic Drama** register for all covers
 - If the site is fantasy/sci-fi-dominant → **Dark Fantasy Illustration** register for all covers
 - Record the register and apply it consistently across all books on this site
@@ -427,13 +427,14 @@ Three apiyi models are viable for covers. **GPT is now primary** — with the co
 ### apiyi path
 
 ```bash
-mkdir -p "$BOOK_DIR"
+mkdir -p public/covers
 PROMPT_JSON=$(printf '%s' "$PROMPT" | python3 -c 'import json,sys; print(json.dumps(sys.stdin.read().strip()))')
 
 # Generic generator: handles both b64_json (PNG) and url (JPEG) responses.
 # Returns 0 on success (file written), non-zero on any failure.
 gen_cover_apiyi() {
   local model="$1" size="$2"
+  SIZE="$size"
   curl -s --max-time 300 https://api.apiyi.com/v1/images/generations \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer $APIYI_API_KEY" \
@@ -645,4 +646,4 @@ printf '{"model":"%s","size":"%s","prompt":%s}' \
 
 Note: the old `cover_v1.prompt.txt` file is no longer used — prompt is stored in the JSON.
 
-Site logo and favicon are **not** part of this phase. They are generated in Phase 6 (Design plan) via `references/design-system.md`.
+Site logo and favicon are **not** part of this phase. They are generated in B2 (Design Identity) via `references/design-system.md`.

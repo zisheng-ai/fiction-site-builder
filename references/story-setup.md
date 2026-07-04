@@ -131,7 +131,7 @@ Chapter markdown under `content/` **is** committed — it is the source content,
 When building a fiction site from scratch, write **N books** in total, where N is the user-specified count (default 5 if not specified). Writing and site build run in parallel — site setup (stack, design, data) starts immediately after Phase 0 and does not wait for books to be written.
 
 Each book must reach minimum content level before it can be included in the site build:
-- ≥ 10 chapters per book
+- 20–26 chapters per book for launch (development preview may run with ≥ 10)
 - ≥ 1,200 words per chapter
 
 Run `/story-cover` to generate covers. This can run incrementally as books are completed, or in one batch before launch.
@@ -141,13 +141,13 @@ Run `/story-cover` to generate covers. This can run incrementally as books are c
 Verify all of the following before go-live:
 
 - [ ] `content/` has ≥ 5 book directories.
-- [ ] Each book has ≥ 10 chapters in `chapters/`.
+- [ ] Each book has 20–26 chapters in `chapters/`. Development preview may run with ≥ 10 chapters, but that is not launch-ready.
 - [ ] Each chapter is ≥ 1,000 words (resolution chapters may be 1,000–1,400; other types target 1,200–1,800 — see Pacing Guidelines in `story-long-write.md`).
 - [ ] `outline/outline.md` is non-empty for each book.
 - [ ] `world/worldbuilding.md` is non-empty for each book.
 - [ ] `tracking/context.md` populated for each book.
-- [ ] Cover image generated for each book (Phase 3): `public/covers/{book-title}.webp` for every book (flat path, no subfolders).
-- [ ] Site logo generated (Phase 6): `public/logo.png` (apiyi). No SVG fallback.
-- [ ] Favicon generated (Phase 6): `public/favicon-32x32.png` (apiyi). No SVG fallback.
+- [ ] Cover image generated for each book (A2): `public/covers/{book-title}.webp` for every book (flat path, no subfolders).
+- [ ] Site logos generated (B2): `public/logo-light.png` and `public/logo-dark.png` (apiyi). No SVG fallback.
+- [ ] Favicon generated (B2): `public/favicon-32x32.png` (apiyi). No SVG fallback.
 
-These are launch requirements only — they do not block Phase 5 site build. Development preview may run without them.
+These are launch requirements only — they do not block the development site build. Development preview may run without them.

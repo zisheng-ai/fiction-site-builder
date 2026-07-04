@@ -8,11 +8,11 @@ Reference for Phase A2.5 — in-chapter illustration generation. Load when the u
 
 ## What Illustrations Are (and Are Not)
 
-**In-chapter illustrations** are full-width images embedded inside the chapter reader at the single highest-tension moment of a chapter. They use T3 or T4 tier — more intense than a standard cover (never used as ad creatives) but without the no-fabric extremity of T5.
+**In-chapter illustrations** are full-width images embedded inside the chapter reader at the single highest-tension moment of a chapter. Romance illustrations use T3 or T4 tier — more intense than a standard cover (never used as ad creatives) but without the no-fabric extremity of T5. Non-romance books use the genre routing below instead of the allure-tier framework.
 
 | Covers (A2) | Illustrations (A2.5) |
 |---|---|
-| T2 or T3 (randomly assigned per cover) | T3 or T4 (randomly assigned per illustration) |
+| T2 or T3 (randomly assigned per cover) | Romance: T3 or T4 (randomly assigned per illustration); non-romance: genre-routed |
 | Hero image on book-detail and home pages | Embedded inside the chapter reader only |
 | Scanned by ad-review crawlers | Never surfaced as an ad creative or meta-image |
 | `public/covers/` | `public/illustrations/` |
@@ -20,7 +20,7 @@ Reference for Phase A2.5 — in-chapter illustration generation. Load when the u
 
 **T5 is never used for illustrations.** T5's no-fabric dorsal composition is too sparse as an inline scene image — it reads as a standalone art piece, not as a chapter moment. T3 and T4 produce more scene-grounded, immersive results.
 
-**Tier assignment per illustration:** randomly pick T3 or T4 independently for each illustration in the book. This produces variety across the novel — some peak moments are charged-but-clothed (T3), others are post-decision (T4). Do not use the same tier for all illustrations in a book.
+**Romance tier assignment per illustration:** randomly pick T3 or T4 independently for each illustration in the book. This produces variety across the novel — some peak moments are charged-but-clothed (T3), others are post-decision (T4). Do not use the same tier for all illustrations in a book.
 
 ---
 
@@ -150,7 +150,7 @@ Illustration prompts differ from cover prompts in three ways:
 
 ### Step 1 — Randomly assign tier and pull the assembly block
 
-For each illustration, randomly pick **T3 or T4**. Do not use the same tier for every illustration in a single book.
+For each romance illustration, randomly pick **T3 or T4**. Do not use the same tier for every illustration in a single book.
 
 **Copy the corresponding assembly block from `cover-allure-elements.md` verbatim as the spine of the prompt** — do not paraphrase it into a one-line "intensity" description:
 
@@ -542,7 +542,7 @@ const contentParts = splitContent(mainContent)  // existing paragraph-split func
 | "Add illustrations to [book]" | A2.5 for that book only |
 | Full pipeline (new site) | A2.5 runs after A2, before A3 |
 
-A2.5 is **optional at initial launch** — run it when the user requests it or after A1 is complete for at least one book with a completed arc. Do not block the Pre-Launch Gate on illustrations — a site can launch with zero illustrations.
+A2.5 is **not a hard Pre-Launch Gate** — a site can launch with zero illustrations if generation is skipped or unavailable. In a full pipeline run, however, run A2.5 automatically after A2 for every long-form book with a completed arc unless the user explicitly opts out.
 
 ---
 

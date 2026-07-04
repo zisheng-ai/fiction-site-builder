@@ -34,7 +34,7 @@ Any of these is a quality gate failure:
 ### Top / Navigation Bar
 - Height: 48–56px on mobile.
 - Content: logo (left), optional action (right). Never more than one action icon.
-- **Logo spec (site-wide):** `<img src="/logo.png" className="block h-8 w-auto rounded-sm" />`; on home page use `next/image` (`width={28} height={28} className="rounded-sm"`) for consistent rendering.
+- **Logo spec (site-wide):** use `src/components/SiteLogo.tsx`, which renders `/logo-light.png` and `/logo-dark.png` together for theme switching. Do not reference `/logo.png` in rendered navigation.
 - Home: logo + site name text + ThemeToggle
 - Book detail: logo (links to `/`) + ThemeToggle
 - Chapter: logo (links to `/`) + centered book/chapter name + TOC icon + ThemeToggle
@@ -249,7 +249,7 @@ Implementation (current velvet-throne pattern):
 <header className="border-b border-base-300">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
     <Link href="/" className="flex items-center gap-2.5">
-      <Image src="/logo.png" alt={siteTitle} width={28} height={28} className="rounded-sm" priority />
+      <SiteLogo alt={siteTitle} className="h-7 w-7 rounded-sm" />
       <span className="text-lg font-bold text-base-content tracking-tight">{siteTitle}</span>
     </Link>
     <ThemeToggle />
@@ -325,8 +325,7 @@ Implementation — add a `<style>` block and inline scroll script at the top of 
 <header id="book-header" className="fixed top-0 left-0 right-0 z-30 h-14">
   <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
     <Link href="/" aria-label="Home">
-      <img src="/logo.png" alt={SITE_NAME} className="block h-8 w-auto rounded-sm"
-        style={{ filter: 'drop-shadow(0 1px 4px rgba(0,0,0,0.6))' }} />
+      <SiteLogo alt={SITE_NAME} className="h-8 w-8 rounded-sm drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]" />
     </Link>
     <div className="bg-white/15 backdrop-blur-sm rounded-full p-1.5 text-white">
       <ThemeToggle />
@@ -495,7 +494,7 @@ function HeroCinematic({ book, chapters, slug }: { book: Book; chapters: { order
       <header id="book-header" className="fixed top-0 left-0 right-0 z-30 h-14">
         <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
           <Link href="/" className="shrink-0 opacity-90 hover:opacity-100 transition-opacity duration-150" aria-label="Home">
-            <img src="/logo.png" alt={SITE_NAME} className="block h-8 w-auto rounded-sm" style={{ filter: 'drop-shadow(0 1px 4px rgba(0,0,0,0.6))' }} />
+            <SiteLogo alt={SITE_NAME} className="h-8 w-8 rounded-sm drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]" />
           </Link>
           <div className="bg-white/15 backdrop-blur-sm rounded-full p-1.5 text-white">
             <ThemeToggle />
@@ -537,7 +536,7 @@ function HeroGradient({ book, chapters, slug }: { book: Book; chapters: { order:
       <header id="book-header" className="fixed top-0 left-0 right-0 z-30 h-14">
         <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
           <Link href="/" className="shrink-0 opacity-90 hover:opacity-100 transition-opacity duration-150" aria-label="Home">
-            <img src="/logo.png" alt={SITE_NAME} className="block h-8 w-auto rounded-sm" style={{ filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.4))' }} />
+            <SiteLogo alt={SITE_NAME} className="h-8 w-8 rounded-sm drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]" />
           </Link>
           <div className="bg-base-100/60 backdrop-blur-sm rounded-full p-1.5">
             <ThemeToggle />
@@ -582,7 +581,7 @@ function HeroAtmospheric({ book, chapters, slug }: { book: Book; chapters: { ord
       <header id="book-header" className="fixed top-0 left-0 right-0 z-30 h-14">
         <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
           <Link href="/" className="shrink-0 opacity-90 hover:opacity-100 transition-opacity duration-150" aria-label="Home">
-            <img src="/logo.png" alt={SITE_NAME} className="block h-8 w-auto rounded-sm" style={{ filter: 'drop-shadow(0 1px 4px rgba(0,0,0,0.6))' }} />
+            <SiteLogo alt={SITE_NAME} className="h-8 w-8 rounded-sm drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]" />
           </Link>
           <div className="bg-white/15 backdrop-blur-sm rounded-full p-1.5 text-white">
             <ThemeToggle />
