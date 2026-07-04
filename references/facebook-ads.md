@@ -387,6 +387,7 @@ The `ChapterPixel` component (`src/components/ChapterPixel.tsx`) fires five even
 | `ChapterRead50` | 滚动 50% | 自定义 | 最高：读了半章，真实读者信号 |
 | `ScrollDepth75` | 滚动 75% | 自定义 | 参考用 |
 | `ChapterCompleted` | 滚动 90% | 自定义 | 高：读完章节 |
+| `TimeOnPage30` | 停留满 30 秒（setTimeout，与滚动无关） | 自定义 | 高：时间维度参与度，补充短章节滚动盲区 |
 
 `PageView` 在任意页面加载时触发（含立即跳出），不适合作优化目标。
 
@@ -415,7 +416,8 @@ The `ChapterPixel` component (`src/components/ChapterPixel.tsx`) fires five even
    - `PageView` — 页面加载时
    - `ViewContent` — 章节页 mount 时（带 `content_type: "chapter"`）
 4. 往下滚动章节页，确认：`ScrollDepth25` → `ChapterRead50` → `ScrollDepth75` → `ChapterCompleted`
-5. 事件在 5–10 秒内出现即代表埋点正确
+5. 停留在章节页不操作，等待约 30 秒，确认：`TimeOnPage30`
+6. 事件在预期时机出现即代表埋点正确
 
 **1.2 创建自定义转化（自定义事件必须先包装才能用作优化目标）**
 
@@ -429,7 +431,8 @@ The `ChapterPixel` component (`src/components/ChapterPixel.tsx`) fires five even
    - 类别：`查看内容`
    - 保存
 3. 同样方式创建 `ChapterCompleted` → 名称：`完成章节`
-4. 完成后，这两个自定义转化会出现在广告管理工具广告组的优化事件下拉列表里
+4. 同样方式创建 `TimeOnPage30` → 名称：`停留 30 秒` → 类别：`查看内容`
+5. 完成后，这三个自定义转化会出现在广告管理工具广告组的优化事件下拉列表里
 
 ---
 
