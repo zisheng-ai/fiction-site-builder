@@ -15,7 +15,7 @@ Everything a first-time advertiser needs to know before running a single dollar.
 **What it is:** A small piece of JavaScript code you paste into your website's `<head>`. Once installed, it sends an event to Facebook every time someone visits a page, clicks something, or takes an action (like reading a chapter).
 
 **What it does for you:** Facebook uses this data to:
-1. Know who visited your site — so it can find more people just like them (Lookalike Audiences)
+1. Know who visited your site — so it can find more people just like them (类似受众s)
 2. Track whether someone who saw your ad actually came to your site (attribution)
 3. Optimize delivery toward people who are most likely to do what you want (read, click, stay)
 
@@ -32,28 +32,28 @@ Everything a first-time advertiser needs to know before running a single dollar.
 Every Facebook ad lives inside a three-level hierarchy. Confusing these levels is the most common beginner mistake.
 
 ```
-Campaign
-  └── Ad Set (one or more)
-        └── Ad (one or more)
+广告系列 (Campaign)
+  └── 广告组 (广告组，一个或多个)
+        └── 广告 (Ad，一个或多个)
 ```
 
-| Level | You control | Analogy |
+| 层级 | 你控制的内容 | 类比 |
 |---|---|---|
-| **Campaign** | Objective (what you want people to do) | The goal of the entire effort |
-| **Ad Set** | Budget, audience, schedule, placement | Who sees it, when, for how much |
-| **Ad** | The actual image + copy the user sees | The creative itself |
+| **广告系列 (Campaign)** | 目标（你希望用户做什么） | 整个投放的目的 |
+| **广告组 (广告组)** | 预算、受众、时间安排、版位 | 谁看到、何时看、花多少钱 |
+| **广告 (Ad)** | 用户实际看到的图片 + 文案 | 素材本身 |
 
 **Campaign objective for fiction sites:** Start with **Traffic** objective. Once the Pixel has fired ≥ 500 `ViewContent` events (chapter opens), switch the objective to **Engagement — ViewContent** so Facebook optimizes toward readers who actually open chapters, not just people who click ads. Do not use raw `PageView` as the optimization event — it fires on landing even for instant bounces and teaches the algorithm to find clickers, not readers.
 
-**One campaign, multiple ad sets:** Run 2–3 ad sets with different audiences under one campaign. Facebook will automatically shift budget toward the best-performing one if you use CBO (see below).
+**One campaign, multiple 广告组s:** Run 2–3 广告组s with different audiences under one campaign. Facebook will automatically shift budget toward the best-performing one if you use CBO (see below).
 
 ---
 
 ### Budget Types — CBO vs ABO
 
-**ABO (Ad Set Budget Optimization):** You set a fixed daily budget on each ad set individually. If you have 3 ad sets at $10/day each, you spend $30/day total regardless of which one performs.
+**ABO (广告组 Budget Optimization):** You set a fixed daily budget on each 广告组 individually. If you have 3 广告组s at $10/day each, you spend $30/day total regardless of which one performs.
 
-**CBO (Campaign Budget Optimization):** You set one budget at the campaign level. Facebook automatically shifts spend toward whichever ad set is performing best that day.
+**CBO (Campaign Budget Optimization):** You set one budget at the campaign level. Facebook automatically shifts spend toward whichever 广告组 is performing best that day.
 
 **For beginners: start with CBO.** It reduces the number of decisions you have to make and lets Facebook's algorithm do the optimization work. Set $20–50/day at the campaign level and let it run for at least 3–5 days before drawing conclusions.
 
@@ -61,16 +61,16 @@ Campaign
 
 ### Audiences — the three types
 
-**Core Audience (Interest Targeting):** You manually pick demographics, interests, and behaviors. Example: Women 25–45 in the US who follow "Kindle Unlimited" or "romance novels." This is where beginners start.
+**核心受众 (Interest Targeting):** You manually pick demographics, interests, and behaviors. Example: Women 25–45 in the US who follow "Kindle Unlimited" or "romance novels." This is where beginners start.
 
-**Custom Audience:** Built from your own data — people who visited your site (via Pixel), people on your email list, or people who watched your video. Requires existing traffic. Not useful until you have at least 1,000 Pixel events.
+**自定义受众:** Built from your own data — people who visited your site (via Pixel), people on your email list, or people who watched your video. Requires existing traffic. Not useful until you have at least 1,000 Pixel events.
 
-**Lookalike Audience:** Facebook finds new people who look statistically similar to your Custom Audience. Example: "Find me 1 million people similar to the 500 who read more than 3 chapters on my site." This is the most powerful targeting type — but requires a Custom Audience as its source first.
+**类似受众:** Facebook finds new people who look statistically similar to your 自定义受众. Example: "Find me 1 million people similar to the 500 who read more than 3 chapters on my site." This is the most powerful targeting type — but requires a 自定义受众 as its source first.
 
 **Practical order for fiction sites:**
-1. Start with Core Audience (interest targeting: romance readers, Kindle, specific sub-genres)
-2. After 2–4 weeks and 1,000+ Pixel events: create a Custom Audience of site visitors
-3. After Custom Audience has 500+ people: create a 1% Lookalike Audience
+1. Start with 核心受众 (interest targeting: romance readers, Kindle, specific sub-genres)
+2. After 2–4 weeks and 1,000+ Pixel events: create a 自定义受众 of site visitors
+3. After 自定义受众 has 500+ people: create a 1% 类似受众
 
 ---
 
@@ -95,35 +95,35 @@ If your RPM is $8 and users average 4 pageviews, you earn $0.032 per pageview, o
 
 ---
 
-### The Learning Phase — why you must not touch the ad for 7 days
+### The 学习阶段 — why you must not touch the ad for 7 days
 
-When you launch a new ad set, Facebook enters a **Learning Phase**. It needs to show your ad to ~50 people who take your desired action before it knows who to target efficiently. During this phase:
+When you launch a new 广告组, Facebook enters a **学习阶段**. It needs to show your ad to ~50 people who take your desired action before it knows who to target efficiently. During this phase:
 
 - Performance will be unstable and often bad
 - CPM and CPC will be higher than normal
 - The algorithm is still guessing
 
-**The rule:** Do not change your budget, audience, or ad creative during the Learning Phase. Any significant change resets the learning and you start over. Wait a minimum of 7 days and 50 optimization events before judging performance or making changes.
+**The rule:** Do not change your budget, audience, or ad creative during the 学习阶段. Any significant change resets the learning and you start over. Wait a minimum of 7 days and 50 optimization events before judging performance or making changes.
 
-**"Learning Limited" warning:** If Facebook shows this label, your budget is too low or your audience is too small to collect enough events. Fix: increase the daily budget or broaden the audience.
+**"学习受限" warning:** If Facebook shows this label, your budget is too low or your audience is too small to collect enough events. Fix: increase the daily budget or broaden the audience.
 
 ---
 
-### Ad Account vs. Business Manager vs. Page
+### 广告账户 vs. 企业管理平台 vs. Page
 
 These three things are different and beginners constantly confuse them.
 
 | Thing | What it is | You need it for |
 |---|---|---|
-| **Facebook Page** | Your public-facing Facebook presence | Required to run ads at all |
-| **Ad Account** | The billing account where your ads live | Running ads, setting budgets, holding your credit card |
-| **Business Manager (Meta Business Suite)** | The container that holds your Pages and Ad Accounts | Managing multiple ad accounts or giving team members access |
+| **Facebook 主页** | Your public-facing Facebook presence | Required to run ads at all |
+| **广告账户** | The billing account where your ads live | Running ads, setting budgets, holding your credit card |
+| **企业管理平台** | The container that holds your Pages and 广告账户 | Managing multiple ad accounts or giving team members access |
 
-**Practical setup:** Create one Business Manager → add your Page → create an Ad Account inside it → add your credit card to the Ad Account. Never run ads directly from a personal profile.
+**Practical setup:** Create one 企业管理平台 → add your Page → create an 广告账户 inside it → add your credit card to the 广告账户. Never run ads directly from a personal profile.
 
 ---
 
-### What Gets Your Ad Account Banned
+### What Gets Your 广告账户 Banned
 
 Facebook reviews landing pages, not just creatives. Your account can be restricted or permanently banned for:
 
@@ -394,7 +394,7 @@ The optimization event is the signal you hand to Facebook's algorithm: "find me 
 
 2. **Scale phase (500+ ViewContent events):** Switch to Engagement or Conversions objective, optimize for `ViewContent`. This tells Facebook to find people statistically similar to readers who opened a chapter, not just people who clicked the ad.
 
-3. **Lookalike phase (500+ people in Custom Audience):** Build a Lookalike from the `ViewContent` Custom Audience. A 1% Lookalike of chapter-openers will outperform interest targeting within 1–2 weeks on most accounts.
+3. **Lookalike phase (500+ people in 自定义受众):** Build a Lookalike from the `ViewContent` 自定义受众. A 1% Lookalike of chapter-openers will outperform interest targeting within 1–2 weeks on most accounts.
 
 **If volume is high enough, upgrade to a custom reading-depth event:**
 
@@ -411,38 +411,38 @@ The `ChapterPixel` component (`src/components/ChapterPixel.tsx`) handles all scr
 
 ---
 
-### Events Manager Setup (2026 — AEM manual priority is removed)
+### 事件管理工具 Setup (2026 — AEM manual priority is removed)
 
-> **Context:** Meta removed the manual "Configure Web Events / 8-event priority ranking" UI from Aggregated Event Measurement (AEM) in 2024–2025. You no longer pre-rank events. Optimization events are selected at the Ad Set level. The AEM tab, if present, is informational only.
+> **Context:** Meta removed the manual "Configure Web Events / 8-event priority ranking" UI from Aggregated Event Measurement (AEM) in 2024–2025. You no longer pre-rank events. Optimization events are selected at the 广告组 level. The AEM tab, if present, is informational only.
 
 **Step 1 — Verify events are arriving**
 
-1. Go to **Events Manager** (business.facebook.com/events_manager)
-2. Select your Pixel / Dataset (Meta is migrating Pixels into "Dataset" view — same thing)
-3. Open **Test Events** tab → enter your site URL → confirm `PageView` and `ViewContent` fire on page load, then scroll to trigger `ChapterRead50` and `ChapterCompleted`
+1. Go to **事件管理工具** (business.facebook.com/events_manager)
+2. 选择你的 Pixel / 数据集（Meta 正在把 Pixel 迁移到"数据集"视图，是同一个东西）
+3. Open **测试事件** tab → enter your site URL → confirm `PageView` and `ViewContent` fire on page load, then scroll to trigger `ChapterRead50` and `ChapterCompleted`
 4. If events show up here within 5–10 seconds, instrumentation is correct
 
-**Step 2 — Create Custom Conversions for custom events**
+**Step 2 — Create 自定义转化 for custom events**
 
-Custom events (`ChapterRead50`, `ChapterCompleted`) cannot be used directly as Ad Set optimization events — they must first be wrapped in a Custom Conversion.
+Custom events (`ChapterRead50`, `ChapterCompleted`) cannot be used directly as 广告组 optimization events — they must first be wrapped in a 自定义转化.
 
-1. In Events Manager, go to **Custom Conversions** → **Create Custom Conversion**
+1. In 事件管理工具, go to **自定义转化** → **Create 自定义转化**
 2. For `ChapterRead50`:
    - Name: `Chapter Read 50%`
    - Data source: your Pixel/Dataset
    - Rule: Event = `ChapterRead50` (select from dropdown; if not listed, type it)
-   - Category: `Content View`
+   - 类别：`查看内容`
    - Save
 3. Repeat for `ChapterCompleted` → name `Chapter Completed`
-4. Both custom conversions will now appear as optimization event options at the Ad Set level
+4. Both custom conversions will now appear as optimization event options at the 广告组 level
 
-**Step 3 — Select optimization event at Ad Set level**
+**Step 3 — Select optimization event at 广告组 level**
 
-When creating or editing an Ad Set:
-- Optimization for Ad Delivery → select the appropriate event:
+When creating or editing an 广告组:
+- 广告投放优化目标 → select the appropriate event:
   - Early stage: `Landing Page Views` or `ViewContent`
   - Scale stage (500+ fires): `Chapter Read 50%` custom conversion
-- You do not need to pre-rank events anywhere — Meta's algorithm uses whichever event you select for that specific Ad Set
+- You do not need to pre-rank events anywhere — Meta's algorithm uses whichever event you select for that specific 广告组
 
 **Step 4 — Local verification (no FB backend access required)**
 
@@ -452,7 +452,7 @@ When creating or editing an Ad Set:
 4. Click the Pixel Helper icon — confirm `ViewContent` appears with `content_type: "chapter"`
 5. Scroll to 25% → confirm `ScrollDepth25`, to 50% → `ChapterRead50`, to 90% → `ChapterCompleted`
 
-This verifies instrumentation is correct before touching Events Manager.
+This verifies instrumentation is correct before touching 事件管理工具.
 
 **Why not optimize for `PageView`?**
 
