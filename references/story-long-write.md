@@ -370,9 +370,10 @@ Use a **single batch Agent call** when the environment supports it (e.g. one Age
 
 After all chapter agents complete, do a single sequential pass:
 1. Read chapters in order; verify hook-out of chapter N matches the opening of chapter N+1.
-2. Fix only continuity breaks — do not rewrite prose for style.
-3. Write `tracking/context.md` from the final chapter's ending.
-4. Update `tracking/threads.md`, `tracking/timeline.md`, `tracking/character-status.md`.
+2. **Word count check** — flag any chapter exceeding 1,800 words (1,600 for resolution chapters). For each flagged chapter: find the highest-tension cut point, split into two chapters, bump subsequent chapter numbers, and update `outline/outline.md`.
+3. Fix only continuity breaks — do not rewrite prose for style.
+4. Write `tracking/context.md` from the final chapter's ending.
+5. Update `tracking/threads.md`, `tracking/timeline.md`, `tracking/character-status.md`.
 
 Keep this pass minimal. Do not run a full quality rewrite here; that is A3.
 
@@ -392,10 +393,25 @@ Use this for adding one chapter to an existing book (incremental update only).
 6. Write the **escalation**: raise stakes through action/dialogue. No passive reflection blocks.
 7. Write the **turn**: the moment that changes something — reveal, decision, or loss.
 8. Write the **hook-out**: end mid-motion or on an open question. Never summarize.
-9. Save to `content/{book-title}/chapters/ch-NNN-{title}.md` from the project root, with correct zero-padded number.
-10. Update `tracking/context.md`: last beat + open threads + any foreshadow planted.
-11. Update `tracking/threads.md` if foreshadow added or resolved.
-12. Update `tracking/character-status.md` for any character changes.
+9. **Word count gate** — count the words written and compare to the target range:
+
+   | Chapter type | Target range | Hard cap |
+   |---|---|---|
+   | Opening (ch 1) | 1,400–1,800 | 1,800 |
+   | Escalation (ch 2–N-3) | 1,200–1,600 | 1,800 |
+   | Climax (last 3) | 1,200–1,600 | 1,800 |
+   | Resolution | 1,000–1,400 | 1,600 |
+
+   **If over the hard cap:** do NOT add more prose. Find the highest-tension moment inside the chapter and cut there. Everything after the cut becomes the opening beat of the next chapter (bump subsequent chapter numbers). Adjust the outline accordingly.
+
+   **If under the lower bound:** the scene is thin — add one concrete sensory detail or one beat of subtext dialogue, then re-check. Do not pad with reflection or summary.
+
+   Do not proceed to step 10 until the word count is within the target range.
+
+10. Save to `content/{book-title}/chapters/ch-NNN-{title}.md` from the project root, with correct zero-padded number.
+11. Update `tracking/context.md`: last beat + open threads + any foreshadow planted.
+12. Update `tracking/threads.md` if foreshadow added or resolved.
+13. Update `tracking/character-status.md` for any character changes.
 
 ## Chapter File Format
 
