@@ -421,6 +421,17 @@ useEffect(() => {
 
 Using `ViewContent` for scroll-50% (rather than a custom event name) keeps it inside a standard event that Conversion objectives can directly optimize for, without needing a custom conversion setup.
 
+**Local verification (no FB backend access required):**
+
+1. Run `pnpm dev` in the site directory — server starts at `http://localhost:3000` (or next available port)
+2. Install [Facebook Pixel Helper](https://chromewebstore.google.com/detail/facebook-pixel-helper/fdgfkebogiimcoedlicjlajpkdmockpc) in Chrome
+3. Open any chapter page (e.g. `http://localhost:3000/book/{slug}/chapter/1`)
+4. Click the Pixel Helper icon — confirm `ViewContent` appears with `content_type: "chapter"`
+5. Scroll to 50% — confirm `ChapterRead50` appears (Custom Event)
+6. Scroll to 90% — confirm `ChapterCompleted` appears (Custom Event)
+
+This verifies the instrumentation is correct before touching the FB Events Manager.
+
 **Why not optimize for `PageView`?**
 
 `PageView` fires as soon as the page loads — including for readers who bounce in under 3 seconds. When Facebook optimizes for PageView, it finds people who are good at clicking ads, not people who are good at reading fiction. CPM may stay low but ROAS degrades because you are buying sessions with zero chapter depth. `ViewContent` at scroll-50% costs more per event but the Lookalike it builds converts at 2–4× the ROAS of a PageView-trained audience.
