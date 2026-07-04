@@ -23,7 +23,7 @@ Any of these is a quality gate failure:
 - Decorative glassmorphism or frosted glass panels.
 - Large glowing orbs, blurred blobs, or SaaS hero graphic patterns.
 - Dense ad-card layouts with 4+ metadata lines per row.
-- Body text below 18px on mobile or below 19px on desktop.
+- Body text below 19px on mobile or below 20px on desktop.
 - Metadata text below 12px.
 - Body fonts that are playful, handwritten, or display-only.
 - A full-screen marketing hero section before the actual book list.
