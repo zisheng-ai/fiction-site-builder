@@ -301,15 +301,19 @@ Common mistakes:
 
 ### 7.3 Events to implement (fiction reading arbitrage)
 
-| Event | When to fire | Priority | Notes |
+| Event | When to fire | AEM Priority | Notes |
 |---|---|---|---|
-| `PageView` | Every page load | Standard (auto via Pixel) | Low intent signal; good for learning phase volume |
-| `ViewContent` | When reader reaches chapter body (after scroll past header) | **High — use as optimization event** | Better intent than PageView; 50 events/week is achievable even on modest traffic |
-| Scroll depth (custom) | 50% and 90% scroll through chapter | Medium | Signals engaged reader; useful for CAPI enrichment |
-| `NextChapter` (custom) | When reader navigates to next chapter | High | Clearest signal of engaged session; use for ROAS attribution |
-| `EngagedSession` (custom) | After ≥ 3 pageviews in session | High value | Train delivery toward multi-page readers — the profitable cohort |
+| `PageView` | Every page load (auto via Pixel init) | 4 — lowest | Low intent; includes 3-second bounces. Good for cold-start data volume only. |
+| `ViewContent` | Chapter page mount — reader enters chapter content | **3 — switch campaign optimization to this once ≥ 500 events** | Standard event, no custom conversion needed. Fire via `ChapterPixel` component on mount. |
+| `ScrollDepth25` (custom) | 25% scroll | Funnel analysis only — do not add to AEM | Measures ch1 hook retention. Weak intent signal; not recommended as optimization target. |
+| `ChapterRead50` (custom) | 50% scroll | **2 — strong optimization target** | Genuinely interested reader. Requires custom conversion in Events Manager before AEM/campaign use. |
+| `ScrollDepth75` (custom) | 75% scroll | Funnel analysis only — do not add to AEM | Mid-to-late retention diagnostic. Useful for content quality analysis; not for AEM. |
+| `ChapterCompleted` (custom) | **90% scroll** (not 100% — footer/ads/recommendations below fold make 100% unreachable) | **1 — highest; best Lookalike seed** | Strongest intent signal. Train delivery toward deep readers. Requires custom conversion in Events Manager. |
+| `NextChapter` (custom) | Reader navigates to next chapter | High | Clearest engaged-session signal; use for ROAS attribution if implemented. |
 
-**Recommendation:** optimize campaigns toward `ViewContent` or `NextChapter`, not raw `PageView`. Higher-intent optimization events attract the cohort that reads multiple chapters, which is the only cohort that generates positive ROAS in this model.
+**Recommendation:** optimize campaigns toward `ViewContent` or `ChapterRead50`, not raw `PageView`. AEM event priority: `ChapterCompleted(1) > ChapterRead50(2) > ViewContent(3) > PageView(4)`.
+
+**Implementation:** all scroll events live in `src/components/ChapterPixel.tsx` — a client component that fires `ViewContent` on mount and uses a single passive scroll listener with `useRef` guards to fire each depth event exactly once per page load.
 
 ### 7.4 CAPI implementation pattern (Next.js static export)
 
@@ -459,7 +463,9 @@ Wire these during B4 (trust pages / compliance) before running any Meta campaign
 - [ ] No interstitial or pop-up appears before chapter content loads
 - [ ] No redirect chain between the ad's destination URL and the final landing page
 - [ ] Meta Pixel fires `PageView` on every chapter load (via `layout.tsx`)
-- [ ] Meta Pixel fires `ViewContent` when reader reaches chapter body (client-side scroll trigger)
+- [ ] `ChapterPixel` client component added to chapter page — fires `ViewContent` on mount + scroll depth events at 25% / 50% / 75% / 90%
+- [ ] Custom conversions created in Events Manager: `ChapterRead50`, `ChapterCompleted`
+- [ ] AEM configured: `ChapterCompleted(1) > ChapterRead50(2) > ViewContent(3) > PageView(4)`
 - [ ] `.prose-reader` uses system sans-serif stack, ≥19px mobile, line-height 1.8, max-width 68ch, word-break break-word (see §3.4)
 
 **Content consistency**
