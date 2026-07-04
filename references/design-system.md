@@ -150,7 +150,7 @@ Avoid:
 
 Reader body typography matters more than display typography. Get body right before touching anything else.
 
-**Display type:** Characterful but not decorative. Use for the site logo, book titles, and section headers only. Good choices: `Georgia`, `"Times New Roman"` (system serif, zero cost), or a self-hosted `@fontsource` package such as `@fontsource/lora` or `@fontsource/playfair-display`. Avoid `Fraunces` and `Instrument Serif` — they are LLM default display serifs, deployed without thought. **Never use `next/font/google` or load fonts from `fonts.googleapis.com` — Google Fonts CDN is blocked in mainland China and adds a build-time network dependency.**
+**Display type:** System fonts only — no external font dependencies of any kind. Do not use `next/font/google`, `@fontsource`, or any self-hosted font packages. Good system serif choices for display: `Baskerville, "Palatino Linotype", Palatino, Georgia, serif` (dark/literary tone) or `Georgia, "Times New Roman", serif` (neutral). Avoid `Fraunces` and `Instrument Serif` — they are LLM default display serifs, deployed without thought. The site logo and headings must be legible and on-brand using the system font fallback chain alone.
 
 **Reader body:** Use the system sans-serif stack for all scripts — zero load latency and native feel on every platform. `--font-reader: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif`. Do not use serif system stacks (`Georgia`, `Times`) or self-hosted serif fonts for body prose — they increase perceived reading friction for social traffic audiences. The body face must hold up at 19px mobile with 1.8 line height for 500+ words at a time.
 

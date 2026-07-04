@@ -190,7 +190,7 @@ These features add UI complexity and distract from reading. Omit by default:
 
 Use conservative defaults. Readers should not need to adjust settings to find a comfortable starting point.
 
-- **Font:** system sans-serif stack only. Set `--font-reader` in `:root` to `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif`. Do not use `Georgia`/serif stacks for prose — they add perceived reading friction for social traffic audiences. Do not load web fonts from any external source. `next/font/google` requires network access to Google Fonts at build time and will fail on mainland China developer machines; it also degrades performance for users in regions where Google is blocked. If a custom display font is essential, self-host it via `@fontsource` — never depend on Google Fonts CDN at build or runtime.
+- **Font:** system fonts only — no external dependencies. Set `--font-reader` in `:root` to `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif`. Do not use `Georgia`/serif stacks for prose — they add perceived reading friction for social traffic audiences. Do not use `next/font/google`, `@fontsource`, or any font package of any kind — they add build-time or runtime dependencies and can fail in restricted network environments. The system font stack is the final answer for both body and display text.
 - **Prose size:** `19px` mobile → `20px` sm+.
 - **Line height:** `1.8` mobile → `1.85` sm+.
 - **Paragraph spacing:** `margin-bottom: 1.1em`.
