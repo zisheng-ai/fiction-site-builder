@@ -384,8 +384,8 @@ The optimization event is the signal you hand to Facebook's algorithm: "find me 
 
 | Event | What it captures | When it becomes usable |
 |---|---|---|
-| Custom "reading time" (scroll 50%+ on chapter page) | People who actually finish a chapter — highest intent | After 500+ fires (requires scroll-depth Pixel code) |
-| `ViewContent` (chapter page load) | People who clicked *and* stayed long enough to trigger the event | After 500+ fires from the Pixel base code |
+| `ChapterRead50` custom event (scroll 50%+ on chapter page) | People who are actually reading — higher intent than a chapter open | After 500+ fires; requires a custom conversion in 事件管理工具 before campaign optimization |
+| `ViewContent` (chapter page mount/open) | People who clicked and reached the chapter content | After 500+ fires from the `ChapterPixel` component |
 | `PageView` (any page load) | Anyone who landed — includes instant bounces | Available immediately, but lowest signal quality |
 
 **Practical ramp:**
@@ -396,45 +396,67 @@ The optimization event is the signal you hand to Facebook's algorithm: "find me 
 
 3. **Lookalike phase (500+ people in Custom Audience):** Build a Lookalike from the `ViewContent` Custom Audience. A 1% Lookalike of chapter-openers will outperform interest targeting within 1–2 weeks on most accounts.
 
-**If volume is high enough, upgrade to a custom reading-time event:**
+**If volume is high enough, upgrade to a custom reading-depth event:**
 
-Fire a custom event when the reader scrolls past 50% of a chapter page:
+The `ChapterPixel` component (`src/components/ChapterPixel.tsx`) handles all scroll-depth tracking automatically. It fires four events per chapter page:
 
-```js
-// In the chapter page component (client side)
-useEffect(() => {
-  let fired = false
-  const onScroll = () => {
-    const scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight)
-    if (!fired && scrolled >= 0.5) {
-      fired = true
-      window.fbq?.('track', 'ViewContent', {
-        content_type: 'chapter',
-        content_name: chapterTitle,
-      })
-    }
-  }
-  window.addEventListener('scroll', onScroll, { passive: true })
-  return () => window.removeEventListener('scroll', onScroll)
-}, [chapterTitle])
-```
+| Scroll depth | Event name | Type |
+|---|---|---|
+| 25% | `ScrollDepth25` | Custom |
+| 50% | `ChapterRead50` | Custom |
+| 75% | `ScrollDepth75` | Custom |
+| 90% | `ChapterCompleted` | Custom |
 
-Using `ViewContent` for scroll-50% (rather than a custom event name) keeps it inside a standard event that Conversion objectives can directly optimize for, without needing a custom conversion setup.
+`ViewContent` fires on mount (chapter page load). These five events together give Facebook a full reading-depth funnel for optimization.
 
-**Local verification (no FB backend access required):**
+---
+
+### Events Manager Setup (2026 — AEM manual priority is removed)
+
+> **Context:** Meta removed the manual "Configure Web Events / 8-event priority ranking" UI from Aggregated Event Measurement (AEM) in 2024–2025. You no longer pre-rank events. Optimization events are selected at the Ad Set level. The AEM tab, if present, is informational only.
+
+**Step 1 — Verify events are arriving**
+
+1. Go to **Events Manager** (business.facebook.com/events_manager)
+2. Select your Pixel / Dataset (Meta is migrating Pixels into "Dataset" view — same thing)
+3. Open **Test Events** tab → enter your site URL → confirm `PageView` and `ViewContent` fire on page load, then scroll to trigger `ChapterRead50` and `ChapterCompleted`
+4. If events show up here within 5–10 seconds, instrumentation is correct
+
+**Step 2 — Create Custom Conversions for custom events**
+
+Custom events (`ChapterRead50`, `ChapterCompleted`) cannot be used directly as Ad Set optimization events — they must first be wrapped in a Custom Conversion.
+
+1. In Events Manager, go to **Custom Conversions** → **Create Custom Conversion**
+2. For `ChapterRead50`:
+   - Name: `Chapter Read 50%`
+   - Data source: your Pixel/Dataset
+   - Rule: Event = `ChapterRead50` (select from dropdown; if not listed, type it)
+   - Category: `Content View`
+   - Save
+3. Repeat for `ChapterCompleted` → name `Chapter Completed`
+4. Both custom conversions will now appear as optimization event options at the Ad Set level
+
+**Step 3 — Select optimization event at Ad Set level**
+
+When creating or editing an Ad Set:
+- Optimization for Ad Delivery → select the appropriate event:
+  - Early stage: `Landing Page Views` or `ViewContent`
+  - Scale stage (500+ fires): `Chapter Read 50%` custom conversion
+- You do not need to pre-rank events anywhere — Meta's algorithm uses whichever event you select for that specific Ad Set
+
+**Step 4 — Local verification (no FB backend access required)**
 
 1. Run `pnpm dev` in the site directory — server starts at `http://localhost:3000` (or next available port)
 2. Install [Facebook Pixel Helper](https://chromewebstore.google.com/detail/facebook-pixel-helper/fdgfkebogiimcoedlicjlajpkdmockpc) in Chrome
 3. Open any chapter page (e.g. `http://localhost:3000/book/{slug}/chapter/1`)
 4. Click the Pixel Helper icon — confirm `ViewContent` appears with `content_type: "chapter"`
-5. Scroll to 50% — confirm `ChapterRead50` appears (Custom Event)
-6. Scroll to 90% — confirm `ChapterCompleted` appears (Custom Event)
+5. Scroll to 25% → confirm `ScrollDepth25`, to 50% → `ChapterRead50`, to 90% → `ChapterCompleted`
 
-This verifies the instrumentation is correct before touching the FB Events Manager.
+This verifies instrumentation is correct before touching Events Manager.
 
 **Why not optimize for `PageView`?**
 
-`PageView` fires as soon as the page loads — including for readers who bounce in under 3 seconds. When Facebook optimizes for PageView, it finds people who are good at clicking ads, not people who are good at reading fiction. CPM may stay low but ROAS degrades because you are buying sessions with zero chapter depth. `ViewContent` at scroll-50% costs more per event but the Lookalike it builds converts at 2–4× the ROAS of a PageView-trained audience.
+`PageView` fires as soon as the page loads — including for readers who bounce in under 3 seconds. When Facebook optimizes for PageView, it finds people who are good at clicking ads, not people who are good at reading fiction. CPM may stay low but ROAS degrades because you are buying sessions with zero chapter depth. `ViewContent` is stronger because it means the reader reached chapter content; `ChapterRead50` is stronger again because it means the reader stayed long enough to read half a chapter. Lookalikes built from reading-depth events usually convert at much higher ROAS than PageView-trained audiences.
 
 ---
 
