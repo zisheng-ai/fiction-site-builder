@@ -205,7 +205,7 @@ Diagnostic signal: if AdX viewability is below 60% and match rate is ≥ 95%, th
 ### 4.1 Tracking
 
 - **Meta Pixel + Conversions API (CAPI)**: Pixel alone loses signal to iOS/ad-blockers; CAPI (server-side) recovers it. Run both, deduplicated by event ID.
-- Events to fire: `PageView`, `ViewContent` (chapter open), scroll-depth (e.g. 50/90%), `NextChapter` / page-advance, and a custom "engaged session" (≥ N pageviews or ≥ M seconds) as the optimization signal.
+- Events to fire: `PageView`, `ViewContent` (chapter open), `ScrollDepth25` / `ChapterRead50` / `ScrollDepth75` (scroll milestones), `ChapterCompleted` (IntersectionObserver on `#chapter-content-end` sentinel — not scroll ratio), and `TimeOnPage30` (30s setTimeout, independent of scroll) as the engaged-session signal.
 - Optimize the FB campaign toward the **engaged/value event**, not raw landing PageView — that is what trains delivery toward profitable readers.
 - UTM-tag every campaign; keep `campaign → landing chapter` mapping for ROAS attribution.
 
@@ -216,7 +216,7 @@ Diagnostic signal: if AdX viewability is below 60% and match rate is ≥ 95%, th
 
 ### 4.3 Pixel event implementation — chapter page
 
-Add this client component and drop it into every chapter page. It fires three events that cover the full optimization funnel described in §4.1 and in `facebook-ads.md §Optimization event`.
+Add this client component and drop it into every chapter page. It fires six events that cover the full optimization funnel described in §4.1 and in `facebook-ads.md §Pixel Event Hierarchy`.
 
 ```tsx
 // src/components/ChapterPixel.tsx
@@ -230,8 +230,11 @@ interface Props {
 }
 
 export function ChapterPixel({ chapterTitle, chapterOrder, bookSlug }: Props) {
+  const fired25 = useRef(false)
   const fired50 = useRef(false)
-  const fired90 = useRef(false)
+  const fired75 = useRef(false)
+  const firedCompleted = useRef(false)
+  const firedDwell30 = useRef(false)
 
   useEffect(() => {
     // ViewContent on chapter open — fires once, on mount
@@ -241,32 +244,73 @@ export function ChapterPixel({ chapterTitle, chapterOrder, bookSlug }: Props) {
       content_ids: [`${bookSlug}-ch${chapterOrder}`],
     })
 
-    const onScroll = () => {
-      const ratio = window.scrollY / (document.body.scrollHeight - window.innerHeight)
-      // 50% scroll — primary optimization event (see facebook-ads.md §4.3)
-      if (!fired50.current && ratio >= 0.5) {
-        fired50.current = true
-        window.fbq?.('trackCustom', 'ChapterRead50', {
+    // TimeOnPage30 — 30s dwell, independent of scroll
+    // Captures short chapters and slow readers that scroll milestones miss
+    const dwellTimer = setTimeout(() => {
+      if (!firedDwell30.current) {
+        firedDwell30.current = true
+        window.fbq?.('trackCustom', 'TimeOnPage30', {
           content_name: chapterTitle,
           chapter_order: chapterOrder,
         })
       }
-      // 90% scroll — "completed chapter" signal for high-quality Lookalike
-      if (!fired90.current && ratio >= 0.9) {
-        fired90.current = true
-        window.fbq?.('trackCustom', 'ChapterCompleted', {
-          content_name: chapterTitle,
-          chapter_order: chapterOrder,
-        })
+    }, 30000)
+
+    // Scroll milestones
+    const onScroll = () => {
+      const ratio = window.scrollY / (document.body.scrollHeight - window.innerHeight)
+      if (!fired25.current && ratio >= 0.25) {
+        fired25.current = true
+        window.fbq?.('trackCustom', 'ScrollDepth25', { content_name: chapterTitle, chapter_order: chapterOrder })
+      }
+      if (!fired50.current && ratio >= 0.5) {
+        fired50.current = true
+        window.fbq?.('trackCustom', 'ChapterRead50', { content_name: chapterTitle, chapter_order: chapterOrder })
+      }
+      if (!fired75.current && ratio >= 0.75) {
+        fired75.current = true
+        window.fbq?.('trackCustom', 'ScrollDepth75', { content_name: chapterTitle, chapter_order: chapterOrder })
       }
     }
 
+    // ChapterCompleted — IntersectionObserver on #chapter-content-end sentinel
+    // Cannot use scroll ratio: document.body.scrollHeight includes the recommendation
+    // area below prose, so ratio ≥ 0.9 fires while the reader is still in that area.
+    let io: IntersectionObserver | null = null
+    const sentinel = document.getElementById('chapter-content-end')
+    if (sentinel) {
+      io = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting && !firedCompleted.current) {
+            firedCompleted.current = true
+            window.fbq?.('trackCustom', 'ChapterCompleted', {
+              content_name: chapterTitle,
+              chapter_order: chapterOrder,
+            })
+          }
+        },
+        { threshold: 0.1 }
+      )
+      io.observe(sentinel)
+    }
+
     window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    return () => {
+      clearTimeout(dwellTimer)
+      window.removeEventListener('scroll', onScroll)
+      io?.disconnect()
+    }
   }, [chapterTitle, chapterOrder, bookSlug])
 
   return null
 }
+```
+
+Add the sentinel element at the end of the chapter prose (before the recommendation/nav section):
+
+```tsx
+{/* Marks the true end of prose — ChapterPixel's IntersectionObserver targets this */}
+<div id="chapter-content-end" aria-hidden="true" />
 ```
 
 In the chapter page Server Component:
@@ -290,18 +334,21 @@ export default function ChapterPage({ params }) {
 }
 ```
 
-**Event priority for AEM configuration (Meta Business Manager → 事件管理工具 → Aggregated Event Measurement):**
+**Ad Set conversion event priority (广告组转化事件 — Ads Manager → Ad Set → Performance goal → Conversion event):**
 
-Set in this order so iOS attribution flows to the highest-quality signal available:
+Select the highest-quality event that has accumulated ≥ 50 events/week. Upgrade as volume grows:
 
 | Priority | Event | Signal quality |
 |---|---|---|
-| 1 | `ChapterCompleted` (custom) | Reader finished a chapter — highest intent |
+| 1 | `ChapterCompleted` (custom) | Reader finished prose — highest intent |
 | 2 | `ChapterRead50` (custom) | Reader reached midpoint — proven engagement |
-| 3 | `ViewContent` (standard) | Chapter opened — lowest, but broadest volume |
-| 4 | `PageView` | Any page — fallback only |
+| 3 | `TimeOnPage30` (custom) | 30s dwell — time-dimension engagement, good for short chapters |
+| 4 | `ViewContent` (standard) | Chapter opened — lowest, but broadest volume |
+| 5 | `PageView` | Any page — fallback only |
 
-Use `ViewContent` as the campaign optimization target (standard event, usable with Conversions objective). Upgrade to `ChapterRead50` once it accumulates ≥ 500 events — it signals actual readers, not page-loaders.
+Note: custom events (`ChapterCompleted`, `ChapterRead50`, `TimeOnPage30`) must be wrapped as Custom Conversions in Events Manager before they can be selected as Ad Set optimization targets — see `facebook-ads.md §Step 1.2`.
+
+Use `ViewContent` as the campaign optimization target to start. Upgrade to `ChapterRead50` once it accumulates ≥ 50 events/week — it signals actual readers, not page-loaders.
 
 ---
 
