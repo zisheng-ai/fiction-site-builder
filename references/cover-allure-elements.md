@@ -6,6 +6,21 @@ Reference for `story-cover.md`. Visual allure elements for fiction cover generat
 
 ---
 
+## Tier quick reference
+
+T1–T4 are visual-allure intensity tiers for cover and illustration prompts. They are not story-quality tiers.
+
+| Tier | Label | Meaning | Typical use |
+|---|---|---|---|
+| **T1** | Suggestive | Safe, restrained atmosphere: gaze, bare shoulder, collarbone, charged proximity, dangerous mood. | Floor for all genres; default for mystery, horror, sci-fi, literary thriller. |
+| **T2** | Bold | Mainstream romance/drama allure: deeper neckline, bare back, fitted fabric, clear physical magnetism. | Strong safe zone for romance/drama covers; push fantasy/historical here when composition allows. |
+| **T3** | Maximum | Higher visual pull: wet fabric, slipping/torn garment language, more visible skin, strong intimacy tension. | Romance/dark romance covers and romance illustrations when CTR matters. |
+| **T4** | Limit | Highest safe-boundary intimacy: near-threshold romantic tension while still fully blocking explicit content. | Romance illustrations and occasional high-risk romance creative only; review carefully. |
+
+**Hard boundary for every tier:** no exposed nipples/areola, no exposed genitals, no sex acts, and no image that reads as pornographic. T3/T4 push attraction, not explicitness.
+
+---
+
 ## 0. Monetization risk note (read before generating)
 
 **Default business model: Facebook paid traffic + AdSense/AdX arbitrage** (see `references/adsense-arbitrage.md` §1). The cover is the landing-page hero image and is scanned by **both** Meta's ad-review crawler and AdSense's brand-safety classifier. Suggestive, risqué covers — cleavage, curvy/busty figures, off-shoulder, low-cut necklines, charged proximity — are **allowed**: maximize visual appeal aggressively.
