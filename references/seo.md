@@ -403,7 +403,7 @@ Ads are the most common source of CLS on these sites. Every `AdSlot` component m
 </div>
 ```
 
-For fluid-size slots (q5), wrap in a container with `minHeight: '100px'` as a reasonable floor.
+All ad slots (q1–q5) use standard display sizes; `AdSlot` already reserves `minWidth: 250, minHeight: 250` before creative loads.
 
 ### Preconnect for Third-Party Origins
 

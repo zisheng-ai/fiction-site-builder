@@ -216,9 +216,9 @@ GPT/AdSense slots render as zero-height divs by default. When the ad creative lo
 
 **Never use JavaScript to reserve space** — JS-driven reservations run after layout, which may already have happened, causing a shift.
 
-### Fluid slots (q5)
+### q5 slot sizing
 
-Fluid-size ads (q5 in the nablepart setup) have unknown height until the creative loads. Place fluid slots only below the fold. CLS from below-fold content after 500ms of user interaction is scored under the windowed CLS model and affects the score less — but still avoid them above the fold.
+q5 uses standard display sizes `[[336,280],[300,250],[250,250]]` — same `minWidth: 250, minHeight: 250` reservation as q1–q4. No special CLS handling needed.
 
 ### GPT lazy loading with explicit margins
 

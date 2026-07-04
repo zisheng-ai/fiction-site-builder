@@ -167,9 +167,8 @@ Map the CLAUDE.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via
 - **Ad pixels < 30% of content pixels** per screen (FB + AdSense inventory-value).
 - RPM typically peaks around 5 units; beyond that each added unit adds ~2–4% and erodes engagement + page-experience. Cutting the weakest slot often **raises** total RPM.
 - **Recommended dynamic layout** (measure chapter word count before rendering ads):
-  - All chapters: q1 (after part[0]) + q2 (after part[1]) + q5 fluid (after part[1]) — **minimum 3 ads always**
-  - > 2,000 words with ≥ 3 paragraphs: q1 + q2 + q3 + q5 fluid (all in-content, q5 after q3)
-  - Do NOT place a q5 AdSlot in-content — q5 is reserved for the sticky anchor; duplicate div ids break GPT.
+  - All chapters: q1 (after part[0]) + q2 (after part[1]) + q5 (after part[1]) — **minimum 3 ads always**
+  - > 2,000 words with ≥ 3 paragraphs: q1 + q2 + q3 + q5 (all in-content, q5 after q3)
 
 ### 3.3 CLS protection (Core Web Vitals = cheaper FB traffic + SEO)
 
@@ -190,8 +189,8 @@ The single biggest viewability lever on chapter pages is WHERE the first ad slot
 
 Rule: place the **first** ad after `contentParts[0]` — the first ~20% of paragraphs (min 3, max 5 paragraphs). At this depth the reader has invested ~2 minutes and is still engaged — first-ad viewability should reach 70–90% vs < 30% pre-content.
 
-AdX layout (2-part chapters): `part[0] → q1 → part[1] → q2 → q5 fluid` (all in-content).
-AdX layout (3-part chapters): `part[0] → q1 → part[1] → q2 → part[2] → q3 → q5 fluid` (all in-content).
+AdX layout (2-part chapters): `part[0] → q1 → part[1] → q2 → q5` (all in-content).
+AdX layout (3-part chapters): `part[0] → q1 → part[1] → q2 → part[2] → q3 → q5` (all in-content).
 
 AdSense layout (2-part): `part[0] → slot1(priority) → part[1] → slot2`.
 AdSense layout (3-part): `part[0] → slot1(priority) → part[1] → slot2 → part[2]`.
@@ -544,12 +543,10 @@ Mount immediately on render — no IntersectionObserver. GPT's `singleRequest` b
 
 import { useEffect } from 'react'
 
-type Size = [number, number] | 'fluid'
-
 type Props = {
   path: string
   id: string
-  sizes: Size[]
+  sizes: [number, number][]
   className?: string
 }
 
@@ -578,11 +575,9 @@ export default function AdSlot({ path, id, sizes, className = '' }: Props) {
     }
   }, [path, id]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const isFluid = sizes.includes('fluid')
-  // fluid ads need w-full + explicit width — flex justify-center gives the inner div zero width
   return (
-    <div className={`${isFluid ? 'w-full' : 'flex justify-center'} my-6 ${className}`}>
-      <div id={id} style={isFluid ? { width: '100%' } : { minWidth: 250, minHeight: 250 }} />
+    <div className={`flex justify-center my-6 ${className}`}>
+      <div id={id} style={{ minWidth: 250, minHeight: 250 }} />
     </div>
   )
 }
@@ -645,7 +640,7 @@ function splitContent(content: string): string[] {
   </>
 )}
 
-{/* q5 fluid placed in-content after last content block */}
+{/* q5 display ad placed in-content after last content block */}
 {/* StickyNav — mount outside <main> before the min-h-screen wrapper div (nav-only, no ads) */}
 {/* chapter <main> must use className="pb-sticky-ad" (calc(82px + env(safe-area-inset-bottom))) */}
 ```
@@ -654,9 +649,9 @@ function splitContent(content: string): string[] {
 
 Mount outside `<main>` as a sibling before `<div className="min-h-screen">`. The bar is always visible; `<main>` uses `className="pb-sticky-ad"` (CSS utility: `calc(82px + env(safe-area-inset-bottom))`) to prevent content hiding behind it.
 
-Two variants — **AdX** (nav + q5 fluid ad) and **AdSense** (nav only; policy prohibits fixed manual units).
+Two variants — **AdX** (nav + q5 display ad) and **AdSense** (nav only; policy prohibits fixed manual units).
 
-**All sites (AdX + AdSense)** — nav-only: TOC + Next buttons, no ads. q5 fluid goes in-content (after the last content part), never in the sticky bar.
+**All sites (AdX + AdSense)** — nav-only: TOC + Next buttons, no ads. q5 goes in-content (after the last content part), never in the sticky bar.
 
 ```tsx
 'use client'
@@ -716,7 +711,7 @@ export default function StickyNav({ bookSlug, nextChapter }: Props) {
         <AdSlot
           path="/23294357175/q5"
           id="div-gpt-ad-1782711618925-0"
-          sizes={['fluid']}
+          sizes={[[336, 280], [300, 250], [250, 250]]}
           className="!my-0"
         />
       </div>
