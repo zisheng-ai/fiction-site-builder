@@ -26,13 +26,7 @@ Reference for Phase A2.5 — in-chapter illustration generation. Load when the u
 
 ## §0 Floor Remains Absolute
 
-Illustration tier does not relax the hard content floor. The same rules apply:
-
-- No exposed nipples, genitals, or areola — ever
-- No sex acts depicted
-- §0 zones covered by fabric, shadow, body position, or composition — exactly as specified in `cover-allure-elements.md`
-
-The difference from covers is the *tier* used, not the floor.
+§0 applies to illustrations — see `cover-allure-elements.md §0`. Tier does not relax the floor.
 
 ---
 

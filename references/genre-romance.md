@@ -37,12 +37,6 @@ For non-romance genres that use a reduced set, see `genre-mystery.md` (mystery/t
 
 ## Named Emotional States (Romance)
 
-Name the specific state before writing the scene. Use it as the emotional throughline — every action, beat of dialogue, and internal observation should be filtered through it.
-
-**Banned:** generic emotional states — "she felt nervous", "he was angry", "she was confused". These communicate the emotion's name, not the experience of it.
-
-**Required:** emotions with internal contradiction — the character feels one thing and does or says or wants something else.
-
 | Named state | Internal contradiction | How it reads on the page |
 |-------------|----------------------|--------------------------|
 | **Barely-controlled want** | He desires; his body is fighting it | Jaw tight, deliberate distance, too-controlled voice, won't look at her directly |
@@ -84,7 +78,6 @@ The setting is not backdrop. It is a second character that pushes the primary em
 | Forced vulnerability | Public place, private crisis | She cannot hide and cannot leave |
 | Supernatural stakes | A boundary space (threshold, forest edge, between worlds) | The rules of the normal world do not apply here |
 
-If the setting could be swapped with any other location without changing the scene — change the setting.
 
 ---
 

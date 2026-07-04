@@ -30,13 +30,7 @@ A banned Facebook ad account or a disabled AdSense account ends the business. Th
 
 ### 1.1 Content safety (Facebook + AdSense both scan the landing page)
 
-Facebook crawls the **destination URL**, not just the ad creative; AdSense scans the whole site. Suggestive / risqué covers and imagery — cleavage, curvy/busty figures, off-shoulder, low-cut, charged proximity — are **allowed and encouraged** for click appeal. The only hard line is outright explicit content:
-
-- **Forbidden (hard ban):** actual nudity (exposed genitals/nipples), sex acts, graphic/pornographic imagery. This both trips the image generator's own filter and, on a live site, risks a **permanent Facebook ad-account ban** and **AdSense disable**.
-- **No cloaking:** never serve FB's crawler a tame page and users a racier one — detected, and causes permanent account loss.
-- **Allowed:** everything short of explicit — suggestive poses, deep cleavage, figure-forward bodies, wet/rain looks, bed-sheet morning scenes, almost-kiss tension. Push allure hard.
-
-This is the governing register for `story-cover.md` and `cover-allure-elements.md` (§0). Use the safe-wording rules in `cover-allure-elements.md` to get maximum spice without tripping the `gpt-image-2-all` keyword filter.
+§0 floor: per `cover-allure-elements.md §0` — no explicit content (nipples/genitals/sex acts). Suggestive allure fully allowed; push it. The site/ad creative is crawled by Meta and AdSense; cloaking is a permanent-ban offense.
 
 ### 1.2 No cloaking, no bridge/doorway pages
 

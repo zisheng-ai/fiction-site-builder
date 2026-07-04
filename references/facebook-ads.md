@@ -1,6 +1,6 @@
 # Facebook Ads — Fiction Site Traffic Playbook
 
-Load this reference when the user asks about Facebook advertising, ad copy, taglines for promotion, cover image requirements for ads, or Campaign setup for fiction sites.
+Load this reference when the user asks about Facebook advertising, ad copy, taglines for promotion, cover image requirements for ads, or campaign setup for fiction sites.
 
 ---
 
@@ -32,16 +32,16 @@ Everything a first-time advertiser needs to know before running a single dollar.
 Every Facebook ad lives inside a three-level hierarchy. Confusing these levels is the most common beginner mistake.
 
 ```
-Campaign (Campaign)
-  └── Ad Set (Ad Set，一个或多个)
-        └── 广告 (Ad，一个或多个)
+Campaign
+  └── Ad Set (one or more)
+        └── Ad (one or more)
 ```
 
-| Level | What you control | 类比 |
+| Level | What you control | Analogy |
 |---|---|---|
-| **Campaign (Campaign)** | 目标（你希望用户做什么） | 整个投放的目的 |
-| **Ad Set (Ad Set)** | 预算、受众、时间安排、版位 | 谁看到、何时看、花多少钱 |
-| **广告 (Ad)** | 用户实际看到的图片 + 文案 | 素材本身 |
+| **Campaign** | Objective (what you want users to do) | The purpose of the whole campaign |
+| **Ad Set** | Budget, audience, schedule, placements | Who sees it, when, and how much you spend |
+| **Ad** | The image + copy the user actually sees | The creative itself |
 
 **Campaign objective for fiction sites:** Start with **Traffic** objective. Once the Pixel has fired ≥ 500 `ViewContent` events (chapter opens), switch the objective to **Engagement — ViewContent** so Facebook optimizes toward readers who actually open chapters, not just people who click ads. Do not use raw `PageView` as the optimization event — it fires on landing even for instant bounces and teaches the algorithm to find clickers, not readers.
 
@@ -115,7 +115,7 @@ These three things are different and beginners constantly confuse them.
 
 | Thing | What it is | You need it for |
 |---|---|---|
-| **Facebook 主页** | Your public-facing Facebook presence | Required to run ads at all |
+| **Facebook Page** | Your public-facing Facebook presence | Required to run ads at all |
 | **Ad Account** | The billing account where your ads live | Running ads, setting budgets, holding your credit card |
 | **Business Manager** | The container that holds your Pages and Ad Account | Managing multiple ad accounts or giving team members access |
 
@@ -376,138 +376,125 @@ Never test image AND copy simultaneously in early rounds — isolate the variabl
 
 ---
 
-### Pixel 事件Level
+### Pixel Event Hierarchy
 
-The `ChapterPixel` component (`src/components/ChapterPixel.tsx`) fires five events per chapter page, giving Facebook a full reading-depth funnel:
+The `ChapterPixel` component (`src/components/ChapterPixel.tsx`) fires these events per chapter page, giving Facebook a full reading-depth funnel:
 
-| 事件 | 触发时机 | 类型 | 优化价值 |
+| Event | Trigger | Type | Optimization value |
 |---|---|---|---|
-| `ViewContent` | 章节页 mount（打开章节） | 标准事件 | 高：确认读者进入内容 |
-| `ScrollDepth25` | 滚动 25% | 自定义 | 低：参考用，不做优化目标 |
-| `ChapterRead50` | 滚动 50% | 自定义 | 最高：读了半章，真实读者信号 |
-| `ScrollDepth75` | 滚动 75% | 自定义 | 参考用 |
-| `ChapterCompleted` | 滚动 90% | 自定义 | 高：读完章节 |
-| `TimeOnPage30` | 停留满 30 秒（setTimeout，与滚动无关） | 自定义 | 高：时间维度参与度，补充短章节滚动盲区 |
+| `ViewContent` | Chapter page mount (chapter opened) | Standard | High — confirms reader entered content |
+| `ScrollDepth25` | 25% scroll | Custom | Low — reference only, not an optimization target |
+| `ChapterRead50` | 50% scroll | Custom | Highest — half-chapter read, strongest real-reader signal |
+| `ScrollDepth75` | 75% scroll | Custom | Reference only |
+| `ChapterCompleted` | 90% scroll | Custom | High — chapter finished |
+| `TimeOnPage30` | 30 seconds on page (setTimeout, independent of scroll) | Custom | High — time-dimension engagement; fills the gap for short chapters |
 
-`PageView` 在任意页面加载时触发（含立即跳出），不适合作优化目标。
+`PageView` fires on every page load including instant bounces — do not use it as an optimization target.
 
 ---
 
-### Meta 后台配置完整流程（2026）
+### Meta Ads Setup — Phased Campaign Configuration (2026)
 
-> **注意（2026）：** 优化事件直接在广告管理工具的Ad SetLevel选择，事件管理工具只用于验证事件和创建自定义转化。
+> **Note (2026):** Optimization events are selected at the Ad Set level in Ads Manager. Events Manager is only used to verify events and create custom conversions.
 
-涉及两个独立后台，职责不同：
+Two separate tools, distinct roles:
 
-| 后台 | 入口 | 做什么 |
+| Tool | URL | Purpose |
 |---|---|---|
-| **事件管理工具** | eventsmanager.facebook.com/events_manager2 | 验证 Pixel 事件、创建自定义转化 |
-| **广告管理工具** | adsmanager.facebook.com/adsmanager/manage/campaigns | 创建Campaign、设置优化目标 |
+| **Events Manager** | eventsmanager.facebook.com/events_manager2 | Verify Pixel events, create custom conversions |
+| **Ads Manager** | adsmanager.facebook.com/adsmanager/manage/campaigns | Create campaigns, set optimization objectives |
 
 ---
 
-#### 第一步：事件管理工具 — 验证事件 + 创建自定义转化事件
+#### Step 1: Events Manager — Verify Events + Create Custom Conversions
 
-**1.1 验证事件到达**
+**1.1 Verify events are arriving**
 
-1. 进入**事件管理工具** → 选择你的 Pixel（或数据集，Meta 正在把 Pixel 迁移到"数据集"视图，同一个东西）
-2. 打开**测试事件**标签页 → 输入你的站点 URL
-3. 在浏览器里打开一个章节页，确认以下事件出现：
-   - `PageView` — 页面加载时
-   - `ViewContent` — 章节页 mount 时（带 `content_type: "chapter"`）
-4. 往下滚动章节页，确认：`ScrollDepth25` → `ChapterRead50` → `ScrollDepth75` → `ChapterCompleted`
-5. 停留在章节页不操作，等待约 30 秒，确认：`TimeOnPage30`
-6. 事件在预期时机出现即代表埋点正确
+1. Go to Events Manager → select your Pixel (or Dataset — Meta is migrating Pixels to "Dataset" view, same thing)
+2. Open the **Test Events** tab → enter your site URL
+3. Open a chapter page in the browser, confirm these events appear:
+   - `PageView` — on page load
+   - `ViewContent` — on chapter mount (with `content_type: "chapter"`)
+4. Scroll down the chapter page, confirm: `ScrollDepth25` → `ChapterRead50` → `ScrollDepth75` → `ChapterCompleted`
+5. Stay on the chapter page without scrolling for ~30s, confirm: `TimeOnPage30`
+6. Events firing at expected moments = instrumentation correct
 
-**1.2 创建自定义转化事件（自定义事件必须先包装才能用作优化目标）**
+**1.2 Create custom conversions (custom events must be wrapped before they can be used as optimization targets)**
 
-`ChapterRead50` 和 `ChapterCompleted` 是自定义事件，不能直接在Ad Set里选用，必须先包装成自定义转化：
+`ChapterRead50` and `ChapterCompleted` are custom events — they cannot be selected directly in an Ad Set. Wrap them as custom conversions first:
 
-1. 事件管理工具 → **自定义转化事件** → **创建自定义转化事件**
-2. 配置 `ChapterRead50`：
-   - 名称：`阅读章节 50%`
-   - 数据源：选你的 Pixel
-   - 规则：事件 = `ChapterRead50`（下拉里没有就手动输入）
-   - 类别：`查看内容`
-   - 保存
-3. 同样方式创建 `ChapterCompleted` → 名称：`完成章节`
-4. 同样方式创建 `TimeOnPage30` → 名称：`停留 30 秒` → 类别：`查看内容`
-5. 完成后，这三个自定义转化会出现在广告管理工具Ad Set的优化事件下拉列表里
+1. Events Manager → **Custom conversions** → **Create custom conversion**
+2. Configure `ChapterRead50`: Name = "Read Chapter 50%", Data source = your Pixel, Rule: event = `ChapterRead50`, Category = "View Content" → Save
+3. Same process for `ChapterCompleted` → Name = "Chapter Completed"
+4. Same process for `TimeOnPage30` → Name = "30s On Page" → Category = "View Content"
+5. These three custom conversions now appear in the Ads Manager Ad Set optimization event dropdown
 
 ---
 
-#### 第二步：广告管理工具 — 按阶段创建Campaign
+#### Step 2: Ads Manager — Phased Campaign Creation
 
-> **关键约束：Meta 不允许修改已有Campaign的目标。** 从流量阶段切换到转化阶段必须新建Campaign，不能在原有Campaign上改。
+> **Key constraint: Meta does not allow changing the objective of an existing Campaign.** Switching from Traffic to Conversions requires creating a new Campaign — you cannot edit the existing one.
 
-**阶段一：上线期（Ad Set每周 ViewContent < 50 次）**
+**Phase 1: Launch (Ad Set < 50 ViewContent events/week)**
 
-目标：积累 Pixel 数据，让算法有足够信号。
+Goal: accumulate Pixel data so the algorithm has enough signal.
 
-1. 广告管理工具 → **创建**
-2. **Campaign目标** → 选**流量**
-3. 进入Ad Set设置：
-   - **性能目标** → 选**最大化落地页浏览量**（不要选"链接点击量"，也不要选"展示次数"）
-4. 受众：Core Audience（兴趣定向：romance novels、Kindle Unlimited、BookTok）
-5. 运行直到Ad Set每周稳定产生 ≥ 50 次 ViewContent（参考值：累计 500 次；Meta 官方门槛是每周 ≥50 次优化事件才能稳定退出Learning Phase）
+1. Ads Manager → **Create**
+2. **Campaign objective** → **Traffic**
+3. Ad Set settings: **Performance goal** → **Maximize landing page views** (not "Link clicks" or "Impressions")
+4. Audience: Core Audience (interest targeting: romance novels, Kindle Unlimited, BookTok)
+5. Run until the Ad Set consistently produces ≥ 50 ViewContent events/week (reference: 500 cumulative events; Meta's threshold for exiting Learning Phase)
 
-**阶段二：规模期（Ad Set每周 ViewContent ≥ 50 次，参考值：累计 ≥ 500 次）**
+**Phase 2: Scale (Ad Set ≥ 50 ViewContent/week, reference: 500 cumulative)**
 
-目标：让算法找到和真实读者相似的人，而不只是爱点广告的人。
+Goal: find people who resemble real readers, not just ad-clickers.
 
-> 不能改原来的流量Campaign——新建一个销售量Campaign。
+> Cannot modify the existing Traffic Campaign — create a new Sales Campaign.
 
-1. 广告管理工具 → **创建**
-2. **Campaign目标** → 选**销售量**
-3. **转化位置** → 选**网站**
-4. 确认 Pixel 已关联
-5. 进入Ad Set设置：
-   - **性能目标** → 选**最大化转化事件数**
-   - **转化事件** → 选**查看内容 (ViewContent)**
-   - 如果 ViewContent 显示灰色或有警告，说明近 7 天内该事件 < 50 次，继续用阶段一积累数据
-6. 受众、预算、素材可直接复用阶段一的设置
-7. 阶段一Campaign：可暂停（省预算集中给新系列跑Learning Phase）或并行跑 1–2 周对比 ROAS 再决定
+1. Ads Manager → **Create**
+2. **Campaign objective** → **Sales**
+3. **Conversion location** → **Website**
+4. Confirm Pixel is linked
+5. Ad Set settings: **Performance goal** → **Maximize number of conversions** → **Conversion event** → **View Content (ViewContent)**
+   - If ViewContent is greyed out or shows a warning, < 50 events in the last 7 days — keep running Phase 1
+6. Reuse Phase 1's audience, budget, and creatives
+7. Phase 1 Campaign: pause to concentrate budget on the new campaign's Learning Phase, or run both in parallel for 1–2 weeks to compare ROAS
 
-**阶段三：Lookalike Audience期（Custom Audience ≥ 500 人）**
+**Phase 3: Lookalike Audiences (Custom Audience ≥ 500 people)**
 
-1. 广告管理工具 → **受众** → **创建受众** → **Custom Audience**
-2. 数据源：网站 → 事件：ViewContent → 时间范围：最近 180 天
-3. 保存后，再创建 → **Lookalike Audience**，来源选刚建的 ViewContent Custom Audience，比例选 1%
-4. 新建Ad Set，受众选这个 1% Lookalike Audience，其余设置不变
+1. Ads Manager → **Audiences** → **Create audience** → **Custom Audience**
+2. Source: Website → Event: ViewContent → Lookback: Last 180 days
+3. After saving, create → **Lookalike Audience**, source = the ViewContent Custom Audience, ratio = 1%
+4. Create a new Ad Set with this 1% Lookalike Audience, all other settings unchanged
 
-**（可选）阶段四：升级到深度阅读事件**
+**Phase 4 (optional): Upgrade to deep-reading events**
 
-当Ad Set每周稳定产生 ≥ 50 次 `ChapterRead50` 后（参考值：累计 500 次），可以再新建一个销售量Campaign，将**转化事件**改为 `阅读章节 50%`。这个信号质量最高，Lookalike Audience ROAS 通常比 ViewContent 高 20–40%。
+When the Ad Set consistently generates ≥ 50 `ChapterRead50` events/week (reference: 500 cumulative), create a new Sales Campaign and set the **Conversion event** to "Read Chapter 50%". This signal produces the highest-quality audience — Lookalike Audience ROAS typically runs 20–40% higher than ViewContent.
 
 ---
 
-#### 本地验证（不需要 FB 后台权限）
+#### Local Verification (no Meta backend access needed)
 
-**推荐工具：Meta Pixel 像素代码帮手**
+Install **Meta Pixel Helper** from the Chrome Web Store (search "Meta Pixel Helper", choose the official Meta extension).
 
-Chrome 扩展，安装后在地址栏右侧出现一个 Meta 图标，点击可实时查看当前页面触发了哪些 Pixel 事件及其参数。
+**Verification steps:**
 
-- 搜索安装：在 Chrome 应用商店搜索 **"Meta Pixel Helper"**（中文界面显示为 **"Meta Pixel 像素代码帮手"**）
-- 或直接访问 Chrome 应用商店，搜索 `Meta Pixel Helper`，认准 Meta 官方发布的那个
+1. Run `pnpm dev` in the site directory, open `http://localhost:3000`
+2. Enable Meta Pixel Helper (icon appears in toolbar)
+3. Open any chapter page (e.g. `http://localhost:3000/book/{slug}/chapter/1`)
+4. Click the extension icon, confirm:
+   - `PageView` — fires on load
+   - `ViewContent` — fires with `content_type: "chapter"`
+5. Scroll down the chapter page, confirm in order:
+   - 25% → `ScrollDepth25`
+   - 50% → `ChapterRead50`
+   - 90% → `ChapterCompleted`
 
-**验证步骤：**
+All present = instrumentation correct. Then do a live second-pass in Events Manager using the **Test Events** tab.
 
-1. 在站点目录运行 `pnpm dev`，本地访问 `http://localhost:3000`
-2. 安装并启用 **Meta Pixel 像素代码帮手**，确认扩展图标出现在工具栏
-3. 打开任意章节页（如 `http://localhost:3000/book/{slug}/chapter/1`）
-4. 点扩展图标，确认看到：
-   - `PageView` — 页面加载触发
-   - `ViewContent` — 带参数 `content_type: "chapter"`
-5. 在章节页往下滚动，依次确认：
-   - 滚动到 25% → `ScrollDepth25`
-   - 滚动到 50% → `ChapterRead50`
-   - 滚动到 90% → `ChapterCompleted`
+**Why not optimize for `PageView`?**
 
-全部出现 = 埋点正确，再进事件管理工具用**测试事件**功能做线上二次确认。
-
-**为什么不用 `PageView` 做优化目标？**
-
-`PageView` 在页面加载瞬间触发，包含 3 秒内就跳出的用户。以 PageView 优化，算法学到的是"爱点广告的人"，不是"会读小说的人"。CPM 可能低，但 ROAS 会持续下降。`ViewContent` 代表读者真正打开了章节内容；`ChapterRead50` 代表读者读了半章——以此为信号建立的Lookalike Audience，转化质量通常高出 20–40%。
+`PageView` fires the instant the page loads, including users who bounce in under 3 seconds. Optimizing for PageView teaches the algorithm to find people who click ads, not people who read fiction. CPM may drop, but ROAS will decline continuously. `ViewContent` confirms the reader opened chapter content. `ChapterRead50` confirms they read half a chapter — Lookalike Audiences built on this signal typically convert 20–40% better.
 
 ---
 

@@ -27,8 +27,6 @@ Mystery and thriller require **tension + question** but not desire. Gothic requi
 
 ## Named Emotional States (Mystery)
 
-**Banned:** generic states — "she felt nervous", "she was confused", "she felt afraid". Name the specific state before writing the scene.
-
 | Named state | Internal contradiction | How it reads on the page |
 |-------------|----------------------|--------------------------|
 | **Creeping wrongness** | Something is off; she cannot name it yet | Mundane actions slow to half-speed; she catalogues details without knowing why; the reader sees the accumulation before she does |
@@ -49,7 +47,6 @@ The setting is not backdrop. Before writing any scene, ask: *does this location 
 | **Isolation + limited suspect pool** | Remote or enclosed location (fog-bound manor, snowbound estate, island) | No exit; the danger is among the finite number of people in the room; every character's absence is a clue |
 | **Gothic weight of history** | A space with a sealed past (old house, locked room, ruined chapel) | The setting knows the answer; the protagonist's job is to make it speak; resist the urge to describe — let the space act |
 
-If the setting could be swapped with any other location without changing the scene — change the setting.
 
 ---
 
