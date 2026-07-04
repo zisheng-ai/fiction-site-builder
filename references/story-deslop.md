@@ -2,6 +2,10 @@
 
 Load this reference when the user asks to remove AI flavor from novel prose, or when prose review detects template patterns.
 
+Run deslop periodically on full books:
+- After finishing all chapters of a new book, following the write and review passes.
+- During bulk maintenance of existing books.
+
 ## Core Philosophy
 
 AI flavor is not a grammar error — it is a style problem: over-polished, symmetrical, over-explained. The goal is to pull text from over-crafted back toward specific, natural, readable. Change the minimum amount to shift the character of the passage.
@@ -123,6 +127,11 @@ Rules:
 This triage pass typically saves 30–50% of total tokens on a full book by skipping clean chapters and limiting mild chapters to one pass.
 
 ## Three-Pass Method
+
+Execution order:
+1. Run the triage pass first and output the severity table.
+2. Process chapters by severity group: clean chapters are skipped, mild chapters get Pass 1, moderate chapters get Pass 1 + Pass 2, and severe chapters get all three passes plus targeted rewrites of flagged paragraphs.
+3. Output a De-Slop Report after each processed chapter.
 
 - **Pass 1 — Deabstract**: Gates A, C (abstract emotion), D (uniform rhythm), G (narrator intrusion)
 - **Pass 2 — Deliteralize**: Gates A (literary register), B (sentence templates)

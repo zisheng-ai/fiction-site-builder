@@ -490,6 +490,8 @@ Pick a number in the **20–26 range** that fits the story's scope AND is not al
 - A paranormal/billionaire romance with full slow-burn arc: **22–23 chapters**
 - A space opera, fae epic, or multi-POV dark fantasy: **24–26 chapters**
 
+Existing books with fewer than 20 chapters must be extended to at least 20 chapters before launch.
+
 **Never default to 22.** It is the most commonly auto-selected count. If you find yourself writing "22 chapters" without having run the bash command above, stop and run it first.
 
 Document the chosen count in `outline/outline.md` header before writing any beat entries.
