@@ -31,7 +31,7 @@ The apiyi path writes the raw PNG to a temporary file (e.g. `/tmp/cover_{book-sl
 | **Batch** | Initial site launch — all books written, Pre-Build Gate pending | Covers for every book in `content/` |
 | **Single-book** | Adding one new book to an existing site | Cover for one book only (logo/favicon already exist) |
 
-**Default to Batch mode at initial launch.** The Pre-Launch Gate requires covers for all ≥5 books. Single-book mode is for incremental updates only.
+**Default to Batch mode at initial launch.** The Pre-Launch Gate requires covers for all ≥3 books. Single-book mode is for incremental updates only.
 
 ---
 
@@ -51,7 +51,7 @@ printf 'Found %d books:\n' "${#BOOKS[@]}"
 printf '  %s\n' "${BOOKS[@]}"
 ```
 
-If fewer than 5 books are found, log a warning and continue with whatever books exist. Cover generation is not blocked by the book count — missing covers can be retried later.
+If fewer than 3 books are found, log a warning and continue with whatever books exist. Cover generation is not blocked by the book count — missing covers can be retried later.
 
 ### B2 — Resolve pen name (no prompt)
 
@@ -200,7 +200,13 @@ A cover where the figure is fully clothed, covered from neck to ankle with no bo
 | **Trio** | Love triangle, rival over shoulder, court/pack dynamic with 3+ key figures | 3+ |
 | **Environmental** | Thriller, mystery, horror — figure(s) small against a dramatic landscape/setting | 1–2, environment dominant |
 
-- **Duo cap: maximum 2 Duo covers per site.** A batch of 5 books must have ≥3 non-Duo covers (Solo, Trio, or Environmental).
+Operator quick reference:
+- **Solo** means one character owns the cover. Use it when the protagonist's individual arc is stronger than the relationship dynamic, or when the genre benefits from a single iconic figure.
+- **Duo** means two characters share the cover. Use it for romance, drama, fantasy pairs, detective pairs, or allies where the relationship is the selling hook.
+- **Trio** means three or more figures create the tension. Use it for love triangles, rivals, courts, packs, factions, or group power dynamics; keep one clear focal pair or focal character.
+- **Environmental** means the setting is the main drama. Figure(s) may appear, but atmosphere, danger, place, scale, or worldbuilding should dominate the read.
+
+- **Duo cap: maximum 1 Duo cover per 3-book initial batch.** Larger batches may use up to 2 Duo covers per site, but must keep at least half the covers non-Duo (Solo, Trio, or Environmental).
 - Do not assign the same type to more than 2 consecutive books.
 - Every batch must include at least one Environmental cover.
 

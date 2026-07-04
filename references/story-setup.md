@@ -140,7 +140,7 @@ Run `/story-cover` to generate covers. This can run incrementally as books are c
 
 Verify all of the following before go-live:
 
-- [ ] `content/` has ≥ 5 book directories.
+- [ ] `content/` has ≥ 3 book directories.
 - [ ] Each book has 20–26 chapters in `chapters/`. Development preview may run with ≥ 10 chapters, but that is not launch-ready.
 - [ ] Each chapter is ≥ 1,000 words (resolution chapters may be 1,000–1,400; other types target 1,200–1,800 — see Pacing Guidelines in `story-long-write.md`).
 - [ ] `outline/outline.md` is non-empty for each book.

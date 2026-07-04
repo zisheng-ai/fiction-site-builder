@@ -406,7 +406,7 @@ The `ChapterPixel` component (`src/components/ChapterPixel.tsx`) fires five even
 
 ---
 
-#### 第一步：事件管理工具 — 验证事件 + 创建自定义转化
+#### 第一步：事件管理工具 — 验证事件 + 创建自定义转化事件
 
 **1.1 验证事件到达**
 
@@ -419,11 +419,11 @@ The `ChapterPixel` component (`src/components/ChapterPixel.tsx`) fires five even
 5. 停留在章节页不操作，等待约 30 秒，确认：`TimeOnPage30`
 6. 事件在预期时机出现即代表埋点正确
 
-**1.2 创建自定义转化（自定义事件必须先包装才能用作优化目标）**
+**1.2 创建自定义转化事件（自定义事件必须先包装才能用作优化目标）**
 
 `ChapterRead50` 和 `ChapterCompleted` 是自定义事件，不能直接在广告组里选用，必须先包装成自定义转化：
 
-1. 事件管理工具 → **自定义转化** → **创建自定义转化**
+1. 事件管理工具 → **自定义转化事件** → **创建自定义转化事件**
 2. 配置 `ChapterRead50`：
    - 名称：`阅读章节 50%`
    - 数据源：选你的 Pixel

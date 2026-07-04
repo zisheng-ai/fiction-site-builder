@@ -6,7 +6,7 @@ Run this checklist before any final delivery. For unattended execution, automate
 
 Run these checks before go-live. These are **not** blockers for development preview.
 
-- [ ] `content/` has ≥ 5 book directories (initial site launch).
+- [ ] `content/` has ≥ 3 book directories (initial site launch).
 - [ ] Each book has 20–26 chapter files in `content/{book-title}/chapters/`. Development preview may run with ≥ 10 chapters, but launch QA must use 20–26.
 - [ ] Each chapter is ≥ 1,200 words — no stub content.
 - [ ] `outline/outline.md` exists and contains a real arc outline (not empty or stub-only).

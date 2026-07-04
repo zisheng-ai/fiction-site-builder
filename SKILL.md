@@ -287,7 +287,7 @@ All of the following must be true before go-live (after B6 passes):
 
 | Check | Required location |
 | --- | --- |
-| ≥ 5 book directories | `content/{book-title}/` |
+| ≥ 3 book directories | `content/{book-title}/` |
 | Each book has **20–26 chapters** (randomized per book; optimized for L2 session depth) | `content/{book-title}/chapters/` |
 | Each chapter meets its type target (see Pacing Guidelines in `story-long-write.md`); word counts must vary naturally across chapters — never identical | A1 output |
 | `outline/outline.md` exists and non-empty | A1 output |
@@ -315,7 +315,7 @@ If a full pipeline run reaches launch with no illustrations generated for its lo
 | "Review prose" / `/story-review` | A3 only |
 | "Build the site" / full pipeline | 0 → Track A + Track B in parallel; **A2.5 runs automatically after A2 for every long-form book** (skip only on explicit opt-out) |
 
-**Book count cap — 5 per session, always.** Whether building a new site from scratch or adding books to an existing site, generate exactly **5 books** per session. Never exceed 5 in a single run regardless of user phrasing ("add some books", "fill the site", etc.). If the user explicitly specifies a different count, honor it; otherwise default to 5 and do not ask. For new sites: run A0 for all 5 in parallel, then A1 for all 5 in parallel. Genre and topic are selected independently per book by random sampling from the high-demand genre pool — repetition across books is allowed and expected. Do not attempt to maximize genre variety; just pick whatever has strong demand for each book independently.
+**Book count default — 3 for initial site generation.** When building a new site from scratch, generate exactly **3 books** unless the user explicitly specifies a different count. For new sites: run A0 for all 3 in parallel, then A1 for all 3 in parallel. For existing sites, honor the user's requested count; if unspecified, add one book. Never exceed 5 books in a single session unless the user explicitly requests a larger batch. Genre and topic are selected independently per book by random sampling from the high-demand genre pool — repetition across books is allowed and expected. Do not attempt to maximize genre variety; just pick whatever has strong demand for each book independently.
 
 For review and redesign tasks, start at the relevant phase and load only the references covering the failing areas.
 
@@ -487,7 +487,7 @@ Do not deliver a build if any of these are true.
 - Chapter navigation is SPA (does not full-reload), so ads do not reinitialize and pageviews/impressions are undercounted — an L3 failure.
 
 **Content completeness (L2 depth gates):**
-- Site launches with fewer than 5 books.
+- Site launches with fewer than 3 books.
 - Any book has fewer than 20 chapters or more than 26 chapters.
 - Any chapter falls below its type's minimum (see Pacing Guidelines in `story-long-write.md`).
 - All chapters in a book have the same word count — natural variation is required.

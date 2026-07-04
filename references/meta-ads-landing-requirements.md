@@ -230,7 +230,7 @@ The 3-second threshold aligns with Google's Core Web Vitals "Needs Improvement" 
 Test landing page speed from the perspective of a mid-range Android device on a 4G connection:
 - Google PageSpeed Insights (mobile score, LCP column)
 - WebPageTest with Moto G4 / LTE throttle profile
-- Meta's own "Test Events" in Events Manager shows page load timing
+- Meta's own "Test Events" in 事件管理工具 shows page load timing
 
 Target: **LCP < 2.5 s on mobile**, CLS < 0.1, FID/INP < 200 ms.
 
@@ -306,9 +306,9 @@ Common mistakes:
 | `PageView` | Every page load (auto via Pixel init) | 4 — lowest | Low intent; includes 3-second bounces. Good for cold-start data volume only. |
 | `ViewContent` | Chapter page mount — reader enters chapter content | **3 — switch campaign optimization to this once ≥ 500 events** | Standard event, no custom conversion needed. Fire via `ChapterPixel` component on mount. |
 | `ScrollDepth25` (custom) | 25% scroll | Funnel analysis only — do not add to AEM | Measures ch1 hook retention. Weak intent signal; not recommended as optimization target. |
-| `ChapterRead50` (custom) | 50% scroll | **2 — strong optimization target** | Genuinely interested reader. Requires custom conversion in Events Manager before AEM/campaign use. |
+| `ChapterRead50` (custom) | 50% scroll | **2 — strong optimization target** | Genuinely interested reader. Requires custom conversion in 事件管理工具 before AEM/campaign use. |
 | `ScrollDepth75` (custom) | 75% scroll | Funnel analysis only — do not add to AEM | Mid-to-late retention diagnostic. Useful for content quality analysis; not for AEM. |
-| `ChapterCompleted` (custom) | **90% scroll** (not 100% — footer/ads/recommendations below fold make 100% unreachable) | **1 — highest; best Lookalike seed** | Strongest intent signal. Train delivery toward deep readers. Requires custom conversion in Events Manager. |
+| `ChapterCompleted` (custom) | **90% scroll** (not 100% — footer/ads/recommendations below fold make 100% unreachable) | **1 — highest; best Lookalike seed** | Strongest intent signal. Train delivery toward deep readers. Requires custom conversion in 事件管理工具. |
 | `NextChapter` (custom) | Reader navigates to next chapter | High | Clearest engaged-session signal; use for ROAS attribution if implemented. |
 
 **Recommendation:** optimize campaigns toward `ViewContent` or `ChapterRead50`, not raw `PageView`. AEM event priority: `ChapterCompleted(1) > ChapterRead50(2) > ViewContent(3) > PageView(4)`.
@@ -465,7 +465,7 @@ Wire these during B4 (trust pages / compliance) before running any Meta campaign
 - [ ] No redirect chain between the ad's destination URL and the final landing page
 - [ ] Meta Pixel fires `PageView` on every chapter load (via `layout.tsx`)
 - [ ] `ChapterPixel` client component added to chapter page — fires `ViewContent` on mount + scroll depth events at 25% / 50% / 75% / 90%
-- [ ] Custom conversions created in Events Manager: `ChapterRead50`, `ChapterCompleted`
+- [ ] Custom conversions created in 事件管理工具: `ChapterRead50`, `ChapterCompleted`
 - [ ] AEM configured: `ChapterCompleted(1) > ChapterRead50(2) > ViewContent(3) > PageView(4)`
 - [ ] `.prose-reader` uses system sans-serif stack, ≥19px mobile, line-height 1.8, max-width 68ch, word-break break-word (see §3.4)
 

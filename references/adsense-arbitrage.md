@@ -296,7 +296,7 @@ export default function ChapterPage({ params }) {
 }
 ```
 
-**Event priority for AEM configuration (Meta Business Manager → Events Manager → Aggregated Event Measurement):**
+**Event priority for AEM configuration (Meta Business Manager → 事件管理工具 → Aggregated Event Measurement):**
 
 Set in this order so iOS attribution flows to the highest-quality signal available:
 
