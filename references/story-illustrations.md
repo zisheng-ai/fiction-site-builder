@@ -259,11 +259,11 @@ print('SAVED:' + str(os.path.getsize(output_path)))
 
 | Tier | Primary | Fallback |
 |---|---|---|
-| T3 | `doubao-seedream-5-0-260128` `1664x2496` | `doubao-seedream-5-0-260128` `1664x2496` → retry once → `gpt-image-2-all` `848x1280` |
-| T4 | `doubao-seedream-5-0-260128` `1664x2496` | `doubao-seedream-5-0-260128` `1664x2496` → retry once → `gpt-image-2-all` `848x1280` |
+| T3 | `gpt-image-2-all` `848x1280` | `gpt-image-2-all` `848x1280` → retry once → `doubao-seedream-5-0-260128` `1664x2496` |
+| T4 | `gpt-image-2-all` `848x1280` | `gpt-image-2-all` `848x1280` → retry once → `doubao-seedream-5-0-260128` `1664x2496` |
 
-- doubao: **preferred primary — fastest generation + lowest cost**. Strong allure output, accepts T3/T4 prompts. Requires 1664×2496 pixel floor; stochastic rejection → retry once with identical prompt; stamps `AI生成` watermark → crop bottom ~7% post-generation (same as covers).
-- gpt-image-2-all: slower and more expensive than doubao — use only when doubao fails twice. Stricter content filter (hard-rejects T3/T4 fabric-failure language).
+- gpt-image-2-all: **preferred primary**. 848×1280 output. Stricter content filter (hard-rejects T3/T4 fabric-failure language); when rejected, soften prompt and retry once before falling back.
+- doubao-seedream-5-0-260128: fallback when gpt-image-2-all fails twice. Requires 1664×2496 pixel floor; stochastic rejection → retry once; stamps `AI生成` watermark → crop bottom ~7% post-generation.
 - On second rejection: soften prompt per `cover-allure-elements.md` safe-wording rules, then use nano as blank-prevention.
 - nano: silently downgrades T3+ to ~T1 — use as-is (blank-prevention only).
 
@@ -275,9 +275,9 @@ mkdir -p "$OUTDIR"
 
 (
   OUTPUT="$OUTDIR/ch-{NNN}.png"   # intermediate — post-process (A2.5-4) resizes then converts to ch-{NNN}.webp
-  if   gen_illus_apiyi "doubao-seedream-5-0-260128" "1664x2496" "$OUTPUT"; then MODEL_USED="doubao-seedream-5-0-260128"; SIZE="1664x2496"
-  elif gen_illus_apiyi "doubao-seedream-5-0-260128" "1664x2496" "$OUTPUT"; then MODEL_USED="doubao-seedream-5-0-260128"; SIZE="1664x2496"  # retry once
-  elif gen_illus_apiyi "gpt-image-2-all"            "848x1280"  "$OUTPUT"; then MODEL_USED="gpt-image-2-all"; SIZE="848x1280"
+  if   gen_illus_apiyi "gpt-image-2-all"            "848x1280"  "$OUTPUT"; then MODEL_USED="gpt-image-2-all"; SIZE="848x1280"
+  elif gen_illus_apiyi "gpt-image-2-all"            "848x1280"  "$OUTPUT"; then MODEL_USED="gpt-image-2-all"; SIZE="848x1280"  # retry once
+  elif gen_illus_apiyi "doubao-seedream-5-0-260128" "1664x2496" "$OUTPUT"; then MODEL_USED="doubao-seedream-5-0-260128"; SIZE="1664x2496"
   elif gen_illus_apiyi "nano-banana-pro"            "1024x1024" "$OUTPUT"; then MODEL_USED="nano-banana-pro"; SIZE="1024x1024"
   else echo "ALL_FAILED ch-{NNN}"; exit 0; fi
   # Write metadata JSON
