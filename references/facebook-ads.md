@@ -386,7 +386,7 @@ The `ChapterPixel` component (`src/components/ChapterPixel.tsx`) fires these eve
 | `ScrollDepth25` | 25% scroll | Custom | Low — reference only, not an optimization target |
 | `ChapterRead50` | 50% scroll | Custom | Highest — half-chapter read, strongest real-reader signal |
 | `ScrollDepth75` | 75% scroll | Custom | Reference only |
-| `ChapterCompleted` | 90% scroll | Custom | High — chapter finished |
+| `ChapterCompleted` | Chapter-end sentinel enters viewport (IntersectionObserver on `#chapter-content-end`) | Custom | High — chapter finished |
 | `TimeOnPage30` | 30 seconds on page (setTimeout, independent of scroll) | Custom | High — time-dimension engagement; fills the gap for short chapters |
 
 `PageView` fires on every page load including instant bounces — do not use it as an optimization target.
@@ -488,7 +488,8 @@ Install **Meta Pixel Helper** from the Chrome Web Store (search "Meta Pixel Help
 5. Scroll down the chapter page, confirm in order:
    - 25% → `ScrollDepth25`
    - 50% → `ChapterRead50`
-   - 90% → `ChapterCompleted`
+   - 75% → `ScrollDepth75`
+   - Scroll to chapter end (past main prose) → `ChapterCompleted` (IntersectionObserver on `#chapter-content-end` sentinel)
 
 All present = instrumentation correct. Then do a live second-pass in Events Manager using the **Test Events** tab.
 
