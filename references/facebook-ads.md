@@ -1,6 +1,6 @@
 # Facebook Ads — Fiction Site Traffic Playbook
 
-Load this reference when the user asks about Facebook advertising, ad copy, taglines for promotion, cover image requirements for ads, or campaign setup for fiction sites.
+Load this reference when the user asks about Facebook advertising, ad copy, taglines for promotion, cover image requirements for ads, or 广告系列 setup for fiction sites.
 
 ---
 
@@ -27,25 +27,25 @@ Everything a first-time advertiser needs to know before running a single dollar.
 
 ---
 
-### Campaign Structure — the three-level hierarchy
+### 广告系列 Structure — the three-level hierarchy
 
 Every Facebook ad lives inside a three-level hierarchy. Confusing these levels is the most common beginner mistake.
 
 ```
-广告系列 (Campaign)
+广告系列 (广告系列)
   └── 广告组 (广告组，一个或多个)
         └── 广告 (Ad，一个或多个)
 ```
 
 | 层级 | 你控制的内容 | 类比 |
 |---|---|---|
-| **广告系列 (Campaign)** | 目标（你希望用户做什么） | 整个投放的目的 |
+| **广告系列 (广告系列)** | 目标（你希望用户做什么） | 整个投放的目的 |
 | **广告组 (广告组)** | 预算、受众、时间安排、版位 | 谁看到、何时看、花多少钱 |
 | **广告 (Ad)** | 用户实际看到的图片 + 文案 | 素材本身 |
 
-**Campaign objective for fiction sites:** Start with **Traffic** objective. Once the Pixel has fired ≥ 500 `ViewContent` events (chapter opens), switch the objective to **Engagement — ViewContent** so Facebook optimizes toward readers who actually open chapters, not just people who click ads. Do not use raw `PageView` as the optimization event — it fires on landing even for instant bounces and teaches the algorithm to find clickers, not readers.
+**广告系列 objective for fiction sites:** Start with **Traffic** objective. Once the Pixel has fired ≥ 500 `ViewContent` events (chapter opens), switch the objective to **Engagement — ViewContent** so Facebook optimizes toward readers who actually open chapters, not just people who click ads. Do not use raw `PageView` as the optimization event — it fires on landing even for instant bounces and teaches the algorithm to find clickers, not readers.
 
-**One campaign, multiple 广告组s:** Run 2–3 广告组s with different audiences under one campaign. Facebook will automatically shift budget toward the best-performing one if you use CBO (see below).
+**One 广告系列, multiple 广告组s:** Run 2–3 广告组s with different audiences under one 广告系列. Facebook will automatically shift budget toward the best-performing one if you use CBO (see below).
 
 ---
 
@@ -53,9 +53,9 @@ Every Facebook ad lives inside a three-level hierarchy. Confusing these levels i
 
 **ABO (广告组 Budget Optimization):** You set a fixed daily budget on each 广告组 individually. If you have 3 广告组s at $10/day each, you spend $30/day total regardless of which one performs.
 
-**CBO (Campaign Budget Optimization):** You set one budget at the campaign level. Facebook automatically shifts spend toward whichever 广告组 is performing best that day.
+**CBO (广告系列 Budget Optimization):** You set one budget at the 广告系列 level. Facebook automatically shifts spend toward whichever 广告组 is performing best that day.
 
-**For beginners: start with CBO.** It reduces the number of decisions you have to make and lets Facebook's algorithm do the optimization work. Set $20–50/day at the campaign level and let it run for at least 3–5 days before drawing conclusions.
+**For beginners: start with CBO.** It reduces the number of decisions you have to make and lets Facebook's algorithm do the optimization work. Set $20–50/day at the 广告系列 level and let it run for at least 3–5 days before drawing conclusions.
 
 ---
 
@@ -143,7 +143,7 @@ Facebook reviews landing pages, not just creatives. Your account can be restrict
 
 ### Attribution Window — what the numbers actually count
 
-When Facebook says "this campaign got 500 clicks," which 500? Attribution windows define how long after seeing your ad Facebook credits you a result.
+When Facebook says "this 广告系列 got 500 clicks," which 500? Attribution windows define how long after seeing your ad Facebook credits you a result.
 
 **Default (recommended for fiction):** 7-day click, 1-day view
 - "7-day click": if someone clicked your ad and visited your site within 7 days, it counts
@@ -162,7 +162,7 @@ When Facebook says "this campaign got 500 clicks," which 500? Attribution window
 
 **Fix:** Create 2–3 ad variations (different tagline, same image; or different image, same copy) and run them simultaneously. Facebook will automatically favor the one with better engagement.
 
-**Rule of thumb for fiction:** Refresh creative every 3–4 weeks for ongoing campaigns. For a new site launch, prepare at least 3 image + copy variants before spending.
+**Rule of thumb for fiction:** Refresh creative every 3–4 weeks for ongoing 广告系列s. For a new site launch, prepare at least 3 image + copy variants before spending.
 
 ---
 
@@ -290,7 +290,7 @@ The image and tagline must imply the same scene without repeating each other.
 
 ---
 
-## Campaign Setup Notes
+## 广告系列 Setup Notes
 
 ### Audience targeting angles for romance fiction
 
