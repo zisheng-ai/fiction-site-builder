@@ -1,6 +1,6 @@
 # Facebook Ads — Fiction Site Traffic Playbook
 
-Load this reference when the user asks about Facebook advertising, ad copy, taglines for promotion, cover image requirements for ads, or 广告系列 setup for fiction sites.
+Load this reference when the user asks about Facebook advertising, ad copy, taglines for promotion, cover image requirements for ads, or Campaign setup for fiction sites.
 
 ---
 
@@ -15,7 +15,7 @@ Everything a first-time advertiser needs to know before running a single dollar.
 **What it is:** A small piece of JavaScript code you paste into your website's `<head>`. Once installed, it sends an event to Facebook every time someone visits a page, clicks something, or takes an action (like reading a chapter).
 
 **What it does for you:** Facebook uses this data to:
-1. Know who visited your site — so it can find more people just like them (类似受众s)
+1. Know who visited your site — so it can find more people just like them (Lookalike Audiences)
 2. Track whether someone who saw your ad actually came to your site (attribution)
 3. Optimize delivery toward people who are most likely to do what you want (read, click, stay)
 
@@ -27,50 +27,50 @@ Everything a first-time advertiser needs to know before running a single dollar.
 
 ---
 
-### 广告系列 Structure — the three-level hierarchy
+### Campaign Structure — the three-level hierarchy
 
 Every Facebook ad lives inside a three-level hierarchy. Confusing these levels is the most common beginner mistake.
 
 ```
-广告系列 (广告系列)
-  └── 广告组 (广告组，一个或多个)
+Campaign (Campaign)
+  └── Ad Set (Ad Set，一个或多个)
         └── 广告 (Ad，一个或多个)
 ```
 
-| 层级 | 你控制的内容 | 类比 |
+| Level | What you control | 类比 |
 |---|---|---|
-| **广告系列 (广告系列)** | 目标（你希望用户做什么） | 整个投放的目的 |
-| **广告组 (广告组)** | 预算、受众、时间安排、版位 | 谁看到、何时看、花多少钱 |
+| **Campaign (Campaign)** | 目标（你希望用户做什么） | 整个投放的目的 |
+| **Ad Set (Ad Set)** | 预算、受众、时间安排、版位 | 谁看到、何时看、花多少钱 |
 | **广告 (Ad)** | 用户实际看到的图片 + 文案 | 素材本身 |
 
-**广告系列 objective for fiction sites:** Start with **Traffic** objective. Once the Pixel has fired ≥ 500 `ViewContent` events (chapter opens), switch the objective to **Engagement — ViewContent** so Facebook optimizes toward readers who actually open chapters, not just people who click ads. Do not use raw `PageView` as the optimization event — it fires on landing even for instant bounces and teaches the algorithm to find clickers, not readers.
+**Campaign objective for fiction sites:** Start with **Traffic** objective. Once the Pixel has fired ≥ 500 `ViewContent` events (chapter opens), switch the objective to **Engagement — ViewContent** so Facebook optimizes toward readers who actually open chapters, not just people who click ads. Do not use raw `PageView` as the optimization event — it fires on landing even for instant bounces and teaches the algorithm to find clickers, not readers.
 
-**One 广告系列, multiple 广告组s:** Run 2–3 广告组s with different audiences under one 广告系列. Facebook will automatically shift budget toward the best-performing one if you use CBO (see below).
+**One Campaign, multiple Ad Sets:** Run 2–3 Ad Sets with different audiences under one Campaign. Facebook will automatically shift budget toward the best-performing one if you use CBO (see below).
 
 ---
 
 ### Budget Types — CBO vs ABO
 
-**ABO (广告组 Budget Optimization):** You set a fixed daily budget on each 广告组 individually. If you have 3 广告组s at $10/day each, you spend $30/day total regardless of which one performs.
+**ABO (Ad Set Budget Optimization):** You set a fixed daily budget on each Ad Set individually. If you have 3 Ad Sets at $10/day each, you spend $30/day total regardless of which one performs.
 
-**CBO (广告系列 Budget Optimization):** You set one budget at the 广告系列 level. Facebook automatically shifts spend toward whichever 广告组 is performing best that day.
+**CBO (Campaign Budget Optimization):** You set one budget at the Campaign level. Facebook automatically shifts spend toward whichever Ad Set is performing best that day.
 
-**For beginners: start with CBO.** It reduces the number of decisions you have to make and lets Facebook's algorithm do the optimization work. Set $20–50/day at the 广告系列 level and let it run for at least 3–5 days before drawing conclusions.
+**For beginners: start with CBO.** It reduces the number of decisions you have to make and lets Facebook's algorithm do the optimization work. Set $20–50/day at the Campaign level and let it run for at least 3–5 days before drawing conclusions.
 
 ---
 
 ### Audiences — the three types
 
-**核心受众 (Interest Targeting):** You manually pick demographics, interests, and behaviors. Example: Women 25–45 in the US who follow "Kindle Unlimited" or "romance novels." This is where beginners start.
+**Core Audience (Interest Targeting):** You manually pick demographics, interests, and behaviors. Example: Women 25–45 in the US who follow "Kindle Unlimited" or "romance novels." This is where beginners start.
 
-**自定义受众:** Built from your own data — people who visited your site (via Pixel), people on your email list, or people who watched your video. Requires existing traffic. Not useful until you have at least 1,000 Pixel events.
+**Custom Audience:** Built from your own data — people who visited your site (via Pixel), people on your email list, or people who watched your video. Requires existing traffic. Not useful until you have at least 1,000 Pixel events.
 
-**类似受众:** Facebook finds new people who look statistically similar to your 自定义受众. Example: "Find me 1 million people similar to the 500 who read more than 3 chapters on my site." This is the most powerful targeting type — but requires a 自定义受众 as its source first.
+**Lookalike Audience:** Facebook finds new people who look statistically similar to your Custom Audience. Example: "Find me 1 million people similar to the 500 who read more than 3 chapters on my site." This is the most powerful targeting type — but requires a Custom Audience as its source first.
 
 **Practical order for fiction sites:**
-1. Start with 核心受众 (interest targeting: romance readers, Kindle, specific sub-genres)
-2. After 2–4 weeks and 1,000+ Pixel events: create a 自定义受众 of site visitors
-3. After 自定义受众 has 500+ people: create a 1% 类似受众
+1. Start with Core Audience (interest targeting: romance readers, Kindle, specific sub-genres)
+2. After 2–4 weeks and 1,000+ Pixel events: create a Custom Audience of site visitors
+3. After Custom Audience has 500+ people: create a 1% Lookalike Audience
 
 ---
 
@@ -95,35 +95,35 @@ If your RPM is $8 and users average 4 pageviews, you earn $0.032 per pageview, o
 
 ---
 
-### The 学习阶段 — why you must not touch the ad for 7 days
+### The Learning Phase — why you must not touch the ad for 7 days
 
-When you launch a new 广告组, Facebook enters a **学习阶段**. It needs to show your ad to ~50 people who take your desired action before it knows who to target efficiently. During this phase:
+When you launch a new Ad Set, Facebook enters a **Learning Phase**. It needs to show your ad to ~50 people who take your desired action before it knows who to target efficiently. During this phase:
 
 - Performance will be unstable and often bad
 - CPM and CPC will be higher than normal
 - The algorithm is still guessing
 
-**The rule:** Do not change your budget, audience, or ad creative during the 学习阶段. Any significant change resets the learning and you start over. Wait a minimum of 7 days and 50 optimization events before judging performance or making changes.
+**The rule:** Do not change your budget, audience, or ad creative during the Learning Phase. Any significant change resets the learning and you start over. Wait a minimum of 7 days and 50 optimization events before judging performance or making changes.
 
-**"学习受限" warning:** If Facebook shows this label, your budget is too low or your audience is too small to collect enough events. Fix: increase the daily budget or broaden the audience.
+**"Learning Limited" warning:** If Facebook shows this label, your budget is too low or your audience is too small to collect enough events. Fix: increase the daily budget or broaden the audience.
 
 ---
 
-### 广告账户 vs. 企业管理平台 vs. Page
+### Ad Account vs. Business Manager vs. Page
 
 These three things are different and beginners constantly confuse them.
 
 | Thing | What it is | You need it for |
 |---|---|---|
 | **Facebook 主页** | Your public-facing Facebook presence | Required to run ads at all |
-| **广告账户** | The billing account where your ads live | Running ads, setting budgets, holding your credit card |
-| **企业管理平台** | The container that holds your Pages and 广告账户 | Managing multiple ad accounts or giving team members access |
+| **Ad Account** | The billing account where your ads live | Running ads, setting budgets, holding your credit card |
+| **Business Manager** | The container that holds your Pages and Ad Account | Managing multiple ad accounts or giving team members access |
 
-**Practical setup:** Create one 企业管理平台 → add your Page → create an 广告账户 inside it → add your credit card to the 广告账户. Never run ads directly from a personal profile.
+**Practical setup:** Create one Business Manager → add your Page → create an Ad Account inside it → add your credit card to the Ad Account. Never run ads directly from a personal profile.
 
 ---
 
-### What Gets Your 广告账户 Banned
+### What Gets Your Ad Account Banned
 
 Facebook reviews landing pages, not just creatives. Your account can be restricted or permanently banned for:
 
@@ -143,7 +143,7 @@ Facebook reviews landing pages, not just creatives. Your account can be restrict
 
 ### Attribution Window — what the numbers actually count
 
-When Facebook says "this 广告系列 got 500 clicks," which 500? Attribution windows define how long after seeing your ad Facebook credits you a result.
+When Facebook says "this Campaign got 500 clicks," which 500? Attribution windows define how long after seeing your ad Facebook credits you a result.
 
 **Default (recommended for fiction):** 7-day click, 1-day view
 - "7-day click": if someone clicked your ad and visited your site within 7 days, it counts
@@ -162,7 +162,7 @@ When Facebook says "this 广告系列 got 500 clicks," which 500? Attribution wi
 
 **Fix:** Create 2–3 ad variations (different tagline, same image; or different image, same copy) and run them simultaneously. Facebook will automatically favor the one with better engagement.
 
-**Rule of thumb for fiction:** Refresh creative every 3–4 weeks for ongoing 广告系列s. For a new site launch, prepare at least 3 image + copy variants before spending.
+**Rule of thumb for fiction:** Refresh creative every 3–4 weeks for ongoing Campaigns. For a new site launch, prepare at least 3 image + copy variants before spending.
 
 ---
 
@@ -290,7 +290,7 @@ The image and tagline must imply the same scene without repeating each other.
 
 ---
 
-## 广告系列 Setup Notes
+## Campaign Setup Notes
 
 ### Audience targeting angles for romance fiction
 
@@ -376,7 +376,7 @@ Never test image AND copy simultaneously in early rounds — isolate the variabl
 
 ---
 
-### Pixel 事件层级
+### Pixel 事件Level
 
 The `ChapterPixel` component (`src/components/ChapterPixel.tsx`) fires five events per chapter page, giving Facebook a full reading-depth funnel:
 
@@ -395,14 +395,14 @@ The `ChapterPixel` component (`src/components/ChapterPixel.tsx`) fires five even
 
 ### Meta 后台配置完整流程（2026）
 
-> **注意（2026）：** 优化事件直接在广告管理工具的广告组层级选择，事件管理工具只用于验证事件和创建自定义转化。
+> **注意（2026）：** 优化事件直接在广告管理工具的Ad SetLevel选择，事件管理工具只用于验证事件和创建自定义转化。
 
 涉及两个独立后台，职责不同：
 
 | 后台 | 入口 | 做什么 |
 |---|---|---|
 | **事件管理工具** | eventsmanager.facebook.com/events_manager2 | 验证 Pixel 事件、创建自定义转化 |
-| **广告管理工具** | adsmanager.facebook.com/adsmanager/manage/campaigns | 创建广告系列、设置优化目标 |
+| **广告管理工具** | adsmanager.facebook.com/adsmanager/manage/campaigns | 创建Campaign、设置优化目标 |
 
 ---
 
@@ -421,7 +421,7 @@ The `ChapterPixel` component (`src/components/ChapterPixel.tsx`) fires five even
 
 **1.2 创建自定义转化事件（自定义事件必须先包装才能用作优化目标）**
 
-`ChapterRead50` 和 `ChapterCompleted` 是自定义事件，不能直接在广告组里选用，必须先包装成自定义转化：
+`ChapterRead50` 和 `ChapterCompleted` 是自定义事件，不能直接在Ad Set里选用，必须先包装成自定义转化：
 
 1. 事件管理工具 → **自定义转化事件** → **创建自定义转化事件**
 2. 配置 `ChapterRead50`：
@@ -432,52 +432,52 @@ The `ChapterPixel` component (`src/components/ChapterPixel.tsx`) fires five even
    - 保存
 3. 同样方式创建 `ChapterCompleted` → 名称：`完成章节`
 4. 同样方式创建 `TimeOnPage30` → 名称：`停留 30 秒` → 类别：`查看内容`
-5. 完成后，这三个自定义转化会出现在广告管理工具广告组的优化事件下拉列表里
+5. 完成后，这三个自定义转化会出现在广告管理工具Ad Set的优化事件下拉列表里
 
 ---
 
-#### 第二步：广告管理工具 — 按阶段创建广告系列
+#### 第二步：广告管理工具 — 按阶段创建Campaign
 
-> **关键约束：Meta 不允许修改已有广告系列的目标。** 从流量阶段切换到转化阶段必须新建广告系列，不能在原有广告系列上改。
+> **关键约束：Meta 不允许修改已有Campaign的目标。** 从流量阶段切换到转化阶段必须新建Campaign，不能在原有Campaign上改。
 
-**阶段一：上线期（广告组每周 ViewContent < 50 次）**
+**阶段一：上线期（Ad Set每周 ViewContent < 50 次）**
 
 目标：积累 Pixel 数据，让算法有足够信号。
 
 1. 广告管理工具 → **创建**
-2. **广告系列目标** → 选**流量**
-3. 进入广告组设置：
+2. **Campaign目标** → 选**流量**
+3. 进入Ad Set设置：
    - **性能目标** → 选**最大化落地页浏览量**（不要选"链接点击量"，也不要选"展示次数"）
-4. 受众：核心受众（兴趣定向：romance novels、Kindle Unlimited、BookTok）
-5. 运行直到广告组每周稳定产生 ≥ 50 次 ViewContent（参考值：累计 500 次；Meta 官方门槛是每周 ≥50 次优化事件才能稳定退出学习阶段）
+4. 受众：Core Audience（兴趣定向：romance novels、Kindle Unlimited、BookTok）
+5. 运行直到Ad Set每周稳定产生 ≥ 50 次 ViewContent（参考值：累计 500 次；Meta 官方门槛是每周 ≥50 次优化事件才能稳定退出Learning Phase）
 
-**阶段二：规模期（广告组每周 ViewContent ≥ 50 次，参考值：累计 ≥ 500 次）**
+**阶段二：规模期（Ad Set每周 ViewContent ≥ 50 次，参考值：累计 ≥ 500 次）**
 
 目标：让算法找到和真实读者相似的人，而不只是爱点广告的人。
 
-> 不能改原来的流量广告系列——新建一个销售量广告系列。
+> 不能改原来的流量Campaign——新建一个销售量Campaign。
 
 1. 广告管理工具 → **创建**
-2. **广告系列目标** → 选**销售量**
+2. **Campaign目标** → 选**销售量**
 3. **转化位置** → 选**网站**
 4. 确认 Pixel 已关联
-5. 进入广告组设置：
+5. 进入Ad Set设置：
    - **性能目标** → 选**最大化转化事件数**
    - **转化事件** → 选**查看内容 (ViewContent)**
    - 如果 ViewContent 显示灰色或有警告，说明近 7 天内该事件 < 50 次，继续用阶段一积累数据
 6. 受众、预算、素材可直接复用阶段一的设置
-7. 阶段一广告系列：可暂停（省预算集中给新系列跑学习阶段）或并行跑 1–2 周对比 ROAS 再决定
+7. 阶段一Campaign：可暂停（省预算集中给新系列跑Learning Phase）或并行跑 1–2 周对比 ROAS 再决定
 
-**阶段三：类似受众期（自定义受众 ≥ 500 人）**
+**阶段三：Lookalike Audience期（Custom Audience ≥ 500 人）**
 
-1. 广告管理工具 → **受众** → **创建受众** → **自定义受众**
+1. 广告管理工具 → **受众** → **创建受众** → **Custom Audience**
 2. 数据源：网站 → 事件：ViewContent → 时间范围：最近 180 天
-3. 保存后，再创建 → **类似受众**，来源选刚建的 ViewContent 自定义受众，比例选 1%
-4. 新建广告组，受众选这个 1% 类似受众，其余设置不变
+3. 保存后，再创建 → **Lookalike Audience**，来源选刚建的 ViewContent Custom Audience，比例选 1%
+4. 新建Ad Set，受众选这个 1% Lookalike Audience，其余设置不变
 
 **（可选）阶段四：升级到深度阅读事件**
 
-当广告组每周稳定产生 ≥ 50 次 `ChapterRead50` 后（参考值：累计 500 次），可以再新建一个销售量广告系列，将**转化事件**改为 `阅读章节 50%`。这个信号质量最高，类似受众 ROAS 通常比 ViewContent 高 20–40%。
+当Ad Set每周稳定产生 ≥ 50 次 `ChapterRead50` 后（参考值：累计 500 次），可以再新建一个销售量Campaign，将**转化事件**改为 `阅读章节 50%`。这个信号质量最高，Lookalike Audience ROAS 通常比 ViewContent 高 20–40%。
 
 ---
 
@@ -507,7 +507,7 @@ Chrome 扩展，安装后在地址栏右侧出现一个 Meta 图标，点击可�
 
 **为什么不用 `PageView` 做优化目标？**
 
-`PageView` 在页面加载瞬间触发，包含 3 秒内就跳出的用户。以 PageView 优化，算法学到的是"爱点广告的人"，不是"会读小说的人"。CPM 可能低，但 ROAS 会持续下降。`ViewContent` 代表读者真正打开了章节内容；`ChapterRead50` 代表读者读了半章——以此为信号建立的类似受众，转化质量通常高出 20–40%。
+`PageView` 在页面加载瞬间触发，包含 3 秒内就跳出的用户。以 PageView 优化，算法学到的是"爱点广告的人"，不是"会读小说的人"。CPM 可能低，但 ROAS 会持续下降。`ViewContent` 代表读者真正打开了章节内容；`ChapterRead50` 代表读者读了半章——以此为信号建立的Lookalike Audience，转化质量通常高出 20–40%。
 
 ---
 

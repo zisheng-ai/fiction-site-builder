@@ -23,35 +23,13 @@ The skill uses **fiction** as the delivery vehicle. Why fiction specifically:
 
 ## Three Revenue Levers
 
-### L1 — Traffic Cost: Facebook CPC
+| Lever | Controls | Key references |
+|---|---|---|
+| **L1 — FB CPC** | Cover scroll-stop CTR, tagline hook quality, ad account survival | `facebook-ads.md` · `cover-allure-elements.md` · `story-cover.md` · `cover-styles.md` · `cover-genre-playbook.md` · `meta-ads-landing-requirements.md` |
+| **L2 — pageviews/session** | Chapter count, cliffhanger endings, ch1 cold-traffic hook (200-word first-screen bait) | `story-long-write.md` · `reader-ux.md` · `story-review.md` · `story-deslop.md` |
+| **L3 — viewable RPM** | Ad layout, placement depth, LCP < 2.5s, full-page reload on chapter nav, ad slot sizing | `adsense-arbitrage.md` · `performance.md` |
 
-**What controls it:** cover scroll-stop power (CTR) + tagline hook quality + ad account survival.
-
-The cover image is the Facebook ad creative. Its job is to stop the scroll in 0.3 seconds. Everything else in the profit equation is downstream of whether someone clicks the ad. A 0.5% CTR vs a 1.5% CTR is a 3× difference in CPC — the biggest single multiplier available.
-
-Account survival is a **hard constraint**. A banned account ends the business. Suggestive allure (bare shoulders, implied intimacy, deep V) raises CTR and is explicitly allowed. Outright explicit/pornographic imagery, cloaking, missing trust pages, and runaway ad density get the account banned. Allure is pushed to the maximum safe level, never beyond it.
-
-**References:** `facebook-ads.md` · `cover-allure-elements.md` · `story-cover.md` · `cover-styles.md` · `meta-ads-landing-requirements.md`
-
-### L2 — Session Depth: pageviews/session
-
-**What controls it:** chapter count per book, mandatory cliffhanger endings, ch1 cold-traffic hook, chapter-end UX, prefetch.
-
-Each chapter = one pageview = one set of ad impressions. A reader who clicks through 6 chapters generates 6× the revenue of a reader who bounces after 1. The content layer exists entirely to manufacture the next click — not to produce literature. Quality prose matters only insofar as it keeps the reader reading past the current chapter.
-
-The chapter 1 cold-traffic hook is the highest-leverage single piece of content. A Facebook ad lands on ch1. If the first 200 words don't grab, the session ends at 1 pageview. Every other chapter is unreachable.
-
-**References:** `story-long-write.md` · `adsense-arbitrage.md §2` · `reader-ux.md` · `story-review.md` · `story-deslop.md`
-
-### L3 — Monetization Rate: viewable RPM
-
-**What controls it:** ad layout, ad placement depth in content, LCP, full-page reload on chapter nav, ad slot sizing (prevents CLS), lazy-load timing.
-
-Viewable RPM is what advertisers actually pay for. An ad that exits the viewport in under 1 second earns ~30% of an ad held in view for 3+ seconds. LCP < 2.5s, first ad after the first 20% of content, full-page reload on chapter navigation so AdSense/AdX reinitialize — these are revenue numbers, not UX preferences.
-
-Ad density cap: ~3–4 units per 1,000 words, ad area ≤ 30% of content area. Exceeding this risks AdSense policy action and reduces CPM as the auction fills with lower-quality bids.
-
-**References:** `adsense-arbitrage.md §3` · `performance.md` · `adsense-arbitrage.md` (primary reference — load whenever building, laying out ads, or wiring tracking)
+Ad density cap: ~3–4 units per 1,000 words, ad area ≤ 30% of content area. See `adsense-arbitrage.md` for the full arbitrage model.
 
 ---
 
@@ -91,15 +69,15 @@ All work starts with Phase 0. After that, Track A (content, serves L1 + L2) and 
 Reference: `references/story-setup.md`
 Output: directory structure, naming conventions, GitHub private repo, submodule registration. Skip if the project directory already exists.
 
-**`.npmrc` — MANDATORY first file (create before anything else):**
+**`.npmrc` — MANDATORY first file (create before `pnpm install`):**
 
-The development machine uses an internal npm registry (Alibaba `registry.anpm.alibaba-inc.com`). If `.npmrc` is not present at the site root, `pnpm install` bakes internal tarball URLs into `pnpm-lock.yaml` and Vercel's CI cannot reach them — **the build fails with `ERR_SOCKET_TIMEOUT`**. This has caused production outages.
+The dev machine uses Alibaba's internal npm registry. Without `.npmrc`, `pnpm install` bakes internal tarball URLs into `pnpm-lock.yaml` — Vercel CI cannot reach them and the build fails with `ERR_SOCKET_TIMEOUT`.
 
 ```bash
 echo "registry=https://registry.npmjs.org" > .npmrc
 ```
 
-Create this file **before running `pnpm install` or `pnpm add` for the first time**. If the site already exists and the lockfile contains `registry.anpm.alibaba-inc.com` URLs, fix it:
+If the site already exists and `pnpm-lock.yaml` contains `registry.anpm.alibaba-inc.com` URLs, fix it:
 
 ```bash
 echo "registry=https://registry.npmjs.org" > .npmrc
@@ -108,10 +86,7 @@ pnpm install --registry https://registry.npmjs.org
 # Verify: grep "registry.anpm" pnpm-lock.yaml | wc -l  # must be 0
 ```
 
-If `pnpm install` still bakes in internal URLs (cached resolution), replace them in-place:
-```bash
-sed -i '' 's|https://registry.anpm.alibaba-inc.com/|https://registry.npmjs.org/|g' pnpm-lock.yaml
-```
+If internal URLs persist after reinstall: `sed -i '' 's|https://registry.anpm.alibaba-inc.com/|https://registry.npmjs.org/|g' pnpm-lock.yaml`
 
 Commit both `.npmrc` and the updated `pnpm-lock.yaml`.
 
@@ -149,13 +124,6 @@ Starts after Phase 0. Runs in parallel with Track B.
 | A2 | Ad Creative | L1 | `story-cover.md` + `cover-styles.md` + `facebook-ads.md` | `public/covers/{book-title}.webp` + `public/covers/{book-title}.json` |
 | A2.5 | Scroll-Depth Anchors | L3 | `story-illustrations.md` + `cover-allure-elements.md` | `public/illustrations/{book-slug}/ch-{NNN}.webp` (exactly 5 per book) |
 | A3 | Bounce-Rate Reduction | L2 | `story-review.md` + `story-deslop.md` | AI flavor removed, prose quality raised |
-
-**Lever role of each phase:**
-- **A0 (L1 + L2)** — identifies high-demand genres with proven FB CTR and high display CPM. The `differentiation_angle` feeds both cover direction (L1) and story premise (L2).
-- **A1 (L2)** — each chapter = one pageview. Chapter length (1,200–1,600 words) and mandatory cliffhanger endings are the primary L2 multiplier. Taglines from `facebook-ads.md` are the ad copy (L1).
-- **A2 (L1)** — cover = Facebook ad image. CTR determines CPC. Everything else in the profit equation is downstream of whether the cover stops the scroll.
-- **A2.5 (L3)** — illustrations increase scroll depth within a chapter page. Deeper scroll = longer time-in-view = higher Active View score = higher CPM bids.
-- **A3 (L2)** — AI-flavored prose increases bounce rate after ch1. Deslopped prose keeps readers past chapter 1, which is the difference between a 1-pageview and a 4-pageview session.
 
 A0 runs once per book (not once per site). Required for each new book unless the user has explicitly stated the genre, tropes, and premise. A0's `differentiation_angle` and `competitive_brief` feed directly into A1's story brief.
 
@@ -436,8 +404,9 @@ Load references only when entering that phase. Do not preload all references at 
 ### L1 — Traffic Cost references
 
 - **`facebook-ads.md`** — load during A1 for all tagline and hook copy writing (punchy 8-word opener, setup→reversal→unresolved tension, 25–40 words, final line always unresolved); during A2 for cover direction; during B4 for Pixel optimization event strategy. Do not load for pure chapter prose writing.
-- **`cover-allure-elements.md`** — allure vocabulary and tier system (T1–T5) for cover and illustration generation. §0 is the compliance boundary: allure is pushed to the maximum safe level, never beyond. Load during A2 and A2.5.
-- **`story-cover.md`** — cover generation pipeline via apiyi cascade (model routing by allure tier: T1/T2 → gpt-image-2-all; T3/T4 → doubao-seedream); all covers generated in parallel; no SVG fallback. Load during A2.
+- **`cover-allure-elements.md`** — allure vocabulary and tier system (T1–T5): fabric ranking, face/hair/body tables, poses, exposure tiers. Load during A2 and A2.5.
+- **`cover-genre-playbook.md`** — 12 genre-specific prompt templates (Dark Romance, Paranormal, Vampire, Fae, Mafia, Contemporary, Sports, Accidental Marriage, Revenge, Romantasy, Regression, Villainess, Monster, Dark Academia, Urban Paranormal). Load during A2 only — not needed for A2.5.
+- **`story-cover.md`** — cover generation pipeline via apiyi cascade (T1/T2 → gpt-image-2-all; T3/T4 → doubao-seedream); all covers in parallel; no SVG fallback. Load during A2.
 - **`cover-styles.md`** — genre-specific cover composition templates and visual style references. Load during A2.
 - **`meta-ads-landing-requirements.md`** — Meta/Facebook ad traffic landing page policy, account-survival rules, cloaking prohibition, trust pages (About/Privacy/Terms/Contact requirements), Pixel+CAPI architecture, B4 compliance checklist. Load during B4.
 
