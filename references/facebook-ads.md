@@ -480,13 +480,27 @@ The `ChapterPixel` component (`src/components/ChapterPixel.tsx`) fires five even
 
 #### 本地验证（不需要 FB 后台权限）
 
-1. 在站点目录运行 `pnpm dev`，本地访问 `http://localhost:3000`
-2. Chrome 安装 [Facebook Pixel Helper](https://chromewebstore.google.com/detail/facebook-pixel-helper/fdgfkebogiimcoedlicjlajpkdmockpc)
-3. 打开任意章节页（如 `http://localhost:3000/book/{slug}/chapter/1`）
-4. 点 Pixel Helper 图标 → 确认 `ViewContent` 出现，带 `content_type: "chapter"`
-5. 滚动到 25% → `ScrollDepth25`，滚动到 50% → `ChapterRead50`，滚动到 90% → `ChapterCompleted`
+**推荐工具：Meta Pixel 像素代码帮手**
 
-全部出现 = 埋点正确，再进事件管理工具用测试事件功能二次确认。
+Chrome 扩展，安装后在地址栏右侧出现一个 Meta 图标，点击可实时查看当前页面触发了哪些 Pixel 事件及其参数。
+
+- 搜索安装：在 Chrome 应用商店搜索 **"Meta Pixel Helper"**（中文界面显示为 **"Meta Pixel 像素代码帮手"**）
+- 或直接访问 Chrome 应用商店，搜索 `Meta Pixel Helper`，认准 Meta 官方发布的那个
+
+**验证步骤：**
+
+1. 在站点目录运行 `pnpm dev`，本地访问 `http://localhost:3000`
+2. 安装并启用 **Meta Pixel 像素代码帮手**，确认扩展图标出现在工具栏
+3. 打开任意章节页（如 `http://localhost:3000/book/{slug}/chapter/1`）
+4. 点扩展图标，确认看到：
+   - `PageView` — 页面加载触发
+   - `ViewContent` — 带参数 `content_type: "chapter"`
+5. 在章节页往下滚动，依次确认：
+   - 滚动到 25% → `ScrollDepth25`
+   - 滚动到 50% → `ChapterRead50`
+   - 滚动到 90% → `ChapterCompleted`
+
+全部出现 = 埋点正确，再进事件管理工具用**测试事件**功能做线上二次确认。
 
 **为什么不用 `PageView` 做优化目标？**
 
