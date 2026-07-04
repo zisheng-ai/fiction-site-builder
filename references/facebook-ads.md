@@ -401,7 +401,7 @@ The `ChapterPixel` component (`src/components/ChapterPixel.tsx`) fires five even
 
 | 后台 | 入口 | 做什么 |
 |---|---|---|
-| **事件管理工具** | business.facebook.com/events_manager | 验证 Pixel 事件、创建自定义转化 |
+| **事件管理工具** | eventsmanager.facebook.com/events_manager2 | 验证 Pixel 事件、创建自定义转化 |
 | **广告管理工具** | business.facebook.com/adsmanager | 创建广告系列、设置优化目标 |
 
 ---
