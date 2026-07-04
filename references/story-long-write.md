@@ -370,7 +370,10 @@ Use a **single batch Agent call** when the environment supports it (e.g. one Age
 
 After all chapter agents complete, do a single sequential pass:
 1. Read chapters in order; verify hook-out of chapter N matches the opening of chapter N+1.
-2. **Word count check** — flag any chapter exceeding 1,800 words (1,600 for resolution chapters). For each flagged chapter: find the highest-tension cut point, split into two chapters, bump subsequent chapter numbers, and update `outline/outline.md`.
+2. **Word count check** — flag any chapter exceeding 1,800 words (1,600 for resolution chapters). For each flagged chapter: find the highest-tension cut point, split into two chapters, bump subsequent chapter numbers. Verify both parts meet lower bounds (≥1,200 / ≥1,000):
+   - If Part 1 < minimum, add details to Part 1.
+   - If Part 2 < minimum, merge it back into Part 1 (do not save a skeleton).
+   Update `outline/outline.md` with final chapter count. Then update `src/lib/books.ts` `chapterCount` for each book that underwent splits.
 3. Fix only continuity breaks — do not rewrite prose for style.
 4. Write `tracking/context.md` from the final chapter's ending.
 5. Update `tracking/threads.md`, `tracking/timeline.md`, `tracking/character-status.md`.
@@ -402,16 +405,20 @@ Use this for adding one chapter to an existing book (incremental update only).
    | Climax (last 3) | 1,200–1,600 | 1,800 |
    | Resolution | 1,000–1,400 | 1,600 |
 
-   **If over the hard cap:** do NOT add more prose. Find the highest-tension moment inside the chapter and cut there. Everything after the cut becomes the opening beat of the next chapter (bump subsequent chapter numbers). Adjust the outline accordingly.
+   **If over the hard cap:** do NOT add more prose. Find the highest-tension moment inside the chapter and cut there. Everything after the cut becomes the opening beat of the next chapter (bump subsequent chapter numbers). Then verify both parts meet the lower bound:
+   - If Part 1 < 1,200 words (or < 1,000 for resolution), add one detail or dialogue beat to Part 1 until it reaches minimum.
+   - If Part 2 < 1,200 words (or < 1,000 for resolution), merge Part 2 back into Part 1 — do not save a skeleton chapter.
+   Adjust the outline accordingly.
 
    **If under the lower bound:** the scene is thin — add one concrete sensory detail or one beat of subtext dialogue, then re-check. Do not pad with reflection or summary.
 
-   Do not proceed to step 10 until the word count is within the target range.
+   Do not proceed to step 10 until the word count is within the target range, and if split occurred, both parts meet their lower bounds.
 
 10. Save to `content/{book-title}/chapters/ch-NNN-{title}.md` from the project root, with correct zero-padded number.
-11. Update `tracking/context.md`: last beat + open threads + any foreshadow planted.
-12. Update `tracking/threads.md` if foreshadow added or resolved.
-13. Update `tracking/character-status.md` for any character changes.
+11. **If split occurred in step 9:** update `src/lib/books.ts` — increment `chapterCount` by 1 for the book, and ensure all chapter filenames in `content/{book-title}/chapters/` match the final chapter numbering.
+12. Update `tracking/context.md`: last beat + open threads + any foreshadow planted.
+13. Update `tracking/threads.md` if foreshadow added or resolved.
+14. Update `tracking/character-status.md` for any character changes.
 
 ## Chapter File Format
 
