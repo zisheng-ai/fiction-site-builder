@@ -211,6 +211,33 @@ Use conservative defaults. Readers should not need to adjust settings to find a 
 - Paragraph spacing: `1em` top margin between paragraphs. Enough to separate beats without the double-spaced blog-style gap.
 - Max line length: 32–38em for Latin prose; narrower for CJK (28–34em) to avoid very long line scanning.
 
+## Chapter Page `<title>` Format
+
+The HTML `<title>` on chapter pages is critical for SEO and social share quality. Use:
+
+```
+Chapter {n}: {chapter.title} | {book.title}
+```
+
+With the layout's `template: '%s | {Site Name}'`, the final browser title becomes:
+
+```
+Chapter 3: The Dark Bargain | Crimson Crown | Velvet Throne
+```
+
+**Rules:**
+- Include the chapter number — search engines surface it in snippets; readers scanning results can orient immediately.
+- Use `|` as separator (not `-` or `—`) for both the `title` and the `template`.
+- Keep the `openGraph.title` shorter: `${chapter.title} — ${book.title}` (no chapter number; social cards show a thumbnail, not a search snippet).
+- Spanish sites: `Capítulo ${n}: ${chapter.title} | ${book.title}`.
+
+```ts
+// generateMetadata
+title: `Chapter ${n}: ${chapter.title} | ${book.title}`,
+// openGraph
+openGraph: { title: `${chapter.title} — ${book.title}`, ... }
+```
+
 ## Layout
 
 - Mobile horizontal padding: 18–22px.

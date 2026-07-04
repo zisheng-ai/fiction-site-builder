@@ -164,7 +164,7 @@ Do not add `@fontsource/*` dependencies. Do not import any font CSS in `layout.t
 
 - Headings / titles: `font-extrabold tracking-tight` (`font-weight: 800`, `letter-spacing: -0.02em`)
 - Chapter title: `text-2xl sm:text-3xl font-extrabold tracking-tight`
-- Body prose: `font-size: 19px` (mobile) → `20px` (sm+), `line-height: 1.8` → `1.85`, `margin-bottom: 1.1em`, `max-width: 68ch`, `word-break: break-word`
+- Body prose: `font-size: 19px` (mobile) → `20px` (sm+), `line-height: 1.8` → `1.85`, `margin-bottom: 1.1em`, `max-width: 68ch`, `word-break: break-word`, `text-rendering: optimizeLegibility`
 
 ## TypeScript
 
