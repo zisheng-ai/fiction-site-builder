@@ -440,7 +440,7 @@ The `ChapterPixel` component (`src/components/ChapterPixel.tsx`) fires five even
 
 > **关键约束：Meta 不允许修改已有广告系列的目标。** 从流量阶段切换到转化阶段必须新建广告系列，不能在原有广告系列上改。
 
-**阶段一：上线期（ViewContent 累计 < 500 次）**
+**阶段一：上线期（广告组每周 ViewContent < 50 次）**
 
 目标：积累 Pixel 数据，让算法有足够信号。
 
@@ -449,9 +449,9 @@ The `ChapterPixel` component (`src/components/ChapterPixel.tsx`) fires five even
 3. 进入广告组设置：
    - **性能目标** → 选**最大化落地页浏览量**（不要选"链接点击量"，也不要选"展示次数"）
 4. 受众：核心受众（兴趣定向：romance novels、Kindle Unlimited、BookTok）
-5. 运行直到 ViewContent 事件累计 ≥ 500 次（在事件管理工具 → 概览里查看）
+5. 运行直到广告组每周稳定产生 ≥ 50 次 ViewContent（参考值：累计 500 次；Meta 官方门槛是每周 ≥50 次优化事件才能稳定退出学习阶段）
 
-**阶段二：规模期（ViewContent 累计 ≥ 500 次）**
+**阶段二：规模期（广告组每周 ViewContent ≥ 50 次，参考值：累计 ≥ 500 次）**
 
 目标：让算法找到和真实读者相似的人，而不只是爱点广告的人。
 
@@ -477,7 +477,7 @@ The `ChapterPixel` component (`src/components/ChapterPixel.tsx`) fires five even
 
 **（可选）阶段四：升级到深度阅读事件**
 
-当 `ChapterRead50` 自定义转化累计 ≥ 500 次后，可以再新建一个销售量广告系列，将**转化事件**改为 `阅读章节 50%`。这个信号质量最高，类似受众 ROAS 通常比 ViewContent 高 20–40%。
+当广告组每周稳定产生 ≥ 50 次 `ChapterRead50` 后（参考值：累计 500 次），可以再新建一个销售量广告系列，将**转化事件**改为 `阅读章节 50%`。这个信号质量最高，类似受众 ROAS 通常比 ViewContent 高 20–40%。
 
 ---
 
