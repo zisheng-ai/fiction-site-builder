@@ -11,8 +11,8 @@ Run deslop periodically on full books:
 | Content | Gates to run | Notes |
 |---------|-------------|-------|
 | Fiction chapters | All 7 Gates + Three-Pass Method | Full pipeline |
-| Traffic articles | A, B, C (passive + vague), G + Article Quick Checks | No E/F (no dialogue/endings) |
-| Taglines / synopses | A (adverbs + jargon), B (binary contrasts + throat-clearing), G (false agency) | Minimal pass, surgical |
+| Traffic articles | A, B, C (passive + vague), G, H + Article Quick Checks | No E/F (no dialogue/endings) |
+| Taglines / synopses | A (adverbs + jargon), B (binary contrasts + throat-clearing), G (false agency), H (stakes inflation + concept labels) | Minimal pass, surgical |
 | Meta descriptions | B (throat-clearing), G (false agency), Article Quick Checks | <155 chars, one active sentence |
 
 ---
@@ -27,19 +27,20 @@ For copy (articles, taglines): same principle — minimum effective change. Don'
 
 ---
 
-## Detection: The 7 Gates
+## Detection: The 7 Gates + Gate H
 
 Run the applicable gates based on content type (see router above) and severity (see Severity Levels below).
 
 | Gate | Problem | Signal |
 |------|---------|--------|
-| A | Banned words / high-frequency clichés / adverbs / jargon | Fiction: "something flickered in his eyes" "he drew a deep breath"; Copy: adverbs (-ly), filler phrases ("At its core"), business jargon |
-| B | Template sentence patterns | negation-then-reversal, binary contrasts, consecutive parallel ≥3, throat-clearing openers, dramatic fragmentation, meta-commentary |
+| A | Banned words / high-frequency clichés / adverbs / jargon | Fiction: "something flickered in his eyes" "he drew a deep breath"; Copy: adverbs (-ly), filler phrases ("At its core"), business jargon, AI vocabulary tells |
+| B | Template sentence patterns | negation-then-reversal, binary contrasts, consecutive parallel ≥3, throat-clearing openers, dramatic fragmentation, meta-commentary, self-posed Q&A, anaphora, superficial analyses |
 | C | Telling not showing / passive voice / vague declaratives | "he felt" / "X was created" / "The implications are significant" |
-| D | Uniform rhythm / paragraph length | Every paragraph 4–6 sentences, identical beat |
+| D | Uniform rhythm / paragraph length / formatting | Every paragraph 4–6 sentences, identical beat; bold-first bullets; em dashes; listicle-as-prose |
 | E | Flat dialogue tags *(fiction only)* | "said/asked/smiled" on nearly every line |
 | F | Moral summary endings *(fiction only)* | Last paragraph summarizes or moralizes what just happened |
-| G | Narrator intrusion / false agency / narrator-from-a-distance | "What she didn't know was..." / "the decision emerges" / "Nobody designed this." |
+| G | Narrator intrusion / false agency / narrator-from-a-distance / vague attributions | "What she didn't know was..." / "the decision emerges" / "Nobody designed this." / "Experts argue..." |
+| H | Composition & tone tropes *(articles + copy)* | False vulnerability, grandiose stakes, invented concept labels, fractal summaries, dead metaphor, one-point dilution |
 
 ---
 
@@ -76,14 +77,39 @@ Deletion cap by severity: Mild ≤15%, Moderate ≤25%, Severe ≤35% of the pas
 
 No -ly words. No softeners, no intensifiers, no hedges.
 
-Offenders: really, just, literally, genuinely, honestly, simply, actually, deeply, truly, fundamentally, inherently, inevitably, interestingly, importantly, crucially.
+Offenders: really, just, literally, genuinely, honestly, simply, actually, deeply, truly, fundamentally, inherently, inevitably, interestingly, importantly, crucially, quietly, certainly, arguably, remarkably, notably, surprisingly.
 
-### Filler phrases
+**"Quietly" as magic adverb:** AI reaches for "quietly" to convey subtle importance — "quietly orchestrating workflows", "a quiet intelligence behind it." It's not actually subtle; it's decorative. Delete.
 
-- "At its core" / "In today's [X]" / "It's worth noting"
-- "At the end of the day" / "When it comes to" / "In a world where"
-- "The reality is" / "Full stop." / "Let that sink in."
-- "This matters because" / "Make no mistake"
+### AI vocabulary tells
+
+Words overrepresented in AI-generated text. Flag on sight.
+
+| Word | Why | Replace with |
+|------|-----|--------------|
+| delve | no human writes "let's delve" | examine, look at, explore |
+| tapestry | lazy metaphor for anything complex | mix, combination, range |
+| nuanced | used instead of being nuanced | complex, specific |
+| certainly | hedging that sounds confident | rewrite with evidence, or cut |
+| curated | overused for "selected" | selected, chosen, collected |
+| foster | bureaucratic verb | build, create, encourage |
+| ecosystem | grandiose replacement for "community" or "system" | system, field, community |
+| paradigm | sounds academic, means nothing specific | model, approach |
+| synergy | never use | cooperation, combined effect |
+| framework | overused | structure, approach |
+
+**False ranges:** "From X to Y" constructions where X and Y aren't on a real spectrum — "from startups to enterprises," "from innovation to cultural transformation." They list examples, not a range. State the examples directly.
+
+### The "serves as" dodge
+
+AI replaces "is" with pompous alternatives. Use the simple verb.
+
+| Avoid | Use instead |
+|-------|-------------|
+| serves as | is |
+| stands as | is |
+| marks (when meaning "is") | is |
+| represents (when meaning "is") | is |
 
 ### Business jargon → plain language
 
@@ -98,6 +124,42 @@ Offenders: really, just, literally, genuinely, honestly, simply, actually, deepl
 | Moving forward | Next, from now |
 | Circle back | Return to, revisit |
 | Understands the assignment | Replace with the actual premise |
+| Leverage (verb) | Use |
+| Utilize | Use |
+| Robust | Strong, solid |
+| Streamline | Simplify |
+| Harness | Use, apply |
+| Double down | Commit, increase |
+| Take a step back | Reconsider |
+| On the same page | Aligned, agreed |
+| Unpack | Explain |
+| Holistic | Complete, full |
+| Cutting-edge | New, recent |
+| Groundbreaking | New, first |
+| Transformative | Significant (if it's actually significant) |
+
+### Paired adjectives with "yet" / "and"
+
+"Simple yet powerful", "elegant and robust", "lightweight but comprehensive." Pick the stronger adjective. Drop the pairing.
+
+### Scare quotes
+
+Quotation marks used for irony or emphasis around ordinary words — not actual quotations. "The tool 'seamlessly' integrates..." Choose a better word and drop the quotes.
+
+### Internet clichés
+
+Phrases that were once online-native, now overused by AI as if they're still fresh.
+
+| Cut | Replace with |
+|-----|-------------|
+| "you can't unsee it" | say what you now see |
+| "hits different" | say how it differs |
+| "rent-free" | say it occupies your attention |
+| "chef's kiss" | say what makes it right |
+| "the quiet part out loud" | say what was implied |
+| "let that sink in" | delete |
+| "say it louder for the people in the back" | delete |
+| "I'm here for it" | delete or commit to a specific opinion |
 
 ---
 
@@ -117,6 +179,12 @@ Flagged:  "[X] isn't the problem. [Y] is."
 Flagged:  "The answer isn't X. It's Y."
 Flagged:  "not X, it's Y" / "isn't X, it's Y"
 Flagged:  "not just X but also Y"
+Flagged:  "It feels like X. It's actually Y."
+Flagged:  "The question isn't X. It's Y."
+Flagged:  "It's not this. It's that."
+Flagged:  "stops being X and starts being Y"
+Flagged:  "doesn't mean X, but actually Y"
+Flagged:  "less about X, more about Y"
 Rewrite:  Collapse into one direct statement.
 Example:  "Not defensive. Flat." → "Flat."
 Example:  "No grief, no shock. Just calculation." → "Pure calculation."
@@ -152,7 +220,26 @@ Flagged:  "The uncomfortable truth is" / "The real [X] is"
 Flagged:  "It turns out" / "Let me be clear" / "The truth is,"
 Flagged:  "I'm going to be honest" / "Can we talk about"
 Flagged:  "If you've been looking for X" / "If you came here for X but"
+Flagged:  "Here's the kicker" / "Here's where it gets interesting"
+Flagged:  "Here's what most people miss" / "Here's the deal"
+Flagged:  "I'll say it again:" / "Here's what I find interesting"
+Flagged:  "The truth is simple" / "History is unambiguous on this point"
+Flagged:  "We're excited to announce..." / "I'm thrilled to share..."
+Flagged:  "Look:" / "So here's what happened:"
 Fix:      State the point. Cut everything before it.
+```
+
+### 4a. Pedagogical hand-holding *(copy)*
+
+AI defaults to teacher mode and assumes the reader needs hand-holding. Cut these.
+
+```
+Flagged:  "Let's break this down" / "Let's unpack this" / "Let's explore"
+Flagged:  "Let's dive in" / "Let's delve into"
+Flagged:  "Think of it as..." / "Think of it like..."
+Flagged:  "Imagine a world where..."
+Flagged:  "Whether you're X or Y..." (false inclusivity; pick the actual audience)
+Fix:      Delete. Start with the substance.
 ```
 
 ### 5. Dramatic fragmentation
@@ -163,6 +250,9 @@ Sentence fragments for emphasis read as manufactured profundity.
 Flagged:  "[Noun]. That's it. That's the [thing]."
 Flagged:  "The mark. The debt. The clause." (three separate fragments)
 Flagged:  "This unlocks something. [Word]."
+Flagged:  "X. And Y. And Z." (staccato drama)
+Flagged:  "He published this. Openly. In a book." (fragment stacking)
+Flagged:  "Platforms do." (orphaned fragment as punchline)
 Fix:      Complete sentences, or combine: "The mark, the debt, the clause."
 ```
 
@@ -174,6 +264,7 @@ Remove self-referential asides. Let the piece move.
 Flagged:  "The rest of this essay explains..."
 Flagged:  "Let me walk you through..." / "In this section, we'll..."
 Flagged:  "But that's another post"
+Flagged:  "As we discussed above..." / "As mentioned earlier..."
 Fix:      Delete. Start the next point.
 ```
 
@@ -183,6 +274,47 @@ Fix:      Delete. Start the next point.
 Flagged:  "What if [reframe]?" answered immediately
 Flagged:  "Think about it:" / "Here's what I mean:"
 Fix:      Make the point. Let readers draw conclusions.
+```
+
+### 8. Self-posed rhetorical Q&A *(copy — highest priority after type 1)*
+
+The model asks a question nobody was asking, then answers it immediately for dramatic effect.
+
+```
+Flagged:  "The result? Devastating."
+Flagged:  "The worst part? Nobody saw it coming."
+Flagged:  "The scary part? This attack vector is perfect."
+Flagged:  "And that's okay." (unnecessary permission-granting)
+Fix:      Merge into a direct statement. "The result was devastating."
+```
+
+### 9. Anaphora abuse *(copy)*
+
+Repeating the same sentence opening multiple times in quick succession.
+
+```
+Flagged:  "They assume that users will pay... They assume that developers will build... They assume that..."
+Flagged:  "They could expose... They could offer... They could provide... They could create..."
+Fix:      Vary openings. Combine related points into single sentences.
+```
+
+### 10. Superficial participle analysis
+
+Tacking a present participle phrase onto a sentence to inject shallow significance. The -ing phrase adds the appearance of analysis without the content.
+
+```
+Flagged:  "contributing to the region's rich cultural heritage"
+Flagged:  "highlighting its enduring importance"
+Flagged:  "reflecting broader trends in the industry"
+Flagged:  "underscoring its role as a dynamic hub"
+Fix:      Cut the phrase entirely, or rewrite as a specific claim.
+```
+
+### 11. Repetitive "you" sentence starters *(copy)*
+
+```
+Flagged:  3+ consecutive sentences beginning with "You"
+Fix:      Vary sentence structure — lead with the action, result, or situation.
 ```
 
 ---
@@ -220,7 +352,7 @@ Fix:      Name the specific thing. If you can't, cut the sentence.
 
 ---
 
-## Gate D — Uniform Rhythm / Paragraph Length *(fiction + articles)*
+## Gate D — Uniform Rhythm / Paragraph Length / Formatting *(fiction + articles)*
 
 | Natural | AI-flavored |
 |---------|-------------|
@@ -233,6 +365,16 @@ Fix:      Name the specific thing. If you can't, cut the sentence.
 **Em dash rule:** Remove all em dashes. Use a comma, period, or restructure the sentence.
 
 **Three-item list rule:** Two items beat three. One item beats two when the point is singular.
+
+**Sentence length uniformity check:** Four or more consecutive sentences all within 30% of their mean word count is an AI pattern. Real writing varies. Mix short and long; a 3-word sentence after a complex one creates rhythm.
+
+**Bold-first bullets:** Every bullet starting with a bolded phrase is an AI formatting tell — almost no human writes lists this way by hand. In prose: write the key point into the sentence. In actual lists: keep the bolded keyword only if it's genuinely a label, not decoration.
+
+**Unicode decoration:** → arrows, → bullets, decorative symbols (→, ◆, ★) in body prose. Use plain punctuation. "Input → Processing → Output" should be "input, processing, then output" or just a plain list.
+
+**Listicle in trench coat:** Numbered paragraphs dressed as prose — "The first wall is... The second wall is... The third wall is..." That's a list. Either write genuine prose (combine points, develop them) or make it an explicit list. Don't disguise one as the other.
+
+**Exclamation mark clusters:** More than one exclamation mark per paragraph, or more than three in the full document. Cut all but the one that matters most.
 
 ---
 
@@ -251,7 +393,7 @@ Last paragraph summarizes or moralizes what just happened. Cut it. End on action
 
 ---
 
-## Gate G — Narrator Intrusion / False Agency / Narrator-from-a-Distance
+## Gate G — Narrator Intrusion / False Agency / Narrator-from-a-Distance / Vague Attributions
 
 ### Narrator intrusion *(fiction)*
 
@@ -288,6 +430,18 @@ Flagged:  "People tend to..." → "You tend to..."
 Flagged:  "This happens because..." → Name who did it and when.
 ```
 
+### Vague attributions *(copy)*
+
+Claiming authority without naming the source.
+
+```
+Flagged:  "Experts argue that..."
+Flagged:  "Industry reports suggest..."
+Flagged:  "Observers have cited..."
+Flagged:  "Studies show..." (with no study named)
+Fix:      Name the expert, study, or person. If you can't, cut the claim.
+```
+
 ### Sentence starters to avoid *(copy)*
 
 ```
@@ -295,6 +449,80 @@ Flagged:  Sentences starting with What, When, Where, Which, Who, Why, How
 Fix:      Lead with the subject or verb.
 Example:  "What makes this hard is..." → "The constraint is [specific thing]."
 ```
+
+---
+
+## Gate H — Composition & Tone Tropes *(articles + copy)*
+
+These operate at the level of the full piece, not individual sentences. Run Gate H after Gates A–G when reviewing articles, essays, or copy.
+
+### False vulnerability
+
+Performative self-awareness inserted to disarm skepticism — "I know this seems obvious, but..." / "I'll be the first to admit..." / "And yes, since we're being honest..." AI uses this to sound human. It reads as manipulation because real vulnerability is specific and uncomfortable; AI vulnerability is polished and risk-free.
+
+Fix: Remove. State the point.
+
+### Grandiose stakes inflation
+
+Treating a narrow topic as civilization-defining. "This will fundamentally reshape how we think about everything." / "We're at a crossroads." / "will define the next era of computing."
+
+Fix: Scope the claim to what the evidence supports.
+
+### Invented concept labels
+
+Naming a phenomenon with a compound neologism used as if it's an established term: "the supervision paradox," "the acceleration trap," "workload creep." The label is invented on the spot to sound incisive. Multiple such labels in the same piece is a strong AI signal.
+
+Fix: Describe the phenomenon in plain language. If the label is genuinely useful, define it explicitly.
+
+### Fractal summaries
+
+"What I'm going to tell you; what I'm telling you; what I just told you" — applied at every level. Every subsection gets a summary. Every section gets a summary. The piece itself gets a summary. All structure, no content.
+
+Fix: One summary per piece, at the end. Open sections with a point, not a preview of the point.
+
+### Dead metaphor
+
+A single metaphor introduced early and then beaten through every subsequent paragraph. "The model is a toolbox" → tools, hammer, wrench, workshop, craftsmanship, blueprint — for 1,500 words.
+
+Fix: Use the metaphor once or twice. Then switch to literal language.
+
+### Historical analogy stacking
+
+Rapid-fire historical examples or company names stacked to build false authority without developing any of them. "Apple didn't build Uber. Facebook didn't build Spotify. Stripe didn't build Shopify..." / "Like the printing press. Like the internet. Like the industrial revolution."
+
+Fix: Develop one analogy fully. Cut the others.
+
+### One-point dilution
+
+A single argument restated in different words across thousands of words. Each section rephrases the thesis with a different metaphor but adds nothing new. An 800-word argument padded to 4,000 words.
+
+Fix: Find the one sharpest formulation. Cut everything that rephrases it rather than advancing it.
+
+### "Despite its challenges..." formula
+
+Acknowledging downsides with a dismissive clause before pivoting to enthusiasm: "Despite its challenges, X represents..." / "While there are concerns, Y offers..." AI uses this as a balance-seeking reflex that dismisses every objection without engaging it.
+
+Fix: Either engage the challenges seriously or drop the acknowledgment.
+
+### Signposted conclusion
+
+"In conclusion..." / "To sum up..." / "In summary..." as a conclusion opener. Competent writing doesn't announce itself. The reader can feel when it's ending.
+
+Fix: Cut the signpost. Start with the actual final point.
+
+### Triple-value lists
+
+Three abstract virtues listed in "X, Y, and Z" form with no specifics: "excellence, collaboration, and innovation." Sounds principled, says nothing.
+
+Fix: Pick the one that matters and say something specific about it.
+
+### Uncontracted forms as stiffness signal *(copy)*
+
+Consistent use of "it is", "do not", "is not", "we are", "they have" with zero contractions anywhere. Real writing uses contractions.
+
+Flag if: 2+ uncontracted forms exist and no contractions appear anywhere in the text.
+
+Fix: "It is" → "it's", "do not" → "don't", "we are" → "we're".
 
 ---
 
@@ -346,12 +574,20 @@ See Gate B section above for full pattern list. Negation-reversal is present in 
 - Sentence starts with a Wh- word? Restructure it.
 - Any "here's what/this/that" throat-clearing? Cut to the point.
 - Any "not X, it's Y" contrasts? State Y directly.
+- Self-posed question ("The result? Devastating.")? Merge into a statement.
 - Three consecutive sentences match length? Break one.
 - Paragraph ends with punchy one-liner? Vary it.
 - Em dash anywhere? Remove it.
 - Vague declarative ("The implications are significant")? Name the specific thing.
 - Meta-joiners ("The rest of this article...")? Delete.
 - Pull-quote energy ("X. That's it. That's the thing.")? Rewrite as a complete sentence.
+- "Serves as" or "stands as"? Replace with "is."
+- Any pedagogical hand-holding ("Let's break this down", "Think of it as...")? Delete.
+- Bold-first bullets? Restructure as sentences or unlabeled list items.
+- Any invented concept label (neologism not defined in context)? Replace with plain description.
+- Any vague attribution ("Experts argue...")? Name the source or cut.
+- Any "Despite its challenges..." or "In conclusion..."? Rewrite.
+- Single metaphor used more than 3 times? Vary or cut.
 
 ---
 
@@ -364,8 +600,9 @@ See Gate B section above for full pattern list. Negation-reversal is present in 
 | Trust | Respects reader intelligence? |
 | Authenticity | Sounds human? |
 | Density | Anything cuttable? |
+| Originality | Any dead metaphor, analogy stacking, or invented labels? |
 
-Below 35/50: revise.
+Below 42/60: revise.
 
 ---
 
