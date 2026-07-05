@@ -12,8 +12,8 @@ The default reader ships with a focused set of controls. Add font size, density,
 
 | Control | Requirement | Notes |
 | --- | --- | --- |
-| Next chapter | Required | Inline CTA in the content flow at the end of chapter text (see **End-of-Chapter Navigation** below). Also accessible via the top header's TOC drawer. No Previous button — TOC handles backward navigation. |
-| Table of contents | Required | List icon (≡) in the top header right slot — opens a bottom-sheet drawer with the chapter list. |
+| Next chapter | Required | Inline CTA in the content flow at the end of chapter text (see **End-of-Chapter Navigation** below). No Previous button — TOC handles backward navigation. |
+| Table of contents | Required | List icon (≡) in the top header right slot — hard-navigates to `/book/{slug}#toc` (same behavior as bottom bar TOC button). |
 | Book cover header | Required | Small cover thumbnail in the reader header above the chapter title; omit if no cover image exists |
 | End-of-chapter prompt | Required | Inline "Next chapter →" CTA at the very bottom of chapter text. Use **`my-10`** (symmetric 40px) margin — never asymmetric `mt-16 mb-6`. |
 | Keyboard prev/next | Required on desktop | `←` / `→` arrow keys |
@@ -47,7 +47,7 @@ Add `padding-top: 56px` (or `pt-14`) to the chapter content wrapper so it clears
 
 **No fixed bottom navigation bar.** The bottom viewport is reserved for the sticky anchor ad (AdX sites use `StickyAnchorAd` / q4; AdSense sites leave the bottom clear per policy). Navigation lives in two places:
 
-1. **Top header** — right slot has the TOC list icon (≡) that opens the chapter-list drawer. This is the primary TOC entry point.
+1. **Top header** — right slot has the TOC list icon (≡) that hard-navigates to `/book/{slug}#toc`. Same behavior as the bottom bar TOC button — no drawer, no modal.
 2. **Content flow** — inline "Next chapter →" CTA and cross-book recommendation grid appear at the end of chapter text, in the natural scroll path.
 
 ```tsx
@@ -89,11 +89,22 @@ The "Next chapter →" inline CTA must trigger an almost involuntary desire to t
 
 Why this works: bright saturated warm colors activate dopamine anticipation. Combined with the unresolved story tension (Zeigarnik effect — the reader's brain cannot rest on an open narrative loop), the button becomes the path of least resistance. The reader taps before consciously deciding to.
 
-**TOC panel — DaisyUI 5 modal bottom sheet:**
+**TOC icon — hard navigation, no drawer:**
 
-Bottom sheet is the right choice for mobile fiction reading: thumb-friendly, native feel, fast in/out. Right-side drawer is not suitable — requires reaching the screen edge and covers more reading context.
+The top header TOC icon (≡) must use `window.location.href` to navigate to `/book/{slug}#toc`. Do NOT implement a `TOCDrawer`, bottom sheet, or any modal overlay. Both the top header icon and the bottom bar TOC button share the same behavior.
 
-Use `<dialog>` with `className="modal modal-bottom"` (DaisyUI 5). Open with `dialogRef.current.showModal()`, close with `dialogRef.current.close()`. Inside: `modal-box rounded-t-3xl rounded-b-none`, max-height `72vh`. Current chapter: `border-l-2 border-primary text-primary bg-primary/5 font-semibold`. Non-current: `border-l-2 border-transparent text-base-content/65`. Auto-scroll to current chapter on open (`scrollIntoView` with 50ms delay). Close on backdrop click (`e.target === dialogRef.current`).
+```tsx
+<a
+  href={`/book/${bookSlug}#toc`}
+  onClick={(e) => { e.preventDefault(); window.location.href = `/book/${bookSlug}#toc` }}
+  className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-base-200 transition-colors shrink-0"
+  aria-label="Chapter list"
+>
+  {/* list icon SVG */}
+</a>
+```
+
+The book detail page must have `id="toc"` on the element immediately before the chapter list (typically the ad slot wrapper or the section itself). Add `scroll-margin-top: 64px` to account for the fixed header.
 
 **Quality gate failure if not met:**
 
