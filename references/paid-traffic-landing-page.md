@@ -53,6 +53,8 @@ The landing page should train Meta toward readers, not raw clickers.
 
 Use `ChapterCompleted` and/or `NextChapterClick` as quality signals when evaluating campaigns. Raw landing-page views alone are too noisy.
 
+Whenever a dashboard, checklist, or Meta setup guide lists conversion or optimization events, include `NextChapterClick` together with `ChapterRead50`, `ChapterCompleted`, and `TimeOnPage30`. It is the cleanest continuation-intent signal after a chapter-1 ad click.
+
 ## 6. SEO And Preview
 
 - Add canonical metadata for chapter pages.
