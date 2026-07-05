@@ -119,6 +119,7 @@ Derive all three from project files:
 - **Pen name**: see B2 resolution order above (worldbuilding → context → books.ts → placeholder)
 - **BOOK_DIR**: not used — covers are written as flat files: `public/covers/{book-slug}.webp` and `public/covers/{book-slug}.json`
 - **Temporary PNG**: `/tmp/cover_{book-slug}_v1.png` (deleted after WebP conversion)
+- **Cover cast list**: read `content/{book-slug}/world/characters/` and the outline/context files to identify the protagonist plus every major supporting character who materially drives the premise or central relationship. This cast list is mandatory input to Step 2.
 
 Do not ask the user. Do not fabricate values that cannot be derived.
 
@@ -219,6 +220,15 @@ keep title and author name inside the central safe area (inner ~85%), no waterma
 | Isekai / Slice of Life | Solo, Duo, or small group — match the synopsis |
 
 **A third figure adds more tension than a clean two-person embrace** when the synopsis offers it. Keep one clear focal pairing; place the third figure to threaten or intrude (watching from behind, reaching between them, turned away in betrayal).
+
+**Cover cast rule — MANDATORY:** the cover must show the protagonist and the book's major supporting character(s). A cover that only shows the protagonist is not acceptable when the story has a central love interest, antagonist, rival, partner, handler, court figure, pack alpha, vampire lord, AI counterpart, or other premise-defining secondary character. Use the smallest composition that includes the full required cast:
+- 1 protagonist + 1 major counterpart → **Duo**.
+- 1 protagonist + 2 major counterparts/rivals → **Trio**.
+- Larger ensemble → protagonist and top 2–3 major supporting characters visible, with extras implied by setting only.
+
+The diversity plan may vary pose, framing, palette, and environmental dominance, but it may not remove required characters. If Step 1.6 assigned Solo or Environmental and the cast list contains major supporting characters, upgrade the composition to Duo/Trio or use an Environmental composition with all required figures visible inside the scene. Do not accept a cover where a major supporting character is absent, hidden by crop, reduced to an unreadable silhouette, or replaced by a generic figure.
+
+**Character identity persistence:** the prompt must include stable visual anchors for every required character — hair color/length, eye color or gaze quality, build, age range, signature clothing/status marker, and role in the power dynamic. These same anchors must be preserved for later illustrations.
 
 **Female figure rule — MANDATORY:** the female character must be visually magnetic — impossible to scroll past. **Exposure = randomly T2 (Bold) or T3 (Maximum), picked independently per cover** — for each cover, roll T2 or T3 and bake that tier's assembly block from the Exposure Tiers table (`references/cover-allure-elements.md`) directly into the prompt; do not rely on the model rolling a lucky exposed result. Across a batch of books, this produces a mix of T2 and T3 covers (do not make every cover the same tier). Required elements, every time:
 - Figure: `voluptuous hourglass figure, slim toned waist dramatically cinched, large full bust dramatically prominent, E-cup figure, long shapely legs` — curves are dramatic but the figure is NOT heavy or overweight; the waist must read as narrow against the hips and bust; bust baseline is E cup or larger — "full generous" alone undershoots, use explicit size language. (At T3, drop explicit `E-cup` per the doubao T3-safe rule — use visual-effect phrasing only; see `cover-allure-elements.md`.)

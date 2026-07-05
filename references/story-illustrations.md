@@ -160,15 +160,23 @@ For each illustration, randomly pick **T3 or T4**. Do not use the same tier for 
 
 **Never use T5 for illustrations.** **Never downgrade the block's clothing/skin language to fit the prose's literal wardrobe — re-dress the scene to the tier (see mistake #2 above).**
 
-### Step 2 — Add character anchors from `world/characters/`
+### Step 2 — Add character anchors from cover + `world/characters/`
 
-Pull the female lead and male lead descriptions. Add to the prompt:
+Illustration characters must match the book cover. Before building any illustration prompt:
+
+1. Read `public/covers/{book-slug}.json` if it exists and extract the character visual anchors used in the cover prompt.
+2. Read `content/{book-slug}/world/characters/` for the same characters.
+3. Build a short consistency block for each character that preserves cover identity: hair color/length, eye color or gaze quality, face shape, build, age range, signature clothing/status marker, and role in the relationship/power dynamic.
+
+Pull the female lead and male lead descriptions from the cover prompt first, then fill gaps from `world/characters/`. Add to the prompt:
 ```
 {female-lead physical description: hair, eyes, face shape}
 {male-lead physical description: build, hair, jaw}
 ```
 
-Keep this to 2–3 keywords per character — do not repeat the full character sheet.
+Keep this to 2–3 high-signal anchors per character — do not repeat the full character sheet.
+
+**Hard rule:** one novel's illustrations must look like the same cast as its cover. Do not change a character's race, age band, hair color, hair length, body type, facial structure, or signature status marker between cover and illustration. If the cover shows a major supporting character, that character's illustration appearances must preserve the same visual identity. A beautiful but different-looking lead is a failed illustration.
 
 ### Step 3 — Add scene-specific context
 
@@ -339,6 +347,7 @@ After cropping/converting each file, check:
 - Final `.webp` width is 664 px, height 996 px
 - File size ≤ 300 KB
 - Watermark is gone (doubao) — if still visible, increase bottom crop to ~10%
+- Character continuity matches the cover: same lead(s), same major supporting character(s), same core hair/face/build/status markers. Reject and regenerate any illustration that swaps identities or makes the cast look unrelated to the cover.
 
 If a file exceeds 300 KB, lower the WebP quality to ~72 and re-convert.
 
