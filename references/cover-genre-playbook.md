@@ -6,6 +6,126 @@ Reference: `cover-allure-elements.md` for allure tiers, fabric ranking, poses, a
 
 ---
 
+### Reference-Derived CTR Pattern Blocks
+
+Use these blocks when the book title, synopsis, or ad angle matches the pattern. They are extracted from high-CTR romance ad/cover references and normalized into reusable prompt language. Do not mention the reference images in the final prompt; use the pattern directly.
+
+#### Gothic Funeral Bride / Buried Bride
+```
+Romance novel cover, cinematic photorealistic gothic bridal thriller atmosphere.
+FRAMING: portrait 2:3, medium-full shot from knees to crown, bride center-dominant, male figure behind her.
+TWO characters plus funeral environment. Bride in elaborate white lace wedding gown, bare embroidered back visible, pearl buttons down the spine, sheer veil trailing behind; she turns over her shoulder toward the viewer with wide controlled eyes and parted lips, the expression of a woman standing inside the lie everyone else believes.
+Male figure behind her in black formal coat or investigator's dark suit, face half in shadow, close enough to claim the frame but not touching; his expression is severe, protective, and suspicious.
+Background: gothic church interior, coffin or casket with white lilies at left or lower frame, black-clad mourners blurred in the back, tall stained-glass window casting cold blue and violet light, white roses on dark stone.
+The subtext: they buried the bride, but she is standing beside the man who was meant to find her body.
+Color palette: ivory lace, deep charcoal, cold blue stained glass, muted crimson rose accents.
+Lighting: cold window backlight on veil and lace, small warm candlelight on her cheekbone, deep shadow behind him.
+Title large in ornate gothic serif across lower third; author small at bottom. Photorealistic editorial photography, no watermark.
+```
+
+#### Rejected Husband Owns the City / Urban Revenge Landscape
+```
+Romance social ad creative or book cover, cinematic rain-soaked billionaire revenge poster.
+FORMAT: landscape 16:9 for ad creative, portrait 2:3 for book cover.
+THREE characters. Central male dominates the composition in a black suit and loosened white shirt, rain-wet hair, jacket open, standing in front of a neon night city skyline and luxury black car. His expression is cold certainty — the man they threw away now owns the city.
+Left female figure: former wife or regret figure in sleek evening dress, turned partly away, face tense with realization. Right female figure: new rival claim or woman who believed in him, closer to his side, watching him with intensity.
+Background: dense skyscrapers, fictional corporate signage, wet street reflections, dark luxury car, rain streaks catching blue and gold neon.
+Add thumbnail-legible design: bold serif or condensed sans title in upper left; optional bottom icon row with short trope labels such as rejected husband, billionaire revenge, betrayal and regret.
+Color palette: black, steel blue, neon gold, rain silver, white shirt highlight.
+Lighting: city neon rim light on his shoulders and jaw, secondary women in partial shadow, skyline sharp enough to read at mobile size.
+```
+
+#### Royal Claim Family Drama / Owned and Claimed
+```
+Romance novel cover, opulent estate family-drama atmosphere.
+FRAMING: portrait 2:3, full-body or three-quarter shot, palace or grand estate behind.
+THREE characters. Adult couple in formal evening wear stand close at center: man in black tuxedo leaning down with protective possession, woman in deep red fitted gown with neckline and jewelry catching warm light. A child or heir stands below or between them in formal suit, looking directly at the viewer, making inheritance and claim instantly visible.
+The female lead's expression: composed but emotionally trapped between duty and desire. The male lead's expression: controlled possession, forehead nearly touching hers. The child's expression: solemn witness.
+Background: baroque palace facade, rose garden, gold sunset, red roses in foreground.
+The subtext: one claim began when she was powerless; the second one came when she understood what power meant.
+Color palette: deep red gown, black tuxedo, warm gold architecture, dark green garden, rose accents.
+Lighting: golden-hour backlight around the couple, warm light on faces, background slightly magical but still photorealistic.
+Title large in elegant gold serif/script mix across lower center; author beneath.
+```
+
+#### Secret Deal With My Billionaire Boss / Office Near-Kiss
+```
+Romance novel cover, cinematic photorealistic office romance, secret contract tension.
+FRAMING: portrait 2:3, medium shot from waist to crown, faces and upper bodies readable.
+TWO characters in executive office interior. Male lead in black suit and white shirt leans down over female lead with one hand braced near her, the other near her waist or lapel; his expression is controlled hunger under corporate restraint. Female lead in fitted blazer or sleek dress leans up toward him, one hand on his chest, lips parted, eyes half-closed but conflicted.
+Faces almost touching — a near-kiss, not a kiss. The physical gap is the story.
+Background: glass office blinds, city lights, desk edge, contract papers or pen barely visible in foreground.
+The subtext: the deal was supposed to be professional until the room got too small.
+Color palette: charcoal suit, ivory skin highlights, warm amber office light, cool blue city reflection.
+Lighting: warm key light on faces, cool rim light from window blinds, shallow depth of field.
+Title in script + bold serif combination across lower half; author small beneath.
+```
+
+#### Multicultural Mistake / Warm City Embrace
+```
+Romance novel cover, warm multicultural contemporary drama atmosphere.
+FRAMING: portrait 2:3, medium close-up from chest to crown, couple centered.
+TWO characters. Black woman in vivid red dress or blouse, hair in elegant updo or natural style, eyes closed with guarded tenderness; male lead in dark shirt or suit, forehead and nose close to hers, eyes lowered, one hand at her back or shoulder.
+Their bodies are close but the emotion is regret and tenderness, not dominance.
+Background: warm city riverfront or old city skyline at sunset, soft bokeh, amber sky.
+The subtext: the mistake should not have happened, but it changed everything.
+Color palette: saturated red dress, warm amber sky, dark suit, bronze and deep brown skin tones.
+Lighting: sunset rim light around profiles, soft warm fill on faces, high emotional warmth.
+Title at top or lower third in strong serif, key word in red if typography is included; author small at bottom.
+```
+
+#### Rival Cheer Captain / Bright Sports Poster
+```
+Romance novel cover, bright competitive sports romance poster, adult college or pro-sports energy.
+FRAMING: portrait 2:3, full-body or medium-full shot, both figures readable.
+TWO main adult characters plus rivalry background. Female lead in cheer or dance-team uniform, pom-poms or team colors visible, leaning toward male captain; male lead in basketball/football jersey with captain marker, tall and athletic, one arm around her waist or close behind her. Both read as 21+ adults.
+Background: scoreboard with close score and final seconds, arena lights, rival player or opposing team figure in background looking on, crowd blur.
+The subtext: rival teams, public stakes, private surrender.
+Color palette: hot pink or team red accent, navy/white uniform blocks, bright arena light.
+Lighting: glossy arena lights, energetic high-key contrast, confetti or scoreboard glow.
+Typography: handwritten marker-style title with stickers, hearts, underlines, arrows, and small caption callouts; keep all text large enough for mobile thumbnail.
+Safety: no high-school coding, no minor-looking faces, no school uniforms; adult college/pro visual language only.
+```
+
+#### Military Skyline Shield / Ruthless Protector Boss
+```
+Romance novel cover, cinematic military protector romance, night skyline drama.
+FRAMING: portrait 2:3, medium shot from hip to crown.
+TWO characters. Male lead in dark dress uniform or tactical-formal jacket with subtle rank insignia and medals, standing behind or beside heroine, body angled protectively over her shoulder. His expression: stern, disciplined, ruthless toward the world outside the frame. Female lead in dark dress or coat, hair wind-tossed, looking toward the viewer with wary vulnerability.
+Background: high-rise window or rooftop with iconic night skyline, city lights blurred, military insignia or security badge catching light.
+The subtext: she became the mission he was not supposed to want.
+Color palette: black uniform, gold insignia, cool blue city lights, warm skin highlights.
+Lighting: cool skyline rim light, warm key on her face, hard highlight on his jaw and medals.
+Title in elegant script for the emotional word plus bold serif/sans for military/boss words.
+```
+
+#### Wolfless Mate / Moonlit Alpha Shifter
+```
+Romance novel cover, cinematic photorealistic paranormal shifter atmosphere.
+FRAMING: portrait 2:3, tight medium shot from chest to crown, couple large in frame.
+TWO characters. Pale or white-haired heroine in grey cloak or fitted dress, exposed throat and collarbone, expression torn between fear and longing. Dark-haired alpha male in black coat or open-collar shirt stands close behind or beside her, face near her temple or cheek, expression controlled and possessive.
+Background: full moon huge behind them, gothic forest or castle silhouette, faint wolf silhouette or shadow in the distance.
+The subtext: the pack called her wolfless; the alpha recognized something they could not see.
+Color palette: cold blue moonlight, silver hair, black coat, pale skin highlights.
+Lighting: moon rim light on hair and jaw, soft cold fill on faces, deep blue-black background.
+Title in silver fantasy serif with faint glow; author at bottom.
+```
+
+#### Ex-Wife Regret / No Love Left Close-Up
+```
+Romance novel cover, warm amber second-chance regret atmosphere.
+FRAMING: portrait 2:3, tight crop from upper chest to crown, faces large and emotional.
+TWO characters. Male lead in dark shirt or suit, forehead almost touching female lead, eyes down or closed, jaw tense with regret. Female lead with blonde or light hair or story-accurate hair, eyes closed or downcast, expression exhausted from loving someone too long.
+No smiling, no wedding-photo energy. This is grief, regret, and a final chance.
+Background: warm blurred interior or chandelier bokeh, minimal props, emotional faces dominate.
+The subtext: he came back after she had already taught herself not to need him.
+Color palette: amber gold, deep brown shadow, cream skin highlights, dark suit contrast.
+Lighting: soft warm key across their faces, shallow depth of field, background nearly abstract.
+Title large across lower third in bold serif with one script/emotional word; author beneath.
+```
+
+---
+
 ### Genre-Specific Prompt Formulas
 
 #### Dark Romance / Billionaire Romance

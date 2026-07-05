@@ -1,6 +1,6 @@
 # Story Cover
 
-Load this reference when the user asks to generate a novel cover (/story-cover, cover generation), or when A2 of the pipeline is entered. **Also load `references/facebook-ads.md` alongside this file — every cover is a Facebook ad creative and must pass the scroll-stop standards in Step 1.7.**
+Load this reference when the user asks to generate a novel cover (/story-cover, cover generation), or when A2 of the pipeline is entered. **Also load `references/facebook-ads.md` alongside this file — every cover is a Facebook ad creative and must pass the scroll-stop standards in Step 1.7.** For romance/drama covers, also load `references/cover-genre-playbook.md` and use its reference-derived CTR pattern blocks when the title, synopsis, or ad angle matches.
 
 **Execution principle: invoke tools directly. Never surface a "please run X" prompt to the user mid-phase. Call the image generation tool, write the file, log the result — then move on.**
 
@@ -172,6 +172,18 @@ Cover ratio: **2:3 portrait**. Generate at `848x1280` (1K Fast tier — sufficie
 - No match → default to the site's primary genre
 
 The genre determines composition template, color palette, character design, and typography style. The visual register determines render quality language (photorealistic film-still vs. hyperrealistic 3D render).
+
+**If the detected title/synopsis matches a reference-derived CTR pattern** from `references/cover-genre-playbook.md`, use that pattern block as the base prompt and then substitute story-specific character descriptors from `character-visuals.md`. Pattern blocks override generic genre formulas because they encode a proven thumbnail read:
+
+- Gothic Funeral Bride / Buried Bride
+- Rejected Husband Owns the City / Urban Revenge Landscape
+- Royal Claim Family Drama / Owned and Claimed
+- Secret Deal With My Billionaire Boss / Office Near-Kiss
+- Multicultural Mistake / Warm City Embrace
+- Rival Cheer Captain / Bright Sports Poster
+- Military Skyline Shield / Ruthless Protector Boss
+- Wolfless Mate / Moonlit Alpha Shifter
+- Ex-Wife Regret / No Love Left Close-Up
 
 **Allure applies to ALL genres — intensity varies by genre, never zero.** A cover with no physical magnetism, no skin, and no charged atmosphere is a failure regardless of genre. Load `references/cover-allure-elements.md` for vocabulary. Apply the tier matching your genre:
 
