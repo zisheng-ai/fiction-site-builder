@@ -449,6 +449,13 @@ Goal: accumulate Pixel data so the algorithm has enough signal.
 
 Goal: find people who resemble real readers, not just ad-clickers.
 
+> **Cost trap — do not switch to Sales before Phase 1 is complete.**
+> A Sales campaign competes in conversion auction pools (e-commerce, courses) where CPM is structurally higher. Switching too early produces ViewContent costs 5–10× higher than a Traffic campaign:
+> - Traffic campaign (Phase 1): ~¥0.31 per landing page view
+> - Sales campaign (Phase 2, premature): ~¥2.24 per ViewContent — 7× more expensive
+>
+> This destroys arbitrage margin. Run Phase 1 until ≥ 50 ViewContent/week is stable. If a Sales campaign is already running with costs this high, pause it immediately and redirect budget to the Traffic campaign.
+
 > Cannot modify the existing Traffic Campaign — create a new Sales Campaign.
 
 1. Ads Manager → **Create**
