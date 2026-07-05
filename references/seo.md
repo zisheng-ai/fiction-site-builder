@@ -585,6 +585,27 @@ Google's freshness algorithm ("Query Deserves Freshness") boosts recently update
 
 Articles are SEO landing pages that drive L1 traffic into books. They live in `articles/` alongside book content and are rendered at `/articles/{slug}/`. Two types exist; choose one per article session.
 
+### 15.0 — Article-Book Relationship
+
+Every new long-form book triggers A4 automatically. Articles and book pages target different query layers:
+
+- **Book pages** (`/book/{slug}`) rank for long-tail queries — title, character names, specific plot keywords.
+- **Articles** (`/articles/{slug}`) rank for genre-category queries — "best dark romance books", "fae romance online" — and drive cold traffic to multiple books at once.
+
+**Routing logic (run each time a new book is added):**
+
+| Condition | Action |
+|---|---|
+| Existing SEO article targets the same genre keyword | Move new book to `books[0]`; keep existing books as `books[1–n]`; rewrite opening section; regenerate cover only if concept changed substantially |
+| No existing article for this genre keyword | Create a new SEO list article; new book = `books[0]`; fill `books[1–2]` with existing same-genre books |
+| Book has a strong social hook (specific premise, unusual dynamic) | Also create a short-form traffic article (§ 15.2) — use judgment, not every book needs one |
+
+**New book is always `books[0]`** in any article it anchors — it gets the primary CTA button and the longest prose section. Existing books are supporting context.
+
+**Genre keyword matching:** use the book's `target` field (from frontmatter) or A0's top keyword. One SEO article per genre keyword per site — do not create two articles with the same `target`. If an update would make the article exceed 5 books, drop the weakest-performing one.
+
+---
+
 ### 15.1 — SEO List Article
 
 **Purpose:** rank for broad keyword queries (`"best dark romance books"`, `"fae romance books"`). Drives cold traffic from search.

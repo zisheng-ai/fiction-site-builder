@@ -145,14 +145,26 @@ A3 runs automatically after A1 completes for every long-form book. Do not skip o
 
 | A4 | Traffic Articles | L1 | `seo.md` § 15 | `articles/{slug}.md` + `public/covers/articles/{slug}.webp` |
 
-A4 is a standalone step — not part of the default full pipeline. Run when the user requests articles ("write articles", "引流文章", "SEO article", "short-form article"). Do not run automatically.
+A4 runs automatically after A3 for every new long-form book. Do not skip or prompt — every new book needs a traffic article. Skip only for short-form stories or on explicit user opt-out.
 
-**A4 modes — pick one:**
+**A4 routing — run on every new book:**
 
-- **SEO list article:** `1200–1800` words, keyword-targeted title, prose-style book list, no `cta_url` field, ends with plain-text CTA. See `seo.md` § 15.1.
+1. Identify the new book's primary genre keyword (from A0 `niche-research.json` or the book's `target` field in frontmatter).
+2. Check existing articles in `articles/`: is there already a SEO list article targeting this genre keyword?
+   - **Yes → update**: rewrite the article's opening section and move the new book to `books[0]`. Keep existing books as `books[1–n]`. Regenerate the article cover only if the visual concept has changed substantially. Commit the updated file.
+   - **No → create**: write a new SEO list article with the new book as `books[0]` and 2–3 existing same-genre books as `books[1–n]`. Generate a new article cover.
+3. Additionally, if the book's premise or hook is strong enough for social traffic, also write a short-form traffic article (引流短篇) targeting the same book. Use judgment — not every book needs one.
+
+See `seo.md` § 15.0 for the full article-book relationship model.
+
+**A4 modes — pick one per article:**
+
+- **SEO list article (default):** `1200–1800` words, keyword-targeted title, prose-style book list, no `cta_url` field, ends with plain-text CTA. New book is always `books[0]`. See `seo.md` § 15.1.
 - **Short-form traffic article (引流短篇):** `300–500` words, hook-driven title in 2-sentence format, 2–3 books each getting one punchy premise-pitch section separated by `---`, inline CTA links to specific `/book/{slug}` (not external homepage). See `seo.md` § 15.2.
 
 After writing, generate article cover: landscape `1280×720` GPT Image 2, stored at `public/covers/articles/{slug}.webp`. Add `cover: /covers/articles/{slug}.webp` to frontmatter. Run deslop Gates A/B/C/G + Article Quick Checks on both article types before committing.
+
+A4 also runs as a standalone step when the user requests articles directly ("write articles", "引流文章", "SEO article", "short-form article").
 
 ---
 
@@ -285,9 +297,9 @@ If a full pipeline run reaches launch with no illustrations generated for its lo
 
 | User intent | Phases to run |
 | --- | --- |
-| "Write a novel" / "Continue writing" / `/story-long-write` | 0 (skip if exists), A1 long-form, **A3 (automatic)** |
-| "Write a short story" / `/story-short-write` | 0 (skip if exists), A1 short-form (A3 skipped for short-form) |
-| "Add one book to existing site" | A1 long-form (single book), A2 (single book) |
+| "Write a novel" / "Continue writing" / `/story-long-write` | 0 (skip if exists), A1 long-form, **A3 (automatic)**, **A4 (automatic)** |
+| "Write a short story" / `/story-short-write` | 0 (skip if exists), A1 short-form (A3 skipped, A4 skipped for short-form) |
+| "Add one book to existing site" | A1 long-form (single book), A2 (single book), **A4 (automatic — update or create article)** |
 | "Generate covers" / `/story-cover` | A2 only |
 | "Add illustrations" / "Generate illustrations" | A2.5 only |
 | "Import manuscript" / `/story-import` | A1 import only |
