@@ -222,6 +222,7 @@ Do not add placeholder ad markup or commented-out ad code — leave the pages cl
 During B4, check the parent project `fictions/CLAUDE.md` for a `facebook_pixel.id` configuration. This step is **optional** — if the parent project does not specify a Pixel ID, skip the code change and only record it in `TODO.md`.
 
 - **If configured**: add the Facebook Pixel base code to `src/app/layout.tsx` `<head>` using `next/script` with `strategy="afterInteractive"`. Use the exact Pixel ID from `fictions/CLAUDE.md`. Also wire the `ChapterPixel` component (see `references/adsense-arbitrage.md §4.3`) into `src/app/book/[slug]/chapter/[n]/page.tsx` — this fires `ViewContent` on mount, `ScrollDepth25` / `ChapterRead50` / `ScrollDepth75` at scroll milestones, `ChapterCompleted` via IntersectionObserver on `#chapter-content-end` sentinel, and `TimeOnPage30` after 30 seconds. These are the L1 optimization signals for Lookalike Audience building.
+  - If the site uses `next/link` or any App Router client navigation, also add a lightweight route tracker that fires `fbq('track', 'PageView')` on pathname changes after the initial render. A single bootstrap `PageView` in layout is not enough for SPA-style navigation.
 - **If not configured**: do not add any Pixel code. Record in the site's `TODO.md`:
   ```
   - [ ] 配置 Facebook Pixel（项目 CLAUDE.md 未指定 Pixel ID）

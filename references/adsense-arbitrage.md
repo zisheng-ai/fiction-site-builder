@@ -204,7 +204,9 @@ Diagnostic signal: if AdX viewability is below 60% and match rate is ≥ 95%, th
 ### 4.1 Tracking
 
 - **Meta Pixel + Conversions API (CAPI)**: Pixel alone loses signal to iOS/ad-blockers; CAPI (server-side) recovers it. Run both, deduplicated by event ID.
+- If the site uses App Router / `next/link`, add a client-side route tracker that fires `fbq('track', 'PageView')` on pathname changes after the initial render. The bootstrap PageView in layout only covers the first hard load.
 - Events to fire: `PageView`, `ViewContent` (chapter open), `ScrollDepth25` / `ChapterRead50` / `ScrollDepth75` (scroll milestones), `ChapterCompleted` (IntersectionObserver on `#chapter-content-end` sentinel — not scroll ratio), and `TimeOnPage30` (30s setTimeout, independent of scroll) as the engaged-session signal.
+- Next-chapter controls should fire `fbq('trackCustom', 'NextChapterClick', payload)` before hard navigation. Preserve normal browser behavior for modified clicks, then delay `window.location.href` by about 100–150ms so the Pixel request has time to leave the page.
 - Optimize the FB campaign toward the **engaged/value event**, not raw landing PageView — that is what trains delivery toward profitable readers.
 - UTM-tag every campaign; keep `campaign → landing chapter` mapping for ROAS attribution.
 
