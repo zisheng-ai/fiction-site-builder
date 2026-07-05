@@ -256,7 +256,7 @@ All of the following must be true before go-live (after B6 passes):
 | Check | Required location |
 | --- | --- |
 | ≥ 3 book directories | `content/{book-title}/` |
-| Each book has **20–26 chapters** (randomized per book; optimized for L2 session depth) | `content/{book-title}/chapters/` |
+| Each book has **20–26 chapters** (randomized per book; optimized for L2 session depth); chapter counts do NOT need to be unique across books within the same site — two books may share the same count | `content/{book-title}/chapters/` |
 | Each chapter meets its type target (see Pacing Guidelines in `story-long-write.md`); word counts must vary naturally across chapters — never identical | A1 output |
 | `outline/outline.md` exists and non-empty | A1 output |
 | `world/worldbuilding.md` exists and non-empty | A1 output |

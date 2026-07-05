@@ -111,28 +111,40 @@ Avoid:
 
 ---
 
+## Step 1.5: Site Tone Gate (mandatory — run BEFORE Step 2)
+
+**Before evaluating any candidate, read the target site's entry in `fictions/CLAUDE.md`.** Every candidate must clear this gate or be dropped immediately:
+
+1. **Tone match** — the candidate's core emotion (dark intensity, wholesome/cosy, literary, Spanish heat, etc.) must match the site's declared tone. No exceptions. A "heartwarming small-town" story does not belong on velvet-throne no matter how high its demand score.
+2. **No topic overlap with sister sites** — if the parent project has multiple sites on the same root domain, the candidate must not replicate the core topic of another site. Check the site isolation table in `fictions/CLAUDE.md`. Reject any candidate that would compete with a sister site on the same domain.
+3. **Language match** — the story language must match the site's declared language (`en`, `es`, `en-GB`). Do not write English content for a Spanish site or vice versa.
+
+Reject candidates that fail any gate. Do not score them. Do not bring them back.
+
+---
+
 ## Step 2: Validate Reader Demand
 
-Before scoring, confirm the genre × trope combo has real reader demand.
+Before scoring, confirm the genre × trope combo has real reader demand **with recent (last 3 months) trending signals**.
 
-### Three-signal demand check
-
-All three must pass:
+### Four-signal demand check (all four must pass)
 
 1. **Social proof** — at least one TikTok hashtag related to this trope has >10M total views, OR a Reddit thread about this trope has >200 upvotes in the last 6 months.
 2. **Existing successful titles** — you can name at least 3 titles (any platform) in this exact trope combo with confirmed readership (Wattpad reads >500K, KU bestseller, or BookTok viral). This proves the market exists and readers return to the sub-genre.
 3. **Reader appetite gap** — community evidence (Reddit comments, BookTok comments, Facebook posts) that readers want MORE of this trope. Absence of complaints about oversaturation.
+4. **Recency gate (MANDATORY)** — demand must be active in the **last 3 months**. Evidence required: TikTok videos on this trope/genre tag published in the last 3 months with >100K views each, OR a BookTok trend/audio currently circulating, OR a Reddit "what to read" thread from the last 3 months with 50+ upvotes recommending this sub-genre. **Flat or declining genres fail this gate even if they have historically large audiences.** A genre that was huge 18 months ago but hasn't surfaced in recent discussions must be treated as fading demand.
 
-Reject candidates that fail any of these three checks.
+Reject candidates that fail any of these four checks.
 
 ### Demand dimensions
 
 | Dimension | What to measure | Where to check |
 | --- | --- | --- |
 | **Trope tag views** | Total TikTok views on primary trope hashtag | TikTok hashtag search |
+| **Recent activity** | TikTok videos posted in last 3 months on this trope hashtag — count and view velocity | TikTok, filter by recency |
 | **Community depth** | Active subreddit or Facebook group dedicated to this sub-genre | Reddit, Facebook Groups |
 | **Title density** | How many existing titles in this exact combo? Sparse (<20 active titles) = gap; saturated (>500) = harder entry | Wattpad search, Amazon KU filter |
-| **Recency** | Is demand rising, flat, or falling? | Google Trends (trope as phrase), TikTok video recency |
+| **Trend direction** | Is demand rising, flat, or falling? Rising required. | Google Trends (trope as phrase, 3-month window), TikTok video recency |
 | **Emotional hook strength** | Can the premise be stated in one sentence that triggers a strong emotional reaction? | Gut check + test against 5 similar titles |
 
 ### Competitive landscape check
