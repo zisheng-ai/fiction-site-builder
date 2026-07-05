@@ -58,6 +58,22 @@ Deletion cap by severity: Mild ≤15%, Moderate ≤25%, Severe ≤35% of the pas
 
 ---
 
+## Structural Anchors — Never Touch
+
+These elements must survive every deslop pass unchanged:
+
+| Element | Why |
+|---------|-----|
+| Frontmatter fields (`title`, `chapter`, `bookId`, `language`, `status`) | Build system and URL routing depend on these |
+| Chapter H1 heading (the first `# ` line after frontmatter) | Reader UI renders this as chapter title |
+| `<!-- ILLUSTRATION -->` markers | Illustration injection point — moving breaks layout |
+| Internal links (`href="/book/..."`) | Any path change breaks navigation |
+| File names (`ch-NNN-slug.md`) | Static params generated from filenames |
+
+**Rule**: deslop operates only on prose body lines. It never modifies frontmatter, headings, markers, links, or filenames — even if those contain AI-flavored phrasing.
+
+---
+
 ## Gate A — Banned Words / Adverbs / Jargon
 
 ### Fiction clichés
