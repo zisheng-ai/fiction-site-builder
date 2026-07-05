@@ -2,7 +2,64 @@
 
 Reference for `story-cover.md`. Visual allure elements for fiction cover generation — AI prompt engineering guide.
 
-**Scope: romance, contemporary drama, and light novel covers only.** For Horror, Fantasy, Mystery, and Sci-Fi covers, this file does not apply — those genres use atmosphere, scale, and dread instead of allure. See `story-cover.md` §4 for non-romance genre composition guidelines.
+**Scope: adult romance, romance-adjacent drama/thriller/fantasy, and light novel covers where desire is a real selling point.** For pure Horror, pure Mystery, pure Sci-Fi, military fiction, hard fantasy, or any story without an adult attraction/power-dynamic hook, this file does not apply — those genres use atmosphere, scale, dread, competence, or threat instead of risqué allure. See `story-cover.md` for routing.
+
+## Genre Allure Routing
+
+Use this table before selecting exposure tiers. "Allure" here means suggestive adult visual appeal below the §0 floor: no nipples, genitals, sex acts, or pornographic framing.
+
+### Default Allure Genres
+
+Apply this file by default. Covers roll T2/T3; illustrations roll T3/T4 when the scene earns it.
+
+| Genre / label | Why it fits |
+|---|---|
+| Dark Romance | Power imbalance, possession, danger, taboo desire are the click promise. |
+| Contemporary Romance | Desire and relationship tension are the main purchase driver. |
+| Billionaire Romance | Status, luxury, control, and attraction are instantly legible visually. |
+| Mafia / Cartel / Organized Crime Romance | Danger + protection/possession creates high-converting visual tension. |
+| Paranormal Romance | Supernatural fixation, fated bond, and physical intensity support stronger allure. |
+| Shifter / Alpha / Werewolf Romance | Body presence, mate-bond tension, and dominance/submission dynamics are core signals. |
+| Vampire Romance | Gothic desire, threat, immortality, and bloodline fixation are visual-first hooks. |
+| Demon / Monster / Interspecies Romance | Boundary-crossing attraction is the genre promise; keep anatomy human-readable and §0-safe. |
+| Fae / Dark Fae / Romantasy / Fantasy Romance | Court power, magical claim, and dangerous attraction support sensual fantasy composition. |
+| Gothic Romance | Atmosphere plus forbidden attraction; use candlelight, thresholds, and restrained exposure. |
+| Historical Romance / Regency Romance | Social constraint + desire; use T1/T2 or carefully-staged T3, period-appropriate. |
+| Marriage of Convenience / Fake Dating / Second-Chance Romance | Contractual or social proximity makes controlled intimacy legible. |
+| Sports Romance | Physicality, competition, locker-room/stadium settings; keep it adult and non-exploitative. |
+| Academy Romance / Dark Academia Romance | Use only for clearly adult college/university characters; never imply minors. |
+| Light Novel Romance / Isekai Romance / Villainess Romance | Stylized attraction and costume hooks work when characters are adult-coded. |
+
+### Conditional Allure Genres
+
+Use allure only when the book has an explicit adult romantic/sexual-tension engine in the synopsis, outline, or character files. Otherwise use the genre's non-allure visual language.
+
+| Genre / label | Use allure when... | Default without that condition |
+|---|---|---|
+| Dark Fantasy / Grimdark | A central adult pairing, claim, temptation, or court/pack bond drives the plot. | Scale, magic, dread, violence aftermath, corrupted power. |
+| Urban Fantasy / Paranormal / Supernatural Thriller | There is an adult romantic counterpart or fixation. | Discovery, threat, investigation, occult atmosphere. |
+| Gothic Mystery | It is also Gothic Romance or has a dangerous adult attraction at the center. | House, clue, dread, isolation, unreliable perception. |
+| Psychological / Domestic Thriller | Obsession, seduction, betrayal, or dangerous spouse/partner is the hook. | Suspicion, surveillance, domestic unease, distorted perception. |
+| Crime / Thriller / Black Ops | The story is romance-coded or has bodyguard/protector/handler attraction. | Competence, weapon, mission, shadow, pursuit. |
+| Sci-Fi Romance / Dystopian Romance / Cyberpunk Romance | Relationship tension is central, not just a subplot. | Futuristic setting, surveillance, rebellion, technology, scale. |
+| Space Opera Romance | The pairing is a primary selling point. | Fleet scale, alien war, command stakes, starscape. |
+| Court Intrigue / Political Drama | Desire, arranged marriage, concubine/consort, or forbidden attachment is central. | Power, ritual, court geometry, betrayal. |
+| Family Drama Romance / Secret Child Romance | The romance is the hook, not only grief/family healing. | Emotional distance, domestic realism, child-safe framing. |
+
+### Do Not Use Allure By Default
+
+Do not add risqué visual language unless the user explicitly asks and the premise is adult-romance-coded.
+
+| Genre / label | Primary visual engine |
+|---|---|
+| Pure Horror | Fear, isolation, uncanny threat. |
+| Cosmic / Body / Folk Horror | Scale, ritual, dread; avoid eroticizing threat or gore. |
+| Cosy Mystery | Warmth, clue objects, place attachment. |
+| Literary Mystery / Literary Thriller | Restraint, symbol, institution, ambiguity. |
+| Pure Military Sci-Fi / Hard Sci-Fi / Space Opera | Scale, technology, command pressure, war stakes. |
+| Epic / High Fantasy / Cultivation / Progression Fantasy | Power, world scale, mastery, rivalry. |
+| Medical / Family / Grief Drama | Emotional realism, trust, institution, recovery. |
+| YA, teen, school-age, or minor-coded stories | No risqué allure. Use age-safe adventure, emotion, or atmosphere only. |
 
 ---
 

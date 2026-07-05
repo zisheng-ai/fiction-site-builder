@@ -139,9 +139,13 @@ Cover ratio: **2:3 portrait**. Generate at `848x1280` (1K Fast tier — sufficie
 
 The genre determines composition template, color palette, character design, and typography style. The visual register determines render quality language (photorealistic film-still vs. hyperrealistic 3D render).
 
-**For romance/drama genres: allure elements are MANDATORY, not optional.** Load `references/cover-allure-elements.md` and apply the highest-intensity pose from the appropriate genre section. The target is maximum implication within gpt-image-2-all policy — bodies pressed together, visible skin, explicit physical contact (grip, hold, almost-kiss). A cover where two people are simply standing near each other fails this gate.
+**Run the Genre Allure Routing table in `references/cover-allure-elements.md` before building any prompt.** This decides whether the cover should use risqué adult visual appeal ("擦边") or a non-allure genre composition.
 
-- **Romance / Drama genres:** use `references/cover-allure-elements.md` (Costume Elements, Poses, and English Romance Playbook). Pick the genre-specific prompt formula, select the pose assigned in Step 1.6, and follow the Escalation Strategy if the output looks tame.
+- **Default Allure Genres:** load `references/cover-allure-elements.md` and apply the highest-intensity appropriate pose from the genre section. Covers roll T2/T3 unless account-safety context requires T1/T2. A cover where two people are simply standing near each other fails this gate.
+- **Conditional Allure Genres:** use allure only when the synopsis/outline/character files show an adult romantic or sexual-tension engine as a primary selling point. If not, use the genre's atmosphere/scale/threat visual language instead.
+- **Do Not Use Allure By Default:** do not add risqué visual language. Use atmosphere, dread, competence, power, mystery, or world scale unless the user explicitly requests an adult romance-coded treatment.
+
+When allure applies, use `references/cover-allure-elements.md` (Costume Elements, Poses, Genre Allure Routing, and English Romance Cover Playbook). Pick the genre-specific prompt formula, select the pose assigned in Step 1.6, and follow the Escalation Strategy if the output looks tame.
 
 ## Step 1.6 — Batch Diversity Plan (batch mode only)
 
@@ -213,10 +217,10 @@ keep title and author name inside the central safe area (inner ~85%), no waterma
 |---|---|
 | Urban Drama / Contemporary Romance / Historical Court Drama | Duo — but if this is the 2nd+ Romance/Drama book in a batch, upgrade to Trio or Environmental instead |
 | Dark Fantasy / Paranormal | Trio (antagonist or rival as third figure) preferred over Duo |
-| Thriller / Mystery | Environmental (figure small against dramatic setting) or Solo |
-| Horror | Environmental or Solo — figure against supernatural backdrop |
-| Sci-Fi / Dystopian | Solo (protagonist in environment) or Environmental (dystopian cityscape dominant) |
-| Cultivation Fantasy / War Epic | Solo protagonist; rival/antagonist as second figure optional |
+| Thriller / Mystery | Environmental (figure small against dramatic setting) or Solo; upgrade to Duo only if Genre Allure Routing marks it romance/obsession-coded |
+| Horror | Environmental or Solo — figure against supernatural backdrop; do not use allure by default |
+| Sci-Fi / Dystopian | Solo (protagonist in environment) or Environmental (dystopian cityscape dominant); use allure only for Sci-Fi Romance / Dystopian Romance / Cyberpunk Romance |
+| Cultivation Fantasy / War Epic | Solo protagonist; rival/antagonist as second figure optional; no allure by default |
 | Isekai / Slice of Life | Solo, Duo, or small group — match the synopsis |
 
 **A third figure adds more tension than a clean two-person embrace** when the synopsis offers it. Keep one clear focal pairing; place the third figure to threaten or intrude (watching from behind, reaching between them, turned away in betrayal).

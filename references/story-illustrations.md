@@ -46,16 +46,20 @@ Place illustrations at the **highest-stakes dramatic peaks** of the novel — 5 
 
 ## Genre Routing
 
-The illustration framework differs by genre. **Romance** uses the allure-tier system below (T3/T4) — peak scenes are intimacy peaks; prompts use `cover-allure-elements.md` assembly blocks.
+The illustration framework differs by genre. Before selecting scenes, run the **Genre Allure Routing** table in `cover-allure-elements.md`.
 
-**All other genres** use the genre-specific sections at the bottom of this file instead of the T3/T4 system:
-- Mystery / Cosy Mystery → §Genre: Mystery
+**Default Allure Genres** and qualifying **Conditional Allure Genres** use the allure-tier system below (T3/T4) — peak scenes are intimacy, claim, temptation, possession, forbidden attraction, or relationship point-of-no-return scenes. Prompts use `cover-allure-elements.md` assembly blocks.
+
+Qualifying examples include Dark Romance, Contemporary/Billionaire/Mafia Romance, Paranormal/Shifter/Vampire/Demon/Monster Romance, Romantasy/Fae/Fantasy Romance, Gothic Romance, Historical/Regency Romance, Sports Romance, Dark Academia Romance, and romance-coded thriller/fantasy/sci-fi subgenres.
+
+**Non-allure genres** use the genre-specific sections at the bottom of this file instead of the T3/T4 system:
+- Mystery / Cosy Mystery / Literary Thriller → §Genre: Mystery
 - Horror → §Genre: Horror
-- Fantasy → §Genre: Fantasy
-- Sci-Fi / Dystopian → §Genre: Sci-Fi
-- Contemporary Drama / Family Drama / Medical Drama → §Genre: Drama
+- Fantasy without central adult attraction → §Genre: Fantasy
+- Sci-Fi / Dystopian without central adult attraction → §Genre: Sci-Fi
+- Contemporary Drama / Family Drama / Medical Drama without romance as the hook → §Genre: Drama
 
-For non-romance genres: the §0 floor still applies (no explicit sexual content), but the allure-tier framework, T3/T4 assembly blocks, and all risqué-allure guidance do not apply. Skip §Peak Scene Selection through §Prompt Construction and go directly to the relevant genre section.
+For non-allure genres: the §0 floor still applies (no explicit sexual content), but the allure-tier framework, T3/T4 assembly blocks, and all risqué-allure guidance do not apply. Skip §Peak Scene Selection through §Prompt Construction and go directly to the relevant genre section.
 
 ---
 
