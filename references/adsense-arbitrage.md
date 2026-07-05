@@ -865,15 +865,19 @@ export const viewport: Viewport = {
 }
 ```
 
-For AdX sites, use `setConfig` to collapse unfilled slots (no deprecated `pubads()` calls):
+For AdX / Google Ad Manager sites, use GPT `setConfig` to collapse unfilled slots (no deprecated `pubads()` calls):
 
 ```tsx
 <script
   dangerouslySetInnerHTML={{
-    __html: `window.googletag=window.googletag||{cmd:[]};googletag.cmd.push(function(){googletag.setConfig({singleRequest:true});googletag.enableServices();});`,
+    __html: `window.googletag=window.googletag||{cmd:[]};googletag.cmd.push(function(){googletag.setConfig({singleRequest:true,collapseDiv:"ON_NO_FILL"});googletag.enableServices();});`,
   }}
 />
 ```
+
+This empty-slot collapse rule is for GPT / Google Ad Manager inventory, including AdX-backed sites. It is not an AdSense `<ins class="adsbygoogle">` feature, and must not be copied into AdSense implementations.
+
+Hard pitfall: hiding empty `AdSlot` wrappers manually by listening to `slotRenderEnded` and setting `display:none` is a dumb implementation pattern, not an acceptable alternative. Active View and viewability measurement depend on GPT's slot lifecycle and visible ad pixels. Manual post-render DOM hiding makes measurement and layout behavior harder to reason about, and usually means the developer solved the wrong layer. Let GPT own the collapse decision through `collapseDiv:"ON_NO_FILL"` and keep each `AdSlot` reserving its normal size before render to avoid CLS.
 
 ### 8.8 Refresh rule (optional)
 
