@@ -96,6 +96,74 @@ Mystery chapters are not romance chapters with investigation bolted on. The stru
 
 ---
 
+### Suspense Craft Techniques
+
+Core mechanisms that create and sustain suspense across any mystery or thriller sub-genre. Apply these at the scene and chapter level, not just the plot level.
+
+#### Information Gap Structure
+
+The three configurations of reader/character knowledge. Each creates a different emotional effect.
+
+| Structure | Who knows more | Effect |
+|---|---|---|
+| **Dramatic irony** (Reader > Character) | Reader knows the threat; character walks toward it | Dread — the reader wants to warn her and cannot |
+| **Narrative mystery** (Character > Reader) | Character sees/knows something; reader is not told | Compulsion — reader must continue to close the gap |
+| **Parallel revelation** (Neither knows) | Two timelines or viewpoints each holding a piece; reader assembles from both | Puzzle satisfaction — the reader is an active participant |
+
+Use "Character > Reader" gaps sparingly and close them before they become withholding-as-manipulation. The reader must always feel the gap is intentional and that the payoff will be proportional.
+
+#### Unreliable Narrator Techniques
+
+The protagonist's perception is the mystery's instrument. Calibrate how much to doubt it.
+
+| Mode | How it reads | When to use |
+|---|---|---|
+| **Purposeful omission** | She does not tell the reader something she knows; the reader can sense the gap | Psychological thriller; when the protagonist is protecting herself or the reader |
+| **Subjective bias** | Her interpretation of events may be wrong; another reading is possible from the same facts | Domestic thriller; gaslighting dynamics; grief or trauma affecting perception |
+| **Memory error** | She misremembers; the correction is the reveal | Amnesia plots; trauma; repressed guilt |
+| **Multiple-account contradiction** | Two characters give incompatible versions; the reader must adjudicate | Ensemble mysteries; court-room thrillers; epistolary structure |
+
+**Rule:** the unreliable narrator must be fair. On re-read, the reader should be able to reconstruct exactly what the narrator knew and when. Unreliable ≠ dishonest with the reader; it means limited, biased, or damaged — not lying.
+
+#### Foreshadowing Types
+
+Four foreshadowing modes, each with different visibility and payoff timing. Mix all four across a novel; do not rely on one.
+
+| Type | Visibility | Mechanism | Example |
+|---|---|---|---|
+| **Visible foreshadow** | Reader notices it; doesn't know its significance | Plant an object, word, or event that registers as notable but unexplained | The protagonist keeps noticing a locked door; she doesn't know it's where the evidence is hidden |
+| **Invisible foreshadow** | Reader does not consciously notice it | Embed in ordinary scene detail; only meaningful on re-read | A suspect casually mentions a trip — the timing of that trip is the alibi's fatal flaw |
+| **Double-meaning foreshadow** | One surface meaning; one hidden meaning | A line of dialogue or description that is literally true and symbolically true in two different ways | "This is the last time you'll see me like this" — means the social performance she's putting on, also means she dies tonight |
+| **Mirror foreshadow** | Reader notices it; the callback is the payoff | Plant it early; echo it late; the contrast or repetition carries the weight | First chapter: she says "I would never betray a friend." Final chapter: she does. |
+
+**Foreshadow tracking:** log all planted foreshadows in `tracking/threads.md` with the chapter number, the foreshadow text, and the intended payoff chapter. Unresolved foreshadows are a review flag.
+
+#### Twist Design Principles
+
+A twist that works on re-read is a twist that was earned. Four requirements, all mandatory.
+
+1. **Reasonable surprise:** after the reveal, every prior clue must point toward this outcome. The reader should be able to re-read and see the answer was always there. A twist the reader could not have inferred is a cheat.
+2. **Emotional impact:** the twist must change how the reader feels about a character, relationship, or situation — not just the facts. Information alone is not a twist; recontextualization is.
+3. **Plot consequence:** the twist must force the plot to change direction. It is not a twist if the story could continue without it. The protagonist must recalculate everything she thought she knew.
+4. **Setup density:** at minimum two independent pieces of setup (planted in different chapters) must point toward the twist. One is a lucky guess; two is architecture.
+
+**Layered twists:** if the story uses multiple twists, each must satisfy all four requirements independently. A second twist that merely undoes the first — without its own emotional recontextualization and plot consequence — is not a second twist. It is a retraction.
+
+#### Opening Hook Types (Suspense)
+
+Four hook configurations for mystery and thriller chapter openings. Vary across chapters; do not default to the same type every time.
+
+| Hook type | What it does | Example shape |
+|---|---|---|
+| **Question hook** | Opens with a question the reader cannot answer yet | "The body had been moved — but not recently." (What does she mean?) |
+| **Conflict hook** | Opens in the middle of active opposition | "She had thirty seconds before he came back." |
+| **Suspense hook** | Opens with a known threat whose source or nature is unclear | "The letter was from someone who had been dead for six years." |
+| **Crisis hook** | Opens with a protagonist already under pressure | "The police were at her door before she'd had her coffee." |
+
+**The three-sentence rule:** the opening three sentences of any chapter must contain one concrete detail, one element of change or wrongness, and one unanswered question. If all three sentences merely establish setting, the chapter opens too early.
+
+---
+
 ### Gothic Atmosphere Writing
 
 In gothic fiction, the setting is a character. It does not merely host events — it predicts them, distorts them, and reflects the protagonist's psychological state. Every scene must ask: **does this location know something she doesn't?**

@@ -39,6 +39,19 @@ Fallback: none | missing agents -> solo | agent tool unavailable -> solo
 
 Flag: chapters with no turn, chapters that end on summary/reflection, back-to-back low-stakes chapters, genre register stalling or resetting without narrative cause.
 
+**Suspense integrity flags** (apply to mystery, thriller, gothic; check during structure audit):
+
+| Pitfall | Signal | Fix direction |
+|---------|--------|---------------|
+| Logic holes | The solution requires information not available to the protagonist at the time of deduction; timeline contradictions | Trace the deduction chain; ensure every inference is supported by a planted clue |
+| Mid-section drag | Consecutive chapters where the investigation makes no net progress; reader learns nothing new | Cut or compress; every chapter must either open a new thread or close a false one |
+| Character-as-tool | Supporting characters exist only to deliver clues and have no independent motivation | Give each supporting character a reason to be in the scene that is not "to help the protagonist" |
+| Twist without setup | The reveal introduces information not available to the reader before the final act | Audit planted foreshadows in `tracking/threads.md`; add at minimum two independent setups |
+| Abrupt ending | The resolution arrives before the reader has processed the final reversal; emotional payoff is skipped | Add one scene between the reveal and the close that shows the protagonist — and at least one other character — reckon with what the truth means |
+| Expertise gap | Investigative method is technically incorrect (forensics, legal procedure, period-accurate agency) | Verify against genre standard; the reader's suspension of disbelief breaks at domain errors |
+| Emotional absence | The mystery is solved but the reader does not feel anything at the reveal | The victim must be known before they are gone; the antagonist must be understood before they are caught |
+| Foreshadow orphans | A detail was planted but never paid off; or a payoff arrives with no planted setup | Cross-reference `tracking/threads.md`; every planted element must resolve; every reveal must have a planted ancestor |
+
 ### 2. Character Audit
 
 - Does each major character have a consistent voice in dialogue?
