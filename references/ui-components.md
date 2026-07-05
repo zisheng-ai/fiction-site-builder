@@ -77,12 +77,40 @@ Column ratio `minmax(96px, 0.75fr) minmax(136px, 1.12fr)`. TOC button font-size 
 </div>
 
 // book detail page — BelowFold component
-<section id="toc">
+// id="toc" goes on the element immediately before the chapter list
+// (typically the ad slot wrapper or the section itself)
+// Add scroll-margin-top: 64px to account for the fixed header
+<div id="toc" style={{ scrollMarginTop: '64px' }}>
+  <AdSlot ... />
+</div>
+<section>
   {/* chapter list */}
 </section>
 ```
 
 This allows readers on any chapter to return to the detail page and see the full chapter list in one tap.
+
+### Book Detail CTA Layout
+
+The CTA row below the book title always uses `flex flex-row gap-2 items-center` — never `flex-col`. "Start reading" takes `flex-1`; `ResumeReading` is `shrink-0`.
+
+```tsx
+<div className="flex flex-row gap-2 items-center">
+  <HardLink
+    href={`/book/${slug}/chapter/1`}
+    className="flex-1 inline-flex items-center justify-center px-8 h-12 rounded-[14px] bg-primary text-primary-content font-extrabold text-[15px] tracking-tight ..."
+  >
+    Start reading
+  </HardLink>
+  <ResumeReading bookSlug={slug} totalChapters={book.chapterCount} />
+</div>
+```
+
+**ResumeReading standard style** (outline button, same height as primary CTA):
+```tsx
+className="inline-flex items-center justify-center gap-2 h-12 px-4 rounded-[14px] border-2 border-primary/40 text-primary font-semibold text-[13px] shrink-0 hover:border-primary transition-colors"
+```
+Includes a filled play-triangle icon (`fill="currentColor"`, 13×13). When no saved progress, returns `null` — "Start reading" naturally expands to full width via `flex-1`.
 
 ### Book Card (Cover-First Responsive Grid)
 
