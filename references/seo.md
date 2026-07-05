@@ -22,6 +22,7 @@ Use Next.js App Router's built-in metadata route. No third-party package.
 // src/app/sitemap.ts
 import { MetadataRoute } from 'next'
 import { books } from '@/lib/books'
+import { allChapters } from 'content-collections'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = 'https://your-domain.com'
@@ -34,19 +35,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: base + '/terms/', changeFrequency: 'yearly', priority: 0.2 },
   ]
 
-  const bookPages: MetadataRoute.Sitemap = books.flatMap(book => [
-    {
-      url: `${base}/book/${book.slug}/`,
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-      lastModified: new Date(), // rebuild date = freshness signal when chapters are added
-    },
-    ...Array.from({ length: book.chapterCount }, (_, i) => ({
-      url: `${base}/book/${book.slug}/chapter/${i + 1}/`,
-      changeFrequency: 'monthly' as const,
-      priority: 0.6,
-    })),
-  ])
+  const bookPages: MetadataRoute.Sitemap = books.flatMap(book => {
+    const chapters = allChapters
+      .filter(ch => ch.bookSlug === book.slug && ch.status === 'published')
+      .sort((a, b) => a.order - b.order)
+
+    return [
+      {
+        url: `${base}/book/${book.slug}/`,
+        changeFrequency: 'weekly' as const,
+        priority: 0.8,
+        lastModified: new Date(), // rebuild date = freshness signal when chapters are added
+      },
+      ...chapters.map(ch => ({
+        url: `${base}/book/${book.slug}/chapter/${ch.order}/`,
+        changeFrequency: 'monthly' as const,
+        priority: 0.6,
+      })),
+    ]
+  })
 
   return [...staticPages, ...bookPages]
 }
@@ -54,7 +61,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
 Rules:
 - All URLs must end with `/` when the site uses `trailingSlash: true` in `next.config.js`. Mismatches between sitemap URLs and canonical tags cause soft duplicate signals.
-- `book.chapterCount` must match the actual number of chapter files. Derive it from the filesystem at build time — don't hardcode it in `books.ts`.
+- Generate chapter URLs from actual published chapter documents (`allChapters` filtered by `status === 'published'`), not from `book.chapterCount`. `chapterCount` can drift and produce sitemap URLs that 404.
 - Run `pnpm build` and verify `/out/sitemap.xml` contains every expected URL before deploying.
 - Set `lastModified: new Date()` on book detail pages, not chapter pages. Chapter content does not change; the book page logically changes each time a chapter is added.
 

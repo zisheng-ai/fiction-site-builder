@@ -110,6 +110,8 @@ Map the CLAUDE.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via
 - **Recommended dynamic layout** (measure chapter word count before rendering ads):
   - All chapters: q1 (top) + q2 (mid) + q5 (bottom) — **minimum 3 ads always**
   - > 2,000 words with ≥ 3 paragraphs: q1 + q2 + q3 + q5
+  - **Paid-traffic chapter 1 exception:** if the advertised Meta/Facebook URL lands on `/chapter/1/`, use exactly 3 ads: one top ad before prose + q1 after part[0] + q2 after part[1]. Skip the later q3 slot on chapter 1 unless the chapter is > 2,000 words.
+  - Other chapters should use 4–5 ads depending on length and available sticky/anchor inventory; do not globally reduce density because of the chapter 1 exception.
   - Avoid a fourth mid-content unit; it sits too close to q5 and adds clutter without meaningful RPM lift.
 
 ### 3.3 CLS protection (Core Web Vitals = cheaper FB traffic + SEO)

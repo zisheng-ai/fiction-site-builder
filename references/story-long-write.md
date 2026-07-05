@@ -382,14 +382,16 @@ Document the chosen count in `outline/outline.md` header before writing any beat
 
 ## Pacing Guidelines
 
-Word counts are targets, not uniform quotas. Let each chapter breathe according to its dramatic weight — a chapter that needs 4,200 words should not be trimmed to hit a round number, and a lean 1,800-word chapter is fine if it lands the turn cleanly. Vary lengths across the book so readers feel the rhythm shift.
+Word counts are targets, not uniform quotas. Let each chapter breathe according to its dramatic weight, but remember that chapter 1 is usually the paid-traffic landing page. For Meta/Facebook traffic, the opening chapter should land the premise, power dynamic, and hook-out quickly enough to generate `ChapterCompleted` and next-chapter clicks.
 
 | Chapter type | Word count range | Dialogue ratio | Action beats |
 | --- | --- | --- | --- |
-| Opening chapter | 1,800–2,500 | 20–30% | 3+ |
+| Opening chapter | 1,100–1,600 | 20–35% | 3+ |
 | Escalation chapter | 1,500–2,200 | 30–50% | 2–4 |
 | Climax chapter | 1,400–2,000 | 15–25% | 4–6 |
 | Resolution chapter | 1,200–1,800 | 20–40% | 1–2 |
+
+If chapter 1 exceeds ~1,700 words, prefer splitting at the strongest unresolved beat and making the second half chapter 2. Do not pad chapter 1 to satisfy old long-chapter instincts; a sharp 1,300-word opener with a hard hook-out is better for campaign learning than a slow 2,300-word opener.
 
 ## Context Handoff (`tracking/context.md` template)
 

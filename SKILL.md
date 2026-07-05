@@ -240,16 +240,23 @@ For review and redesign tasks, start at the relevant phase and load only the ref
 
 ## Environment Prerequisites
 
-This skill requires Claude Code. Before doing anything else, verify the Bash tool is available:
+This skill works in Claude Code and Codex-style coding agents. Before doing anything else, verify that shell command execution and file editing are available:
 
 ```bash
-echo "claude-code-ok"
+echo "fiction-site-builder-ok"
 ```
 
-If the Bash tool is unavailable (not a Claude Code session), stop immediately and output:
+If shell execution or file editing is unavailable, stop immediately and output:
 ```
-ERROR: fiction-site-builder requires Claude Code. Re-invoke from a Claude Code session.
+ERROR: fiction-site-builder requires a coding-agent session with shell and file-edit access.
 ```
+
+Read project instructions before site work:
+- **Codex:** read `AGENTS.md` in the repo and target site directory if present.
+- **Claude Code:** read `CLAUDE.md` in the repo and target site directory if present.
+- If both exist, apply both; site-level instructions override repo-level defaults.
+
+In Codex, follow the active sandbox and approval rules from `AGENTS.md`. If it says build commands or HTTP traffic must run outside the sandbox, request approval before running `pnpm build`, `next build`, `curl`, or equivalent verification commands.
 
 **Cover image generation (A2):** Calls `https://api.apiyi.com/v1/images/generations` via curl through the cascade `gpt-image-2-all` → `doubao-seedream-5-0-260128` → `nano-banana-pro`. Requires `APIYI_API_KEY` in the environment. **No SVG fallback** — if the key is not set, cover generation is skipped (warning + continue), and the slot is filled in a later pass. All covers in a batch are generated **in parallel**.
 
