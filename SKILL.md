@@ -417,6 +417,7 @@ Load references only when entering that phase. Do not preload all references at 
 - **`story-import.md`** — import and split an existing manuscript into project structure. Load at A1 import.
 - **`story-review.md`** — multi-perspective structural and prose review. Load at A3.
 - **`story-deslop.md`** — AI-flavor detection and removal (7 gates). Load at A3. AI prose increases bounce rate; deslopping is a revenue pass, not a style pass.
+- **`article-quality.md`** — prose quality rules for non-fiction copy: traffic articles, taglines, synopses, meta descriptions. Load when writing or editing `articles/`, taglines in `books.ts`, or any site copy. Adapted from stop-slop (hardikpandya/stop-slop). Not for fiction chapters — use `story-deslop.md` there.
 - **`reader-ux.md`** — chapter page UX requirements: next-chapter CTA height/color, TOC, no Previous button, dark mode, resume-last-chapter via localStorage, ShareBar placement. Load during B4. These are session-depth mechanics, not aesthetic preferences.
 
 ### L3 — Monetization Rate references
