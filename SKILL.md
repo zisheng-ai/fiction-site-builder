@@ -143,6 +143,17 @@ A0 runs once per book (not once per site). Required for each new book unless the
 
 A3 runs automatically after A1 completes for every long-form book. Do not skip or prompt — deslop is a required quality pass, not optional. Skip only for short-form stories or on explicit user opt-out.
 
+| A4 | Traffic Articles | L1 | `seo.md` § 15 | `articles/{slug}.md` + `public/covers/articles/{slug}.webp` |
+
+A4 is a standalone step — not part of the default full pipeline. Run when the user requests articles ("write articles", "引流文章", "SEO article", "short-form article"). Do not run automatically.
+
+**A4 modes — pick one:**
+
+- **SEO list article:** `1200–1800` words, keyword-targeted title, prose-style book list, no `cta_url` field, ends with plain-text CTA. See `seo.md` § 15.1.
+- **Short-form traffic article (引流短篇):** `300–500` words, hook-driven title in 2-sentence format, 2–3 books each getting one punchy premise-pitch section separated by `---`, inline CTA links to specific `/book/{slug}` (not external homepage). See `seo.md` § 15.2.
+
+After writing, generate article cover: landscape `1280×720` GPT Image 2, stored at `public/covers/articles/{slug}.webp`. Add `cover: /covers/articles/{slug}.webp` to frontmatter. Run deslop Gates A/B/C/G + Article Quick Checks on both article types before committing.
+
 ---
 
 ### Track B — Site (L2 + L3)
