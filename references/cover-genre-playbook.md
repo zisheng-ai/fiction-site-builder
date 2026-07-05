@@ -385,3 +385,81 @@ different weight on one letter, or a ligature that reads as marginally inhuman.
 Author '{author}' in clean standard sans beneath.
 Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 ```
+
+#### Gothic Bridal Thriller (Fake Death / Hidden Identity Romance)
+```
+Romance novel cover, cinematic photorealistic quality, gothic dark thriller atmosphere — the intersection of bridal innocence and death.
+FRAMING: full-body shot, both primary figures from feet to crown, bride center-dominant.
+TWO characters. Bride in elaborate floor-length lace wedding gown — backless with intricate floral embroidery, seed-pearl buttons down the spine, sheer veil trailing to the floor; body half-turned so the full ornate lace back is the primary visual, face turning back over her shoulder — the look of someone who knows exactly who is watching and has decided what to do about it.
+Her expression: composed intelligence with something unreadable beneath — not grief, not fear, the specific expression of a woman who staged her own ending and is watching the consequences unfold from inside them.
+Male figure beside or slightly behind her: tall, dark suit, law enforcement badge visible at belt or chest (detective or investigator), jaw set, expression of controlled disbelief — the man tasked with finding the dead woman, currently standing beside her. His eyes search her face for the lie that should be there. He has not found it yet.
+Background: gothic cathedral interior, a funeral in progress — mourners in black with umbrellas dimly visible in the background, a coffin draped in white lilies placed at center aisle. Stained glass window casting fractured violet and crimson light across cold stone floor. Crimson and ivory roses scattered at ground level.
+The subtext: everyone in this room believes she is in that casket. She is standing at her own funeral in her wedding dress, and she brought him with her.
+Color palette: ivory lace, deep charcoal black, crimson rose petals, fractured violet and amber from stained glass, cold stone grey.
+Lighting: stained glass window as primary color source — fractured violet and crimson light falling through the composition from above; cold candelabra light catching the lace embroidery; deep shadow filling the cathedral behind.
+Title '{title}' in ornate gothic serif with fine flourish details, aged gold or deep ivory. Author '{author}' in smaller matching serif beneath.
+Portrait 2:3, photorealistic, ultra-detailed, no watermark.
+```
+
+#### WLW / Sapphic Romance (F/F Intimate)
+```
+Romance novel cover, editorial photography aesthetic, intimate luxury boudoir atmosphere — two women, warm amber candlelight, no male figures present.
+TWO female characters, diverse pairing strongly encouraged — different ethnicities and hair textures create visual richness and wider audience resonance. Both women in matching luxury satin sleepwear or robes in a deep jewel tone — amethyst, deep mauve, champagne, or deep rose — fabric catching the candlelight and shimmering liquidly against their skin. Both seated on a bed or chaise, bodies close, leaning naturally toward each other.
+Their expressions: the specific softness of having stopped pretending — not performing for anyone, not holding anything back tonight. One figure's head tilted toward the other's shoulder or cheekbone, eyes half-closed. The other gazing at her with the expression of someone who knows exactly what this is and has decided not to question it.
+One delicate detail per figure: a pendant resting against décolletage, an earring catching candlelight, a curl against a bare shoulder — small tactile details that communicate intimacy without explicit content.
+Allure note: satin fabric is load-bearing here. Shirt open just enough, necklines naturally falling, the fabric draping to communicate warmth. T1 minimum; push to T2 if satin décolletage reads cleanly.
+Background: luxury bedroom interior — warm amber from a bedside lamp and candles, soft white or ivory bedding, roses or peonies in soft focus in background. No harsh lines. Everything communicates warmth, safety, and chosen intimacy.
+The subtext: this started as a secret. At some point it became the realest thing in the room.
+Color palette: deep jewel-tone satin (amethyst, mauve, or champagne), warm amber candlelight, ivory bedding, warm skin tones in caramel and deep brown, gold jewelry accents.
+Lighting: single warm bedside lamp as key light catching the satin fabric and their faces, candles as warm fill, soft diffuse wrap — no harsh shadows. The lighting communicates safety and warmth, not drama.
+Title '{title}' in elegant feminine script or slim clean serif, warm rose gold or champagne. Author '{author}' in matching weight beneath.
+Portrait 2:3, photorealistic, ultra-detailed, no watermark.
+```
+
+#### African Royalty Romance (Traditional Regalia / Royal Court)
+```
+Romance novel cover, regal portrait photography aesthetic, warm African royal atmosphere — traditional regalia, authentically African setting, no Western architectural elements.
+COMPOSITION: seated-power portrait — primary female figure seated in a leopard-fur throne or carved wooden throne at frame center, male figure standing directly and closely behind her. Not dominating — flanking; his presence extending her power, not replacing it. Both figures from base of seat to crown fully in frame.
+Female figure: African woman in traditional Southern or East African formal dress — ivory or white fabric with bold geometric border embroidery in primary colors (red, green, blue, gold), elaborate layered beaded collar necklace across chest and shoulders, matching beaded headpiece at crown. Her posture: upright, composed, the specific stillness of someone who has never needed to announce authority. Her expression: clear-eyed regal warmth — not cold, not deferential — the ease of someone who belongs exactly here.
+Male figure: taller, bare muscular chest or draped in a leopard-skin or kente-cloth royal cloak, gold crown, gold chain necklace, traditional cuff or bracelet. His expression: protective certainty — eyes forward, his stance directly behind her communicates he stands here by choice and would stand nowhere else. One hand may rest at her shoulder — a claim, a partnership.
+Secondary elements: carved wooden shield partially visible at frame edge, traditional patterned textiles or animal-hide seat covers, tribal or cultural artifacts in soft focus background.
+Background: warm earthen-toned African interior — thatch, carved wood, animal hide, terracotta textures — or an open ceremonial space with warm golden ambient light. The setting must read as authentically African: no European architectural elements, no generic "throne room" clichés.
+The subtext: her bloodline built this kingdom. He came to claim a throne and found she already wore it.
+Color palette: rich warm earth tones — sienna, ochre, burnt orange, deep chocolate — with bold jewelry and embroidery accents in primary colors (red, green, gold beads). Warm diffuse golden light.
+Lighting: warm ambient golden-hour or interior torch light — even, regal wrap across both figures. No harsh directional shadows. The lighting communicates warmth and permanence.
+Title '{title}' in bold serif with gold ornamental dividers — geometric African motifs or crown symbol above and below. Author '{author}' in clean serif beneath.
+Portrait 2:3, photorealistic, ultra-detailed, no watermark.
+```
+
+#### Domineering CEO / Rejected Spouse Revenge (Male Power Fantasy)
+```
+Romance novel cover or social ad creative, cinematic composite digital art, rain-soaked urban power atmosphere — the man they discarded returning as the city's apex predator.
+FORMAT: portrait 2:3 for book cover; landscape 16:9 for social ad creative. For landscape: characters arranged horizontally, city skyline fills the full background width. For portrait: city towers compressed behind the stacked figures.
+COMPOSITION — THREE figures for maximum narrative tension: central alpha male dominant, two women flanking (one left = the regret; one right = the rival claim). For solo focus: male figure alone against the cityscape, full body.
+Central male figure: tall, dark business suit — jacket open or partially torn, white dress shirt rain-soaked and possibly stained (survival, not defeat), tie loosened, dark hair rain-wet, water dripping from jaw. Standing against the night cityscape with the body language of total command — chest open, feet planted, weight settled. His expression: cold absolute dominance with zero residual anger — the specific expression of a man who watched them underestimate him, made a plan, and waited. He has won. He knows it. He is not gloating.
+His eyes look directly at the viewer or past them — the gaze of a man who owns the building the viewer is standing in.
+Left female figure: evening wear or structured dress, body partially turned away — her expression is the grief of realizing what she threw away, expressed as stillness rather than tears.
+Right female figure: closer to him, looking toward him with the intensity of someone who sees what she underestimated.
+Background: rain-soaked night city — skyscrapers with fictional corporate signage, neon reflections in wet pavement, a luxury dark SUV at frame edge. Rain in visible streaks catching city neon. The city is not backdrop — it is his possession.
+Color palette: black and gold — deep night, gold corporate signage, white-blue neon, rain-silver. High contrast. Secondary figures in deeper shadow.
+Lighting: cool city neon rim light on his shoulders and rain-wet hair, key light from below catching his jaw and chest, rain streaks as secondary light, secondary figures darker.
+Title in bold impact or condensed sans-serif, gold metallic with black outline, thumbnail-legible. Optional genre-tag icons at bottom: crown / ring / flame with short tagline phrases.
+Portrait 2:3 or landscape 16:9, cinematic composite, photorealistic, ultra-detailed.
+```
+
+#### BL / MM Romance (Boys' Love / Male–Male Intimate)
+```
+Romance novel cover, cinematic photography or high-quality digital illustration, intimate charged atmosphere — two male leads, emotional tension, no female figures.
+FRAMING: close-up or medium-close — both faces and upper torsos visible, bodies from chest to crown. The proximity is the composition; the charged space between them is the narrative engine.
+TWO male characters, deliberately distinct in visual styling to create polarity:
+Dominant figure: slightly taller or higher in frame, darker clothing (black or deep charcoal shirt or jacket), jaw set, body angled toward his partner with controlled deliberateness — the posture of a man who has made a decision. His expression: focused want that has not yet tipped into action — controlled, certain, unhurried.
+Receiving figure: lighter or open-collar shirt, one or two buttons undone, body tilted toward the dominant figure but chin lifted slightly up and back — the posture of someone who knows what is about to happen and is not moving away. His expression: surrender that does not read as weakness — eyes half-closed, lips slightly parted.
+The space between their faces is the critical element: foreheads almost touching, or lips separated by centimeters. No explicit content — the almost-contact carries the full charge.
+Ethnicities: Asian, mixed, or ethnically ambiguous characters have strong audience resonance in this genre. Consistency within a series matters more than any specific ethnicity.
+Background: city at night — Las Vegas neon, Tokyo blur, or dense urban night with warm bokeh — in soft focus through a window or directly behind. Bokeh circles of warm light, completely unfocused, communicating that the world outside has ceased to matter.
+The subtext: they had one night and agreed it meant nothing. One of them lied.
+Color palette: dark navy or charcoal base, warm amber or gold rim light from city glow, skin tones as the brightest elements. City creates warm halo behind without competing with faces.
+Lighting: warm ambient city glow as soft rim light on hair and jaw, single warm key from one side catching the dominant figure's jaw and his partner's cheekbone, deep shadow in background. Intimate, close, warm.
+Title '{title}' in clean modern serif — neither script-feminine nor impact-masculine — warm gold, rose gold, or clean white. Author '{author}' beneath.
+Portrait 2:3, photorealistic or high-quality render, ultra-detailed, no watermark.
+```
