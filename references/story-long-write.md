@@ -241,6 +241,102 @@ Load only if needed:
   reference/{book-title}/techniques.md  — only if a reference technique is needed
 ```
 
+## World & Cast Setup (required before any chapter writing)
+
+Before expanding the outline or writing chapters, the world document must have a **Supporting Cast** section. A story with only two named characters produces flat scenes and limits cover composition to Duo.
+
+**Minimum cast requirements for `world/worldbuilding.md`:**
+
+```markdown
+## Supporting Cast
+
+### [Name] — [Role archetype]
+- Relationship to protagonist: [see genre table below]
+- Function in story: [what tension or information do they generate?]
+- Distinct voice marker: [1 sentence — how they speak or behave differently from the leads]
+
+### [Name] — [Role archetype]
+...
+```
+
+**Required archetypes — pick at least 3 from your genre's table of 10:**
+
+### Romance / Contemporary Drama
+1. **Confidant** — best friend or sibling who receives the protagonist's confessions; absorbs exposition naturally; their reactions calibrate reader sympathy
+2. **Romantic antagonist** — ex, rival suitor, or jealous third party who actively obstructs the central relationship
+3. **Love triangle point** — a credible alternative romantic option; must be genuinely appealing, not obviously wrong
+4. **Controlling authority figure** — parent, boss, or family member whose approval the protagonist needs or fears
+5. **Matchmaker / orchestrator** — person who engineers proximity between the leads, knowingly or not
+6. **Loyal ally with their own subplot** — friend or sibling with a romantic or personal arc running parallel; reinforces themes through contrast
+7. **The messenger / witness** — someone who sees something they shouldn't, or delivers news that changes the stakes
+8. **The work / world context character** — colleague, client, or professional contact who forces the leads into the same space on neutral ground
+9. **Comic relief / grounding voice** — breaks tension without undercutting it; keeps the tone from becoming relentlessly serious
+10. **The past made present** — someone from one lead's history who reveals a secret, complication, or wound the protagonist has kept hidden
+
+### Fantasy / Paranormal
+1. **Mentor / elder** — wizard, oracle, ancient being, or dying sovereign who holds knowledge the protagonist must earn; their power should be declining or limited
+2. **Loyal companion / sidekick** — follows the hero without sharing their gift; reflects the arc back; can be killed to raise stakes
+3. **Dark rival** — antagonist with mirrored power, opposing philosophy, or a claim on the same destiny
+4. **Trickster / ambiguous ally** — helps and harms; true allegiance unclear until late; not evil, but not safe
+5. **Council / court figure** — political power broker who forces the protagonist to navigate institutional constraint alongside magical threat
+6. **The believer who is wrong** — someone whose faith in the old order or a false prophecy makes them dangerous despite good intentions
+7. **The outsider / mundane anchor** — someone without magic or status who grounds the story in ordinary stakes and asks the questions the reader asks
+8. **The defector from the other side** — an enemy who crosses over; brings secrets and distrust; may be a double agent
+9. **The cost-bearer** — someone who pays the price of the protagonist's choices; their suffering personalizes the moral weight of power
+10. **The keeper of the secret history** — archivist, scholar, or exile who knows what the official record erased; their knowledge arrives at exactly the wrong or right moment
+
+### Mystery / Cosy Mystery / Gothic Thriller / Literary Thriller
+1. **Red-herring suspect** — appears most guilty in the middle third; reader should genuinely believe them; their innocence must be earned, not announced
+2. **Victim's inner circle** — friend, colleague, or lover who knew the victim best and reveals hidden motive by trying to protect someone or something
+3. **Obstructive authority** — police, inspector, or institution that slows the protagonist; not incompetent — just working within different constraints
+4. **The culprit** — must have a distinct voice, established presence, and at least one sympathetic trait before the reveal; their guilt must feel inevitable in retrospect
+5. **The confidant / sounding board** — person the protagonist thinks through evidence with; voices the reader's doubts and pushes back on wild theories
+6. **The informant / reluctant witness** — knows something but has a reason to stay silent; their silence is itself a clue
+7. **The false ally** — appears to help; is concealing something (not necessarily guilt; could be shame, fear, or a separate secret)
+8. **The prior victim** — someone who encountered the threat before the protagonist did and survived, escaped, or was silenced; their experience frames the protagonist's danger
+9. **The community voice** — village gossip, pub regular, or local historian who holds the texture of a place and its grudges; provides colour and misdirection
+10. **The character who changes the case** — late-arrival figure whose testimony, death, or disappearance forces the protagonist to restart from a new angle
+
+### Horror
+1. **Skeptic** — refuses to believe until forced to; their conversion is a structural beat; their disbelief makes the early dread feel earned
+2. **First victim / cautionary figure** — establishes the threat's rules and reach before the protagonist is directly endangered
+3. **Local expert / keeper** — historian, priest, old resident, or folkloric authority who holds the lore; their knowledge is partial and costs something to access
+4. **Compromised ally** — possessed, coerced, mentally fracturing, or hiding their own infection; the protagonist cannot fully trust them
+5. **The survivor from a prior cycle** — someone who lived through this before; traumatised, credible, and possibly unreliable
+6. **The true believer / cultist** — someone who has chosen or been conditioned to serve the threat; their perspective makes the horror comprehensible without excusing it
+7. **The protector who fails** — authority figure (parent, police, doctor) whose normal-world power is useless here; their failure marks the point of no return
+8. **The innocent in danger** — child, dependent, or someone the protagonist is responsible for; their presence raises the cost of every decision
+9. **The rationaliser** — insists on explaining everything away; useful for misdirection; must eventually be confronted with the inexplicable
+10. **The one who knows and stays silent** — a character who understood the threat early and chose not to warn others; their silence is its own horror
+
+### Sci-Fi / Dystopian
+1. **Resistance cell member** — comrade with a distinct ideological angle, not just loyal; should disagree with the protagonist on method or priority
+2. **True believer in the system** — enforcer or idealist who sees the protagonist as the villain; their logic should be coherent, not cartoonish
+3. **Defector from the other side** — crossing over with secrets and earned distrust; their loyalty is perpetually in question
+4. **Scientist / archivist with forbidden knowledge** — holds what the system erased; their knowledge creates the ethical dilemma at the story's core
+5. **The compliant majority** — ordinary person who has accepted the system; their comfort makes the protagonist's resistance look irrational; their awakening (if it happens) is a turning point
+6. **The handler / watcher** — regime figure assigned to monitor the protagonist; knows more than they reveal; may be an unlikely source of help
+7. **The child of the system** — someone born after the change who has never known anything else; their innocence is both asset and vulnerability
+8. **The black marketeer / information broker** — operates in the cracks between systems; helps for price, not principle; cannot be fully trusted
+9. **The tech or protocol expert** — knows how the surveillance, the AI, or the infrastructure actually works; their knowledge is the protagonist's operational edge
+10. **The ghost of the before** — someone who remembers the old world (or was shaped by it); their nostalgia is either wisdom or blindness, and the protagonist must determine which
+
+### Historical / Regency
+1. **Social gatekeeper** — hostess, matriarch, or gossip who controls reputation access; their approval or disapproval changes what is possible for the protagonist
+2. **Rival or jealous peer** — same-class competitor with a different motive from the main antagonist; creates horizontal social pressure
+3. **Confidant-servant or companion** — hears secrets by virtue of lower rank; sees the same events from a different vantage and provides corrective irony
+4. **The reformer or outsider** — tradesman, foreigner, colonial subject, or political radical whose presence disrupts period social assumptions and forces the protagonist to examine their own position
+5. **The family obligation** — sibling, ward, or dependent whose welfare the protagonist is responsible for; their needs constrain choices and create moral conflict
+6. **The old scandal** — a person connected to a secret in the protagonist's or love interest's past; their reappearance destabilises the present
+7. **The match-maker with an agenda** — parent, aunt, or sponsor engineering a marriage for reasons that may not align with the protagonist's interests
+8. **The sympathetic enemy** — someone whose opposition is rooted in legitimate grievance, not malice; their conflict with the protagonist is the most interesting in the book
+9. **The witness to the private self** — a character who has seen the protagonist outside their public role and holds that knowledge, whether as ally, threat, or complication
+10. **The institution made human** — a character who embodies the period's dominant institution (the church, the law, the military, the court) and whose personal humanity complicates the protagonist's relationship to that power
+
+Secondary characters must appear in **at least 2 chapters each**. They exist to create scenes beyond "just the two leads talking" — every secondary character unlocks a scene type that is impossible without them.
+
+---
+
 ## Parallel Writing (default for new books)
 
 Use this flow whenever writing ≥ 2 chapters from scratch. Single-chapter incremental additions use the sequential process below.
@@ -274,11 +370,15 @@ Use a **single batch Agent call** when the environment supports it (e.g. one Age
 
 After all chapter agents complete, do a single sequential pass:
 1. Read chapters in order; verify hook-out of chapter N matches the opening of chapter N+1.
-2. Fix only continuity breaks — do not rewrite prose for style.
-3. Write `tracking/context.md` from the final chapter's ending.
-4. Update `tracking/threads.md`, `tracking/timeline.md`, `tracking/character-status.md`.
+2. **Word count check** — flag any chapter exceeding 1,800 words (1,600 for resolution chapters). For each flagged chapter: find the highest-tension cut point, split into two chapters, bump subsequent chapter numbers. Verify both parts meet lower bounds (≥1,200 / ≥1,000):
+   - If Part 1 < minimum, add details to Part 1.
+   - If Part 2 < minimum, merge it back into Part 1 (do not save a skeleton).
+   Update `outline/outline.md` with final chapter count. Then update `src/lib/books.ts` `chapterCount` for each book that underwent splits.
+3. Fix only continuity breaks — do not rewrite prose for style.
+4. Write `tracking/context.md` from the final chapter's ending.
+5. Update `tracking/threads.md`, `tracking/timeline.md`, `tracking/character-status.md`.
 
-Keep this pass minimal. Do not run a full quality rewrite here; that is Phase 4.
+Keep this pass minimal. Do not run a full quality rewrite here; that is A3.
 
 ### Multiple books in parallel
 
@@ -296,10 +396,29 @@ Use this for adding one chapter to an existing book (incremental update only).
 6. Write the **escalation**: raise stakes through action/dialogue. No passive reflection blocks.
 7. Write the **turn**: the moment that changes something — reveal, decision, or loss.
 8. Write the **hook-out**: end mid-motion or on an open question. Never summarize.
-9. Save to `content/{book-title}/chapters/ch-NNN-{title}.md` from the project root, with correct zero-padded number.
-10. Update `tracking/context.md`: last beat + open threads + any foreshadow planted.
-11. Update `tracking/threads.md` if foreshadow added or resolved.
-12. Update `tracking/character-status.md` for any character changes.
+9. **Word count gate** — count the words written and compare to the target range:
+
+   | Chapter type | Target range | Hard cap |
+   |---|---|---|
+   | Opening (ch 1) | 1,400–1,800 | 1,800 |
+   | Escalation (ch 2–N-3) | 1,200–1,600 | 1,800 |
+   | Climax (last 3) | 1,200–1,600 | 1,800 |
+   | Resolution | 1,000–1,400 | 1,600 |
+
+   **If over the hard cap:** do NOT add more prose. Find the highest-tension moment inside the chapter and cut there. Everything after the cut becomes the opening beat of the next chapter (bump subsequent chapter numbers). Then verify both parts meet the lower bound:
+   - If Part 1 < 1,200 words (or < 1,000 for resolution), add one detail or dialogue beat to Part 1 until it reaches minimum.
+   - If Part 2 < 1,200 words (or < 1,000 for resolution), merge Part 2 back into Part 1 — do not save a skeleton chapter.
+   Adjust the outline accordingly.
+
+   **If under the lower bound:** the scene is thin — add one concrete sensory detail or one beat of subtext dialogue, then re-check. Do not pad with reflection or summary.
+
+   Do not proceed to step 10 until the word count is within the target range, and if split occurred, both parts meet their lower bounds.
+
+10. Save to `content/{book-title}/chapters/ch-NNN-{title}.md` from the project root, with correct zero-padded number.
+11. **If split occurred in step 9:** update `src/lib/books.ts` — increment `chapterCount` by 1 for the book, and ensure all chapter filenames in `content/{book-title}/chapters/` match the final chapter numbering.
+12. Update `tracking/context.md`: last beat + open threads + any foreshadow planted.
+13. Update `tracking/threads.md` if foreshadow added or resolved.
+14. Update `tracking/character-status.md` for any character changes.
 
 ## Chapter File Format
 
@@ -372,24 +491,97 @@ Chapter titles appear in the book detail chapter list — the reader scans them 
 
 ## Chapter Count Planning
 
-When writing a new book, decide the total chapter count before expanding the outline. Pick a number in the 10–20 range that fits the story's scope. **Never pick the same number as another book in the same site.** Treat the count as a story decision, not a quota:
+**MANDATORY FIRST STEP — check existing counts before deciding anything:**
 
-- A tight revenge arc might need 11 chapters.
-- A slow-burn romance with multiple subplots might need 17.
-- A high-stakes thriller with many POVs might run to 20.
+```bash
+for d in content/*/chapters; do
+  book=$(basename $(dirname "$d"))
+  count=$(ls "$d"/*.md 2>/dev/null | wc -l | tr -d ' ')
+  echo "$book: $count"
+done
+```
+
+Run this command, read the output, then pick a chapter count that **does not appear in that list**. If a count appears even once, it is unavailable for this book. Do not guess — run the command.
+
+**WARNING: Do NOT copy the chapter count from the reference site** (`velvet-throne/` or `midnight-fable/`). Those sites are borrowed for code/component structure only. Their chapter counts are irrelevant and must never be used as a default or template.
+
+Pick a number in the **20–26 range** that fits the story's scope AND is not already used on this site. Treat the count as a story decision, not a quota:
+
+> **Why 20–26?** The business model is Facebook traffic arbitrage: every chapter is one pageview, and the profit equation is `RPM × pageviews/session − CPC`. More chapters = higher session-depth ceiling. A reader who finishes 6 chapters on a 22-chapter book contributes 6 pageviews; on a 14-chapter book the ceiling is lower and the long tail drops off. Target 20–26 to maximize session depth without padding.
+
+- A tight psychological thriller or revenge arc: **20–21 chapters** (lean, punchy, every chapter a hard turn)
+- A paranormal/billionaire romance with full slow-burn arc: **22–23 chapters**
+- A space opera, fae epic, or multi-POV dark fantasy: **24–26 chapters**
+
+Existing books with fewer than 20 chapters must be extended to at least 20 chapters before launch.
+
+**Never default to 22.** It is the most commonly auto-selected count. If you find yourself writing "22 chapters" without having run the bash command above, stop and run it first.
 
 Document the chosen count in `outline/outline.md` header before writing any beat entries.
 
 ## Pacing Guidelines
 
-Word counts are targets, not uniform quotas. Let each chapter breathe according to its dramatic weight, but remember that chapter 1 is usually the paid-traffic landing page. For Meta/Facebook traffic, the opening chapter should land the premise, power dynamic, and hook-out quickly enough to generate `ChapterCompleted` and next-chapter clicks.
+Word counts are targets, not uniform quotas. Let each chapter breathe according to its dramatic weight. Vary lengths across the book so readers feel the rhythm shift.
+
+> **Facebook arbitrage note:** shorter chapters increase pageviews/session. A reader finishes a 1,200-word chapter in ~5 minutes and immediately clicks Next; a 2,500-word chapter takes ~12 minutes for the same single pageview. The cliffhanger hook-out is the #1 driver of next-pageview clicks — **never sacrifice the hook-out to add word count**. Target the lower half of each range unless the scene genuinely needs more space.
 
 | Chapter type | Word count range | Dialogue ratio | Action beats |
 | --- | --- | --- | --- |
-| Opening chapter | 1,100–1,600 | 20–35% | 3+ |
-| Escalation chapter | 1,500–2,200 | 30–50% | 2–4 |
-| Climax chapter | 1,400–2,000 | 15–25% | 4–6 |
-| Resolution chapter | 1,200–1,800 | 20–40% | 1–2 |
+| Opening chapter | 1,400–1,800 | 20–30% | 3+ |
+| Escalation chapter | 1,200–1,600 | 30–50% | 2–4 |
+| Climax chapter | 1,200–1,600 | 15–25% | 4–6 |
+| Resolution chapter | 1,000–1,400 | 20–40% | 1–2 |
+
+## Chapter 1 — Cold-Traffic Hook Structure
+
+Chapter 1 is the only chapter a Facebook ad click will ever guarantee. Every reader who arrives from a paid ad lands here first, knowing nothing — no character names, no story world, no emotional investment. The cold-traffic reader decides in the first 200 words whether to continue or hit Back.
+
+This is a separate spec from the general "Single Chapter Writing Process." Apply it **only to ch-001**; other chapters follow the standard process.
+
+### The cold-traffic contract
+
+A warm reader (returning from organic search, book detail page, or recommendation) arrives with context. A cold-traffic reader arrives with one thing: the expectation set by the ad creative (the cover + tagline). Ch1 must immediately deliver on that expectation — the emotional register, the character type, the power dynamic — before it can ask for investment.
+
+**Violation:** opening ch1 with backstory, worldbuilding, or a secondary character meeting the protagonist. These are legitimate techniques for chapters 4–8. In ch1 they signal to the cold reader "this isn't the story I came for" and cause a bounce.
+
+### Ch1 beat structure (200-word checkpoints)
+
+| Words | Required beat | Purpose |
+|---|---|---|
+| 0–30 | Drop into motion — the protagonist is already doing something | Establishes POV and energy before the reader has time to disengage |
+| 30–100 | One concrete detail that names the protagonist's world-defining problem | Gives the reader something to care about without explaining anything |
+| 100–200 | Introduce the source of tension (person, situation, or object) | Sets the stakes; the reader must feel: "this is going wrong" |
+| 200–400 | Establish what she wants and what's blocking her — in action, not narration | Emotional identification; reader must see themselves or someone they've read before |
+| 400–700 | First unexpected turn — something changes that the protagonist did not expect | Proves the story will surprise; signals this is not a slow burn that earns nothing |
+| 700–end | Escalate one more beat; land the hook-out on an unresolved reversal | Demands ch2; the reader should not be able to stop here |
+
+### Specific rules for ch1 (do not apply to other chapters)
+
+**Line 1 ban:** never open with weather, time of day, or a description of the setting. The first sentence must name or imply the protagonist and create immediate forward motion.
+
+```
+Banned: "The city lights shimmered below as Elena stood at the penthouse window."
+Banned: "It had been three years since she last saw him."
+Required: something that implies action, conflict, or a decision already in motion.
+```
+
+**Backstory cap:** ch1 may contain at most **two** sentences of backstory in the first 500 words. Backstory is permitted only when it creates irony (what she assumed vs. what is now true) — never to explain the world.
+
+**Character introduction cap:** introduce at most **two characters** by name in ch1 (protagonist + one other). Additional named characters dilute cold-reader identification. A crowd scene in ch1 is a conversion killer.
+
+**The Facebook Promise check:** before finalizing ch1, re-read the tagline from `src/lib/books.ts`. The emotional register of ch1's opening 200 words must match the register the tagline implied. If the tagline promises a charged, high-stakes encounter, ch1 must open in that register — not in a quiet or contemplative scene that delays the promised tension.
+
+**Dialogue timing:** first dialogue should appear before word 300. Dialogue signals that something is happening between people, which is the core promise of romance fiction.
+
+### Ch1 word count target
+
+Opening chapters target **1,400–1,800 words** (from the Pacing table). For cold-traffic arbitrage, aim for the lower half (1,400–1,500): a cold reader who finishes the chapter in under 7 minutes immediately clicks Next, which is a second pageview. A longer ch1 delays that click.
+
+### The 200-word bail test
+
+After writing ch1, read only the first 200 words. Ask: if someone arrived from a Facebook ad with nothing else to go on, would they feel something and want to know what happens next? If the answer is "they would understand the setting" — rewrite from word 1. Understanding is not feeling.
+
+---
 
 If chapter 1 exceeds ~1,700 words, prefer splitting at the strongest unresolved beat and making the second half chapter 2. Do not pad chapter 1 to satisfy old long-chapter instincts; a sharp 1,300-word opener with a hard hook-out is better for campaign learning than a slow 2,300-word opener.
 
@@ -424,7 +616,11 @@ Always overwrite `context.md` after each chapter. Do not append history — the 
 - **Named emotion check:** does every pivotal scene have a specific named emotional state (from the genre file's Named Emotion table)? Generic emotions ("nervous", "angry", "interested") are a rewrite flag.
 - **Dynamic check:** is it clear who holds the power in this scene and who is off-balance? If all characters feel equally matched, the scene has no subtext.
 - **Setting check:** does the location amplify the emotional stakes, or could it be any room? If it's interchangeable, change it.
-- If AI flavor is detected, flag the chapter for the Phase 4 deslop pass — do not run `/story-deslop` inline here. Phase 4 (`references/story-deslop.md`) is loaded separately and runs after all chapters are written.
+- **Structural pattern check (Gate B — inline, do not defer):** before saving any chapter, do a 30-second scan for the two highest-frequency AI structural patterns:
+  1. **Negation-reversal** — any sentence of the form "Not X. Y." or "No X. No Y. Just Z." → collapse to one direct statement.
+  2. **Consecutive same-structure sentences ≥3** — any run of three or more sentences with the same subject-verb pattern (She'd…/She'd…/She'd…, He left./He turned./He said., Then she…/Then she…/Then she…) → vary the third sentence's structure.
+  These two patterns appear in ~65% of AI-generated chapters and are the fastest fix with the highest reader-impact return. Fix them before saving; do not defer to A3.
+- If other AI flavor is detected beyond the above two patterns, flag the chapter for the A3 deslop pass — do not run full deslop inline here. A3 (`references/story-deslop.md`) is loaded separately and runs after all chapters are written.
 
 ## Book Description & Tagline (Required — write before cover generation)
 

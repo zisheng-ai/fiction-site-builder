@@ -8,39 +8,33 @@ Reference for Phase A2.5 — in-chapter illustration generation. Load when the u
 
 ## What Illustrations Are (and Are Not)
 
-**In-chapter illustrations** are full-width images embedded inside the chapter reader at the single highest-tension moment of a chapter. They use T3 or T4 tier — more intense than a standard cover (never used as ad creatives) but without the no-fabric extremity of T5.
+**In-chapter illustrations** are full-width images embedded inside the chapter reader at the single highest-tension moment of a chapter. Romance illustrations use T3 or T4 tier — more intense than a standard cover (never used as ad creatives) but without the no-fabric extremity of T5. Non-romance books use the genre routing below instead of the allure-tier framework.
 
 | Covers (A2) | Illustrations (A2.5) |
 |---|---|
-| T2 or T3 (randomly assigned per cover) | T3 or T4 (randomly assigned per illustration) |
+| T2 or T3 (randomly assigned per cover) | Romance: T3 or T4 (randomly assigned per illustration); non-romance: genre-routed |
 | Hero image on book-detail and home pages | Embedded inside the chapter reader only |
 | Scanned by ad-review crawlers | Never surfaced as an ad creative or meta-image |
 | `public/covers/` | `public/illustrations/` |
-| One per book | 5–7 per book |
+| One per book | exactly 5 per book |
 
 **T5 is never used for illustrations.** T5's no-fabric dorsal composition is too sparse as an inline scene image — it reads as a standalone art piece, not as a chapter moment. T3 and T4 produce more scene-grounded, immersive results.
 
-**Tier assignment per illustration:** randomly pick T3 or T4 independently for each illustration in the book. This produces variety across the novel — some peak moments are charged-but-clothed (T3), others are post-decision (T4). Do not use the same tier for all illustrations in a book.
+**Romance tier assignment per illustration:** randomly pick T3 or T4 independently for each illustration in the book. This produces variety across the novel — some peak moments are charged-but-clothed (T3), others are post-decision (T4). Do not use the same tier for all illustrations in a book.
 
 ---
 
 ## §0 Floor Remains Absolute
 
-Illustration tier does not relax the hard content floor. The same rules apply:
-
-- No exposed nipples, genitals, or areola — ever
-- No sex acts depicted
-- §0 zones covered by fabric, shadow, body position, or composition — exactly as specified in `cover-allure-elements.md`
-
-The difference from covers is the *tier* used, not the floor.
+§0 applies to illustrations — see `cover-allure-elements.md §0`. Tier does not relax the floor.
 
 ---
 
-## Budget: 5–7 Illustrations Per Book
+## Budget: Exactly 5 Illustrations Per Book
 
-Place illustrations at the **highest-stakes dramatic peaks** of the novel — 5 is the practical minimum for a full-length romance arc, 7 is the ceiling. 5–6 well-placed illustrations are typical.
+Place illustrations at the **highest-stakes dramatic peaks** of the novel — exactly 5 per book, no more. Cost of generation is real; every slot must earn it.
 
-**Never add an illustration just to meet a quota.** The image must earn its placement; if a slot has no qualifying peak, leave it empty and make up the count elsewhere.
+**Never add a 6th illustration.** If a scene doesn't earn a slot, leave that slot empty rather than adding a 6th mediocre image. 5 well-placed illustrations outperform 7 scattered ones.
 
 ---
 
@@ -67,20 +61,19 @@ For non-allure genres: the §0 floor still applies (no explicit sexual content),
 
 Read `content/{book-slug}/outline/outline.md` and `content/{book-slug}/tracking/context.md` to identify candidate scenes. Use these criteria:
 
-### Placement rule — 6 primary slots + 1 bonus slot
+### Placement rule — 5 primary slots
 
-Illustrations must be **evenly distributed** across the novel. For a book with N chapters, divide into 6 equal zones and target at most one illustration per zone. Fill S1–S6 first; only add a 7th (S7 — anywhere in the novel, highest-tension scene not yet illustrated) when the story has an exceptional peak that clearly outranks the already-placed ones:
+Illustrations must be **evenly distributed** across the novel. For a book with N chapters, divide into 5 equal zones and target exactly one illustration per zone. Stop at 5 — never exceed it.
 
 | Slot | Target range | What to look for |
 |---|---|---|
-| **S1 — Opening hook** | chapters 2 – ⌊N×0.17⌋ | First charged encounter; first moment of undeniable attraction; the scene that hooks the reader to the relationship |
-| **S2 — Rising tension** | chapters ⌊N×0.17⌋+1 – ⌊N×0.33⌋ | First deliberate touch; the moment the leads stop pretending; early push-pull moment |
-| **S3 — Midpoint shift** | chapters ⌊N×0.33⌋+1 – ⌊N×0.5⌋ | Emotional turning point; a confession or betrayal that resets the relationship; the moment the protagonist stops fighting |
-| **S4 — Late tension** | chapters ⌊N×0.5⌋+1 – ⌊N×0.67⌋ | Intimacy escalates; a secret revealed through closeness; the relationship goes private |
-| **S5 — Pre-climax** | chapters ⌊N×0.67⌋+1 – ⌊N×0.83⌋ | Near-climax; the decision point; a truth revealed through intimacy |
-| **S6 — Climax** | chapters ⌊N×0.83⌋+1 – N−2 | The scene readers came for; point of no return; final surrender |
+| **S1 — Opening hook** | chapters 2 – ⌊N×0.2⌋ | First charged encounter; first moment of undeniable attraction; the scene that hooks the reader to the relationship |
+| **S2 — Rising tension** | chapters ⌊N×0.2⌋+1 – ⌊N×0.4⌋ | First deliberate touch; the moment the leads stop pretending; early push-pull moment |
+| **S3 — Midpoint shift** | chapters ⌊N×0.4⌋+1 – ⌊N×0.6⌋ | Emotional turning point; a confession or betrayal that resets the relationship; the moment the protagonist stops fighting |
+| **S4 — Late tension** | chapters ⌊N×0.6⌋+1 – ⌊N×0.8⌋ | Intimacy escalates; a secret revealed through closeness; near-climax; the decision point |
+| **S5 — Climax** | chapters ⌊N×0.8⌋+1 – N−1 | The scene readers came for; point of no return; final surrender |
 
-**Never place two illustrations within 3 chapters of each other.** If no qualifying scene exists in a slot, leave that slot empty — do not force a scene that doesn't earn it.
+**Never place two illustrations within 3 chapters of each other.** If no qualifying scene exists in a slot, leave that slot empty — do not add a scene that doesn't earn it, and do not replace the empty slot with a 6th illustration elsewhere.
 
 ### Qualifying peak types (one per slot)
 
@@ -131,7 +124,7 @@ public/
 
 - `{book-slug}` matches the `content/{book-slug}/` directory name
 - `{NNN}` is the zero-padded chapter number from the chapter filename (`ch-007-title.md` → `ch-007.webp`)
-- Always shipped as lossy **WebP q78**, always a single file per illustrated chapter (the PNG straight from the model is the intermediate; the WebP is the deliverable)
+- Always shipped as lossy **WebP q72**, always a single file per illustrated chapter (the PNG straight from the model is the intermediate; the WebP is the deliverable)
 - JSON format matches cover convention: `{"model": "...", "size": "...", "prompt": "..."}`
 - Write the JSON immediately after saving the PNG — never use a separate `.prompt.txt` file
 
@@ -155,7 +148,7 @@ Illustration prompts differ from cover prompts in three ways:
 
 ### Step 1 — Randomly assign tier and pull the assembly block
 
-For each illustration, randomly pick **T3 or T4**. Do not use the same tier for every illustration in a single book.
+For each romance illustration, randomly pick **T3 or T4**. Do not use the same tier for every illustration in a single book.
 
 **Copy the corresponding assembly block from `cover-allure-elements.md` verbatim as the spine of the prompt** — do not paraphrase it into a one-line "intensity" description:
 
@@ -164,21 +157,17 @@ For each illustration, randomly pick **T3 or T4**. Do not use the same tier for 
 
 **Never use T5 for illustrations.** **Never downgrade the block's clothing/skin language to fit the prose's literal wardrobe — re-dress the scene to the tier (see mistake #2 above).**
 
-### Step 2 — Add character anchors from cover + `world/characters/`
+### Step 2 — Add character anchors from `character-visuals.md` (canonical source)
 
-Illustration characters must match the book cover. Before building any illustration prompt:
+**Read `content/{book-slug}/world/character-visuals.md`** — this is the canonical visual sheet written during A2 (cover generation). If it does not exist, generate it now using the same Step 1.1 procedure in `story-cover.md`, then write it before continuing.
 
-1. Read `public/covers/{book-slug}.json` if it exists and extract the character visual anchors used in the cover prompt.
-2. Read `content/{book-slug}/world/characters/` for the same characters.
-3. Build a short consistency block for each character that preserves cover identity: hair color/length, eye color or gaze quality, face shape, build, age range, signature clothing/status marker, and role in the relationship/power dynamic.
-
-Pull the female lead and male lead descriptions from the cover prompt first, then fill gaps from `world/characters/`. Add to the prompt:
+Copy the descriptors **verbatim** from the sheet into the prompt — do not paraphrase:
 ```
-{female-lead physical description: hair, eyes, face shape}
-{male-lead physical description: build, hair, jaw}
+{female-lead: Ethnicity phrase, Hair phrase, Eyes phrase, Signature phrase from character-visuals.md}
+{male-lead: Ethnicity phrase, Hair phrase, Build phrase, Signature phrase from character-visuals.md}
 ```
 
-Keep this to 2–3 high-signal anchors per character — do not repeat the full character sheet.
+Keep this to 3–4 keywords per character — copy the exact wording, not a summary. Consistent phrasing across cover and all illustrations is what produces visual continuity. Never re-derive or re-describe characters from scratch.
 
 **Hard rule:** one novel's illustrations must look like the same cast as its cover. Do not change a character's race, age band, hair color, hair length, body type, facial structure, or signature status marker between cover and illustration. If the cover shows a major supporting character, that character's illustration appearances must preserve the same visual identity. A beautiful but different-looking lead is a failed illustration.
 
@@ -194,7 +183,7 @@ Replace the generic cover environment with the chapter's actual setting:
 
 Append at the end:
 ```
-intimate scene illustration, painterly warm palette, soft editorial romance art, no text, no title, no watermark
+cinematic drama still, prestige streaming series cinematography, film-still from a high-budget production, real human skin and hair and faces, NO anime, NO cartoon, NO illustration, NO digital painting, NO CGI, intimate scene, warm cinematic palette, no text, no title, no watermark
 ```
 
 ### Complete example (T4)
@@ -270,11 +259,11 @@ print('SAVED:' + str(os.path.getsize(output_path)))
 
 | Tier | Primary | Fallback |
 |---|---|---|
-| T3 | `gpt-image-2-all` `848x1280` | `doubao-seedream-5-0-260128` `1664x2496` → retry once |
-| T4 | `gpt-image-2-all` `848x1280` | `doubao-seedream-5-0-260128` `1664x2496` → retry once |
+| T3 | `gpt-image-2-all` `848x1280` | `gpt-image-2-all` `848x1280` → retry once → `doubao-seedream-5-0-260128` `1664x2496` |
+| T4 | `gpt-image-2-all` `848x1280` | `gpt-image-2-all` `848x1280` → retry once → `doubao-seedream-5-0-260128` `1664x2496` |
 
-- gpt-image-2-all: 848×1280 PNG, cleanest output, strictest content filter. Convert to JPEG quality 85 or run pngquant after generation.
-- doubao: reliable at T3/T4 but requires 1664×2496 pixel floor; stochastic rejection → retry once with identical prompt. The result must be downscaled and compressed post-generation.
+- gpt-image-2-all: **preferred primary**. 848×1280 output. Stricter content filter (hard-rejects T3/T4 fabric-failure language); when rejected, soften prompt and retry once before falling back.
+- doubao-seedream-5-0-260128: fallback when gpt-image-2-all fails twice. Requires 1664×2496 pixel floor; stochastic rejection → retry once; stamps `AI生成` watermark → crop bottom ~7% post-generation.
 - On second rejection: soften prompt per `cover-allure-elements.md` safe-wording rules, then use nano as blank-prevention.
 - nano: silently downgrades T3+ to ~T1 — use as-is (blank-prevention only).
 
@@ -286,8 +275,8 @@ mkdir -p "$OUTDIR"
 
 (
   OUTPUT="$OUTDIR/ch-{NNN}.png"   # intermediate — post-process (A2.5-4) resizes then converts to ch-{NNN}.webp
-  if   gen_illus_apiyi "gpt-image-2-all"            "848x1280" "$OUTPUT"; then MODEL_USED="gpt-image-2-all"; SIZE="848x1280"
-  elif gen_illus_apiyi "doubao-seedream-5-0-260128" "1664x2496" "$OUTPUT"; then MODEL_USED="doubao-seedream-5-0-260128"; SIZE="1664x2496"
+  if   gen_illus_apiyi "gpt-image-2-all"            "848x1280"  "$OUTPUT"; then MODEL_USED="gpt-image-2-all"; SIZE="848x1280"
+  elif gen_illus_apiyi "gpt-image-2-all"            "848x1280"  "$OUTPUT"; then MODEL_USED="gpt-image-2-all"; SIZE="848x1280"  # retry once
   elif gen_illus_apiyi "doubao-seedream-5-0-260128" "1664x2496" "$OUTPUT"; then MODEL_USED="doubao-seedream-5-0-260128"; SIZE="1664x2496"
   elif gen_illus_apiyi "nano-banana-pro"            "1024x1024" "$OUTPUT"; then MODEL_USED="nano-banana-pro"; SIZE="1024x1024"
   else echo "ALL_FAILED ch-{NNN}"; exit 0; fi
@@ -305,16 +294,25 @@ rm -f /tmp/illus_*.log
 
 ### A2.5-4: Post-process
 
-**Target dimensions and file size:** every illustration should end at **664×996** (display 2:3), shipped as lossy **WebP q78**, ≤ 300 KB on disk. Resize/crop first with `sips` on the PNG, then convert the final PNG to WebP q78 (prefer `cwebp`, fall back to Pillow). The `.png` is the intermediate; the `.webp` is the deliverable.
+**Target dimensions and file size:** every illustration should end at **664×996** (display 2:3), shipped as lossy **WebP q72**, ≤ 300 KB on disk. Resize/crop first with `sips` on the PNG, then convert the final PNG to WebP q72 (prefer `cwebp`, fall back to Pillow). The `.png` is the intermediate; the `.webp` is the deliverable.
 
 ```bash
-# Resize/crop a PNG (in place) → final ch-{NNN}.webp at q78. Prefer cwebp; fall back to Pillow.
+# Resize/crop a PNG (in place) → final ch-{NNN}.webp at q72. Prefer cwebp; fall back to Pillow.
+# If the WebP output is larger than the source PNG, discard it and keep the PNG renamed to .webp.
 to_webp_illus() {
-  local src="$1" dst="$2" q="${3:-78}"
+  local src="$1" dst="$2" q="${3:-72}"
+  local before after
+  before=$(stat -f%z "$src" 2>/dev/null || stat -c%s "$src")
   if command -v cwebp &>/dev/null; then
     cwebp -quiet -q "$q" "$src" -o "$dst"
   else
     python3 -c "from PIL import Image; im=Image.open('$src'); im.save('$dst','webp',quality=$q,method=6)"
+  fi
+  after=$(stat -f%z "$dst" 2>/dev/null || stat -c%s "$dst")
+  if [ "$after" -ge "$before" ]; then
+    rm -f "$dst"
+    cp "$src" "$dst"
+    echo "⚠ webp larger than src (${after}B ≥ ${before}B) — kept original"
   fi
 }
 ```
@@ -343,7 +341,7 @@ sips -z 996 664 input.png --out input.png    # → 664×996
 to_webp_illus input.png "ch-${NNN}.webp" 78
 ```
 
-**Never use lossless WebP** — on photographic art it is larger than the source PNG. Always lossy q78.
+**Never use lossless WebP** — on photographic art it is larger than the source PNG. Always lossy q72.
 
 **Verify and report**
 
@@ -545,7 +543,7 @@ const contentParts = splitContent(mainContent)  // existing paragraph-split func
 | "Add illustrations to [book]" | A2.5 for that book only |
 | Full pipeline (new site) | A2.5 runs after A2, before A3 |
 
-A2.5 is **optional at initial launch** — run it when the user requests it or after A1 is complete for at least one book with a completed arc. Do not block the Pre-Launch Gate on illustrations — a site can launch with zero illustrations.
+A2.5 is **not a hard Pre-Launch Gate** — a site can launch with zero illustrations if generation is skipped or unavailable. In a full pipeline run, however, run A2.5 automatically after A2 for every long-form book with a completed arc unless the user explicitly opts out.
 
 ---
 

@@ -150,9 +150,9 @@ Avoid:
 
 Reader body typography matters more than display typography. Get body right before touching anything else.
 
-**Display type:** Characterful but not decorative. Use for the site logo, book titles, and section headers only. Prefer `Lora`, `Playfair Display`, `Libre Baskerville`, `Source Serif 4`, or a humanist sans like `Outfit` or `Cabinet Grotesk` for a modern web-novel feel. Avoid `Fraunces` and `Instrument Serif` — they are LLM default display serifs, deployed without thought.
+**Display type:** System fonts only — no external font dependencies of any kind. Do not use `next/font/google`, `@fontsource`, or any self-hosted font packages. Good system serif choices for display: `Baskerville, "Palatino Linotype", Palatino, Georgia, serif` (dark/literary tone) or `Georgia, "Times New Roman", serif` (neutral). Avoid `Fraunces` and `Instrument Serif` — they are LLM default display serifs, deployed without thought. The site logo and headings must be legible and on-brand using the system font fallback chain alone.
 
-**Reader body:** Highly readable. Prefer `Lora`, `Merriweather`, `Source Serif 4`, or `Georgia` for Latin scripts. For CJK, always use system stacks (see `internationalization.md`). The body face must hold up at 17px mobile with 1.75 line height for 500+ words at a time.
+**Reader body:** Use the system sans-serif stack for all scripts — zero load latency and native feel on every platform. `--font-reader: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif`. Do not use serif system stacks (`Georgia`, `Times`) or self-hosted serif fonts for body prose — they increase perceived reading friction for social traffic audiences. The body face must hold up at 19px mobile with 1.8 line height for 500+ words at a time.
 
 **UI/utility text:** `system-ui` stack for all controls, labels, and navigation. Never use display or body fonts for controls.
 
@@ -189,23 +189,49 @@ If the output is `API_PATH=skip` → print the warning below, then **skip logo/f
 \033[33m  Then set: export APIYI_API_KEY="your-key"\033[0m
 ```
 
+### Two-variant logo system
+
+Each site ships **two logo files** for automatic light/dark theme switching:
+
+| File | Theme | Background | Use |
+|---|---|---|---|
+| `public/logo-light.png` | Light mode | White / plain | Visible on light backgrounds |
+| `public/logo-dark.png` | Dark mode | Solid pure black, full square | Visible on dark backgrounds |
+
+**Critical: never bake border-radius into the image.** Both files must be perfect squares with straight edges to all four corners. CSS controls `border-radius` at render time.
+
+### Prompt rules
+
+**logo-light prompt template:**
+```
+Flat vector logo icon: {genre-appropriate motif, e.g. "crescent moon embracing an open book"}.
+{Motif color description — use the site's primary palette}.
+Clean bold outlines, centered composition, white background, no rounded corners, square canvas.
+```
+
+**logo-dark prompt template:**
+```
+Flat vector logo icon: {same motif}.
+{Bright/gold version of motif colors for dark background readability}.
+Clean bold outlines, centered composition.
+Solid pure black background filling the entire square canvas to all four edges. No rounded corners. Square edges only.
+```
+
 ### apiyi path (APIYI_API_KEY is set)
 
-Generate logo and favicon via `gpt-image-2-all`, falling through to `nano-banana-pro` on failure (blank-prevention). Both are square motif images — use `1024x1024`. **Generate the two assets in parallel** — launch both as background processes, then `wait`.
+Generate logo-light, logo-dark, and favicon via `doubao-seedream-5-0-260128`, falling through to `gpt-image-2-all` on failure. Do **not** use `nano-banana-pro` for logo/favicon. Logo requests are `1920x1920`; favicon requests are `1024x1024`. **Launch all as background processes then `wait`.**
 
 ```bash
 mkdir -p public
 
-# Generic asset generator: gpt-image-2-all → nano-banana-pro fallback.
-# Handles both b64_json (PNG) and url (JPEG) responses. Returns 0 on success.
 gen_asset_apiyi() {
-  local prompt="$1" out="$2"
+  local prompt="$1" out="$2" size="$3"
   local pj; pj=$(printf '%s' "$prompt" | python3 -c 'import json,sys;print(json.dumps(sys.stdin.read().strip()))')
-  for model in "gpt-image-2-all" "nano-banana-pro"; do
+  for model in "doubao-seedream-5-0-260128" "gpt-image-2-all"; do
     curl -s --max-time 300 https://api.apiyi.com/v1/images/generations \
       -H "Content-Type: application/json" \
       -H "Authorization: Bearer $APIYI_API_KEY" \
-      -d "{\"model\":\"$model\",\"prompt\":$pj,\"n\":1,\"size\":\"1024x1024\"}" \
+      -d "{\"model\":\"$model\",\"prompt\":$pj,\"size\":\"$size\"}" \
     | OUT="$out" python3 -c "
 import sys, json, base64, os, urllib.request
 out = os.environ['OUT']
@@ -225,34 +251,53 @@ else: sys.exit(3)
   return 1
 }
 
-# Logo: single symbolic motif for the site genre, no text, suitable for nav bar.
-LOGO_PROMPT="{genre-appropriate motif — e.g. glowing sword on dark background for xianxia}"
-# Favicon: same motif, ultra-simplified, readable at 32px.
-FAVICON_PROMPT="{same motif, minimal, high contrast, no text, works at tiny size}"
+# Fill in site-specific prompts before running
+LOGO_LIGHT_PROMPT="{flat vector motif, colored, white background, square canvas, no rounded corners}"
+LOGO_DARK_PROMPT="{flat vector motif, bright colors, solid pure black background edge-to-edge, square edges, no rounded corners}"
+FAVICON_PROMPT="{same motif, ultra-simplified, high contrast, no text, readable at 32px}"
 
-# Parallel generation — both assets at once
-gen_asset_apiyi "$LOGO_PROMPT"    public/logo_raw.png    && echo "logo saved"    &
-gen_asset_apiyi "$FAVICON_PROMPT" public/favicon_raw.png && echo "favicon saved" &
+gen_asset_apiyi "$LOGO_LIGHT_PROMPT" public/logo-light_raw.png "1920x1920" && echo "logo-light saved" &
+gen_asset_apiyi "$LOGO_DARK_PROMPT"  public/logo-dark_raw.png  "1920x1920" && echo "logo-dark saved"  &
+gen_asset_apiyi "$FAVICON_PROMPT"    public/favicon_raw.png    "1024x1024" && echo "favicon saved"    &
 wait
 
-# Resize (skip any asset whose generation failed — file absent)
-[ -f public/logo_raw.png ] && { ffmpeg -i public/logo_raw.png -vf scale=256:256 public/logo.png -y \
-  || sips -z 256 256 public/logo_raw.png --out public/logo.png; }
-[ -f public/favicon_raw.png ] && { ffmpeg -i public/favicon_raw.png -vf scale=32:32 public/favicon-32x32.png -y \
-  || sips -z 32 32 public/favicon_raw.png --out public/favicon-32x32.png; \
-  ffmpeg -i public/favicon_raw.png -vf scale=180:180 public/apple-touch-icon.png -y \
-  || sips -z 180 180 public/favicon_raw.png --out public/apple-touch-icon.png; }
-# Compress PNG assets with pngquant (skip silently if not installed or file would grow)
-command -v pngquant >/dev/null 2>&1 && {
-  [ -f public/logo.png ]          && pngquant --quality=65-85 --ext .png --force --skip-if-larger public/logo.png || true
-  [ -f public/favicon-32x32.png ] && pngquant --quality=65-85 --ext .png --force --skip-if-larger public/favicon-32x32.png || true
-  [ -f public/apple-touch-icon.png ] && pngquant --quality=65-85 --ext .png --force --skip-if-larger public/apple-touch-icon.png || true
-}
+resize() { local src="$1" dst="$2" s="$3"
+  [ -f "$src" ] && { ffmpeg -i "$src" -vf scale=${s}:${s} "$dst" -y 2>/dev/null \
+    || sips -z $s $s "$src" --out "$dst"; }; }
 
-rm -f public/logo_raw.png public/favicon_raw.png
+resize public/logo-light_raw.png public/logo-light.png 512
+resize public/logo-dark_raw.png  public/logo-dark.png  512
+resize public/favicon_raw.png    public/favicon-32x32.png  256
+resize public/favicon_raw.png    public/apple-touch-icon.png 180
+
+command -v pngquant >/dev/null 2>&1 && for f in public/logo-light.png public/logo-dark.png public/favicon-32x32.png public/apple-touch-icon.png; do
+  [ -f "$f" ] && pngquant --force --quality=80-95 --speed 1 --ext .png --skip-if-larger "$f" || true
+done
+
+rm -f public/logo-light_raw.png public/logo-dark_raw.png public/favicon_raw.png
 ```
 
-Wire up in `src/app/layout.tsx`:
+### Theme-switching CSS
+
+Add to `src/app/globals.css`:
+```css
+/* Logo theme switching */
+.logo-dark { display: none; }
+[data-theme$="-dark"] .logo-light { display: none; }
+[data-theme$="-dark"] .logo-dark  { display: block; }
+```
+
+### Nav markup
+
+In the site header/nav, render both images together:
+```tsx
+<img src="/logo-light.png" alt="site logo" width={32} height={32} className="logo-light rounded-lg" />
+<img src="/logo-dark.png"  alt="site logo" width={32} height={32} className="logo-dark  rounded-lg" />
+```
+
+`rounded-lg` (or whatever radius fits the design) is applied via CSS — **never baked into the PNG**.
+
+Wire up icons in `src/app/layout.tsx`:
 ```ts
 export const metadata: Metadata = {
   icons: {
@@ -264,7 +309,7 @@ export const metadata: Metadata = {
 
 ### No SVG fallback
 
-There is **no SVG fallback** for logo/favicon. When `APIYI_API_KEY` is unset, or both `gpt-image-2-all` and `nano-banana-pro` fail, **skip the asset and continue** — a dev placeholder holds the slot until a later generation pass. Never write `public/logo.svg` / `public/favicon.svg`.
+There is **no SVG fallback** for logo/favicon. When `APIYI_API_KEY` is unset, or both models fail, **skip the asset and continue** — a dev placeholder holds the slot until a later generation pass. Never write `public/logo.svg`, `public/favicon.svg`, or `public/logo.png` as a fallback.
 
 **Never ship a launched site with the default Next.js favicon or a missing logo** — but a skipped asset does not block the build; it is flagged for a follow-up pass.
 

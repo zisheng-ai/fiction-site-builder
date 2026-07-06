@@ -208,6 +208,51 @@ Use Formula K below. For romantic fantasy, follow with relevant romance formula 
 
 ---
 
+### Facebook Ad Hook Copy — 3-Line Feed Format
+
+Facebook/Instagram feeds truncate after ~3 lines ("See more"). The hook must land in exactly 3 lines — one situation, one turn, one gap.
+
+**The 3-line structure:**
+
+| Line | Role | Constraint |
+|------|------|------------|
+| **Line 1 — The situation** | State the impossible or shocking thing. Subject + what happened to her. | 8–14 words. Complete sentence. |
+| **Line 2 — The turn** | Her realization, or the detonation of her assumption. | 5–10 words. Often starts with "But" or "She knew". |
+| **Line 3 — The gap** | A physical-evidence reveal, or a mystery cliff that cannot be answered without clicking. | End on a concrete noun or fact, not an emotion. |
+
+**Core rules:**
+
+- No character names — always "She" / "Her". The reader self-inserts.
+- No genre labels in the copy ("dark fantasy", "fae romance", "isekai").
+- Each line is a standalone complete sentence.
+- End on a fact or object, not a feeling.
+- The magical element must be grounded in a concrete cost or physical detail — not "magic was real" but "the contract was already signed in her blood."
+
+**Fantasy-specific templates:**
+
+| Situation type | Line 1 | Line 2 | Line 3 |
+|---|---|---|---|
+| **Cursed / inherited identity** | She woke up in [the wrong body / the wrong kingdom / a life she hadn't chosen]. | She had [read this story / seen this ending / known what happened to the last one]. | [The one thing her knowledge couldn't save her from — a concrete object or fact.] |
+| **Prophecy trap** | The prophecy said she would [destroy / kill / end] the one she loved most. | She had spent [timeframe] trying to make it wrong. | [The name / the date / the sign] arrived [today / at dawn / before she could stop it]. |
+| **Magical binding without consent** | She crossed [the threshold / the veil / the border] to [simple concrete task]. | She didn't expect to be [claimed / bound / marked] before she could cross back. | [The physical proof of the binding — a scar, a seal, a vow she hadn't spoken.] |
+| **Betrayal by the trusted one** | [Her mentor / the king / the one she'd served for years] had been [the source of the curse / the one who ordered it / the architect of her exile]. | She had protected him with everything she had. | She was the last one left to stop him. |
+
+**Examples:**
+
+> "She crossed the Veil to complete a survey.
+> She didn't expect to be claimed before she could cross back.
+> The mark on her wrist was already permanent."
+
+> "The prophecy named her as the one who would end him.
+> She'd spent six years making herself unworthy of the role.
+> It found her anyway."
+
+**When to use vs. synopsis:**
+- **Synopsis formula** (above): book detail page, meta description. Richer, multi-sentence structure.
+- **3-line feed hook**: Facebook/Instagram post caption, paid ad copy. Survives the "See more" cut. Do not reuse the synopsis verbatim.
+
+---
+
 ## Short Form Fantasy
 
 Epic fantasy is difficult in short form because world-building takes space and trust. Sub-genres that work in short form:

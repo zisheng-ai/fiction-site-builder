@@ -23,7 +23,7 @@ Any of these is a quality gate failure:
 - Decorative glassmorphism or frosted glass panels.
 - Large glowing orbs, blurred blobs, or SaaS hero graphic patterns.
 - Dense ad-card layouts with 4+ metadata lines per row.
-- Body text below 18px on mobile or below 19px on desktop.
+- Body text below 19px on mobile or below 20px on desktop.
 - Metadata text below 12px.
 - Body fonts that are playful, handwritten, or display-only.
 - A full-screen marketing hero section before the actual book list.
@@ -34,7 +34,7 @@ Any of these is a quality gate failure:
 ### Top / Navigation Bar
 - Height: 48–56px on mobile.
 - Content: logo (left), optional action (right). Never more than one action icon.
-- **Logo spec (site-wide):** `<img src="/logo.png" className="block h-8 w-auto rounded-sm" />`; on home page use `next/image` (`width={28} height={28} className="rounded-sm"`) for consistent rendering.
+- **Logo spec (site-wide):** use `src/components/SiteLogo.tsx`, which renders `/logo-light.png` and `/logo-dark.png` together for theme switching. Do not reference `/logo.png` in rendered navigation.
 - Home: logo + site name text + ThemeToggle
 - Book detail: logo (links to `/`) + ThemeToggle
 - Chapter: logo (links to `/`) + centered book/chapter name + TOC icon + ThemeToggle
@@ -77,12 +77,40 @@ Column ratio `minmax(96px, 0.75fr) minmax(136px, 1.12fr)`. TOC button font-size 
 </div>
 
 // book detail page — BelowFold component
-<section id="toc">
+// id="toc" goes on the element immediately before the chapter list
+// (typically the ad slot wrapper or the section itself)
+// Add scroll-margin-top: 64px to account for the fixed header
+<div id="toc" style={{ scrollMarginTop: '64px' }}>
+  <AdSlot ... />
+</div>
+<section>
   {/* chapter list */}
 </section>
 ```
 
 This allows readers on any chapter to return to the detail page and see the full chapter list in one tap.
+
+### Book Detail CTA Layout
+
+The CTA row below the book title always uses `flex flex-row gap-2 items-center` — never `flex-col`. "Start reading" takes `flex-1`; `ResumeReading` is `shrink-0`.
+
+```tsx
+<div className="flex flex-row gap-2 items-center">
+  <HardLink
+    href={`/book/${slug}/chapter/1`}
+    className="flex-1 inline-flex items-center justify-center px-8 h-12 rounded-[14px] bg-primary text-primary-content font-extrabold text-[15px] tracking-tight ..."
+  >
+    Start reading
+  </HardLink>
+  <ResumeReading bookSlug={slug} totalChapters={book.chapterCount} />
+</div>
+```
+
+**ResumeReading standard style** (outline button, same height as primary CTA):
+```tsx
+className="inline-flex items-center justify-center gap-2 h-12 px-4 rounded-[14px] border-2 border-primary/40 text-primary font-semibold text-[13px] shrink-0 hover:border-primary transition-colors"
+```
+Includes a filled play-triangle icon (`fill="currentColor"`, 13×13). When no saved progress, returns `null` — "Start reading" naturally expands to full width via `flex-1`.
 
 ### Book Card (Cover-First Responsive Grid)
 
@@ -113,6 +141,11 @@ The book list uses a responsive grid. The card is the page's primary visual unit
 
 **Quality bar:** A finished book card should look like it belongs in a native app — not a WordPress blog post list. The genre badge and proper metadata line are non-negotiable.
 
+**Pitfall — overlay divs block browser "Save Image As":** Any `<div>` with `absolute inset-0` placed on top of the cover image (gradient scrims, vignettes, etc.) intercepts right-click events. Because the card is wrapped in `<a>`, the browser shows a *link* context menu instead of an *image* one, removing "Save Image As". Always add `pointer-events-none` to every overlay inside a BookCard:
+```tsx
+<div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+```
+
 ### Book Row (Text-First List)
 - Row height: auto, minimum 72px.
 - Left: small cover thumbnail (48×72px) or genre accent strip (8px wide).
@@ -129,7 +162,7 @@ The home page hero sets the site's identity before the reader sees a single book
 |---|---|
 | Dark romance / thriller / vampire / paranormal | **cinematic** — Featured Book Full-Bleed |
 | Fantasy / contemporary romance / colorful multi-genre | **gradient** — Brand Gradient Tagline |
-| Literary fiction / clean romance / prose-first / short story | **editorial** — Text-Only Editorial |
+| Literary fiction / clean romance / prose-first / short story | **atmospheric** — Text-Only Editorial |
 
 The home page hero is a site-level decision — every site uses one style. The book detail hero is per-book — each book sets its own `heroStyle` independently.
 
@@ -225,7 +258,7 @@ Notes:
 
 ---
 
-#### editorial — Text-Only Editorial
+#### atmospheric — Text-Only Editorial
 
 Plain page background. Big typographic headline + subtitle. No image, no gradient in the hero. Book grid starts immediately below.
 
@@ -244,7 +277,7 @@ Implementation (current velvet-throne pattern):
 <header className="border-b border-base-300">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
     <Link href="/" className="flex items-center gap-2.5">
-      <Image src="/logo.png" alt={siteTitle} width={28} height={28} className="rounded-sm" priority />
+      <SiteLogo alt={siteTitle} className="h-7 w-7 rounded-sm" />
       <span className="text-lg font-bold text-base-content tracking-tight">{siteTitle}</span>
     </Link>
     <ThemeToggle />
@@ -320,8 +353,7 @@ Implementation — add a `<style>` block and inline scroll script at the top of 
 <header id="book-header" className="fixed top-0 left-0 right-0 z-30 h-14">
   <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
     <Link href="/" aria-label="Home">
-      <img src="/logo.png" alt={SITE_NAME} className="block h-8 w-auto rounded-sm"
-        style={{ filter: 'drop-shadow(0 1px 4px rgba(0,0,0,0.6))' }} />
+      <SiteLogo alt={SITE_NAME} className="h-8 w-8 rounded-sm drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]" />
     </Link>
     <div className="bg-white/15 backdrop-blur-sm rounded-full p-1.5 text-white">
       <ThemeToggle />
@@ -344,7 +376,7 @@ style={{ filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.4))' }}
 **`books.ts` type definitions:**
 
 ```ts
-export type HeroStyle = 'cinematic' | 'gradient' | 'editorial'
+export type HeroStyle = 'cinematic' | 'gradient' | 'atmospheric'
 
 export type Book = {
   slug: string
@@ -490,7 +522,7 @@ function HeroCinematic({ book, chapters, slug }: { book: Book; chapters: { order
       <header id="book-header" className="fixed top-0 left-0 right-0 z-30 h-14">
         <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
           <Link href="/" className="shrink-0 opacity-90 hover:opacity-100 transition-opacity duration-150" aria-label="Home">
-            <img src="/logo.png" alt={SITE_NAME} className="block h-8 w-auto rounded-sm" style={{ filter: 'drop-shadow(0 1px 4px rgba(0,0,0,0.6))' }} />
+            <SiteLogo alt={SITE_NAME} className="h-8 w-8 rounded-sm drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]" />
           </Link>
           <div className="bg-white/15 backdrop-blur-sm rounded-full p-1.5 text-white">
             <ThemeToggle />
@@ -532,7 +564,7 @@ function HeroGradient({ book, chapters, slug }: { book: Book; chapters: { order:
       <header id="book-header" className="fixed top-0 left-0 right-0 z-30 h-14">
         <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
           <Link href="/" className="shrink-0 opacity-90 hover:opacity-100 transition-opacity duration-150" aria-label="Home">
-            <img src="/logo.png" alt={SITE_NAME} className="block h-8 w-auto rounded-sm" style={{ filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.4))' }} />
+            <SiteLogo alt={SITE_NAME} className="h-8 w-8 rounded-sm drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]" />
           </Link>
           <div className="bg-base-100/60 backdrop-blur-sm rounded-full p-1.5">
             <ThemeToggle />
@@ -577,7 +609,7 @@ function HeroAtmospheric({ book, chapters, slug }: { book: Book; chapters: { ord
       <header id="book-header" className="fixed top-0 left-0 right-0 z-30 h-14">
         <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
           <Link href="/" className="shrink-0 opacity-90 hover:opacity-100 transition-opacity duration-150" aria-label="Home">
-            <img src="/logo.png" alt={SITE_NAME} className="block h-8 w-auto rounded-sm" style={{ filter: 'drop-shadow(0 1px 4px rgba(0,0,0,0.6))' }} />
+            <SiteLogo alt={SITE_NAME} className="h-8 w-8 rounded-sm drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]" />
           </Link>
           <div className="bg-white/15 backdrop-blur-sm rounded-full p-1.5 text-white">
             <ThemeToggle />

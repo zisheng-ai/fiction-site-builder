@@ -107,10 +107,39 @@ Use gpt-image-1 only when a non-preset aspect ratio is needed. Default to gpt-im
 
 ---
 
+### doubao-seedream-5-0-260128 (logo / favicon preferred)
+
+- **Price:** lower than gpt-image-2-all
+- **Minimum pixel area:** 3,686,400 px — requests below this threshold return a hard error (`image size must be at least 3686400 pixels`). Use `1920x1920` for square logos (3,686,400 px exactly meets the floor); `1024x1024` (1,048,576 px) will fail and fall back to gpt-image-2-all.
+- **Sizes:** free-form; no preset table required
+- **Response:** `b64_json` (raw base64, no prefix)
+
+**Cascade for logo/favicon generation** (doubao → gpt-image-2-all, no nano):
+
+| Asset | Request size | Why |
+|-------|-------------|-----|
+| `logo-light.png` | `1920x1920` | Meets doubao's 3.7M px floor; resize to 512×512 after |
+| `logo-dark.png` | `1920x1920` | Same |
+| `favicon-32x32.png` | `1024x1024` | Below doubao floor → falls back to gpt-image-2-all automatically |
+
+After generation, always run:
+```bash
+sips -z 512 512 public/logo-light.png --out public/logo-light.png
+sips -z 512 512 public/logo-dark.png  --out public/logo-dark.png
+sips -z 256 256 public/favicon-32x32.png --out public/favicon-32x32.png
+pngquant --force --quality=80-95 --speed 1 --output public/logo-light.png   public/logo-light.png
+pngquant --force --quality=80-95 --speed 1 --output public/logo-dark.png    public/logo-dark.png
+pngquant --force --quality=80-95 --speed 1 --output public/favicon-32x32.png public/favicon-32x32.png
+```
+
+Target sizes: logo ≤ 100 KB, favicon ≤ 25 KB. Raw generated files are typically 700 KB–1.3 MB without this step.
+
+---
+
 ## Error handling
 
 | Code | Meaning | Action |
 |------|---------|--------|
 | 429 | Rate limit | Exponential backoff, retry |
 | 5xx | Content filter or server error | No charge; retry with softened prompt once |
-| Timeout | Generation exceeded `--max-time` | Increase to 360s, retry once; then fall back to SVG |
+| Timeout | Generation exceeded `--max-time` | Increase to 360s, retry once; if it still fails, skip and flag for a later pass — no SVG fallback |

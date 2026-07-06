@@ -12,10 +12,10 @@ The default reader ships with a focused set of controls. Add font size, density,
 
 | Control | Requirement | Notes |
 | --- | --- | --- |
-| Next chapter | Required | Always visible via fixed bottom bar; see **Bottom Navigation Bar** below. No Previous button — Table of contents handles backward navigation |
-| Table of contents | Required | "Table of contents" button in reader nav; links to or opens the chapter catalog |
+| Next chapter | Required | Inline CTA in the content flow at the end of chapter text (see **End-of-Chapter Navigation** below). No Previous button — TOC handles backward navigation. |
+| Table of contents | Required | List icon (≡) in the top header right slot — hard-navigates to `/book/{slug}#toc` (same behavior as bottom bar TOC button). |
 | Book cover header | Required | Small cover thumbnail in the reader header above the chapter title; omit if no cover image exists |
-| End-of-chapter prompt | Required | Repeat "Next chapter →" as inline CTA at the very bottom of chapter text, above the sticky bar. Use **`my-10`** (symmetric 40px) margin — never asymmetric `mt-16 mb-6`. |
+| End-of-chapter prompt | Required | Inline "Next chapter →" CTA at the very bottom of chapter text. Use **`my-10`** (symmetric 40px) margin — never asymmetric `mt-16 mb-6`. |
 | Keyboard prev/next | Required on desktop | `←` / `→` arrow keys |
 | Error / empty states | Required | See Error States section |
 | Dark mode toggle | Required | DaisyUI `data-theme` swap; persists in `localStorage` |
@@ -43,98 +43,68 @@ Add `padding-top: 56px` (or `pt-14`) to the chapter content wrapper so it clears
 
 ---
 
-## Bottom Navigation Bar
+## End-of-Chapter Navigation
 
-The bottom navigation bar is **always fixed** (`position: fixed; bottom: 0`) throughout the entire chapter reading experience — not just at the end of chapter content. It must remain visible while the reader scrolls. This is the primary navigation surface on mobile.
+**No fixed bottom navigation bar.** The bottom viewport is reserved for the sticky anchor ad (AdX sites use `StickyAnchorAd` / q4; AdSense sites leave the bottom clear per policy). Navigation lives in two places:
 
-Apply `padding-bottom: env(safe-area-inset-bottom)` to handle iPhone notch/home bar.
+1. **Top header** — right slot has the TOC list icon (≡) that hard-navigates to `/book/{slug}#toc`. Same behavior as the bottom bar TOC button — no drawer, no modal.
+2. **Content flow** — inline "Next chapter →" CTA and cross-book recommendation grid appear at the end of chapter text, in the natural scroll path.
 
-**Layout — always two buttons, no Previous:**
-
+```tsx
+{/* Inline next-chapter CTA — at bottom of prose */}
+{next && (
+  <div className="my-10 border border-base-300 rounded-2xl text-center px-8 py-10">
+    <p className="text-xs text-base-content/40 uppercase tracking-widest mb-5">Continue reading</p>
+    <HardLink
+      href={`/book/${slug}/chapter/${next.order}`}
+      className="inline-flex items-center gap-2 text-xl font-bold text-primary hover:text-primary/80 transition-colors"
+    >
+      Next chapter →
+    </HardLink>
+  </div>
+)}
 ```
-[ Table of contents ]          [ Next → ]
-  (ghost / outlined, ~36%)     (vivid fill, ~60%)
-```
 
-No "Previous" button. Ever. Fiction reading is a forward-only experience — the previous chapter is already read; showing a back button dilutes the forward momentum. If the reader wants to go back, the Table of contents handles that.
+No "Previous" button anywhere. Fiction reading is a forward-only experience — the TOC handles backward navigation.
 
-On the last chapter, the Next slot is an empty flex spacer — TOC button stays on the left. No "The End" label; nobody taps it.
+**Bottom padding — account for sticky anchor ad (AdX only):**
 
-**Always fixed — no transition:**
-
-The nav bar is `position: fixed; bottom: 0` at all times. Never switch to inline mode. Add `padding-bottom` to the chapter content equal to the nav bar height (+ `env(safe-area-inset-bottom)`) so the last line of text is never hidden behind the bar.
+AdX chapter pages must add enough bottom padding so the last content line is not hidden behind the sticky q4 ad (min 250px height):
 
 ```css
-.chapter-content {
-  padding-bottom: calc(80px + env(safe-area-inset-bottom));
+/* AdX sites */
+.pb-sticky-ad {
+  padding-bottom: calc(280px + env(safe-area-inset-bottom));
 }
-.chapter-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding-bottom: env(safe-area-inset-bottom);
+
+/* AdSense sites — no sticky ad, just safe-area clearance */
+.pb-safe-reader {
+  padding-bottom: calc(24px + env(safe-area-inset-bottom));
 }
 ```
 
 **Next button — psychology-driven design:**
 
-The Next button must trigger an almost involuntary desire to tap. Use a vivid, saturated warm color — hot pink (`#E91E8C` range), coral, or electric magenta. Never use the site's calm brand color here; this button needs contrast-driven urgency.
+The "Next chapter →" inline CTA must trigger an almost involuntary desire to tap. Use a vivid, saturated warm color — hot pink (`#E91E8C` range), coral, or electric magenta when rendered as a full button. Never use the site's calm brand color here; this button needs contrast-driven urgency.
 
 Why this works: bright saturated warm colors activate dopamine anticipation. Combined with the unresolved story tension (Zeigarnik effect — the reader's brain cannot rest on an open narrative loop), the button becomes the path of least resistance. The reader taps before consciously deciding to.
 
-- **Color:** vivid warm fill — hot pink / magenta / coral. Do NOT use dark navy, muted tones, or the site's neutral palette.
-- **Label:** `Next →` — the arrow reinforces forward motion. Never "Next Chapter" (too wordy) or just "Next" without arrow.
-- **Width:** ~60% of the nav bar. Significantly wider than TOC.
-- **Height:** minimum 60px mobile, 64px desktop.
-- **Font size:** 18–20px, weight 700–800, white text.
-- **Border radius:** 14–18px (pill-ish, approachable).
+**TOC icon — hard navigation, no drawer:**
 
-**Button styling — no DaisyUI component classes:**
-
-Do not use `.btn`, `.btn-primary`, `.btn-outline`, or any DaisyUI component class on nav buttons. Use plain Tailwind utilities only.
-
-Both buttons must carry an explicit `style={{ fontFamily: '...' }}` with the full system stack — do NOT rely on body font inheritance, as DaisyUI resets can interfere:
+The top header TOC icon (≡) must use `window.location.href` to navigate to `/book/{slug}#toc`. Do NOT implement a `TOCDrawer`, bottom sheet, or any modal overlay. Both the top header icon and the bottom bar TOC button share the same behavior.
 
 ```tsx
-const btnFont = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif'
-// apply as: style={{ fontFamily: btnFont }}
+<a
+  href={`/book/${bookSlug}#toc`}
+  onClick={(e) => { e.preventDefault(); window.location.href = `/book/${bookSlug}#toc` }}
+  className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-base-200 transition-colors shrink-0"
+  aria-label="Chapter list"
+>
+  {/* list icon SVG */}
+</a>
 ```
 
-Shared base: `flex items-center justify-center font-extrabold tracking-tight select-none transition-all duration-150 hover:-translate-y-px active:translate-y-0 cursor-pointer`
-
-Heights and radius (responsive):
-- Mobile: `min-h-12` (48px), `rounded-[14px]`, `text-[15px]`
-- Desktop sm+: `sm:min-h-[54px]`, `sm:rounded-2xl`, `sm:text-[17px]`
-
-**TOC button:**
-
-- `bg-base-100 border-2 border-base-300 text-base-content`
-- Hover: `hover:border-primary hover:text-primary`
-- Label: `Table of contents` — full text, no abbreviation.
-- Width: ~40% of nav bar (grid `minmax(96px, 0.72fr)`)
-
-**Next button:**
-
-- `bg-primary text-white`
-- `style={{ boxShadow: '0 8px 18px rgba(236,75,155,.18)' }}`
-- Label: `Next →` (Unicode arrow, not SVG icon)
-- Width: ~60% of nav bar (grid `minmax(136px, 1.12fr)`)
-- Do not add glow wrappers (Aura component creates white padding artifacts)
-
-**Nav bar grid layout:**
-
-```jsx
-<div style={{ display: 'grid', gap: '12px', gridTemplateColumns: 'minmax(96px, 0.72fr) minmax(136px, 1.12fr)' }}>
-```
-
-On the last chapter (no next), use `gridTemplateColumns: '1fr'` — TOC takes full width.
-
-**TOC panel — DaisyUI 5 modal bottom sheet:**
-
-Bottom sheet is the right choice for mobile fiction reading: thumb-friendly, native feel, fast in/out. Right-side drawer is not suitable — requires reaching the screen edge and covers more reading context.
-
-Use `<dialog>` with `className="modal modal-bottom"` (DaisyUI 5). Open with `dialogRef.current.showModal()`, close with `dialogRef.current.close()`. Inside: `modal-box rounded-t-3xl rounded-b-none`, max-height `72vh`. Current chapter: `border-l-2 border-primary text-primary bg-primary/5 font-semibold`. Non-current: `border-l-2 border-transparent text-base-content/65`. Auto-scroll to current chapter on open (`scrollIntoView` with 50ms delay). Close on backdrop click (`e.target === dialogRef.current`).
+The book detail page must have `id="toc"` on the element immediately before the chapter list (typically the ad slot wrapper or the section itself). Add `scroll-margin-top: 64px` to account for the fixed header.
 
 **Quality gate failure if not met:**
 
@@ -156,7 +126,7 @@ Show a 3-book recommendation grid on **every chapter** — the moment a reader f
     <p className="text-xs text-base-content/40 uppercase tracking-widest text-center mb-6">You might also like</p>
     <div className="grid grid-cols-3 gap-4">
       {books.filter(b => b.slug !== slug).slice(0, 3).map(b => (
-        <HardLink key={b.slug} href={`/book/${b.slug}/`} className="flex flex-col items-center gap-2 group">
+        <HardLink key={b.slug} href={`/book/${b.slug}/chapter/1`} className="flex flex-col items-center gap-2 group">
           <div className="w-full rounded-lg overflow-hidden shadow-md" style={{ aspectRatio: '2/3' }}>
             <img src={b.cover} alt={b.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
           </div>
@@ -181,7 +151,7 @@ Show a 3-book recommendation grid on **every chapter** — the moment a reader f
     <p className="text-xs text-base-content/40 uppercase tracking-widest text-center mb-8">Keep reading</p>
     <div className="grid grid-cols-3 gap-4">
       {books.filter(b => b.slug !== slug).slice(0, 3).map(b => (
-        <HardLink key={b.slug} href={`/book/${b.slug}/`} className="flex flex-col items-center gap-2 group">
+        <HardLink key={b.slug} href={`/book/${b.slug}/chapter/1`} className="flex flex-col items-center gap-2 group">
           <div className="w-full rounded-lg overflow-hidden shadow-md" style={{ aspectRatio: '2/3' }}>
             <img src={b.cover} alt={b.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
           </div>
@@ -196,9 +166,9 @@ Show a 3-book recommendation grid on **every chapter** — the moment a reader f
 ```
 
 Rules:
-- Links go to `/book/${b.slug}/` (book detail), not `/book/${b.slug}/chapter/1` — let the reader decide where to start.
+- Links go to `/book/${b.slug}/chapter/1` so the reader starts immediately; arbitrage flows convert better when the next click lands in the reader, not on a detail page.
 - Filter out the current book (`b.slug !== slug`). Take first 3 from remaining.
-- Use whatever link component the site uses (`HardLink`, `<a>`, or Next.js `<Link>`).
+- **Use `HardLink` for cross-book grid links.** The chapter reader carries in-content ad slots; a client-side `<Link>` transition would skip ad reinitialization and reduce impressions. Only pages that carry no ad slots may use `next/link` for internal navigation.
 - For Spanish sites, use "También te puede gustar" instead of "You might also like".
 
 ## Optional Enhancements
@@ -231,24 +201,58 @@ These features add UI complexity and distract from reading. Omit by default:
 
 Use conservative defaults. Readers should not need to adjust settings to find a comfortable starting point.
 
-- **Font:** system stack only — see `tech-stack.md` Fonts section. No webfonts.
-- **Prose size:** `18px` mobile → `19px` sm+.
-- **Line height:** `1.95` mobile → `2.05` sm+.
-- **Paragraph spacing:** `margin-bottom: 1.3em`.
+- **Font:** system fonts only — no external dependencies. Set `--font-reader` in `:root` to `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif`. Do not use `Georgia`/serif stacks for prose — they add perceived reading friction for social traffic audiences. Do not use `next/font/google`, `@fontsource`, or any font package of any kind — they add build-time or runtime dependencies and can fail in restricted network environments. The system font stack is the final answer for both body and display text.
+- **Prose size:** `19px` mobile → `20px` sm+.
+- **Line height:** `1.8` mobile → `1.85` sm+.
+- **Paragraph spacing:** `margin-bottom: 1.1em`.
 
 ```css
-.prose-reader { font-size: 18px; line-height: 1.95; }
-@media (min-width: 640px) { .prose-reader { font-size: 19px; line-height: 2.05; } }
+.prose-reader {
+  font-size: 19px;
+  line-height: 1.8;
+  max-width: 68ch;
+  margin: 0 auto;
+  word-break: break-word;
+  text-rendering: optimizeLegibility;
+}
+@media (min-width: 640px) { .prose-reader { font-size: 20px; line-height: 1.85; } }
 ```
-- Latin line-height: 1.9–2.1 (generous — easier to track across the line).
-- Japanese/Korean line-height: 1.85–2.0.
+- Latin line-height: 1.8–1.85 (compact but trackable — optimised for social traffic landing pages).
+- Japanese/Korean line-height: 1.75–1.9.
 - Paragraph spacing: `1em` top margin between paragraphs. Enough to separate beats without the double-spaced blog-style gap.
 - Max line length: 32–38em for Latin prose; narrower for CJK (28–34em) to avoid very long line scanning.
+
+## Chapter Page `<title>` Format
+
+The HTML `<title>` on chapter pages is critical for SEO and social share quality. Use:
+
+```
+Chapter {n}: {chapter.title} | {book.title}
+```
+
+With the layout's `template: '%s | {Site Name}'`, the final browser title becomes:
+
+```
+Chapter 3: The Dark Bargain | Crimson Crown | Velvet Throne
+```
+
+**Rules:**
+- Include the chapter number — search engines surface it in snippets; readers scanning results can orient immediately.
+- Use `|` as separator (not `-` or `—`) for both the `title` and the `template`.
+- Keep the `openGraph.title` shorter: `${chapter.title} — ${book.title}` (no chapter number; social cards show a thumbnail, not a search snippet).
+- Spanish sites: `Capítulo ${n}: ${chapter.title} | ${book.title}`.
+
+```ts
+// generateMetadata
+title: `Chapter ${n}: ${chapter.title} | ${book.title}`,
+// openGraph
+openGraph: { title: `${chapter.title} — ${book.title}`, ... }
+```
 
 ## Layout
 
 - Mobile horizontal padding: 18–22px.
-- Sticky controls must not cover body text. Use a compact bottom bar with safe-area insets (`env(safe-area-inset-bottom)`).
+- The sticky anchor ad (AdX only, `position: fixed; bottom: 0`) must not cover body text — use `.pb-sticky-ad` on the `<main>` wrapper. AdSense sites use `.pb-safe-reader`.
 - Chapter title: visible at the top but not oversized. `--text-xl` or smaller.
 - Reader background: off-white, paper tone, or deep neutral dark. Never pure `#fff` or `#000` in any theme.
 - Do not use full-bleed background images behind prose.
@@ -330,6 +334,11 @@ function applySize(index) {
 
   A plain `<a href>` without the `onClick` override is NOT sufficient in Next.js App Router — the framework hydration intercepts it for SPA routing.
 
+  **When to use `HardLink` vs. `next/link`:**
+  - **Any navigation that leaves an ad-bearing page** (home with ad slots, book detail, chapter reader): use `HardLink` / `window.location.href` so ad slots reinitialize and each destination counts as a fresh pageview.
+  - **Chapter reader navigation** (Next →, prev/next tap zones, keyboard shortcuts): force a full reload with `window.location.href` so ad slots reinitialize.
+  - **Ad-free pages only** (about, contact, privacy, terms, cookie policy, /dashboard): `next/link` with prefetch is acceptable for internal navigation because there are no ad slots to reinitialize.
+
 ## Gestures and Tap Zones (Mobile)
 
 - Left-edge tap (15% width): previous chapter.
@@ -352,7 +361,7 @@ function applySize(index) {
 - Preserve reading position in `localStorage` for prototypes; durable backend for real products.
 - Reader controls must be reachable with one thumb on mobile.
 - Do not require login before basic reading unless the user explicitly asks for a gated product.
-- Display ads are expected on monetized sites (the default arbitrage model — see `references/adsense-arbitrage.md`): place AdSense/AdX slots below the header, in-content within the reading flow, end-of-chapter, and as a mobile sticky anchor. Keep each slot's size reserved (no CLS), keep a clear gap from the Next/TOC controls, never let an ad be mistakable for navigation, and never let ads push chapter content below the fold. Pop-ups and pre-content interstitials remain forbidden.
+- Display ads are expected on monetized sites (the default arbitrage model — see `references/adsense-arbitrage.md`): place the first AdSense/AdX slot **after** `contentParts[0]` (not before all content — pre-content ads have near-zero viewability on paid traffic), then interleave remaining slots within the reading flow. AdX sites add a `StickyAnchorAd` (q4, `position: fixed; bottom: 0`) for high-viewability anchor impressions. AdSense sites omit the sticky anchor (Google AdSense policy prohibits fixed-position manual units). Keep each slot's size reserved (no CLS), never let an ad be mistakable for navigation, and never push chapter content below the fold. Pop-ups and pre-content interstitials remain forbidden.
 
 ## Accessibility
 

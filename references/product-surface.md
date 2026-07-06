@@ -98,6 +98,89 @@ Add these only when the brief asks or when they clearly add reader value:
 - Search (only if there are more than ~10 books).
 - Offline reading hint for PWA builds.
 
+## Optional SEO Extension: Articles
+
+Add an `articles/` section when the user explicitly asks for SEO articles or a blog-style content hub. This is a traffic-acquisition feature — not part of the core reader product.
+
+### When to add
+- User asks for SEO articles, reading guides, or "story spotlight" pages
+- Existing traffic is already flowing and needs supporting long-form content to capture more search intent
+
+### Structure
+```
+articles/               ← markdown source files
+  {slug}.md             ← one file per article
+
+src/app/articles/
+  page.tsx              ← article list page (/articles)
+  [slug]/page.tsx       ← article detail page (/articles/{slug})
+```
+
+### Frontmatter schema
+```yaml
+---
+title: "Long-form SEO headline"
+slug: kebab-case-slug
+target: genre-keyword-phrase   # e.g. paranormal-vampire-romance
+books: [slug-a, slug-b]        # optional: explicit book slugs for sidebar
+cta_url: https://site.domain   # ignored in template — CTA links to /book/{slug}
+---
+```
+
+`books:` is optional. If absent or empty, the page auto-matches related books by matching keywords from `target` against `books.ts` genres (falling back to the first 3 books in the list).
+
+### content-collections config
+Add to `content-collections.ts` alongside the existing `chapters` collection:
+```ts
+const articles = defineCollection({
+  name: 'articles',
+  directory: 'articles',
+  include: '*.md',
+  schema: z.object({
+    title: z.string(),
+    slug: z.string(),
+    target: z.string().optional(),
+    books: z.array(z.string()).default([]),
+    cta_url: z.string().optional(),
+    content: z.string(),
+  }),
+})
+// add `articles` to defineConfig({ content: [chapters, articles] })
+```
+
+### Article detail page layout (desktop)
+Two-column: `lg:grid-cols-[1fr_300px]`
+- **Main (left)**: H1 title → section 0 → q4 ad → sections 1–2 → q3 ad (if 4+ sections) → remaining sections → q5 ad → CTA box linking to primary book
+- **Sidebar (right)**: q1 ad → "Stories in this article" book list (cover + title + author + "Read free →" linking to `/book/{slug}`) → q2 ad → "View all stories" link to `/`
+
+### Content splitting
+Split article markdown on `\n---\n` separators to insert ads between narrative sections. Strip the leading `# H1` line before splitting (page renders its own `<h1>`).
+
+### CSS
+No `@tailwindcss/typography`. Use a custom `.prose-article` class in `globals.css`:
+```css
+.prose-article { font-size: 16px; line-height: 1.75; color: oklch(var(--bc) / 0.82); }
+.prose-article p { margin-bottom: 1em; }
+.prose-article h2 { font-weight: 700; font-size: 1.2em; margin: 1.6em 0 0.5em; }
+.prose-article strong { font-weight: 600; color: oklch(var(--bc)); }
+.prose-article a { color: oklch(var(--p)); }
+.prose-article hr { border-color: oklch(var(--bc) / 0.12); margin: 1.5em 0; }
+```
+
+### Sitemap
+Add the article list page and all article pages to `sitemap.ts`:
+```ts
+import { allArticles } from 'content-collections'
+// ...
+const articlePages = [
+  { url: `${BASE}/articles/`, priority: 0.6, changeFrequency: 'weekly' },
+  ...allArticles.map(a => ({ url: `${BASE}/articles/${a.slug}/`, priority: 0.7, changeFrequency: 'monthly' })),
+]
+```
+
+### Footer nav
+Add `Articles` link before `About` in all pages that have a footer nav.
+
 ## Out-of-Scope By Default
 
 Do not add any of these unless explicitly requested:

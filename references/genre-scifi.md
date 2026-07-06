@@ -183,6 +183,51 @@ Current compliance cost: {what she is doing she knows is wrong}
 
 ---
 
+### Facebook Ad Hook Copy — 3-Line Feed Format
+
+Facebook/Instagram feeds truncate after ~3 lines ("See more"). The hook must land in exactly 3 lines — one situation, one turn, one gap.
+
+**The 3-line structure:**
+
+| Line | Role | Constraint |
+|------|------|------------|
+| **Line 1 — The situation** | State the speculative premise or the inciting violation in concrete terms. | 8–14 words. Complete sentence. No technobabble. |
+| **Line 2 — The turn** | Her realization of what it means — for her, not for the world. | 5–10 words. Personal scale, not epic scale. |
+| **Line 3 — The gap** | The impossible thing she now has to decide or do — or the physical evidence she can't un-see. | End on a concrete noun or fact, not a concept. |
+
+**Core rules:**
+
+- No character names — always "She" / "Her". The reader self-inserts.
+- No genre labels in the copy ("dystopian", "sci-fi", "cyberpunk").
+- The speculative element must be grounded in a personal cost, not a world-level abstraction.
+- "The system" works only when paired with a specific thing the system did to her specifically.
+- End on a concrete object or physical fact — not "everything changed" but "her name was already in the database."
+
+**Sci-Fi / Dystopian-specific templates:**
+
+| Situation type | Line 1 | Line 2 | Line 3 |
+|---|---|---|---|
+| **Compliance cracked** | She had followed every rule for [timeframe]. | [One day / One morning / On a Tuesday] she found out what the rules were for. | [The physical proof — a file, a list, a door she wasn't supposed to find.] |
+| **Wrong identity discovered** | The [system / algorithm / authority] assigned her [role / number / function] at birth. | The assignment was wrong. | [What she actually was — named, not explained.] |
+| **The surveillance reveal** | She thought no one was watching. | [Timeframe ago / Three years ago / Since the beginning], someone had been. | [The evidence — every record, every location, every word she'd said in private.] |
+| **The cost of knowing** | She found out what [the program / the colony / the cure] actually did. | She was the [number]th person to find out. | [What happened to the others who found out — concrete, specific.] |
+
+**Examples:**
+
+> "She had followed the compliance protocol for seven years.
+> On Tuesday she found out what it was actually measuring.
+> Her name was already at the top of the list."
+
+> "The government assigned her the role of Witness at birth.
+> She'd always assumed that meant observer.
+> It meant something else entirely."
+
+**When to use vs. synopsis:**
+- **Synopsis formula** (above): book detail page, meta description. Richer, multi-sentence structure.
+- **3-line feed hook**: Facebook/Instagram post caption, paid ad copy. Survives the "See more" cut. Do not reuse the synopsis verbatim.
+
+---
+
 ## Short Form Sci-Fi
 
 Sci-fi is one of the genres that works exceptionally well in short form because:

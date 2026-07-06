@@ -6,17 +6,17 @@ Run this checklist before any final delivery. For unattended execution, automate
 
 Run these checks before go-live. These are **not** blockers for development preview.
 
-- [ ] `content/` has ≥ 5 book directories (initial site launch).
-- [ ] Each book has ≥ 10 chapter files in `content/{book-title}/chapters/`.
+- [ ] `content/` has ≥ 3 book directories (initial site launch).
+- [ ] Each book has 20–26 chapter files in `content/{book-title}/chapters/`. Development preview may run with ≥ 10 chapters, but launch QA must use 20–26.
 - [ ] Each chapter is ≥ 1,200 words — no stub content.
 - [ ] `outline/outline.md` exists and contains a real arc outline (not empty or stub-only).
 - [ ] `world/worldbuilding.md` exists and describes the world, genre, and tone.
 - [ ] `tracking/context.md` exists and reflects the last written chapter.
 - [ ] Cover image generated for each book: `public/covers/{book-title}.webp` (flat path, no subfolders).
-- [ ] Site logo generated: `public/logo.png` (apiyi). No SVG fallback — if skipped, flagged for a later pass.
+- [ ] Site logos generated: `public/logo-light.png` and `public/logo-dark.png` (apiyi). No SVG fallback — if skipped, flagged for a later pass.
 - [ ] Favicon generated: `public/favicon-32x32.png` (apiyi). No SVG fallback — if skipped, flagged for a later pass.
 
-If any launch asset is missing, attempt to generate it automatically (Phase 3 / Phase 6). Only if generation fails, log the missing asset and continue; do not stop the pipeline.
+If any launch asset is missing, attempt to generate it automatically (A2 covers / B2 logo and favicon). Only if generation fails, log the missing asset and continue; do not stop the pipeline.
 
 ## Automated Verification (run without user input)
 
@@ -153,7 +153,7 @@ Automated grep over build output:
 
 - [ ] No "lorem ipsum", "Coming soon", "TODO", "[BOOK TITLE]" on rendered pages.
 - [ ] No reader-visible copy mentions AI, Markdown, parser, prompt, or skill.
-- [ ] Logo exists: `public/logo.png` (apiyi). No SVG fallback.
+- [ ] Logos exist: `public/logo-light.png` and `public/logo-dark.png` (apiyi). No SVG fallback.
 - [ ] Favicon exists: `public/favicon-32x32.png` (apiyi). No SVG fallback.
 - [ ] End-of-chapter and end-of-book states render correctly.
 
@@ -191,7 +191,7 @@ Run for every monetized FB-traffic site. See `references/adsense-arbitrage.md`. 
 **Pageview depth & tracking:**
 
 - [ ] Chapter navigation does a full reload (`window.location.href`) so ads reinitialize and a fresh pageview counts.
-- [ ] Meta Pixel (and CAPI if configured) fires `PageView` and the engaged-session event.
+- [ ] Meta Pixel fires `PageView` on load, `ViewContent` on chapter mount, scroll events (`ScrollDepth25`, `ChapterRead50`, `ScrollDepth75`) at the correct scroll ratios, `ChapterCompleted` when `#chapter-content-end` sentinel enters viewport, and `TimeOnPage30` after 30 seconds.
 - [ ] Landing chapter LCP < 2.5s on mid-range Android/4G.
 
 ## Post-Pipeline TODO.md

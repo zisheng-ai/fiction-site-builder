@@ -477,6 +477,53 @@ AI answers are non-deterministic — the same query may return different citatio
 
 ---
 
+## Mainland China Policy
+
+**Rule: geo-block all mainland China IPs.** These sites target EN/ES markets; CN visitors
+cannot load any monetization scripts (AdX/AdSense/Facebook Pixel are all blocked in mainland
+China). A CN visit generates an ad request without a response — Google and Facebook classify
+this pattern as potential Invalid Traffic (IVT). Sustained IVT signals risk account warnings
+or bans. Blocking CN traffic at the edge eliminates the IVT surface entirely.
+
+### Vercel Edge Middleware implementation
+
+```ts
+// middleware.ts — project root
+import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
+
+export function middleware(req: NextRequest) {
+  const country = req.geo?.country ?? req.headers.get('x-vercel-ip-country')
+  if (country === 'CN') {
+    return new NextResponse('Not available in your region.', { status: 451 })
+  }
+  return NextResponse.next()
+}
+
+export const config = {
+  matcher: ['/((?!_next/static|_next/image|favicon).*)'],
+}
+```
+
+`x-vercel-ip-country` is set by Vercel's edge automatically — no extra configuration needed.
+For non-Vercel deployments, use Cloudflare's `CF-IPCountry` header instead.
+
+### Organization schema: exclude CN explicitly
+
+Set `areaServed` on the site's Organization schema to explicit target regions and exclude CN:
+
+```json
+{
+  "@type": "Organization",
+  "areaServed": ["US", "GB", "AU", "CA", "IE", "NZ"]
+}
+```
+
+This gives Google Knowledge Graph and AI search engines an accurate geographic signal and
+avoids CN traffic being treated as an intended audience.
+
+---
+
 ## Quick Reference — Priority Actions by Site Type
 
 ### All sites (implement at launch)

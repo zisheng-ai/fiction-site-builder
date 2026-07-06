@@ -1,40 +1,52 @@
 ---
 name: fiction-site-builder
-description: write fiction and build the reading site end-to-end. use when the user asks to write a novel or short story (long-form novel, short-form story, write chapters, continue writing, story setup, import a manuscript, review prose, remove AI flavor), or asks for a mobile-first fiction reading site, web novel H5, work list/detail/catalog/reader pages, markdown chapters, multilingual reading sites in english/spanish/japanese/korean, or a simple fiction site for social traffic campaigns. do not use for creator dashboards, ranking systems, bookshelf platforms, or reader community features unless the user explicitly asks for those.
+description: write fiction and build the reading site end-to-end. use when the user asks to write a novel or short story (long-form novel, short-form story, write chapters, continue writing, story setup, import a manuscript, review prose, remove AI flavor), or asks for a mobile-first fiction reading site, web novel H5, work list/detail/catalog/reader pages, markdown chapters, multilingual reading sites in english/spanish/korean, or a simple fiction site for social traffic campaigns. do not use for creator dashboards, ranking systems, bookshelf platforms, or reader community features unless the user explicitly asks for those.
 ---
 
-# Fiction H5 Builder
+# Fiction Arbitrage Builder
 
-## Three Core Goals
+## The Model
 
-**Goal 0 — Produce quality fiction content.**
-Write chapters that readers want to keep reading. Every sentence serves emotion, plot, or character. Remove AI flavor before publishing. Quality prose is the prerequisite for everything else.
+```
+Profit = (viewable session RPM × pageviews/session / 1000) − Facebook CPC
+          ↑ Lever 3 (L3)        ↑ Lever 2 (L2)               ↑ Lever 1 (L1)
+```
 
-**Goal 1 — Deliver a real reading product.**
-The site must load fast, read comfortably on mobile, and get out of the reader's way. Discovery pages exist to bring readers to chapters. The chapter page is where users stay or leave.
+This skill builds a **Facebook paid-traffic → AdSense/AdX display-ad arbitrage** business. Buy a click on Meta for $X, monetize a multi-pageview reading session for $X + margin. Every decision — what to write, which genre, what image to generate, how to lay out ads — is a revenue decision traceable back to one of the three levers above.
 
-**Goal 2 — Reading comfort above visual complexity.**
-Typography, spacing, and contrast are non-negotiable. Interactive reader controls (theme switcher, font-size stepper) are optional enhancements — not requirements. A well-set fixed type scale beats a broken control panel every time.
+The skill uses **fiction** as the delivery vehicle. Why fiction specifically:
+- Romance and paranormal readers have some of the highest display CPMs on the internet
+- The chapter model is a natural pageview chain — each chapter = one ad-loaded page
+- Emotionally-driven cliffhanger content has higher average session depth than news or listicles
+- Trust pages (About, Privacy, Terms) are a standard fiction site pattern — no user friction
+- Organic SEO compounds over time, scaling the business beyond paid traffic dependency
 
-## Business Model — Paid-Traffic Arbitrage
+## Three Revenue Levers
 
-Every site built by this skill is, by default, a **Facebook-traffic + AdSense/AdX arbitrage** property: buy a click on Meta ads, monetize a multi-pageview reading session with display ads, profit on the spread. This reframes two things:
+| Lever | Controls | Key references |
+|---|---|---|
+| **L1 — FB CPC** | Cover scroll-stop CTR, tagline hook quality, ad account survival | `facebook-ads.md` · `cover-allure-elements.md` · `story-cover.md` · `cover-styles.md` · `cover-genre-playbook.md` · `meta-ads-landing-requirements.md` |
+| **L2 — pageviews/session** | Chapter count, cliffhanger endings, ch1 cold-traffic hook (200-word first-screen bait) | `story-long-write.md` · `reader-ux.md` · `story-review.md` · `story-deslop.md` |
+| **L3 — viewable RPM** | Ad layout, placement depth, LCP < 2.5s, full-page reload on chapter nav, ad slot sizing | `adsense-arbitrage.md` · `performance.md` |
 
-- **Profit = (viewable session RPM × pageviews per session) − Facebook CPC.** The build directly controls pageview depth (chapter model, cliffhangers, pagination, prefetch) and viewable RPM (ad layout, density, viewability, lazy-load). Treat these as revenue engineering — see `references/adsense-arbitrage.md`.
-- **Account survival is a top constraint.** Both Facebook and AdSense scan the landing page. Suggestive covers are fine and encouraged for CTR; only outright explicit/pornographic imagery, cloaking, missing trust pages, or runaway ad density get the Facebook ad account banned or AdSense restricted/disabled. See `references/adsense-arbitrage.md` §1 and `references/cover-allure-elements.md` §0.
+Ad density cap: ~3–4 units per 1,000 words, ad area ≤ 30% of content area. See `adsense-arbitrage.md` for the full arbitrage model.
 
-Load `references/adsense-arbitrage.md` whenever building, laying out ads, directing covers, or wiring Facebook tracking.
+---
 
 ## Operating Principles
 
-- The chapter page is the product. Every other page is a path to it.
-- Mobile first — not mobile only. Design and code for mobile first, then enhance for tablet and desktop with `min-width` breakpoints. Social traffic is 90% mobile so 390px must work perfectly; desktop must still get a purposeful layout.
-- One deliberate visual choice per build. Everything else supports reading.
+- **Every chapter must end on a cliffhanger.** This is not a style preference — it is the mechanism that makes the next pageview happen. A chapter that resolves cleanly ends the session. See `story-long-write.md`.
+- **The cover is an ad creative first, a book cover second.** Design and generate to stop the scroll in 0.3 seconds. See `cover-allure-elements.md` and `facebook-ads.md`.
+- **Landing page = Chapter 1, not the homepage.** Facebook ads link directly to ch1. The ch1 hook is the first pageview; if it doesn't grab in 200 words, the session ends at 1.
+- **The chapter page is the product.** Every other page is a path to it.
+- **Mobile first — not mobile only.** Social traffic is 90% mobile. 390px must work perfectly; desktop must still get a purposeful layout.
 - Prefer the simplest tech choice that meets the brief. Complexity needs a reason.
 - Fixed good typography beats user-adjustable bad typography.
 - Content language determines layout, font, and line-flow decisions.
 - Realistic content only. Never ship placeholder text to readers.
 - Load only the references needed for the current task phase.
+
+---
 
 ## Content-to-Site Promise
 
@@ -46,14 +58,37 @@ This skill delivers a Next.js-blog-style experience:
 
 All writing phase outputs MUST be saved to the correct path under `content/` from the project root. `@content-collections` reads `content/` at build time and generates typed collections automatically.
 
+---
+
 ## Build Pipeline
 
-All work starts with Phase 0. After that, Track A (content) and Track B (site) run in parallel.
+All work starts with Phase 0. After that, Track A (content, serves L1 + L2) and Track B (site, serves L2 + L3) run in parallel.
 
-### Phase 0 — Setup
+### Phase 0 — Infra Setup
 
 Reference: `references/story-setup.md`
 Output: directory structure, naming conventions, GitHub private repo, submodule registration. Skip if the project directory already exists.
+
+**`.npmrc` — MANDATORY first file (create before `pnpm install`):**
+
+The dev machine uses Alibaba's internal npm registry. Without `.npmrc`, `pnpm install` bakes internal tarball URLs into `pnpm-lock.yaml` — Vercel CI cannot reach them and the build fails with `ERR_SOCKET_TIMEOUT`.
+
+```bash
+echo "registry=https://registry.npmjs.org" > .npmrc
+```
+
+If the site already exists and `pnpm-lock.yaml` contains `registry.anpm.alibaba-inc.com` URLs, fix it:
+
+```bash
+echo "registry=https://registry.npmjs.org" > .npmrc
+rm pnpm-lock.yaml
+pnpm install --registry https://registry.npmjs.org
+# Verify: grep "registry.anpm" pnpm-lock.yaml | wc -l  # must be 0
+```
+
+If internal URLs persist after reinstall: `sed -i '' 's|https://registry.anpm.alibaba-inc.com/|https://registry.npmjs.org/|g' pnpm-lock.yaml`
+
+Commit both `.npmrc` and the updated `pnpm-lock.yaml`.
 
 **GitHub + Submodule setup (run once per new site):**
 
@@ -76,17 +111,19 @@ git -C /Users/zisheng/github/fictions push
 
 Replace `{site-name}` with the actual project directory name (kebab-case). Skip this block if the site already has a remote configured.
 
-### Track A — Content
+---
+
+### Track A — Content (L1 + L2)
 
 Starts after Phase 0. Runs in parallel with Track B.
 
-| Phase | Name | Reference | Output |
-| --- | --- | --- | --- |
-| A0 | Niche Research | `fiction-niche-researcher.md` | `outputs/{site-slug}/{book-slug}/niche-research.json` |
-| A1 | Write | see modes below | chapters, outline, world, tracking |
-| A2 | Cover | `story-cover.md` + `cover-styles.md` | `public/covers/{book-title}.webp` + `public/covers/{book-title}.json` per book (flat, no subfolders) |
-| A2.5 | Illustrations | `story-illustrations.md` + `cover-allure-elements.md` | `public/illustrations/{book-slug}/ch-{NNN}.webp` (5–7 per book) |
-| A3 | Quality Pass | `story-review.md` + `story-deslop.md` | review report, AI flavor removed |
+| Phase | Name | Lever | Reference | Output |
+| --- | --- | --- | --- | --- |
+| A0 | Demand Validation | L1 + L2 | `fiction-niche-researcher.md` | `outputs/{site-slug}/{book-slug}/niche-research.json` |
+| A1 | Session-Depth Writing | L2 | see modes below + `facebook-ads.md` (taglines & hook copy) | chapters, outline, world, tracking |
+| A2 | Ad Creative | L1 | `story-cover.md` + `cover-styles.md` + `facebook-ads.md` | `public/covers/{book-title}.webp` + `public/covers/{book-title}.json` |
+| A2.5 | Scroll-Depth Anchors | L3 | `story-illustrations.md` + `cover-allure-elements.md` | `public/illustrations/{book-slug}/ch-{NNN}.webp` (exactly 5 per book) |
+| A3 | Bounce-Rate Reduction | L2 | `story-review.md` + `story-deslop.md` | AI flavor removed, prose quality raised |
 
 A0 runs once per book (not once per site). Required for each new book unless the user has explicitly stated the genre, tropes, and premise. A0's `differentiation_angle` and `competitive_brief` feed directly into A1's story brief.
 
@@ -100,13 +137,38 @@ A0 runs once per book (not once per site). Required for each new book unless the
 - **Runs by default on a full pipeline run** — once a book has its cover (A2) and ≥ 10 chapters, generate its illustrations automatically. Do **not** wait for the user to ask, and do **not** prompt. Skip only for short-form stories, or if the user has explicitly opted out of illustrations.
 - As a standalone step, runs when the user requests illustrations ("Add illustrations" / "Generate illustrations").
 - Never on short-form stories (no chapter files to illustrate).
-- Illustrations use T3 or T4, randomly assigned per illustration. Never T1, T2, or T5.
-- 5–7 illustrations per book, placed at the highest-stakes peaks (see `story-illustrations.md` for slot distribution). A book may fall below 5 only when not enough scenes earn one — never skip the phase itself.
+- Romance illustrations use T3 or T4, randomly assigned per illustration. Never T1, T2, or T5 for romance. Non-romance books follow the genre routing in `story-illustrations.md` instead of the allure-tier system.
+- Exactly 5 illustrations per book, placed at the highest-stakes peaks (see `story-illustrations.md` for slot distribution). Never exceed 5 — cost constraint. A book may fall below 5 only when not enough scenes earn one — never skip the phase itself.
 - Does not block the Pre-Launch Gate — but a full pipeline run is expected to produce illustrations for its long-form books.
 
 A3 runs automatically after A1 completes for every long-form book. Do not skip or prompt — deslop is a required quality pass, not optional. Skip only for short-form stories or on explicit user opt-out.
 
-### Track B — Site
+| A4 | Traffic Articles | L1 | `seo.md` § 15 | `articles/{slug}.md` + `public/covers/articles/{slug}.webp` |
+
+A4 runs automatically after A3 for every new long-form book. Do not skip or prompt — every new book needs a traffic article. Skip only for short-form stories or on explicit user opt-out.
+
+**A4 routing — run on every new book:**
+
+1. Identify the new book's primary genre keyword (from A0 `niche-research.json` or the book's `target` field in frontmatter).
+2. Check existing articles in `articles/`: is there already a SEO list article targeting this genre keyword?
+   - **Yes → update**: rewrite the article's opening section and move the new book to `books[0]`. Keep existing books as `books[1–n]`. Regenerate the article cover only if the visual concept has changed substantially. Commit the updated file.
+   - **No → create**: write a new SEO list article with the new book as `books[0]` and 2–3 existing same-genre books as `books[1–n]`. Generate a new article cover.
+3. Additionally, if the book's premise or hook is strong enough for social traffic, also write a short-form traffic article (引流短篇) targeting the same book. Use judgment — not every book needs one.
+
+See `seo.md` § 15.0 for the full article-book relationship model.
+
+**A4 modes — pick one per article:**
+
+- **SEO list article (default):** `1200–1800` words, keyword-targeted title, prose-style book list, no `cta_url` field, ends with plain-text CTA. New book is always `books[0]`. See `seo.md` § 15.1.
+- **Short-form traffic article (引流短篇):** `300–500` words, hook-driven title in 2-sentence format, 2–3 books each getting one punchy premise-pitch section separated by `---`, inline CTA links to specific `/book/{slug}` (not external homepage). See `seo.md` § 15.2.
+
+After writing, generate article cover: landscape `1280×720` GPT Image 2, stored at `public/covers/articles/{slug}.webp`. Add `cover: /covers/articles/{slug}.webp` to frontmatter. Run deslop Gates A/B/C/G + Article Quick Checks on both article types before committing.
+
+A4 also runs as a standalone step when the user requests articles directly ("write articles", "引流文章", "SEO article", "short-form article").
+
+---
+
+### Track B — Site (L2 + L3)
 
 Starts after Phase 0. Runs in parallel with Track A.
 
@@ -120,14 +182,14 @@ Starts after Phase 0. Runs in parallel with Track A.
 
 Read at minimum: `next.config.ts`, `vercel.json`, `src/app/layout.tsx` (non-ad parts). Copy config structure and patterns verbatim — this avoids stale config and Next.js export drift. **Dependency versions should always be the latest** — do not copy pinned versions from `package.json`; run `pnpm add` with no version pin to get the newest release. Ad components (`AdSlot` / `AdsenseSlot`) are defined in `references/adsense-arbitrage.md` and should not be copied from the reference site.
 
-| Phase | Name | Reference | Output |
-| --- | --- | --- | --- |
-| B1 | Stack | `tech-stack.md` | chosen stack with one-line rationale |
-| B2 | Design | `design-system.md` | tone, palette, type system, `public/logo.png`, `public/favicon-32x32.png` |
-| B3 | Data | `data-contract.md` | content-collections schema |
-| B4 | Build | `references/ui-components.md` + `reader-ux.md` + `adsense-arbitrage.md` + `seo.md` + `meta-ads-landing-requirements.md` | working site with all required pages, trust pages, sitemap, robots.txt, `llms.txt`, and metadata; ad slots and tracking only if configured |
-| B5 | Performance | `performance.md` + `adsense-arbitrage.md` | Core Web Vitals targets met, images optimized, ad CLS/lazy-load tuned |
-| B6 | QA | `qa-checklist.md` + `references/lighthouse-qa.md` | automated QA pass; Lighthouse median scores meet thresholds; ad-layout + policy-compliance checks; screenshots on failure only |
+| Phase | Name | Lever | Reference | Output |
+| --- | --- | --- | --- | --- |
+| B1 | Stack | — | `tech-stack.md` | chosen stack with one-line rationale |
+| B2 | Design Identity | — | `design-system.md` | tone, palette, type system, `public/logo-light.png`, `public/logo-dark.png`, `public/favicon-32x32.png` |
+| B3 | Data Layer | — | `data-contract.md` | content-collections schema |
+| B4 | Monetization Build | L1 compliance + L2 + L3 | `ui-components.md` + `reader-ux.md` + `adsense-arbitrage.md` + `seo.md` + `meta-ads-landing-requirements.md` + `social-sharing.md` | working site with ad slots, FB Pixel, trust pages, sitemap, ShareBar |
+| B5 | RPM Optimization | L3 | `performance.md` + `adsense-arbitrage.md` | Core Web Vitals targets met, ad CLS/lazy-load tuned |
+| B6 | Arbitrage Readiness QA | all | `qa-checklist.md` + `lighthouse-qa.md` | Lighthouse scores meet thresholds, monetization gates pass |
 
 B1 → B2 → B3 → B4 are sequential. B5 and B6 run in parallel against the same build — run `pnpm run build` once, then check both.
 
@@ -159,10 +221,12 @@ Do not add placeholder ad markup or commented-out ad code — leave the pages cl
 
 During B4, check the parent project `fictions/CLAUDE.md` for a `facebook_pixel.id` configuration. This step is **optional** — if the parent project does not specify a Pixel ID, skip the code change and only record it in `TODO.md`.
 
-- **If configured**: add the Facebook Pixel base code to `src/app/layout.tsx` `<head>` using an inline `<script dangerouslySetInnerHTML>` tag. Use the exact Pixel ID from `fictions/CLAUDE.md`. Include both the script block and the `<noscript>` fallback `<img>`.
-- **If not configured**: do not add any Pixel code. Instead, add a pending item to the site's `TODO.md` under `分析与广告`:
+- **If configured**: add the Facebook Pixel base code to `src/app/layout.tsx` `<head>` using `next/script` with `strategy="afterInteractive"`. Use the exact Pixel ID from `fictions/CLAUDE.md`. Also wire the `ChapterPixel` component (see `references/adsense-arbitrage.md §4.3`) into `src/app/book/[slug]/chapter/[n]/page.tsx` — this fires `ViewContent` on mount, `ScrollDepth25` / `ChapterRead50` / `ScrollDepth75` at scroll milestones, `ChapterCompleted` via IntersectionObserver on `#chapter-content-end` sentinel, and `TimeOnPage30` after 30 seconds. These are the L1 optimization signals for Lookalike Audience building.
+  - If the site uses `next/link` or any App Router client navigation, also add a lightweight route tracker that fires `fbq('track', 'PageView')` on pathname changes after the initial render. A single bootstrap `PageView` in layout is not enough for SPA-style navigation.
+- **If not configured**: do not add any Pixel code. Record in the site's `TODO.md`:
   ```
   - [ ] 配置 Facebook Pixel（项目 CLAUDE.md 未指定 Pixel ID）
+  - [ ] 接入 ChapterPixel 组件（ViewContent + ChapterRead50 + ChapterCompleted + TimeOnPage30 事件）
   ```
 
 This Pixel setup is **project-level** and must not be hardcoded into the skill template.
@@ -170,6 +234,8 @@ This Pixel setup is **project-level** and must not be hardcoded into the skill t
 Optional phases (load only when the brief requires):
 - `references/internationalization.md` — when target language is not the build default
 - `references/product-surface.md` — when IA or URL structure needs formal documentation
+
+---
 
 ### Parallel-safe pairs
 
@@ -196,26 +262,33 @@ After B6 passes, generate two files before closing the session:
 
 **`TODO.md`** — outstanding work for this site, written in **Chinese (中文)**:
 - 部署状态（未部署 / 已上线 + 域名）
-- 每本书的章节缺口：列出少于 18 章的书及缺多少章
+- 每本书的章节缺口：列出少于目标长度（20–26 章）的书及缺多少章
 - 缺少插图的书
 - `books.ts` 里的 `chapterCount` 与实际文件数不一致的地方
 - 广告和分析工具中尚未完成的项
 
 Both files must be written in **Chinese**. If the site is a new build, start with the expected state (all chapters to write, not yet deployed). If the site is updated, reflect the current delta.
 
-### Pre-Launch Gate
+### Per-Site `AGENTS.md`
+
+If a site directory contains an `AGENTS.md` file, read it before starting site work. It may contain project-specific conventions that override this skill's defaults (e.g., a non-standard Next.js version or local build rules). Treat its instructions as site-specific addenda to `SKILL.md`.
+
+### Pre-Launch Gate (Arbitrage Readiness)
 
 All of the following must be true before go-live (after B6 passes):
 
 | Check | Required location |
 | --- | --- |
-| ≥ 5 book directories | `content/{book-title}/` |
-| Each book has 10–20 chapters, and **no two books share the same count** | `content/{book-title}/chapters/` |
+| ≥ 3 book directories | `content/{book-title}/` |
+| Each book has **20–26 chapters** (randomized per book; optimized for L2 session depth); chapter counts do NOT need to be unique across books within the same site — two books may share the same count | `content/{book-title}/chapters/` |
 | Each chapter meets its type target (see Pacing Guidelines in `story-long-write.md`); word counts must vary naturally across chapters — never identical | A1 output |
 | `outline/outline.md` exists and non-empty | A1 output |
 | `world/worldbuilding.md` exists and non-empty | A1 output |
 | `tracking/context.md` exists | A1 output |
-| Cover image for every book | `public/covers/{book-title}.webp` |
+| Cover image for every book (L1 gate) | `public/covers/{book-title}.webp` |
+| Ad slots wired and sized (L3 gate) | `src/app/book/[slug]/chapter/[n]/page.tsx` |
+| FB Pixel base code + ChapterPixel (L1 gate) | `src/app/layout.tsx` + chapter page |
+| Trust pages present and footer-linked (account survival) | `/privacy`, `/terms`, `/about`, `/contact` |
 
 If any book is missing a cover at launch time, run A2 immediately — do not prompt the user.
 
@@ -225,18 +298,20 @@ If a full pipeline run reaches launch with no illustrations generated for its lo
 
 | User intent | Phases to run |
 | --- | --- |
-| "Write a novel" / "Continue writing" / `/story-long-write` | 0 (skip if exists), A1 long-form, **A3 (automatic)** |
-| "Write a short story" / `/story-short-write` | 0 (skip if exists), A1 short-form (A3 skipped for short-form) |
-| "Add one book to existing site" | A1 long-form (single book), A2 (single book) |
+| "Write a novel" / "Continue writing" / `/story-long-write` | 0 (skip if exists), A1 long-form, **A3 (automatic)**, **A4 (automatic)** |
+| "Write a short story" / `/story-short-write` | 0 (skip if exists), A1 short-form (A3 skipped, A4 skipped for short-form) |
+| "Add one book to existing site" | A1 long-form (single book), A2 (single book), **A4 (automatic — update or create article)** |
 | "Generate covers" / `/story-cover` | A2 only |
 | "Add illustrations" / "Generate illustrations" | A2.5 only |
 | "Import manuscript" / `/story-import` | A1 import only |
 | "Review prose" / `/story-review` | A3 only |
 | "Build the site" / full pipeline | 0 → Track A + Track B in parallel; **A2.5 runs automatically after A2 for every long-form book** (skip only on explicit opt-out) |
 
-**New-site book count:** When building a full pipeline for a brand-new site with no existing content, default to **5 books**. Run A0 for all 5 in parallel (one Agent call per book), then A1 for all 5 in parallel. Genre and topic are selected independently per book by random sampling from the high-demand genre pool — repetition across books is allowed and expected. Do not attempt to maximize genre variety across the site; just pick whatever has strong demand for each book independently.
+**Book count default — 3 for initial site generation.** When building a new site from scratch, generate exactly **3 books** unless the user explicitly specifies a different count. For new sites: run A0 for all 3 in parallel, then A1 for all 3 in parallel. For existing sites, honor the user's requested count; if unspecified, add one book. Never exceed 5 books in a single session unless the user explicitly requests a larger batch. Genre and topic are selected independently per book by random sampling from the high-demand genre pool — repetition across books is allowed and expected. Do not attempt to maximize genre variety; just pick whatever has strong demand for each book independently.
 
 For review and redesign tasks, start at the relevant phase and load only the references covering the failing areas.
+
+---
 
 ## Environment Prerequisites
 
@@ -258,13 +333,55 @@ Read project instructions before site work:
 
 In Codex, follow the active sandbox and approval rules from `AGENTS.md`. If it says build commands or HTTP traffic must run outside the sandbox, request approval before running `pnpm build`, `next build`, `curl`, or equivalent verification commands.
 
-**Cover image generation (A2):** Calls `https://api.apiyi.com/v1/images/generations` via curl through the cascade `gpt-image-2-all` → `doubao-seedream-5-0-260128` → `nano-banana-pro`. Requires `APIYI_API_KEY` in the environment. **No SVG fallback** — if the key is not set, cover generation is skipped (warning + continue), and the slot is filled in a later pass. All covers in a batch are generated **in parallel**.
+**Cover image generation (A2):** Calls `https://api.apiyi.com/v1/images/generations` via curl. **Model cascade depends on allure tier** (see `story-cover.md` §Model capability ranking): T1/T2 → `gpt-image-2-all` (primary, hyperrealistic editorial photo quality) → `gpt-image-2-all` (retry) → `doubao-seedream-5-0-260128` → `nano-banana-pro`. T3/T4 → `doubao-seedream-5-0-260128` (primary, GPT hard-rejects fabric-failure/torn/soaked language) → `doubao-seedream-5-0-260128` (retry) → `nano-banana-pro`. Requires `APIYI_API_KEY` in the environment. **No SVG fallback** — if the key is not set, cover generation is skipped (warning + continue), and the slot is filled in a later pass. All covers in a batch are generated **in parallel**.
 
 ```bash
 [ -n "$APIYI_API_KEY" ] && echo "apiyi path" || echo "skip (no SVG fallback)"
 ```
 
-**Logo and favicon (B2):** Same `APIYI_API_KEY` check as A2. If set, generates PNG assets via `gpt-image-2-all` → `nano-banana-pro` fallback (logo + favicon **in parallel**); if not set, yellow warning + **skip** (no SVG fallback).
+**Logo and favicon (B2):** Same `APIYI_API_KEY` check as A2. If set, generates PNG assets via `doubao-seedream-5-0-260128` → `gpt-image-2-all` fallback; if not set, yellow warning + **skip** (no SVG fallback). Do **not** use `nano-banana-pro` for logo/favicon.
+
+Generate **three assets in parallel**:
+- `public/logo-light.png` — square icon (no text, no wordmark) for light backgrounds, generate at 1920×1920 then resize to 512×512
+- `public/logo-dark.png` — square icon (no text, no wordmark) for dark backgrounds, generate at 1920×1920 then resize to 512×512
+- `public/favicon-32x32.png` — same icon style, works on any background, generate at 1024×1024 then resize to 256×256
+
+**After generation, compress all three with pngquant** (quality 80–95, speed 1):
+```bash
+sips -z 512 512 public/logo-light.png --out public/logo-light.png
+sips -z 512 512 public/logo-dark.png  --out public/logo-dark.png
+sips -z 256 256 public/favicon-32x32.png --out public/favicon-32x32.png
+pngquant --force --quality=80-95 --speed 1 --output public/logo-light.png public/logo-light.png
+pngquant --force --quality=80-95 --speed 1 --output public/logo-dark.png  public/logo-dark.png
+pngquant --force --quality=80-95 --speed 1 --output public/favicon-32x32.png public/favicon-32x32.png
+```
+
+Target sizes after compression: logo ≤ 100 KB, favicon ≤ 25 KB. Sites use static export (`output: 'export'`) so `next/image` optimization is unavailable — pre-compression is mandatory.
+
+After generating the assets, add the following CSS to `src/app/globals.css` (theme switching, no JS required):
+```css
+/* Logo theme switching */
+.logo-dark { display: none; }
+[data-theme$="-dark"] .logo-light { display: none; }
+[data-theme$="-dark"] .logo-dark { display: block; }
+```
+
+Create `src/components/SiteLogo.tsx`:
+```tsx
+export function SiteLogo({ className, alt }: { className?: string; alt?: string }) {
+  const a = alt ?? 'SITE_NAME'
+  return (
+    <>
+      <img src="/logo-light.png" alt={a} className={`logo-light${className ? ' ' + className : ''}`} />
+      <img src="/logo-dark.png" alt={a} className={`logo-dark${className ? ' ' + className : ''}`} />
+    </>
+  )
+}
+```
+
+Replace all `<img src="/logo.png" ...>` (and `<Image src="/logo.png" ...>`) in rendered UI with `<SiteLogo className="..." />`. Use `logo-light.png` as the homepage OG fallback image unless the project explicitly creates a separate social image. Remove any `filter: brightness(0) invert(1)` or similar filter hacks that were compensating for a single-logo approach.
+
+---
 
 ## Phase Execution Protocol
 
@@ -273,15 +390,10 @@ Execute phases one at a time. Track progress with the best mechanism available i
 **If `TaskCreate` / `TaskUpdate` are available** (Claude Code): use them. Create tasks only for the phases that will actually run in this session. Do not create tasks for phases outside the current scope. Flip a task to `in_progress` when entering that phase and `completed` when done. Use `TaskGet` on re-entry to restore state.
 
 **Phase naming convention:**
-- Full pipeline: use phase IDs in task titles, e.g. "A2: Cover", "B4: Build".
+- Full pipeline: use phase IDs in task titles, e.g. "A2: Ad Creative", "B4: Monetization Build".
 - Single-function triggers (`/story-cover`, `/story-import`, `/story-review`, etc.): use descriptive titles — "Cover Generation", "Manuscript Import", "Prose Review".
 
-**If those tools are not available** (other agents / API): print a compact text progress block only when a phase runs. For `/story-cover`, output something like:
-
-```
-[ Fiction H5 Builder — Cover Generation ]
-▶ Cover
-```
+**If those tools are not available** (other agents / API): print a compact text progress block only when a phase runs.
 
 **Orchestration — use `Agent` for all delegation:**
 
@@ -299,7 +411,7 @@ Use the `Agent` tool for every delegation task, whether single or parallel. To r
 
 **Model selection:**
 
-**If the `Agent` tool is available** (Claude Code — guaranteed by the prerequisite check above): delegate all chapter and prose generation with `model: 'haiku'`. Never write fiction content directly in the main context. Never prompt the user to switch models manually.
+**If the `Agent` tool is available** (Claude Code — guaranteed by the prerequisite check above): delegate all chapter writing. Never write fiction content directly in the main context. Never prompt the user to switch models manually.
 
 **If the `Agent` tool is not available**: write chapters sequentially in the main context. Skip parallel multi-book and multi-chapter spawning; write one chapter at a time following the Single Chapter Writing Process in `story-long-write.md`. Note: this is a degraded mode — quality and speed are both reduced.
 
@@ -314,11 +426,76 @@ Track B phases carry no model override and inherit the session model regardless.
 - If a phase is skipped, mark it done with a note explaining why, then continue.
 - On re-entry, restore or reprint current state before proceeding.
 
-## Quality Gates
+---
+
+## Reference Loading
+
+Load references only when entering that phase. Do not preload all references at the start.
+
+### L1 — Traffic Cost references
+
+- **`facebook-ads.md`** — load during A1 for all tagline and hook copy writing (punchy 8-word opener, setup→reversal→unresolved tension, 25–40 words, final line always unresolved); during A2 for cover direction; during B4 for Pixel optimization event strategy. Do not load for pure chapter prose writing.
+- **`cover-allure-elements.md`** — allure vocabulary and tier system (T1–T5): fabric ranking, face/hair/body tables, poses, exposure tiers. Load during A2 and A2.5.
+- **`cover-genre-playbook.md`** — 15 genre-specific prompt templates (Dark Romance, Paranormal, Vampire, Fae, Mafia, Contemporary, Sports, Accidental Marriage, Revenge, Romantasy, Regression, Villainess, Monster, Dark Academia, Urban Paranormal). Load during A2 only — not needed for A2.5.
+- **`story-cover.md`** — cover generation pipeline via apiyi cascade (T1/T2 → gpt-image-2-all; T3/T4 → doubao-seedream); all covers in parallel; no SVG fallback. Load during A2.
+- **`cover-styles.md`** — genre-specific cover composition templates and visual style references. Load during A2.
+- **`meta-ads-landing-requirements.md`** — Meta/Facebook ad traffic landing page policy, account-survival rules, cloaking prohibition, trust pages (About/Privacy/Terms/Contact requirements), Pixel+CAPI architecture, B4 compliance checklist. Load during B4.
+
+### L2 — Session Depth references
+
+- **`story-long-write.md`** — long-form chapter writing pipeline, context handoff, pacing guidelines, mandatory cliffhanger techniques, chapter 1 cold-traffic hook structure (200-word beat checkpoints, line-1 bans, backstory cap). Load at A1 long-form.
+- **`story-short-write.md`** — short-form story pipeline, emotion-first structure. Load at A1 short-form.
+- **`story-import.md`** — import and split an existing manuscript into project structure. Load at A1 import.
+- **`story-review.md`** — multi-perspective structural and prose review. Load at A3.
+- **`story-deslop.md`** — unified deslop framework covering fiction chapters (full 7 Gates + Three-Pass) and non-fiction copy (articles, taglines, synopses, meta descriptions — run Gates A/B/C/G + Article Quick Checks). Incorporates stop-slop (hardikpandya/stop-slop) rules merged into the Gate structure. Load at A3 for fiction; load when writing or reviewing any `articles/`, taglines, synopses, or site copy. AI prose increases bounce rate; deslopping is a revenue pass, not a style pass.
+- **`reader-ux.md`** — chapter page UX requirements: next-chapter CTA height/color, TOC, no Previous button, dark mode, resume-last-chapter via localStorage, ShareBar placement. Load during B4. These are session-depth mechanics, not aesthetic preferences.
+
+### L3 — Monetization Rate references
+
+- **`adsense-arbitrage.md`** — **primary reference**: covers the full profit model, account-survival compliance (§1), session-depth mechanics (§2), ad layout and placement map (§3), Facebook tracking and Pixel events (§4), trust pages (§5), KPIs (§6), build checklist (§7), implementation patterns including full AdSlot / AdsenseSlot / StickyNav / ChapterPixel TSX (§8). Load whenever building, laying out ads, directing covers, or wiring Facebook tracking.
+- **`performance.md`** — Core Web Vitals, loading strategy, image optimization. LCP < 2.5s is an L3 requirement — slow load kills active-view time and CPM. Load during B5.
+
+### Cross-cutting references
+
+- **`fiction-niche-researcher.md`** — A0 demand validation and competitive analysis; outputs `niche-research.json` that feeds A1 story brief and A2 cover direction.
+- **`seo.md`** — load during A0 for keyword demand validation; during A1 when writing book synopses (meta descriptions). Organic traffic scales the business beyond paid dependency.
+- **`geo.md`** — load during A0 and A1: book synopses as self-contained relational sentences (GEO evidence); author pen-name entity strategy. Load during B4: `llms.txt` generation, structured data, AI crawler robots.
+- **`social-sharing.md`** — ShareBar component (standard feature on book detail and chapter pages). Load during B4. Social sharing is organic L2 amplification — readers sharing chapters bring new sessions at zero CPC.
+- **`tech-stack.md`** — choose the implementation stack before writing any code (B1).
+- **`design-system.md`** — design identity, typography, palette, logo/favicon generation (B2).
+- **`data-contract.md`** — data models and `@content-collections` setup (B3).
+- **`ui-components.md`** — visual and component quality floor during build (B4).
+- **`qa-checklist.md`** — final automated QA and screenshot verification (B6; failures only).
+- **`lighthouse-qa.md`** — Lighthouse performance/accessibility/SEO thresholds and runbook (B6).
+- **`vercel-operations.md`** — Vercel project setup, custom domains, cache headers, deploy hooks, `output: export` pitfalls. Load when deploying or configuring hosting.
+- **`product-surface.md`** — IA and URL structure (optional, load when needed).
+- **`internationalization.md`** — language and font decisions for non-default target language (optional, load when needed).
+
+---
+
+## Quality Gates (Arbitrage Readiness)
 
 Do not deliver a build if any of these are true.
 
-**Reading product:**
+**Monetization & account survival (highest priority — failing these ends the business):**
+- Any cover, hero image, or imagery is outright explicit / pornographic — exposed genitals or nipples, sex acts, graphic nudity. Suggestive allure is fine; only hardcore content gets the ad account banned and AdSense disabled.
+- Privacy Policy, Terms, About, or Contact page is missing or not footer-linked (AdSense approval + FB quality requirement).
+- No cookie-consent / Google-certified CMP wired.
+- An ad slot has no reserved size (causes CLS), or the above-the-fold ad is lazy-loaded (kills L3 viewability score).
+- Ad density exceeds ~3–4 units / 1,000 words, or ad area exceeds ~30% of content area on any screen.
+- An ad is visually/spatially mistakable for the Next/TOC control, or any layout encourages ad clicks.
+- Chapter navigation is SPA (does not full-reload), so ads do not reinitialize and pageviews/impressions are undercounted — an L3 failure.
+
+**Content completeness (L2 depth gates):**
+- Site launches with fewer than 3 books.
+- Any book has fewer than 20 chapters or more than 26 chapters.
+- Any chapter falls below its type's minimum (see Pacing Guidelines in `story-long-write.md`).
+- All chapters in a book have the same word count — natural variation is required.
+- `outline/outline.md` is missing or empty for any published book.
+- `world/worldbuilding.md` is missing or empty for any published book.
+- Cover image is missing for any book in the reader at launch time. (Development preview may use CSS placeholders; final launch requires real covers.)
+
+**Reading product (L2 UX gates):**
 - Chapter content contains lorem ipsum or generic placeholder text.
 - Reader background is pure white (`#fff`) or pure black (`#000`), or a tinted hue that makes the page feel pink / rosy / flashy.
 - Next chapter button is missing, broken, or below 60px height.
@@ -340,18 +517,6 @@ Do not deliver a build if any of these are true.
 - Font stack does not include appropriate language fallbacks for the target language.
 - Any reader-visible copy mentions AI, Markdown, parser, prompt, skill, or generation.
 
-**Content completeness:**
-- Site launches with fewer than 5 books.
-- Any book has fewer than 10 chapters or more than 20 chapters.
-- All books share the same chapter count — each book must differ.
-- Any chapter falls below its type's minimum (see Pacing Guidelines in `story-long-write.md`).
-- All chapters in a book have the same word count — natural variation is required.
-- `outline/outline.md` is missing or empty for any published book.
-- `world/worldbuilding.md` is missing or empty for any published book.
-- Cover image is missing for any book in the reader at launch time. (Development preview may use CSS placeholders; final launch requires real covers.)
-- Logo is missing or is the default Next.js placeholder at launch time. Required: `public/logo.png` (apiyi). No SVG fallback — if generation was skipped, flag for a later pass.
-- Favicon is missing or is the default Next.js favicon at launch time. Required: `public/favicon-32x32.png` (apiyi). No SVG fallback — if generation was skipped, flag for a later pass.
-
 **Technical:**
 - Build errors or console errors exist on page load.
 - Routes do not work or data does not load.
@@ -359,15 +524,11 @@ Do not deliver a build if any of these are true.
 - Initial JS bundle exceeds 200KB for a prototype.
 - Cover images are not optimized (`next/image` or equivalent).
 - `chapterCount` in `books.ts` does not equal the actual number of `.md` files in `content/{slug}/chapters/`. Always derive the count from the filesystem at build time or keep in sync manually — a stale value breaks chapter progress indicators and reader UX.
+- `public/logo-light.png` or `public/logo-dark.png` is missing at launch time.
+- Favicon is missing or is the default Next.js favicon at launch time.
+- `SiteLogo` component is missing or any rendered `<img src="/logo.png">` reference remains.
 
-**Monetization & ad-policy (paid-traffic arbitrage — see `references/adsense-arbitrage.md`):**
-- Any cover, hero image, or imagery is outright explicit / pornographic — exposed genitals or nipples, sex acts, graphic nudity (suggestive allure is fine; only hardcore content gets the ad account banned and AdSense disabled).
-- Privacy Policy, Terms, About, or Contact page is missing or not footer-linked (AdSense approval + FB quality requirement).
-- No cookie-consent / Google-certified CMP wired.
-- An ad slot has no reserved size (causes CLS), or the above-the-fold ad is lazy-loaded (kills viewability).
-- Ad density exceeds ~3–4 units / 1,000 words, or ad area exceeds ~30% of content area on any screen.
-- An ad is visually/spatially mistakable for the Next/TOC control, or any layout encourages ad clicks.
-- Chapter navigation is SPA (does not full-reload), so ads do not reinitialize and pageviews/impressions are undercounted.
+---
 
 ## Non-Negotiables
 
@@ -377,14 +538,17 @@ Do not deliver a build if any of these are true.
 - Required pages: home / book list, book detail with chapter list, chapter reader.
 - Required reader controls: fixed bottom bar with TOC (ghost) + Next → (vivid warm fill, min 60px height); no Previous button; dark mode toggle (DaisyUI `data-theme`); resume-last-chapter via localStorage.
 - Add font size control or reading progress indicator only when the brief explicitly asks for them.
-- Do not add ranking, bookshelf, favorites/bookmarks, search, payment, comments, social sharing, or account modules unless explicitly requested.
+- ShareBar (social sharing) is a standard feature — always include it. See `references/social-sharing.md`.
+- Do not add ranking, bookshelf, favorites/bookmarks, search, payment, comments, or account modules unless explicitly requested.
 - Respect content language: set `lang`, use language-appropriate font stacks, handle CJK line flow.
 - One deliberate visual signature per build — connected to reading, books, chapters, or genre.
 - Monetized FB-traffic sites (the default): ship Privacy / Terms / About / Contact pages + cookie consent, and reserve size on every ad slot. Suggestive covers are allowed; avoid only outright explicit/pornographic imagery (see `references/cover-allure-elements.md` §0). Trust pages, ad-layout, and no-cloaking compliance still apply everywhere.
 
+---
+
 ## Performance Baseline
 
-Fast loading is a product requirement for social traffic.
+Fast loading is an L3 revenue requirement for social traffic, not a UX preference.
 
 - SSG (`generateStaticParams`) for all chapter and book routes. No runtime filesystem reads.
 - Cover images: `next/image` with `priority` on above-the-fold images when covers exist; CSS placeholder when they don't.
@@ -393,38 +557,7 @@ Fast loading is a product requirement for social traffic.
 - Initial JS bundle under 200KB.
 - LCP target: under 2.5s on a mid-range Android device on 4G.
 
-## Reference Loading
-
-Load references only when entering that phase. Do not preload all references at the start.
-
-**Writing references (load only for content authoring tasks):**
-- `story-setup.md` — project directory initialization and naming conventions.
-- `story-long-write.md` — long-form chapter writing pipeline, context handoff.
-- `story-short-write.md` — short-form story pipeline, emotion-first structure.
-- `story-import.md` — import and split an existing manuscript into project structure.
-- `story-review.md` — multi-perspective structural and prose review.
-- `story-deslop.md` — AI-flavor detection and removal (7 gates).
-- `story-cover.md` + `cover-styles.md` — cover generation via apiyi cascade (gpt → doubao → nano); covers roll T2/T3 per book; no SVG fallback (skip if no API key); all covers generated in parallel.
-- `cover-allure-elements.md` — visual-appeal vocabulary for covers and illustrations; §0 is a lightweight monetization risk note (avoid only outright explicit content).
-- `story-illustrations.md` + `cover-allure-elements.md` — in-chapter illustration generation (A2.5); T3/T4 tier (never T5); peak scene selection; IllustrationBlock component pattern.
-- `seo.md` — load during A0 (niche research) for keyword demand validation; and during A1 when writing book synopses (self-contained descriptions that double as meta descriptions).
-- `geo.md` — load during A0 and A1: book synopses must be written as self-contained relational sentences (not promotional copy) per GEO evidence; author pen-name entity strategy informs A0 differentiation.
-
-**Site build references (load for publishing tasks):**
-- `tech-stack.md` — choose the implementation stack before writing any code.
-- `design-system.md` — plan design identity before building any UI.
-- `data-contract.md` — define data models and @content-collections setup.
-- `references/ui-components.md` — visual and component quality floor during build.
-- `reader-ux.md` — chapter page UX requirements during build.
-- `performance.md` — Core Web Vitals, loading strategy, image optimization.
-- `qa-checklist.md` — final automated QA and screenshot verification (failures only).
-- `lighthouse-qa.md` — Lighthouse performance/accessibility/best-practices/SEO thresholds and runbook.
-- `adsense-arbitrage.md` — Facebook-traffic + AdSense/AdX arbitrage playbook: profit model, account-survival compliance, pageview-depth and ad-layout/viewability tactics, FB tracking, trust pages. Load whenever building, laying out ads, directing covers, or wiring tracking.
-- `meta-ads-landing-requirements.md` — Meta/Facebook ad traffic landing page policy, account-survival rules, cloaking, trust pages, Pixel+CAPI architecture, B4 compliance checklist. Load during B4.
-- `geo.md` — `llms.txt` generation, structured data for entity disambiguation, robots.ts for AI crawlers. Load during B4.
-- `vercel-operations.md` — Vercel project setup, custom domains, cache headers, deploy hooks, `output: export` pitfalls. Load when deploying or configuring hosting.
-- `product-surface.md` — IA and URL structure (optional, load when needed).
-- `internationalization.md` — language and font decisions (optional, load when needed).
+---
 
 ## Output Contract
 
@@ -445,12 +578,13 @@ Load references only when entering that phase. Do not preload all references at 
     book/[slug]/
       page.tsx                  # book detail: synopsis + chapter list
       chapter/[n]/
-        page.tsx                # chapter reader: content + prev/next
+        page.tsx                # chapter reader: content + prev/next + ChapterPixel
   content-collections.ts        # collection schema definitions
   src/lib/
   src/components/
     BookCard.tsx
     ChapterNav.tsx
+    ChapterPixel.tsx            # FB Pixel scroll events (L1 optimization signal)
     ThemeToggle.tsx             # DaisyUI data-theme switcher
     IllustrationBlock.tsx       # inline chapter illustration (A2.5, optional)
   public/
@@ -458,26 +592,17 @@ Load references only when entering that phase. Do not preload all references at 
     illustrations/              # in-chapter illustrations (A2.5, optional)
       {book-slug}/
         ch-{NNN}.webp           # 0–5 per book, at peak dramatic moments (lossy WebP q78)
-    logo.png                    # site logo — PNG via apiyi (B2); no SVG fallback
-    favicon-32x32.png           # favicon — PNG via apiyi (B2); no SVG fallback
+    logo-light.png              # logo for light mode — PNG via apiyi (B2); no SVG fallback
+    logo-dark.png               # logo for dark mode — PNG via apiyi (B2); no SVG fallback
+    favicon-32x32.png           # favicon (single, no light/dark) — PNG via apiyi (B2); no SVG fallback
 ```
 
-Cover images (`public/covers/{slug}.webp` — flat, one file per book, lossy WebP q82) are generated in A2 via the apiyi cascade (gpt → doubao → nano), all books in parallel. Logo and favicon follow the same pattern in B2 — PNG via apiyi (gpt → nano), generated in parallel. **No SVG fallback** anywhere: if `APIYI_API_KEY` is unset or the cascade fails, the asset is skipped (warning + continue) and flagged for a later pass. During development only, CSS placeholders are acceptable — never ship a launch without real assets.
+Cover images (`public/covers/{slug}.webp` — flat, one file per book, lossy WebP q82) are generated in A2 via the apiyi cascade, all books in parallel. Logo and favicon follow the same pattern in B2 — PNG via apiyi (doubao → gpt-image-2-all), all three generated in parallel. **No SVG fallback** anywhere: if `APIYI_API_KEY` is unset or the cascade fails, the asset is skipped (warning + continue) and flagged for a later pass.
 
 For a review or redesign task, the output is a findings report and patch set, not a full scaffold.
+
+---
 
 ## Collaboration With Other Skills
 
 The skills listed in **Merged Skills** below are already integrated — no separate installation needed. Use their capabilities directly.
-
-This skill's reader-comfort requirements and QA gates take priority over any visual suggestion. Accept aesthetic feedback only when it does not reduce reading comfort, reduce contrast, or add visual noise to the chapter surface.
-
-## Merged Skills
-
-Skills that have been absorbed into this skill. When a source skill releases an update, review the diff against the corresponding reference files listed here and sync any improvements.
-
-| Skill | Source | Merged into | Notes |
-| --- | --- | --- | --- |
-| frontend-design | `frontend-design@claude-plugins-official` | `references/ui-components.md`, `references/design-system.md` | Visual component specs, typography system, responsive layout patterns, dark mode implementation |
-| taste-skill | `taste-skill@claude-plugins-official` | `references/design-system.md`, `references/ui-components.md` | Aesthetic judgment, genre-specific visual direction, signature element discipline, anti-default design discipline |
-| oh-story-claudecode | `https://github.com/worldwonderer/oh-story-claudecode` | `references/story-setup.md`, `references/story-long-write.md`, `references/story-short-write.md`, `references/story-import.md`, `references/story-review.md`, `references/story-deslop.md`, `references/story-cover.md` | Fiction writing pipeline: trend scan, deconstruct/analyze, write (long-form + short-form), project setup, AI-flavor removal, manuscript import, prose review, cover generation. Site build, UI components, and reader UX are fiction-site-builder's own additions not present in the source. **Source is in Chinese** — sync is not a strict diff; requires reading the upstream changes, translating, and adapting into the English reference files. Local adaptations and additions have been made on top of the source; do not overwrite them unless there is a compelling upstream reason. When in doubt, preserve the local version. |

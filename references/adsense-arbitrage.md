@@ -30,13 +30,7 @@ A banned Facebook ad account or a disabled AdSense account ends the business. Th
 
 ### 1.1 Content safety (Facebook + AdSense both scan the landing page)
 
-Facebook crawls the **destination URL**, not just the ad creative; AdSense scans the whole site. Suggestive / risqué covers and imagery — cleavage, curvy/busty figures, off-shoulder, low-cut, charged proximity — are **allowed and encouraged** for click appeal. The only hard line is outright explicit content:
-
-- **Forbidden (hard ban):** actual nudity (exposed genitals/nipples), sex acts, graphic/pornographic imagery. This both trips the image generator's own filter and, on a live site, risks a **permanent Facebook ad-account ban** and **AdSense disable**.
-- **No cloaking:** never serve FB's crawler a tame page and users a racier one — detected, and causes permanent account loss.
-- **Allowed:** everything short of explicit — suggestive poses, deep cleavage, figure-forward bodies, wet/rain looks, bed-sheet morning scenes, almost-kiss tension. Push allure hard.
-
-This is the governing register for `story-cover.md` and `cover-allure-elements.md` (§0). Use the safe-wording rules in `cover-allure-elements.md` to get maximum spice without tripping the `gpt-image-2-all` keyword filter.
+§0 floor: per `cover-allure-elements.md §0` — no explicit content (nipples/genitals/sex acts). Suggestive allure fully allowed; push it. The site/ad creative is crawled by Meta and AdSense; cloaking is a permanent-ban offense.
 
 ### 1.2 No cloaking, no bridge/doorway pages
 
@@ -53,7 +47,22 @@ Showing FB's crawler one page and users another, or sending paid traffic to a th
 - Ads must never be styleable-mistakable for the "Next →" button, TOC, or nav. Keep a clear visual + spatial gap between any ad and the Next control.
 - Never label, arrow, or arrange content to push ad clicks. No "click here", no images adjacent to ads that bait clicks.
 
-### 1.5 Consent + trust pages (AdSense approval + FB quality)
+### 1.5 Geographic IVT Protection (Mainland China)
+
+Google AdX and AdSense are both blocked in mainland China. If CN IPs reach the site:
+
+- Ad scripts load and attempt requests — none succeed.
+- Google's IVT detector sees ad requests with zero ad interactions → raises IVT flags.
+- Facebook Pixel fires PageView but conversion events never follow → FB algorithm penalizes the landing page as low-quality traffic.
+
+**Action: block CN IPs at the edge.** See `geo.md` → Mainland China Policy for the Vercel
+middleware implementation. This is not about excluding Chinese readers — the content is in
+English/Spanish and the ad accounts depend on US/AU/UK/LATAM traffic. CN traffic is pure
+liability with no revenue upside.
+
+---
+
+### 1.6 Consent + trust pages (AdSense approval + FB quality)
 
 - A Google-certified **CMP / cookie-consent** is required to serve personalized ads in EEA/UK; without it demand drops to non-personalized only.
 - Site MUST have: **Privacy Policy, Terms, About, Contact** (and a Cookie notice). AdSense approval fails and FB flags "low quality" without them. Link them in the footer of every page.
@@ -71,18 +80,50 @@ The chapter model already multiplies pageviews. Push it harder (within §1.3):
 - **Full-page navigation on chapter change** (`window.location.href`, not SPA) so AdSense/AdX reinitialize and count a fresh pageview with fresh impressions — already required in `reader-ux.md`.
 - Prefetch the next chapter at ~80% scroll so the next pageview feels instant.
 
-### 2.2 In-chapter pagination (optional, high-impact — use only if it stays compliant)
+### 2.2 In-chapter pagination — not recommended
 
-Split a long chapter into sequential **pages of ~600–900 words each**, each a real route (`/book/{slug}/chapter/{n}/p/{k}`) with a full-reload "Continue reading →" control.
-
-- Each page is a fresh pageview → fresh ad impressions, multiplying RPM-per-chapter.
-- **Compliance gate (§1.3):** every page must hold substantial prose (≥ ~500 words of real content), keep ad-area < 30% of content, and never strand the reader on a near-empty page. Pagination that creates thin pages is a ban--worthy inventory-value violation — when in doubt, fewer/longer pages.
-- Keep the same cliffhanger discipline at page breaks, not just chapter breaks.
+Splitting one chapter into sub-pages (`/chapter/3/p/1`, `/chapter/3/p/2`) creates URL-level confusion: the reader can't tell if they're on page 2 of a chapter or chapter 2 of a book. The disruption to reading flow causes more session drop-off than the extra pageview gains. **Do not implement in-chapter pagination.** Use §2.4 instead.
 
 ### 2.3 End-of-content continuation
 
-- End of chapter → prominent Next.
+- End of chapter → prominent Next button.
 - End of book → "Continue with {next book}" / related-title cards to restart the loop instead of dead-ending.
+
+### 2.4 Alternative session-depth levers (preferred — no UX disruption)
+
+These techniques raise pageviews/session without breaking the reading experience.
+
+**A. Next-chapter teaser below the "Next →" button**
+
+After the chapter hook-out and the primary Next button, render the first 60–80 words of the next chapter in muted text, then a second "Continue reading →" link. The reader has already started reading before they realize they've decided to click. This is the single highest-impact single change for session depth on fiction sites.
+
+```tsx
+{next && (
+  <div className="next-chapter-teaser">
+    <p className="teaser-label">Next: {next.title}</p>
+    <p className="teaser-text">{next.openingSnippet}</p>
+    <a href={`/book/${slug}/chapter/${next.order}`} className="btn-next-sm">
+      Continue reading →
+    </a>
+  </div>
+)}
+```
+
+`openingSnippet` = first 2 sentences of the next chapter (strip markdown, plain text, truncate to ~80 words). Compute it at build time in `books.ts` or the content-collections schema. Cut at the last word before the 80-word mark — never in the middle of a sentence.
+
+**B. Chapter position counter in the reader header**
+
+Show `Chapter 3 / 22` in the sticky header. A reader who sees they are 13% through a 22-chapter story is psychologically further from the exit than one who has no frame. This is free: it adds no new components, just text.
+
+**C. End-of-book restart loop**
+
+After the final chapter's hook-out, instead of a dead end, render 2–3 related books (same tone, similar tropes, different title) with cover + first line + "Start reading →". This is the highest-leverage cross-book retention moment: the reader is emotionally warm and has just finished a story, making them more open to starting another than they will be at any other point.
+
+Implementation: in the book-detail page's `BelowFold`, add a `RelatedBooks` component that takes `books.filter(b => b.slug !== currentSlug).slice(0, 3)` and renders them as a row of cards. No recommendation algorithm needed — any 3 books from the same site work. The emotional warmth from finishing does the heavy lifting.
+
+**D. Chapter title list as teaser inventory**
+
+Chapter titles that create forward curiosity ("The Night He Came Back", "What the Contract Didn't Cover") pull readers from the TOC into chapters they might not have arrived at naturally. When the reader scans the chapter list and sees an intriguing title for chapter 7, they read chapter 5 and 6 faster to get there — compressing the session and deepening engagement. This is a writing standard, not a code change (see story-long-write.md §Title Craft).
 
 **Target: ≥ 2.5–4 pageviews per session.** Below ~2 the arbitrage rarely clears CPC.
 
@@ -96,11 +137,29 @@ Map the CLAUDE.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via
 
 | Position | Viewability | Notes |
 |---|---|---|
-| Just below header (top of content) | 85–95% | one premium above-the-fold unit; **load immediately, never lazy-load this one**. Keep it actually visible on first mobile screen — large hero images or chapter covers can push it below the fold. |
-| In-content, after first screen / every N paragraphs | 75–90% | the workhorse — inside the natural reading path |
-| End-of-chapter (above the sticky Next bar) | high | catches the "decide to continue" pause; keep clear gap from Next button (§1.4) |
-| Mobile sticky **anchor** (bottom) | very high | one anchor; reliably viewable & refreshable |
+| Pre-content (above all text, just below header) | **< 30%** | **Avoid.** Paid-traffic users start scrolling immediately — this unit exits the viewport before the 1-second viewability threshold. Moving this slot into content can double its Active View score. |
+| After `contentParts[0]` (~20% into content) | 70–90% | **First slot.** Reader has invested ~2 min and is still engaged. Pass `priority` to `AdsenseSlot`; AdX uses normal `AdSlot` (singleRequest). |
+| In-content, every N paragraphs after the first break | 65–85% | the workhorse — inside the natural reading path |
+| End-of-chapter (before the inline Next CTA) | high | catches the "decide to continue" pause; keep clear gap from Next button (§1.4) |
+| Mobile sticky **nav bar** (bottom, `position: fixed`) | — | Nav-only: TOC + Next buttons. No ads in sticky bar. `StickyNav` component; `<main>` uses `pb-sticky-ad` (`calc(82px + env(safe-area-inset-bottom))`). |
 | Desktop sticky **side-rail** | high | uses empty side space; never a static sidebar (low viewability) |
+
+### 3.1.1 Per-page loading rule (AdSense only)
+
+**Rule: first ad slot on every page gets `priority`; all others lazy-load by default.**
+
+| Page | First slot (priority) | Remaining slots (lazy) |
+|------|-----------------------|------------------------|
+| Home / book list | first `<AdsenseSlot>` after the hero section | all others |
+| Book detail | first `<AdsenseSlot>` above the chapter TOC | all others |
+| Chapter reader | first `<AdsenseSlot>` **after `contentParts[0]`** (not above all content — pre-content viewability is < 30% on paid traffic) | all others |
+
+```tsx
+<AdsenseSlot slot="..." priority />   {/* immediate — no IntersectionObserver */}
+<AdsenseSlot slot="..." />            {/* lazy — 150px rootMargin trigger */}
+```
+
+**AdX sites**: do NOT add lazy loading to `AdSlot`. GPT's `singleRequest` batches all slots in one HTTP call automatically; delaying `display()` breaks impression counting.
 
 ### 3.2 Density ceiling (compliance + diminishing returns)
 
@@ -108,8 +167,8 @@ Map the CLAUDE.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via
 - **Ad pixels < 30% of content pixels** per screen (FB + AdSense inventory-value).
 - RPM typically peaks around 5 units; beyond that each added unit adds ~2–4% and erodes engagement + page-experience. Cutting the weakest slot often **raises** total RPM.
 - **Recommended dynamic layout** (measure chapter word count before rendering ads):
-  - All chapters: q1 (top) + q2 (mid) + q5 (bottom) — **minimum 3 ads always**
-  - > 2,000 words with ≥ 3 paragraphs: q1 + q2 + q3 + q5
+  - All chapters: q1 (after part[0]) + q2 (after part[1]) + q5 (after last content block) — **minimum 3 ads always**
+  - > 2,000 words with ≥ 3 paragraphs: q1 + q2 + q3 + q5 (all in-content, q5 after q3)
   - **Paid-traffic chapter 1 exception:** if the advertised Meta/Facebook URL lands on `/chapter/1/`, use exactly 3 ads: one top ad before prose + q1 after part[0] + q2 after part[1]. Skip the later q3 slot on chapter 1 unless the chapter is > 2,000 words.
   - Other chapters should use 4–5 ads depending on length and available sticky/anchor inventory; do not globally reduce density because of the chapter 1 exception.
   - Avoid a fourth mid-content unit; it sits too close to q5 and adds clutter without meaningful RPM lift.
@@ -125,6 +184,22 @@ Map the CLAUDE.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via
 - Refresh ads only when the unit is **in the viewport** and after **≥ 30s active dwell**. Sticky/anchor units are the safe place to refresh because they stay viewable.
 - Never refresh on a hidden tab or an off-screen unit.
 
+**Critical: first ad slot placement rule.**
+The single biggest viewability lever on chapter pages is WHERE the first ad slot (q1 for AdX / slot 1 for AdSense) appears. Two failure modes:
+
+1. **Pre-content placement (worst):** q1 above all prose → user starts scrolling immediately, ad exits viewport in < 1s. Active View score < 30%. This was the historical default; do not repeat it.
+2. **Deep-content placement (bad):** first ad at 50%+ of chapter → only readers who finish more than half ever see it. Active View 30–50% on paid traffic.
+
+Rule: place the **first** ad after `contentParts[0]` — the first ~20% of paragraphs (min 3, max 5 paragraphs). At this depth the reader has invested ~2 minutes and is still engaged — first-ad viewability should reach 70–90% vs < 30% pre-content.
+
+AdX layout (2-part chapters): `part[0] → q1 → part[1] → q2 → q5` (all in-content).
+AdX layout (3-part chapters): `part[0] → q1 → part[1] → q2 → part[2] → q3 → q5` (all in-content).
+
+AdSense layout (2-part): `part[0] → slot1(priority) → part[1] → slot2`.
+AdSense layout (3-part): `part[0] → slot1(priority) → part[1] → slot2 → part[2]`.
+
+Diagnostic signal: if AdX viewability is below 60% and match rate is ≥ 95%, the problem is almost always first-slot placement depth, not fill. Fix the slot position before investigating any other cause.
+
 ---
 
 ## 4. Facebook side — tracking & landing
@@ -132,7 +207,9 @@ Map the CLAUDE.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via
 ### 4.1 Tracking
 
 - **Meta Pixel + Conversions API (CAPI)**: Pixel alone loses signal to iOS/ad-blockers; CAPI (server-side) recovers it. Run both, deduplicated by event ID.
-- Events to fire: `PageView`, `ViewContent` (chapter open), scroll-depth (e.g. 50/90%), `NextChapter` / page-advance, and a custom "engaged session" (≥ N pageviews or ≥ M seconds) as the optimization signal.
+- If the site uses App Router / `next/link`, add a client-side route tracker that fires `fbq('track', 'PageView')` on pathname changes after the initial render. The bootstrap PageView in layout only covers the first hard load.
+- Events to fire: `PageView`, `ViewContent` (chapter open), `ScrollDepth25` / `ChapterRead50` / `ScrollDepth75` (scroll milestones), `ChapterCompleted` (IntersectionObserver on `#chapter-content-end` sentinel — not scroll ratio), and `TimeOnPage30` (30s setTimeout, independent of scroll) as the engaged-session signal.
+- Next-chapter controls should fire `fbq('trackCustom', 'NextChapterClick', payload)` before hard navigation. Preserve normal browser behavior for modified clicks, then delay `window.location.href` by about 100–150ms so the Pixel request has time to leave the page.
 - Optimize the FB campaign toward the **engaged/value event**, not raw landing PageView — that is what trains delivery toward profitable readers.
 - UTM-tag every campaign; keep `campaign → landing chapter` mapping for ROAS attribution.
 
@@ -140,6 +217,142 @@ Map the CLAUDE.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via
 
 - Land on a **strong hook chapter** (often chapter 1, or the highest-tension opening) — not the home page. The faster a reader is inside prose, the more pageviews follow.
 - Landing page must: LCP < 2.5s on mid-range Android/4G, have footer trust links (§1.5), no pre-content interstitial, no deceptive pop-ups (FB "disruptive" + Google Better-Ads). A bottom anchor ad is fine; a full-screen interstitial before content is not.
+
+### 4.3 Pixel event implementation — chapter page
+
+Add this client component and drop it into every chapter page. It fires six events that cover the full optimization funnel described in §4.1 and in `facebook-ads.md §Pixel Event Hierarchy`.
+
+```tsx
+// src/components/ChapterPixel.tsx
+'use client'
+import { useEffect, useRef } from 'react'
+
+interface Props {
+  chapterTitle: string
+  chapterOrder: number
+  bookSlug: string
+}
+
+export function ChapterPixel({ chapterTitle, chapterOrder, bookSlug }: Props) {
+  const fired25 = useRef(false)
+  const fired50 = useRef(false)
+  const fired75 = useRef(false)
+  const firedCompleted = useRef(false)
+  const firedDwell30 = useRef(false)
+
+  useEffect(() => {
+    // ViewContent on chapter open — fires once, on mount
+    window.fbq?.('track', 'ViewContent', {
+      content_type: 'chapter',
+      content_name: chapterTitle,
+      content_ids: [`${bookSlug}-ch${chapterOrder}`],
+    })
+
+    // TimeOnPage30 — 30s dwell, independent of scroll
+    // Captures short chapters and slow readers that scroll milestones miss
+    const dwellTimer = setTimeout(() => {
+      if (!firedDwell30.current) {
+        firedDwell30.current = true
+        window.fbq?.('trackCustom', 'TimeOnPage30', {
+          content_name: chapterTitle,
+          chapter_order: chapterOrder,
+        })
+      }
+    }, 30000)
+
+    // Scroll milestones
+    const onScroll = () => {
+      const ratio = window.scrollY / (document.body.scrollHeight - window.innerHeight)
+      if (!fired25.current && ratio >= 0.25) {
+        fired25.current = true
+        window.fbq?.('trackCustom', 'ScrollDepth25', { content_name: chapterTitle, chapter_order: chapterOrder })
+      }
+      if (!fired50.current && ratio >= 0.5) {
+        fired50.current = true
+        window.fbq?.('trackCustom', 'ChapterRead50', { content_name: chapterTitle, chapter_order: chapterOrder })
+      }
+      if (!fired75.current && ratio >= 0.75) {
+        fired75.current = true
+        window.fbq?.('trackCustom', 'ScrollDepth75', { content_name: chapterTitle, chapter_order: chapterOrder })
+      }
+    }
+
+    // ChapterCompleted — IntersectionObserver on #chapter-content-end sentinel
+    // Cannot use scroll ratio: document.body.scrollHeight includes the recommendation
+    // area below prose, so ratio ≥ 0.9 fires while the reader is still in that area.
+    let io: IntersectionObserver | null = null
+    const sentinel = document.getElementById('chapter-content-end')
+    if (sentinel) {
+      io = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting && !firedCompleted.current) {
+            firedCompleted.current = true
+            window.fbq?.('trackCustom', 'ChapterCompleted', {
+              content_name: chapterTitle,
+              chapter_order: chapterOrder,
+            })
+          }
+        },
+        { threshold: 0.1 }
+      )
+      io.observe(sentinel)
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      clearTimeout(dwellTimer)
+      window.removeEventListener('scroll', onScroll)
+      io?.disconnect()
+    }
+  }, [chapterTitle, chapterOrder, bookSlug])
+
+  return null
+}
+```
+
+Add the sentinel element at the end of the chapter prose (before the recommendation/nav section):
+
+```tsx
+{/* Marks the true end of prose — ChapterPixel's IntersectionObserver targets this */}
+<div id="chapter-content-end" aria-hidden="true" />
+```
+
+In the chapter page Server Component:
+
+```tsx
+// src/app/book/[slug]/chapter/[order]/page.tsx
+import { ChapterPixel } from '@/components/ChapterPixel'
+
+export default function ChapterPage({ params }) {
+  const chapter = getChapter(params.slug, params.order)
+  return (
+    <>
+      <ChapterPixel
+        chapterTitle={chapter.title}
+        chapterOrder={chapter.order}
+        bookSlug={params.slug}
+      />
+      {/* chapter content */}
+    </>
+  )
+}
+```
+
+**Ad Set conversion event priority (广告组转化事件 — Ads Manager → Ad Set → Performance goal → Conversion event):**
+
+Select the highest-quality event that has accumulated ≥ 50 events/week. Upgrade as volume grows:
+
+| Priority | Event | Signal quality |
+|---|---|---|
+| 1 | `ChapterCompleted` (custom) | Reader finished prose — highest intent |
+| 2 | `ChapterRead50` (custom) | Reader reached midpoint — proven engagement |
+| 3 | `TimeOnPage30` (custom) | 30s dwell — time-dimension engagement, good for short chapters |
+| 4 | `ViewContent` (standard) | Chapter opened — lowest, but broadest volume |
+| 5 | `PageView` | Any page — fallback only |
+
+Note: custom events (`ChapterCompleted`, `ChapterRead50`, `TimeOnPage30`) must be wrapped as Custom Conversions in Events Manager before they can be selected as Ad Set optimization targets — see `facebook-ads.md §Step 1.2`.
+
+Use `ViewContent` as the campaign optimization target to start. Upgrade to `ChapterRead50` once it accumulates ≥ 50 events/week — it signals actual readers, not page-loaders.
 
 ---
 
@@ -182,7 +395,7 @@ Track and optimize:
 - [ ] Privacy / Terms / About / Contact pages exist and are footer-linked on every route (§5).
 - [ ] Google-certified CMP / cookie consent wired (§1.5).
 - [ ] Every ad slot reserves explicit size (no CLS) (§3.3).
-- [ ] Above-fold unit loads immediately; mid/below units lazy-load with correct `rootMargin` (§3.4, §8.6).
+- [ ] AdSense units lazy-load via `AdsenseSlot` with 150px `rootMargin`; above-fold AdSense unit passes `priority` to load immediately; every slot reserves explicit size (no CLS) (§3.3, §8.6).
 - [ ] Ad components from §8.6 are used unchanged; never revert to mount-time `display()`/`push({})` for all slots.
 - [ ] Ad density ≤ 3–4 / 1,000 words and ad-pixels < 30% of content (§1.3, §3.2).
 - [ ] No ad is mistakable for the Next/TOC control; clear gap maintained (§1.4).
@@ -230,7 +443,7 @@ metadataBase: new URL('https://yoursite.com'),
 openGraph: {
   siteName: 'Your Site Name',
   type: 'website',
-  images: [{ url: 'https://yoursite.com/logo.png', width: 512, height: 512, alt: 'Your Site Name' }],
+  images: [{ url: 'https://yoursite.com/logo-light.png', width: 512, height: 512, alt: 'Your Site Name' }],
 },
 ```
 
@@ -335,12 +548,10 @@ Mount immediately on render — no IntersectionObserver. GPT's `singleRequest` b
 
 import { useEffect } from 'react'
 
-type Size = [number, number] | 'fluid'
-
 type Props = {
   path: string
   id: string
-  sizes: Size[]
+  sizes: [number, number][]
   className?: string
 }
 
@@ -369,10 +580,9 @@ export default function AdSlot({ path, id, sizes, className = '' }: Props) {
     }
   }, [path, id]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const isFluid = sizes.includes('fluid')
   return (
     <div className={`flex justify-center my-6 ${className}`}>
-      <div id={id} style={isFluid ? undefined : { minWidth: 250, minHeight: 250 }} />
+      <div id={id} style={{ minWidth: 250, minHeight: 250 }} />
     </div>
   )
 }
@@ -385,47 +595,197 @@ function wordCount(text: string): number {
   return text.split(/\s+/).filter(Boolean).length
 }
 
-// Always returns ≥ 2 parts so q2 always shows
+// q2 break at ~20% of paragraphs (min 3, max 5) — not 33% or 50%.
+// Rationale: Facebook readers often bounce within 2 minutes. Placing q2 after
+// only 3–5 paragraphs (~300–400 words) keeps it in the high-engagement window
+// where viewability is 70–90%. At 50%, q2 is only seen by readers who finish
+// more than half the chapter — a minority of paid-traffic visitors.
+// Validated: AU viewability went from 53% → target 70%+ after this change.
 function splitContent(content: string): string[] {
   const paras = content.split(/\n{2,}/).filter(p => p.trim())
   const words = wordCount(content)
-  if (words >= 2000 && paras.length >= 3) {
-    const q = Math.floor(paras.length / 3)
+  // AdSense only: skip ad injection on very short pieces
+  if (words < 1000) return [content]
+  // Early break: first 20% of paragraphs, clamped to [3, 5]
+  const earlyBreak = Math.min(5, Math.max(3, Math.ceil(paras.length * 0.2)))
+  if (paras.length <= earlyBreak) return [content]
+  if (words >= 2000 && paras.length >= earlyBreak + 4) {
+    // 3-part: q2 early, q3 at ~60% of content
+    const midBreak = Math.floor((earlyBreak + paras.length) / 2)
     return [
-      paras.slice(0, q).join('\n\n'),
-      paras.slice(q, q * 2).join('\n\n'),
-      paras.slice(q * 2).join('\n\n'),
+      paras.slice(0, earlyBreak).join('\n\n'),
+      paras.slice(earlyBreak, midBreak).join('\n\n'),
+      paras.slice(midBreak).join('\n\n'),
     ].filter(Boolean)
   }
-  // All other chapters: 2 parts
-  const mid = Math.max(1, Math.floor(paras.length / 2))
+  // 2-part: q2 early
   return [
-    paras.slice(0, mid).join('\n\n') || content,
-    paras.slice(mid).join('\n\n'),
+    paras.slice(0, earlyBreak).join('\n\n'),
+    paras.slice(earlyBreak).join('\n\n'),
   ]
 }
 
-// render
-<AdSlot path="/23294357175/q1" id="div-gpt-ad-1782711338284-0" sizes={[[250,250],[300,250],[336,280]]} />
-
+// render — q1 goes AFTER part[0], not before all content
+// StickyNav is mounted at the page level (outside <main>), nav-only
 {contentParts.length >= 3 ? (
   <>
     <div className="prose-reader">{contentParts[0]}</div>
-    <AdSlot path="/23294357175/q2" id="div-gpt-ad-1782711428179-0" sizes={[[250,250],[336,280],[300,250]]} />
+    <AdSlot path="/23294357175/q1" id="div-gpt-ad-1782711338284-0" sizes={[[250,250],[300,250],[336,280]]} />
     <div className="prose-reader">{contentParts[1]}</div>
-    <AdSlot path="/23294357175/q3" id="div-gpt-ad-1782711490041-0" sizes={[[250,250],[336,280],[300,250]]} />
+    <AdSlot path="/23294357175/q2" id="div-gpt-ad-1782711428179-0" sizes={[[250,250],[336,280],[300,250]]} />
     <div className="prose-reader">{contentParts[2]}</div>
+    <AdSlot path="/23294357175/q3" id="div-gpt-ad-1782711490041-0" sizes={[[250,250],[336,280],[300,250]]} />
   </>
 ) : (
   <>
     <div className="prose-reader">{contentParts[0]}</div>
-    <AdSlot path="/23294357175/q2" id="div-gpt-ad-1782711428179-0" sizes={[[250,250],[336,280],[300,250]]} />
+    <AdSlot path="/23294357175/q1" id="div-gpt-ad-1782711338284-0" sizes={[[250,250],[300,250],[336,280]]} />
     <div className="prose-reader">{contentParts[1]}</div>
+    <AdSlot path="/23294357175/q2" id="div-gpt-ad-1782711428179-0" sizes={[[250,250],[336,280],[300,250]]} />
   </>
 )}
 
-<AdSlot path="/23294357175/q5" id="div-gpt-ad-1782711618925-0" sizes={['fluid']} />
+{/* q5 display ad placed in-content after last content block */}
+{/* StickyNav — mount outside <main> before the min-h-screen wrapper div (nav-only, no ads) */}
+{/* chapter <main> must use className="pb-sticky-ad" (calc(82px + env(safe-area-inset-bottom))) */}
 ```
+
+#### Sticky anchor bar — `StickyNav.tsx`
+
+Mount outside `<main>` as a sibling before `<div className="min-h-screen">`. The bar is always visible; `<main>` uses `className="pb-sticky-ad"` (CSS utility: `calc(82px + env(safe-area-inset-bottom))`) to prevent content hiding behind it.
+
+Two variants — **AdX** (nav + q5 display ad) and **AdSense** (nav only; policy prohibits fixed manual units).
+
+**All sites (AdX + AdSense)** — nav-only: TOC + Next buttons, no ads. q5 goes in-content (after the last content part), never in the sticky bar.
+
+```tsx
+'use client'
+
+import AdSlot from './AdSlot'
+
+type Props = { bookSlug: string; nextChapter: number | null }
+
+const btnFont = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+
+export default function StickyNav({ bookSlug, nextChapter }: Props) {
+  return (
+    <div
+      className="fixed bottom-0 left-0 right-0 z-40 bg-base-100/60 backdrop-blur-md border-t border-base-300/40"
+      style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+    >
+      <div
+        className="max-w-3xl mx-auto px-4 py-2"
+        style={{
+          display: 'grid',
+          gap: '12px',
+          gridTemplateColumns: nextChapter !== null
+            ? 'minmax(96px, 0.75fr) minmax(136px, 1.12fr)'
+            : '1fr',
+        }}
+      >
+        <a
+          href={`/book/${bookSlug}#toc`}
+          onClick={(e) => { e.preventDefault(); window.location.href = `/book/${bookSlug}#toc` }}
+          onTouchStart={() => {}}
+          className="flex items-center justify-center gap-1.5 min-h-[44px] px-5 rounded-[14px] border-2 border-base-300 text-base-content font-extrabold text-[13px] tracking-tight hover:border-primary hover:text-primary active:scale-90 active:bg-base-300 transition-[transform,opacity,background-color,border-color] duration-75 select-none"
+          style={{ fontFamily: btnFont }}
+        >
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="shrink-0">
+            <line x1="8" y1="6" x2="21" y2="6" /><line x1="8" y1="12" x2="21" y2="12" /><line x1="8" y1="18" x2="21" y2="18" />
+            <line x1="3" y1="6" x2="3.01" y2="6" /><line x1="3" y1="12" x2="3.01" y2="12" /><line x1="3" y1="18" x2="3.01" y2="18" />
+          </svg>
+          <span>TOC</span>
+        </a>
+        {nextChapter !== null && (
+          <a
+            href={`/book/${bookSlug}/chapter/${nextChapter}`}
+            onClick={(e) => { e.preventDefault(); window.location.href = `/book/${bookSlug}/chapter/${nextChapter}` }}
+            onTouchStart={() => {}}
+            className="flex items-center justify-center gap-1.5 min-h-[44px] px-5 rounded-[14px] bg-primary text-primary-content font-extrabold text-[15px] tracking-tight hover:opacity-90 active:scale-90 active:opacity-50 transition-[transform,opacity,background-color,border-color] duration-75 select-none"
+            style={{ fontFamily: btnFont, boxShadow: '0 8px 18px rgba(236,75,155,.18)' }}
+          >
+            <span>Next</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="shrink-0">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </a>
+        )}
+      </div>
+
+      <div className="border-t border-base-200 bg-base-100 overflow-hidden" style={{ maxHeight: 100 }}>
+        <AdSlot
+          path="/23294357175/q5"
+          id="div-gpt-ad-1782711618925-0"
+          sizes={[[336, 280], [300, 250], [250, 250]]}
+          className="!my-0"
+        />
+      </div>
+    </div>
+  )
+}
+```
+
+**AdSense variant** — same nav strip, no ad section:
+
+```tsx
+'use client'
+
+type Props = { bookSlug: string; nextChapter: number | null }
+
+const btnFont = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+
+export default function StickyNav({ bookSlug, nextChapter }: Props) {
+  return (
+    <div
+      className="fixed bottom-0 left-0 right-0 z-40 bg-base-100/60 backdrop-blur-md border-t border-base-300/40"
+      style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+    >
+      <div
+        className="max-w-3xl mx-auto px-4 py-2"
+        style={{
+          display: 'grid',
+          gap: '12px',
+          gridTemplateColumns: nextChapter !== null
+            ? 'minmax(96px, 0.75fr) minmax(136px, 1.12fr)'
+            : '1fr',
+        }}
+      >
+        <a
+          href={`/book/${bookSlug}#toc`}
+          onClick={(e) => { e.preventDefault(); window.location.href = `/book/${bookSlug}#toc` }}
+          onTouchStart={() => {}}
+          className="flex items-center justify-center gap-1.5 min-h-[44px] px-5 rounded-[14px] border-2 border-base-300 text-base-content font-extrabold text-[13px] tracking-tight hover:border-primary hover:text-primary active:scale-90 active:bg-base-300 transition-[transform,opacity,background-color,border-color] duration-75 select-none"
+          style={{ fontFamily: btnFont }}
+        >
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="shrink-0">
+            <line x1="8" y1="6" x2="21" y2="6" /><line x1="8" y1="12" x2="21" y2="12" /><line x1="8" y1="18" x2="21" y2="18" />
+            <line x1="3" y1="6" x2="3.01" y2="6" /><line x1="3" y1="12" x2="3.01" y2="12" /><line x1="3" y1="18" x2="3.01" y2="18" />
+          </svg>
+          <span>TOC</span>
+        </a>
+        {nextChapter !== null && (
+          <a
+            href={`/book/${bookSlug}/chapter/${nextChapter}`}
+            onClick={(e) => { e.preventDefault(); window.location.href = `/book/${bookSlug}/chapter/${nextChapter}` }}
+            onTouchStart={() => {}}
+            className="flex items-center justify-center gap-1.5 min-h-[44px] px-5 rounded-[14px] bg-primary text-primary-content font-extrabold text-[15px] tracking-tight hover:opacity-90 active:scale-90 active:opacity-50 transition-[transform,opacity,background-color,border-color] duration-75 select-none"
+            style={{ fontFamily: btnFont, boxShadow: '0 8px 18px rgba(0,0,0,.12)' }}
+          >
+            <span>Next</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="shrink-0">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </a>
+        )}
+      </div>
+    </div>
+  )
+}
+```
+
+**iOS `:active` note**: iOS Safari does not fire `:active` on `<a>` without a touch listener. Add `onTouchStart={() => {}}` to every button/link that uses `active:` Tailwind classes. Use `transition-[transform,opacity,background-color,border-color] duration-75` (not `transition-all`) for 75ms response.
+
+**Do NOT** add `<ins class="adsbygoogle">` or any AdSense slot inside a fixed/sticky container — AdSense policy violation.
 
 #### AdSense — `AdsenseSlot.tsx`
 
@@ -440,24 +800,17 @@ declare global {
   }
 }
 
-type Strategy = 'immediate' | 'near' | 'lazy'
-
 type Props = {
   slot: string
-  strategy?: Strategy
+  priority?: boolean
   className?: string
 }
 
-const ROOT_MARGIN: Record<Strategy, string | undefined> = {
-  immediate: undefined,
-  near: '300px',
-  lazy: '500px',
-}
-
-export default function AdsenseSlot({ slot, strategy = 'lazy', className = '' }: Props) {
-  const [shouldLoad, setShouldLoad] = useState(strategy === 'immediate')
+export default function AdsenseSlot({ slot, priority = false, className = '' }: Props) {
+  const [shouldLoad, setShouldLoad] = useState(priority)
   const insRef = useRef<HTMLModElement>(null)
 
+  // Load the ad when it comes within 150px of the viewport.
   useEffect(() => {
     if (shouldLoad) return
     const el = insRef.current
@@ -472,11 +825,11 @@ export default function AdsenseSlot({ slot, strategy = 'lazy', className = '' }:
           observer.disconnect()
         }
       },
-      { rootMargin: ROOT_MARGIN[strategy] }
+      { rootMargin: '150px' }
     )
     observer.observe(el)
     return () => observer.disconnect()
-  }, [shouldLoad, strategy])
+  }, [])
 
   useEffect(() => {
     if (!shouldLoad) return
@@ -517,15 +870,19 @@ export const viewport: Viewport = {
 }
 ```
 
-For AdX sites, use `setConfig` to collapse unfilled slots (no deprecated `pubads()` calls):
+For AdX / Google Ad Manager sites, use GPT `setConfig` to collapse unfilled slots (no deprecated `pubads()` calls):
 
 ```tsx
 <script
   dangerouslySetInnerHTML={{
-    __html: `window.googletag=window.googletag||{cmd:[]};googletag.cmd.push(function(){googletag.setConfig({singleRequest:true,collapseDiv:true});googletag.enableServices();});`,
+    __html: `window.googletag=window.googletag||{cmd:[]};googletag.cmd.push(function(){googletag.setConfig({singleRequest:true,collapseDiv:"ON_NO_FILL"});googletag.enableServices();});`,
   }}
 />
 ```
+
+This empty-slot collapse rule is for GPT / Google Ad Manager inventory, including AdX-backed sites. It is not an AdSense `<ins class="adsbygoogle">` feature, and must not be copied into AdSense implementations.
+
+Hard pitfall: hiding empty `AdSlot` wrappers manually by listening to `slotRenderEnded` and setting `display:none` is a dumb implementation pattern, not an acceptable alternative. Active View and viewability measurement depend on GPT's slot lifecycle and visible ad pixels. Manual post-render DOM hiding makes measurement and layout behavior harder to reason about, and usually means the developer solved the wrong layer. Let GPT own the collapse decision through `collapseDiv:"ON_NO_FILL"` and keep each `AdSlot` reserving its normal size before render to avoid CLS.
 
 ### 8.8 Refresh rule (optional)
 

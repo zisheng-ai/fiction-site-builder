@@ -410,7 +410,7 @@ Ads are the most common source of CLS on these sites. Every `AdSlot` component m
 </div>
 ```
 
-For fluid-size slots (q5), wrap in a container with `minHeight: '100px'` as a reasonable floor.
+All ad slots (q1–q5) use standard display sizes; `AdSlot` already reserves `minWidth: 250, minHeight: 250` before creative loads.
 
 ### Preconnect for Third-Party Origins
 
@@ -435,7 +435,7 @@ Next.js App Router automatically outputs `<meta name="viewport" content="width=d
 
 ### What is NOT a problem
 
-Chapter pages contain 1,500–4,000 words of original prose. This is not thin content. Google indexes long-form fiction chapters and can rank individual chapters for long-tail search queries like `"dark romance enemies to lovers chapter 3 read online"`.
+Chapter pages contain 1,000–1,800 words of original prose. This is not thin content — Google's thin-content threshold is around 300 words; fiction chapters are well above it. Google indexes long-form fiction chapters and can rank individual chapters for long-tail search queries like `"dark romance enemies to lovers chapter 3 read online"`.
 
 ### What IS a problem
 
@@ -585,3 +585,169 @@ Google's freshness algorithm ("Query Deserves Freshness") boosts recently update
 - **Setting `<html lang="en">` on Spanish sites:** Copy-pasting the English site's `layout.tsx` leaves the wrong `lang` attribute. Set it correctly: `<html lang="es">` for fuego-eterno.
 - **Using `strategy="beforeInteractive"` for ad scripts:** Ad scripts must not block page interactivity. Use `strategy="afterInteractive"` at the earliest.
 - **Overly optimistic `changeFrequency`:** Setting `daily` everywhere inflates crawler expectations and reduces the hint's credibility over time. Use accurate frequencies.
+
+---
+
+## 15. Articles (`articles/` directory)
+
+Articles are SEO landing pages that drive L1 traffic into books. They live in `articles/` alongside book content and are rendered at `/articles/{slug}/`. Two types exist; choose one per article session.
+
+### 15.0 — Article-Book Relationship
+
+Every new long-form book triggers A4 automatically. Articles and book pages target different query layers:
+
+- **Book pages** (`/book/{slug}`) rank for long-tail queries — title, character names, specific plot keywords.
+- **Articles** (`/articles/{slug}`) rank for genre-category queries — "best dark romance books", "fae romance online" — and drive cold traffic to multiple books at once.
+
+**Routing logic (run each time a new book is added):**
+
+| Condition | Action |
+|---|---|
+| Existing SEO article targets the same genre keyword | Move new book to `books[0]`; keep existing books as `books[1–n]`; rewrite opening section; regenerate cover only if concept changed substantially |
+| No existing article for this genre keyword | Create a new SEO list article; new book = `books[0]`; fill `books[1–2]` with existing same-genre books |
+| Book has a strong social hook (specific premise, unusual dynamic) | Also create a short-form traffic article (§ 15.2) — use judgment, not every book needs one |
+
+**New book is always `books[0]`** in any article it anchors — it gets the primary CTA button and the longest prose section. Existing books are supporting context.
+
+**Genre keyword matching:** use the book's `target` field (from frontmatter) or A0's top keyword. One SEO article per genre keyword per site — do not create two articles with the same `target`. If an update would make the article exceed 5 books, drop the weakest-performing one.
+
+---
+
+### 15.1 — SEO List Article
+
+**Purpose:** rank for broad keyword queries (`"best dark romance books"`, `"fae romance books"`). Drives cold traffic from search.
+
+**Word count:** 1200–1800 words.
+
+**Frontmatter schema (content-collections):**
+
+```yaml
+---
+title: "Best Dark Romance Books to Read Online (Dark, Obsessive, and Free)"
+slug: "best-dark-romance-books"          # matches filename, no spaces
+publishedAt: "YYYY-MM-DD"
+description: "130–155 char meta description leading with genre + value prop."
+target: "best dark romance books"        # the keyword this article targets
+books:                                   # slugs from books.ts — drives sidebar + primary CTA
+  - the-ceos-obsession
+  - the-devils-debt
+cover: /covers/articles/{slug}.webp      # landscape hero image — see § 15.3
+---
+```
+
+**Content structure:**
+
+1. Opening paragraph: define the genre distinction (what readers are actually looking for — not the surface description).
+2. Per-book sections, each 150–250 words, separated by `---`. Bold the book title on first mention. Describe the specific premise + power dynamic, not generic praise.
+3. Final section: "where to read" paragraph ending with plain-text CTA: `Start reading free at Velvet Throne — no account required.` (no markdown link — the page template adds the CTA button).
+
+**No `cta_url` field.** The page template generates the primary CTA button from `books[0]`.
+
+---
+
+### 15.2 — Short-Form Traffic Article (引流短篇)
+
+**Purpose:** social traffic (Facebook/Reddit/organic). Hook-driven. Sends readers directly to specific books.
+
+**Word count:** 300–500 words.
+
+**Title format:** 2-sentence hook. Specific detail + consequence. Example: *"He Created the Position Two Years Before She Applied. She Found the Proof in a Drawer She Wasn't Supposed to Open."*
+
+**Frontmatter schema:**
+
+```yaml
+---
+title: "Hook sentence one. Hook sentence two."
+slug: hook-sentence-slug
+target: genre-keyword-for-seo            # e.g. billionaire-dark-romance
+books: [primary-slug, second-slug, third-slug]   # inline array, max 3
+cta_url: https://{site-domain}           # kept for reference; not rendered by template
+cover: /covers/articles/{slug}.webp
+---
+```
+
+**Content structure:**
+
+1. Opening scene (4–8 lines): present tense, 3rd person, specific moment, cut before resolution. No character names repeated from the title.
+2. `---`
+3. Book pitch for `books[0]`: 2–4 sentences. Bold the title on first mention. Show what the reader is deciding, not what happens.
+4. `---`
+5. Book pitch for `books[1]`.
+6. `---`
+7. (Optional) Book pitch for `books[2]`.
+8. `---`
+9. Closing line (1 sentence, thematic link between all books).
+10. Inline CTA — link to specific books, not the homepage:
+
+```markdown
+**[Start reading Primary Title](/book/primary-slug)** · [Second Title](/book/second-slug) · [Third Title](/book/third-slug)
+
+*Free to read. No account required. All stories available now.*
+```
+
+**Never use an external absolute URL** (`https://velvet.nablepart.com`) for the inline CTA — it triggers a full page reload and sends readers to the homepage instead of the book. Use internal paths (`/book/{slug}`).
+
+---
+
+### 15.3 — Article Cover Images
+
+Every article needs a landscape cover for the hero image and OG share preview.
+
+**Spec:**
+- Format: WebP, q78
+- Size: `1280×720` (GPT `1280x720` preset — exact match, no resize needed)
+- Path: `public/covers/articles/{slug}.webp`
+- Frontmatter field: `cover: /covers/articles/{slug}.webp`
+
+**Generation (GPT Image 2 primary, nano fallback):**
+
+```bash
+PROMPT="[cinematic scene matching article topic]. Dark aesthetic, no text, no watermarks."
+OUTPUT_PATH="/tmp/article_cover_${slug}.png"
+
+if gen_image_apiyi "gpt-image-2-all" "1280x720" "$OUTPUT_PATH"; then
+  to_webp "$OUTPUT_PATH" "$OUT_DIR/${slug}.webp" 78
+  rm -f "$OUTPUT_PATH"
+elif gen_image_apiyi "nano-banana-pro" "1024x1024" "$OUTPUT_PATH"; then
+  sips -c 576 1024 "$OUTPUT_PATH" 2>/dev/null   # crop to 16:9
+  sips -z 720 1280 "$OUTPUT_PATH" 2>/dev/null   # resize
+  to_webp "$OUTPUT_PATH" "$OUT_DIR/${slug}.webp" 78
+  rm -f "$OUTPUT_PATH"
+fi
+```
+
+Run all article covers in parallel (one background process per article). See `references/generation.md` for the `gen_image_apiyi` and `to_webp` functions.
+
+**Prompt guidelines by article type:**
+- SEO list article: genre-defining scene (gothic library for dark academia, luxury penthouse for billionaire, space bridge for military sci-fi). Dark cinematic. No figures required.
+- Short-form traffic article: key scene from the opening hook (lakefront estate at night, painting on a gothic wall, scattered classified documents). Match the article's specific atmosphere.
+
+**OG metadata:** The article detail page must include the cover in OpenGraph metadata:
+
+```ts
+const ogImage = article.cover ? `${BASE_URL}${article.cover}` : undefined
+openGraph: {
+  ...(ogImage ? { images: [{ url: ogImage, width: 1280, height: 720 }] } : {}),
+}
+```
+
+---
+
+### 15.4 — Article Page Template Requirements
+
+The `src/app/articles/[slug]/page.tsx` must implement:
+
+1. **Hero image block** (if `article.cover` exists): `aspect-[16/9]` or `aspect-[2/1]` container, `object-cover`, `priority` loading.
+2. **Section split:** `content.split(/\n\s*---\s*\n/)` after stripping the leading H1. Insert ad slots between sections.
+3. **Primary CTA block:** `books[0]` → `/book/{slug}` link. Never use `cta_url` for navigation — it is metadata only.
+4. **Sidebar:** related books with cover thumbnails linking to `/book/{slug}`.
+5. **List page thumbnail:** `src/app/articles/page.tsx` shows `cover` as a thumbnail (2:1 aspect) when present.
+
+### 15.5 — Common Article Mistakes
+
+- **Inline CTA links to the homepage:** `https://velvet.nablepart.com` causes a full page reload and drops readers at the home page. Use `/book/{slug}` for every in-content book link.
+- **Missing `cover` field after generation:** If `cover` is omitted from frontmatter, the hero image and OG preview are both missing. Always add the field immediately after generating the image.
+- **`cta_url` used for navigation:** The page template ignores `cta_url`. It is retained in frontmatter for reference only. The primary CTA button always uses `books[0]`.
+- **SEO article slug mismatch:** `slug` in frontmatter must match the filename exactly (no spaces, hyphens only). Content-collections uses the frontmatter `slug` for routing; a mismatch causes a 404.
+- **Book slugs not in `books.ts`:** `getRelatedBooks()` silently drops unrecognized slugs. Cross-check every slug in `books:` against `src/lib/books.ts` before committing.
+- **Short-form article too long:** Once prose for a book section exceeds ~200 words the piece reads like a chapter summary, not a hook. Cut to the premise and the moment — do not resolve it.

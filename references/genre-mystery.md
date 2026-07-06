@@ -27,8 +27,6 @@ Mystery and thriller require **tension + question** but not desire. Gothic requi
 
 ## Named Emotional States (Mystery)
 
-**Banned:** generic states — "she felt nervous", "she was confused", "she felt afraid". Name the specific state before writing the scene.
-
 | Named state | Internal contradiction | How it reads on the page |
 |-------------|----------------------|--------------------------|
 | **Creeping wrongness** | Something is off; she cannot name it yet | Mundane actions slow to half-speed; she catalogues details without knowing why; the reader sees the accumulation before she does |
@@ -49,7 +47,6 @@ The setting is not backdrop. Before writing any scene, ask: *does this location 
 | **Isolation + limited suspect pool** | Remote or enclosed location (fog-bound manor, snowbound estate, island) | No exit; the danger is among the finite number of people in the room; every character's absence is a clue |
 | **Gothic weight of history** | A space with a sealed past (old house, locked room, ruined chapel) | The setting knows the answer; the protagonist's job is to make it speak; resist the urge to describe — let the space act |
 
-If the setting could be swapped with any other location without changing the scene — change the setting.
 
 ---
 
@@ -96,6 +93,74 @@ Mystery chapters are not romance chapters with investigation bolted on. The stru
 **Dead end as forward motion:** a chapter that ends with the protagonist's theory proven wrong is not a failed chapter. It is structurally identical to a romantic reversal — the reader has learned something and is reoriented. Write dead ends with the same care as discoveries.
 
 **Withholding from the reader:** the protagonist must sometimes know more than she shares with the reader, and the reader must know this. The gap between what she knows and what she says — especially to suspects — is a source of sustained tension. Use third-person limited perspective to create this gap: she thinks in inference, not in certainty; she speaks in less than she knows.
+
+---
+
+### Suspense Craft Techniques
+
+Core mechanisms that create and sustain suspense across any mystery or thriller sub-genre. Apply these at the scene and chapter level, not just the plot level.
+
+#### Information Gap Structure
+
+The three configurations of reader/character knowledge. Each creates a different emotional effect.
+
+| Structure | Who knows more | Effect |
+|---|---|---|
+| **Dramatic irony** (Reader > Character) | Reader knows the threat; character walks toward it | Dread — the reader wants to warn her and cannot |
+| **Narrative mystery** (Character > Reader) | Character sees/knows something; reader is not told | Compulsion — reader must continue to close the gap |
+| **Parallel revelation** (Neither knows) | Two timelines or viewpoints each holding a piece; reader assembles from both | Puzzle satisfaction — the reader is an active participant |
+
+Use "Character > Reader" gaps sparingly and close them before they become withholding-as-manipulation. The reader must always feel the gap is intentional and that the payoff will be proportional.
+
+#### Unreliable Narrator Techniques
+
+The protagonist's perception is the mystery's instrument. Calibrate how much to doubt it.
+
+| Mode | How it reads | When to use |
+|---|---|---|
+| **Purposeful omission** | She does not tell the reader something she knows; the reader can sense the gap | Psychological thriller; when the protagonist is protecting herself or the reader |
+| **Subjective bias** | Her interpretation of events may be wrong; another reading is possible from the same facts | Domestic thriller; gaslighting dynamics; grief or trauma affecting perception |
+| **Memory error** | She misremembers; the correction is the reveal | Amnesia plots; trauma; repressed guilt |
+| **Multiple-account contradiction** | Two characters give incompatible versions; the reader must adjudicate | Ensemble mysteries; court-room thrillers; epistolary structure |
+
+**Rule:** the unreliable narrator must be fair. On re-read, the reader should be able to reconstruct exactly what the narrator knew and when. Unreliable ≠ dishonest with the reader; it means limited, biased, or damaged — not lying.
+
+#### Foreshadowing Types
+
+Four foreshadowing modes, each with different visibility and payoff timing. Mix all four across a novel; do not rely on one.
+
+| Type | Visibility | Mechanism | Example |
+|---|---|---|---|
+| **Visible foreshadow** | Reader notices it; doesn't know its significance | Plant an object, word, or event that registers as notable but unexplained | The protagonist keeps noticing a locked door; she doesn't know it's where the evidence is hidden |
+| **Invisible foreshadow** | Reader does not consciously notice it | Embed in ordinary scene detail; only meaningful on re-read | A suspect casually mentions a trip — the timing of that trip is the alibi's fatal flaw |
+| **Double-meaning foreshadow** | One surface meaning; one hidden meaning | A line of dialogue or description that is literally true and symbolically true in two different ways | "This is the last time you'll see me like this" — means the social performance she's putting on, also means she dies tonight |
+| **Mirror foreshadow** | Reader notices it; the callback is the payoff | Plant it early; echo it late; the contrast or repetition carries the weight | First chapter: she says "I would never betray a friend." Final chapter: she does. |
+
+**Foreshadow tracking:** log all planted foreshadows in `tracking/threads.md` with the chapter number, the foreshadow text, and the intended payoff chapter. Unresolved foreshadows are a review flag.
+
+#### Twist Design Principles
+
+A twist that works on re-read is a twist that was earned. Four requirements, all mandatory.
+
+1. **Reasonable surprise:** after the reveal, every prior clue must point toward this outcome. The reader should be able to re-read and see the answer was always there. A twist the reader could not have inferred is a cheat.
+2. **Emotional impact:** the twist must change how the reader feels about a character, relationship, or situation — not just the facts. Information alone is not a twist; recontextualization is.
+3. **Plot consequence:** the twist must force the plot to change direction. It is not a twist if the story could continue without it. The protagonist must recalculate everything she thought she knew.
+4. **Setup density:** at minimum two independent pieces of setup (planted in different chapters) must point toward the twist. One is a lucky guess; two is architecture.
+
+**Layered twists:** if the story uses multiple twists, each must satisfy all four requirements independently. A second twist that merely undoes the first — without its own emotional recontextualization and plot consequence — is not a second twist. It is a retraction.
+
+#### Opening Hook Types (Suspense)
+
+Four hook configurations for mystery and thriller chapter openings. Vary across chapters; do not default to the same type every time.
+
+| Hook type | What it does | Example shape |
+|---|---|---|
+| **Question hook** | Opens with a question the reader cannot answer yet | "The body had been moved — but not recently." (What does she mean?) |
+| **Conflict hook** | Opens in the middle of active opposition | "She had thirty seconds before he came back." |
+| **Suspense hook** | Opens with a known threat whose source or nature is unclear | "The letter was from someone who had been dead for six years." |
+| **Crisis hook** | Opens with a protagonist already under pressure | "The police were at her door before she'd had her coffee." |
+
+**The three-sentence rule:** the opening three sentences of any chapter must contain one concrete detail, one element of change or wrongness, and one unanswered question. If all three sentences merely establish setting, the chapter opens too early.
 
 ---
 
@@ -303,3 +368,48 @@ Gothic short form does not resolve — it **reveals the shape of the wrongness**
 | **4 — The wrong theory** | The explanation the room accepts and why she initially accepts it or resists it. Name the misdirection — the reader should be able to see the trap without yet knowing it is one. |
 | **5 — The impossible clue** | The one piece of evidence that cannot fit the obvious explanation. Named but not explained — this is what the reader must click to understand. |
 | **Closing beat** | The stakes if she fails — specific, personal, mortal or social. Not "justice" in the abstract; the named person or thing endangered by the wrong answer. |
+
+---
+
+### Facebook Ad Hook Copy — 3-Line Feed Format
+
+Facebook/Instagram feeds truncate after ~3 lines ("See more"). The hook must land in exactly 3 lines — one situation, one turn, one gap.
+
+**The 3-line structure:**
+
+| Line | Role | Constraint |
+|------|------|------------|
+| **Line 1 — The situation** | State the discovery or the wrong thing plainly. Specific physical detail. | 8–14 words. Complete sentence. |
+| **Line 2 — The turn** | Her realization, or the thing that makes the obvious explanation impossible. | 5–10 words. Punchy. |
+| **Line 3 — The gap** | The piece of evidence that cannot be explained — or the question the reader cannot answer without clicking. | End on a concrete noun or an unanswerable question. |
+
+**Core rules:**
+
+- No character names — always "She" / "Her". The reader self-inserts.
+- No genre labels in the copy ("cozy mystery", "whodunit", "thriller").
+- The impossible clue in line 3 must be named, not explained — naming it creates the gap; explaining it closes the gap.
+- State the discovery in physical terms: "she found him in the library" not "she discovered the body."
+- The strongest mysteries have an impossible witness or an impossible object — something that requires the reader to enter the story to resolve.
+
+**Mystery-specific templates:**
+
+| Situation type | Line 1 | Line 2 | Line 3 |
+|---|---|---|---|
+| **The impossible witness** | [The person who should have been dead / absent / elsewhere] was [there / standing at the door / in the photograph]. | She had watched [them / him / her] [die / leave / disappear] [timeframe] ago. | [The physical detail that proves they were there — object, signature, fingerprint.] |
+| **The impossible clue** | Everyone agreed [the obvious answer]. | She found [the one thing that couldn't fit the obvious answer]. | [The object or fact — named, not explained.] |
+| **The wrong victim** | They found [specific description of who was found and where]. | The person they thought it was [had been seen alive / was in another country / had a different blood type]. | [The detail that proves the identification was wrong.] |
+| **The message from the dead** | [She / Her client / The victim's family] had been receiving [letters / calls / messages] from [her / him] for [timeframe]. | [He / She] had been dead for [timeframe]. | The last message arrived [this morning / yesterday / an hour ago]. |
+
+**Examples:**
+
+> "She found the letter in the victim's handwriting.
+> The victim had been dead for three weeks.
+> It was dated yesterday."
+
+> "Everyone agreed he'd acted alone.
+> She found his alibi in the evidence they'd never tested.
+> Someone had buried it on purpose."
+
+**When to use vs. synopsis:**
+- **Synopsis formula** (above): book detail page, meta description. Richer, multi-sentence structure.
+- **3-line feed hook**: Facebook/Instagram post caption, paid ad copy. Survives the "See more" cut. Do not reuse the synopsis verbatim.

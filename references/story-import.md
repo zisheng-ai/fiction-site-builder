@@ -114,6 +114,24 @@ When the source is a single file with chapter markers:
    ```
 5. Do not modify prose content during splitting — import as-is, deslop separately
 
+### Duplicate Chapter File Cleanup
+
+When `content/{book}/chapters/` contains multiple files mapping to the same chapter number, for example two files both starting with `ch-005`, keep only one.
+
+Resolution priority:
+1. Keep the file with more words; delete the shorter one.
+2. If word counts are equal, keep the file whose frontmatter `chapter:` field matches the filename number, for example `chapter: 5` should not appear in `ch-003-xxx.md`.
+3. If both are equal, keep the file with more complete content or a more descriptive title.
+
+Detection command:
+
+```bash
+book="book-slug"
+ls content/$book/chapters/ | sed 's/\(ch-[0-9]*\).*/\1/' | sort | uniq -d
+```
+
+For each duplicate pair, run `wc -w` on both files and delete the shorter version. No confirmation needed before deletion; the user reviews all changes via `git status` at wrap-up.
+
 ## Tracking File Reconstruction
 
 `tracking/context.md` — write the last chapter's final beat and identify 2–3 open threads the next chapter must address.

@@ -216,9 +216,9 @@ GPT/AdSense slots render as zero-height divs by default. When the ad creative lo
 
 **Never use JavaScript to reserve space** — JS-driven reservations run after layout, which may already have happened, causing a shift.
 
-### Fluid slots (q5)
+### q5 slot sizing
 
-Fluid-size ads (q5 in the nablepart setup) have unknown height until the creative loads. Place fluid slots only below the fold. CLS from below-fold content after 500ms of user interaction is scored under the windowed CLS model and affects the score less — but still avoid them above the fold.
+q5 uses standard display sizes `[[336,280],[300,250],[250,250]]` — same `minWidth: 250, minHeight: 250` reservation as q1–q4. No special CLS handling needed.
 
 ### GPT lazy loading with explicit margins
 
@@ -859,7 +859,7 @@ Each site needs its own cookie-consent banner with a site-specific localStorage 
 
 | Variant | When to use | Key format |
 |---------|-------------|------------|
-| **Basic** | Non-EU/UK markets (US, LatAm, etc.) — single Accept button | `{prefix}-cookie-consent` |
+| **Basic** | Non-EU/UK markets (US, LatAm, etc.) — Reject + Accept buttons | `{prefix}-cookie-consent` |
 | **GDPR** | EU / UK markets — Accept All / Reject All / Manage categories | `{prefix}-cookie-consent-v2` |
 
 Key prefix convention: two-letter abbreviation of the site slug (e.g. `vt` for velvet-throne, `mf` for midnight-fable, `fe` for fuego-eterno, `lp` for london-pages, `wr` for wildfire-reads).
@@ -871,6 +871,8 @@ Both variants are **UI-only** — they record user preference in localStorage bu
 **Variant A — Basic** (non-EU/UK markets):
 
 Adapt text to the site language. English template: `"{Site Name} uses cookies to personalise content and ads."` Spanish template: `"{Nombre} utiliza cookies para personalizar contenido y anuncios."`
+
+Provide both **Reject** and **Accept** buttons. Rejecting does not block ads — it only records the preference and dismisses the banner.
 
 ```tsx
 'use client'
@@ -895,6 +897,11 @@ export default function CookieBanner() {
     setVisible(false)
   }
 
+  function reject() {
+    try { localStorage.setItem(CONSENT_KEY, '0') } catch {}
+    setVisible(false)
+  }
+
   return (
     <div className="fixed bottom-0 left-0 right-0 z-[9999] bg-base-200 border-t border-base-300 shadow-lg px-4 py-3 flex flex-col sm:flex-row items-center gap-3">
       <p className="text-sm text-base-content flex-1 text-center sm:text-left">
@@ -903,13 +910,22 @@ export default function CookieBanner() {
         {'{Site Name}'} uses cookies to personalise content and ads.{' '}
         <Link href="/privacy" className="underline hover:text-primary">Learn more</Link>
       </p>
-      <button
-        onClick={accept}
-        className="bg-primary text-primary-content px-4 py-2 rounded text-sm font-medium shrink-0 hover:opacity-90 transition-opacity"
-      >
-        {/* EN: Accept  ES: Aceptar */}
-        Accept
-      </button>
+      <div className="flex items-center gap-2 shrink-0">
+        <button
+          onClick={reject}
+          className="px-4 py-2 rounded text-sm font-medium border border-base-300 hover:border-primary hover:text-primary transition-colors"
+        >
+          {/* EN: Reject  ES: Rechazar */}
+          Reject
+        </button>
+        <button
+          onClick={accept}
+          className="bg-primary text-primary-content px-4 py-2 rounded text-sm font-medium hover:opacity-90 transition-opacity"
+        >
+          {/* EN: Accept  ES: Aceptar */}
+          Accept
+        </button>
+      </div>
     </div>
   )
 }
@@ -1032,13 +1048,13 @@ Three-layer requirement. Every layer must be covered before launch:
 
 | Layer | Where | Image | URL form |
 |---|---|---|---|
-| **Homepage** | `layout.tsx` openGraph | `logo.png` (512×512) | Absolute (`https://`) |
+| **Homepage** | `layout.tsx` openGraph | `logo-light.png` (512×512) | Absolute (`https://`) |
 | **Book detail** | `book/[slug]/page.tsx` generateMetadata | `book.cover` (848×1280) | Relative OK — resolved by `metadataBase` |
 | **Chapter** | `book/[slug]/chapter/[n]/page.tsx` generateMetadata | `book.cover` (848×1280) | Relative OK — resolved by `metadataBase` |
 
 **`metadataBase` is the key**: set it once in `layout.tsx` with the real domain, and all relative OG image URLs in child pages resolve to absolute automatically. No `siteUrl` env var needed.
 
-**`src/app/layout.tsx`** — homepage fallback (logo, absolute URL):
+**`src/app/layout.tsx`** — homepage fallback (logo-light, absolute URL):
 
 ```ts
 export const metadata: Metadata = {
@@ -1046,7 +1062,7 @@ export const metadata: Metadata = {
   openGraph: {
     siteName: 'Your Site Name',
     type: 'website',
-    images: [{ url: 'https://your-domain.com/logo.png', width: 512, height: 512, alt: 'Your Site Name' }],
+    images: [{ url: 'https://your-domain.com/logo-light.png', width: 512, height: 512, alt: 'Your Site Name' }],
   },
 }
 ```
@@ -1064,10 +1080,10 @@ openGraph: {
 twitter: { card: 'summary_large_image' },
 ```
 
-**Chapter page without explicit OG image** is acceptable — Next.js falls back to the root layout's `logo.png`. But setting `book.cover` on chapter pages is preferred for better FB/Twitter previews.
+**Chapter page without explicit OG image** is acceptable — Next.js falls back to the root layout's `logo-light.png`. But setting `book.cover` on chapter pages is preferred for better FB/Twitter previews.
 
 Rules:
-- `logo.png` must exist at `public/logo.png`. Dimensions: 512×512 minimum, square is safe for all platforms.
+- `logo-light.png` must exist at `public/logo-light.png`. Dimensions: 512×512 minimum, square is safe for all platforms.
 - `book.cover` is `/covers/{slug}.webp` — a relative path. With `metadataBase` set, Next.js outputs an absolute URL in the built HTML. Verify by grepping `og:image` in `out/` after build.
 - The book cover (portrait 2:3, 848×1280) doubles as the FB link preview for book and chapter pages — no separate OG image asset needed.
 

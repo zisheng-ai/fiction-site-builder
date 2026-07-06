@@ -86,11 +86,16 @@ Each genre has its own community, demand signals, and trope language. Pick the g
 | **Romance — Dark / Mafia** | Enemies to lovers + forced proximity + possessive hero; morally grey captor | `#darkromance` 15B+ TikTok views |
 | **Romance — Paranormal** | Alpha werewolf + fated mates + rejected mate arc | `#wolfromance` `#materomance` |
 | **Romance — Contemporary** | Cold CEO + contract marriage; rivals to lovers; small-town second chance | `#ceoromance` `#sportsromance` |
-| **Mystery / Cosy Mystery** | Amateur detective + closed setting + cast of suspects; cold case revival | `#mysterythriller` Reddit `r/cozynoir` |
-| **Thriller / Suspense** | Unreliable narrator + hidden identity + ticking clock | `#psychologicalthriller` `#thrillerbooks` |
-| **Horror** | Haunted location + unreliable senses + isolation; folk horror + outsider | `#horrorreads` `#horrorbooks` Reddit `r/horrorlit` |
-| **Epic / Dark Fantasy** | Chosen burden + political intrigue + magic cost; fae court + mortal bargain | `#epicfantasy` `#darkfantasy` Reddit `r/Fantasy` |
-| **Sci-Fi / Dystopian** | Resistance cell + surveillance state + one person who sees the truth; first contact | `#dystopian` `#scifi` Reddit `r/scifi` |
+| **Romance — Historical / Regency** | Forbidden match across class lines; scandal + reputation at stake; enemies in ballrooms | `#regencyromance` `#historicalromance` Pinterest + Facebook Groups |
+| **Mystery — Cosy** | Amateur detective + closed setting + recurring cast of suspects; village crime + outsider protagonist | `#cozymystery` `#cozymysterybooks` Reddit `r/cozynoir` |
+| **Mystery — Literary / Gothic Thriller** | Unreliable narrator + hidden identity + psychological unravelling; ancestral estate secret | `#gothicfiction` `#literarythriller` `#psychologicalthriller` |
+| **Thriller / Suspense** | Ticking clock + hidden past + wrong-place-wrong-time; witness protection + second life | `#thrillerbooks` `#suspensereads` Reddit `r/thrillermystery` |
+| **Horror — Haunted / Folk** | Isolated location + unreliable senses + escalating dread; folk ritual + outsider who breaks the rules | `#horrorreads` `#folkhorror` Reddit `r/horrorlit` |
+| **Horror — Psychological / Domestic** | Ordinary setting turned threatening; gaslighting + confined relationship; grief that won't stay buried | `#psychologicalhorror` `#domesticthriller` TikTok + Reddit |
+| **Epic / Dark Fantasy** | Chosen burden + political intrigue + magic cost; fae court + mortal bargain; empire in collapse | `#epicfantasy` `#darkfantasy` Reddit `r/Fantasy` |
+| **Fantasy — Paranormal / Urban** | Supernatural investigator + hidden world beneath the ordinary; reluctant chosen one in a modern city | `#urbanfantasy` `#paranormalfiction` TikTok + Pinterest |
+| **Sci-Fi — Dystopian** | Resistance cell + surveillance state + one person who sees the truth; memory erasure + identity recovery | `#dystopian` `#dystopianfiction` Reddit `r/scifi` |
+| **Sci-Fi — Speculative / First Contact** | Humanity's first encounter with the non-human; technology that changes what it means to be alive | `#sciencefiction` `#scifi` Reddit `r/scifi` `r/printSF` |
 | **Contemporary Drama** | Secret child / hidden lineage + family reckoning; second-chance reunion after an old wrong; grief and inheritance | `#familydrama` `#emotionalfiction` `#secretbaby` Pinterest + Facebook Groups |
 | **Medical Drama** | Deathbed revelation + caregiver relationship; hospital diagnosis that forces family truth; donor / recipient identity | `#medicaldrama` `#hospitalstory` TikTok + Pinterest emotional content |
 
@@ -106,28 +111,40 @@ Avoid:
 
 ---
 
+## Step 1.5: Site Tone Gate (mandatory — run BEFORE Step 2)
+
+**Before evaluating any candidate, read the target site's entry in `fictions/CLAUDE.md`.** Every candidate must clear this gate or be dropped immediately:
+
+1. **Tone match** — the candidate's core emotion (dark intensity, wholesome/cosy, literary, Spanish heat, etc.) must match the site's declared tone. No exceptions. A "heartwarming small-town" story does not belong on velvet-throne no matter how high its demand score.
+2. **No topic overlap with sister sites** — if the parent project has multiple sites on the same root domain, the candidate must not replicate the core topic of another site. Check the site isolation table in `fictions/CLAUDE.md`. Reject any candidate that would compete with a sister site on the same domain.
+3. **Language match** — the story language must match the site's declared language (`en`, `es`, `en-GB`). Do not write English content for a Spanish site or vice versa.
+
+Reject candidates that fail any gate. Do not score them. Do not bring them back.
+
+---
+
 ## Step 2: Validate Reader Demand
 
-Before scoring, confirm the genre × trope combo has real reader demand.
+Before scoring, confirm the genre × trope combo has real reader demand **with recent (last 3 months) trending signals**.
 
-### Three-signal demand check
-
-All three must pass:
+### Four-signal demand check (all four must pass)
 
 1. **Social proof** — at least one TikTok hashtag related to this trope has >10M total views, OR a Reddit thread about this trope has >200 upvotes in the last 6 months.
 2. **Existing successful titles** — you can name at least 3 titles (any platform) in this exact trope combo with confirmed readership (Wattpad reads >500K, KU bestseller, or BookTok viral). This proves the market exists and readers return to the sub-genre.
 3. **Reader appetite gap** — community evidence (Reddit comments, BookTok comments, Facebook posts) that readers want MORE of this trope. Absence of complaints about oversaturation.
+4. **Recency gate (MANDATORY)** — demand must be active in the **last 3 months**. Evidence required: TikTok videos on this trope/genre tag published in the last 3 months with >100K views each, OR a BookTok trend/audio currently circulating, OR a Reddit "what to read" thread from the last 3 months with 50+ upvotes recommending this sub-genre. **Flat or declining genres fail this gate even if they have historically large audiences.** A genre that was huge 18 months ago but hasn't surfaced in recent discussions must be treated as fading demand.
 
-Reject candidates that fail any of these three checks.
+Reject candidates that fail any of these four checks.
 
 ### Demand dimensions
 
 | Dimension | What to measure | Where to check |
 | --- | --- | --- |
 | **Trope tag views** | Total TikTok views on primary trope hashtag | TikTok hashtag search |
+| **Recent activity** | TikTok videos posted in last 3 months on this trope hashtag — count and view velocity | TikTok, filter by recency |
 | **Community depth** | Active subreddit or Facebook group dedicated to this sub-genre | Reddit, Facebook Groups |
 | **Title density** | How many existing titles in this exact combo? Sparse (<20 active titles) = gap; saturated (>500) = harder entry | Wattpad search, Amazon KU filter |
-| **Recency** | Is demand rising, flat, or falling? | Google Trends (trope as phrase), TikTok video recency |
+| **Trend direction** | Is demand rising, flat, or falling? Rising required. | Google Trends (trope as phrase, 3-month window), TikTok video recency |
 | **Emotional hook strength** | Can the premise be stated in one sentence that triggers a strong emotional reaction? | Gut check + test against 5 similar titles |
 
 ### Competitive landscape check
@@ -239,7 +256,7 @@ Record `suggested_title` and `suggested_slug` in `niche-research.json`.
 
 Write `outputs/{site-slug}/{book-slug}/niche-research.json`.
 
-**Romance example:**
+**Example (Dark Romance):**
 
 ```json
 {

@@ -18,7 +18,8 @@ Use system-first stacks. Never load a CJK web font for body text — system font
 
 **English / Spanish (reader body):**
 ```css
-font-family: ui-serif, Georgia, "Times New Roman", serif;
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+             "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
 ```
 
 **Japanese (reader body):**

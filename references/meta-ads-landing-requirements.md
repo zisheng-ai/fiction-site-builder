@@ -133,6 +133,24 @@ These numbers are practitioner aggregates, not Meta's published figures. Use as 
 - Real, original prose — not thin placeholder or auto-generated filler
 - Mobile experience matches desktop experience (no mobile-only pop-ups, no mobile-only redirects)
 
+### 3.4 Typography requirements for paid traffic landing pages
+
+Social traffic audiences have shorter attention spans than organic search readers. Typography must minimise friction in the first 5 seconds.
+
+| Property | Value | Rationale |
+|---|---|---|
+| Font family | System sans-serif stack (`-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, …`) | Zero load latency; native feel; no FOIT risk on mobile networks |
+| Font size — mobile | 19px | Below 17px increases bounce; above 21px feels low-density |
+| Font size — desktop | 20px | Slightly larger for wider viewport |
+| Line height — mobile | 1.8 | Generous enough to track across lines; below 1.7 feels cramped |
+| Line height — desktop | 1.85 | |
+| Paragraph spacing | `margin-bottom: 1.1em` | Compact beat separation; 1.3em+ is blog-style and hurts scroll depth |
+| Max line width | `max-width: 68ch` | Prevents eye-tracking fatigue on wide screens |
+| Word break | `word-break: break-word` | Prevents long names/URLs breaking the container on mobile |
+| Text rendering | `text-rendering: optimizeLegibility` | Better kerning with system fonts at body size |
+
+These values are validated across 5 live sites (midnight-fable, velvet-throne, wildfire-reads, fuego-eterno, london-pages) for Facebook traffic arbitrage. Do not revert to serif body fonts — `Georgia`/`Times` stacks increase perceived reading friction for social audiences accustomed to sans-serif mobile UI.
+
 ---
 
 ## 4. Cloaking policy
@@ -167,7 +185,7 @@ Meta's detection has evolved past simple User-Agent blocking:
 | A/B testing two different landing pages (both fully compliant) | Allowed |
 | Serving faster cached version to bots | Allowed (same content, different delivery) |
 | Robots.txt `Disallow` on admin routes | Allowed (only public ad-destination URLs matter) |
-| Using Next.js static export with ISR for fast delivery | Allowed |
+| Using Next.js static export with CDN caching for fast delivery | Allowed |
 
 The test: is there **intentional deception of the review system**? Varying content by audience is fine; hiding violations from Meta's crawler is not.
 
@@ -212,7 +230,7 @@ The 3-second threshold aligns with Google's Core Web Vitals "Needs Improvement" 
 Test landing page speed from the perspective of a mid-range Android device on a 4G connection:
 - Google PageSpeed Insights (mobile score, LCP column)
 - WebPageTest with Moto G4 / LTE throttle profile
-- Meta's own "Test Events" in Events Manager shows page load timing
+- Meta's own "Test Events" in 事件管理工具 shows page load timing
 
 Target: **LCP < 2.5 s on mobile**, CLS < 0.1, FID/INP < 200 ms.
 
@@ -283,23 +301,28 @@ Common mistakes:
 
 ### 7.3 Events to implement (fiction reading arbitrage)
 
-| Event | When to fire | Priority | Notes |
+| Event | When to fire | AEM Priority | Notes |
 |---|---|---|---|
-| `PageView` | Every page load | Standard (auto via Pixel) | Low intent signal; good for learning phase volume |
-| `ViewContent` | When reader reaches chapter body (after scroll past header) | **High — use as optimization event** | Better intent than PageView; 50 events/week is achievable even on modest traffic |
-| Scroll depth (custom) | 50% and 90% scroll through chapter | Medium | Signals engaged reader; useful for CAPI enrichment |
-| `NextChapter` (custom) | When reader navigates to next chapter | High | Clearest signal of engaged session; use for ROAS attribution |
-| `EngagedSession` (custom) | After ≥ 3 pageviews in session | High value | Train delivery toward multi-page readers — the profitable cohort |
+| `PageView` | Every page load (auto via Pixel init) | 4 — lowest | Low intent; includes 3-second bounces. Good for cold-start data volume only. |
+| `ViewContent` | Chapter page mount — reader enters chapter content | **3 — switch campaign optimization to this once ≥ 500 events** | Standard event, no custom conversion needed. Fire via `ChapterPixel` component on mount. |
+| `ScrollDepth25` (custom) | 25% scroll | Funnel analysis only — do not add to AEM | Measures ch1 hook retention. Weak intent signal; not recommended as optimization target. |
+| `ChapterRead50` (custom) | 50% scroll | **2 — strong optimization target** | Genuinely interested reader. Requires custom conversion in 事件管理工具 before AEM/campaign use. |
+| `ScrollDepth75` (custom) | 75% scroll | Funnel analysis only — do not add to AEM | Mid-to-late retention diagnostic. Useful for content quality analysis; not for AEM. |
+| `ChapterCompleted` (custom) | **90% scroll** (not 100% — footer/ads/recommendations below fold make 100% unreachable) | **1 — highest; best Lookalike seed** | Strongest intent signal. Train delivery toward deep readers. Requires custom conversion in 事件管理工具. |
+| `NextChapter` (custom) | Reader navigates to next chapter | High | Clearest engaged-session signal; use for ROAS attribution if implemented. |
 
-**Recommendation:** optimize campaigns toward `ViewContent` or `NextChapter`, not raw `PageView`. Higher-intent optimization events attract the cohort that reads multiple chapters, which is the only cohort that generates positive ROAS in this model.
+**Recommendation:** optimize campaigns toward `ViewContent` or `ChapterRead50`, not raw `PageView`. AEM event priority: `ChapterCompleted(1) > ChapterRead50(2) > ViewContent(3) > PageView(4)`.
+
+**Implementation:** all scroll events live in `src/components/ChapterPixel.tsx` — a client component that fires `ViewContent` on mount and uses a single passive scroll listener with `useRef` guards to fire each depth event exactly once per page load.
 
 ### 7.4 CAPI implementation pattern (Next.js static export)
 
-Static export means no Node.js server — CAPI must be sent via a serverless function or a separate backend. Options:
+Static export means no Node.js server and no in-project `app/api/*/route.ts`. CAPI must be sent via a separate serverless/backend project, or skipped for MVP. Do not add API routes to the static export site.
 
-**Option A — Vercel Edge Function (recommended)**
+**Option A — Separate Vercel Edge Function project (recommended when CAPI is required)**
 
 ```ts
+// Separate serverless project, not inside the static export site.
 // app/api/capi/route.ts
 export const runtime = 'edge'
 
@@ -334,7 +357,7 @@ export async function POST(req: Request) {
 }
 ```
 
-Client side fires the Pixel event and posts the same `event_id` to this endpoint concurrently.
+Client side fires the Pixel event and posts the same `event_id` to the external endpoint concurrently. Configure the external endpoint URL via project configuration; do not hardcode it into the skill template.
 
 **Option B — Skip CAPI for MVP, add later**
 
@@ -441,7 +464,10 @@ Wire these during B4 (trust pages / compliance) before running any Meta campaign
 - [ ] No interstitial or pop-up appears before chapter content loads
 - [ ] No redirect chain between the ad's destination URL and the final landing page
 - [ ] Meta Pixel fires `PageView` on every chapter load (via `layout.tsx`)
-- [ ] Meta Pixel fires `ViewContent` when reader reaches chapter body (client-side scroll trigger)
+- [ ] `ChapterPixel` client component added to chapter page — fires `ViewContent` on mount + scroll depth events at 25% / 50% / 75% / 90%
+- [ ] Custom conversions created in 事件管理工具: `ChapterRead50`, `ChapterCompleted`
+- [ ] AEM configured: `ChapterCompleted(1) > ChapterRead50(2) > ViewContent(3) > PageView(4)`
+- [ ] `.prose-reader` uses system sans-serif stack, ≥19px mobile, line-height 1.8, max-width 68ch, word-break break-word (see §3.4)
 
 **Content consistency**
 - [ ] Ad creative's cover matches the book on the landing page

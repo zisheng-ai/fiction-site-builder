@@ -131,6 +131,51 @@ For drama fiction, the primary escalation axis is the register of emotional pres
 
 ---
 
+### Facebook Ad Hook Copy — 3-Line Feed Format
+
+Facebook/Instagram feeds truncate after ~3 lines ("See more"). The hook must land in exactly 3 lines — one situation, one turn, one gap.
+
+**The 3-line structure:**
+
+| Line | Role | Constraint |
+|------|------|------------|
+| **Line 1 — The situation** | State the impossible or shocking thing. Subject + what happened to her. | 8–14 words. Complete sentence. |
+| **Line 2 — The turn** | Her realization, or the detonation of her assumption. | 5–10 words. Often starts with "But" or "She knew". |
+| **Line 3 — The gap** | A physical-evidence reveal, or a mystery cliff that cannot be answered without clicking. | End on a concrete noun or fact, not an emotion. |
+
+**Core rules:**
+
+- No character names — always "She" / "Her". The reader self-inserts.
+- Each line is a standalone complete sentence.
+- End on a fact or object, not a feeling.
+- **Moral clarity as line 2**: "She knew it was a lie." One sentence. No hedging. The protagonist's clear-eyed verdict is more shocking than the situation itself.
+- Betrayal from the closest relationship is always stronger — mother, sister, husband, best friend.
+
+**Drama-specific templates:**
+
+| Situation type | Line 1 | Line 2 | Line 3 |
+|---|---|---|---|
+| **Family secret revealed** | Her [family member] had been [hiding / lying about / erasing] [specific thing] for [timeframe]. | She found the [evidence — letter / document / voicemail]. | She never asked. She already knew what it meant. |
+| **Medical / life-or-death sacrifice** | Her own [closest person] wanted to [take something that belongs to her] to [save rival / someone else]. | She knew it was [moral label: murder / theft / a sentence she hadn't agreed to]. | But no one could have guessed the ending! |
+| **Discovered betrayal** | She found out [the person she trusted most] had [betrayed her] before [the moment everything changed]. | She didn't confront him. | She just [quietly did the one thing they hadn't seen coming]. |
+| **Deferred truth** | She had spent [timeframe] pretending she didn't know. | [The day / the call / the letter] made pretending impossible. | [The specific thing she could no longer avoid — one noun phrase.] |
+
+**Examples:**
+
+> "Her own mother wanted to take her kidney to save her sister.
+> She knew it was murder.
+> But no one could have guessed the ending!"
+
+> "She found out he'd been paying her rent for three years.
+> She'd never asked where the money came from.
+> On the table — his name. On every receipt."
+
+**When to use vs. synopsis:**
+- **Synopsis formula** (above): book detail page, meta description. Richer, 5-sentence structure.
+- **3-line feed hook**: Facebook/Instagram post caption, paid ad copy. Survives the "See more" cut. Do not reuse the synopsis verbatim.
+
+---
+
 ## Short Form Drama
 
 Drama is among the highest-performing short fiction genres for emotional resonance because:
