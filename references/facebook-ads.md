@@ -222,6 +222,28 @@ Examples:
 
 **Power words that earn their place:** "already knew", "hasn't mentioned it", "stopped being the point", "said nothing", "recognized it", "hasn't filed the report" — words that imply someone has information the reader doesn't.
 
+### Click-driven rewrite method
+
+Use this method when writing or bulk-optimizing taglines for Facebook traffic.
+
+1. **Start with the unsafe fact, not the character.** The first clause should expose danger, manipulation, disappearance, debt, betrayal, a document, a bloodline, or an impossible piece of evidence. Avoid opening with a name unless the name itself is the hook.
+2. **Make the first 8 words carry the click.** A user should feel the premise before reading the rest. Good openers include "Every woman who...", "The contract already...", "Her mother vanished...", "The evidence named...", "He bought..." or "The ritual required...".
+3. **Turn the middle on proof.** Add one concrete object or action: a ledger, contract, recording, locked room, body, score, clause, blood sample, message, or signature. This makes the hook feel like a story scene instead of abstract marketing copy.
+4. **Reverse control.** The protagonist thought they were applying, investigating, negotiating, escaping, collecting, or shutting something down. The second beat reveals they were selected, trapped, watched, claimed, framed, or expected.
+5. **End with withheld information.** The final sentence should leave one active secret unresolved: who knew, why she was chosen, what he has not said, what the record hides, or what happens when she refuses.
+
+Before publishing a rewritten tagline, run the copy deslop mini-pass: remove em dashes, generic adjectives, passive voice, throat-clearing, "not X but Y" scaffolding, and any ending that explains the emotion instead of leaving a concrete unanswered threat.
+
+### Bulk tagline optimization
+
+When optimizing a whole site, treat existing taglines as ad variants, not sacred metadata.
+
+- Keep only taglines that already pass the first-8-words test, the 25–40 word limit, and the unresolved-ending rule.
+- Remove em dashes across the batch. Facebook copy should read cleanly on mobile and survive copy-paste into Ads Manager.
+- Prefer one concrete proof object per tagline. Do not stack multiple twists unless the second twist sharpens the click.
+- Avoid repeating the same opener across adjacent books on the same site. A carousel or book grid should not sound templated.
+- Check every tagline against the book description so the ad does not promise a scene or relationship the story cannot deliver.
+
 ### Genre-specific angles
 
 | Genre | Angle that works on Facebook |
