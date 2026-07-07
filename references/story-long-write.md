@@ -396,23 +396,19 @@ Use this for adding one chapter to an existing book (incremental update only).
 6. Write the **escalation**: raise stakes through action/dialogue. No passive reflection blocks.
 7. Write the **turn**: the moment that changes something — reveal, decision, or loss.
 8. Write the **hook-out**: end mid-motion or on an open question. Never summarize.
-9. **Word count gate** — count the words written and compare to the target range:
+9. **Length guidance** — treat word count as a pacing signal, not a hard gate:
 
-   | Chapter type | Target range | Hard cap |
+   | Chapter type | Preferred range | Typical soft ceiling |
    |---|---|---|
-   | Opening (ch 1) | 1,400–1,800 | 1,800 |
-   | Escalation (ch 2–N-3) | 1,200–1,600 | 1,800 |
-   | Climax (last 3) | 1,200–1,600 | 1,800 |
-   | Resolution | 1,000–1,400 | 1,600 |
+   | Opening (ch 1) | 1,400–1,800 | 2,000 |
+   | Escalation (ch 2–N-3) | 1,200–1,600 | 2,000 |
+   | Climax (last 3) | 1,200–1,600 | 2,000 |
+   | Resolution | 1,000–1,400 | 1,700 |
 
-   **If over the hard cap:** do NOT add more prose. Find the highest-tension moment inside the chapter and cut there. Everything after the cut becomes the opening beat of the next chapter (bump subsequent chapter numbers). Then verify both parts meet the lower bound:
-   - If Part 1 < 1,200 words (or < 1,000 for resolution), add one detail or dialogue beat to Part 1 until it reaches minimum.
-   - If Part 2 < 1,200 words (or < 1,000 for resolution), merge Part 2 back into Part 1 — do not save a skeleton chapter.
+   If a chapter exceeds the soft ceiling without adding momentum, split at the strongest unresolved beat. The tail becomes the opening beat of the next chapter.
+   If a chapter is far below preferred range and lacks scene value, add one concrete detail, scene action, or dialogue turn before saving.
    Adjust the outline accordingly.
-
-   **If under the lower bound:** the scene is thin — add one concrete sensory detail or one beat of subtext dialogue, then re-check. Do not pad with reflection or summary.
-
-   Do not proceed to step 10 until the word count is within the target range, and if split occurred, both parts meet their lower bounds.
+   Do not pad with reflection or summary to hit a length target.
 
 10. Save to `content/{book-title}/chapters/ch-NNN-{title}.md` from the project root, with correct zero-padded number.
 11. **If split occurred in step 9:** update `src/lib/books.ts` — increment `chapterCount` by 1 for the book, and ensure all chapter filenames in `content/{book-title}/chapters/` match the final chapter numbering.
