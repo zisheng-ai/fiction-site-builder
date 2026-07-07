@@ -208,8 +208,9 @@ Diagnostic signal: if AdX viewability is below 60% and match rate is ≥ 95%, th
 
 - **Meta Pixel + Conversions API (CAPI)**: Pixel alone loses signal to iOS/ad-blockers; CAPI (server-side) recovers it. Run both, deduplicated by event ID.
 - If the site uses App Router / `next/link`, add a client-side route tracker that fires `fbq('track', 'PageView')` on pathname changes after the initial render. The bootstrap PageView in layout only covers the first hard load.
-- Events to fire: `PageView`, `ViewContent` (chapter open), `ScrollDepth25` / `ChapterRead50` / `ScrollDepth75` (scroll milestones), `ChapterCompleted` (IntersectionObserver on `#chapter-content-end` sentinel — not scroll ratio), and `TimeOnPage30` (30s setTimeout, independent of scroll) as the engaged-session signal.
-- Next-chapter controls should fire `fbq('trackCustom', 'NextChapterClick', payload)` before hard navigation. Preserve normal browser behavior for modified clicks, then delay `window.location.href` by about 100–150ms so the Pixel request has time to leave the page.
+- Events to fire: `PageView`, `ViewContent` (chapter open), `{subdomain}_ScrollDepth25` / `{subdomain}_ChapterRead50` / `{subdomain}_ScrollDepth75` (scroll milestones), `{subdomain}_ChapterCompleted` (IntersectionObserver on `#chapter-content-end` sentinel — not scroll ratio), and `{subdomain}_TimeOnPage30` (30s setTimeout, independent of scroll) as the engaged-session signal.
+- Prefix all custom events with the live subdomain, using `{subdomain}_{EventName}`. This is mandatory when multiple sites share one Pixel, because unprefixed custom events from different subdomains collapse into one Events Manager stream. Keep standard events (`PageView`, `ViewContent`) unprefixed.
+- Next-chapter controls should fire `fbq('trackCustom', '{subdomain}_NextChapterClick', payload)` before hard navigation. Preserve normal browser behavior for modified clicks, then delay `window.location.href` by about 100–150ms so the Pixel request has time to leave the page.
 - Optimize the FB campaign toward the **engaged/value event**, not raw landing PageView — that is what trains delivery toward profitable readers.
 - UTM-tag every campaign; keep `campaign → landing chapter` mapping for ROAS attribution.
 
@@ -233,6 +234,8 @@ interface Props {
   bookSlug: string
 }
 
+const EVENT_PREFIX = 'SUBDOMAIN_' // e.g. 'brocade_', 'midnight_'; leave empty only for already-running legacy sites
+
 export function ChapterPixel({ chapterTitle, chapterOrder, bookSlug }: Props) {
   const fired25 = useRef(false)
   const fired50 = useRef(false)
@@ -253,7 +256,7 @@ export function ChapterPixel({ chapterTitle, chapterOrder, bookSlug }: Props) {
     const dwellTimer = setTimeout(() => {
       if (!firedDwell30.current) {
         firedDwell30.current = true
-        window.fbq?.('trackCustom', 'TimeOnPage30', {
+        window.fbq?.('trackCustom', `${EVENT_PREFIX}TimeOnPage30`, {
           content_name: chapterTitle,
           chapter_order: chapterOrder,
         })
@@ -265,15 +268,15 @@ export function ChapterPixel({ chapterTitle, chapterOrder, bookSlug }: Props) {
       const ratio = window.scrollY / (document.body.scrollHeight - window.innerHeight)
       if (!fired25.current && ratio >= 0.25) {
         fired25.current = true
-        window.fbq?.('trackCustom', 'ScrollDepth25', { content_name: chapterTitle, chapter_order: chapterOrder })
+        window.fbq?.('trackCustom', `${EVENT_PREFIX}ScrollDepth25`, { content_name: chapterTitle, chapter_order: chapterOrder })
       }
       if (!fired50.current && ratio >= 0.5) {
         fired50.current = true
-        window.fbq?.('trackCustom', 'ChapterRead50', { content_name: chapterTitle, chapter_order: chapterOrder })
+        window.fbq?.('trackCustom', `${EVENT_PREFIX}ChapterRead50`, { content_name: chapterTitle, chapter_order: chapterOrder })
       }
       if (!fired75.current && ratio >= 0.75) {
         fired75.current = true
-        window.fbq?.('trackCustom', 'ScrollDepth75', { content_name: chapterTitle, chapter_order: chapterOrder })
+        window.fbq?.('trackCustom', `${EVENT_PREFIX}ScrollDepth75`, { content_name: chapterTitle, chapter_order: chapterOrder })
       }
     }
 
@@ -287,7 +290,7 @@ export function ChapterPixel({ chapterTitle, chapterOrder, bookSlug }: Props) {
         (entries) => {
           if (entries[0].isIntersecting && !firedCompleted.current) {
             firedCompleted.current = true
-            window.fbq?.('trackCustom', 'ChapterCompleted', {
+            window.fbq?.('trackCustom', `${EVENT_PREFIX}ChapterCompleted`, {
               content_name: chapterTitle,
               chapter_order: chapterOrder,
             })
@@ -344,15 +347,15 @@ Select the highest-quality event that has accumulated ≥ 50 events/week. Upgrad
 
 | Priority | Event | Signal quality |
 |---|---|---|
-| 1 | `ChapterCompleted` (custom) | Reader finished prose — highest intent |
-| 2 | `ChapterRead50` (custom) | Reader reached midpoint — proven engagement |
-| 3 | `TimeOnPage30` (custom) | 30s dwell — time-dimension engagement, good for short chapters |
+| 1 | `{subdomain}_ChapterCompleted` (custom) | Reader finished prose — highest intent |
+| 2 | `{subdomain}_ChapterRead50` (custom) | Reader reached midpoint — proven engagement |
+| 3 | `{subdomain}_TimeOnPage30` (custom) | 30s dwell — time-dimension engagement, good for short chapters |
 | 4 | `ViewContent` (standard) | Chapter opened — lowest, but broadest volume |
 | 5 | `PageView` | Any page — fallback only |
 
-Note: custom events (`ChapterCompleted`, `ChapterRead50`, `TimeOnPage30`) must be wrapped as Custom Conversions in Events Manager before they can be selected as Ad Set optimization targets — see `facebook-ads.md §Step 1.2`.
+Note: custom events (`{subdomain}_ChapterCompleted`, `{subdomain}_ChapterRead50`, `{subdomain}_TimeOnPage30`, `{subdomain}_NextChapterClick`) must be wrapped as Custom Conversions in Events Manager before they can be selected as Ad Set optimization targets — see `facebook-ads.md §Step 1.2`. Record this manual setup in `TODO.md`.
 
-Use `ViewContent` as the campaign optimization target to start. Upgrade to `ChapterRead50` once it accumulates ≥ 50 events/week — it signals actual readers, not page-loaders.
+Use `ViewContent` as the campaign optimization target to start. Upgrade to `{subdomain}_ChapterRead50` once it accumulates ≥ 50 events/week — it signals actual readers, not page-loaders.
 
 ---
 

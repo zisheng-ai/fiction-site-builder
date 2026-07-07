@@ -221,7 +221,9 @@ Do not add placeholder ad markup or commented-out ad code — leave the pages cl
 
 During B4, check the parent project `fictions/CLAUDE.md` for a `facebook_pixel.id` configuration. This step is **optional** — if the parent project does not specify a Pixel ID, skip the code change and only record it in `TODO.md`.
 
-- **If configured**: add the Facebook Pixel base code to `src/app/layout.tsx` `<head>` using `next/script` with `strategy="afterInteractive"`. Use the exact Pixel ID from `fictions/CLAUDE.md`. Also wire the `ChapterPixel` component (see `references/adsense-arbitrage.md §4.3`) into `src/app/book/[slug]/chapter/[n]/page.tsx` — this fires `ViewContent` on mount, `ScrollDepth25` / `ChapterRead50` / `ScrollDepth75` at scroll milestones, `ChapterCompleted` via IntersectionObserver on `#chapter-content-end` sentinel, and `TimeOnPage30` after 30 seconds. These are the L1 optimization signals for Lookalike Audience building.
+- **If configured**: add the Facebook Pixel base code to `src/app/layout.tsx` `<head>` using `next/script` with `strategy="afterInteractive"`. Use the exact Pixel ID from `fictions/CLAUDE.md`. Also wire the `ChapterPixel` component (see `references/adsense-arbitrage.md §4.3`) into `src/app/book/[slug]/chapter/[n]/page.tsx` — this fires `ViewContent` on mount, `{subdomain}_ScrollDepth25` / `{subdomain}_ChapterRead50` / `{subdomain}_ScrollDepth75` at scroll milestones, `{subdomain}_ChapterCompleted` via IntersectionObserver on `#chapter-content-end` sentinel, and `{subdomain}_TimeOnPage30` after 30 seconds. These are the L1 optimization signals for Lookalike Audience building.
+  - Custom event names MUST be prefixed with the live subdomain, using the format `{subdomain}_{EventName}` (for example `brocade_ChapterRead50`, `midnight_ChapterCompleted`). Keep Meta standard events (`PageView`, `ViewContent`) unprefixed.
+  - Add a TODO for manual Meta Events Manager setup: create Custom Conversions / Ad Set conversion events for `{subdomain}_ChapterRead50`, `{subdomain}_ChapterCompleted`, `{subdomain}_TimeOnPage30`, and `{subdomain}_NextChapterClick`. Code can emit the events, but selecting them as optimization targets requires this manual backend setup.
   - If the site uses `next/link` or any App Router client navigation, also add a lightweight route tracker that fires `fbq('track', 'PageView')` on pathname changes after the initial render. A single bootstrap `PageView` in layout is not enough for SPA-style navigation.
 - **If not configured**: do not add any Pixel code. Record in the site's `TODO.md`:
   ```
@@ -268,6 +270,7 @@ After B6 passes, generate two files before closing the session:
 - 广告和分析工具中尚未完成的项，包括：
   - Google Analytics 4 (GA4): add the `G-XXXXXXXX` tag to `layout.tsx` when the measurement ID is available.
   - Google Search Console (GSC): verify the live domain and submit `/sitemap.xml` after deployment.
+  - Meta Events Manager: create Custom Conversions / Ad Set conversion events for prefixed custom events (`{subdomain}_ChapterRead50`, `{subdomain}_ChapterCompleted`, `{subdomain}_TimeOnPage30`, `{subdomain}_NextChapterClick`).
 
 Both files must be written in **Chinese**. If the site is a new build, start with the expected state (all chapters to write, not yet deployed). If the site is updated, reflect the current delta.
 

@@ -43,6 +43,58 @@ Add `padding-top: 56px` (or `pt-14`) to the chapter content wrapper so it clears
 
 ---
 
+## Paid-Traffic Chapter 1 Landing Page (Velvet Pattern)
+
+When Meta/Facebook ads land directly on chapter 1, use the Velvet chapter-landing pattern. This pattern is optimized for cold social readers: confirm the book identity immediately, move into prose quickly, keep ads viewable without blocking the first reading decision, and make the next-chapter action visually unavoidable.
+
+### Chapter 1 identity card
+
+Render this only on chapter 1, before the chapter title and prose:
+
+- Compact book card with cover thumbnail (`96px` mobile, `130px` sm+), title, author, tagline, top 3 genre chips, and chapter count.
+- Label copy: `Free chapter 1` (or localized equivalent).
+- Primary in-page anchor: `Start Chapter 1` linking to `#chapter-start`, not to another route.
+- Style: `rounded-[18px]`, `border border-base-300`, `bg-base-200/55`, `p-4 sm:p-5`.
+- Keep tagline to 2 lines with `line-clamp-2`; the card confirms promise, it is not the synopsis page.
+- Cover image uses `priority` on chapter 1 because it is above the fold on the paid landing page.
+
+### Paid chapter 1 ad density
+
+Chapter 1 is the ad landing page. It must balance account quality and revenue:
+
+- Show a top ad after the identity card and before the chapter title/prose.
+- Split prose into four parts at roughly 25% / 50% / 75%.
+- Chapter 1 uses exactly 3 ad slots: top ad + q1 after part 1 + q2 after part 2.
+- Do not render the later q3 slot on chapter 1 unless the chapter exceeds 2,000 words.
+- Chapters 2+ may render q3 after part 3.
+- The first real prose block must still appear quickly after the identity card and top ad; no login wall, no modal, no interstitial.
+
+### Reader flow and controls
+
+- Chapter title header follows the top ad. For chapter 1, left-align the chapter header; later chapters can be centered.
+- The first prose wrapper must have `id="chapter-start"` and `scroll-mt-20` so the identity-card CTA lands cleanly below the fixed header.
+- End-of-prose sentinel: add `<div id="chapter-content-end" />` before nav/recommendations so `ChapterCompleted` fires at the real prose ending.
+- Bottom nav is in content flow, not a fixed bar: TOC button + vivid Continue/Next button.
+- Button sizing: min-height `64px`; grid ratio around `minmax(88px, 0.58fr) minmax(160px, 1.42fr)` when Next exists.
+- Continue button copy should show both action and next chapter context, for example `Continue` + `Ch. 2: {nextTitle}`.
+- The Continue button should use the site's primary hot color and a subtle glow/active scale (`active:scale-[0.96]`). It must visually dominate TOC.
+
+### Retention after nav
+
+- After the chapter nav, show a 3-book recommendation grid (`You might also like` / localized equivalent).
+- Use covers + short titles; link with `HardLink` so ad-bearing routes hard reload and ad slots reinitialize.
+- For cold traffic, linking recommendations directly to `/book/{slug}/chapter/1` maximizes reading continuation. Link to book detail only when the business goal is catalog exploration rather than session depth.
+
+### Quality gates
+
+- Fails if chapter 1 opens with only an ad and no book identity signal.
+- Fails if a modal, paywall, cookie wall, or interstitial appears before prose.
+- Fails if q3 appears on normal-length chapter 1.
+- Fails if the next action is a muted text link or smaller than TOC.
+- Fails if the landing chapter uses SPA navigation for next chapter.
+
+---
+
 ## End-of-Chapter Navigation
 
 **No fixed bottom navigation bar.** The bottom viewport is reserved for the sticky anchor ad (AdX sites use `StickyAnchorAd` / q4; AdSense sites leave the bottom clear per policy). Navigation lives in two places:

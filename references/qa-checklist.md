@@ -191,7 +191,7 @@ Run for every monetized FB-traffic site. See `references/adsense-arbitrage.md`. 
 **Pageview depth & tracking:**
 
 - [ ] Chapter navigation does a full reload (`window.location.href`) so ads reinitialize and a fresh pageview counts.
-- [ ] Meta Pixel fires `PageView` on load, `ViewContent` on chapter mount, scroll events (`ScrollDepth25`, `ChapterRead50`, `ScrollDepth75`) at the correct scroll ratios, `ChapterCompleted` when `#chapter-content-end` sentinel enters viewport, and `TimeOnPage30` after 30 seconds.
+- [ ] Meta Pixel fires `PageView` on load, `ViewContent` on chapter mount, prefixed custom events (`{subdomain}_ScrollDepth25`, `{subdomain}_ChapterRead50`, `{subdomain}_ScrollDepth75`) at the correct scroll ratios, `{subdomain}_ChapterCompleted` when `#chapter-content-end` sentinel enters viewport, and `{subdomain}_TimeOnPage30` after 30 seconds.
 - [ ] Landing chapter LCP < 2.5s on mid-range Android/4G.
 
 ## Post-Pipeline TODO.md
