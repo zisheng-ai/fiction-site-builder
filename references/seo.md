@@ -570,6 +570,19 @@ Google's freshness algorithm ("Query Deserves Freshness") boosts recently update
 - [ ] Confirm chapter navigation (Previous / Next) renders as `<a>` tags in the built HTML (not JS-only).
 - [ ] Confirm that `/out/` does not contain any `covers/*.json` or `illustrations/**/*.json` prompt files (should be blocked or excluded from the build).
 
+## 13.1 Traditional Chinese / Taiwan SEO Notes
+
+Use these notes when the site language is `zh-TW` or the user asks for Taiwan-facing fiction traffic.
+
+- Lead with natural Traditional Chinese search phrases: `繁體中文言情小說推薦`, `言情小說線上看`, `完結言情小說推薦`, then add genre phrases such as `豪門契約婚姻小說`, `重生復仇宮廷言情小說`, `仙俠虐戀小說`.
+- Avoid Simplified Chinese keyword stuffing. A `zh-TW` page that says `网文`, `霸总文`, `女频`, or `爽文` reads off-market for Taiwan readers unless the article is explicitly discussing Mainland web novel categories.
+- For a new site with only three books across different sub-genres, create one broad book-list article first. Example title pattern: `繁體中文言情小說推薦：3 本完結書單，從契約婚姻到重生復仇`.
+- The article should describe why each book fits a reader mood, not just list tropes. Taiwan search traffic often arrives through recommendation intent, so the copy must answer "which one should I read first?"
+- Use `books:` frontmatter to pin the recommended order. Put the strongest commercial hook first, then related books.
+- Add `/articles` to the homepage footer once any article exists. Search visitors who land on the homepage need a visible path back into the SEO content hub.
+- Article cover: use a 16:9 landscape visual (`1280×720`) with no text. For mixed-genre lists, combine three visual zones rather than forcing one genre signal.
+- CTA should be plain and low-friction: `從第一章開始讀，無需註冊。` Avoid hard-sell wording.
+
 ## 14. Common Mistakes
 
 - **Forgetting `metadataBase`:** Every `og:image`, canonical, and `alternates.languages` URL in the rendered HTML will be `http://localhost:3000/...`. No build error. Silent production failure. Always check by grepping the built `/out/` files.

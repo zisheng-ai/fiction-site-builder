@@ -162,7 +162,7 @@ See `seo.md` § 15.0 for the full article-book relationship model.
 - **SEO list article (default):** `1200–1800` words, keyword-targeted title, prose-style book list, no `cta_url` field, ends with plain-text CTA. New book is always `books[0]`. See `seo.md` § 15.1.
 - **Short-form traffic article (引流短篇):** `300–500` words, hook-driven title in 2-sentence format, 2–3 books each getting one punchy premise-pitch section separated by `---`, inline CTA links to specific `/book/{slug}` (not external homepage). See `seo.md` § 15.2.
 
-After writing, generate article cover: landscape `1280×720` GPT Image 2, stored at `public/covers/articles/{slug}.webp`. Add `cover: /covers/articles/{slug}.webp` to frontmatter. Run deslop Gates A/B/C/G + Article Quick Checks on both article types before committing.
+After writing, generate article cover: landscape `1280×720` GPT Image 2, stored at `public/covers/articles/{slug}.webp`. Add `cover: /covers/articles/{slug}.webp` to frontmatter. Ensure `/articles` is linked from the homepage/footer navigation and any shared footer nav before committing. Run deslop Gates A/B/C/G + Article Quick Checks on both article types before committing.
 
 A4 also runs as a standalone step when the user requests articles directly ("write articles", "引流文章", "SEO article", "short-form article").
 
@@ -459,8 +459,8 @@ Load references only when entering that phase. Do not preload all references at 
 
 ### Cross-cutting references
 
-- **`fiction-niche-researcher.md`** — A0 demand validation and competitive analysis; outputs `niche-research.json` that feeds A1 story brief and A2 cover direction.
-- **`seo.md`** — load during A0 for keyword demand validation; during A1 when writing book synopses (meta descriptions). Organic traffic scales the business beyond paid dependency.
+- **`fiction-niche-researcher.md`** — A0 demand validation and competitive analysis; outputs `niche-research.json` that feeds A1 story brief and A2 cover direction. Includes Taiwan / `zh-TW` romance niche routing when the target site is Traditional Chinese.
+- **`seo.md`** — load during A0 for keyword demand validation; during A1 when writing book synopses (meta descriptions). Organic traffic scales the business beyond paid dependency. Includes Taiwan / Traditional Chinese book-list article patterns.
 - **`geo.md`** — load during A0 and A1: book synopses as self-contained relational sentences (GEO evidence); author pen-name entity strategy. Load during B4: `llms.txt` generation, structured data, AI crawler robots.
 - **`social-sharing.md`** — ShareBar component (standard feature on book detail and chapter pages). Load during B4. Social sharing is organic L2 amplification — readers sharing chapters bring new sessions at zero CPC.
 - **`tech-stack.md`** — choose the implementation stack before writing any code (B1).
@@ -471,7 +471,7 @@ Load references only when entering that phase. Do not preload all references at 
 - **`lighthouse-qa.md`** — Lighthouse performance/accessibility/SEO thresholds and runbook (B6).
 - **`vercel-operations.md`** — Vercel project setup, custom domains, cache headers, deploy hooks, `output: export` pitfalls. Load when deploying or configuring hosting.
 - **`product-surface.md`** — IA and URL structure (optional, load when needed).
-- **`internationalization.md`** — language and font decisions for non-default target language (optional, load when needed).
+- **`internationalization.md`** — language and font decisions for non-default target language (optional, load when needed). Required for `zh-TW` sites to apply Taiwan Traditional Chinese wording, UI labels, and article-hub rules.
 
 ---
 

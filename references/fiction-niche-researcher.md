@@ -41,8 +41,11 @@ Fiction traffic is platform-driven, not search-driven. Pick your distribution ch
 | **Wattpad** | F 13–25, global | Long serialized reads | Organic, loyal |
 | **Webnovel / Fizzo** | M+F 18–30, SEA/CN | Fast-paced chapters, power fantasy | In-app only, hard to funnel externally |
 | **Facebook Groups (romance, horror, mystery, dark fantasy)** | F 30–50, US | Group posts, share-fests | Referral, high-volume |
+| **Taiwan / zh-TW search and social** | F 18–44, Taiwan / Hong Kong / overseas Traditional Chinese readers | SEO book lists, Facebook posts, LINE sharing, Dcard/PTT discussions | Search + social referral |
 
 Default target: **English, US-dominant**. Platform selection depends on genre — romance/drama leans TikTok BookTok + Pinterest + Facebook groups; mystery/thriller leans Reddit + Goodreads; horror/fantasy leans Reddit + Discord community + Pinterest. Pick the platform where your genre's readers already gather; highest ad RPM comes from matching audience intent to advertiser vertical.
+
+For `zh-TW` sites, the default demand path is **SEO book-list landing pages + Facebook/LINE sharing**, not a direct clone of US BookTok behavior. Treat search phrases such as `繁體中文言情小說推薦`, `言情小說線上看`, and `完結言情小說推薦` as the primary organic entry points, then use book pages and chapter cliffhangers to drive session depth.
 
 ### What platform choice affects downstream
 
@@ -66,6 +69,7 @@ Generate at least 3× more candidates than you need before scoring any.
 - Pinterest: search the genre or trope as a phrase — pin volume and board freshness signal sustained interest.
 - Reddit: `r/RomanceBooks`, `r/fantasyromance`, `r/horrorlit`, `r/scifi`, `r/Fantasy`, `r/ifyoulikeblank` — search the trope and read what readers say they can't find enough of. "Does anyone know more books like X?" is a gap signal.
 - Facebook groups: search your genre keywords — group size and post frequency indicate audience depth. Examples: "dark romance books," "horror fiction fans," "fantasy book club."
+- Taiwan / Traditional Chinese: search Google Taiwan, Dcard, PTT, Facebook groups, LINE Today-style article surfaces, and bookstore/category language from Readmoo/Kobo/博客來. Look for exact Traditional Chinese phrase patterns, not Simplified Chinese volume. Capture whether readers say `言情小說`, `愛情小說`, `羅曼史`, `古風`, `仙俠`, `豪門`, `重生`, or `宮廷`.
 
 **Fiction platforms:**
 - Wattpad trending list by genre — what's rising this week vs. last month.
@@ -99,6 +103,20 @@ Each genre has its own community, demand signals, and trope language. Pick the g
 | **Contemporary Drama** | Secret child / hidden lineage + family reckoning; second-chance reunion after an old wrong; grief and inheritance | `#familydrama` `#emotionalfiction` `#secretbaby` Pinterest + Facebook Groups |
 | **Medical Drama** | Deathbed revelation + caregiver relationship; hospital diagnosis that forces family truth; donor / recipient identity | `#medicaldrama` `#hospitalstory` TikTok + Pinterest emotional content |
 
+### Taiwan / zh-TW romance niche pool
+
+Use this pool when the target site language is `zh-TW` or the user asks for Taiwan-facing Traditional Chinese fiction. These niches worked cleanly for a broad Traditional Chinese romance site because they are easy to explain in natural Taiwan web copy, produce strong chapter hooks, and can be grouped into SEO book-list articles without relying on Mainland-specific slang.
+
+| Niche | Hook pattern | SEO phrase examples | Notes |
+| --- | --- | --- | --- |
+| **Modern contract marriage / wealthy family pressure** | A practical agreement hides an old debt, family secret, or legal trap | `豪門契約婚姻小說`, `現代言情小說推薦`, `契約婚姻言情` | Prefer `豪門` / `契約婚姻`; avoid Simplified-style `霸总文` in UI copy. |
+| **Rebirth revenge / palace power** | The heroine dies wronged, returns before the turning point, and uses memory to reverse the court game | `重生復仇宮廷言情小說`, `古風言情小說推薦`, `宮廷權謀言情` | Works well for readers who want agency and payback, not only romance. |
+| **Xianxia doomed bond / demon lord vow** | Love interest is the key to sealing or destroying the heroine's fate | `仙俠虐戀小說`, `玄幻言情推薦`, `魔尊言情小說` | Keep terminology readable for Taiwan users; explain the emotional dilemma early. |
+| **Family inheritance / hidden identity** | A will, adoption record, or old scandal rewrites the heroine's status | `家族秘密言情小說`, `身世之謎小說`, `現代愛情小說推薦` | Good for broader audiences and lower policy risk. |
+| **Small-town second chance / healing romance** | Old lovers meet after a family obligation or local crisis | `療癒系愛情小說`, `小鎮愛情小說`, `第二次愛情小說` | Lower heat, safer for trust-building content and evergreen SEO. |
+
+For the first `zh-TW` site launch, three books can intentionally cover three different romance sub-niches. Then create one broad `繁體中文言情小說推薦` article that recommends all three. Do not force three separate genre articles until each sub-niche has at least two or three relevant books.
+
 Prefer combinations where:
 - At least two tropes or tension angles overlap (readers search the intersection, not just one)
 - There is a visible reader community around the combination (subreddit, hashtag, Facebook group)
@@ -117,7 +135,7 @@ Avoid:
 
 1. **Tone match** — the candidate's core emotion (dark intensity, wholesome/cosy, literary, Spanish heat, etc.) must match the site's declared tone. No exceptions. A "heartwarming small-town" story does not belong on velvet-throne no matter how high its demand score.
 2. **No topic overlap with sister sites** — if the parent project has multiple sites on the same root domain, the candidate must not replicate the core topic of another site. Check the site isolation table in `fictions/CLAUDE.md`. Reject any candidate that would compete with a sister site on the same domain.
-3. **Language match** — the story language must match the site's declared language (`en`, `es`, `en-GB`). Do not write English content for a Spanish site or vice versa.
+3. **Language match** — the story language must match the site's declared language (`en`, `es`, `en-GB`, `zh-TW`). Do not write English content for a Spanish or Traditional Chinese site, and do not write Simplified Chinese for a `zh-TW` site.
 
 Reject candidates that fail any gate. Do not score them. Do not bring them back.
 
