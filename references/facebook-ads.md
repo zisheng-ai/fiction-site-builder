@@ -184,7 +184,7 @@ Both must tell the same implied story. A shocking image with bland copy fails. G
 
 ### Summary of what's in tagline-formula.md
 
-- **Meta compliance limits** — exact allowed vs. banned words/themes for dark romance
+- **Creative intensity line** — Facebook mainly reviews image/video creatives; text can carry darker implication while avoiding blunt sexual description or false promises
 - **5 psychological trigger formulas** (A–E): Forbidden Identity, Curiosity Gap, Reader Manifesto, Power Reversal, Cliffhanger Micro-Copy
 - **Formula selection by genre** — which formula wins for billionaire vs. fae vs. fake dating vs. space opera
 - **Universal writing rules** — first-8-words test, final-line rule, sentence rhythm, power words

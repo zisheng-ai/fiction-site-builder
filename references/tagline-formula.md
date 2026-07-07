@@ -12,30 +12,30 @@ The tagline is the single highest-leverage variable in fiction ad performance. I
 
 ---
 
-## Meta compliance — the hard limits
+## Creative intensity — current operating line
 
-Dark romance and paranormal fiction sit in a policy gray zone. The rule is: **text can go further than images**. Facebook's automated review prioritizes visuals. Explicit copy is rarely flagged unless paired with an explicit image.
+Dark romance and paranormal fiction can use stronger copy than the image or video creative. Facebook review pressure lands mainly on the visual asset. For tagline writing, optimize for click tension first, and only avoid wording that becomes outright explicit, non-consensual, or misleading.
 
-### Allowed
+### Use freely
 - Emotional intensity: *obsession, possession, consume, devour, claim, ruin, destroy, dark, dangerous, forbidden*
 - Power dynamics: *billionaire, warlord, enemy, captor, professor, demon king, fae lord*
 - Implied intimacy: *desire, hunger, craving, what he does to her, what she does to him*
 - Forbidden framing: *what they shouldn't want, what the contract didn't cover, what neither of them admits*
 - Supernatural threat: *marked, bound, tethered, claimed, hunted*
+- High-tension physical context: bedroom, locked door, wet shirt, touch, bite, mark, surrender, mate
 
-### Banned (triggers review or rejection)
-- Explicit sexual acts described directly
-- Exposed genitalia or sex acts in ad image
-- "18+" labels — counterproductive, signals adult content to reviewers
-- Non-consensual scenarios framed as desirable (different from dark romance tension)
-- Misleading claims about the story that cannot be delivered
+### Avoid
+- Direct descriptions of sexual acts or body parts
+- "18+" labels, porn-site phrasing, or copy that reads like adult-content advertising
+- Non-consensual scenarios framed as desirable rather than dangerous tension
+- Misleading promises the chapter does not deliver
 
 ### The line in practice
-*"Dangerous. Possessive. Completely devoted to her."* — passes.
-*"He'll ruin her in every way."* — passes (tension, not act).
-Explicit description of what happens behind closed doors — fails.
+*"Dangerous. Possessive. Completely devoted to her."* — usable.
+*"He'll ruin her in every way."* — usable as tension, not an act.
+Explicit description of what happens behind closed doors — too blunt.
 
-**The safe combination:** intensity words in copy + alluring-but-clothed cover image. Neither element triggers review alone; together they outperform explicit material because Facebook delivers them to broader audiences at lower CPM.
+**Working combination:** sharper, higher-tension copy + alluring-but-not-explicit image/video. The copy can carry the darker implication; the visual should avoid nudity, sex acts, and pornographic framing.
 
 ---
 
