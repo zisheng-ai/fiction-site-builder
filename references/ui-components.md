@@ -147,6 +147,78 @@ The book list uses a responsive grid. The card is the page's primary visual unit
 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
 ```
 
+### Ad Card in Book Grid (AdX GPT)
+
+When injecting a GPT banner into the book grid as a card-shaped slot (`AdCard`), standard fixed-size banners (250×250, 300×250, 336×280) **cannot natively stretch** to fill a fluid grid cell. Without sizeMapping the iframe overflows and distorts the grid.
+
+**Required pattern — always use `sizeMapping` + `hidden sm:block`:**
+
+```tsx
+'use client'
+import { useEffect } from 'react'
+
+declare global { interface Window { googletag: any } }
+
+type Size = [number, number] | 'fluid'
+type Props = { path: string; id: string; sizes: Size[] }
+
+export default function AdCard({ path, id, sizes }: Props) {
+  useEffect(() => {
+    window.googletag = window.googletag || { cmd: [] }
+
+    window.googletag.cmd.push(() => {
+      // sizeMapping prevents the fixed-size iframe from overflowing the grid cell.
+      // <640px: no ad — grid is 2-col (~172px per cell, too narrow for 250px banner).
+      // 640–1023px: 250×250 only — 3-col grid cells are ~230px, just fits.
+      // ≥1024px: all three sizes — GPT picks the best fill.
+      const mapping = window.googletag.sizeMapping()
+        .addSize([1024, 0], [[336, 280], [300, 250], [250, 250]])
+        .addSize([640, 0],  [[250, 250]])
+        .addSize([0, 0],    [])
+        .build()
+
+      const slot = window.googletag.defineSlot(path, sizes, id)
+      if (!slot) return
+      slot.defineSizeMapping(mapping)
+      slot.addService(window.googletag.pubads())
+      window.googletag.display(id)
+    })
+
+    return () => {
+      window.googletag?.cmd.push(() => {
+        const slots = window.googletag.pubads().getSlots()
+        const s = slots.find((sl: { getSlotElementId: () => string }) => sl.getSlotElementId() === id)
+        if (s) window.googletag.destroySlots([s])
+      })
+    }
+  }, [path, id]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  return (
+    // hidden on <sm: matches sizeMapping's [0,0]→[] — no ad served, no empty grid slot
+    <div className="hidden sm:block group">
+      <div className="relative aspect-[2/3] overflow-hidden rounded-lg bg-base-200 shadow-sm flex items-center justify-center">
+        <div id={id} style={{ minWidth: 250, minHeight: 250 }} />
+        <div className="absolute top-2.5 left-2.5 pointer-events-none">
+          <span className="inline-block rounded-full bg-base-300/80 px-2.5 py-0.5 text-[10px] font-semibold text-base-content/50 tracking-wide uppercase">
+            Ad
+          </span>
+        </div>
+      </div>
+      <div className="mt-3 px-0.5">
+        <p className="text-[13px] text-base-content/40">Sponsored</p>
+      </div>
+    </div>
+  )
+}
+```
+
+**Rules:**
+- `overflow-hidden` on the cover container: safety net if GPT returns a size slightly wider than the cell.
+- `minWidth/minHeight: 250` on the ad div (not `width: 100%`): lets GPT render at its native size; the container clips overflow.
+- **Do not** use `width: '100%'` or `maxWidth` on the ad div — GPT's iframe ignores these.
+- `hidden sm:block` must match the sizeMapping `[0,0]→[]` breakpoint exactly. If you change one, change the other.
+- AdSense (`AdsenseSlot`) is naturally responsive (`data-full-width-responsive="true"`) — this pattern is GPT/AdX only.
+
 ### Book Row (Text-First List)
 - Row height: auto, minimum 72px.
 - Left: small cover thumbnail (48×72px) or genre accent strip (8px wide).
