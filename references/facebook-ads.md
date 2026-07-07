@@ -180,88 +180,21 @@ Both must tell the same implied story. A shocking image with bland copy fails. G
 
 ## Tagline Standards (Facebook Copy)
 
-### Core principle
+> **Full tagline authority lives in `references/tagline-formula.md`.** Load that file for all tagline writing, bulk optimization, formula selection, and the 5-formula playbook (A–E). This section is a pointer only.
 
-The tagline is not a book description. It is the one sentence that makes someone think *"I need to know what happens next"* before they realize they've already tapped.
+### Summary of what's in tagline-formula.md
 
-### Structure: Setup → Reversal → Unresolved tension
+- **Meta compliance limits** — exact allowed vs. banned words/themes for dark romance
+- **5 psychological trigger formulas** (A–E): Forbidden Identity, Curiosity Gap, Reader Manifesto, Power Reversal, Cliffhanger Micro-Copy
+- **Formula selection by genre** — which formula wins for billionaire vs. fae vs. fake dating vs. space opera
+- **Universal writing rules** — first-8-words test, final-line rule, sentence rhythm, power words
+- **Click-driven rewrite method** — 5-step bulk optimization pass
+- **Consistency rules** — no repeated openers, one proof object per tagline, story-delivery check
+- **Quick publish checklist**
 
-Every high-CTR fiction tagline has the same skeleton:
+### One-paragraph rule for engineers
 
-```
-[Situation that seems normal or controlled]
-[Reversal that flips who has power or what is true]
-[One unresolved detail that forces a click]
-```
-
-Examples:
-- "Fake marriage. Six-month contract. Clean business deal with an expiration date. He keeps showing up at 3am with printed spreadsheets when she's in crisis — and the contract ends in two weeks. He hasn't brought it up."
-- "For six weeks she vented to a stranger about her nightmare boss. Then she found his business card in her car. The stranger WAS her boss — and he'd known for two weeks and said nothing."
-
-### Writing rules
-
-**Length:** 25–40 words. Mobile feeds show roughly 3 lines of body text before "See more." The hook must land inside those 3 lines.
-
-**Opening 8 words:** Must contain either a curiosity gap OR an emotional punch. Never start with character names or scene-setting. Test: cover the rest of the tagline — do the first 8 words make someone want to read on?
-
-| Weak opening | Strong opening |
-|---|---|
-| "Elena Vargas has been running for eighteen months..." | "She's been running for eighteen months — and the man protecting her was there that night." |
-| "When Nora Blake's sister disappeared in Prague..." | "Her sister vanished. The only lead: a sealed vault with a man inside who hadn't aged in six centuries." |
-| "In a world where your score determines everything..." | "In this city, your score is your life. One morning hers hit zero. No error. No appeal." |
-
-**Sentence rhythm:** Short sentences hit harder. Vary length — one long setup, one short reversal, one short unresolved detail.
-
-**The final line:** Always unresolved. Never conclude. The reader should feel *"and then what?"* as a physical pull.
-
-| Weak final line | Strong final line |
-|---|---|
-| "...and they both fell in love." | "...and he hasn't brought it up." |
-| "...but she couldn't resist him." | "...she cannot find the lie she needs." |
-| "...everything changed between them." | "...she's still there. The debt stopped being the point somewhere in week two." |
-
-**Power words that earn their place:** "already knew", "hasn't mentioned it", "stopped being the point", "said nothing", "recognized it", "hasn't filed the report" — words that imply someone has information the reader doesn't.
-
-### Click-driven rewrite method
-
-Use this method when writing or bulk-optimizing taglines for Facebook traffic.
-
-1. **Start with the unsafe fact, not the character.** The first clause should expose danger, manipulation, disappearance, debt, betrayal, a document, a bloodline, or an impossible piece of evidence. Avoid opening with a name unless the name itself is the hook.
-2. **Make the first 8 words carry the click.** A user should feel the premise before reading the rest. Good openers include "Every woman who...", "The contract already...", "Her mother vanished...", "The evidence named...", "He bought..." or "The ritual required...".
-3. **Turn the middle on proof.** Add one concrete object or action: a ledger, contract, recording, locked room, body, score, clause, blood sample, message, or signature. This makes the hook feel like a story scene instead of abstract marketing copy.
-4. **Reverse control.** The protagonist thought they were applying, investigating, negotiating, escaping, collecting, or shutting something down. The second beat reveals they were selected, trapped, watched, claimed, framed, or expected.
-5. **End with withheld information.** The final sentence should leave one active secret unresolved: who knew, why she was chosen, what he has not said, what the record hides, or what happens when she refuses.
-
-Before publishing a rewritten tagline, run the copy deslop mini-pass: remove em dashes, generic adjectives, passive voice, throat-clearing, "not X but Y" scaffolding, and any ending that explains the emotion instead of leaving a concrete unanswered threat.
-
-### Bulk tagline optimization
-
-When optimizing a whole site, treat existing taglines as ad variants, not sacred metadata.
-
-- Keep only taglines that already pass the first-8-words test, the 25–40 word limit, and the unresolved-ending rule.
-- Remove em dashes across the batch. Facebook copy should read cleanly on mobile and survive copy-paste into Ads Manager.
-- Prefer one concrete proof object per tagline. Do not stack multiple twists unless the second twist sharpens the click.
-- Avoid repeating the same opener across adjacent books on the same site. A carousel or book grid should not sound templated.
-- Check every tagline against the book description so the ad does not promise a scene or relationship the story cannot deliver.
-
-### Genre-specific angles
-
-| Genre | Angle that works on Facebook |
-|---|---|
-| Billionaire / dark romance | Discovery of manipulation ("he built the job for her two years before she applied") |
-| Paranormal / shifter | Involuntary recognition ("the alpha looked at her like something inside him just snapped") |
-| Contract marriage / fake dating | Contract expiration ignored ("the end date passed. He hasn't brought it up.") |
-| Enemies to lovers | Reluctant respect ("he was right. She hates that he was right.") |
-| Second chance | Unavoidable proximity ("seven years of silence. Then he walked in as her new attending.") |
-| Revenge romance | The plan disrupted by a human detail ("the plan couldn't survive the gentleness he showed a small boy") |
-| Mystery / thriller | Evidence of cover-up ("the village called it an accident before the body was cold") |
-
-### What to avoid
-
-- Adjective-heavy prose ("brooding", "mysterious", "irresistible", "smoldering") — these are generic and invisible
-- Telling the emotion instead of showing the situation ("their forbidden love burned bright")
-- Ending on a resolution — always leave the thread hanging
-- More than one question mark — one rhetorical question is a hook; two is a quiz
+The tagline is not a book description. It is the one sentence that makes a scroller think *"I need to know what happens next"* before they realize they've already tapped. Structure: `[Setup that seems controlled] → [Reversal that flips who has power] → [One unresolved secret that forces the click]`. 25–40 words. Ends unresolved. First 8 words carry the hook. See tagline-formula.md for everything else.
 
 ---
 
@@ -530,10 +463,11 @@ All present = instrumentation correct. Then do a live second-pass in Events Mana
 
 ## Quick Reference: Tagline Checklist Before Publishing
 
-- [ ] First 8 words contain a curiosity gap or emotional punch
+See `references/tagline-formula.md` § "Quick checklist before publishing" for the full list. Summary:
+
+- [ ] First 8 words: curiosity gap or emotional punch
 - [ ] 25–40 words total
-- [ ] One clear reversal of power or expectation
-- [ ] Final line is unresolved — no conclusion
-- [ ] No generic adjectives ("brooding", "forbidden", "irresistible" as standalone descriptors)
-- [ ] Image and tagline imply the same scene without repeating each other
-- [ ] Cover passes the 0.3-second test: viewer feels something before reading the copy
+- [ ] One reversal of power or expectation
+- [ ] Final line unresolved — no conclusion, no emotional wrap-up
+- [ ] Image and tagline imply the same scene without repeating
+- [ ] Cover passes the 0.3-second test
