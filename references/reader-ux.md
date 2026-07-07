@@ -85,6 +85,16 @@ Chapter 1 is the ad landing page. It must balance account quality and revenue:
 - Use covers + short titles; link with `HardLink` so ad-bearing routes hard reload and ad slots reinitialize.
 - For cold traffic, linking recommendations directly to `/book/{slug}/chapter/1` maximizes reading continuation. Link to book detail only when the business goal is catalog exploration rather than session depth.
 
+### Bottom whitespace trap
+
+The Velvet landing-page fix exposed a recurring layout bug: short pages can show a large blank block after the footer or after the chapter recommendation grid when the page shell forces viewport height.
+
+- Do not wrap homepage or reader routes in `min-h-screen` / `min-h-dvh` plus `flex flex-col` / `flex-1` unless there is a real sticky-footer requirement.
+- Chapter pages should end at the real content flow: prose → sentinel → nav → recommendations. The page root should usually be `bg-base-100`, not `min-h-screen bg-base-100`.
+- Home/list pages with a small catalog should not use `main.flex-1` to push the footer down; let the footer follow content naturally.
+- Do not fix this by listening to GPT `slotRenderEnded` and hiding ad wrappers. For AdX/GAM, empty slots are handled by `googletag.setConfig({ singleRequest: true, collapseDiv: "ON_NO_FILL" })`; manual wrapper hiding can interfere with GPT lifecycle and Active View reasoning.
+- If a no-fill ad still reserves space in screenshots where third-party scripts are blocked, treat that as a local preview artifact unless it reproduces with GPT loaded in production.
+
 ### Quality gates
 
 - Fails if chapter 1 opens with only an ad and no book identity signal.
@@ -92,6 +102,7 @@ Chapter 1 is the ad landing page. It must balance account quality and revenue:
 - Fails if q3 appears on normal-length chapter 1.
 - Fails if the next action is a muted text link or smaller than TOC.
 - Fails if the landing chapter uses SPA navigation for next chapter.
+- Fails if homepage/footer or chapter recommendations are followed by a viewport-sized blank area caused by `min-h-screen` / `flex-1` page shells.
 
 ---
 
