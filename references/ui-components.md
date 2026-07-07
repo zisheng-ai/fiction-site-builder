@@ -77,9 +77,10 @@ Column ratio `minmax(96px, 0.75fr) minmax(136px, 1.12fr)`. TOC button font-size 
 </div>
 
 // book detail page — BelowFold component
-// id="toc" goes on the element immediately before the chapter list
-// (typically the ad slot wrapper or the section itself)
-// Add scroll-margin-top: 64px to account for the fixed header
+// First detail-page ad must be the first block after the hero so it is visible
+// in the 390x844 mobile first viewport. Do not place tagline/synopsis above it.
+// id="toc" intentionally goes on this ad wrapper so TOC navigation from reader
+// lands on the high-viewability ad before the chapter list.
 <div id="toc" style={{ scrollMarginTop: '64px' }}>
   <AdSlot ... />
 </div>

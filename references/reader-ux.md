@@ -167,7 +167,17 @@ The top header TOC icon (≡) must use `window.location.href` to navigate to `/b
 </a>
 ```
 
-The book detail page must have `id="toc"` on the element immediately before the chapter list (typically the ad slot wrapper or the section itself). Add `scroll-margin-top: 64px` to account for the fixed header.
+The book detail page must place `id="toc"` on the first book-detail ad wrapper immediately before the chapter list, not on the chapter-list section itself. This is deliberate: when readers tap the TOC icon from a chapter, the detail page first shows the high-viewability ad, then the chapter list directly below it. Add `scroll-margin-top: 64px` to account for the fixed header.
+
+**Book detail hero + first ad:**
+
+Every book-detail hero style must keep the first display ad visible in the first mobile viewport. The hero can be cinematic, compact/gradient, atmospheric, or another site-specific variant, but it must not consume the whole first screen before an ad appears.
+
+- Place the first book-detail ad immediately after the hero block, before synopsis/tagline/update metadata. Do not bury it below long copy.
+- On the 390px × 844px mobile viewport, the first ad slot must be visible without scrolling; ideally its top starts within the lower half of the first screen.
+- Keep detail-page hero height capped by content, not by `100vh` / full-screen marketing sections. Full-bleed is allowed only when it still leaves room for the first ad.
+- The `#toc` anchor belongs on the first detail-page ad wrapper immediately before the chapter list. This makes TOC navigation expose the ad before the list without adding an interstitial.
+- If a hero variant cannot satisfy this, shrink the cover, reduce vertical padding, or move supporting metadata below the first ad. Do not remove the ad.
 
 **Quality gate failure if not met:**
 
@@ -175,6 +185,7 @@ The book detail page must have `id="toc"` on the element immediately before the 
 - Next button is same width or narrower than TOC.
 - "Previous" button appears anywhere in the reader nav.
 - On mobile ≤ 640px: maintain 60px height minimum.
+- Book detail hero pushes the first display ad below the first mobile viewport.
 
 ## Cross-Book Recommendation Grid
 
