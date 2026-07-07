@@ -265,7 +265,9 @@ After B6 passes, generate two files before closing the session:
 - 每本书的章节缺口：列出少于目标长度（20–26 章）的书及缺多少章
 - 缺少插图的书
 - `books.ts` 里的 `chapterCount` 与实际文件数不一致的地方
-- 广告和分析工具中尚未完成的项
+- 广告和分析工具中尚未完成的项，包括：
+  - Google Analytics 4 (GA4): add the `G-XXXXXXXX` tag to `layout.tsx` when the measurement ID is available.
+  - Google Search Console (GSC): verify the live domain and submit `/sitemap.xml` after deployment.
 
 Both files must be written in **Chinese**. If the site is a new build, start with the expected state (all chapters to write, not yet deployed). If the site is updated, reflect the current delta.
 
