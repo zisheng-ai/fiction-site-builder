@@ -107,6 +107,27 @@ Use gpt-image-1 only when a non-preset aspect ratio is needed. Default to gpt-im
 
 ---
 
+### gemini-3.1-flash-image-4k (cover/illustration fallback, T1/T2 only)
+
+- **Use:** fallback when gpt-image-2-all fails or times out on T1/T2 covers/illustrations, tried before falling through to doubao. **Do not use for T3/T4** — Gemini's tolerance for fabric-failure/torn/soaked language is unverified and likely shares GPT's rejection behavior; go straight to doubao for T3/T4 instead.
+- **Sizes:** free-form — any `WxH` works, no preset table required
+- **Output:** true 4K resolution (~9 MB PNG), no watermark
+- **Response:** `b64_json`, raw base64 (no `data:` prefix — decode directly)
+
+```bash
+curl "https://api.apiyi.com/v1/images/generations" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $APIYI_API_KEY" \
+  --max-time 300 \
+  -d '{
+    "model": "gemini-3.1-flash-image-4k",
+    "prompt": "...",
+    "size": "1664x2496"
+  }'
+```
+
+---
+
 ### doubao-seedream-5-0-260128 (logo / favicon preferred)
 
 - **Price:** lower than gpt-image-2-all
