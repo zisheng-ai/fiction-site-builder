@@ -256,6 +256,8 @@ No two books on the same site should share the same dominant palette. Assign fro
 
 Every cover is also a Facebook ad creative. Apply these standards inside Step 2 — they are not optional and override "aesthetically nice" defaults.
 
+**Evidence weighting:** Treat `cover-allure-elements.md` §"Narrative Tableau Library" and §"Performance Direction" as the highest-priority specification. A cover that makes forced marriage, public rejection, medical proof, hidden status, or late regret legible wins over a more attractive but generic intimate pose. When this conflicts with an allure-tier default, keep the event and lower the allure.
+
 **The 0.3-second test (mandatory gate):** A viewer scrolling their feed at full speed must feel something in under 0.3 seconds — not just notice an attractive person. If the image would read as a fashion photo or stock portrait, it fails the test. Rewrite the prompt.
 
 ### Five scroll-stop signals — bake all five into every cover prompt
@@ -289,6 +291,8 @@ Achieve this through environment + costume + expression together:
 - Morning after: rumpled bedding, warm morning light, bare shoulders, man still present
 - Dangerous obsession: she found something (document, phone, ring) — her expression reacts to it while he watches
 - Forbidden attraction: extreme physical proximity despite one character clearly trying to create distance
+
+**Narrative-tableau gate:** In addition to the 3-word premise, the frame must show a specific plot event with visible proof: a ceremony interrupted, a document/scan that changes the relationship, a public humiliation, a return to the estate, a rival at a gala, or an inheritance reveal. Pull one scaffold from `cover-allure-elements.md` §"Narrative Tableau Library" and state the event, proof object, and reaction in the final prompt. Do not ship a generic embrace, portrait, or glamorous couple pose.
 
 **4. Wealth / world signal in the environment.**
 One background element must instantly communicate the story's world. The viewer shouldn't need to read the title to know if it's a billionaire romance vs. a small-town romance vs. a dark paranormal.

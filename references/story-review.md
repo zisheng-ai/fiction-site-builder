@@ -31,6 +31,7 @@ Fallback: none | missing agents -> solo | agent tool unavailable -> solo
 ### 1. Structure Audit
 
 - Does each chapter have a hook, escalation, turn, and hook-out?
+- Do Chapters 1–2 deliver the advertised adult, consensual sensual tension: a charged encounter in Chapter 1 and an escalation/complication in Chapter 2? If not, flag the opening for structural rewrite before Chapter 3.
 - Does the chapter end with forward pull (reader wants next chapter)?
 - Are any chapters filler — nothing changes from beginning to end?
 - Is the arc pacing consistent, or does the middle sag?

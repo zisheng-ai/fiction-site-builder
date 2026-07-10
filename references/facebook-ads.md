@@ -185,7 +185,7 @@ Both must tell the same implied story. A shocking image with bland copy fails. G
 ### Summary of what's in tagline-formula.md
 
 - **Creative intensity line** — Facebook mainly reviews image/video creatives; text can carry darker implication while avoiding blunt sexual description or false promises
-- **5 psychological trigger formulas** (A–E): Forbidden Identity, Curiosity Gap, Reader Manifesto, Power Reversal, Cliffhanger Micro-Copy
+- **8 psychological trigger formulas** (A–H): Forbidden Identity, Curiosity Gap, Reader Manifesto, Power Reversal, Cliffhanger Micro-Copy, Catastrophe → Impossible Consequence, Betrayal → Status Reversal, Intimacy → Identity Collision
 - **Formula selection by genre** — which formula wins for billionaire vs. fae vs. fake dating vs. space opera
 - **Universal writing rules** — first-8-words test, final-line rule, sentence rhythm, power words
 - **Click-driven rewrite method** — 5-step bulk optimization pass
@@ -194,7 +194,7 @@ Both must tell the same implied story. A shocking image with bland copy fails. G
 
 ### One-paragraph rule for engineers
 
-The tagline is not a book description. It is the one sentence that makes a scroller think *"I need to know what happens next"* before they realize they've already tapped. Structure: `[Setup that seems controlled] → [Reversal that flips who has power] → [One unresolved secret that forces the click]`. 25–40 words. Ends unresolved. First 8 words carry the hook. See tagline-formula.md for everything else.
+The tagline is not a book description. It is the 2–4 short sentences that make a scroller think *"I need to know what happens next"* before they realize they've already tapped. Structure: `[Concrete incident] → [reversal of power or identity] → [irreversible consequence] → [one unresolved detail that forces the click]`. Paid-feed copy normally runs 25–55 words; book-card copy is 8–12. Ends unresolved. First 8 words carry the incident. See tagline-formula.md for everything else.
 
 ---
 

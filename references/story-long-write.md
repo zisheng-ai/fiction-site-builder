@@ -540,6 +540,21 @@ A warm reader (returning from organic search, book detail page, or recommendatio
 
 **Violation:** opening ch1 with backstory, worldbuilding, or a secondary character meeting the protagonist. These are legitimate techniques for chapters 4–8. In ch1 they signal to the cold reader "this isn't the story I came for" and cause a bounce.
 
+### Chapter 1–2 sensual-tension gate (mandatory)
+
+The first two chapters must establish the adult romantic charge promised by the ad creative. This is a plot-delivery requirement: it cannot be deferred until the middle of the book or replaced by generic compliments.
+
+**Priority rule:** the opening's observed-ad pattern outranks generic romance heat. Start with the specific short-drama event the creative promised — forced/strategic marriage, public rejection, debt ultimatum, evidence that changes a relationship, status reversal, or a return with leverage. Add consensual sensual tension inside that event; never substitute a generic intimate exchange for the actual crisis.
+
+| Chapter | Required delivery | On-page evidence |
+|---|---|---|
+| **Chapter 1** | A charged adult encounter within the first 500 words | The leads share a private or socially dangerous space; one clear proximity/attention cue; the protagonist actively chooses to stay, answer, or cross the threshold. |
+| **Chapter 2** | Escalate or complicate the charge | A voluntary touch, interrupted near-contact, private-room boundary, appearance detail with story purpose, or a third party making the attraction costly. End before resolution. |
+
+Write sensual story tension, never explicit content: use gaze, closing distance, an offered hand, a hand that stops short, a door closing, a shared room with a stated boundary, or the awareness of being watched. Every character is clearly adult; consent, reciprocity, and agency must be visible. Do not write sex acts, graphic anatomy, nudity, coercion framed as desire, or age-ambiguous characters.
+
+**Failure conditions:** the love interest appears only after Chapter 2; Chapters 1–2 contain only professional/worldbuilding exposition; the encounter has no bodily or private-space charge; or the only tension is non-consensual threat. Any failure requires restructuring the opening before writing Chapter 3.
+
 ### Ch1 beat structure (200-word checkpoints)
 
 | Words | Required beat | Purpose |
@@ -566,6 +581,8 @@ Required: something that implies action, conflict, or a decision already in moti
 **Character introduction cap:** introduce at most **two characters** by name in ch1 (protagonist + one other). Additional named characters dilute cold-reader identification. A crowd scene in ch1 is a conversion killer.
 
 **The Facebook Promise check:** before finalizing ch1, re-read the tagline from `src/lib/books.ts`. The emotional register of ch1's opening 200 words must match the register the tagline implied. If the tagline promises a charged, high-stakes encounter, ch1 must open in that register — not in a quiet or contemplative scene that delays the promised tension.
+
+**Two-chapter promise check:** before shipping Chapter 2, verify that the specific intimacy cue implied by the ad/tagline has appeared or escalated on-page. The reader must receive a scene, not merely a promise that attraction exists later.
 
 **Dialogue timing:** first dialogue should appear before word 300. Dialogue signals that something is happening between people, which is the core promise of romance fiction.
 

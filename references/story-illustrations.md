@@ -1,6 +1,8 @@
 # Story Illustrations
 
-Reference for Phase A2.5 — in-chapter illustration generation. Load when the user requests illustrations, or when the full pipeline enters A2.5.
+Reference for Phase A2.5 — in-chapter illustration generation. Load only when the user explicitly requests illustrations in the current turn.
+
+Default business rule: do not generate chapter illustrations automatically. Full pipeline, new-book creation, site build, cover refresh, and traffic-creative work all skip A2.5 unless the user explicitly says to generate illustrations.
 
 **Execution principle: act autonomously. Do not surface "please run X" to the user. Identify peak scenes, insert markers, generate images, write files — then report what was produced.**
 
@@ -137,9 +139,9 @@ Illustration prompts differ from cover prompts in three ways:
 2. Replace "book cover" framing with "intimate scene illustration" framing
 3. Include scene-specific context (location, body position, emotional beat from the actual prose) — but **not** the literal wardrobe; garment state always comes from the tier (see mistake #2 below)
 
-> ### ⚠️ The allure tier is the point — do not write a tame "emotional" scene
+> ### ⚠️ The narrative event is the point — do not write a generic "emotional" scene
 >
-> An illustration at T3/T4 must be **visibly risqué** — the same skin/garment exposure a T3/T4 cover would have. A plot-faithful but visually modest image is a **failure**, even if the emotional beat is right. The single hard limit is the **§0 floor** (no visible nipples/areola/genitals, no sex acts) — everything below that ceiling should be pushed.
+> An illustration at T3/T4 must first be a **readable dramatic tableau**: irreversible event, visual proof, distinct reaction, and clear hierarchy. Use skin/garment exposure only when it intensifies that exact event. A plot-faithful but visually modest frame is valid if it has stronger story legibility than a generic intimate pose. The single hard limit is the **§0 floor** (no visible nipples/areola/genitals, no sex acts).
 >
 > Three mistakes that produced tame output in the past (all banned):
 > 1. **Writing a tier *label* instead of pulling the tier *block*.** `T4 intensity: a deliberate first kiss, deeper emotional intimacy` is NOT a T4 prompt — it describes a feeling, not an image. You MUST copy the actual T3/T4 assembly block (clothing-state + skin-zones + fabric-behavior vocabulary) from `cover-allure-elements.md`.
@@ -178,6 +180,10 @@ Replace the generic cover environment with the chapter's actual setting:
 {location from prose: e.g. "rain-soaked apartment, single lamp on the floor"}
 {specific body position or gesture from the prose that triggered the marker placement}
 ```
+
+**Narrative-tableau requirement:** Treat the illustration as a frozen short-drama frame. Include one irreversible beat, one visible proof object or social witness, and one readable reaction. Examples: the wedding stops around an impossible condition; she reads the document while he stands behind her; an ex sees her leave with someone new; a family member realizes who her ally is. Do not render an attractive couple merely standing in a beautiful room — the still must make viewers infer what happened immediately before and fear what follows.
+
+For romance tableau scenes, also pull a distinct performance beat for each visible character from `cover-allure-elements.md` §"Performance Direction". Explicitly state face direction, hand action, and relative height/position; "emotional" or "dramatic" alone is not enough for a model to direct the scene.
 
 ### Step 4 — Add illustration framing
 
@@ -541,9 +547,9 @@ const contentParts = splitContent(mainContent)  // existing paragraph-split func
 |---|---|
 | "Add illustrations" / "Generate illustrations" | A2.5 only |
 | "Add illustrations to [book]" | A2.5 for that book only |
-| Full pipeline (new site) | A2.5 runs after A2, before A3 |
+| Full pipeline (new site) | Skip A2.5 by default |
 
-A2.5 is **not a hard Pre-Launch Gate** — a site can launch with zero illustrations if generation is skipped or unavailable. In a full pipeline run, however, run A2.5 automatically after A2 for every long-form book with a completed arc unless the user explicitly opts out.
+A2.5 is **not a hard Pre-Launch Gate** — a site can launch with zero illustrations. In a full pipeline run, do not run A2.5 unless the user explicitly requests illustrations in the current turn.
 
 ---
 

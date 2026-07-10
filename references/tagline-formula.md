@@ -14,7 +14,7 @@ The tagline is the single highest-leverage variable in fiction ad performance. I
 
 ## Creative intensity — current operating line
 
-Dark romance and paranormal fiction can use stronger copy than the image or video creative. Facebook review pressure lands mainly on the visual asset. For tagline writing, optimize for click tension first, and only avoid wording that becomes outright explicit, non-consensual, or misleading.
+Dark romance and paranormal fiction can use stronger **narrative tension** than the image or video creative. Do not treat text as an exception to Meta review: an ad and its landing experience can both be reviewed, and acceptance is never guaranteed. For tagline writing, optimize for scene-level tension while avoiding eroticized body focus, explicit activity, non-consensual framing, or misleading promises.
 
 ### Use freely
 - Emotional intensity: *obsession, possession, consume, devour, claim, ruin, destroy, dark, dangerous, forbidden*
@@ -35,13 +35,13 @@ Dark romance and paranormal fiction can use stronger copy than the image or vide
 *"He'll ruin her in every way."* — usable as tension, not an act.
 Explicit description of what happens behind closed doors — too blunt.
 
-**Working combination:** sharper, higher-tension copy + alluring-but-not-explicit image/video. The copy can carry the darker implication; the visual should avoid nudity, sex acts, and pornographic framing.
+**Working combination:** sharper, higher-tension copy + alluring-but-not-explicit image/video. In paid-feed copy, make the tension physical and immediate with one adult, consensual intimacy cue — a door closing, a deliberate pause before touch, a hand offered or withdrawn, standing too close, a room cleared, or an explicit choice to stay. The cue must serve the plot reversal, not describe sexual pleasure. The visual should avoid nudity, sex acts, sexualized body focus, and pornographic framing.
 
 ---
 
-## The 5 psychological trigger formulas
+## The 8 psychological trigger formulas
 
-These are the highest-CTR patterns confirmed across romance fiction Facebook advertising. Apply by genre match — not all formulas work equally for every sub-genre.
+These are repeatable fiction-ad patterns. Apply them by genre and by the actual opening promise — not all formulas work equally for every sub-genre. The most reliable unit is not a trope label; it is a **specific, tellable incident** that forces a reader to ask what happens next.
 
 ---
 
@@ -146,9 +146,9 @@ or
 
 **Structure:**
 ```
-[High-stakes scene in present tense, cut at maximum tension —]
+[High-stakes scene in present tense. Cut at maximum tension.]
 ```
-*Use an em dash or period at the cut. Never resolve.*
+*Use a period at the cut. Never resolve.*
 
 **Mechanism:** Reads like the first sentence of a novel. The reader is already inside the story before they realize they haven't clicked yet.
 
@@ -160,11 +160,71 @@ or
 
 ---
 
+### Formula F — Catastrophe → Impossible Consequence
+
+**When to use:** Billionaire drama, secret baby, marriage-of-convenience, family betrayal, revenge, and any story whose opening premise contains a socially legible disaster.
+
+**Structure:**
+```
+[Specific public/private catastrophe]. [The consequence that should be impossible]. [The detail that makes the reader need the next scene].
+```
+
+**Mechanism:** The event is easy to understand in one glance: fired, abandoned, bankrupt, divorced, pregnant, humiliated, left for dead. The second beat makes it personal and disproportionate. The final detail opens an information gap without summarizing the plot.
+
+**Examples:**
+- "Her father died bankrupt. The debt became hers. Nine months after marrying a man in a coma, she delivered triplets — and his mother called her a liar."
+- "He asked for a divorce on Valentine's Day. That night another man tried to take her. Her ex-husband found them first."
+- "She saved a dying CEO and disappeared before he woke. When he started looking for her, someone else had already erased every trace."
+
+**Do not use:** a generic hardship without a turn ("Her life was hard") or a stack of unrelated disasters. One catastrophe, one impossible consequence, one open loop.
+
+---
+
+### Formula G — Betrayal → Status Reversal
+
+**When to use:** Hidden-heiress, revenge, divorce, replacement-bride, and family-rejection stories where the person dismissed as powerless has a credible return of leverage.
+
+**Structure:**
+```
+[Who publicly discarded / humiliated her]. [What they did not know about her]. [Who will pay when the truth lands].
+```
+
+**Mechanism:** It combines injustice with delayed recognition. The reader clicks for the moment the people who misjudged her have to face the new hierarchy.
+
+**Examples:**
+- "They threw her out as worthless. They never knew she was the only heir to the fortune they wanted. Now she is back."
+- "He left his wife for his first love. Then he learned his ex-wife was richer than his whole family."
+- "Her father slapped her in front of everyone. No one knew her husband owned the company that could ruin them."
+
+**Guardrail:** The hidden status must be paid off in the story. Do not imply wealth, revenge, or a secret identity that Chapter 1 never begins to deliver.
+
+---
+
+### Formula H — Intimacy → Identity Collision
+
+**When to use:** Boss/employee, stranger-to-spouse, contract marriage, secret pregnancy, and forbidden-relationship stories whose first irresistible beat is a private choice colliding with public power.
+
+**Structure:**
+```
+[A one-night/private act]. [Who the other person really is]. [The irreversible consequence].
+```
+
+**Mechanism:** The reader gets a complete mini-drama in three beats: choice, recognition, consequence. It is stronger than calling a relationship "forbidden" because the source of the danger is visible.
+
+**Examples:**
+- "She spent one night with a stranger. At work the next morning, he was her new boss. Then she found out she was pregnant."
+- "Her family forced her to marry a businessman in a coma. When he woke up hating her, he discovered she was carrying his twins."
+- "She married his uncle to punish him. The family secret she uncovered made the marriage the least dangerous part."
+
+**Guardrail:** Keep intimacy implied, adult, and consensual. The click trigger is the collision of identities and consequences, not explicit detail.
+
+---
+
 ## Formula selection by genre
 
 | Genre | Best formula | Why |
 |---|---|---|
-| Dark romance (billionaire, mafia) | A+D hybrid | Power gap is the premise; contradiction is the pull |
+| Dark romance (billionaire, mafia) | A+D hybrid or H | Power gap is the premise; contradiction or identity collision is the pull |
 | Paranormal / shifter | B or E | The "impossible" fact is the hook |
 | Fae / dark fantasy | E then A | Scene-opener creates world; forbidden identity adds stakes |
 | Demon / monster romance | B | Domestic normality broken by supernatural claim is the click |
@@ -175,16 +235,28 @@ or
 | Dark academia / secret society | B | Document or evidence is the proof object |
 | Space opera / military sci-fi | E | High-stakes decision at the cut is the click |
 | Sports romance / contemporary | B | The "he knew" reveal is the curiosity gap |
+| Secret baby / coma marriage / contract marriage | F or H | A visible crisis plus an irreversible consequence creates immediate stakes |
+| Divorce / first-love betrayal / family rejection | F or G | Public injustice followed by a status reversal creates the return-click promise |
+| Hidden heiress / comeback revenge | G | The reader wants to witness the recognition and reversal |
 
 ---
 
 ## Writing rules (universal, all formulas)
 
-### Length
-25–40 words. Mobile feeds show ~3 lines before "See more." The hook must land before that truncation.
+### Length and placement
+
+Write for the placement, not one universal character count:
+
+| Surface | Target | What must fit |
+|---|---:|---|
+| Paid-feed primary text | 25–55 words, normally 2–4 short sentences | The event, reversal, and open loop must all appear before the reader loses interest. |
+| Book card / cover line | 8–12 words | One concrete incident or unresolved consequence; never compress the entire ad body into it. |
+| Carousel card | 12–20 words | Event + one turn. Let the image carry the rest. |
+
+Mobile feeds truncate after roughly three lines, but samples that earn attention often use several very short sentences. Prioritize a complete **event → reversal → unresolved consequence** in the visible opening over hitting a mechanical word count.
 
 ### First 8 words
-Must contain either a curiosity gap or an emotional punch. Test: cover everything after word 8 — does the reader want to keep going?
+Must contain a concrete event, consequence, or identity collision — not merely an emotional adjective. Test: cover everything after word 8 — does the reader know what went wrong and want to keep going?
 
 | Weak opening | Strong opening |
 |---|---|
@@ -202,17 +274,32 @@ Always unresolved. Never conclude. The reader must feel *"and then what?"* as a 
 | "...everything changed between them." | "...and his own files told him to be afraid of her." |
 
 ### Sentence rhythm
-Short sentences hit harder. Vary length: one longer setup, one shorter reversal, one short unresolved ending.
+Use 2–4 short sentences. Each sentence gets one job: **incident → reversal → consequence → withheld detail**. For paid feed, embed one adult, consensual intimacy cue in the reversal or consequence: the room empties, a hand pauses, a door closes, or one character explicitly chooses to stay. A sentence may be longer when it carries the premise, but do not make the reader decode several twists at once.
 
 ### Power words
 These words earn their place because they imply withheld information:
 *already knew / hasn't mentioned it / said nothing / recognized it / never brought it up / expecting her to / chose her deliberately / never asked why*
+
+### Concrete incident bank
+
+Prefer the story's real trigger event over a mood word. Strong, broadly legible event families include:
+
+- **Public rupture:** divorce request, abandonment, expulsion, slap, firing, bankruptcy, funeral
+- **Private consequence:** pregnancy, forced marriage, debt, inheritance, hidden child, medical ultimatum
+- **Identity collision:** stranger is the boss, husband is the CEO, ex is richer, enemy is family
+- **Disappearance / erasure:** vanished before he woke, name removed from the family, evidence destroyed
+- **Status reversal:** dismissed heir, discarded wife, replacement who returns with leverage
+
+Use one event family per tagline. Specificity creates curiosity; piling five trope nouns into one caption reads fabricated.
 
 ### What to avoid
 - Generic adjectives alone: "brooding", "mysterious", "irresistible", "smoldering" — invisible to scrollers
 - Telling the emotion: "their forbidden love burned bright" — say the situation, not the feeling
 - More than one question mark — one rhetorical question hooks; two is a quiz
 - Resolved endings — never explain what happens, only what is at stake
+- A trope inventory in place of an incident: "CEO, twins, revenge, billionaire, forbidden love" is metadata, not a story
+- Vague stakes: replace "everything changed" with the irreversible thing that changed
+- Sex acts; nudity; sexualized body parts or clothing; erotic instructions; simulated-sex language; coercion framed as romance; age-ambiguous characters; or a promise of explicit content. If the line reads as sexual arousal rather than a dark-romance scene, rewrite it as character tension.
 
 ---
 
@@ -220,13 +307,13 @@ These words earn their place because they imply withheld information:
 
 Use this 5-step pass when rewriting or auditing a site's full book list.
 
-1. **Start with the unsafe fact, not the character.** First clause: danger, manipulation, disappearance, debt, betrayal, document, bloodline, impossible evidence. Never open with a name.
+1. **Start with the incident, not the character bio.** First clause: abandonment, debt, divorce, pregnancy, disappearance, betrayal, public humiliation, document, bloodline, impossible evidence. Never open with a name or a genre label.
 
 2. **Make first 8 words carry the click.** Good openers: *"Every woman who..."*, *"The contract already..."*, *"Her mother vanished..."*, *"The evidence named..."*, *"He bought..."*, *"The ritual required..."*, *"She signed..."*
 
-3. **Turn the middle on a concrete proof object.** One physical thing: ledger, contract, recording, locked room, body, score, clause, blood sample, message, signature. This makes it feel like a story scene, not abstract copy.
+3. **Turn the middle on a concrete proof object or irreversible consequence.** Use one: ledger, contract, recording, locked room, body, score, clause, blood sample, message, signature, pregnancy, inheritance, debt, divorce, erased identity. This makes it feel like a story scene, not abstract copy.
 
-4. **Reverse control.** The protagonist thought they were applying / investigating / negotiating / escaping / collecting / shutting something down. The second beat reveals they were selected / trapped / watched / claimed / framed / expected.
+4. **Reverse control or status with one consensual closeness cue.** The protagonist thought they were applying / investigating / negotiating / escaping / collecting / shutting something down. The second beat reveals they were selected / trapped / watched / claimed / framed / expected — or that the person publicly dismissed holds the leverage. Ground it in one adult, mutual cue of proximity or choice; never in explicit activity or coerced contact.
 
 5. **End with withheld information.** One active secret, unresolved: who knew, why she was chosen, what he has not said, what the record hides, what happens when she refuses.
 
@@ -235,6 +322,7 @@ Use this 5-step pass when rewriting or auditing a site's full book list.
 - Cut passive voice
 - Cut throat-clearing ("In a world where...", "Set against the backdrop of...")
 - Cut endings that explain the emotion instead of leaving an unanswered threat
+- Replace every standalone trope adjective with an observable event, consequence, or relationship fact
 
 ---
 
@@ -242,6 +330,7 @@ Use this 5-step pass when rewriting or auditing a site's full book list.
 
 - No two books on the same site should share the same opener pattern (avoid "She thought..." × 5)
 - Each tagline should imply a different proof object (not all contracts, not all sealed rooms)
+- Balance the incident families across a campaign: do not run five pregnancy hooks or five hidden-heiress hooks against the same audience
 - Check every tagline against the book description — the ad must not promise a scene the story cannot deliver
 - Carousel and book-grid taglines should feel distinct enough that scrolling through them produces variety, not a template
 
@@ -249,12 +338,15 @@ Use this 5-step pass when rewriting or auditing a site's full book list.
 
 ## Quick checklist before publishing
 
-- [ ] First 8 words: curiosity gap OR emotional punch
-- [ ] 25–40 words total
+- [ ] First 8 words name a concrete incident, consequence, or identity collision
+- [ ] Length matches its placement: feed 25–55 words; card 8–12; carousel 12–20
 - [ ] One clear reversal of power or expectation
 - [ ] Ends unresolved — no conclusion, no emotional wrap-up
 - [ ] No generic adjectives standing alone
-- [ ] One concrete proof object in the middle
+- [ ] One concrete proof object **or irreversible consequence** in the middle
+- [ ] Paid-feed copy contains one adult, consensual intimacy cue that advances the reversal
+- [ ] The cue is scene-level tension, not explicit activity, nudity, sexualized body focus, or coercion
 - [ ] Image and tagline imply the same scene without repeating each other
 - [ ] No two adjacent books start with the same opener word
+- [ ] Campaign variants use different incident families, not cosmetic word swaps
 - [ ] Tagline matches what the story actually delivers

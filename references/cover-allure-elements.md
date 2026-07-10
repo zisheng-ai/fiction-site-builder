@@ -1042,13 +1042,15 @@ Or remove the jaw-tilt entirely and describe his hand position without a directi
 
 Maximum-allure formulas for English romance novel covers. Validated on: flux-pro-1.1-ultra, doubao-seedream-5.0, gpt-image-2-all, gemini-3.1-flash-image, nano-banana-pro.
 
-**Objective: the cover must stop a scroll — visually hot, instantly magnetic. Push every element to the edge of the compliance floor below.**
+**Objective: the cover must stop a scroll by making an irreversible story event instantly legible.** The highest-priority evidence comes from observed short-drama ads: wedding pressure, public humiliation, abandonment, debt, medical proof, hidden wealth, a return that changes the hierarchy, or an ex watching too late. Allure supports that event; it never replaces it.
 
-**Core rule: always use physical contact. Bodies pressed together is the minimum; aim for poses where removing the prompt description would make the image read as explicit.**
+**Priority order (mandatory):** narrative tableau → power reversal → expression/gesture/blocking → allure tier → aesthetic polish. When a generic intimate pose conflicts with a clear crisis, keep the crisis and lower the allure.
+
+**Core correction:** physical contact is optional, not mandatory. Use it only when it proves the scene. A bride crying beside a medically compromised groom, a woman holding evidence while her boss watches, or an ex kneeling too late can outperform a posed embrace because the viewer understands the crisis immediately.
 
 ## Drama Hook — The Click Driver
 
-Sex appeal stops the scroll. Drama creates the click. Both are required.
+Drama stops the scroll and creates the click. Sensuality may intensify a romance frame, but it is never required when the event itself already carries the tension.
 
 A cover fails if it looks like a fashion shoot where two hot people happen to be near each other. It succeeds when the viewer's first instinct is *"wait — what is happening between them?"*
 
@@ -1061,6 +1063,44 @@ Every cover must have **all three**:
 | **Tension** | Makes the viewer feel the stakes | Power imbalance, forbidden desire, barely-controlled emotion |
 | **Question** | Makes the viewer need to know more | An incomplete story visible in the image — what happened before? what happens next? |
 | **Desire** | Makes the viewer want to be in the scene | The allure of the bodies, the heat between them |
+
+### Narrative Tableau Library — required plot evidence
+
+Do not generate a generic couple pose. Every romance cover must freeze **one irreversible story event** so the first frame reads like a short-drama thumbnail, not a fashion editorial. Pair one tableau with the Hook Formula above.
+
+| Tableau | What the viewer understands instantly | Prompt scaffold |
+|---|---|---|
+| **Ceremony interrupted** | A marriage is happening under impossible pressure | `opulent wedding courtyard or grand hotel entrance, flower arch, bride in formal gown reacting beside a groom in a medical chair or receiving care, guests frozen behind them, one impossible condition visible` |
+| **Private mistake becomes public power** | A stranger / one-night decision has become a workplace or family crisis | `woman foreground holding a document or scan printout, shock and tears contained, powerful man in suit behind her at office or gala distance, he knows more than she does` |
+| **Public humiliation, private leverage** | She is being rejected or shamed, but the hierarchy is about to flip | `grand ballroom or wedding reception, crowd witnessing the confrontation, woman composed through hurt, one ally or spouse positioned behind her with quiet authority` |
+| **Discarded woman returns** | The person everyone abandoned now controls the room | `rain-dark estate gate or chandelier ballroom, woman arriving in a changed silhouette, former family or ex-partner visibly unsettled in the background, luxury car or estate as proof of reversal` |
+| **Triangle at the gala** | A rival, ex, or new partner has made the attraction dangerous | `luxury ballroom, central woman in formal evening dress, one man close behind in protective focus, second man lower or separated in regret, watching guests, champagne and chandeliers` |
+| **Inheritance / hidden-status reveal** | The underestimated heroine holds the real power | `formal family gathering or mansion threshold, heroine centered with a document, signet, or phone, relatives reacting behind her, one high-status partner visible but not blocking her` |
+| **Night-before-revenge** | Someone thought she was gone; she is returning with a plan | `moonlit bedroom or rain-soaked street, heroine awake and resolved, antagonist silhouette or estate beyond the window, one object that proves the betrayal` |
+
+**Prompt rule:** name the event, the visual proof, and each character's reaction. `couple in a ballroom` fails; `bride holds the marriage certificate while the man who rejected her kneels in the foreground and her new ally watches from behind` is a usable narrative tableau.
+
+### Performance Direction — expression, gesture, blocking
+
+Use these as directed acting beats, not beauty adjectives. Assign a different beat to every visible figure; two people with the same expression erase the plot.
+
+| Role / beat | Face direction and expression | Body action / blocking | Prompt fragments |
+|---|---|---|---|
+| **Hurt heroine, refusing to collapse** | Eyes wet but focused away from the aggressor; brows pulled tight; mouth open on a held breath | Kneeling or seated low, one hand gripping a dress, chair arm, suitcase, or document; body angled toward escape | `tears held at the lower lashes, trying not to break in public, jaw trembling but spine refusing to fold, hand clenched around the proof` |
+| **Shocked discovery** | Eyes fixed on the proof object, then flicking toward the man behind her; lips part but no smile | Holds a scan printout, letter, ring, or phone at chest height; shoulders pulled inward | `staring at the document as if it changed the room, one hand crumpling the paper, shoulders locked, breath caught` |
+| **Publicly humiliated but defiant** | Chin lifted despite tears or a flush; direct stare toward the crowd or aggressor | Standing alone in the center, hands controlled at her sides; crowd blurred behind | `humiliation visible but not submissive, chin raised against the crowd, formal posture held by force of will` |
+| **Return with leverage** | Calm, unreadable face; eyes aimed past the people who rejected her | Full-body entrance, walking forward through a doorway or crowd; coat/dress moves with the step | `walking into the room like she owns the ending, composed face after years of loss, everyone else turning toward her` |
+| **Possessive protector, adult and nonviolent** | Calm focus on her, not a predatory grin; expression says he has made a decision | One step behind or beside her, an open hand offered but not gripping; shoulders square toward the threat | `quietly protective stance, hand offered at her waist level without touching, eyes fixed on the person who hurt her` |
+| **Man who realizes he lost** | Face cracked by panic or disbelief; gaze stays on her and the new pair | Kneeling, reaching partway but stopping short; tie loosened, formal control visibly broken | `on one knee in the foreground, hand suspended before it reaches her, regret arriving too late, formal composure destroyed` |
+| **Hidden controller / CEO reveal** | Small, contained smile or unreadable stillness; eyes aimed at the heroine, not the camera | Soft-focus background placement; upright, hands relaxed; never crowd her body | `standing behind her with unsettling calm, expression of someone who already knew, composed posture while her world changes` |
+| **Witnessing crowd** | Mixed shock, gossip, restrained pleasure, or sudden silence | Keep faces readable only at the edges; form a corridor framing the lead | `guests frozen mid-reaction, hands over mouths, blurred witnesses creating a corridor of judgment` |
+
+**Blocking rules:**
+
+- Put the emotional target large in the foreground; place the person with hidden knowledge in the mid-ground; place the loser, aggressor, or witnesses on a lower plane or at the frame edge.
+- Make hands tell the story: gripping proof, offering help, stopping short, shielding, or reaching too late. Do not use decorative hand placement.
+- Use height and distance as plot syntax: kneeling = loss of control; standing behind = hidden power; walking away = reversal; seated/wheelchair = an impossible condition, never a joke or spectacle.
+- Keep all depicted characters clearly adult. For intimate moments, show mutual choice through an offered hand, reciprocal gaze, or a voluntary step closer; never use restraint as seduction.
 
 **Adding a third figure for conflict:** the Hook Formula does not require exactly two people. When the synopsis offers a rival, betrayer, jealous third party, or looming antagonist, render them in the frame — a third figure sharpens **Tension** and **Question** more than a clean two-person embrace can. Keep one central focal pairing so the eye still has a home; place the third figure to threaten or intrude on that pairing (watching from behind, reaching between them, turned away in betrayal), not to dilute it.
 
