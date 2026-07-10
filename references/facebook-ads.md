@@ -212,7 +212,7 @@ See `references/story-cover.md` Step 1.7 for the full technical spec. Summary he
 | **World signal** | One background element identifies the story world without the title: city penthouse = billionaire; candlelit manor = Regency; neon rain = cyberpunk. |
 | **Partial reveal** | Bare shoulders + clutched sheet > full exposure. Suggestion generates more CTR than explicit. Better Facebook delivery too. |
 
-### High-performing composition template (billionaire / dark romance)
+### High-performing composition template (billionaire / romance)
 
 Extracted from a proven high-CTR Facebook creative:
 
@@ -229,7 +229,7 @@ seated on bed behind her, watching her with quiet intensity,
 positioned smaller in mid-ground,
 
 white linen bedding, warm amber morning light, soft bokeh depth of field,
-cinematic depth of field, dark romance novel cover composition, photorealistic, 8k
+cinematic depth of field, romance novel cover composition, photorealistic, 8k
 ```
 
 ### Image + copy pairing rule
@@ -254,9 +254,9 @@ Facebook algorithm reads the tagline + image together to find the audience. Writ
 **Primary audiences that convert for fiction sites:**
 - Women 25–45 interested in romance novels, Kindle Unlimited, BookTok, Wattpad
 - Lookalike audiences from email list (if available)
-- Interest: specific romance sub-genres (paranormal romance, dark romance, historical romance)
+- Interest: specific romance sub-genres (paranormal romance, romance, historical romance)
 
-**Do not target broadly by "reading" interest** — the creative (image + tagline) does the targeting. A dark romance cover with the right tagline will self-select the right audience more precisely than interest layers.
+**Do not target broadly by "reading" interest** — the creative (image + tagline) does the targeting. A romance cover with the right tagline will self-select the right audience more precisely than interest layers.
 
 ### Ad format recommendations
 
@@ -279,7 +279,7 @@ Example: "Read Chapter 1 free →" or "Start reading now — no sign-up required
 
 Keep the copy above the "See more" fold. The tagline is the entire body — no additional paragraphs.
 
-### High-performing composition template 2 — three-character power hierarchy (dark romance / mafia / cartel)
+### High-performing composition template 2 — three-character power hierarchy (romance / mafia / cartel)
 
 Extracted from a proven high-CTR Facebook creative. Outperforms two-character compositions because the viewer must decode three relationships simultaneously — that cognitive load keeps them on the image longer.
 

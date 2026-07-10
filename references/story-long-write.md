@@ -643,7 +643,7 @@ After chapters are complete, write the `tagline` and `description` fields for `s
 
 One sentence is ideal. Two is the maximum. It must reveal the core irony of the situation — what she came for vs. what she got, what was supposed to be simple vs. what it became.
 
-**Banned:** genre labels ("enemies-to-lovers", "fated mates", "dark romance"), passive descriptions ("a story about"), vague emotional promises ("a journey of self-discovery").
+**Banned:** genre labels ("enemies-to-lovers", "fated mates", "romance"), passive descriptions ("a story about"), vague emotional promises ("a journey of self-discovery").
 
 **Patterns — pick the one that fits:**
 

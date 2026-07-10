@@ -140,7 +140,7 @@ This is the highest-confidence schema for entity disambiguation. The `sameAs` ar
   "@id": "https://velvet.nablepart.com/#organization",
   "name": "Velvet Throne",
   "url": "https://velvet.nablepart.com",
-  "description": "Dark romance, paranormal, and billionaire fiction.",
+  "description": "romance, paranormal, and billionaire fiction.",
   "sameAs": [
     "https://www.wikidata.org/wiki/Q[entity-id]",
     "https://www.facebook.com/velvetthrone",
@@ -160,7 +160,7 @@ A practitioner study found `Person` schema with only `name` + `jobTitle` (no `sa
   "@id": "https://velvet.nablepart.com/author/celine-voss/#person",
   "name": "Celine Voss",
   "jobTitle": "Romance Author",
-  "knowsAbout": ["Dark Romance", "Paranormal Romance", "Billionaire Romance"],
+  "knowsAbout": ["romance", "Paranormal Romance", "Billionaire Romance"],
   "sameAs": [
     "https://www.goodreads.com/author/show/[id]",
     "https://www.wikidata.org/wiki/Q[id]",
@@ -184,7 +184,7 @@ Provides the `Book → Person → genre` relational triple that helps AI systems
     "@id": "https://velvet.nablepart.com/author/celine-voss/#person",
     "name": "Celine Voss"
   },
-  "genre": ["Dark Romance", "Paranormal"],
+  "genre": ["romance", "Paranormal"],
   "inLanguage": "en",
   "datePublished": "2025-03",
   "description": "A 400-year-old vampire lord claims his fated mate in a world where...",
@@ -238,7 +238,7 @@ From arXiv 2604.25707 (Citation Absorption Framework, 602 prompts, 21,143 citati
 
 GhostCite (arXiv 2602.06718) documented that LLMs preferentially cite **atomic facts** — sentences that are semantically self-contained and do not require surrounding context. Sentences using cross-reference language ("as mentioned above," "as discussed earlier") lose citation eligibility because they fail the corroboration check across multiple sources.
 
-For book descriptions, author bios, and genre pages: write in declarative, self-contained statements. "Celine Voss writes dark romance featuring morally grey vampire heroes and forced-proximity plots" is citable. "As discussed, her work features..." is not.
+For book descriptions, author bios, and genre pages: write in declarative, self-contained statements. "Celine Voss writes romance featuring morally grey vampire heroes and forced-proximity plots" is citable. "As discussed, her work features..." is not.
 
 ### Content length — word count is not the driver
 
@@ -305,13 +305,13 @@ These are the page types where AI citation is achievable. Rank them by investmen
 
 ### High potential (target these)
 
-**Genre guide pages** — "What is dark romance?", "What is romantasy?", "Dark romance vs. paranormal romance explained"
+**Genre guide pages** — "What is romance?", "What is romantasy?", "romance vs. paranormal romance explained"
 - Match informational query intent (the intent AI Overviews are designed for)
 - Can include statistics, definitions, comparison tables
 - Internal link target for all book pages sharing a genre
 - 1,500–2,500 words, answer-first, table-of-contents structure
 
-**Book list / recommendation pages** — "Best dark romance books 2025", "Books like Colleen Hoover", "Billionaire romance with enemies-to-lovers"
+**Book list / recommendation pages** — "Best romance books 2025", "Books like Colleen Hoover", "Billionaire romance with enemies-to-lovers"
 - Match "recommend me" query patterns that AI engines respond to
 - Reddit (46.7% of Perplexity citations) surfaces book list discussions — this content competes for the same query
 - Structure as a list with one self-contained description per book
@@ -362,7 +362,7 @@ Each cluster page links back to the pillar. This signals to AI systems which pag
 
 ### Anchor text for AI context
 
-AI engines process anchor text as semantic context within the crawled document (not as PageRank signal). Use descriptive anchor text that encodes the relationship: "dark romance novels featuring vampire heroes" rather than "click here" or even just "vampire romance."
+AI engines process anchor text as semantic context within the crawled document (not as PageRank signal). Use descriptive anchor text that encodes the relationship: "romance novels featuring vampire heroes" rather than "click here" or even just "vampire romance."
 
 ---
 
@@ -417,7 +417,7 @@ Add `areaServed` and `knowsLanguage` to the site's `Organization` schema to expl
 All GEO monitoring tools share the same core mechanism: pre-set prompts → query AI engines periodically → parse returns for brand mentions, citation URLs, sentiment → trend report. The limitation: most tools query base LLM APIs without web browsing enabled, capturing parametric model knowledge rather than the RAG-augmented results users actually see. Evertune explicitly distinguishes these; most others do not.
 
 Track these queries for each site:
-- "[Site name] dark romance" / "[Site name] paranormal romance"
+- "[Site name] romance" / "[Site name] paranormal romance"
 - "best [genre] reading sites"
 - "[Book title] [Author name]"
 - "read [book title] online free"
@@ -600,7 +600,7 @@ export const dynamic = 'force-static'
 
 const BASE = 'https://velvet.nablepart.com'   // replace per site
 const SITE_NAME = 'Velvet Throne'
-const SITE_DESCRIPTION = 'Dark romance, paranormal, and billionaire fiction for readers who want intensity on every page.'
+const SITE_DESCRIPTION = 'romance, paranormal, and billionaire fiction for readers who want intensity on every page.'
 
 export function GET() {
   const bookLines = books

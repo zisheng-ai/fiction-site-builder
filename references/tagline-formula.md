@@ -14,7 +14,7 @@ The tagline is the single highest-leverage variable in fiction ad performance. I
 
 ## Creative intensity — current operating line
 
-Dark romance and paranormal fiction can use stronger **narrative tension** than the image or video creative. Do not treat text as an exception to Meta review: an ad and its landing experience can both be reviewed, and acceptance is never guaranteed. For tagline writing, optimize for scene-level tension while avoiding eroticized body focus, explicit activity, non-consensual framing, or misleading promises.
+romance and paranormal fiction can use stronger **narrative tension** than the image or video creative. Do not treat text as an exception to Meta review: an ad and its landing experience can both be reviewed, and acceptance is never guaranteed. For tagline writing, optimize for scene-level tension while avoiding eroticized body focus, explicit activity, non-consensual framing, or misleading promises.
 
 ### Use freely
 - Emotional intensity: *obsession, possession, consume, devour, claim, ruin, destroy, dark, dangerous, forbidden*
@@ -47,7 +47,7 @@ These are repeatable fiction-ad patterns. Apply them by genre and by the actual 
 
 ### Formula A — Forbidden Identity Combo
 
-**When to use:** Dark romance, mafia, billionaire, paranormal. Any story where the hero's role makes the relationship dangerous.
+**When to use:** romance, mafia, billionaire, paranormal. Any story where the hero's role makes the relationship dangerous.
 
 **Structure:**
 ```
@@ -61,7 +61,7 @@ He's my [forbidden role]. He's also [complicating truth].
 - "He's my enemy's brother. My handler. My obsession."
 - "My warden. The only man who knows what the contract actually says."
 
-**Dark romance variant (A+D hybrid — highest performer for velvet-throne):**
+**romance variant (A+D hybrid — highest performer for velvet-throne):**
 ```
 [Dark trait]. [Shocking contradiction]. [Completely devoted].
 ```
@@ -113,7 +113,7 @@ For [reader identity]. This one's for you.
 - "If you skip to the spicy chapters, this one's for you."
 - "Dark. Morally grey. Absolutely unputdownable."
 
-**Note:** Formula C is a targeting signal as much as a tagline. Use it to reach niche audiences who already self-identify as dark romance readers. Less effective for broad audiences who don't know the genre.
+**Note:** Formula C is a targeting signal as much as a tagline. Use it to reach niche audiences who already self-identify as romance readers. Less effective for broad audiences who don't know the genre.
 
 ---
 
@@ -130,7 +130,7 @@ or
 [Dark/threatening trait]. [Tender or unexpected contradiction].
 ```
 
-**Mechanism:** The tension between power and vulnerability is the core engine of dark romance. Showing both in the same tagline makes the hero feel real, not just threatening.
+**Mechanism:** The tension between power and vulnerability is the core engine of romance. Showing both in the same tagline makes the hero feel real, not just threatening.
 
 **Examples:**
 - "He controlled everything. Until her."
@@ -224,7 +224,7 @@ or
 
 | Genre | Best formula | Why |
 |---|---|---|
-| Dark romance (billionaire, mafia) | A+D hybrid or H | Power gap is the premise; contradiction or identity collision is the pull |
+| romance (billionaire, mafia) | A+D hybrid or H | Power gap is the premise; contradiction or identity collision is the pull |
 | Paranormal / shifter | B or E | The "impossible" fact is the hook |
 | Fae / dark fantasy | E then A | Scene-opener creates world; forbidden identity adds stakes |
 | Demon / monster romance | B | Domestic normality broken by supernatural claim is the click |

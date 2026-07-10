@@ -14,7 +14,7 @@ Apply T2–T3 by default. Covers roll T2/T3; illustrations roll T3/T4 when the s
 
 | Genre / label | Why it fits |
 |---|---|
-| Dark Romance | Power imbalance, possession, danger, taboo desire are the click promise. |
+| romance | Power imbalance, possession, danger, taboo desire are the click promise. |
 | Contemporary Romance | Desire and relationship tension are the main purchase driver. |
 | Billionaire Romance | Status, luxury, control, and attraction are instantly legible visually. |
 | Mafia / Cartel / Organized Crime Romance | Danger + protection/possession creates high-converting visual tension. |
@@ -71,7 +71,7 @@ T1–T4 are visual-allure intensity tiers for cover and illustration prompts. Th
 |---|---|---|---|
 | **T1** | Suggestive | Safe, restrained atmosphere: gaze, bare shoulder, collarbone, charged proximity, dangerous mood. | Floor for all genres; default for mystery, horror, sci-fi, literary thriller. |
 | **T2** | Bold | Mainstream romance/drama allure: deeper neckline, bare back, fitted fabric, clear physical magnetism. | Strong safe zone for romance/drama covers; push fantasy/historical here when composition allows. |
-| **T3** | Maximum | Higher visual pull: wet fabric, slipping/torn garment language, more visible skin, strong intimacy tension. | Romance/dark romance covers and romance illustrations when CTR matters. |
+| **T3** | Maximum | Higher visual pull: wet fabric, slipping/torn garment language, more visible skin, strong intimacy tension. | Romance/romance covers and romance illustrations when CTR matters. |
 | **T4** | Limit | Highest safe-boundary intimacy: near-threshold romantic tension while still fully blocking explicit content. | Romance illustrations and occasional high-risk romance creative only; review carefully. |
 
 **Hard boundary for every tier:** no exposed nipples/areola, no exposed genitals, no sex acts, and no image that reads as pornographic. T3/T4 push attraction, not explicitness.
@@ -955,7 +955,7 @@ Quick-reference: which scene types pair naturally with each genre.
 |---|---|---|---|
 | Paranormal Romance | Moonlit forest, gothic castle, city alley (London), ruins | Heavy rain, full moon, mist | Cold silver moonlight, single streetlamp, rim light |
 | Contemporary Romance | Penthouse, rooftop, city street, luxury bedroom | Clear night, golden hour, light rain | Warm amber, city bokeh, candlelight |
-| Dark Romance / Mafia | Parking garage, estate, industrial, abandoned space | Overcast night, fog, cigarette smoke | Harsh headlights, chiaroscuro, cold blue |
+| romance / Mafia | Parking garage, estate, industrial, abandoned space | Overcast night, fog, cigarette smoke | Harsh headlights, chiaroscuro, cold blue |
 | Billionaire Romance | Penthouse, corporate tower, grand ballroom, yacht | Clear night, golden hour | Chandelier bokeh, floor-to-ceiling city lights, spotlight |
 | Historical Court | Imperial court, palace, manor drawing room | Candlelit interior, evening, snow outside | Candlelight, fireplace, warm amber |
 | Dark Fantasy | Gothic castle, ancient ruins, cursed forest, cave | Storm, magical mist, ash fall | Torch, bioluminescence, lightning, supernatural glow |
@@ -1118,7 +1118,7 @@ The face is the click trigger. Generic beauty does not hook. Specific emotion do
 | **Surrender under protest** | `lips parted, brows furrowed slightly — her expression says she knows this is a mistake and can't stop` | Forbidden romance, enemies-to-lovers |
 | **Defiance + desire** | `chin raised in defiance but eyes betraying want, expression of someone who refuses to admit they're losing` | Power struggle romance |
 | **Raw vulnerability** | `eyes glistening, lower lip trembling, expression caught between fear and longing` | High-stakes emotional moment |
-| **Cold possession** | `expression of absolute ownership, calm and certain, eyes that see only her` | Alpha / dark romance |
+| **Cold possession** | `expression of absolute ownership, calm and certain, eyes that see only her` | Alpha / romance |
 | **Overwhelmed surrender** | `head thrown back, eyes closed, expression of total abandon — has stopped fighting it` | Peak physical tension |
 | **Shocked recognition** | `wide eyes, lips parted — the expression of someone who just realized everything is about to change` | Revelation / twist moment |
 
@@ -1244,7 +1244,7 @@ Pick the pose assigned in the Batch Diversity Plan (story-cover.md Step 1.6). In
 
 ### Genre-Specific Prompt Formulas
 
-Load `references/cover-genre-playbook.md` during A2 for the full 15-genre prompt template library (Dark Romance, Paranormal/Shifter, Vampire, Fantasy/Fae, Mafia/Cartel, Contemporary, Sports, Accidental Marriage, Revenge Return, Romantasy, Regression, Villainess, Monster Romance, Dark Academia, Urban Romantasy). Not needed for A2.5 — illustrations use the pose + exposure tier tables above.
+Load `references/cover-genre-playbook.md` during A2 for the full 15-genre prompt template library (romance, Paranormal/Shifter, Vampire, Fantasy/Fae, Mafia/Cartel, Contemporary, Sports, Accidental Marriage, Revenge Return, Romantasy, Regression, Villainess, Monster Romance, Dark Academia, Urban Romantasy). Not needed for A2.5 — illustrations use the pose + exposure tier tables above.
 
 ---
 
@@ -1346,7 +1346,7 @@ The 8 dimensions:
 
 #### T3 — Maximum *(production cover tier — rolled 50/50 with T2)*
 
-**Use for:** roughly half of production covers (rolled per book against T2). Dark romance, paranormal romance, billionaire/MC/mafia romance, any genre where physical intensity is core to the premise. This is the hotter of the two production cover tiers — it is intentionally pitched above the highest result a lucky T2 roll can produce.
+**Use for:** roughly half of production covers (rolled per book against T2). romance, paranormal romance, billionaire/MC/mafia romance, any genre where physical intensity is core to the premise. This is the hotter of the two production cover tiers — it is intentionally pitched above the highest result a lucky T2 roll can produce.
 
 **Viewer feeling:** "this is exactly what I came here for" — instant click, immediate scroll stop
 

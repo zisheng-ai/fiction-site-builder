@@ -128,7 +128,7 @@ Title large across lower third in bold serif with one script/emotional word; aut
 
 ### Genre-Specific Prompt Formulas
 
-#### Dark Romance / Billionaire Romance
+#### romance / Billionaire Romance
 ```
 Romance novel cover, cinematic photorealistic quality, dark dramatic luxury atmosphere.
 FRAMING: full-body shot, both figures visible from feet to crown, three-quarter angle facing viewer.
@@ -181,7 +181,7 @@ Portrait 2:3, photorealistic, ultra-detailed, no watermark, text inside central 
 
 #### Vampire Romance
 ```
-Romance novel cover, cinematic photorealistic quality, gothic dark romance atmosphere.
+Romance novel cover, cinematic photorealistic quality, gothic romance atmosphere.
 FRAMING: medium-to-full-body shot, both figures from hip to crown facing viewer at three-quarter angle.
 TWO characters. Man in dark Victorian coat, pale aristocratic face, standing beside woman
 at a slight angle — his face turned toward her neck from the side closest to the viewer,
