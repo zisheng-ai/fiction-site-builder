@@ -190,7 +190,7 @@ The genre determines composition template, color palette, character design, and 
 
 | Genre | Allure tier | What it looks like |
 |-------|-------------|-------------------|
-| Romance / Dark Romance / Contemporary Drama | **T2–T3 (mandatory, roll per cover)** | Deep neckline + bare back / torn garment + wet fabric. Maximum skin within §0 floor. See Female figure rule below. |
+| Romance / romance / Contemporary Drama | **T2–T3 (mandatory, roll per cover)** | Deep neckline + bare back / torn garment + wet fabric. Maximum skin within §0 floor. See Female figure rule below. |
 | WLW / Sapphic Romance | **T1–T2 (default T1, push T2 via satin fabric + décolletage)** | Luxury satin sleepwear open at collar, necklines falling naturally, warm skin tones as primary texture. Intimacy communicated through proximity and fabric, not explicit exposure. |
 | BL / MM Romance | **T1 (charged proximity, no explicit content)** | Open collar, shirt undone one button, bare jaw and throat in warm light. Allure is entirely in the charged gap between figures — skin vocabulary is minimal but deliberate. |
 | African Royalty / Multicultural Historical | **T1 (regal presence, not allure-forward)** | Traditional garments are the primary visual element. Allure lives in posture, composition authority, and the warm light catching fabric and jewelry. Bare chest (male figure only, in traditional context) is acceptable. |
@@ -271,7 +271,7 @@ The female lead's face must carry one clear, intense emotion. Never neutral, nev
 | Cold fury | `jaw set, eyes burning with restrained fury, perfectly composed posture masking rage` |
 | Torn — wanting + terrified | `eyes full of conflict, biting lower lip, body angled away but gaze pulled back` |
 
-**2. Foreground/background depth composition (high priority for billionaire/dark romance).**
+**2. Foreground/background depth composition (high priority for billionaire/romance).**
 Place the female lead large in the foreground (occupying 60–70% of frame height), male lead smaller in the background. This creates three simultaneous questions in the viewer's mind: *What did she just find out? Who is he? What happens next?*
 
 Prompt fragment: `female lead fills the foreground, male lead seated or standing behind her in the mid-ground, smaller, watching her`
@@ -295,7 +295,7 @@ One background element must instantly communicate the story's world. The viewer 
 
 | Story world | Environment signal |
 |-------------|-------------------|
-| Billionaire / dark romance | `floor-to-ceiling windows, city skyline at dawn, luxury penthouse suite` |
+| Billionaire / romance | `floor-to-ceiling windows, city skyline at dawn, luxury penthouse suite` |
 | Mafia / cartel | `dim marble-floored study, heavy drapes, a city visible through armored glass` |
 | Military / action | `tactical vehicle interior, map-covered desk, desert light through a dusty window` |
 | Paranormal / fae | `midnight forest, bioluminescent light, stone archway with moonlight beyond` |
@@ -311,13 +311,13 @@ Bare shoulders + clutched sheet outperforms full nudity for Facebook delivery (b
 - `his jacket placed around her bare shoulders from behind`
 - `one strap fallen, hand pressed to collarbone`
 
-### Reference image — canonical T2 template (GPT-native, high-CTR Facebook ad, dark romance / billionaire)
+### Reference image — canonical T2 template (GPT-native, high-CTR Facebook ad, romance / billionaire)
 
-**Use `gpt-image-2-all` for this template.** This is the GPT-native T2 composition — "morning-after scandal" scene. Produces hyperrealistic photograph quality (looks like a real editorial photo, not a rendered image). Validated high-CTR for dark romance / billionaire covers.
+**Use `gpt-image-2-all` for this template.** This is the GPT-native T2 composition — "morning-after scandal" scene. Produces hyperrealistic photograph quality (looks like a real editorial photo, not a rendered image). Validated high-CTR for romance / billionaire covers.
 
 **Key quality signal: specify a real camera + lens.** This is the single most effective trigger for photorealism — the model believes it is describing a photograph, not generating art. Always include `shot on Canon EOS R5 with 85mm f/1.4 lens` (or equivalent) in the opening line. Do NOT use `cinematic drama still` or `film-still` — these pull toward stylized TV-show quality instead of raw photo realism.
 
-Use for any contemporary dark romance / billionaire cover at T2 tier:
+Use for any contemporary romance / billionaire cover at T2 tier:
 
 ```
 photorealistic editorial photography, looks exactly like a real photograph taken by a professional photographer,
@@ -400,7 +400,7 @@ The diversity plan may vary pose, framing, palette, and environmental dominance,
 
 **Figure rule — apply by genre:**
 
-**Romance / Dark Romance / Contemporary Drama (T2–T4, roll per cover):**
+**Romance / romance / Contemporary Drama (T2–T4, roll per cover):**
 The female character must be visually magnetic — impossible to scroll past. **Exposure = randomly T2, T3, or T4, picked independently per cover** — roll once per book and bake that tier's assembly block from the Exposure Tiers table (`references/cover-allure-elements.md`) directly into the prompt. Required elements by tier:
 
 | Element | T2 (Bold) | T3 (Maximum) | T4 (Limit) |

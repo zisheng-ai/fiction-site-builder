@@ -44,7 +44,7 @@ The illustration framework differs by genre. Before selecting scenes, run the **
 
 **Default Allure Genres** and qualifying **Conditional Allure Genres** use the allure-tier system below (T3/T4) — peak scenes are intimacy, claim, temptation, possession, forbidden attraction, or relationship point-of-no-return scenes. Prompts use `cover-allure-elements.md` assembly blocks.
 
-Qualifying examples include Dark Romance, Contemporary/Billionaire/Mafia Romance, Paranormal/Shifter/Vampire/Demon/Monster Romance, Romantasy/Fae/Fantasy Romance, Gothic Romance, Historical/Regency Romance, Sports Romance, Dark Academia Romance, and romance-coded thriller/fantasy/sci-fi subgenres.
+Qualifying examples include romance, Contemporary/Billionaire/Mafia Romance, Paranormal/Shifter/Vampire/Demon/Monster Romance, Romantasy/Fae/Fantasy Romance, Gothic Romance, Historical/Regency Romance, Sports Romance, Dark Academia Romance, and romance-coded thriller/fantasy/sci-fi subgenres.
 
 **Non-allure genres** use the genre-specific sections at the bottom of this file instead of the T3/T4 system:
 - Mystery / Cosy Mystery / Literary Thriller → §Genre: Mystery

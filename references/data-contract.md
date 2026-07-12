@@ -164,7 +164,7 @@ Create `src/lib/site.ts` to centralize site-level constants. These values are us
 // src/lib/site.ts
 export const SITE_NAME = 'Velvet Throne'
 export const BASE_URL = 'https://velvet.nablepart.com'
-export const SITE_DESCRIPTION = 'Dark romance, paranormal, billionaire, and sci-fi fiction for readers who crave intensity.'
+export const SITE_DESCRIPTION = 'romance, paranormal, billionaire, and sci-fi fiction for readers who crave intensity.'
 export const SITE_LOCALE = 'en'
 ```
 
@@ -179,7 +179,7 @@ Rules:
 type Language = "en" | "es" | "ja" | "ko" | "zh";
 
 type HeroStyle = "cinematic" | "gradient" | "atmospheric";
-// cinematic: full-bleed cover image hero with text overlay (dark romance / thriller / paranormal)
+// cinematic: full-bleed cover image hero with text overlay (romance / thriller / paranormal)
 // gradient: centered cover card with color gradient backdrop, heroColor sets the tint (fantasy / contemporary / colorful)
 // atmospheric: blurred darkened cover bg behind a sharp floating cover card (literary / clean romance / prose-forward)
 

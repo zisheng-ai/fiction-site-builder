@@ -1,6 +1,6 @@
 # Genre: Romance
 
-Load this file alongside `story-long-write.md` when writing any romance novel or romance sub-plot (contemporary, dark romance, billionaire, regression/revenge, villainess/transmigration, monster romance, paranormal romance, sports romance, arranged marriage/fake dating). Skip for mystery, horror, fantasy, or sci-fi with no romantic pairing. For mystery/gothic/Regency, load `genre-mystery.md` instead.
+Load this file alongside `story-long-write.md` when writing any romance novel or romance sub-plot (contemporary, romance, billionaire, regression/revenge, villainess/transmigration, monster romance, paranormal romance, sports romance, arranged marriage/fake dating). Skip for mystery, horror, fantasy, or sci-fi with no romantic pairing. For mystery/gothic/Regency, load `genre-mystery.md` instead.
 
 ---
 
@@ -9,7 +9,7 @@ Load this file alongside `story-long-write.md` when writing any romance novel or
 | Sub-genre | Core tension driver | Characteristic tropes |
 |---|---|---|
 | **Contemporary Romance** | Ordinary life + emotional unavailability | Fake dating, second chance, small-town, workplace proximity, forced cohabitation |
-| **Dark Romance** | Power imbalance pushed to its limit | Captor/captive, obsession, morally grey hero, dubcon, mafia/cartel |
+| **romance** | Power imbalance pushed to its limit | Captor/captive, obsession, morally grey hero, dubcon, mafia/cartel |
 | **Billionaire Romance** | Wealth gap + cold-powerful hero | CEO/employee, contract marriage, secret identity, penthouse settings |
 | **Regression / Revenge Romance** | Dual arc: revenge plan + romantic pull | Second chance with memory, heroine dies and resets, heroine outmaneuvers former betrayers while falling again |
 | **Villainess / Transmigration** | Identity performance + dramatic irony | Heroine inhabits story villain, knows plot ending, must survive fate while reforming outcomes |
@@ -136,7 +136,7 @@ The contrast between the external performance (young, unformed, unremarkable) an
 
 ## Romance Heat Level (Long Form)
 
-Apply this section whenever the genre is romance or contains a romantic sub-plot (Dark Romance, Billionaire, Paranormal, Shifter, Vampire, Fantasy Romance, Mafia, Sports, Contemporary, or any genre with a central pairing).
+Apply this section whenever the genre is romance or contains a romantic sub-plot (romance, Billionaire, Paranormal, Shifter, Vampire, Fantasy Romance, Mafia, Sports, Contemporary, or any genre with a central pairing).
 
 ### Target Heat Level
 
@@ -345,7 +345,7 @@ Use these for book descriptions and taglines. Apply the same hook standard as th
 
 One sentence is ideal. Two is the maximum. It must reveal the core irony of the situation — what she came for vs. what she got, what was supposed to be simple vs. what it became.
 
-**Banned:** genre labels ("enemies-to-lovers", "fated mates", "dark romance"), passive descriptions ("a story about"), vague emotional promises ("a journey of self-discovery").
+**Banned:** genre labels ("enemies-to-lovers", "fated mates", "romance"), passive descriptions ("a story about"), vague emotional promises ("a journey of self-discovery").
 
 **Patterns — pick the one that fits:**
 
@@ -378,7 +378,7 @@ Facebook/Instagram feeds truncate post text after roughly 3 lines ("See more"). 
 **Core rules:**
 
 - **No character names** — always "She" / "Her". The reader self-inserts.
-- **No genre labels** in the copy — no "dark romance", "thriller", "enemies-to-lovers".
+- **No genre labels** in the copy — no "romance", "thriller", "enemies-to-lovers".
 - Each line is a standalone complete sentence (no dependent clauses that require the next line to parse).
 - **End on a fact or object**, not a feeling — "two marriage certificates" not "her heart shattered".
 - When line 3 is a physical reveal, use an ellipsis before the object: "On the table... two marriage certificates." The pause mimics a dramatic beat.

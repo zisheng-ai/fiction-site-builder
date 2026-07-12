@@ -123,7 +123,7 @@ Notes:
 - `alternates.canonical: './'` makes every page self-canonicalize. This is correct for SSG: Next.js resolves it against the page's own path.
 - `locale` must match the site's actual language (`en_US`, `es_ES`, etc.).
 - The OG default image should be 1200×630 (standard social sharing ratio), distinct from book covers (848×1280).
-- Site description: lead with the genre and a reader value proposition. Example: `"Dark romance and paranormal novels — read free chapters online. New releases weekly."` Aim for 130–155 characters.
+- Site description: lead with the genre and a reader value proposition. Example: `"romance and paranormal novels — read free chapters online. New releases weekly."` Aim for 130–155 characters.
 
 ## 4. Book and Chapter Metadata
 
@@ -435,7 +435,7 @@ Next.js App Router automatically outputs `<meta name="viewport" content="width=d
 
 ### What is NOT a problem
 
-Chapter pages contain 1,000–1,800 words of original prose. This is not thin content — Google's thin-content threshold is around 300 words; fiction chapters are well above it. Google indexes long-form fiction chapters and can rank individual chapters for long-tail search queries like `"dark romance enemies to lovers chapter 3 read online"`.
+Chapter pages contain 1,000–1,800 words of original prose. This is not thin content — Google's thin-content threshold is around 300 words; fiction chapters are well above it. Google indexes long-form fiction chapters and can rank individual chapters for long-tail search queries like `"romance enemies to lovers chapter 3 read online"`.
 
 ### What IS a problem
 
@@ -610,7 +610,7 @@ Articles are SEO landing pages that drive L1 traffic into books. They live in `a
 Every new long-form book triggers A4 automatically. Articles and book pages target different query layers:
 
 - **Book pages** (`/book/{slug}`) rank for long-tail queries — title, character names, specific plot keywords.
-- **Articles** (`/articles/{slug}`) rank for genre-category queries — "best dark romance books", "fae romance online" — and drive cold traffic to multiple books at once.
+- **Articles** (`/articles/{slug}`) rank for genre-category queries — "best romance books", "fae romance online" — and drive cold traffic to multiple books at once.
 
 **Routing logic (run each time a new book is added):**
 
@@ -628,7 +628,7 @@ Every new long-form book triggers A4 automatically. Articles and book pages targ
 
 ### 15.1 — SEO List Article
 
-**Purpose:** rank for broad keyword queries (`"best dark romance books"`, `"fae romance books"`). Drives cold traffic from search.
+**Purpose:** rank for broad keyword queries (`"best romance books"`, `"fae romance books"`). Drives cold traffic from search.
 
 **Word count:** 1200–1800 words.
 
@@ -636,11 +636,11 @@ Every new long-form book triggers A4 automatically. Articles and book pages targ
 
 ```yaml
 ---
-title: "Best Dark Romance Books to Read Online (Dark, Obsessive, and Free)"
+title: "Best romance Books to Read Online (Dark, Obsessive, and Free)"
 slug: "best-dark-romance-books"          # matches filename, no spaces
 publishedAt: "YYYY-MM-DD"
 description: "130–155 char meta description leading with genre + value prop."
-target: "best dark romance books"        # the keyword this article targets
+target: "best romance books"        # the keyword this article targets
 books:                                   # slugs from books.ts — drives sidebar + primary CTA
   - the-ceos-obsession
   - the-devils-debt

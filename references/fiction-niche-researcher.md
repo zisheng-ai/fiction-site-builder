@@ -68,7 +68,7 @@ Generate at least 3× more candidates than you need before scoring any.
 - TikTok: search `#[genre/trope]` — check total views and recency of top videos. Views >50M on a genre tag = proven demand. Examples: `#darkromance`, `#mysterythriller`, `#horrorreads`, `#epicfantasy`, `#dystopianfiction`.
 - Pinterest: search the genre or trope as a phrase — pin volume and board freshness signal sustained interest.
 - Reddit: `r/RomanceBooks`, `r/fantasyromance`, `r/horrorlit`, `r/scifi`, `r/Fantasy`, `r/ifyoulikeblank` — search the trope and read what readers say they can't find enough of. "Does anyone know more books like X?" is a gap signal.
-- Facebook groups: search your genre keywords — group size and post frequency indicate audience depth. Examples: "dark romance books," "horror fiction fans," "fantasy book club."
+- Facebook groups: search your genre keywords — group size and post frequency indicate audience depth. Examples: "romance books," "horror fiction fans," "fantasy book club."
 - Taiwan / Traditional Chinese: search Google Taiwan, Dcard, PTT, Facebook groups, LINE Today-style article surfaces, and bookstore/category language from Readmoo/Kobo/博客來. Look for exact Traditional Chinese phrase patterns, not Simplified Chinese volume. Capture whether readers say `言情小說`, `愛情小說`, `羅曼史`, `古風`, `仙俠`, `豪門`, `重生`, or `宮廷`.
 
 **Fiction platforms:**
@@ -215,7 +215,7 @@ Fiction sites can be approved for AdSense. Most genre fiction qualifies. A small
 
 | Content type | Risk | Safer angle |
 | --- | --- | --- |
-| Dark romance with non-consent elements | Can trigger content flags | Frame as "morally complex," keep explicit force off-page; focus on emotional complexity |
+| romance with non-consent elements | Can trigger content flags | Frame as "morally complex," keep explicit force off-page; focus on emotional complexity |
 | Mafia / crime fiction with detailed criminal methods | Can read as instructional | Keep methods vague; focus on emotional/relational stakes |
 | Vampire / supernatural with graphic blood scenes | Borderline violence | Keep blood atmospheric, not gratuitous |
 | Reverse harem / polyamory | Generally fine for AdSense; some ad networks flag | Proceed; just avoid explicit scenes |
@@ -230,7 +230,7 @@ Fiction sites can be approved for AdSense. Most genre fiction qualifies. A small
 | --- | --- | --- |
 | Romance (all sub-genres) | Moderate–High | Female 18–45 audience; beauty, fashion, relationship product advertisers |
 | Paranormal / Fantasy Romance | Moderate | Broad demographic; entertainment product advertisers |
-| Dark Romance / Mafia | Moderate | Some advertiser exclusions due to content tone; partially offset by high session time |
+| romance / Mafia | Moderate | Some advertiser exclusions due to content tone; partially offset by high session time |
 | Cosy Mystery / Thriller | Moderate | Book, streaming, and home product advertisers |
 | Horror | Low–Moderate | Niche audience; some advertiser avoidance of dark content |
 | Fantasy / Sci-Fi | Low–Moderate | Narrower audience; entertainment and tech advertiser crossover |
@@ -274,7 +274,7 @@ Record `suggested_title` and `suggested_slug` in `niche-research.json`.
 
 Write `outputs/{site-slug}/{book-slug}/niche-research.json`.
 
-**Example (Dark Romance):**
+**Example (romance):**
 
 ```json
 {
@@ -282,7 +282,7 @@ Write `outputs/{site-slug}/{book-slug}/niche-research.json`.
   "primary_platform": "tiktok-booktok | pinterest | facebook-groups",
   "target_language": "en",
   "target_market": "en-us",
-  "selected_genre": "Dark Romance",
+  "selected_genre": "romance",
   "selected_tropes": ["CEO / billionaire", "enemies to lovers", "forced proximity"],
   "demand_validation": {
     "social_signal": "TikTok #darkromance 15B+ views",
@@ -309,7 +309,7 @@ Write `outputs/{site-slug}/{book-slug}/niche-research.json`.
   },
   "adsense_policy": {
     "explicit_content": false,
-    "high_risk_notes": "Dark romance framing — keep force off-page, focus on tension and emotional stakes",
+    "high_risk_notes": "romance framing — keep force off-page, focus on tension and emotional stakes",
     "advertiser_demand_tier": "moderate"
   },
   "score": {

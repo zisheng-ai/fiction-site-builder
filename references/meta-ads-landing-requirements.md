@@ -397,7 +397,7 @@ Meta's crawler checks that the privacy policy URL is reachable. Content requirem
 
 Must describe the site as a real editorial brand, not a thin shell. Include:
 - What genre(s) the site covers
-- Brief mission or editorial angle ("We publish dark romance and paranormal stories for readers who want intensity")
+- Brief mission or editorial angle ("We publish romance and paranormal stories for readers who want intensity")
 - The site/brand name used consistently with the ad account
 
 ### 8.3 Contact page

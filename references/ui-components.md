@@ -233,7 +233,7 @@ The home page hero sets the site's identity before the reader sees a single book
 
 | Site tone | Home hero style |
 |---|---|
-| Dark romance / thriller / vampire / paranormal | **cinematic** — Featured Book Full-Bleed |
+| romance / thriller / vampire / paranormal | **cinematic** — Featured Book Full-Bleed |
 | Fantasy / contemporary romance / colorful multi-genre | **gradient** — Brand Gradient Tagline |
 | Literary fiction / clean romance / prose-first / short story | **atmospheric** — Text-Only Editorial |
 
@@ -388,7 +388,7 @@ Each book declares its hero style via the `heroStyle` field in `books.ts`. All t
 
 | Book tone | `heroStyle` |
 |---|---|
-| Dark romance / thriller / vampire / paranormal | `'cinematic'` |
+| romance / thriller / vampire / paranormal | `'cinematic'` |
 | Fantasy / contemporary romance / vivid colorful cover | `'gradient'` |
 | Literary fiction / clean romance / prose-first | `'atmospheric'` |
 
@@ -585,7 +585,7 @@ function CTABlock({ book, slug, chapters }: { book: Book; slug: string; chapters
 
 // ── cinematic: full-bleed cover with bottom gradient overlay ─────────────────
 // Cover fills the viewport edge-to-edge (no blur); dark gradient overlaid at bottom; title and CTA sit directly on the image.
-// Best for: dark romance / thriller / paranormal
+// Best for: romance / thriller / paranormal
 
 function HeroCinematic({ book, chapters, slug }: { book: Book; chapters: { order: number; title: string }[]; slug: string }) {
   return (

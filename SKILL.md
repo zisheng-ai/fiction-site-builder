@@ -441,7 +441,7 @@ Load references only when entering that phase. Do not preload all references at 
 
 - **`facebook-ads.md`** — load during A1 for all tagline and hook copy writing (punchy 8-word opener, setup→reversal→unresolved tension, 25–40 words, final line always unresolved); during A2 for cover direction; during B4 for Pixel optimization event strategy. Do not load for pure chapter prose writing.
 - **`cover-allure-elements.md`** — allure vocabulary and tier system (T1–T5): fabric ranking, face/hair/body tables, poses, exposure tiers. Load during A2 and A2.5.
-- **`cover-genre-playbook.md`** — 15 genre-specific prompt templates (Dark Romance, Paranormal, Vampire, Fae, Mafia, Contemporary, Sports, Accidental Marriage, Revenge, Romantasy, Regression, Villainess, Monster, Dark Academia, Urban Paranormal). Load during A2 only — not needed for A2.5.
+- **`cover-genre-playbook.md`** — 15 genre-specific prompt templates (romance, Paranormal, Vampire, Fae, Mafia, Contemporary, Sports, Accidental Marriage, Revenge, Romantasy, Regression, Villainess, Monster, Dark Academia, Urban Paranormal). Load during A2 only — not needed for A2.5.
 - **`story-cover.md`** — cover generation pipeline via apiyi cascade (T1/T2 → gpt-image-2-all; T3/T4 → doubao-seedream); all covers in parallel; no SVG fallback. Load during A2.
 - **`cover-styles.md`** — genre-specific cover composition templates and visual style references. Load during A2.
 - **`meta-ads-landing-requirements.md`** — Meta/Facebook ad traffic landing page policy, account-survival rules, cloaking prohibition, trust pages (About/Privacy/Terms/Contact requirements), Pixel+CAPI architecture, B4 compliance checklist. Load during B4.
