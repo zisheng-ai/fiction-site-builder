@@ -249,7 +249,7 @@ Operator quick reference:
 ### Color palette / environment — vary across the batch
 
 No two books on the same site should share the same dominant palette. Assign from:
-`warm amber candlelight` · `cold silver moonlight` · `neon rain street` · `golden morning light` · `dark dramatic penthouse` · `moody gothic stone` · `coastal golden-hour` · `stark high-contrast black-and-white accent`
+`warm amber candlelight` · `cold silver moonlight` · `neon rain street` · `golden morning light` · `moody luxury penthouse` · `moody gothic stone` · `coastal golden-hour` · `stark high-contrast black-and-white accent`
 
 
 ## Step 1.7 — Facebook Ad Scroll-Stop Standards

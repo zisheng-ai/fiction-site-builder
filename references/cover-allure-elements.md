@@ -96,11 +96,11 @@ Everything else — suggestive poses, deep cleavage, curvy/busty figures, wet/ra
 |---|---|---|
 | **S — Maximum allure** | Sheer white lace, wet white silk, ivory chiffon, white bed sheet, torn white dress | Light colours + sheer/thin fabric → model renders naturally translucent, body visible through material, curves read even when "covered". Wet white fabric is the highest-yield phrase in the entire system. |
 | **A — High allure** | Champagne silk slip, blush satin, pale pink lace, silver mesh, ivory corset, nude bodycon | Light neutrals + fitted/satin → skin tone bleeds through, material clings, décolletage amplified by the colour contrast against skin. |
-| **B — Moderate allure** | Deep red satin, wine velvet, dark green silk, dark floral | Saturated colour but smooth/shiny finish → some cling, some reflection, still reads as feminine and revealing at T2. |
+| **B — Moderate allure** | Deep red satin, wine velvet, green silk, floral | Saturated colour but smooth/shiny finish → some cling, some reflection, still reads as feminine and revealing at T2. |
 | **C — Low allure** | Black leather jacket, black leather pants, black denim | Dark + opaque + rigid → model renders as a shell covering the body. The jacket becomes armour. Even "torn" or "slipping" rarely produces skin because the material reads as thick. **Avoid as primary female costume at T2/T3.** |
 | **D — Avoid** | Full tactical gear, trench coat, oversized hoodie, thick winter coat | Complete body coverage, no allure signal, model defaults to fully dressed output regardless of T3 prompts. |
 
-**The test-1 lesson (mark-of-the-moon):** when doubao got the leather jacket prompt in round 1, it randomly chose a white flowing dress instead — and produced the best allure result. From round 2 onwards it rendered the leather jacket faithfully and the result was far less sexy. The prompt specified dark leather; the model that ignored it made a better cover. **Conclusion: do not put dark leather on the female lead in the prompt. Let the genre flavor come from environment, male character, and accessories instead.**
+**The test-1 lesson (mark-of-the-moon):** when doubao got the leather jacket prompt in round 1, it randomly chose a white flowing dress instead — and produced the best allure result. From round 2 onwards it rendered the leather jacket faithfully and the result was far less sexy. The prompt specified leather; the model that ignored it made a better cover. **Conclusion: do not put leather on the female lead in the prompt. Let the genre flavor come from environment, male character, and accessories instead.**
 
 **Leather on the female lead:** acceptable only when it's a jacket worn OPEN over a sheer/minimal undergarment, with the jacket described as a background element rather than the costume itself:
 > ✓ `white crop top barely reaching her ribs, leather jacket open and draped loosely off both shoulders`
@@ -257,9 +257,9 @@ Character design is where most covers fail silently — the costume is interesti
 
 | Element | Prompt keywords |
 |---|---|
-| Full lashes | `thick dark lashes casting shadows on her cheekbones` |
+| Full lashes | `thick lashes casting shadows on her cheekbones` |
 | Wet lashes (crying / rain) | `lashes clumped with rain`, `tears caught on lashes, not yet fallen` |
-| Strong brows | `bold dark brows, slightly furrowed` |
+| Strong brows | `bold brows, slightly furrowed` |
 | Arched brows | `high arched brows giving her an imperious look`, `one brow lifted in challenge` |
 | Soft brows | `soft natural brows slightly raised in vulnerability` |
 

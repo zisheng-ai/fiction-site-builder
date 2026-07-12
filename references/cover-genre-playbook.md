@@ -130,7 +130,7 @@ Title large across lower third in bold serif with one script/emotional word; aut
 
 #### romance / Billionaire Romance
 ```
-Romance novel cover, cinematic photorealistic quality, dark dramatic luxury atmosphere.
+Romance novel cover, cinematic photorealistic quality, luxury atmosphere with strong contrast.
 FRAMING: full-body shot, both figures visible from feet to crown, three-quarter angle facing viewer.
 TWO characters. Powerful man in charcoal suit with shirt fully open revealing his
 defined chest, one hand gripping the woman's jaw from below tilting her face up to his,
@@ -232,7 +232,7 @@ Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 
 #### Mafia / Cartel / Organized Crime Romance
 ```
-Romance novel cover, cinematic photorealistic quality, high-contrast dark thriller romance.
+Romance novel cover, cinematic photorealistic quality, high-contrast thriller romance.
 FRAMING: full-body shot, both figures visible from feet to crown, three-quarter angle facing viewer.
 TWO characters. Man in sharp charcoal suit, one hand gripping her bare hip from the front,
 the other lifting her jaw with two fingers — tilting her face up to his. Both figures face the
@@ -244,11 +244,11 @@ voluptuous figure pressed against him from the front — her chin raised to meet
 in defiance; her hand gripping his lapel, the gesture contradicting her expression:
 her eyes say she wants to fight him. Her body has already surrendered.
 The subtext: she walked into his world with a plan. She did not plan for him.
-Background: luxury rooftop terrace at night, the entire city stretched below — empire and
-risk and consequence all in one skyline behind them. Neon wash catching the rain-wet railing.
-Color palette: deep black, sharp white dress, muted gold, single red accent (her lipstick, his ring).
-Lighting: harsh dramatic cold side light from the city below carving his jaw and her bare leg
-out of shadow — her full figure catching the neon.
+Background: luxury rooftop terrace at dusk or bright night, the entire city stretched below —
+empire and consequence all in one skyline behind them. Neon wash catching the rain-wet railing.
+Color palette: deep charcoal, ivory or red dress, muted gold, single red accent (her lipstick, his ring).
+Lighting: crisp side light from the city below carving his jaw and her bare leg
+out of shadow — her full figure catching the glow.
 Title '{title}' in bold condensed serif. Author '{author}' at bottom.
 Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 ```
@@ -508,7 +508,7 @@ Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 
 #### Gothic Bridal Thriller (Fake Death / Hidden Identity Romance)
 ```
-Romance novel cover, cinematic photorealistic quality, gothic dark thriller atmosphere — the intersection of bridal innocence and death.
+Romance novel cover, cinematic photorealistic quality, gothic thriller atmosphere — the intersection of bridal innocence and death.
 FRAMING: full-body shot, both primary figures from feet to crown, bride center-dominant.
 TWO characters. Bride in elaborate floor-length lace wedding gown — backless with intricate floral embroidery, seed-pearl buttons down the spine, sheer veil trailing to the floor; body half-turned so the full ornate lace back is the primary visual, face turning back over her shoulder — the look of someone who knows exactly who is watching and has decided what to do about it.
 Her expression: composed intelligence with something unreadable beneath — not grief, not fear, the specific expression of a woman who staged her own ending and is watching the consequences unfold from inside them.
