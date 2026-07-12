@@ -113,6 +113,30 @@ className="inline-flex items-center justify-center gap-2 h-12 px-4 rounded-[14px
 ```
 Includes a filled play-triangle icon (`fill="currentColor"`, 13×13). When no saved progress, returns `null` — "Start reading" naturally expands to full width via `flex-1`.
 
+### First-Screen 3-Second Killer
+
+If the user has not decided to enter the book within the first screen, the page is losing money. Every book detail hero and any reader-facing landing hero must make the title, the strongest 3-line teaser, and the primary read button visible immediately above the fold.
+
+**Required first-screen stack:**
+- Book cover or hero visual
+- Book title
+- Author
+- A 3-line teaser block, not a synopsis, using the most suspenseful three lines from the premise or chapter opening
+- A prominent `Start reading` / `Read now` CTA button
+
+**Teaser rules:**
+- The three lines must create a question, not explain the plot.
+- At least one line must withhold a key fact or consequence.
+- The teaser must make the reader want the ending, not merely understand the setup.
+- Do not use generic summary copy like "she meets him and everything changes."
+- If the best tease comes from chapter 1, extract it; if the best tease comes from the premise, condense it without resolving the reversal.
+
+**CTA rules:**
+- The primary CTA must be the most visually dominant element on the first screen.
+- Use the site's primary hot color, a full-width or near-full-width button on mobile, and a minimum height of 48px.
+- Keep the CTA above any below-fold synopsis or chapter list.
+- The reader should understand in under 3 seconds what the book is, why it is dangerous or irresistible, and what to click next.
+
 ### Book Card (Cover-First Responsive Grid)
 
 The book list uses a responsive grid. The card is the page's primary visual unit; get it right.
