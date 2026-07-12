@@ -234,21 +234,15 @@ Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 ```
 Romance novel cover, cinematic photorealistic quality, high-contrast thriller romance.
 FRAMING: full-body shot, both figures visible from feet to crown, three-quarter angle facing viewer.
-TWO characters. Man in sharp charcoal suit, one hand gripping her bare hip from the front,
-the other lifting her jaw with two fingers — tilting her face up to his. Both figures face the
-viewer, full length of their bodies in frame — his suit, her dress, her bare leg through the slit.
-His expression: cold certainty and barely-leashed danger, the expression of a man
-who has made a decision about her and she has not been consulted.
-Woman in a sleek fitted micro-mini dress, thigh-high slit baring the full leg, deep plunging neckline,
-voluptuous figure pressed against him from the front — her chin raised to meet his gaze, not in fear,
-in defiance; her hand gripping his lapel, the gesture contradicting her expression:
-her eyes say she wants to fight him. Her body has already surrendered.
-The subtext: she walked into his world with a plan. She did not plan for him.
-Background: luxury rooftop terrace at dusk or bright night, the entire city stretched below —
-empire and consequence all in one skyline behind them. Neon wash catching the rain-wet railing.
-Color palette: deep charcoal, ivory or red dress, muted gold, single red accent (her lipstick, his ring).
-Lighting: crisp side light from the city below carving his jaw and her bare leg
-out of shadow — her full figure catching the glow.
+TWO characters, but the frame must read like a frozen scene from a television episode, not a posed fashion shot.
+Show a specific moment in the story: she has just realized something dangerous, or is about to run, or has just been caught.
+Man in sharp charcoal suit reaching toward her or stepping into her path — not caressing pose, but action. His expression: controlled danger, the split second before he decides whether to protect, stop, or claim.
+Woman in a sleek fitted dress or coat-dress with movement in the fabric — coat flaring, hair blown back, body half-turned as if she is mid-step. Her expression must carry alarm, defiance, or shocked recognition.
+The subtext: the room has changed in the last second and both of them know it.
+Background: a luxury rooftop, street-level confrontation, or penthouse interior with a visible threat cue — open car door, shattered glass, flashing headlights, a phone lit up with bad news, or another figure just out of focus.
+Color palette: charcoal, ivory, deep emerald or red, muted gold, one vivid accent from a hazard source.
+Lighting: clean cinematic key light with enough brightness to read faces and motion clearly.
+Composition note: make the scene feel like a story beat, with tension, interruption, and immediate consequence visible at thumbnail size.
 Title '{title}' in bold condensed serif. Author '{author}' at bottom.
 Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 ```
