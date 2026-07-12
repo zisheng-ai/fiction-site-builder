@@ -256,6 +256,8 @@ No two books on the same site should share the same dominant palette. Assign fro
 
 Every cover is also a Facebook ad creative. Apply these standards inside Step 2 — they are not optional and override "aesthetically nice" defaults.
 
+**Evidence weighting:** Treat `cover-allure-elements.md` §"Narrative Tableau Library" and §"Performance Direction" as the highest-priority specification. A cover that makes forced marriage, public rejection, medical proof, hidden status, or late regret legible wins over a more attractive but generic intimate pose. When this conflicts with an allure-tier default, keep the event and lower the allure.
+
 **The 0.3-second test (mandatory gate):** A viewer scrolling their feed at full speed must feel something in under 0.3 seconds — not just notice an attractive person. If the image would read as a fashion photo or stock portrait, it fails the test. Rewrite the prompt.
 
 ### Five scroll-stop signals — bake all five into every cover prompt
@@ -289,6 +291,8 @@ Achieve this through environment + costume + expression together:
 - Morning after: rumpled bedding, warm morning light, bare shoulders, man still present
 - Dangerous obsession: she found something (document, phone, ring) — her expression reacts to it while he watches
 - Forbidden attraction: extreme physical proximity despite one character clearly trying to create distance
+
+**Narrative-tableau gate:** In addition to the 3-word premise, the frame must show a specific plot event with visible proof: a ceremony interrupted, a document/scan that changes the relationship, a public humiliation, a return to the estate, a rival at a gala, or an inheritance reveal. Pull one scaffold from `cover-allure-elements.md` §"Narrative Tableau Library" and state the event, proof object, and reaction in the final prompt. Do not ship a generic embrace, portrait, or glamorous couple pose.
 
 **4. Wealth / world signal in the environment.**
 One background element must instantly communicate the story's world. The viewer shouldn't need to read the title to know if it's a billionaire romance vs. a small-town romance vs. a dark paranormal.
@@ -447,12 +451,13 @@ Use `COVER_TMP` as `OUTPUT_PATH` in the apiyi generator below.
 
 ### Model capability ranking (cascade order)
 
-Three apiyi models are viable for covers. **GPT is now primary** — with the correct photographic prompt language it produces hyperrealistic photograph quality (looks like a real editorial photo shot on a camera, not a rendered image). The generator tries them **in this order** and falls through to the next on any failure:
+Four apiyi models are viable for covers. **GPT is primary** for T1/T2 — with the correct photographic prompt language it produces hyperrealistic photograph quality (looks like a real editorial photo shot on a camera, not a rendered image). The generator tries them **in this order** and falls through to the next on any failure:
 
 | Rank | Model | Size | Response | Notes |
 |---|---|---|---|---|
-| 1 (primary) | `gpt-image-2-all` | `848x1280` | `b64_json` (PNG) | **Primary.** Hyperrealistic photograph quality — with `shot on Canon EOS R5 85mm f/1.4` prompt language, output looks like a real editorial photograph (visible pores, natural hair, candid energy). Clean output, no watermark. Max safe tier: T2 (bare shoulders + concealing element). Hard-rejects T3/T4 fabric-failure, soaked-clinging, torn-garment language — skip it for T3/T4 covers. |
-| 2 (fallback) | `doubao-seedream-5-0-260128` | `1664x2496` | `url` (JPEG) | **Fallback for T3/T4, or when GPT fails.** Most permissive content filter. **Stamps an `AI生成` watermark in the bottom-right corner — must crop it (see post-process).** |
+| 1 (primary, T1/T2) | `gpt-image-2-all` | `848x1280` | `b64_json` (PNG) | **Primary.** Hyperrealistic photograph quality — with `shot on Canon EOS R5 85mm f/1.4` prompt language, output looks like a real editorial photograph (visible pores, natural hair, candid energy). Clean output, no watermark. Max safe tier: T2 (bare shoulders + concealing element). Hard-rejects T3/T4 fabric-failure, soaked-clinging, torn-garment language — skip it for T3/T4 covers. |
+| 2 (fallback, T1/T2 only) | `gemini-3.1-flash-image-4k` | `1664x2496` | `b64_json` (raw, no prefix) | **Fallback when GPT fails/times out on T1/T2.** Free-form sizing, no watermark, true 4K. Not used for T3/T4 — its tolerance for fabric-failure/torn/soaked language is unverified and likely shares GPT's rejection behavior. |
+| 3 (fallback) | `doubao-seedream-5-0-260128` | `1664x2496` | `url` (JPEG) | **Primary for T3/T4; fallback for T1/T2 when GPT and Gemini both fail.** Most permissive content filter. **Stamps an `AI生成` watermark in the bottom-right corner — must crop it (see post-process).** |
 **nano-banana-pro — terminal blank-prevention fallback:**
 - Silently downgrades T3+ prompts to ~T1 output; square 1024×1024 (wrong aspect ratio for covers — reframe to 2:3 after generation).
 - Use only when gpt (×2) and doubao both fail.
@@ -496,18 +501,19 @@ print('SAVED:' + str(os.path.getsize(output_path)))
 "
 }
 
-# Capability cascade — GPT primary (cinematic drama still quality); doubao fallback for T3/T4 or GPT failure
+# Capability cascade — GPT primary (cinematic drama still quality); gemini/doubao fallback
 # GPT max safe tier: T2 (bare shoulders + concealing element). Skip GPT entirely for T3/T4 (hard rejection).
 if   [ "$TIER" = "T3" ] || [ "$TIER" = "T4" ]; then
-  # T3/T4: go straight to doubao (GPT rejects fabric-failure/torn/soaked language)
+  # T3/T4: go straight to doubao (GPT and gemini both reject fabric-failure/torn/soaked language)
   gen_cover_apiyi "doubao-seedream-5-0-260128" "1664x2496" && MODEL_USED="doubao-seedream-5-0-260128" || \
   gen_cover_apiyi "doubao-seedream-5-0-260128" "1664x2496" && MODEL_USED="doubao-seedream-5-0-260128" || \
   gen_cover_apiyi "nano-banana-pro"            "1024x1024" && MODEL_USED="nano-banana-pro" || \
   { MODEL_USED=""; echo "ALL_MODELS_FAILED — skipping book"; }
 else
-  # T1/T2: GPT first (prestige drama still), doubao fallback
+  # T1/T2: GPT first (prestige drama still), gemini fallback (no watermark, true 4K), doubao last
   if   gen_cover_apiyi "gpt-image-2-all"            "848x1280";  then MODEL_USED="gpt-image-2-all"
   elif gen_cover_apiyi "gpt-image-2-all"            "848x1280";  then MODEL_USED="gpt-image-2-all"           # retry once
+  elif gen_cover_apiyi "gemini-3.1-flash-image-4k"  "1664x2496"; then MODEL_USED="gemini-3.1-flash-image-4k"
   elif gen_cover_apiyi "doubao-seedream-5-0-260128" "1664x2496"; then MODEL_USED="doubao-seedream-5-0-260128"
   elif gen_cover_apiyi "nano-banana-pro"            "1024x1024"; then MODEL_USED="nano-banana-pro"
   else MODEL_USED=""; echo "ALL_MODELS_FAILED — skipping book"
@@ -524,6 +530,10 @@ printf '{"model":"%s","size":"%s","prompt":%s}\n' \
 
 **Post-process by model used (final target: ~848×1280 true 2:3 portrait; final WebP ≤ 300 KB):**
 - `gpt-image-2-all` → already 848×1280 PNG; no resize needed. Final WebP conversion happens in Step 3.5.
+- `gemini-3.1-flash-image-4k` → requested at `1664x2496` (2:3, no watermark); resize down to 848×1280:
+  ```bash
+  sips -z 1280 848 "$OUTPUT"                  # resize to 848x1280 (2:3)
+  ```
 - `doubao-seedream-5-0-260128` → crop the bottom-right `AI生成` watermark, then resize to 848 px wide (maintaining 2:3):
   ```bash
   sips -c 2321 1664 "$OUTPUT"                 # crop ~7% from bottom to clear watermark, output stays ~1664x2321
@@ -554,7 +564,7 @@ printf '{"model":"%s","size":"%s","prompt":%s}\n' \
 | `lips pressed against` | `faces close, the moment before` |
 | `erotic`, `sexual`, `explicit` | `alluring`, `intimate atmosphere`, `romantic tension` |
 
-Re-run the full cascade once with the softened prompt. If every model (gpt → doubao ×2 → nano) still fails, **skip the book and continue the batch** — no SVG fallback.
+Re-run the full cascade once with the softened prompt. If every model (gpt → gemini → doubao ×2 → nano) still fails, **skip the book and continue the batch** — no SVG fallback.
 
 On any other API error: log the response, skip this book, continue batch.
 

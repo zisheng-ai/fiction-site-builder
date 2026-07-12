@@ -134,12 +134,12 @@ A0 runs once per book (not once per site). Required for each new book unless the
 - **Import:** `references/story-import.md` → split chapters, reconstructed `world/`, `outline/`, `tracking/`
 
 **A2.5 rules:**
-- **Runs by default on a full pipeline run** — once a book has its cover (A2) and ≥ 10 chapters, generate its illustrations automatically. Do **not** wait for the user to ask, and do **not** prompt. Skip only for short-form stories, or if the user has explicitly opted out of illustrations.
-- As a standalone step, runs when the user requests illustrations ("Add illustrations" / "Generate illustrations").
+- **Default: skip illustrations.** Do not generate chapter illustrations in full pipeline runs, new-book runs, site builds, refreshes, or traffic-creative updates.
+- A2.5 runs only when the user explicitly asks for illustrations in the current turn ("Add illustrations" / "Generate illustrations" / "生成插图"). Do not infer it from "full pipeline", "build the site", "rewrite creatives", or "improve prompts".
 - Never on short-form stories (no chapter files to illustrate).
-- Romance illustrations use T3 or T4, randomly assigned per illustration. Never T1, T2, or T5 for romance. Non-romance books follow the genre routing in `story-illustrations.md` instead of the allure-tier system.
-- Exactly 5 illustrations per book, placed at the highest-stakes peaks (see `story-illustrations.md` for slot distribution). Never exceed 5 — cost constraint. A book may fall below 5 only when not enough scenes earn one — never skip the phase itself.
-- Does not block the Pre-Launch Gate — but a full pipeline run is expected to produce illustrations for its long-form books.
+- If explicitly requested, romance illustrations use T3 or T4, randomly assigned per illustration. Never T1, T2, or T5 for romance. Non-romance books follow the genre routing in `story-illustrations.md` instead of the allure-tier system.
+- If explicitly requested, generate at most 5 illustrations per book, placed at the highest-stakes peaks (see `story-illustrations.md` for slot distribution). Never exceed 5 — cost constraint.
+- A2.5 is not a Pre-Launch Gate. A site can launch with zero illustrations.
 
 A3 runs automatically after A1 completes for every long-form book. Do not skip or prompt — deslop is a required quality pass, not optional. Skip only for short-form stories or on explicit user opt-out.
 
@@ -297,7 +297,7 @@ All of the following must be true before go-live (after B6 passes):
 
 If any book is missing a cover at launch time, run A2 immediately — do not prompt the user.
 
-If a full pipeline run reaches launch with no illustrations generated for its long-form books, run A2.5 before go-live — do not prompt the user. (Illustrations are not a hard gate, but a full run should not silently skip them.)
+If a full pipeline run reaches launch with no illustrations generated for its long-form books, do not run A2.5 unless the user explicitly requested illustrations in the current turn.
 
 ### Scope-to-phase mapping
 
@@ -310,7 +310,7 @@ If a full pipeline run reaches launch with no illustrations generated for its lo
 | "Add illustrations" / "Generate illustrations" | A2.5 only |
 | "Import manuscript" / `/story-import` | A1 import only |
 | "Review prose" / `/story-review` | A3 only |
-| "Build the site" / full pipeline | 0 → Track A + Track B in parallel; **A2.5 runs automatically after A2 for every long-form book** (skip only on explicit opt-out) |
+| "Build the site" / full pipeline | 0 → Track A + Track B in parallel; **A2.5 is skipped by default** |
 
 **Book count default — 3 for initial site generation.** When building a new site from scratch, generate exactly **3 books** unless the user explicitly specifies a different count. For new sites: run A0 for all 3 in parallel, then A1 for all 3 in parallel. For existing sites, honor the user's requested count; if unspecified, add one book. Never exceed 5 books in a single session unless the user explicitly requests a larger batch. Genre and topic are selected independently per book by random sampling from the high-demand genre pool — repetition across books is allowed and expected. Do not attempt to maximize genre variety; just pick whatever has strong demand for each book independently.
 
@@ -410,7 +410,7 @@ Use the `Agent` tool for every delegation task, whether single or parallel. To r
 | A1 — multiple books in parallel | Multiple `Agent` calls in one response, one per book |
 | A1 — chapters within a book | Expand outline first → multiple `Agent` calls in one response (one per chapter) → continuity pass |
 | A2 — cover batch across all books | Multiple `Agent` calls in one response, one per book |
-| A2.5 — illustrations across all books | Multiple `Agent` calls in one response, one per book |
+| A2.5 — illustrations across all books | Only if explicitly requested; multiple `Agent` calls in one response, one per book |
 | Track A + Track B launched together | Two `Agent` calls in one response |
 | B5 + B6 against the same build | Two `Agent` calls in one response |
 
