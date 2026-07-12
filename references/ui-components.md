@@ -37,7 +37,7 @@ Any of these is a quality gate failure:
 - **Logo spec (site-wide):** use `src/components/SiteLogo.tsx`, which renders `/logo-light.png` and `/logo-dark.png` together for theme switching. Do not reference `/logo.png` in rendered navigation.
 - Home: logo + site name text + ThemeToggle
 - Book detail: logo (links to `/`) + ThemeToggle
-- Chapter: logo (links to `/`) + centered book/chapter name + TOC icon + ThemeToggle
+- Chapter: logo (links to `/`) + centered book/chapter name + ThemeToggle
 - On scroll down: may compress or hide (if implementing immersive mode).
 
 ### Bottom Bar (Mobile Reader)
