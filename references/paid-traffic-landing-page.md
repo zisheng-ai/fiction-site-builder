@@ -28,6 +28,17 @@ The reader should immediately understand the book and the conflict.
 - Remove duplicate rendered headings. If Markdown starts with `# Chapter 1: ...`, strip it before rendering prose because the page already renders `<h1>`.
 - Clean display titles so UI does not show `Chapter 1: Chapter 1: Title`.
 
+## 3.1 Distraction Lock
+
+Chapter 1 is a conversion page, not a browse page. Remove every competing action until the reader has started the story.
+
+- Hide the top navigation bar on chapter 1 landing pages.
+- Hide side menus, drawer triggers, and back buttons on chapter 1 landing pages.
+- Do not render the table of contents on chapter 1 landing pages.
+- Do not render book recommendations on chapter 1 landing pages before or after the prose.
+- The only meaningful action on the page should be the primary next-chapter CTA after the prose.
+- If the implementation needs a logo for brand presence, it must be static and non-interactive on chapter 1.
+
 ## 4. Ad Density
 
 Use a different density rule for chapter 1 than for later chapters.
@@ -70,6 +81,7 @@ Before pushing or deploying a paid-traffic lander:
 - [ ] Built HTML has exactly 3 GPT/AdSense slots on chapter 1.
 - [ ] Built HTML has no duplicate chapter title.
 - [ ] First paragraph contains the campaign hook.
+- [ ] Chapter 1 has no visible nav bar, side menu, back button, TOC, or recommendation grid.
 - [ ] Chapter-end sentinel exists before nav/recommendations.
 - [ ] Next-chapter CTA is visible, specific, and tracks `NextChapterClick`.
 - [ ] Canonical URL and sitemap URL use the same trailing-slash format.

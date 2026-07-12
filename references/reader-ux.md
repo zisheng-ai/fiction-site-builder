@@ -47,6 +47,17 @@ Add `padding-top: 56px` (or `pt-14`) to the chapter content wrapper so it clears
 
 When Meta/Facebook ads land directly on chapter 1, use the Velvet chapter-landing pattern. This pattern is optimized for cold social readers: confirm the book identity immediately, move into prose quickly, keep ads viewable without blocking the first reading decision, and make the next-chapter action visually unavoidable.
 
+### Chapter 1 distraction lock
+
+Chapter 1 landing pages are not normal reader pages. They must remove every non-essential navigation affordance so the reader has one obvious path: continue reading.
+
+- Hide the top navigation bar on chapter 1 landing pages.
+- Hide side menus, drawer triggers, and back buttons on chapter 1 landing pages.
+- Do not render the table of contents on chapter 1 landing pages.
+- Do not render recommendation grids before or after the prose on chapter 1 landing pages.
+- Do not add secondary buttons or text links that compete with `Next chapter →`.
+- If a logo remains for branding, it must be non-interactive on chapter 1 landing pages.
+
 ### Chapter 1 identity card
 
 Render this only on chapter 1, before the chapter title and prose:
@@ -84,6 +95,7 @@ Chapter 1 is the ad landing page. It must balance account quality and revenue:
 - After the chapter nav, show a 3-book recommendation grid (`You might also like` / localized equivalent).
 - Use covers + short titles; link with `HardLink` so ad-bearing routes hard reload and ad slots reinitialize.
 - For cold traffic, linking recommendations directly to `/book/{slug}/chapter/1` maximizes reading continuation. Link to book detail only when the business goal is catalog exploration rather than session depth.
+- This section applies only to chapter 2+ and last-chapter exit states. Never add recommendations on chapter 1 landing pages.
 
 ### Bottom whitespace trap
 
@@ -102,6 +114,7 @@ The Velvet landing-page fix exposed a recurring layout bug: short pages can show
 - Fails if q3 appears on normal-length chapter 1.
 - Fails if the next action is a muted text link or smaller than TOC.
 - Fails if the landing chapter uses SPA navigation for next chapter.
+- Fails if chapter 1 shows a visible nav bar, side menu, back button, TOC, or recommendation grid.
 - Fails if homepage/footer or chapter recommendations are followed by a viewport-sized blank area caused by `min-h-screen` / `flex-1` page shells.
 
 ---
