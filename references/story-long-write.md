@@ -533,6 +533,7 @@ Word counts are targets, not uniform quotas. Let each chapter breathe according 
 Chapter 1 is the only chapter a Facebook ad click will ever guarantee. Every reader who arrives from a paid ad lands here first, knowing nothing — no character names, no story world, no emotional investment. The cold-traffic reader decides in the first 200 words whether to continue or hit Back.
 
 This is a separate spec from the general "Single Chapter Writing Process." Apply it **only to ch-001**; other chapters follow the standard process.
+The suspense rule itself is global: every later chapter still needs a scene-level question, withheld information, and a hook-out that makes the next page necessary.
 
 ### The cold-traffic contract
 

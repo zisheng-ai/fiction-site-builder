@@ -36,6 +36,7 @@ Ad density cap: ~3–4 units per 1,000 words, ad area ≤ 30% of content area. S
 ## Operating Principles
 
 - **Every chapter must end on a cliffhanger.** This is not a style preference — it is the mechanism that makes the next pageview happen. A chapter that resolves cleanly ends the session. See `story-long-write.md`.
+- **Suspense is not a Chapter 1-only rule.** Every scene, every chapter opening, and every hook-out should leave one meaningful question unanswered. Chapter 1 gets the strongest cold-traffic bait, but later chapters still need tension, withheld information, and forward pull.
 - **The cover is an ad creative first, a book cover second.** Design and generate to stop the scroll in 0.3 seconds. See `cover-allure-elements.md` and `facebook-ads.md`.
 - **Landing page = Chapter 1, not the homepage.** Facebook ads link directly to ch1. The ch1 hook is the first pageview; if it doesn't grab in 200 words, the session ends at 1.
 - **The chapter page is the product.** Every other page is a path to it.
@@ -448,7 +449,7 @@ Load references only when entering that phase. Do not preload all references at 
 
 ### L2 — Session Depth references
 
-- **`story-long-write.md`** — long-form chapter writing pipeline, context handoff, pacing guidelines, mandatory cliffhanger techniques, chapter 1 cold-traffic hook structure (200-word beat checkpoints, line-1 bans, backstory cap). Load at A1 long-form.
+- **`story-long-write.md`** — long-form chapter writing pipeline, context handoff, pacing guidelines, mandatory cliffhanger techniques, scene-level suspense rules, chapter 1 cold-traffic hook structure (200-word beat checkpoints, line-1 bans, backstory cap). Load at A1 long-form.
 - **`story-short-write.md`** — short-form story pipeline, emotion-first structure. Load at A1 short-form.
 - **`story-import.md`** — import and split an existing manuscript into project structure. Load at A1 import.
 - **`story-review.md`** — multi-perspective structural and prose review. Load at A3.
