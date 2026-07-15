@@ -74,7 +74,8 @@ Render this only on chapter 1, before the chapter title and prose:
 On viewports below `640px`, never keep the cover, full tagline, and chapter CTA inside the same two-column grid. A fixed-width cover leaves a narrow text column; multiline taglines then create a tall card with a large blank area beneath the cover.
 
 - The mobile top row may contain only the cover plus compact identity content: free-chapter label, title, and author.
-- Render the tagline below that row at full card width.
+- Hide the tagline entirely below `360px`; the cover, title, author, and CTA are the only identity elements worth keeping at that width.
+- From `360px` to `639px`, render the tagline below the top row at full card width.
 - Render the primary `Start Chapter 1` CTA below the tagline at full width with a minimum 48px height; chapter count sits beneath or beside it only when space permits.
 - At `sm` (`640px`) and above, the tagline and CTA may return to the cover-and-content two-column layout.
 - Do not solve the problem only by shrinking type, narrowing the cover, or forcing long CTA copy to wrap inside the narrow column.
