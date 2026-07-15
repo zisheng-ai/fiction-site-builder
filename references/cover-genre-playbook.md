@@ -338,6 +338,22 @@ Title '{title}' in sharp contemporary serif — clean lines, authority. Author '
 Portrait 2:3, photorealistic, ultra-detailed, no watermark.
 ```
 
+#### Hidden Heiress Divorce Revenge / Proof at the Gala
+```
+Romance novel cover, cinematic photorealistic corporate-family revenge drama, opulent gala at the instant power changes hands.
+FRAMING: portrait 2:3, medium-full shot, heroine standing center-dominant; ensemble conflict readable behind and around her.
+FOUR adult characters. Heroine in a deep wine, emerald, or ivory evening gown, composed and upright, holding one thumbnail-legible proof object: a black-gold founder seal, signed share register, trust amendment, audit ledger, or board proxy. Her hand and the object are sharply lit. Her expression is controlled agency after a finalized exit—not seduction, victimhood, or smugness.
+Former husband lower or off-center, formally dressed, facing the evidence rather than touching her; his expression shows recognition and accountability, not ownership. A family conspirator and status rival stand on opposite sides behind him, visibly reacting in different ways so the opposition reads as a network rather than one jealous woman. Optional auditor, lawyer, or board chair may replace the rival when institutional authentication is the stronger story beat.
+Background: chandelier-lit hotel ballroom, shareholder gala, or estate reception with blurred witnesses, press cameras, and a board display or corporate crest. Include a subtle divorce-finality cue such as a sealed document folder or removed wedding ring near the proof object; no kneeling proposal pose.
+The subtext: they erased her name, finalized her divorce, and invited her back as a nobody. The document in her hand decides who controls the company before midnight.
+Color palette: burgundy or emerald, black formalwear, warm chandelier gold, one cold white spotlight on the proof object.
+Lighting: warm gala ambience with a clean hard key on her face, hand, and evidence; former husband one stop darker; conspirators separated by rim light.
+Composition priority: heroine first, proof object second, ensemble reactions third. Do not reduce the reversal to jewelry, a luxury car, or a glamorous makeover.
+Safety: all characters clearly adult; no intoxication, bedroom framing, coercive contact, sexualized humiliation, or reconciliation-as-possession imagery.
+Title '{title}' in elegant high-contrast serif across upper third; author '{author}' at bottom.
+Portrait 2:3, photorealistic, ultra-detailed, no watermark.
+```
+
 #### Romantasy (Romance-Fantasy Fusion)
 ```
 Romance novel cover, semi-realistic illustrated or hyperrealistic 3D render style — NOT photographic

@@ -12,6 +12,7 @@ Load this file alongside `story-long-write.md` when writing any romance novel or
 | **romance** | Power imbalance pushed to its limit | Captor/captive, obsession, morally grey hero, dubcon, mafia/cartel |
 | **Billionaire Romance** | Wealth gap + cold-powerful hero | CEO/employee, contract marriage, secret identity, penthouse settings |
 | **Regression / Revenge Romance** | Dual arc: revenge plan + romantic pull | Second chance with memory, heroine dies and resets, heroine outmaneuvers former betrayers while falling again |
+| **Hidden Heiress Divorce Revenge** | Public rejection becomes an agency-and-evidence campaign | Finalized divorce, concealed inheritance or founder status, proof object, family/corporate conspiracy, accountable ex-husband |
 | **Villainess / Transmigration** | Identity performance + dramatic irony | Heroine inhabits story villain, knows plot ending, must survive fate while reforming outcomes |
 | **Monster Romance / Creature-Fixation** | Non-human devotion vs. human norms | Fae, shifter, vampire, dragon, alien — creature deviates from nature only for her |
 | **Paranormal Romance** | Supernatural stakes embedded in emotional arc | Fated mates, soulmark, supernatural world intersecting with domestic life |
@@ -94,6 +95,21 @@ When drafting chapter outlines for regression or revenge stories, require two ex
 - `plan beat:` the revenge or intelligence move this chapter delivers
 
 If either field is empty, the chapter needs structural revision before prose begins. The chapter's final note belongs to the plan arc — that is the beat that drives the next click.
+
+### Agency-Reclaim Engine (Hidden Heiress Divorce Revenge)
+
+Use this structure for discarded-wife, hidden-heiress, first-love betrayal, and divorce-comeback stories. The engine is not "he learns she is rich." It is **public humiliation → voluntary exit → proof-backed return → institutional consequence**.
+
+1. **Public rupture:** open on a socially legible injustice witnessed by someone whose later testimony or allegiance matters. The heroine is hurt, but she makes a concrete choice: signs, leaves, refuses payment, preserves evidence, or sets a boundary.
+2. **Divorce finality:** the divorce is completed early and treated as real. Do not use a fake filing, secret invalidity, pregnancy, or family pressure to trap her back into the marriage. Any later relationship must be a new courtship after accountability, not ownership restored.
+3. **Hidden status as capability:** her concealed identity gives access, responsibility, expertise, or voting power; it does not replace competence. Seed at least one earlier action that proves she can use the leverage before her title is announced.
+4. **Proof-object chain:** choose a concrete object such as a signed share register, founder's seal, trust amendment, audit ledger, patent file, archived recording, or board proxy. Plant it, contest its authenticity, then use it to force an institutional decision. A costume or luxury car is visual corroboration, never the sole proof.
+5. **Conspiracy beyond the rival:** connect the marital betrayal to a family or corporate agenda: suppressed identity, diverted shares, falsified medical records, staged amnesia, bribed staff, or a succession scheme. At least two actors want different outcomes, so exposing one conspirator does not end the plot.
+6. **Accountability before romance:** the ex-husband must lose something proportional to his choices, identify the specific harm without excuses, repair damage without expecting access to her, and accept her refusal. Regret, jealousy, public pleading, or discovering her wealth does not earn reconciliation. A second-chance ending is optional and requires sustained changed behavior; permanent separation is fully valid.
+
+**Ensemble roles:** use the general 6–8 character floor, with at least four recurring actors drawn from these functions: status rival or first love, family architect of the concealment, board/legal gatekeeper, loyal ally with an independent stake, witness who changes allegiance, and investigator/auditor who can authenticate the proof object. Do not let every supporting character exist to admire the heroine or shame the ex-husband.
+
+**Consent-safe opening:** do not imitate intoxication, mistaken identity, sleep, drugging, marital entitlement, or ambiguous consent as a sensual hook. If the rupture follows an intimate context, begin after the characters are awake and capable of choice, establish what was consensual in one clear line, and make the active event the accusation, evidence discovery, or divorce decision. Never frame sexual injury or coercion as the heroine's romantic reward.
 
 ### Dramatic Irony Engine (Villainess / Transmigration)
 

@@ -281,6 +281,8 @@ Before expanding the outline or writing chapters, the world document must have a
 9. **Comic relief / grounding voice** — breaks tension without undercutting it; keeps the tone from becoming relentlessly serious
 10. **The past made present** — someone from one lead's history who reveals a secret, complication, or wound the protagonist has kept hidden
 
+For Hidden Heiress Divorce Revenge, ensure the selected cast collectively covers: a family conspirator, a corporate/legal gatekeeper, an independent witness or auditor, and an ally whose own stake can conflict with the heroine's. The romantic rival and ex-husband do not count as the entire opposition network.
+
 ### Fantasy / Paranormal
 1. **Mentor / elder** — wizard, oracle, ancient being, or dying sovereign who holds knowledge the protagonist must earn; their power should be declining or limited
 2. **Loyal companion / sidekick** — follows the hero without sharing their gift; reflects the arc back; can be killed to raise stakes
@@ -599,6 +601,8 @@ A warm reader (returning from organic search, book detail page, or recommendatio
 The first two chapters must establish the adult romantic charge promised by the ad creative. This is a plot-delivery requirement: it cannot be deferred until the middle of the book or replaced by generic compliments.
 
 **Priority rule:** the opening's observed-ad pattern outranks generic romance heat. Start with the specific short-drama event the creative promised — forced/strategic marriage, public rejection, debt ultimatum, evidence that changes a relationship, status reversal, or a return with leverage. Add consensual sensual tension inside that event; never substitute a generic intimate exchange for the actual crisis.
+
+**Divorce-revenge opening rule (overrides the generic Chapter 1 sensual-delivery row below):** when the premise is Hidden Heiress Divorce Revenge, begin with the rupture, proof object, or agency decision—not an eroticized scene of intoxication, sleep, mistaken identity, drugging, coercion, or marital entitlement. The heroine must make a consequential choice within the first 500 words. If prior intimacy matters, establish adult capacity and mutual consent clearly, then move immediately to the accusation, public humiliation, evidence discovery, or finalized exit that drives the book. Chapter 1 may deliver relational charge through confrontation and broken trust; place any consensual new-romance proximity beat in Chapter 2 without displacing the external crisis.
 
 | Chapter | Required delivery | On-page evidence |
 |---|---|---|

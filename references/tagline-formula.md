@@ -198,6 +198,14 @@ or
 
 **Guardrail:** The hidden status must be paid off in the story. Do not imply wealth, revenge, or a secret identity that Chapter 1 never begins to deliver.
 
+**Hidden-heiress divorce variant:**
+```
+[The public rupture and her completed exit]. [The proof object that makes her hidden authority undeniable]. [The consequence facing the people who engineered her erasure].
+```
+The heroine's click promise is agency, not the ex-husband's regret. Make the divorce final in the copy when it is final in the story. End on an audit, board vote, trust document, ownership record, or named deadline—not on whether she will take him back.
+
+**Ex-husband accountability rule:** regret is not restitution. Do not sell kneeling, jealousy, discovering her wealth, or public pleading as sufficient redemption. If a second chance is part of the actual book, the tagline may withhold whether she accepts only after it signals a specific cost, repair action, or surrender of power. Otherwise, let separation stand and route the romantic promise to a different adult relationship or to the heroine's self-directed future.
+
 ---
 
 ### Formula H — Intimacy → Identity Collision
@@ -238,6 +246,7 @@ or
 | Secret baby / coma marriage / contract marriage | F or H | A visible crisis plus an irreversible consequence creates immediate stakes |
 | Divorce / first-love betrayal / family rejection | F or G | Public injustice followed by a status reversal creates the return-click promise |
 | Hidden heiress / comeback revenge | G | The reader wants to witness the recognition and reversal |
+| Hidden heiress divorce revenge | G | Final exit plus a contested proof object promises agency and institutional consequences |
 
 ---
 
@@ -289,6 +298,8 @@ Prefer the story's real trigger event over a mood word. Strong, broadly legible 
 - **Identity collision:** stranger is the boss, husband is the CEO, ex is richer, enemy is family
 - **Disappearance / erasure:** vanished before he woke, name removed from the family, evidence destroyed
 - **Status reversal:** dismissed heir, discarded wife, replacement who returns with leverage
+
+For hidden-status stories, prefer a verifiable authority object—share register, trust amendment, founder seal, audit ledger, patent assignment, board proxy—over generic luxury signals. Clothes, cars, and jewelry can support the image but cannot carry the reversal alone.
 
 Use one event family per tagline. Specificity creates curiosity; piling five trope nouns into one caption reads fabricated.
 
