@@ -69,6 +69,20 @@ Render this only on chapter 1, before the chapter title and prose:
 - Keep tagline to 2 lines with `line-clamp-2`; the card confirms promise, it is not the synopsis page.
 - Cover image uses `priority` on chapter 1 because it is above the fold on the paid landing page.
 
+#### Mobile first-chapter card reflow
+
+On viewports below `640px`, never keep the cover, full tagline, and chapter CTA inside the same two-column grid. A fixed-width cover leaves a narrow text column; multiline taglines then create a tall card with a large blank area beneath the cover.
+
+- The mobile top row may contain only the cover plus compact identity content: free-chapter label, title, and author.
+- Render the tagline below that row at full card width.
+- Render the primary `Start Chapter 1` CTA below the tagline at full width with a minimum 48px height; chapter count sits beneath or beside it only when space permits.
+- At `sm` (`640px`) and above, the tagline and CTA may return to the cover-and-content two-column layout.
+- Do not solve the problem only by shrinking type, narrowing the cover, or forcing long CTA copy to wrap inside the narrow column.
+
+#### Ultra-narrow book-detail heroes
+
+Book-detail hero variants that place a `96px` cover beside genres, title, teaser, and CTA must switch to a single column below `360px`. Center the cover above a full-width content block, allow genre chips to wrap, and keep the CTA full width. Never preserve a two-column hero when the remaining text column is narrower than about `200px`.
+
 ### Paid chapter 1 ad density
 
 Chapter 1 is the ad landing page. It must balance account quality and revenue:
@@ -90,12 +104,13 @@ Chapter 1 is the ad landing page. It must balance account quality and revenue:
 - Continue button copy should show both action and next chapter context, for example `Continue` + `Ch. 2: {nextTitle}`.
 - The Continue button should use the site's primary hot color and a subtle glow/active scale (`active:scale-[0.96]`). It must visually dominate TOC.
 
-### Retention after nav
+### Retention after the final chapter
 
-- After the chapter nav, show a 3-book recommendation grid (`You might also like` / localized equivalent).
+- Show the 3-book `Keep reading` recommendation grid **only after the final chapter** (`next === null`).
+- Intermediate chapters must end with the Next/Continue action and no cross-book recommendations; competing covers interrupt the current-book pageview chain.
 - Use covers + short titles; link with `HardLink` so ad-bearing routes hard reload and ad slots reinitialize.
-- For cold traffic, linking recommendations directly to `/book/{slug}/chapter/1` maximizes reading continuation. Link to book detail only when the business goal is catalog exploration rather than session depth.
-- This section applies only to chapter 2+ and last-chapter exit states. Never add recommendations on chapter 1 landing pages.
+- Link final-chapter recommendations to the next book's detail page for context, or directly to `/book/{slug}/chapter/1` only when the business goal explicitly prioritizes immediate cross-book continuation.
+- Never add recommendations on chapter 1 or any chapter that still has a next chapter.
 
 ### Bottom whitespace trap
 
