@@ -37,6 +37,8 @@ Ad density cap: ~3–4 units per 1,000 words, ad area ≤ 30% of content area. S
 
 - **Every chapter must end on a cliffhanger.** This is not a style preference — it is the mechanism that makes the next pageview happen. A chapter that resolves cleanly ends the session. See `story-long-write.md`.
 - **Suspense is not a Chapter 1-only rule.** Every scene, every chapter opening, and every hook-out should leave one meaningful question unanswered. Chapter 1 gets the strongest cold-traffic bait, but later chapters still need tension, withheld information, and forward pull.
+- **Ensemble causality is mandatory.** Long-form books use 6–8 active named characters, at least 4 recurring plot actors, three interacting storylines, and no more than 30% lead-only chapters. Supporting characters must pursue goals and change the leads' options; names and passive confidants do not count.
+- **Escalation must change the situation.** Every 2–3 chapters produces an irreversible consequence and every 5–6 chapters a major reversal. A withheld answer or interrupted conversation is a hook-out technique, not a substitute for plot movement.
 - **The cover is an ad creative first, a book cover second.** Design and generate to stop the scroll in 0.3 seconds. See `cover-allure-elements.md` and `facebook-ads.md`.
 - **Landing page = Chapter 1, not the homepage.** Facebook ads link directly to ch1. The ch1 hook is the first pageview; if it doesn't grab in 200 words, the session ends at 1.
 - **The chapter page is the product.** Every other page is a path to it.
@@ -291,6 +293,9 @@ All of the following must be true before go-live (after B6 passes):
 | `outline/outline.md` exists and non-empty | A1 output |
 | `world/worldbuilding.md` exists and non-empty | A1 output |
 | `tracking/context.md` exists | A1 output |
+| 6–8 active named characters; ≥ 4 recurring plot actors | `world/worldbuilding.md` + outline cast fields |
+| Three interacting storylines with goals, opposition, midpoint reversals, and endgame consequences | `world/worldbuilding.md` `Storyline Matrix` + `outline/outline.md` |
+| Lead-only chapters ≤ 30%; ensemble and supporting-character action cadence pass | `outline/outline.md` cast/conflict fields + A3 review |
 | Cover image for every book (L1 gate) | `public/covers/{book-title}.webp` |
 | Ad slots wired and sized (L3 gate) | `src/app/book/[slug]/chapter/[n]/page.tsx` |
 | FB Pixel base code + ChapterPixel (L1 gate) | `src/app/layout.tsx` + chapter page |
@@ -499,6 +504,10 @@ Do not deliver a build if any of these are true.
 - All chapters in a book have the same word count — natural variation is required.
 - `outline/outline.md` is missing or empty for any published book.
 - `world/worldbuilding.md` is missing or empty for any published book.
+- `world/worldbuilding.md` lacks a Supporting Cast, Relationship Web, or three-line Storyline Matrix.
+- A book has fewer than 6 active named characters, fewer than 4 recurring plot actors, or uses background extras/passive confidants to satisfy the count.
+- Lead-only chapters exceed 30%, any rolling 3-chapter block beginning with Chapter 2 lacks at least 2 ensemble chapters, or supporting characters never interact without the leads.
+- The outline misses an irreversible consequence in any 3-chapter span or a major reversal in any 6-chapter span.
 - Cover image is missing for any book in the reader at launch time. (Development preview may use CSS placeholders; final launch requires real covers.)
 
 **Reading product (L2 UX gates):**

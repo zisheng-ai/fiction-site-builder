@@ -20,6 +20,8 @@ Continuing an existing book (adding chapters): skip this gate.
 2. **Validated patterns**: If a reference book exists in `reference/`, extract its technique before inventing new structure.
 3. **Modular assembly**: Each chapter = hook + escalation + turn + hook-out. Each beat has a proven formula.
 4. **Load only what's needed**: Before writing, read only the files relevant to this chapter's conflict and characters. Never load the full book.
+5. **Ensemble causality**: Supporting characters must pursue independent goals and change the plot through action. A name in worldbuilding or a confidant who only listens does not count as an active character.
+6. **Multi-thread escalation**: Every book runs at least three interacting storylines. Romantic tension alone cannot carry the middle of the book.
 
 ## Scene-Level Drama — The Click Standard
 
@@ -241,9 +243,11 @@ Load only if needed:
   reference/{book-title}/techniques.md  — only if a reference technique is needed
 ```
 
-## World & Cast Setup (required before any chapter writing)
+## Ensemble Plot & Cast Setup (required before any chapter writing)
 
-Before expanding the outline or writing chapters, the world document must have a **Supporting Cast** section. A story with only two named characters produces flat scenes and limits cover composition to Duo.
+Before expanding the outline or writing chapters, the world document must have a **Supporting Cast**, a **Relationship Web**, and a **Storyline Matrix**. A story with only two active characters produces flat scenes even when additional names exist in the world document.
+
+**Active-character floor:** create **6–8 active named characters per book**, including the protagonist and primary love interest when present. At least **4 characters** must repeatedly affect the main plot through decisions, opposition, leverage, withheld information, resource control, or changes of allegiance. Background staff, unnamed witnesses, one-scene messengers, and passive confidants do not count toward the floor.
 
 **Minimum cast requirements for `world/worldbuilding.md`:**
 
@@ -252,14 +256,18 @@ Before expanding the outline or writing chapters, the world document must have a
 
 ### [Name] — [Role archetype]
 - Relationship to protagonist: [see genre table below]
-- Function in story: [what tension or information do they generate?]
+- Independent goal: [what do they want even if the protagonist disappears?]
+- Leverage / resource: [what can they grant, remove, expose, or destroy?]
+- Conflict action: [what do they actively do that changes another character's options?]
+- Alignment path: [ally / rival / uncertain, plus any planned shift]
+- Function in story: [what tension, consequence, or information do they generate?]
 - Distinct voice marker: [1 sentence — how they speak or behave differently from the leads]
 
 ### [Name] — [Role archetype]
 ...
 ```
 
-**Required archetypes — pick at least 3 from your genre's table of 10:**
+**Required archetypes — pick at least 4 from your genre's table of 10:**
 
 ### Romance / Contemporary Drama
 1. **Confidant** — best friend or sibling who receives the protagonist's confessions; absorbs exposition naturally; their reactions calibrate reader sympathy
@@ -333,7 +341,50 @@ Before expanding the outline or writing chapters, the world document must have a
 9. **The witness to the private self** — a character who has seen the protagonist outside their public role and holds that knowledge, whether as ally, threat, or complication
 10. **The institution made human** — a character who embodies the period's dominant institution (the church, the law, the military, the court) and whose personal humanity complicates the protagonist's relationship to that power
 
-Secondary characters must appear in **at least 2 chapters each**. They exist to create scenes beyond "just the two leads talking" — every secondary character unlocks a scene type that is impossible without them.
+After the cast list, add both planning artifacts:
+
+```markdown
+## Relationship Web
+
+| Character A | Character B | Surface relationship | Hidden friction / debt / secret | Who currently has leverage? | Planned change |
+|---|---|---|---|---|---|
+| ... | ... | ... | ... | ... | ... |
+
+## Storyline Matrix
+
+| Storyline | Driving character(s) | Concrete goal | Opposition | Midpoint reversal | Endgame collision |
+|---|---|---|---|---|---|
+| A — Core relationship / protagonist arc | ... | ... | ... | ... | ... |
+| B — External crisis / power struggle | ... | ... | ... | ... | ... |
+| C — Supporting-character agenda / betrayal | ... | ... | ... | ... | ... |
+```
+
+### Cast participation gates
+
+- Each recurring supporting character appears in **at least 3 chapters** and causes a material plot change in at least **2** of them.
+- At least **4 active characters** must still have unresolved goals at the midpoint. Do not collapse the book into the two leads after the opening act.
+- No supporting character may exist only to receive exposition, approve the protagonist, deliver one clue, or create disposable jealousy. Give them an independent goal and a credible action when the leads are absent.
+- Across the whole book, **lead-only chapters must be no more than 30%**. A lead-only chapter contains only the protagonist and primary love interest as active scene participants; background extras do not change this classification.
+- Every rolling block of **3 chapters beginning with Chapter 2** must include at least **2 chapters with 3 or more active scene participants**. Chapter 1 retains its two-name introduction cap; expand the active cast from Chapter 2 onward.
+- At least **one supporting-character decision every 2 chapters** must change access, information, safety, reputation, resources, or allegiance.
+- Supporting characters must interact with one another without either lead present at least **twice per book**. These scenes prove the world has causality beyond the central couple.
+
+### Multi-thread escalation gates
+
+Run at least three interacting storylines throughout the book:
+
+1. **A — Core relationship / protagonist arc:** attraction, trust, identity, or internal transformation.
+2. **B — External crisis / power struggle:** investigation, family pressure, corporate threat, political contest, survival problem, war, or institutional constraint.
+3. **C — Supporting-character agenda / betrayal:** a secondary character pursues a goal that can help, exploit, expose, or derail the leads.
+
+Every storyline must have its own goal, opposition, midpoint reversal, and endgame consequence. At least once per act, one storyline must directly damage or complicate another. Do not write three parallel summaries that never collide.
+
+### Escalation cadence
+
+- Every chapter changes at least one of: goal, leverage, information, allegiance, deadline, safety, reputation, or access.
+- Every **2–3 chapters**, create an **irreversible consequence**: evidence becomes public, an alliance breaks, a resource is lost, a deadline locks, a secret reaches the wrong person, someone is injured/captured/removed, or a binding decision is made.
+- Every **5–6 chapters**, deliver a **major reversal** that changes the reader's model of the conflict, transfers power, or forces a new plan.
+- A cliffhanger that only withholds a spoken answer does not satisfy escalation by itself. The chapter must first produce a material change in the situation.
 
 ---
 
@@ -346,7 +397,7 @@ Use this flow whenever writing ≥ 2 chapters from scratch. Single-chapter incre
 Before spawning any agents, expand `outline/outline.md` so every chapter has a concrete beat entry:
 
 ```
-Ch-NNN: [primary emotion] | hook: {1-sentence} | turn: {what changes} | hook-out: {open question}
+Ch-NNN: [primary emotion] | cast: {active scene participants} | threads: {A/B/C advanced} | hook: {1-sentence} | conflict action: {who acts against whose goal} | turn: {material change} | consequence: {reversible/irreversible} | hook-out: {open question}
 ```
 
 All chapters must have this before any parallel writing starts. The beat entries replace `tracking/context.md` as the coordination signal during parallel writing.
@@ -370,13 +421,14 @@ Use a **single batch Agent call** when the environment supports it (e.g. one Age
 
 After all chapter agents complete, do a single sequential pass:
 1. Read chapters in order; verify hook-out of chapter N matches the opening of chapter N+1.
-2. **Word count check** — flag any chapter exceeding 1,800 words (1,600 for resolution chapters). For each flagged chapter: find the highest-tension cut point, split into two chapters, bump subsequent chapter numbers. Verify both parts meet lower bounds (≥1,200 / ≥1,000):
+2. Audit the outline's `cast`, `threads`, `conflict action`, and `consequence` fields. Verify the 30% lead-only cap, every rolling 3-chapter ensemble gate, supporting-character action cadence, 2–3 chapter irreversible cadence, and 5–6 chapter major-reversal cadence. Rewrite failing beats before prose cleanup.
+3. **Word count check** — flag any chapter exceeding 1,800 words (1,600 for resolution chapters). For each flagged chapter: find the highest-tension cut point, split into two chapters, bump subsequent chapter numbers. Verify both parts meet lower bounds (≥1,200 / ≥1,000):
    - If Part 1 < minimum, add details to Part 1.
    - If Part 2 < minimum, merge it back into Part 1 (do not save a skeleton).
    Update `outline/outline.md` with final chapter count. Then update `src/lib/books.ts` `chapterCount` for each book that underwent splits.
-3. Fix only continuity breaks — do not rewrite prose for style.
-4. Write `tracking/context.md` from the final chapter's ending.
-5. Update `tracking/threads.md`, `tracking/timeline.md`, `tracking/character-status.md`.
+4. Fix only continuity and ensemble-plot breaks — do not rewrite prose for style.
+5. Write `tracking/context.md` from the final chapter's ending.
+6. Update `tracking/threads.md`, `tracking/timeline.md`, `tracking/character-status.md`.
 
 Keep this pass minimal. Do not run a full quality rewrite here; that is A3.
 
@@ -392,11 +444,12 @@ Use this for adding one chapter to an existing book (incremental update only).
 2. Read the chapter's outline entry in `outline/outline.md`.
 3. Name the chapter's **primary emotion** (tension / release / shock / ache / warmth).
 4. Name the chapter's **turn**: what changes from start to end?
-5. Write the **hook** (≤3 sentences): drop into motion, not setup.
-6. Write the **escalation**: raise stakes through action/dialogue. No passive reflection blocks.
-7. Write the **turn**: the moment that changes something — reveal, decision, or loss.
-8. Write the **hook-out**: end mid-motion or on an open question. Never summarize.
-9. **Length guidance** — treat word count as a pacing signal, not a hard gate:
+5. Name the **active cast**, the A/B/C storyline(s) advanced, and which character acts against another character's goal.
+6. Write the **hook** (≤3 sentences): drop into motion, not setup.
+7. Write the **escalation**: raise stakes through action/dialogue. No passive reflection blocks.
+8. Write the **turn**: the moment that changes something — reveal, decision, or loss.
+9. Write the **hook-out**: end mid-motion or on an open question. Never summarize.
+10. **Length guidance** — treat word count as a pacing signal, not a hard gate:
 
    | Chapter type | Preferred range | Typical soft ceiling |
    |---|---|---|
@@ -410,11 +463,11 @@ Use this for adding one chapter to an existing book (incremental update only).
    Adjust the outline accordingly.
    Do not pad with reflection or summary to hit a length target.
 
-10. Save to `content/{book-title}/chapters/ch-NNN-{title}.md` from the project root, with correct zero-padded number.
-11. **If split occurred in step 9:** update `src/lib/books.ts` — increment `chapterCount` by 1 for the book, and ensure all chapter filenames in `content/{book-title}/chapters/` match the final chapter numbering.
-12. Update `tracking/context.md`: last beat + open threads + any foreshadow planted.
-13. Update `tracking/threads.md` if foreshadow added or resolved.
-14. Update `tracking/character-status.md` for any character changes.
+11. Save to `content/{book-title}/chapters/ch-NNN-{title}.md` from the project root, with correct zero-padded number.
+12. **If split occurred in step 10:** update `src/lib/books.ts` — increment `chapterCount` by 1 for the book, and ensure all chapter filenames in `content/{book-title}/chapters/` match the final chapter numbering.
+13. Update `tracking/context.md`: last beat + open threads + any foreshadow planted.
+14. Update `tracking/threads.md` if foreshadow added or resolved.
+15. Update `tracking/character-status.md` for any character changes, including goal, leverage, and alignment shifts.
 
 ## Chapter File Format
 
@@ -629,6 +682,10 @@ Always overwrite `context.md` after each chapter. Do not append history — the 
 - **One-paragraph test:** does the opening paragraph make the reader feel something in the first three sentences? If it only establishes setting or backstory, cut to the tension.
 - **Named emotion check:** does every pivotal scene have a specific named emotional state (from the genre file's Named Emotion table)? Generic emotions ("nervous", "angry", "interested") are a rewrite flag.
 - **Dynamic check:** is it clear who holds the power in this scene and who is off-balance? If all characters feel equally matched, the scene has no subtext.
+- **Ensemble causality check:** does a character other than the lead pair pursue an independent goal or alter another character's options? If not, verify that this chapter fits within the 30% lead-only budget.
+- **Thread collision check:** which of A/B/C advanced, and did one storyline complicate another when required by the act plan? A romantic conversation that changes no external condition is not enough.
+- **Material-change check:** name the changed goal, leverage, information, allegiance, deadline, safety, reputation, or access. If none changed, the chapter is filler even if its dialogue is emotional.
+- **Escalation-cadence check:** verify the outline still delivers an irreversible consequence every 2–3 chapters and a major reversal every 5–6 chapters. A withheld reply does not count as either.
 - **Setting check:** does the location amplify the emotional stakes, or could it be any room? If it's interchangeable, change it.
 - **Structural pattern check (Gate B — inline, do not defer):** before saving any chapter, do a 30-second scan for the two highest-frequency AI structural patterns:
   1. **Negation-reversal** — any sentence of the form "Not X. Y." or "No X. No Y. Just Z." → collapse to one direct statement.

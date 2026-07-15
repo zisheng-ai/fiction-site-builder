@@ -36,9 +36,12 @@ Fallback: none | missing agents -> solo | agent tool unavailable -> solo
 - Are any chapters filler — nothing changes from beginning to end?
 - Is the arc pacing consistent, or does the middle sag?
 - Are all planted foreshadows tracked and resolved (or intentionally open)?
+- Does the book run at least three interacting storylines (core arc, external crisis, supporting-character agenda), each with its own goal, opposition, midpoint reversal, and endgame consequence?
+- Does every chapter materially change goal, leverage, information, allegiance, deadline, safety, reputation, or access?
+- Is there an irreversible consequence every 2–3 chapters and a major reversal every 5–6 chapters?
 - **Genre register check:** is the genre's escalation register (from the genre file) advancing correctly? Romance: heat level climbing toward the peak scene. Mystery: dread register building through investigation arc. Horror: terror register escalating from unease → dread → terror → horror. Fantasy: wonder register expanding as the world reveals itself. Sci-Fi: hope arc moving from compliant despair toward earned possibility. Drama: emotional tension register advancing E1 → E2 → E3 → E4 → E5 (surface normal → cracks showing → partial truth out → confrontation → earned reckoning).
 
-Flag: chapters with no turn, chapters that end on summary/reflection, back-to-back low-stakes chapters, genre register stalling or resetting without narrative cause.
+Flag: chapters with no turn, chapters that end on summary/reflection, back-to-back low-stakes chapters, genre register stalling or resetting without narrative cause, dialogue-only cliffhangers with no material change, storyline lanes that never collide, and reversals that merely reveal information without changing anyone's options.
 
 **Suspense integrity flags** (apply to mystery, thriller, gothic; check during structure audit):
 
@@ -55,12 +58,19 @@ Flag: chapters with no turn, chapters that end on summary/reflection, back-to-ba
 
 ### 2. Character Audit
 
+- Does the book have 6–8 active named characters, with at least 4 repeatedly affecting the main plot?
+- Do recurring supporting characters appear in at least 3 chapters and cause a material plot change in at least 2?
+- Are lead-only chapters no more than 30% of the book?
+- Does every rolling block of 3 chapters beginning with Chapter 2 contain at least 2 chapters with 3 or more active scene participants?
+- Does at least one supporting-character decision every 2 chapters change access, information, safety, reputation, resources, or allegiance?
+- Do supporting characters interact without either lead present at least twice?
+- Does each supporting character have an independent goal, leverage/resource, conflict action, and alignment path?
 - Does each major character have a consistent voice in dialogue?
 - Are character motivations coherent across scenes?
 - Does any character act against established personality without earned cause?
 - Is the protagonist's change arc progressing?
 
-Flag: dialogue that could be spoken by any character interchangeably, unmotivated decisions, characters who disappear mid-arc.
+Flag: dialogue that could be spoken by any character interchangeably, unmotivated decisions, characters who disappear mid-arc, passive confidants, one-use messengers, disposable jealousy devices, named characters who never change the plot, and scenes padded with background extras to fake an ensemble.
 
 ### 3. Prose Audit
 
@@ -97,7 +107,11 @@ Scope: {chapters N–M or "full manuscript"}
 {Problems found, with chapter numbers. Actionable fix per problem.}
 
 ### Character
-{Problems found. Quote the offending dialogue or beat if possible.}
+Active cast: {N; pass/fail against 6–8 floor}
+Lead-only chapters: {N}/{total} ({percentage}; pass/fail against 30% cap)
+Ensemble-window failures: {rolling 3-chapter ranges}
+Supporting-character causality: {appearance/action failures}
+{Other problems found. Quote the offending dialogue or beat if possible.}
 
 ### Prose
 AI Flavor: {Mild / Moderate / Severe}
