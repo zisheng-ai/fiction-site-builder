@@ -166,12 +166,10 @@ Map the CLAUDE.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via
 - **≤ 3–4 ad units per 1,000 words** of chapter content.
 - **Ad pixels < 30% of content pixels** per screen (FB + AdSense inventory-value).
 - RPM typically peaks around 5 units; beyond that each added unit adds ~2–4% and erodes engagement + page-experience. Cutting the weakest slot often **raises** total RPM.
-- **Recommended dynamic layout** (measure chapter word count before rendering ads):
-  - All chapters: q1 (after part[0]) + q2 (after part[1]) + q5 (after last content block) — **minimum 3 ads always**
-  - > 2,000 words with ≥ 3 paragraphs: q1 + q2 + q3 + q5 (all in-content, q5 after q3)
-  - **Paid-traffic chapter 1 exception:** if the advertised Meta/Facebook URL lands on `/chapter/1/`, use exactly 3 ads: one top ad before prose + q1 after part[0] + q2 after part[1]. Skip the later q3 slot on chapter 1 unless the chapter is > 2,000 words.
-  - Other chapters should use 4–5 ads depending on length and available sticky/anchor inventory; do not globally reduce density because of the chapter 1 exception.
-  - Avoid a fourth mid-content unit; it sits too close to q5 and adds clutter without meaningful RPM lift.
+- **Configured five-slot AdX layout:** when a site has q1–q5 assigned to chapter inventory, render exactly five unique units on every chapter: q4 at the top, q1/q2/q3 after the first three content quarters, and q5 after the final prose block. There is no chapter 1 exception.
+- Never reuse q5 inside a sticky component when it already appears at the bottom of the content flow; duplicate GPT div IDs break slot initialization.
+- This fixed inventory is an explicit site strategy. Keep the density and ad-area checks above visible as an operational warning, especially for chapters below roughly 1,250 words.
+- Avoid a fourth mid-content unit; it sits too close to q5 and adds clutter without meaningful RPM lift.
 
 ### 3.3 CLS protection (Core Web Vitals = cheaper FB traffic + SEO)
 
@@ -192,8 +190,7 @@ The single biggest viewability lever on chapter pages is WHERE the first ad slot
 
 Rule: place the **first** ad after `contentParts[0]` — the first ~20% of paragraphs (min 3, max 5 paragraphs). At this depth the reader has invested ~2 minutes and is still engaged — first-ad viewability should reach 70–90% vs < 30% pre-content.
 
-AdX layout (2-part chapters): `part[0] → q1 → part[1] → q2 → q5` (all in-content).
-AdX layout (3-part chapters): `part[0] → q1 → part[1] → q2 → part[2] → q3 → q5` (all in-content).
+Configured five-slot AdX layout: `q4 top → part[0] → q1 → part[1] → q2 → part[2] → q3 → part[3] → q5 bottom`.
 
 AdSense layout (2-part): `part[0] → slot1(priority) → part[1] → slot2`.
 AdSense layout (3-part): `part[0] → slot1(priority) → part[1] → slot2 → part[2]`.
@@ -591,80 +588,43 @@ export default function AdSlot({ path, id, sizes, className = '' }: Props) {
 }
 ```
 
-Placement mapping — always minimum 3 ads (q1 + q2 + q5), add q3 for long chapters:
+Placement mapping — split every chapter into four parts and render the configured five unique AdX units:
 
 ```tsx
-function wordCount(text: string): number {
-  return text.split(/\s+/).filter(Boolean).length
-}
-
-// q2 break at ~20% of paragraphs (min 3, max 5) — not 33% or 50%.
-// Rationale: Facebook readers often bounce within 2 minutes. Placing q2 after
-// only 3–5 paragraphs (~300–400 words) keeps it in the high-engagement window
-// where viewability is 70–90%. At 50%, q2 is only seen by readers who finish
-// more than half the chapter — a minority of paid-traffic visitors.
-// Validated: AU viewability went from 53% → target 70%+ after this change.
-function splitContent(content: string): string[] {
+function splitContent(content: string): [string, string, string, string] {
   const paras = content.split(/\n{2,}/).filter(p => p.trim())
-  const words = wordCount(content)
-  // AdSense only: skip ad injection on very short pieces
-  if (words < 1000) return [content]
-  // Early break: first 20% of paragraphs, clamped to [3, 5]
-  const earlyBreak = Math.min(5, Math.max(3, Math.ceil(paras.length * 0.2)))
-  if (paras.length <= earlyBreak) return [content]
-  if (words >= 2000 && paras.length >= earlyBreak + 4) {
-    // 3-part: q2 early, q3 at ~60% of content
-    const midBreak = Math.floor((earlyBreak + paras.length) / 2)
-    return [
-      paras.slice(0, earlyBreak).join('\n\n'),
-      paras.slice(earlyBreak, midBreak).join('\n\n'),
-      paras.slice(midBreak).join('\n\n'),
-    ].filter(Boolean)
-  }
-  // 2-part: q2 early
+  if (paras.length === 0) return ['', '', '', '']
+  const c1 = Math.max(1, Math.round(paras.length * 0.25))
+  const c2 = Math.max(c1 + 1, Math.round(paras.length * 0.5))
+  const c3 = Math.max(c2 + 1, Math.round(paras.length * 0.75))
   return [
-    paras.slice(0, earlyBreak).join('\n\n'),
-    paras.slice(earlyBreak).join('\n\n'),
+    paras.slice(0, c1).join('\n\n'),
+    paras.slice(c1, c2).join('\n\n'),
+    paras.slice(c2, c3).join('\n\n'),
+    paras.slice(c3).join('\n\n'),
   ]
 }
 
-// render — q1 goes AFTER part[0], not before all content
-// StickyNav is mounted at the page level (outside <main>), nav-only
-{contentParts.length >= 3 ? (
-  <>
-    <div className="prose-reader">{contentParts[0]}</div>
-    <AdSlot path="/23294357175/q1" id="div-gpt-ad-1782711338284-0" sizes={[[250,250],[300,250],[336,280]]} />
-    <div className="prose-reader">{contentParts[1]}</div>
-    <AdSlot path="/23294357175/q2" id="div-gpt-ad-1782711428179-0" sizes={[[250,250],[336,280],[300,250]]} />
-    <div className="prose-reader">{contentParts[2]}</div>
-    <AdSlot path="/23294357175/q3" id="div-gpt-ad-1782711490041-0" sizes={[[250,250],[336,280],[300,250]]} />
-  </>
-) : (
-  <>
-    <div className="prose-reader">{contentParts[0]}</div>
-    <AdSlot path="/23294357175/q1" id="div-gpt-ad-1782711338284-0" sizes={[[250,250],[300,250],[336,280]]} />
-    <div className="prose-reader">{contentParts[1]}</div>
-    <AdSlot path="/23294357175/q2" id="div-gpt-ad-1782711428179-0" sizes={[[250,250],[336,280],[300,250]]} />
-  </>
-)}
-
-{/* q5 display ad placed in-content after last content block */}
-{/* StickyNav — mount outside <main> before the min-h-screen wrapper div (nav-only, no ads) */}
-{/* chapter <main> must use className="pb-sticky-ad" (calc(82px + env(safe-area-inset-bottom))) */}
+<AdSlot path="/23294357175/q4" id="div-gpt-ad-1782711562651-0" sizes={[[336,280],[250,250],[300,250]]} priority />
+<div className="prose-reader">{contentParts[0]}</div>
+<AdSlot path="/23294357175/q1" id="div-gpt-ad-1782711338284-0" sizes={[[250,250],[300,250],[336,280]]} />
+<div className="prose-reader">{contentParts[1]}</div>
+<AdSlot path="/23294357175/q2" id="div-gpt-ad-1782711428179-0" sizes={[[250,250],[336,280],[300,250]]} />
+<div className="prose-reader">{contentParts[2]}</div>
+<AdSlot path="/23294357175/q3" id="div-gpt-ad-1782711490041-0" sizes={[[250,250],[336,280],[300,250]]} />
+<div className="prose-reader">{contentParts[3]}</div>
+<div id="chapter-content-end" />
+<AdSlot path="/23294357175/q5" id="div-gpt-ad-1782711618925-0" sizes={[[336,280],[300,250],[250,250]]} />
 ```
 
-#### Sticky anchor bar — `StickyNav.tsx`
+#### Fixed navigation bar — `StickyNav.tsx`
 
 Mount outside `<main>` as a sibling before `<div className="min-h-screen">`. The bar is always visible; `<main>` uses `className="pb-sticky-ad"` (CSS utility: `calc(82px + env(safe-area-inset-bottom))`) to prevent content hiding behind it.
 
-Two variants — **AdX** (nav + q5 display ad) and **AdSense** (nav only; policy prohibits fixed manual units).
-
-**All sites (AdX + AdSense)** — nav-only: TOC + Next buttons, no ads. q5 goes in-content (after the last content part), never in the sticky bar.
+All sites use a nav-only bar: TOC + Next buttons, no ads. q5 goes in-content after the last content part and must never be duplicated in the sticky bar.
 
 ```tsx
 'use client'
-
-import AdSlot from './AdSlot'
 
 type Props = { bookSlug: string; nextChapter: number | null }
 
@@ -713,15 +673,6 @@ export default function StickyNav({ bookSlug, nextChapter }: Props) {
             </svg>
           </a>
         )}
-      </div>
-
-      <div className="border-t border-base-200 bg-base-100 overflow-hidden" style={{ maxHeight: 100 }}>
-        <AdSlot
-          path="/23294357175/q5"
-          id="div-gpt-ad-1782711618925-0"
-          sizes={[[336, 280], [300, 250], [250, 250]]}
-          className="!my-0"
-        />
       </div>
     </div>
   )

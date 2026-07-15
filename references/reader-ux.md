@@ -84,15 +84,15 @@ On viewports below `640px`, never keep the cover, full tagline, and chapter CTA 
 
 Book-detail hero variants that place a `96px` cover beside genres, title, teaser, and CTA must switch to a single column below `360px`. Center the cover above a full-width content block, allow genre chips to wrap, and keep the CTA full width. Never preserve a two-column hero when the remaining text column is narrower than about `200px`.
 
-### Paid chapter 1 ad density
+### Five-slot chapter ad layout
 
-Chapter 1 is the ad landing page. It must balance account quality and revenue:
+For an AdX site configured with five chapter units, every chapter uses the same five-slot layout. This removes chapter-specific inventory drift and guarantees that each GPT div ID appears exactly once:
 
 - Show a top ad after the identity card and before the chapter title/prose.
 - Split prose into four parts at roughly 25% / 50% / 75%.
-- Chapter 1 uses exactly 3 ad slots: top ad + q1 after part 1 + q2 after part 2.
-- Do not render the later q3 slot on chapter 1 unless the chapter exceeds 2,000 words.
-- Chapters 2+ may render q3 after part 3.
+- Render q1 after part 1, q2 after part 2, and q3 after part 3 on every chapter, including chapter 1.
+- Render q5 after the final prose block and the completion sentinel, before chapter navigation.
+- The complete order is `q4 top → q1 → q2 → q3 → q5 bottom`. Do not reuse any unit ID in a sticky component.
 - The first real prose block must still appear quickly after the identity card and top ad; no login wall, no modal, no interstitial.
 
 ### Reader flow and controls
@@ -127,7 +127,7 @@ The Velvet landing-page fix exposed a recurring layout bug: short pages can show
 
 - Fails if chapter 1 opens with only an ad and no book identity signal.
 - Fails if a modal, paywall, cookie wall, or interstitial appears before prose.
-- Fails if q3 appears on normal-length chapter 1.
+- Fails if any chapter renders fewer or more than the configured five unique slots.
 - Fails if the next action is a muted text link or smaller than TOC.
 - Fails if the landing chapter uses SPA navigation for next chapter.
 - Fails if chapter 1 shows a visible nav bar, side menu, back button, TOC, or recommendation grid.
