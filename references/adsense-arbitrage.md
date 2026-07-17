@@ -246,6 +246,8 @@ export function ChapterPixel({ chapterTitle, chapterOrder, bookSlug }: Props) {
       content_type: 'chapter',
       content_name: chapterTitle,
       content_ids: [`${bookSlug}-ch${chapterOrder}`],
+      value: 0.01,
+      currency: 'CNY',
     })
 
     // TimeOnPage30 — 30s dwell, independent of scroll
