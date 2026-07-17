@@ -342,6 +342,7 @@ The `ChapterPixel` component (`src/components/ChapterPixel.tsx`) fires these eve
 | `ChapterRead50` | 50% scroll | Custom | Highest — half-chapter read, strongest real-reader signal |
 | `ScrollDepth75` | 75% scroll | Custom | Reference only |
 | `ChapterCompleted` | Chapter-end sentinel enters viewport (IntersectionObserver on `#chapter-content-end`) | Custom | High — chapter finished |
+| `TimeOnPage20s` | 20 seconds on chapter page (setTimeout, independent of scroll) | Custom | Medium — early dwell signal |
 | `TimeOnPage30` | 30 seconds on page (setTimeout, independent of scroll) | Custom | High — time-dimension engagement; fills the gap for short chapters |
 
 `PageView` fires on every page load including instant bounces — do not use it as an optimization target.

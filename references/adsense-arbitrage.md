@@ -205,7 +205,7 @@ Diagnostic signal: if AdX viewability is below 60% and match rate is ≥ 95%, th
 
 - **Meta Pixel + Conversions API (CAPI)**: Pixel alone loses signal to iOS/ad-blockers; CAPI (server-side) recovers it. Run both, deduplicated by event ID.
 - If the site uses App Router / `next/link`, add a client-side route tracker that fires `fbq('track', 'PageView')` on pathname changes after the initial render. The bootstrap PageView in layout only covers the first hard load.
-- Events to fire: `PageView`, `ViewContent` (chapter open), `{subdomain}_ScrollDepth25` / `{subdomain}_ChapterRead50` / `{subdomain}_ScrollDepth75` (scroll milestones), `{subdomain}_ChapterCompleted` (IntersectionObserver on `#chapter-content-end` sentinel — not scroll ratio), and `{subdomain}_TimeOnPage30` (30s setTimeout, independent of scroll) as the engaged-session signal.
+- Events to fire: `PageView`, `ViewContent` (chapter open), `{subdomain}_ScrollDepth25` / `{subdomain}_ChapterRead50` / `{subdomain}_ScrollDepth75` (scroll milestones), `{subdomain}_ChapterCompleted` (IntersectionObserver on `#chapter-content-end` sentinel — not scroll ratio), and `{subdomain}_TimeOnPage20s` / `{subdomain}_TimeOnPage30` (20s / 30s setTimeout, independent of scroll) as engaged-session signals. Both dwell events must run inside `ChapterPixel` with identical chapter-only scope, payload, prefix, and cleanup behavior; do not implement one in a route-wide tracker.
 - Prefix all custom events with the live subdomain, using `{subdomain}_{EventName}`. This is mandatory when multiple sites share one Pixel, because unprefixed custom events from different subdomains collapse into one Events Manager stream. Keep standard events (`PageView`, `ViewContent`) unprefixed.
 - Next-chapter controls should fire `fbq('trackCustom', '{subdomain}_NextChapterClick', payload)` before hard navigation. Preserve normal browser behavior for modified clicks, then delay `window.location.href` by about 100–150ms so the Pixel request has time to leave the page.
 - Optimize the FB campaign toward the **engaged/value event**, not raw landing PageView — that is what trains delivery toward profitable readers.
@@ -238,6 +238,7 @@ export function ChapterPixel({ chapterTitle, chapterOrder, bookSlug }: Props) {
   const fired50 = useRef(false)
   const fired75 = useRef(false)
   const firedCompleted = useRef(false)
+  const firedDwell20 = useRef(false)
   const firedDwell30 = useRef(false)
 
   useEffect(() => {
@@ -250,15 +251,20 @@ export function ChapterPixel({ chapterTitle, chapterOrder, bookSlug }: Props) {
       currency: 'CNY',
     })
 
-    // TimeOnPage30 — 30s dwell, independent of scroll
-    // Captures short chapters and slow readers that scroll milestones miss
-    const dwellTimer = setTimeout(() => {
+    const payload = { content_name: chapterTitle, chapter_order: chapterOrder }
+
+    // TimeOnPage20s and TimeOnPage30 share the same chapter-only scope and payload.
+    const dwell20Timer = setTimeout(() => {
+      if (!firedDwell20.current) {
+        firedDwell20.current = true
+        window.fbq?.('trackCustom', `${EVENT_PREFIX}TimeOnPage20s`, payload)
+      }
+    }, 20000)
+
+    const dwell30Timer = setTimeout(() => {
       if (!firedDwell30.current) {
         firedDwell30.current = true
-        window.fbq?.('trackCustom', `${EVENT_PREFIX}TimeOnPage30`, {
-          content_name: chapterTitle,
-          chapter_order: chapterOrder,
-        })
+        window.fbq?.('trackCustom', `${EVENT_PREFIX}TimeOnPage30`, payload)
       }
     }, 30000)
 
@@ -302,7 +308,8 @@ export function ChapterPixel({ chapterTitle, chapterOrder, bookSlug }: Props) {
 
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => {
-      clearTimeout(dwellTimer)
+      clearTimeout(dwell20Timer)
+      clearTimeout(dwell30Timer)
       window.removeEventListener('scroll', onScroll)
       io?.disconnect()
     }
