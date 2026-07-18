@@ -38,7 +38,10 @@ Fallback: none | missing agents -> solo | agent tool unavailable -> solo
 - Are all planted foreshadows tracked and resolved (or intentionally open)?
 - Does the book run at least three interacting storylines (core arc, external crisis, supporting-character agenda), each with its own goal, opposition, midpoint reversal, and endgame consequence?
 - Does every chapter materially change goal, leverage, information, allegiance, deadline, safety, reputation, or access?
+- Does every chapter's attempted solution create a local complication or reversal instead of succeeding cleanly?
+- Does every major turn alter at least 2 relationship edges, or alter one relationship while materially damaging another storyline?
 - Is there an irreversible consequence every 2–3 chapters and a major reversal every 5–6 chapters?
+- Does the book use at least 4 distinct reversal mechanisms instead of recycling misunderstandings or withheld secrets?
 - **Genre register check:** is the genre's escalation register (from the genre file) advancing correctly? Romance: heat level climbing toward the peak scene. Mystery: dread register building through investigation arc. Horror: terror register escalating from unease → dread → terror → horror. Fantasy: wonder register expanding as the world reveals itself. Sci-Fi: hope arc moving from compliant despair toward earned possibility. Drama: emotional tension register advancing E1 → E2 → E3 → E4 → E5 (surface normal → cracks showing → partial truth out → confrontation → earned reckoning).
 
 Flag: chapters with no turn, chapters that end on summary/reflection, back-to-back low-stakes chapters, genre register stalling or resetting without narrative cause, dialogue-only cliffhangers with no material change, storyline lanes that never collide, and reversals that merely reveal information without changing anyone's options.
@@ -65,6 +68,8 @@ Flag: chapters with no turn, chapters that end on summary/reflection, back-to-ba
 - Does at least one supporting-character decision every 2 chapters change access, information, safety, reputation, resources, or allegiance?
 - Do supporting characters interact without either lead present at least twice?
 - Does each supporting character have an independent goal, leverage/resource, conflict action, and alignment path?
+- Does every active character have at least 3 consequential relationship edges, including hidden friction/debt and a conflicting loyalty?
+- Do at least 3 relationships change state twice, rather than remaining fixed around the central couple?
 - Does each major character have a consistent voice in dialogue?
 - Are character motivations coherent across scenes?
 - Does any character act against established personality without earned cause?

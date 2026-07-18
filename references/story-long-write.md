@@ -348,9 +348,9 @@ After the cast list, add both planning artifacts:
 ```markdown
 ## Relationship Web
 
-| Character A | Character B | Surface relationship | Hidden friction / debt / secret | Who currently has leverage? | Planned change |
-|---|---|---|---|---|---|
-| ... | ... | ... | ... | ... | ... |
+| Character A | Character B | Surface relationship | Hidden friction / debt / secret | Conflicting loyalty | Who currently has leverage? | Planned reversal |
+|---|---|---|---|---|---|---|
+| ... | ... | ... | ... | ... | ... | ... |
 
 ## Storyline Matrix
 
@@ -363,6 +363,8 @@ After the cast list, add both planning artifacts:
 
 ### Cast participation gates
 
+- Every active character must have at least **3 consequential relationship edges** in the Relationship Web; at least one edge must contain hidden friction or debt, and at least one must contain a conflicting loyalty. A cast arranged as isolated satellites around the protagonist fails.
+- At least **3 relationships** must change state twice during the book (for example ally → suspect → ally with conditions, spouse → enemy → reluctant co-conspirator). Attraction alone is not a state change.
 - Each recurring supporting character appears in **at least 3 chapters** and causes a material plot change in at least **2** of them.
 - At least **4 active characters** must still have unresolved goals at the midpoint. Do not collapse the book into the two leads after the opening act.
 - No supporting character may exist only to receive exposition, approve the protagonist, deliver one clue, or create disposable jealousy. Give them an independent goal and a credible action when the leads are absent.
@@ -384,8 +386,12 @@ Every storyline must have its own goal, opposition, midpoint reversal, and endga
 ### Escalation cadence
 
 - Every chapter changes at least one of: goal, leverage, information, allegiance, deadline, safety, reputation, or access.
+- Every chapter must contain a local complication or reversal: the attempted solution exposes a secret, strengthens an opponent, creates a witness, transfers leverage, splits an alliance, or forces an unwanted bargain. A chapter that merely completes the planned task fails even if its final line teases danger.
+- Every major turn must alter at least **2 relationship edges**, or alter one relationship edge while materially damaging a separate storyline. Plot and relationship drama must compound rather than run in parallel.
 - Every **2–3 chapters**, create an **irreversible consequence**: evidence becomes public, an alliance breaks, a resource is lost, a deadline locks, a secret reaches the wrong person, someone is injured/captured/removed, or a binding decision is made.
 - Every **5–6 chapters**, deliver a **major reversal** that changes the reader's model of the conflict, transfers power, or forces a new plan.
+- Across the book, use at least **4 different reversal mechanisms**: betrayal or allegiance shift; secret exposure; identity/status reversal; false victory with a larger cost; resource or custody transfer; public humiliation; forced alliance; presumed loss/return. Do not repeat the same misunderstanding or withheld-secret pattern.
+- Never reset tension after a reveal. The next chapter begins from the new damaged state and introduces a harder choice; it does not restore the previous relationship arrangement.
 - A cliffhanger that only withholds a spoken answer does not satisfy escalation by itself. The chapter must first produce a material change in the situation.
 
 ---
@@ -399,7 +405,7 @@ Use this flow whenever writing ≥ 2 chapters from scratch. Single-chapter incre
 Before spawning any agents, expand `outline/outline.md` so every chapter has a concrete beat entry:
 
 ```
-Ch-NNN: [primary emotion] | cast: {active scene participants} | threads: {A/B/C advanced} | hook: {1-sentence} | conflict action: {who acts against whose goal} | turn: {material change} | consequence: {reversible/irreversible} | hook-out: {open question}
+Ch-NNN: [primary emotion] | cast: {active scene participants} | threads: {A/B/C advanced} | hook: {1-sentence} | conflict action: {who acts against whose goal} | complication: {why the attempted solution makes matters worse} | turn: {material change} | relationship shifts: {at least 2 edges, or 1 edge + 1 damaged storyline} | consequence: {reversible/irreversible} | hook-out: {open question}
 ```
 
 All chapters must have this before any parallel writing starts. The beat entries replace `tracking/context.md` as the coordination signal during parallel writing.
