@@ -10,7 +10,7 @@ For paid-traffic fiction, the cover must look like the decisive frame of a high-
 
 1. **Conflict:** freeze a concrete betrayal, exposure, rejection, interruption, humiliation, confrontation, or reversal. Show visual proof such as a marriage certificate, pregnancy test, torn contract, ring, child, rival, slap aftermath, hospital report, or kneeling ex.
 2. **Expression:** make the emotional roles legible at thumbnail size. Use widened eyes, open-mouth shock, furious accusation, crying disbelief, jealous panic, smug triumph, or visible guilt. Calm model faces and subtle longing are not enough.
-3. **Relationship complexity:** prefer 3–4 figures when the premise contains an ex, rival, child, parent, fiancé, witness, or betrayer. Use gaze, pointing hands, grabbing, blocking, separation, and foreground/background hierarchy to show who wants whom, who betrayed whom, and who holds power.
+3. **Relationship complexity:** prefer 3–4 figures when the premise contains an ex, rival, child, parent, fiancé, witness, or betrayer. Four discernible people is the hard maximum; never turn the full cast into a crowd. Use gaze, pointing hands, grabbing, blocking, separation, and foreground/background hierarchy to show who wants whom, who betrayed whom, and who holds power.
 4. **Aesthetic polish:** lighting, wardrobe, setting, and allure support the conflict. They never replace it.
 
 **Hard bans for the default traffic-fiction route:**
@@ -19,6 +19,7 @@ For paid-traffic fiction, the cover must look like the decisive frame of a high-
 - No movie-poster composition built around atmosphere, heroic posing, skyline scale, or cinematic emptiness.
 - No beautiful couple portrait, near-kiss, warm embrace, forehead touch, mutual gaze, or two attractive people merely standing together.
 - No polished billionaire, royal, or elite-family group photo where everyone looks composed and harmonious.
+- No more than 4 discernible people, including background witnesses, mourners, guards, teammates, children, or rivals. Imply larger groups through setting and proof objects instead of readable extra figures.
 - No generic luxury penthouse, gala, manor, sports field, moon, or car unless a visible relationship conflict is happening inside the scene.
 - Do not use `cinematic`, `elegant`, `luxury`, or `romantic` as standalone direction. If retained as rendering vocabulary, immediately subordinate it to a named scandal, conflict action, and exaggerated reaction.
 
@@ -66,7 +67,7 @@ Pick the template that best matches the book's core tension. These mirror the re
 | **Power Inversion** | Urban Drama / Contemporary Romance revenge, humiliation, domination arcs | **TWO characters.** One standing figure (powerful, cold, composed) looks down at a kneeling/crying/bound figure. Third character optional as witness. Setting: luxury interior, parking garage, ballroom. |
 | **Intimate Tension** | Contemporary Romance / Urban Drama romance, billionaire arcs | **TWO characters.** Two figures in close proximity — woman wrapped in white bed sheet with bare shoulders and legs visible to mid-thigh, clutching sheet to chest, expression of shock or conflict; man in open-collar shirt at rest on rumpled bed watching her. Luxury penthouse bedroom, floor-to-ceiling cityscape windows. Foreground props: champagne flute, scattered luxury items (jewelry, lipstick). |
 | **Rain Shelter** | Thriller / Contemporary Romance romance, protection arcs | **TWO characters.** Two figures on a wet night street, one holding a black umbrella over the other. The protected figure looks downcast; the protector looks stern or conflicted. City lights reflect on the wet pavement. Setting can be European street or neon city. |
-| **Grand Humiliation** | Contemporary Romance / Urban Drama gala/elite society arcs | **TWO characters.** Glamorous dominant figure in deep-V plunging neckline floor-length gown (thigh-high slit, jeweled décolletage, red lips, chandelier jewels) stands elevated or turns away in contempt while a male figure kneels or collapses crying at her feet. Grand ballroom setting: chandeliers, champagne tower, roses, crowd of onlookers. |
+| **Grand Humiliation** | Contemporary Romance / Urban Drama gala/elite society arcs | **TWO characters.** Glamorous dominant figure in deep-V plunging neckline floor-length gown (thigh-high slit, jeweled décolletage, red lips, chandelier jewels) stands elevated or turns away in contempt while a male figure kneels or collapses crying at her feet. Grand ballroom setting: chandeliers, champagne tower, roses; use at most 1 additional readable witness and imply the wider audience through flash bulbs or cropped raised phones. |
 | **Lone Hero** | Cultivation Fantasy / Sci-Fi / Historical War Epic | **ONE character.** Single powerful protagonist fills center-left frame, facing slightly away from camera. Epic world behind: ruined city + energy portal (sci-fi), snowy mountains + dark castle (fantasy), cloud sea + ancient pagodas (cultivation). Title in large metallic font occupies lower 35% of frame. |
 | **Duo Confrontation** | Dark Fantasy / Historical Court Drama romance + power | **TWO characters.** Two characters pressed together — powerful male behind or beside protected female. Dark dramatic background. Matching detailed costumes. Both look into distance or at camera with intensity. |
 | **Manor Portrait** | Regency / Historical Mystery | **ONE character.** Female figure in period dress (empire waist or Victorian) at estate exterior or formal garden; grand manor or gothic house behind her; soft atmospheric mist or golden afternoon light. Expression composed but with tension in the eyes. |
@@ -294,6 +295,7 @@ Before sending a prompt to the image API, verify:
 - [ ] The frozen scandal or irreversible conflict can be stated in one sentence
 - [ ] Every visible character has a distinct relationship role and exaggerated readable reaction
 - [ ] A third or fourth figure is included when the premise has a rival, ex, child, parent, witness, or betrayer
+- [ ] The cover contains no more than 4 discernible people; larger groups are implied rather than rendered as a readable crowd
 - [ ] The image still communicates the relationship conflict at 160px wide with the title hidden
 - [ ] No generic couple portrait, romantic embrace, near-kiss, harmonious luxury-family photo, or atmosphere-first movie-poster composition
 - [ ] Render style keyword included (`photorealistic` or `hyperrealistic 3D render`)

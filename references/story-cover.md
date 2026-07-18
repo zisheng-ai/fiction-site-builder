@@ -119,7 +119,7 @@ Derive all three from project files:
 - **Pen name**: see B2 resolution order above (worldbuilding → context → books.ts → placeholder)
 - **BOOK_DIR**: not used — covers are written as flat files: `public/covers/{book-slug}.webp` and `public/covers/{book-slug}.json`
 - **Temporary PNG**: `/tmp/cover_{book-slug}_v1.png` (deleted after WebP conversion)
-- **Cover cast list**: read `content/{book-slug}/world/characters/` and the outline/context files to identify the protagonist plus every major supporting character who materially drives the premise or central relationship. This cast list is mandatory input to Step 2.
+- **Cover cast list**: read `content/{book-slug}/world/characters/` and the outline/context files to identify the protagonist plus at most 3 premise-defining supporting characters. Rank by relevance to the frozen cover conflict; do not carry the full story ensemble into the image. This cast list is mandatory input to Step 2.
 
 Do not ask the user. Do not fabricate values that cannot be derived.
 
@@ -215,14 +215,16 @@ A cover where the figure is fully clothed, covered from neck to ankle with no bo
 |------|-------------|-----------------|
 | **Solo** | Strong single-POV protagonist; atmospheric/thriller/horror/sci-fi; story doesn't require a second prominent character | 1 (protagonist only) |
 | **Duo** | Two-character focus — both leads present; romance, drama, fantasy duo, detective pair, allies | 2 |
-| **Trio** | Love triangle, rival over shoulder, court/pack dynamic with 3+ key figures | 3+ |
+| **Trio** | Love triangle, rival over shoulder, court/pack dynamic with 3–4 key figures | 3–4 |
 | **Environmental** | Thriller, mystery, horror — figure(s) small against a dramatic landscape/setting | 1–2, environment dominant |
 
 Operator quick reference:
 - **Solo** means one character owns the cover. Use it when the protagonist's individual arc is stronger than the relationship dynamic, or when the genre benefits from a single iconic figure.
 - **Duo** means two characters share the cover. Use it for romance, drama, fantasy pairs, detective pairs, or allies where the relationship is the selling hook.
-- **Trio** means three or more figures create the tension. Use it for love triangles, rivals, courts, packs, factions, or group power dynamics; keep one clear focal pair or focal character.
+- **Trio** means 3–4 figures create the tension. Use it for love triangles, rivals, courts, packs, factions, or group power dynamics; keep one clear focal pair or focal character.
 - **Environmental** means the setting is the main drama. Figure(s) may appear, but atmosphere, danger, place, scale, or worldbuilding should dominate the read.
+
+**Visible-person cap — MANDATORY:** never render more than 4 discernible people on one cover. Count every readable face or body, including children, rivals, witnesses, mourners, guards, teammates, and background figures. For ensemble relationship conflicts, prefer 3–4 clearly differentiated figures. Solo, Duo, and Environmental compositions remain valid when the premise is genuinely narrower. If the story has more than 4 relevant characters, keep the protagonist plus the top 2–3 characters needed to explain the frozen conflict; imply everyone else through proof objects, empty positions, cropped hands, architecture, or environmental signals. Do not create a readable crowd, court line, family gathering, army, or team behind the focal cast.
 
 - **Duo cap: maximum 1 Duo cover per 3-book initial batch.** Larger batches may use up to 2 Duo covers per site, but must keep at least half the covers non-Duo (Solo, Trio, or Environmental).
 - Do not assign the same type to more than 2 consecutive books.
@@ -366,7 +368,7 @@ keep title and author name inside the central safe area (inner ~85%), no waterma
 |---|---|---|
 | **Solo** | 1 (protagonist) | Powerful solo poses: dramatic expression, environment-forward. Valid for any genre when the protagonist's arc stands alone. |
 | **Duo** | 2 (two leads) | Two-character focus; romance, drama, fantasy duo, detective pair, or allies. Describe both explicitly. |
-| **Trio** | 3+ | Love triangle, rival figure, pack/court arrayed behind the leads. Keep a clear focal pairing; extra figures amplify tension. |
+| **Trio** | 3–4 | Love triangle, rival figure, pack/court conflict. Keep a clear focal pairing; the third or fourth figure must have a distinct relationship role. |
 | **Environmental** | 1–2, small against scene | Figure(s) partially subsumed by the dramatic environment. Best for thriller/mystery/gothic. |
 
 **Genre defaults when Step 1.6 has not been run (single-book mode):**
@@ -397,6 +399,8 @@ Roll a random number 1–4 to pick composition. Romance bias: Duo at 1–2, Solo
 - 1 protagonist + 1 major counterpart → **Duo**.
 - 1 protagonist + 2 major counterparts/rivals → **Trio**.
 - Larger ensemble → protagonist and top 2–3 major supporting characters visible, with extras implied by setting only.
+
+The hard maximum is 4 discernible people on the final cover. Never add generic extras to make the scene feel busy, and never include the full story ensemble when 3–4 roles communicate the conflict.
 
 The diversity plan may vary pose, framing, palette, and environmental dominance, but it may not remove required characters. If Step 1.6 assigned Solo or Environmental and the cast list contains major supporting characters, upgrade the composition to Duo/Trio or use an Environmental composition with all required figures visible inside the scene. Do not accept a cover where a major supporting character is absent, hidden by crop, reduced to an unreadable silhouette, or replaced by a generic figure.
 
@@ -659,6 +663,7 @@ done
 | Title legible | Clear, font matches genre |
 | Genre match | Visual style matches book |
 | Composition | Subject prominent, text not blocking key art |
+| Visible cast | 1–4 discernible people; ensemble conflicts use 3–4, never a readable crowd |
 | Ratio correct | 2:3 portrait |
 
 **Automated pass criteria (unattended):** If `public/covers/{book-slug}.webp` exists and has portrait dimensions (height > width), mark as passed automatically. Do not regenerate unless the file is missing or obviously corrupt (0 bytes). If regeneration is needed, retry once with the same prompt; on second failure, skip and log the book as needing manual cover review.
