@@ -459,6 +459,30 @@ Load references only when entering that phase. Do not preload all references at 
 ### L2 — Session Depth references
 
 - **`story-long-write.md`** — long-form chapter writing pipeline, context handoff, pacing guidelines, mandatory cliffhanger techniques, scene-level suspense rules, chapter 1 cold-traffic hook structure (200-word beat checkpoints, line-1 bans, backstory cap). Load at A1 long-form.
+- **Pressure-genre guides** — when the external conflict below is a primary story engine, load its dedicated guide alongside `story-long-write.md` and the broad genre file. These guides define the power system, evidence chain, escalation architecture, public reversal, safety boundaries, and genre-specific QA:
+
+  | Story engine | Reference |
+  |---|---|
+  | Family abuse, illegitimacy, inheritance theft | `genre-family-abuse.md` |
+  | Workplace persecution and industry blacklisting | `genre-workplace-persecution.md` |
+  | Marital control, forced marriage, replacement bride | `genre-marital-control.md` |
+  | Adult campus power and elite bullying | `genre-campus-power.md` |
+  | Medical conspiracy, switched infants, false confinement | `genre-medical-conspiracy.md` |
+  | Cult control and closed-community escape | `genre-cult-control.md` |
+  | Wealthy-family captivity and erased identity | `genre-family-captivity.md` |
+  | Trafficking, illegal adoption, stolen identity networks | `genre-trafficking-illegal-adoption.md` |
+  | Stalking, surveillance, impersonation | `genre-stalking-control.md` |
+  | Gang debt, hostage families, criminal succession | `genre-gang-debt.md` |
+  | Wrongful conviction and corrupt justice | `genre-wrongful-conviction.md` |
+  | Digital blackmail, deepfakes, networked humiliation | `genre-digital-blackmail.md` |
+  | Entertainment-industry coercion and contract blacklisting | `genre-entertainment-coercion.md` |
+  | Sports bullying, doping frames, match corruption | `genre-sports-bullying.md` |
+  | Military and private-security control | `genre-military-security-control.md` |
+  | Survival games and human hunts | `genre-survival-game.md` |
+  | Small-town dynasties and covered disappearances | `genre-small-town-corruption.md` |
+  | Revenge judgment and public reckoning | `genre-revenge-judgment.md` |
+
+  If two guides apply, designate one as the primary plot engine and use the second only for its relevant subsystem. Do not merge multiple guides into a premise that lacks a single clear victory condition.
 - **`story-short-write.md`** — short-form story pipeline, emotion-first structure. Load at A1 short-form.
 - **`story-import.md`** — import and split an existing manuscript into project structure. Load at A1 import.
 - **`story-review.md`** — multi-perspective structural and prose review. Load at A3.

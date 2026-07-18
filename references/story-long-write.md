@@ -2,7 +2,7 @@
 
 Load this reference when the user asks to write, continue, or revise long-form novel chapters.
 
-**Before writing:** load the relevant genre file alongside this reference — `genre-romance.md`, `genre-mystery.md`, `genre-horror.md`, `genre-fantasy.md`, `genre-scifi.md`, or `genre-drama.md`. Genre-specific named emotional states, scene techniques, escalation registers, and synopsis formulas are there, not here.
+**Before writing:** load the relevant broad genre file alongside this reference — `genre-romance.md`, `genre-mystery.md`, `genre-horror.md`, `genre-fantasy.md`, `genre-scifi.md`, or `genre-drama.md`. If the premise uses a pressure genre listed in `SKILL.md` (family captivity, workplace persecution, medical conspiracy, digital blackmail, and related systems), load that dedicated guide too. The broad file controls emotional and scene technique; the pressure-genre guide controls the power system, evidence chain, escalation, public reversal, and safety boundary.
 
 ## Niche Research Input
 
