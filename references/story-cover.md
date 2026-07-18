@@ -4,6 +4,30 @@ Load this reference when the user asks to generate a novel cover (/story-cover, 
 
 **Execution principle: invoke tools directly. Never surface a "please run X" prompt to the user mid-phase. Call the image generation tool, write the file, log the result — then move on.**
 
+## Contents
+
+- A2 entry, modes, and batch discovery
+- Character visual sheet and genre routing
+- Batch composition and visible-person cap
+- Traffic-cover conflict direction
+- Prompt construction and generation cascade
+- Post-processing, exposure audit, and visual QA
+
+## Cover Generation Contract
+
+Treat these as acceptance criteria, not optional style advice:
+
+1. **Normal exposure by default:** use mid-key, scene-appropriate lighting. Keep natural skin tones, readable shadow detail, controlled highlights, and local contrast. `Not dark` never means `high-key`, `white background`, or `washed out`.
+2. **One frozen scandal:** show a specific irreversible moment—an accusation, exposed proof, ceremony interruption, betrayal caught, rescue collision, or public humiliation. A cast lineup is not a scene.
+3. **Three to four people for ensemble conflict:** prefer 3–4 clearly differentiated adults when the premise is kidnapping, mafia, bullying, family war, public betrayal, or gang crime. Never exceed 4 discernible people. Use fewer only when the premise genuinely has fewer active roles.
+4. **Exaggerated reaction chain:** every visible face needs a different story role and readable emotion. At least 2 faces must show unmistakable shock, fury, panic, guilt, grief, or accusation. Reject neutral model posing.
+5. **One thumbnail-readable proof object:** make the document, scan, ring, photograph, phone, ledger, token, or other evidence large enough to understand at 160px wide.
+6. **Generate art without typography:** reserve clean top and lower safe zones, then add exact text deterministically. Do not bake a genre chip into the image when the site card already renders one.
+7. **No prestige drift:** do not use elegant/editorial/subtle/movie-poster direction unless the user explicitly asks for it. Traffic covers should feel like a high-conflict short-drama freeze-frame, not luxury key art.
+8. **Inspect the final card, not only the source image:** overlays, title bands, UI chips, and image crops are part of the cover. Reject collisions, duplicated labels, covered faces, black mud, and white fog.
+
+**Instruction precedence:** the user's explicit direction and supplied visual references come first; this contract comes second; genre pattern blocks and allure guidance come after it. A genre template must never override the visible-person cap, frozen-conflict requirement, normal-exposure default, or final-card QA. When instructions conflict, preserve story clarity and conflict—not glamour, darkness, skin exposure, or cinematic atmosphere.
+
 ## A2 Entry Check
 
 **MANDATORY — run this bash command before anything else. Do not skip it. Do not assume the result.**
@@ -230,38 +254,55 @@ Use this hierarchy for promotion-led covers about revenge, captivity, criminal p
 
 Generate the character art without text, then add exact typography with a deterministic HTML/CSS layer when misspelled model text would weaken the cover. Do not copy a reference application's badge, wording, colors, or achievement name; reuse only its hierarchy and spatial rhythm.
 
-**Luminance preservation — mandatory:** if the visual reference is high-key, bright, airy, pale, or whitespace-led, preserve that exposure. Do not translate a bright reference into a night scene merely because the story is dangerous. For this template, default to warm ivory, pale stone, mist grey, daylight glass, or another light field with darker characters and evidence objects; use a low-key/night variant only when the reference or user explicitly asks for it.
+**Luminance preservation — mandatory:** match a supplied reference's exposure family—low-key, mid-key, or high-key—without exaggerating it. Do not translate a bright reference into night, and do not translate `not dark` into overexposed white. Without a reference or explicit direction, use **mid-key normal exposure**. Warm ivory, pale stone, mist grey, and daylight glass are background colors, not instructions to lift skin and highlights toward white.
 
-## Brightness and dark-cover gate
+## Exposure Gate — Reject Dark Mud and White Fog
 
 Apply these rules to every cover batch, especially crime, thriller, mafia, bullying, horror, and revenge:
 
 - Dark subject matter is not a palette instruction. Do not stack `night`, `midnight`, `black`, `deep shadow`, `dark archive`, and similar low-key terms in one prompt unless the user explicitly requested a dark cover.
-- In a multi-cover batch, no more than half the covers may use low-key/night treatment. Include at least one high-key cover and give adjacent cards visibly different exposure levels.
+- `Readable`, `daylight`, and `not dark` are not instructions to overexpose. Do not stack `bright`, `high-key`, `airy`, `white`, `glowing`, and `soft haze` in one prompt. Do not add global white veils or fog to solve typography.
+- In a multi-cover batch, default at least half of the covers to mid-key normal exposure. Use low-key or high-key treatment only when the scene/reference earns it; adjacent cards may vary without occupying opposite extremes.
 - Faces, proof objects, and the main conflict must remain readable at 160px wide without increasing screen brightness.
-- Preserve at least 25–35% light or midtone area in high-key and mid-key covers. Negative space means uncluttered space, not necessarily black space.
-- Post-processing may use a localized text band or gradient, but black overlay opacity must not exceed 72%. Never cover the entire lower third with near-opaque black (`0.9+`) solely to make typography easier.
+- Preserve highlight texture in white clothes, walls, sky, paper, and skin. If these merge into a flat white field, the cover is overexposed even when faces remain visible.
+- Post-processing may use a localized text band or gradient. Cap both black and white overlays at **72% opacity**, keep them out of faces and proof objects, and never cover the entire lower third with a near-opaque veil (`0.9+`). Prefer a compact title plate, text stroke, shadow, or localized 20–55% gradient.
 - When adapting a supplied reference, match its overall luminance, contrast direction, and whitespace before borrowing decorative details such as rings, axes, badges, or borders.
+- Audit the generated art and the final composited WebP separately. A correct source image can be ruined by the text overlay.
 
-Run an automated luminance check after final WebP export. The following is a warning gate, not a replacement for visual QA:
+Run an automated luminance check after final WebP export. The thresholds are deliberately broad; they catch extremes and do not replace visual QA:
 
 ```bash
 python3 - "$COVER_PATH" <<'PY'
 from PIL import Image
 import sys
-im = Image.open(sys.argv[1]).convert('RGB').resize((128, 128))
-values = []
-for r, g, b in im.getdata():
-    values.append((0.2126*r + 0.7152*g + 0.0722*b) / 255)
+im = Image.open(sys.argv[1]).convert('RGB').resize((128, 192))
+def luminance_values(region):
+    return [(0.2126*r + 0.7152*g + 0.0722*b) / 255 for r, g, b in region.getdata()]
+values = luminance_values(im)
 mean = sum(values) / len(values)
 dark_share = sum(v < 0.12 for v in values) / len(values)
-print(f"mean_luminance={mean:.3f} dark_pixel_share={dark_share:.3f}")
+bright_share = sum(v > 0.92 for v in values) / len(values)
+middle = luminance_values(im.crop((0, 64, 128, 128)))
+lower = luminance_values(im.crop((0, 128, 128, 192)))
+middle_mean = sum(middle) / len(middle)
+lower_mean = sum(lower) / len(lower)
+lower_bright_share = sum(v > 0.92 for v in lower) / len(lower)
+lower_lift = lower_mean - middle_mean
+print(
+    f"mean_luminance={mean:.3f} dark_pixel_share={dark_share:.3f} "
+    f"bright_pixel_share={bright_share:.3f} lower_mean={lower_mean:.3f} "
+    f"lower_bright_share={lower_bright_share:.3f} lower_lift={lower_lift:.3f}"
+)
 if mean < 0.18 or dark_share > 0.65:
-    raise SystemExit("FAIL: cover is too dark; regenerate or reduce the overlay")
+    raise SystemExit("FAIL_DARK: regenerate, lift scene exposure, or reduce the black overlay")
+if mean > 0.62 or bright_share > 0.45:
+    raise SystemExit("FAIL_BRIGHT: regenerate, restore midtones, or reduce the white overlay")
+if (lower_mean > 0.78 and lower_lift > 0.22) or lower_bright_share > 0.40:
+    raise SystemExit("FAIL_LOWER_VEIL: reduce/remove the lower-third white overlay")
 PY
 ```
 
-If the gate fails, do not accept the cover automatically. First remove stacked dark prompt terms and reduce overlays; regenerate with `high-key editorial lighting`, `bright readable faces`, and an explicit pale or daylight background. Then visually compare the full batch as a row, not only one cover at a time.
+If `FAIL_DARK`, remove stacked dark prompt terms, lift the scene to normal exposure, and reduce black overlays. If `FAIL_BRIGHT`, remove stacked bright/high-key/haze terms, restore midtone contrast, and reduce white overlays. If `FAIL_LOWER_VEIL`, keep the source art and fix the deterministic composition layer first. The regional check exists because an opaque lower-third veil can look bad while the whole-image average still appears acceptable. Do not correct one extreme by forcing the opposite extreme. Then visually compare the full batch as a row and as rendered cards, not only one source cover at a time.
 
 Operator quick reference:
 - **Solo** means one character owns the cover. Use it when the protagonist's individual arc is stronger than the relationship dynamic, or when the genre benefits from a single iconic figure.
@@ -307,18 +348,49 @@ Every cover is also a Facebook ad creative. Apply these standards inside Step 2 
 
 **The 0.3-second test (mandatory gate):** A viewer scrolling their feed at full speed must feel something in under 0.3 seconds — not just notice an attractive person. If the image would read as a fashion photo or stock portrait, it fails the test. Rewrite the prompt.
 
-### Traffic-cover style lock — no prestige fallback
+### Traffic-cover style lock — normal exposure, no prestige fallback
 
-Unless the user explicitly asks for an elegant or cinematic cover, traffic fiction uses **bright dog-blood short-drama conflict**, not premium editorial restraint.
+Unless the user explicitly asks for an elegant or cinematic cover, traffic fiction uses **normally exposed dog-blood short-drama conflict**, not premium editorial restraint. `Normal exposure` means believable scene light, natural skin, retained highlight texture, readable midtones, and enough contrast to separate people from the setting.
 
 - **Required frozen action:** show an accusation, slap-down of evidence, ceremony interruption, caught betrayal, public exposure, rescue collision, or comparable irreversible moment. Characters must be doing something to one another; standing in a symmetrical lineup is not a scene.
 - **Required reaction chain:** assign every visible person a distinct readable reaction such as wide-eyed shock, open-mouthed panic, finger-pointing accusation, tearful fury, guilty recoil, desperate grabbing, or stunned disbelief. At least 2 faces must be exaggerated; no visible face may be neutral without a plot-specific reason.
 - **Required proof object:** make the document, scan, ring, child, phone, ledger, photograph, test result, or other scandal proof large enough to read as evidence at thumbnail size.
-- **Bright readability:** default to daylight, bright ballroom, hospital-white, courthouse daylight, office fluorescents, or clean high-key interior lighting. Dark genres still need fully exposed faces and saturated separation.
+- **Normal readability:** choose a believable ballroom, hospital, courthouse, office, harbor, street, or home exposure. Faces must be readable, but white clothing and walls must retain texture. Use direct light plus controlled fill—not global haze, a white wash, or lifted blacks.
 - **Prompt bans:** remove `premium`, `prestige`, `high-end editorial`, `fashion editorial`, `elegant`, `sophisticated`, `subtle`, `restrained expression`, `calm power`, `quiet intensity`, `moody cinematic`, `85mm prestige portrait`, and `atmosphere-first` unless the user explicitly requested them.
 - **Composition bans:** reject a beautiful cast lineup, harmonious group portrait, everyone looking away, characters standing without interaction, symmetrical power tableau with neutral faces, or a generic couple centered like a wedding poster.
 
-Before accepting a cover, state the frozen scandal in one sentence and label each visible person's action and emotion. If that cannot be done from the pixels without reading the title, regenerate it.
+Before accepting a cover, state the frozen scandal in one sentence and label each visible person's action and emotion. If that cannot be done from the pixels without reading the title, regenerate it. Also name the dominant lighting condition in one phrase; if the only honest description is `very dark` or `washed out`, reject it.
+
+### Prompt assembly — write observable direction
+
+Build the prompt in this order. Use concrete nouns and actions; do not substitute aesthetic adjectives for staging.
+
+```text
+PURPOSE: traffic-fiction cover, photorealistic short-drama freeze-frame, normal mid-key exposure.
+EVENT: [one irreversible scandal in a single sentence].
+CAST: exactly [1–4] discernible adults; list each role, position, physical action, and distinct expression.
+PROOF: [one large evidence object], held toward camera or placed in the focal plane.
+SETTING: [one instantly recognizable story world], uncluttered enough for thumbnail reading.
+LIGHT: believable [daylight / warm interior / fluorescent / overcast] exposure; natural skin; controlled highlights; readable shadows; no fog or wash.
+COMPOSITION: portrait 2:3, medium-wide or medium shot, triangular/asymmetric action, faces and proof unobstructed, clean top and lower text safe zones.
+NEGATIVE: no text, no watermark, no crowd, no extra faces, no neutral posing, no fashion lineup, no romantic embrace, no prestige poster, no deep crushed shadows, no overexposure, no blown white clothing, no white haze.
+```
+
+Do not write mutually cancelling directions such as `bright high-key` plus `deep moody shadows`, or `clean minimal composition` plus a long list of background extras. If a prompt needs more drama, intensify the **event, gestures, and expressions** before changing exposure or adding people.
+
+### Conflict staging patterns
+
+Choose one pattern per cover and vary it across a batch:
+
+| Pattern | Foreground action | Reaction chain | Proof object |
+|---|---|---|---|
+| Public accusation | protagonist thrusts evidence toward accused person | fury → guilty recoil → witness shock | contract, test, photograph |
+| Ceremony interruption | intruder stops vows/award/announcement | outrage → panic → authority alarm | ledger, ring, sealed letter |
+| Rescue collision | rescuer pulls victim from vehicle/doorway while another blocks them | fear → protective rage → exposed guilt | key, family seal, restraint |
+| Institutional humiliation | target stands up against official or elite antagonist | defiance → accusation → stunned bystander | receipts, scholarship file, verdict |
+| Identity exposed | protagonist displays proof while rival tries to seize it | resolve → panic → disbelief | certificate, badge, name record |
+
+The evidence object supports the conflict; it must not introduce an extra readable face. Avoid photographs with a large portrait when the visible-person count is already at the cap.
 
 ### Five scroll-stop signals — bake all five into every cover prompt
 
@@ -377,15 +449,15 @@ Bare shoulders + clutched sheet outperforms full nudity for Facebook delivery (b
 
 ### Reference image — canonical T2 template (GPT-native, high-CTR Facebook ad, romance / billionaire)
 
-**Use `gpt-image-2-all` for this template.** This is the GPT-native T2 composition — "morning-after scandal" scene. Produces hyperrealistic photograph quality (looks like a real editorial photo, not a rendered image). Validated high-CTR for romance / billionaire covers.
+**Use `gpt-image-2-all` for this template.** This is the GPT-native T2 composition — "morning-after scandal" scene. Produce a believable short-drama publicity photograph, not a polished fashion image or rendered poster.
 
-**Key quality signal: specify a real camera + lens.** This is the single most effective trigger for photorealism — the model believes it is describing a photograph, not generating art. Always include `shot on Canon EOS R5 with 85mm f/1.4 lens` (or equivalent) in the opening line. Do NOT use `cinematic drama still` or `film-still` — these pull toward stylized TV-show quality instead of raw photo realism.
+**Key quality signal: specify a real camera + scene-appropriate lens.** Use `35mm f/4` for 3–4-person conflict so hands, evidence, and all faces remain readable; use `50mm f/2.8` for Solo/Duo. Avoid `85mm f/1.4` for ensembles because shallow focus and portrait compression encourage prestige posing and blur supporting reactions. Do not use `cinematic drama still` or `film-still` unless the user requests that treatment.
 
 Use for any contemporary romance / billionaire cover at T2 tier:
 
 ```
-photorealistic editorial photography, looks exactly like a real photograph taken by a professional photographer,
-shot on Canon EOS R5 with 85mm f/1.4 lens, natural skin texture with visible pores and real imperfections,
+photorealistic short-drama publicity photography, looks like a real on-location photograph,
+shot on Canon EOS R5 with 50mm f/2.8 lens, natural skin texture with visible pores and real imperfections,
 real hair strands with natural weight and movement, candid unposed capture,
 NO CGI NO 3D render NO illustration NO painting NO anime NO cartoon NO digital art NO artwork,
 luxury penthouse bedroom, floor-to-ceiling windows with city skyline at dawn, warm golden morning light,
@@ -399,25 +471,35 @@ male lead [ethnicity] [hair], late 20s to mid-30s, casual [color] open-collar sh
 seated on bed behind her, watching her with quiet intensity, positioned smaller in mid-ground, slightly soft-focus,
 
 white linen bedding, warm amber morning light, shallow depth of field bokeh,
-photorealistic photograph, editorial photography composition, no text, no watermark, 9:16 vertical
+photorealistic candid drama photograph, no text, no watermark, 9:16 vertical
 ```
 
 Substitute `[ethnicity]`, `[hair]`, `[eye color]` from the book's `character-visuals.md`.
 
 ---
 
-## Step 2 — Build the prompt
+## Step 2 — Build the art prompt and deterministic text spec
 
-All prompt text in English. Structure: text layer + style layer + visual layer.
+Write the image-generation prompt in English and keep it **text-free**. Store title, author, optional hook, typography, and placement as a separate deterministic composition spec. This prevents misspellings and avoids duplicating UI-rendered genre chips.
 
 ```
 [Genre style from cover-styles.md].
-Title text '{book-title}' at top center in [title font style for genre].
-Author name '{pen-name}' at bottom center in [author name style for genre].
+[Frozen scandal, cast actions/reactions, and proof object from Prompt assembly].
 [genre style tags]. [character description]. [background description].
 [color palette]. [lighting].
-photorealistic editorial photography, looks exactly like a real photograph taken by a professional photographer, shot on Canon EOS R5 with 85mm f/1.4 lens, natural skin texture with visible pores, real hair strands with natural movement, candid unposed capture, NO CGI, NO 3D render, NO illustration, NO painting, NO anime, NO cartoon, NO digital art, NO artwork, portrait [ratio] ratio,
-keep title and author name inside the central safe area (inner ~85%), no watermark
+photorealistic short-drama publicity photography, looks like a real on-location photograph, shot on Canon EOS R5 with 35mm f/4 lens for ensemble scenes or 50mm f/2.8 for one to two people, natural skin texture with visible pores, all required faces in focus, real hair strands with natural movement, caught mid-action, NO CGI, NO 3D render, NO illustration, NO painting, NO anime, NO cartoon, NO digital art, NO artwork, portrait [ratio] ratio,
+clean top and lower safe zones, no text, no letters, no logo, no watermark
+```
+
+Deterministic text spec:
+
+```text
+title: exact book title
+author: exact pen name, only if the product surface displays it inside cover art
+hook: zero or one consequence-led line
+genre/status label: omit when the site card already supplies a chip
+overlay: localized only; 20–55% preferred, 72% hard cap for either black or white
+safe zones: never cover faces, hands in action, or the proof object
 ```
 
 **Character count — use the composition type assigned in Step 1.6:**
@@ -469,18 +551,18 @@ The diversity plan may vary pose, framing, palette, and environmental dominance,
 **Figure rule — apply by genre:**
 
 **Romance / romance / Contemporary Drama (T2–T4, roll per cover):**
-The female character must be visually magnetic — impossible to scroll past. **Exposure = randomly T2, T3, or T4, picked independently per cover** — roll once per book and bake that tier's assembly block from the Exposure Tiers table (`references/cover-allure-elements.md`) directly into the prompt. Required elements by tier:
+The female character must be visually magnetic — impossible to scroll past. **Allure tier = randomly T2, T3, or T4, picked independently per cover** — roll once per book and bake that tier's assembly block from the Exposure Tiers table (`references/cover-allure-elements.md`) directly into the prompt. Required elements by tier. In this reference, **exposure** without a `T` number always means image luminance; `T2–T4` means allure/clothing tier.
 
 | Element | T2 (Bold) | T3 (Maximum) | T4 (Limit) |
 |---------|-----------|--------------|------------|
 | **Clothing** | Deep neckline + bare back/midriff/high slit — two simultaneous revealing elements | Garment failing in multiple places: torn, slipped, soaked, or sheer — the garment is losing | Clothing has already left — one nominal draping element only (silk sheet corner, sheer panel, wisp of fabric) |
 | **Skin** | Cleavage + one secondary zone | Three or more zones simultaneously (bare back, legs, midriff, shoulders, extreme neckline) | Every zone simultaneously except §0-protected; frame reads as total skin with a single covered point |
 | **Figure** | `voluptuous hourglass figure, slim toned waist dramatically cinched, large full bust dramatically prominent, E-cup figure, long shapely legs` | Same figure — drop explicit `E-cup`, use visual-effect phrasing only | Same figure, described through what the drape reveals rather than the figure itself |
-| **Model** | **gpt-image-2-all primary** (doubao fallback) — T2 is GPT's natural ceiling; produces Image-5-quality prestige-drama stills | doubao primary (GPT hard-rejects T3 fabric-failure/soaked/torn language) | doubao primary only — **do not attempt gpt at T3 or T4** (hard rejection); nano as terminal fallback |
+| **Model** | **gpt-image-2-all primary** (doubao fallback) — T2 is GPT's natural ceiling; direct it toward candid short-drama action | doubao primary (GPT hard-rejects T3 fabric-failure/soaked/torn language) | doubao primary only — **do not attempt gpt at T3 or T4** (hard rejection); nano as terminal fallback |
 
 - Pose: use the pose assigned in Step 1.6 (batch) or pick freely from the Poses table (single-book). From-behind poses cap at 2 per site.
 - Framing: state explicitly in every prompt. Never allow the model to default to a face-only crop.
-A modest, fully-clothed, non-contact composition is a quality gate failure for romance/drama. Exposure is stochastic — bake in higher-tier fragments, never accept a weak roll. Hard floor: no nipples, no genitals, no sex acts (§0 in `cover-allure-elements.md`). Everything above that floor: push it.
+A modest, fully-clothed, non-contact composition is a quality gate failure for romance/drama. Allure tier is stochastic — bake in higher-tier fragments, never accept a weak roll. Hard floor: no nipples, no genitals, no sex acts (§0 in `cover-allure-elements.md`). Everything above that floor: push it. The allure tier never authorizes overexposure or weakening the frozen conflict.
 
 **Fantasy / Paranormal / Historical (T1–T2, physique-forward):**
 Figure should read as powerful, magnetic, and physically present — not demure or neutral. Describe body type in genre-appropriate terms: `athletic and lithe`, `commanding presence, tall and broad-shouldered`, `ethereal beauty, slender and graceful`. Include at least one deliberate skin detail (bare shoulder, exposed collarbone, fitted bodice, wind-pulled skirt). Clothing should be atmospheric and body-conscious — flowing but structured, battle-worn but fitted.
@@ -515,11 +597,11 @@ Use `COVER_TMP` as `OUTPUT_PATH` in the apiyi generator below.
 
 ### Model capability ranking (cascade order)
 
-Four apiyi models are viable for covers. **GPT is primary** for T1/T2 — with the correct photographic prompt language it produces hyperrealistic photograph quality (looks like a real editorial photo shot on a camera, not a rendered image). The generator tries them **in this order** and falls through to the next on any failure:
+Four apiyi models are viable for covers. **GPT is primary** for T1/T2 — use on-location photography language, explicit actions, and reaction chains so the result reads as a real short-drama incident rather than a rendered or fashion image. The generator tries them **in this order** and falls through to the next on any failure:
 
 | Rank | Model | Size | Response | Notes |
 |---|---|---|---|---|
-| 1 (primary, T1/T2) | `gpt-image-2-all` | `848x1280` | `b64_json` (PNG) | **Primary.** Hyperrealistic photograph quality — with `shot on Canon EOS R5 85mm f/1.4` prompt language, output looks like a real editorial photograph (visible pores, natural hair, candid energy). Clean output, no watermark. Max safe tier: T2 (bare shoulders + concealing element). Hard-rejects T3/T4 fabric-failure, soaked-clinging, torn-garment language — skip it for T3/T4 covers. |
+| 1 (primary, T1/T2) | `gpt-image-2-all` | `848x1280` | `b64_json` (PNG) | **Primary.** Use `Canon EOS R5, 35mm f/4` for 3–4-person conflicts so every face and hand stays readable; use `50mm f/2.8` for Solo/Duo. Ask for real skin, natural hair, caught-mid-action energy, and all required faces in focus. Clean output, no watermark. Max safe tier: T2. Hard-rejects T3/T4 fabric-failure, soaked-clinging, torn-garment language — skip it for T3/T4 covers. |
 | 2 (fallback, T1/T2 only) | `gemini-3.1-flash-image-4k` | `1664x2496` | `b64_json` (raw, no prefix) | **Fallback when GPT fails/times out on T1/T2.** Free-form sizing, no watermark, true 4K. Not used for T3/T4 — its tolerance for fabric-failure/torn/soaked language is unverified and likely shares GPT's rejection behavior. |
 | 3 (fallback) | `doubao-seedream-5-0-260128` | `1664x2496` | `url` (JPEG) | **Primary for T3/T4; fallback for T1/T2 when GPT and Gemini both fail.** Most permissive content filter. **Stamps an `AI生成` watermark in the bottom-right corner — must crop it (see post-process).** |
 **nano-banana-pro — terminal blank-prevention fallback:**
@@ -574,7 +656,7 @@ if   [ "$TIER" = "T3" ] || [ "$TIER" = "T4" ]; then
   gen_cover_apiyi "nano-banana-pro"            "1024x1024" && MODEL_USED="nano-banana-pro" || \
   { MODEL_USED=""; echo "ALL_MODELS_FAILED — skipping book"; }
 else
-  # T1/T2: GPT first (prestige drama still), gemini fallback (no watermark, true 4K), doubao last
+  # T1/T2: GPT first (candid short-drama incident), gemini fallback (no watermark, true 4K), doubao last
   if   gen_cover_apiyi "gpt-image-2-all"            "848x1280";  then MODEL_USED="gpt-image-2-all"
   elif gen_cover_apiyi "gpt-image-2-all"            "848x1280";  then MODEL_USED="gpt-image-2-all"           # retry once
   elif gen_cover_apiyi "gemini-3.1-flash-image-4k"  "1664x2496"; then MODEL_USED="gemini-3.1-flash-image-4k"
@@ -720,13 +802,41 @@ done
 
 | Check | Standard |
 |---|---|
-| Title legible | Clear, font matches genre |
-| Genre match | Visual style matches book |
-| Composition | Subject prominent, text not blocking key art |
-| Visible cast | 1–4 discernible people; ensemble conflicts use 3–4, never a readable crowd |
+| Frozen conflict | Specific scandal is understandable without title or synopsis |
+| Reaction chain | Every face has a distinct role/emotion; at least 2 are unmistakably exaggerated for ensemble drama |
+| Proof object | Large and recognizable at 160px thumbnail width |
+| Visible cast | 1–4 discernible people; ensemble conflicts normally use 3–4; count faces inside photos/screens too |
+| Exposure | Normal mid-key by default; no crushed shadow mass, blown skin/whites, or global black/white veil |
+| Typography | Exact title is legible; no model-generated gibberish; text avoids faces and proof |
+| UI integration | No duplicate genre chip, collision, unintended crop, or overlay introduced by the card component |
+| Genre match | Setting and conflict match the book's actual primary genre; do not label every story romance |
 | Ratio correct | 2:3 portrait |
 
-**Automated pass criteria (unattended):** If `public/covers/{book-slug}.webp` exists and has portrait dimensions (height > width), mark as passed automatically. Do not regenerate unless the file is missing or obviously corrupt (0 bytes). If regeneration is needed, retry once with the same prompt; on second failure, skip and log the book as needing manual cover review.
+### Mandatory acceptance sequence
+
+1. Verify file exists, decodes, is 2:3 portrait, and is ≤300 KB.
+2. Run the exposure gate on the **final WebP**.
+3. Render or inspect the cover at full size and at 160px width.
+4. Inspect the actual site card at desktop and mobile breakpoints when the cover is already integrated.
+5. Write a one-line QA record: `event | cast count | expressions | proof | exposure metrics | UI collisions`.
+
+**Never mark a cover passed from dimensions alone.** Retry with a corrected prompt or corrected deterministic overlay based on the failed gate:
+
+- Wrong/missing people, weak expressions, unclear event, or bad proof → regenerate the art.
+- Correct art but dark/white veil, bad title placement, duplicate chip, or crop collision → fix the deterministic composition; do not regenerate characters.
+- Text generated inside the art → regenerate text-free or inpaint/remove it, then composite exact text.
+- Retry once per distinct failure mode. If it still fails, log the exact failed gate and exclude the cover from delivery rather than silently accepting it.
+
+### Batch QA matrix
+
+Before delivery, inspect the covers together in display order. Reject the batch when:
+
+- every cover uses the same room, palette, gesture, or evidence object;
+- every cover sits at the same exposure extreme;
+- adjacent covers are visually interchangeable at 160px;
+- any row reads as prestige movie posters instead of scandal scenes;
+- any cover relies on a title to explain what is happening;
+- the final card repeats image-baked labels already supplied by UI.
 
 ## Output Location
 
