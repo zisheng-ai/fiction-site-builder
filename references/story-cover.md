@@ -218,6 +218,18 @@ A cover where the figure is fully clothed, covered from neck to ankle with no bo
 | **Trio** | Love triangle, rival over shoulder, court/pack dynamic with 3–4 key figures | 3–4 |
 | **Environmental** | Thriller, mystery, horror — figure(s) small against a dramatic landscape/setting | 1–2, environment dominant |
 
+### Status / Case Unlocked template
+
+Use this hierarchy for promotion-led covers about revenge, captivity, criminal power, rank changes, public exposure, or a protagonist entering a dangerous new status:
+
+1. **Top status label:** one short genre/status line inside a compact bordered band.
+2. **Central power tableau:** a protagonist-led cluster of 3–4 clearly differentiated adults arranged like an emblem; use a strong vertical axis, faint concentric rings, and an optional subtle split background. The people replace a literal game badge or copied achievement icon.
+3. **Oversized lower title:** exact title in the lower third, kept off faces and evidence props.
+4. **Single hook band:** one consequence-led line beneath the title; do not stack multiple blurbs.
+5. **Whitespace:** reserve clean space around the top label and title so the cover reads at 160px wide.
+
+Generate the character art without text, then add exact typography with a deterministic HTML/CSS layer when misspelled model text would weaken the cover. Do not copy a reference application's badge, wording, colors, or achievement name; reuse only its hierarchy and spatial rhythm.
+
 Operator quick reference:
 - **Solo** means one character owns the cover. Use it when the protagonist's individual arc is stronger than the relationship dynamic, or when the genre benefits from a single iconic figure.
 - **Duo** means two characters share the cover. Use it for romance, drama, fantasy pairs, detective pairs, or allies where the relationship is the selling hook.
@@ -370,6 +382,8 @@ keep title and author name inside the central safe area (inner ~85%), no waterma
 | **Duo** | 2 (two leads) | Two-character focus; romance, drama, fantasy duo, detective pair, or allies. Describe both explicitly. |
 | **Trio** | 3–4 | Love triangle, rival figure, pack/court conflict. Keep a clear focal pairing; the third or fourth figure must have a distinct relationship role. |
 | **Environmental** | 1–2, small against scene | Figure(s) partially subsumed by the dramatic environment. Best for thriller/mystery/gothic. |
+
+For a Status / Case Unlocked cover, build the prompt as a text-free backdrop with clean top and lower zones, then composite the status label, exact title, and one hook after generation. Preserve the same hard cap of 4 discernible people.
 
 **Genre defaults when Step 1.6 has not been run (single-book mode):**
 
