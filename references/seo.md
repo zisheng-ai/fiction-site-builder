@@ -754,7 +754,7 @@ The `src/app/articles/[slug]/page.tsx` must implement:
 2. **Section split:** `content.split(/\n\s*---\s*\n/)` after stripping the leading H1. Insert ad slots between sections.
 3. **Primary CTA block:** `books[0]` → `/book/{slug}` link. Never use `cta_url` for navigation — it is metadata only.
 4. **Sidebar:** related books with cover thumbnails linking to `/book/{slug}`.
-5. **List page thumbnail:** `src/app/articles/page.tsx` shows `cover` as a thumbnail (2:1 aspect) when present.
+5. **List page cover:** `src/app/articles/page.tsx` must give the landscape cover enough visual weight to communicate the article topic. Use a full-width `16:9` image above the text on mobile and at least `288×162px` beside the text from `sm` upward. The article-list content column should be at least `max-w-5xl`; do not use the old `96–128px` postage-stamp thumbnail pattern.
 
 ### 15.5 — Common Article Mistakes
 
