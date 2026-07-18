@@ -2,6 +2,28 @@
 
 Reference for `story-cover.md`. Genre-to-visual-style mapping for cover image generation prompts.
 
+## Traffic-Fiction Default: Melodrama Over Prestige
+
+For paid-traffic fiction, the cover must look like the decisive frame of a high-conflict short drama, not a prestige book jacket or movie poster. This rule overrides softer or more polished examples elsewhere in this file unless the user explicitly requests a literary, atmospheric, or restrained treatment.
+
+**Required visual hierarchy:**
+
+1. **Conflict:** freeze a concrete betrayal, exposure, rejection, interruption, humiliation, confrontation, or reversal. Show visual proof such as a marriage certificate, pregnancy test, torn contract, ring, child, rival, slap aftermath, hospital report, or kneeling ex.
+2. **Expression:** make the emotional roles legible at thumbnail size. Use widened eyes, open-mouth shock, furious accusation, crying disbelief, jealous panic, smug triumph, or visible guilt. Calm model faces and subtle longing are not enough.
+3. **Relationship complexity:** prefer 3–4 figures when the premise contains an ex, rival, child, parent, fiancé, witness, or betrayer. Use gaze, pointing hands, grabbing, blocking, separation, and foreground/background hierarchy to show who wants whom, who betrayed whom, and who holds power.
+4. **Aesthetic polish:** lighting, wardrobe, setting, and allure support the conflict. They never replace it.
+
+**Hard bans for the default traffic-fiction route:**
+
+- No prestige, premium, tasteful, understated, editorial, or awards-season mood as the main selling point.
+- No movie-poster composition built around atmosphere, heroic posing, skyline scale, or cinematic emptiness.
+- No beautiful couple portrait, near-kiss, warm embrace, forehead touch, mutual gaze, or two attractive people merely standing together.
+- No polished billionaire, royal, or elite-family group photo where everyone looks composed and harmonious.
+- No generic luxury penthouse, gala, manor, sports field, moon, or car unless a visible relationship conflict is happening inside the scene.
+- Do not use `cinematic`, `elegant`, `luxury`, or `romantic` as standalone direction. If retained as rendering vocabulary, immediately subordinate it to a named scandal, conflict action, and exaggerated reaction.
+
+**Pass test:** at 160px wide and with the title hidden, a viewer should be able to describe the scandal in one sentence and assign at least three emotional roles, such as “the wife caught her husband with the pregnant mistress while his mother protects them.” If not, redesign the tableau.
+
 ## Site-Level Style Decision
 
 **Before generating any covers, determine the site's primary visual register.** All books on the same site use the same render style — do not mix styles across books unless the site explicitly mixes genres (e.g. a general fiction platform).
@@ -15,7 +37,7 @@ Reference for `story-cover.md`. Genre-to-visual-style mapping for cover image ge
 
 Determine which register fits the site during **B2 (Design Identity)** and record it in the design-system notes. All A2 cover generation for that site uses the same register.
 
-If the site mixes genres, default to **Cinematic Drama** for realism-leaning titles and **Dark Fantasy Illustration** for genre-fantasy titles, but keep color palettes harmonized across covers so the homepage grid feels cohesive.
+If the site mixes genres, default to the **Traffic-Fiction Melodrama** hierarchy above for realism-leaning titles and **Dark Fantasy Illustration** for genre-fantasy titles, but keep color palettes harmonized across covers so the homepage grid feels cohesive.
 
 ---
 
@@ -29,7 +51,9 @@ Both registers target **photorealistic or hyperrealistic 3D render quality** —
 - **Emotional Drama** (Family Drama / Secret Identity / Medical Drama / Grief Fiction): Desaturated or cool-muted editorial photography. Cold-to-warm contrast (grey institutional exterior → warm lamp interior visible through glass). The composition is about threshold, distance, and witness — where characters stand in relation to each other and to spaces that carry their claim. Zero allure. Think: quiet literary fiction cover or long-form magazine photography, not a movie poster.
 
 **Shared quality keywords (include in every prompt):**
-`photorealistic, ultra-detailed, cinematic lighting, 8K render, professional book cover, shallow depth of field, dramatic atmosphere`
+`photorealistic, ultra-detailed, harsh readable lighting, exaggerated facial expressions, high-conflict relationship tableau, professional traffic-fiction cover, thumbnail-legible staging`
+
+Avoid generic `cinematic lighting`, `shallow depth of field`, and `dramatic atmosphere` unless the prompt already names the scandal, every character's role, and their visible reaction. Background blur must not hide witnesses, rivals, or relationship evidence.
 
 ---
 
@@ -267,7 +291,12 @@ Pick the template that best matches the book's core tension. These mirror the re
 ## Prompt Quality Checklist
 
 Before sending a prompt to the image API, verify:
-- [ ] Render style keyword included (`photorealistic`, `hyperrealistic 3D render`, `cinematic`)
+- [ ] The frozen scandal or irreversible conflict can be stated in one sentence
+- [ ] Every visible character has a distinct relationship role and exaggerated readable reaction
+- [ ] A third or fourth figure is included when the premise has a rival, ex, child, parent, witness, or betrayer
+- [ ] The image still communicates the relationship conflict at 160px wide with the title hidden
+- [ ] No generic couple portrait, romantic embrace, near-kiss, harmonious luxury-family photo, or atmosphere-first movie-poster composition
+- [ ] Render style keyword included (`photorealistic` or `hyperrealistic 3D render`)
 - [ ] Color palette specified
 - [ ] Lighting description included
 - [ ] Composition template selected and described
