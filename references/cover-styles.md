@@ -11,7 +11,7 @@ For paid-traffic fiction, the cover must look like the decisive frame of a high-
 1. **Conflict:** freeze a concrete betrayal, exposure, rejection, interruption, humiliation, confrontation, or reversal. Show visual proof such as a marriage certificate, pregnancy test, torn contract, ring, child, rival, slap aftermath, hospital report, or kneeling ex.
 2. **Expression:** make the emotional roles legible at thumbnail size. Use widened eyes, open-mouth shock, furious accusation, crying disbelief, jealous panic, smug triumph, or visible guilt. Calm model faces and subtle longing are not enough.
 3. **Relationship complexity:** prefer 3–4 figures when the premise contains an ex, rival, child, parent, fiancé, witness, or betrayer. Four discernible people is the hard maximum; never turn the full cast into a crowd. Use gaze, pointing hands, grabbing, blocking, separation, and foreground/background hierarchy to show who wants whom, who betrayed whom, and who holds power.
-4. **Aesthetic polish:** lighting, wardrobe, setting, and allure support the conflict. They never replace it.
+4. **Lighting coherence:** choose one believable location-light family and one shadow direction. Lighting supports the conflict but must never make actors look individually keyed, waxy, or pasted into the set.
 
 **Hard bans for the default traffic-fiction route:**
 
@@ -46,13 +46,13 @@ If the site mixes genres, default to the **Traffic-Fiction Melodrama** hierarchy
 
 Both registers target **photorealistic or hyperrealistic 3D render quality** — not painted, not anime, not watercolor. The reference aesthetic is:
 
-- **Mobile Short-Drama Conflict** (Urban Drama / Contemporary / Thriller / Historical Court Drama): low-budget live-action freeze-frame quality. Use handheld wide-angle framing, flat practical light, cramped locations, overlapping gestures, and imperfect faces. Think: the loudest frame from a vertical web drama, never a movie poster or cast photo.
+- **Mobile Short-Drama Conflict** (Urban Drama / Contemporary / Thriller / Historical Court Drama): low-budget live-action freeze-frame quality. Use handheld wide-angle framing, one coherent available-light family, cramped locations, overlapping gestures, and imperfect faces. Think: the loudest frame from a vertical web drama, never a movie poster or cast photo. Do not equate low budget with direct flash, hard LED glare, mixed blue/orange keys, or dead-black backgrounds.
 - **Dark Fantasy Illustration** (Cultivation Fantasy / Dark Fantasy / Sci-Fi): Hyperrealistic 3D render, dark gradient background (deep black → navy/purple), character in detailed fantasy or sci-fi attire, dramatic atmospheric lighting. Gold/silver/chrome metallic typography is large and dominant in the lower 35% of the frame.
 - **British Literary** (Regency / Historical / Cosy Mystery / Gothic / Literary Thriller): Painterly period photography or fine-art editorial quality. Warm cream, muted sage, deep burgundy or charcoal palettes depending on sub-genre. Atmosphere and period detail are the primary subjects; characters are composed and restrained rather than dramatic. Think: BBC period drama production still, literary fiction hardcover jacket.
-- **Emotional Conflict** (Family Drama / Secret Identity / Medical Drama / Grief Fiction): ordinary-location documentary immediacy. Use a hospital corridor, dining table, registry counter, or cramped apartment with harsh practical light, visible paperwork, and one relationship rupture in progress. Zero editorial polish, zero formal family arrangement.
+- **Emotional Conflict** (Family Drama / Secret Identity / Medical Drama / Grief Fiction): ordinary-location documentary immediacy. Use a hospital corridor, dining table, registry counter, or cramped apartment with broad ceiling/window light, visible paperwork, and one relationship rupture in progress. Zero editorial polish, zero formal family arrangement.
 
 **Shared quality keywords (include in every prompt):**
-`photorealistic, ultra-detailed, harsh readable lighting, exaggerated facial expressions, high-conflict relationship tableau, professional traffic-fiction cover, thumbnail-legible staging`
+`photorealistic, ultra-detailed, coherent available light, matte natural skin, exaggerated facial expressions, high-conflict relationship tableau, professional traffic-fiction cover, thumbnail-legible staging`
 
 Avoid generic `cinematic lighting`, `shallow depth of field`, and `dramatic atmosphere` unless the prompt already names the scandal, every character's role, and their visible reaction. Background blur must not hide witnesses, rivals, or relationship evidence.
 

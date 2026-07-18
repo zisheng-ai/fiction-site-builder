@@ -357,9 +357,9 @@ Unless the user explicitly asks for an elegant or cinematic cover, traffic ficti
 Darkening a polished ensemble does not make it a traffic cover. Reject any result that still reads as a movie poster, streaming key art, beauty campaign, romantic couple portrait, or wealthy-family publicity photo. For traffic covers, production value should feel deliberately immediate and inexpensive:
 
 - Prefer a handheld phone-camera or cheap local-TV freeze-frame: 24–28mm wide view, slightly crooked eye level, awkward close crop, overlapping bodies, and evidence pushed toward the lens.
-- Use flat ceiling light, direct phone flash, fluorescent spill, or cheap LED fill. Faces stay readable, but avoid sculpted rim light, beauty key light, bokeh, elegant chiaroscuro, and color-graded teal/orange depth.
+- Use one coherent source family that belongs to the location: neutral office ceiling panels, a warm hotel corridor fixture, overcast outdoor daylight, or soft tungsten on a modest costume-drama set. A weak on-axis fill may lift eyes, but it must not create a second visible light direction. Low budget means simple location light—not direct phone flash, hard LED glare, or random mixed color temperatures. Avoid sculpted rim light, beauty key light, bokeh, elegant chiaroscuro, and teal/orange separation.
 - Use cramped ordinary locations and visibly practical props: a standard hotel room, crowded office, apartment dining room, hospital corridor, registry desk, small hearing room, worn wedding jeep, or modest costume-drama set. Do not establish scale through mansion facades, palace vistas, skyline panoramas, giant moonlight, or epic ruins.
-- Preserve imperfect realism: sweat, creased clothes, tired eyes, visible age, uneven hair, harsh reflections, and unflattering but legible reactions. Reject beauty retouching and actor-poster perfection.
+- Preserve imperfect realism: sweat, creased clothes, tired eyes, visible age, uneven hair, and unflattering but legible reactions. Keep skin matte and dimensional; reject waxy highlights, oily flash glare, beauty retouching, and actor-poster perfection.
 - Every visible person must be caught doing something to another person or the evidence: pushing, grabbing, blocking, pointing, tearing, snatching, recoiling, or shouting. Four people standing in an arc is still a family group photo even when all four look surprised.
 - Typography should resemble a mobile short-drama thumbnail: heavy block title, hard shadow or outline, one loud accent bar, and a compact proof hook. Avoid elegant serif, refined spacing, ornamental gold, and balanced theatrical-poster composition.
 
@@ -372,7 +372,15 @@ At final-card QA, ask: **could this image plausibly be a polished movie poster o
 - **Prompt bans:** remove `premium`, `prestige`, `high-end editorial`, `fashion editorial`, `elegant`, `sophisticated`, `subtle`, `restrained expression`, `calm power`, `quiet intensity`, `moody cinematic`, `85mm prestige portrait`, and `atmosphere-first` unless the user explicitly requested them.
 - **Composition bans:** reject a beautiful cast lineup, harmonious group portrait, everyone looking away, characters standing without interaction, symmetrical power tableau with neutral faces, or a generic couple centered like a wedding poster.
 
-Before accepting a cover, state the frozen scandal in one sentence and label each visible person's action and emotion. If that cannot be done from the pixels without reading the title, regenerate it. Also name the dominant lighting condition in one phrase; if the only honest description is `very dark` or `washed out`, reject it.
+Before accepting a cover, state the frozen scandal in one sentence and label each visible person's action and emotion. If that cannot be done from the pixels without reading the title, regenerate it. Also name the dominant lighting condition in one phrase. If it requires more than one contradictory phrase—such as `warm faces plus blue rim plus flash`—or the only honest description is `very dark`, `washed out`, or `waxy flash`, reject it.
+
+### Lighting-coherence gate
+
+- Choose exactly one dominant color temperature and direction per scene. Background practicals may be visible, but they must belong to the same family and cannot paint separate blue/orange edges around people.
+- All faces in the same plane must share believable exposure and shadow direction. Reject results where each actor appears individually keyed or pasted into the room.
+- Preserve forehead, cheek, nose, paper, satin, and white-clothing texture. Small highlights are acceptable; clipped or greasy facial patches are not.
+- Keep ambient background detail within roughly two stops of the faces. A readable face floating over a dead-black room is a failure.
+- For ordinary interiors, prefer broad ceiling bounce or window diffusion over on-camera flash. For overcast exteriors, use sky diffusion only. For costume sets, use one broad warm overhead/front source and let practical lanterns remain background decoration, not additional keys.
 
 ### Prompt assembly — write observable direction
 
@@ -384,7 +392,7 @@ EVENT: [one irreversible scandal in a single sentence].
 CAST: exactly [1–4] discernible adults; list each role, position, physical action, and distinct expression.
 PROOF: [one large evidence object], held toward camera or placed in the focal plane.
 SETTING: [one instantly recognizable story world], uncluttered enough for thumbnail reading.
-LIGHT: believable [daylight / warm interior / fluorescent / overcast] exposure; natural skin; controlled highlights; readable shadows; no fog or wash.
+LIGHT: one believable [daylight / warm interior / neutral ceiling fluorescent / overcast] source family and one shadow direction; matte natural skin; controlled highlights; background within two stops of faces; no flash glare, rim light, mixed color temperature, fog, or wash.
 COMPOSITION: portrait 2:3, medium-wide or medium shot, triangular/asymmetric action, faces and proof unobstructed, clean top and lower text safe zones.
 NEGATIVE: no text, no watermark, no crowd, no extra faces, no neutral posing, no fashion lineup, no romantic embrace, no prestige poster, no deep crushed shadows, no overexposure, no blown white clothing, no white haze.
 ```
