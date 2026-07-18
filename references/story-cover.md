@@ -307,6 +307,19 @@ Every cover is also a Facebook ad creative. Apply these standards inside Step 2 
 
 **The 0.3-second test (mandatory gate):** A viewer scrolling their feed at full speed must feel something in under 0.3 seconds — not just notice an attractive person. If the image would read as a fashion photo or stock portrait, it fails the test. Rewrite the prompt.
 
+### Traffic-cover style lock — no prestige fallback
+
+Unless the user explicitly asks for an elegant or cinematic cover, traffic fiction uses **bright dog-blood short-drama conflict**, not premium editorial restraint.
+
+- **Required frozen action:** show an accusation, slap-down of evidence, ceremony interruption, caught betrayal, public exposure, rescue collision, or comparable irreversible moment. Characters must be doing something to one another; standing in a symmetrical lineup is not a scene.
+- **Required reaction chain:** assign every visible person a distinct readable reaction such as wide-eyed shock, open-mouthed panic, finger-pointing accusation, tearful fury, guilty recoil, desperate grabbing, or stunned disbelief. At least 2 faces must be exaggerated; no visible face may be neutral without a plot-specific reason.
+- **Required proof object:** make the document, scan, ring, child, phone, ledger, photograph, test result, or other scandal proof large enough to read as evidence at thumbnail size.
+- **Bright readability:** default to daylight, bright ballroom, hospital-white, courthouse daylight, office fluorescents, or clean high-key interior lighting. Dark genres still need fully exposed faces and saturated separation.
+- **Prompt bans:** remove `premium`, `prestige`, `high-end editorial`, `fashion editorial`, `elegant`, `sophisticated`, `subtle`, `restrained expression`, `calm power`, `quiet intensity`, `moody cinematic`, `85mm prestige portrait`, and `atmosphere-first` unless the user explicitly requested them.
+- **Composition bans:** reject a beautiful cast lineup, harmonious group portrait, everyone looking away, characters standing without interaction, symmetrical power tableau with neutral faces, or a generic couple centered like a wedding poster.
+
+Before accepting a cover, state the frozen scandal in one sentence and label each visible person's action and emotion. If that cannot be done from the pixels without reading the title, regenerate it.
+
 ### Five scroll-stop signals — bake all five into every cover prompt
 
 **1. Expression drives everything.**
