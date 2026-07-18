@@ -230,6 +230,39 @@ Use this hierarchy for promotion-led covers about revenge, captivity, criminal p
 
 Generate the character art without text, then add exact typography with a deterministic HTML/CSS layer when misspelled model text would weaken the cover. Do not copy a reference application's badge, wording, colors, or achievement name; reuse only its hierarchy and spatial rhythm.
 
+**Luminance preservation — mandatory:** if the visual reference is high-key, bright, airy, pale, or whitespace-led, preserve that exposure. Do not translate a bright reference into a night scene merely because the story is dangerous. For this template, default to warm ivory, pale stone, mist grey, daylight glass, or another light field with darker characters and evidence objects; use a low-key/night variant only when the reference or user explicitly asks for it.
+
+## Brightness and dark-cover gate
+
+Apply these rules to every cover batch, especially crime, thriller, mafia, bullying, horror, and revenge:
+
+- Dark subject matter is not a palette instruction. Do not stack `night`, `midnight`, `black`, `deep shadow`, `dark archive`, and similar low-key terms in one prompt unless the user explicitly requested a dark cover.
+- In a multi-cover batch, no more than half the covers may use low-key/night treatment. Include at least one high-key cover and give adjacent cards visibly different exposure levels.
+- Faces, proof objects, and the main conflict must remain readable at 160px wide without increasing screen brightness.
+- Preserve at least 25–35% light or midtone area in high-key and mid-key covers. Negative space means uncluttered space, not necessarily black space.
+- Post-processing may use a localized text band or gradient, but black overlay opacity must not exceed 72%. Never cover the entire lower third with near-opaque black (`0.9+`) solely to make typography easier.
+- When adapting a supplied reference, match its overall luminance, contrast direction, and whitespace before borrowing decorative details such as rings, axes, badges, or borders.
+
+Run an automated luminance check after final WebP export. The following is a warning gate, not a replacement for visual QA:
+
+```bash
+python3 - "$COVER_PATH" <<'PY'
+from PIL import Image
+import sys
+im = Image.open(sys.argv[1]).convert('RGB').resize((128, 128))
+values = []
+for r, g, b in im.getdata():
+    values.append((0.2126*r + 0.7152*g + 0.0722*b) / 255)
+mean = sum(values) / len(values)
+dark_share = sum(v < 0.12 for v in values) / len(values)
+print(f"mean_luminance={mean:.3f} dark_pixel_share={dark_share:.3f}")
+if mean < 0.18 or dark_share > 0.65:
+    raise SystemExit("FAIL: cover is too dark; regenerate or reduce the overlay")
+PY
+```
+
+If the gate fails, do not accept the cover automatically. First remove stacked dark prompt terms and reduce overlays; regenerate with `high-key editorial lighting`, `bright readable faces`, and an explicit pale or daylight background. Then visually compare the full batch as a row, not only one cover at a time.
+
 Operator quick reference:
 - **Solo** means one character owns the cover. Use it when the protagonist's individual arc is stronger than the relationship dynamic, or when the genre benefits from a single iconic figure.
 - **Duo** means two characters share the cover. Use it for romance, drama, fantasy pairs, detective pairs, or allies where the relationship is the selling hook.
