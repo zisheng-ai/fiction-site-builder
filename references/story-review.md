@@ -31,7 +31,8 @@ Fallback: none | missing agents -> solo | agent tool unavailable -> solo
 ### 1. Structure Audit
 
 - Does each chapter have a hook, escalation, turn, and hook-out?
-- Do Chapters 1–2 deliver the advertised adult, consensual sensual tension: a charged encounter in Chapter 1 and an escalation/complication in Chapter 2? If not, flag the opening for structural rewrite before Chapter 3.
+- Run the mandatory First-Three-Chapter Conversion Gate from `story-long-write.md` whenever Chapters 1–3 are in scope. Report every row as PASS or FAIL; do not replace this with a general statement that the opening has hooks.
+- Do Chapters 1–2 deliver the advertised primary conflict? Require romantic charge only when romance is a primary promise; do not downgrade identity, family, legal, medical, crime, horror, or revenge openings for prioritizing their external engine.
 - Does the chapter end with forward pull (reader wants next chapter)?
 - Are any chapters filler — nothing changes from beginning to end?
 - Is the arc pacing consistent, or does the middle sag?
@@ -110,6 +111,12 @@ Scope: {chapters N–M or "full manuscript"}
 
 ### Structure
 {Problems found, with chapter numbers. Actionable fix per problem.}
+
+### Opening Conversion (Chapters 1–3)
+Chapter 1: {row-by-row PASS/FAIL plus exact evidence}
+Chapter 2: {row-by-row PASS/FAIL plus exact evidence}
+Chapter 3: {row-by-row PASS/FAIL plus exact evidence}
+Overall: {PASS/FAIL; a single hard failure makes the overall result FAIL}
 
 ### Character
 Active cast: {N; pass/fail against 6–8 floor}

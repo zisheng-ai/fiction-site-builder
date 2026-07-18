@@ -396,9 +396,9 @@ Every storyline must have its own goal, opposition, midpoint reversal, and endga
 
 ---
 
-## Parallel Writing (default for new books)
+## Opening-First Writing (mandatory for new books)
 
-Use this flow whenever writing ≥ 2 chapters from scratch. Single-chapter incremental additions use the sequential process below.
+Use this flow whenever writing a new long-form book. Do not draft the full book in parallel before the opening has proved it can convert cold traffic.
 
 ### Step 1 — Expand outline beats
 
@@ -410,9 +410,15 @@ Ch-NNN: [primary emotion] | cast: {active scene participants} | threads: {A/B/C 
 
 All chapters must have this before any parallel writing starts. The beat entries replace `tracking/context.md` as the coordination signal during parallel writing.
 
-### Step 2 — Spawn one Agent per chapter
+### Step 2 — Write Chapters 1–3 as a sequential conversion batch
 
-Spawn all chapter agents concurrently. To avoid redundant file reads, read shared context once in the main context and pass it into each agent's prompt:
+Write Chapter 1, then Chapter 2 from Chapter 1's actual final line, then Chapter 3 from Chapter 2's actual final line. Run the provisional First-Three-Chapter Conversion Gate below. Rewrite and recheck any failure before drafting Chapter 4 or later. This early gate prevents a structurally weak opening from being propagated across a completed manuscript.
+
+Do not mark `tracking/quality-gates.md` final at this point. The recorded final PASS happens after A3 deslop, because prose cleanup can weaken, move, or accidentally explain away a hook.
+
+### Step 3 — Draft Chapters 4+ in parallel
+
+After Chapters 1–3 pass the provisional gate, spawn the remaining chapter agents concurrently. To avoid redundant file reads, read shared context once in the main context and pass it into each agent's prompt:
 
 - **Read once, share with every agent:**
   - `world/worldbuilding.md`
@@ -421,11 +427,11 @@ Spawn all chapter agents concurrently. To avoid redundant file reads, read share
   - `world/characters/{character-name}.md` — only for characters appearing in that chapter
 - **Coordination signal:** each agent receives the previous chapter's hook-out line from the outline beat.
 
-Each agent writes to `content/{book-title}/chapters/ch-NNN-{title}.md` and returns its own hook-out line.
+Each agent writes Chapters 4+ to `content/{book-title}/chapters/ch-NNN-{title}.md` and returns its own hook-out line.
 
-Use a **single batch Agent call** when the environment supports it (e.g. one Agent invocation carrying the whole chapter list), otherwise spawn individual Agents per chapter. Either way, all chapters must be produced in parallel, not sequentially.
+Use a **single batch Agent call** when the environment supports it (e.g. one Agent invocation carrying the remaining chapter list), otherwise spawn individual Agents per chapter. Chapters 4+ should be produced in parallel; Chapters 1–3 must not.
 
-### Step 3 — Lightweight continuity pass
+### Step 4 — Lightweight continuity pass
 
 After all chapter agents complete, do a single sequential pass:
 1. Read chapters in order; verify hook-out of chapter N matches the opening of chapter N+1.
@@ -439,6 +445,15 @@ After all chapter agents complete, do a single sequential pass:
 6. Update `tracking/threads.md`, `tracking/timeline.md`, `tracking/character-status.md`.
 
 Keep this pass minimal. Do not run a full quality rewrite here; that is A3.
+
+### Step 5 — Final quality sequence
+
+After all chapters exist, run these gates in order:
+
+1. A3 full-manuscript deslop using `story-deslop.md`.
+2. Re-read the final post-deslop Chapters 1–3 and run the First-Three-Chapter Conversion Gate.
+3. Rewrite failures structurally, rerun deslop on the changed chapters, and repeat the conversion audit.
+4. Create or update `tracking/quality-gates.md` only when both checks pass. A book may not advance to A4, build, commit, or publication with `FAIL`, `PARTIAL`, `TODO`, or an absent record.
 
 ### Multiple books in parallel
 
@@ -602,9 +617,9 @@ A warm reader (returning from organic search, book detail page, or recommendatio
 
 **Violation:** opening ch1 with backstory, worldbuilding, or a secondary character meeting the protagonist. These are legitimate techniques for chapters 4–8. In ch1 they signal to the cold reader "this isn't the story I came for" and cause a bounce.
 
-### Chapter 1–2 sensual-tension gate (mandatory)
+### Chapter 1–2 premise-delivery gate (mandatory)
 
-The first two chapters must establish the adult romantic charge promised by the ad creative. This is a plot-delivery requirement: it cannot be deferred until the middle of the book or replaced by generic compliments.
+The first two chapters must deliver the concrete conflict promised by the ad creative. Romance charge is required only when romance is a primary promise; family, identity, legal, medical, workplace, crime, captivity, horror, and revenge stories must prioritize their own plot engine instead of inserting generic attraction.
 
 **Priority rule:** the opening's observed-ad pattern outranks generic romance heat. Start with the specific short-drama event the creative promised — forced/strategic marriage, public rejection, debt ultimatum, evidence that changes a relationship, status reversal, or a return with leverage. Add consensual sensual tension inside that event; never substitute a generic intimate exchange for the actual crisis.
 
@@ -612,12 +627,68 @@ The first two chapters must establish the adult romantic charge promised by the 
 
 | Chapter | Required delivery | On-page evidence |
 |---|---|---|
-| **Chapter 1** | A charged adult encounter within the first 500 words | The leads share a private or socially dangerous space; one clear proximity/attention cue; the protagonist actively chooses to stay, answer, or cross the threshold. |
-| **Chapter 2** | Escalate or complicate the charge | A voluntary touch, interrupted near-contact, private-room boundary, appearance detail with story purpose, or a third party making the attraction costly. End before resolution. |
+| **Chapter 1** | The advertised confrontation within the first 500 words | A public rupture, proof object, coercive demand, status reversal, immediate danger, or other premise-defining event forces the protagonist to act. If romance is primary, include one consensual proximity/attention cue inside this event. |
+| **Chapter 2** | Escalate or complicate the advertised conflict | Impose a new material cost, choice, deadline, exposure, or loss rather than explaining Chapter 1. If romance is primary, a voluntary touch, interrupted near-contact, private-room boundary, or third-party cost may carry the escalation. |
 
 Write sensual story tension, never explicit content: use gaze, closing distance, an offered hand, a hand that stops short, a door closing, a shared room with a stated boundary, or the awareness of being watched. Every character is clearly adult; consent, reciprocity, and agency must be visible. Do not write sex acts, graphic anatomy, nudity, coercion framed as desire, or age-ambiguous characters.
 
-**Failure conditions:** the love interest appears only after Chapter 2; Chapters 1–2 contain only professional/worldbuilding exposition; the encounter has no bodily or private-space charge; or the only tension is non-consensual threat. Any failure requires restructuring the opening before writing Chapter 3.
+**Failure conditions:** the advertised antagonist or conflict engine appears only after Chapter 2; Chapter 2 spends its first 500 words restating Chapter 1's reveal; Chapters 1–2 contain only worldbuilding or procedural explanation; or the only change is a withheld answer. Any failure requires restructuring before writing Chapter 4. For primary romance, also fail if the promised love interest has not appeared or all charge is non-consensual threat.
+
+### First-Three-Chapter Conversion Gate (mandatory)
+
+The opening is a three-pageview conversion funnel, not three setup chapters. Run this gate twice: provisionally before drafting Chapter 4, then finally on the post-deslop manuscript during A3.5.
+
+#### Chapter 1: three-second conflict
+
+- **First sentence:** contain conflict, contradiction, abnormality, or a decision already in motion. Naming the setting is not enough.
+- **First 500 words:** produce one event that overturns the protagonist's normal situation. A threat or explanation without changed options does not count.
+- **Information budget:** foreground only three payloads: the present dilemma, one abnormal detail, and one unresolved question. Carry other background through pressured dialogue or action; do not stop for an explanatory internal-history block.
+- **Midpoint detonation:** the first key proof or discovery must trigger a larger family, legal, commercial, reputational, medical, or safety crisis. Evidence that merely confirms what the reader already knows is insufficient.
+- **Final line:** land on a high-risk choice, a cognition-changing clue, or an opponent action already in motion. Mood, summary, and generalized resolve fail.
+
+#### Identity-replacement variant
+
+When another person is living under the protagonist's name or status:
+
+1. Open in an important public setting where witnesses, cameras, officials, family, or money make denial costly.
+2. Within the first 800 words, stage three distinct identity probes: one physical marker, one habitual behavior, and one private shared memory. Each probe must increase danger or shift a witness; do not present them as a static checklist.
+3. After the first legal, biometric, financial, or archival proof appears, detonate a larger crisis that shows the dispute controls more than one person's name.
+4. End with an unexpected action, declaration, or hidden proof that reveals the protagonist still holds leverage; cut on the resulting question, alarm, or cognition shift.
+5. Do not explain backstory through interior monologue, describe identity through a mirror, or let dialogue settle the scene by simply announcing "this is fake." Make characters test, obstruct, expose, or act on the claim.
+
+#### Chapters 2–3: no flat runway
+
+| Gate | Chapter 2 | Chapter 3 |
+|---|---|---|
+| Opening consequence | Continue from Chapter 1's damaged state; do not reset location, power, or urgency for comfort | Begin under the cost created by Chapter 2 |
+| First 500 words | Add a new material cost, choice, deadline, exposure, loss, or adversary action | Add a stronger reversal or evidence change; explanation alone fails |
+| Mid-chapter turn | Make the attempted solution worsen another storyline or relationship | Force a plan change, alliance shift, public commitment, or resource transfer |
+| Hook-out | Close on an immediate deadline, loss of access, dangerous bargain, or active countermove | Produce the opening arc's first irreversible consequence and a harder forward plan |
+
+#### Hard-fail logic and record
+
+- Grade each row `PASS` or `FAIL`; do not average away a failed first sentence, first-500 event, or hook-out.
+- A hook must change options. Surprise, eloquent dialogue, chemistry, or an unanswered question without material change does not pass by itself.
+- After any structural rewrite, rerun deslop on the changed chapter before regrading it.
+- Save final proof in `tracking/quality-gates.md`:
+
+```md
+## Long-Form Quality Gates
+
+Audit date: YYYY-MM-DD
+Manuscript scope: Chapters 1–N
+
+### A3 Deslop
+Status: PASS
+Coverage: Chapters 1–N, Gates A–G, Three-Pass routing complete
+
+### A3.5 Opening Conversion
+Status: PASS
+Chapter 1: {first sentence / first 500 / information budget / midpoint / hook-out}
+Chapter 2: {opening consequence / first 500 / midpoint / hook-out}
+Chapter 3: {opening consequence / first 500 / midpoint / irreversible consequence}
+Rewrites and rechecks: {none or exact chapters}
+```
 
 ### Ch1 beat structure (200-word checkpoints)
 
@@ -642,13 +713,13 @@ Required: something that implies action, conflict, or a decision already in moti
 
 **Backstory cap:** ch1 may contain at most **two** sentences of backstory in the first 500 words. Backstory is permitted only when it creates irony (what she assumed vs. what is now true) — never to explain the world.
 
-**Character introduction cap:** introduce at most **two characters** by name in ch1 (protagonist + one other). Additional named characters dilute cold-reader identification. A crowd scene in ch1 is a conversion killer.
+**Character introduction cap:** keep at most **two focal identities** in the first 200 words. A third named participant is allowed when the premise requires a claimant, impostor, and recognizer, but their relationship must be instantly legible. Introduce later witnesses only after the core conflict is clear. A crowd is useful when it raises the cost of denial; a roll call is a conversion killer.
 
 **The Facebook Promise check:** before finalizing ch1, re-read the tagline from `src/lib/books.ts`. The emotional register of ch1's opening 200 words must match the register the tagline implied. If the tagline promises a charged, high-stakes encounter, ch1 must open in that register — not in a quiet or contemplative scene that delays the promised tension.
 
-**Two-chapter promise check:** before shipping Chapter 2, verify that the specific intimacy cue implied by the ad/tagline has appeared or escalated on-page. The reader must receive a scene, not merely a promise that attraction exists later.
+**Two-chapter promise check:** before shipping Chapter 2, verify that the specific confrontation, danger, proof, humiliation, or intimacy cue implied by the ad/tagline has appeared and escalated on-page. The reader must receive the promised scene, not a summary or a promise that it happens later.
 
-**Dialogue timing:** first dialogue should appear before word 300. Dialogue signals that something is happening between people, which is the core promise of romance fiction.
+**Dialogue timing:** first dialogue should appear before word 300. Dialogue signals that pressure exists between people and prevents the opening from becoming narrated setup.
 
 ### Ch1 word count target
 

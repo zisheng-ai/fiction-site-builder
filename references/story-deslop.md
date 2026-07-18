@@ -6,6 +6,8 @@ Run deslop periodically on full books:
 - After finishing all chapters of a new book, following the write and review passes.
 - During bulk maintenance of existing books.
 
+For every new long-form book, deslop is a publication gate rather than an optional cleanup step. Run it across the full manuscript before the final First-Three-Chapter Conversion Gate, record coverage in `tracking/quality-gates.md`, and rerun it on any opening chapter changed by the conversion audit. Do not advance to traffic articles, build, commit, or publication until both A3 and A3.5 are recorded as PASS.
+
 ## Content Type Router
 
 | Content | Gates to run | Notes |

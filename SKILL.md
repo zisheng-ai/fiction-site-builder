@@ -129,7 +129,8 @@ Starts after Phase 0. Runs in parallel with Track B.
 | A1 | Session-Depth Writing | L2 | see modes below + `facebook-ads.md` (taglines & hook copy) | chapters, outline, world, tracking |
 | A2 | Ad Creative | L1 | `story-cover.md` + `cover-styles.md` + `facebook-ads.md` | `public/covers/{book-title}.webp` + `public/covers/{book-title}.json` |
 | A2.5 | Scroll-Depth Anchors | L3 | `story-illustrations.md` + `cover-allure-elements.md` | `public/illustrations/{book-slug}/ch-{NNN}.webp` (exactly 5 per book) |
-| A3 | Bounce-Rate Reduction | L2 | `story-review.md` + `story-deslop.md` | AI flavor removed, prose quality raised |
+| A3 | Bounce-Rate Reduction | L2 | `story-review.md` + `story-deslop.md` | full-manuscript deslop completed and recorded |
+| A3.5 | Opening Conversion Gate | L2 | `story-long-write.md` + `story-review.md` | Chapters 1–3 pass conversion QA in `tracking/quality-gates.md` |
 
 A0 runs once per book (not once per site). Required for each new book unless the user has explicitly stated the genre, tropes, and premise. A0's `differentiation_angle` and `competitive_brief` feed directly into A1's story brief.
 
@@ -147,11 +148,13 @@ A0 runs once per book (not once per site). Required for each new book unless the
 - If explicitly requested, generate at most 5 illustrations per book, placed at the highest-stakes peaks (see `story-illustrations.md` for slot distribution). Never exceed 5 — cost constraint.
 - A2.5 is not a Pre-Launch Gate. A site can launch with zero illustrations.
 
-A3 runs automatically after A1 completes for every long-form book. Do not skip or prompt — deslop is a required quality pass, not optional. Skip only for short-form stories or on explicit user opt-out.
+A3 runs automatically after A1 completes for every long-form book. Do not skip or prompt — full-manuscript deslop is a required quality pass, not optional. Record the completed chapter range and Gate A–G result in `tracking/quality-gates.md`. Skip only for short-form stories or on explicit user opt-out.
+
+A3.5 runs automatically after A3 for every long-form book. Re-read the post-deslop versions of Chapters 1–3 and apply the conversion gate in `story-long-write.md`; do not rely on the outline, an earlier draft, or a generic review statement. Any failing chapter must be structurally rewritten, deslop-checked again, and re-audited until it passes. A cover, article, build, commit, or publication does not prove this gate. The auditable proof is a dated PASS record in `tracking/quality-gates.md`.
 
 | A4 | Traffic Articles | L1 | `seo.md` § 15 | `articles/{slug}.md` + `public/covers/articles/{slug}.webp` |
 
-A4 runs automatically after A3 for every new long-form book. Do not skip or prompt — every new book needs a traffic article. Skip only for short-form stories or on explicit user opt-out.
+A4 runs automatically after A3.5 for every new long-form book. Do not skip or prompt — every new book needs a traffic article. Skip only for short-form stories or on explicit user opt-out.
 
 **A4 routing — run on every new book:**
 
@@ -313,13 +316,13 @@ If a full pipeline run reaches launch with no illustrations generated for its lo
 
 | User intent | Phases to run |
 | --- | --- |
-| "Write a novel" / "Continue writing" / `/story-long-write` | 0 (skip if exists), A1 long-form, **A3 (automatic)**, **A4 (automatic)** |
+| "Write a novel" / "Continue writing" / `/story-long-write` | 0 (skip if exists), A1 long-form, **A3 (automatic)**, **A3.5 (automatic)**, **A4 (automatic)** |
 | "Write a short story" / `/story-short-write` | 0 (skip if exists), A1 short-form (A3 skipped, A4 skipped for short-form) |
-| "Add one book to existing site" | A1 long-form (single book), A2 (single book), **A4 (automatic — update or create article)** |
+| "Add one book to existing site" | A1 long-form (single book), A2 (single book), **A3**, **A3.5**, **A4 (automatic — update or create article)** |
 | "Generate covers" / `/story-cover` | A2 only |
 | "Add illustrations" / "Generate illustrations" | A2.5 only |
 | "Import manuscript" / `/story-import` | A1 import only |
-| "Review prose" / `/story-review` | A3 only |
+| "Review prose" / `/story-review` | A3; include A3.5 when Chapters 1–3 are in scope |
 | "Build the site" / full pipeline | 0 → Track A + Track B in parallel; **A2.5 is skipped by default** |
 
 **Book count default — 3 for initial site generation.** When building a new site from scratch, generate exactly **3 books** unless the user explicitly specifies a different count. For new sites: run A0 for all 3 in parallel, then A1 for all 3 in parallel. For existing sites, honor the user's requested count; if unspecified, add one book. Never exceed 5 books in a single session unless the user explicitly requests a larger batch. Select each book from validated demand, but maintain useful primary-genre variety across the batch. Never collapse distinct crime, thriller, horror, bullying, legal, family, medical, fantasy, or sci-fi premises into `romance` merely because they contain attraction or a couple.
@@ -527,6 +530,10 @@ Do not deliver a build if any of these are true.
 - Chapter navigation is SPA (does not full-reload), so ads do not reinitialize and pageviews/impressions are undercounted — an L3 failure.
 
 **Content completeness (L2 depth gates):**
+- Any new long-form book lacks `tracking/quality-gates.md`, has an incomplete A3 deslop record, or has anything other than a final post-deslop PASS for the Chapters 1–3 conversion gate.
+- Chapter 1 fails to create conflict or abnormality in its first sentence, overturn the protagonist's normal situation within the first 500 words, or end on a high-risk choice or cognition-changing clue.
+- Chapter 2 resets or explains Chapter 1 instead of imposing a new material cost, choice, deadline, exposure, or loss within its first 500 words.
+- By the end of Chapter 3, the opening crisis has not produced an irreversible consequence and a harder forward plan.
 - Site launches with fewer than 3 books.
 - Any book has fewer than 20 chapters or more than 26 chapters.
 - Any chapter falls below its type's minimum (see Pacing Guidelines in `story-long-write.md`).
