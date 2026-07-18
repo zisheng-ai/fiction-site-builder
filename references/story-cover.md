@@ -352,6 +352,19 @@ Every cover is also a Facebook ad creative. Apply these standards inside Step 2 
 
 Unless the user explicitly asks for an elegant or cinematic cover, traffic fiction uses **normally exposed dog-blood short-drama conflict**, not premium editorial restraint. `Normal exposure` means believable scene light, natural skin, retained highlight texture, readable midtones, and enough contrast to separate people from the setting.
 
+#### Anti-premium production-value gate
+
+Darkening a polished ensemble does not make it a traffic cover. Reject any result that still reads as a movie poster, streaming key art, beauty campaign, romantic couple portrait, or wealthy-family publicity photo. For traffic covers, production value should feel deliberately immediate and inexpensive:
+
+- Prefer a handheld phone-camera or cheap local-TV freeze-frame: 24–28mm wide view, slightly crooked eye level, awkward close crop, overlapping bodies, and evidence pushed toward the lens.
+- Use flat ceiling light, direct phone flash, fluorescent spill, or cheap LED fill. Faces stay readable, but avoid sculpted rim light, beauty key light, bokeh, elegant chiaroscuro, and color-graded teal/orange depth.
+- Use cramped ordinary locations and visibly practical props: a standard hotel room, crowded office, apartment dining room, hospital corridor, registry desk, small hearing room, worn wedding jeep, or modest costume-drama set. Do not establish scale through mansion facades, palace vistas, skyline panoramas, giant moonlight, or epic ruins.
+- Preserve imperfect realism: sweat, creased clothes, tired eyes, visible age, uneven hair, harsh reflections, and unflattering but legible reactions. Reject beauty retouching and actor-poster perfection.
+- Every visible person must be caught doing something to another person or the evidence: pushing, grabbing, blocking, pointing, tearing, snatching, recoiling, or shouting. Four people standing in an arc is still a family group photo even when all four look surprised.
+- Typography should resemble a mobile short-drama thumbnail: heavy block title, hard shadow or outline, one loud accent bar, and a compact proof hook. Avoid elegant serif, refined spacing, ornamental gold, and balanced theatrical-poster composition.
+
+At final-card QA, ask: **could this image plausibly be a polished movie poster or wealthy-family cast photo?** If yes, reject it even if the plot and facial expressions are technically correct.
+
 - **Required frozen action:** show an accusation, slap-down of evidence, ceremony interruption, caught betrayal, public exposure, rescue collision, or comparable irreversible moment. Characters must be doing something to one another; standing in a symmetrical lineup is not a scene.
 - **Required reaction chain:** assign every visible person a distinct readable reaction such as wide-eyed shock, open-mouthed panic, finger-pointing accusation, tearful fury, guilty recoil, desperate grabbing, or stunned disbelief. At least 2 faces must be exaggerated; no visible face may be neutral without a plot-specific reason.
 - **Required proof object:** make the document, scan, ring, child, phone, ledger, photograph, test result, or other scandal proof large enough to read as evidence at thumbnail size.

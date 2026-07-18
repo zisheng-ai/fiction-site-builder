@@ -1,5 +1,7 @@
 # Cover Genre Playbook
 
+> **Traffic-cover override:** many legacy templates below use words such as `cinematic`, `luxury`, `elegant`, `poster`, `near-kiss`, or polished couple staging. For paid-traffic fiction, treat those words and compositions as deprecated unless the user explicitly requests them. Replace them with the anti-premium gate in `story-cover.md`: handheld wide-angle phone/cheap-TV freeze-frame, flat practical light, cramped ordinary set, imperfect faces, active physical conflict, and evidence toward the lens. A movie poster, beautiful couple, or wealthy-family group photo is a hard failure regardless of genre.
+
 Full prompt templates for each genre. Load during A2 (cover generation) only — not needed for A2.5 (illustrations).
 
 Reference: `cover-allure-elements.md` for allure tiers, fabric ranking, poses, and exposure tiers.

@@ -8,12 +8,12 @@ The reader is the product. Optimize for long sessions, low fatigue, and fast ret
 
 ## Required Reader Controls
 
-The default reader ships with a focused set of controls. Add font size, density, or reading progress indicator only when the brief explicitly asks for them. Chapter pages keep the table of contents in the bottom nav; the fixed top header does not render a TOC icon.
+The default reader ships with a focused set of controls. Add font size, density, or reading progress indicator only when the brief explicitly asks for them. Chapter 2 and later keep the table of contents in the bottom nav; chapter 1 omits it. The fixed top header never renders a TOC icon.
 
 | Control | Requirement | Notes |
 | --- | --- | --- |
 | Next chapter | Required | Inline CTA in the content flow at the end of chapter text (see **End-of-Chapter Navigation** below). No Previous button — TOC handles backward navigation. |
-| Table of contents | Required in bottom nav | Chapter pages keep a bottom-bar chapter list button that hard-navigates to `/book/{slug}#toc`. Do not render a TOC button in the fixed top header. |
+| Table of contents | Required from chapter 2 onward | Later chapters keep a bottom-bar chapter list button that hard-navigates to `/book/{slug}#toc`. Omit it entirely on chapter 1. Do not render a TOC button in the fixed top header. |
 | Book cover header | Required | Small cover thumbnail in the reader header above the chapter title; omit if no cover image exists |
 | End-of-chapter prompt | Required | Inline "Next chapter →" CTA at the very bottom of chapter text. Use **`my-10`** (symmetric 40px) margin — never asymmetric `mt-16 mb-6`. |
 | Keyboard prev/next | Required on desktop | `←` / `→` arrow keys |
@@ -33,11 +33,11 @@ Always fixed (`position: fixed; top: 0`), `height: 56px`, `bg-base-100/95 backdr
                 [ Ch. 1 - Chapter Title (sm)]
 ```
 
-- **Left slot — site logo** (`h-8 w-auto`, links to `/`): the site logo links to the home page. Never a back arrow (`<`), never the book cover thumbnail. The logo anchors the reader in the site brand across all chapters.
+- **Left slot — site logo** (`h-8 w-auto`): always render the site logo. On chapter 1 it is a static, non-interactive brand mark with no `href`, click handler, link role, or pointer cursor. From chapter 2 onward it links to `/`. Never use a back arrow (`<`) or book cover thumbnail.
 - **Center slot** — two-line text block: book title in `11px` muted, chapter title in `13px` medium. Truncate both.
 - **Right slot** — dark mode toggle only. Use `btn btn-ghost btn-sm btn-circle`.
 
-No back arrow (`<`) anywhere in the header. The site logo IS the back link to home (`/`).
+No back arrow (`<`) anywhere in the header. From chapter 2 onward the site logo is the back link to home (`/`); on chapter 1 it is display-only.
 
 Add `padding-top: 56px` (or `pt-14`) to the chapter content wrapper so it clears the fixed header.
 
@@ -51,12 +51,12 @@ When Meta/Facebook ads land directly on chapter 1, use the Velvet chapter-landin
 
 Chapter 1 landing pages are not normal reader pages. They must remove every non-essential navigation affordance so the reader has one obvious path: continue reading.
 
-- Hide the top navigation bar on chapter 1 landing pages.
+- Hide the normal site navigation bar on chapter 1 landing pages. A minimal fixed reader header may remain with static logo, book/chapter identity, and theme toggle only.
 - Hide side menus, drawer triggers, and back buttons on chapter 1 landing pages.
 - Do not render the table of contents on chapter 1 landing pages.
 - Do not render recommendation grids before or after the prose on chapter 1 landing pages.
 - Do not add secondary buttons or text links that compete with `Next chapter →`.
-- If a logo remains for branding, it must be non-interactive on chapter 1 landing pages.
+- Always keep the site logo for brand recognition, but make it non-interactive on chapter 1: render the image inside a neutral `span`, never an anchor or button.
 
 ### Chapter 1 identity card
 
@@ -100,8 +100,8 @@ For an AdX site configured with five chapter units, every chapter uses the same 
 - Chapter title header follows the top ad. For chapter 1, left-align the chapter header; later chapters can be centered.
 - The first prose wrapper must have `id="chapter-start"` and `scroll-mt-20` so the identity-card CTA lands cleanly below the fixed header.
 - End-of-prose sentinel: add `<div id="chapter-content-end" />` before nav/recommendations so `ChapterCompleted` fires at the real prose ending.
-- Bottom nav is in content flow, not a fixed bar: TOC button + vivid Continue/Next button.
-- Button sizing: min-height `64px`; grid ratio around `minmax(88px, 0.58fr) minmax(160px, 1.42fr)` when Next exists.
+- Bottom nav is in content flow, not a fixed bar. Chapter 1 renders only the vivid Continue/Next button at full width. Chapter 2 onward renders TOC + Continue/Next.
+- Button sizing: min-height `64px`; chapter 1 uses one full-width column. From chapter 2 onward use a grid ratio around `minmax(88px, 0.58fr) minmax(160px, 1.42fr)` when Next exists.
 - Continue button copy should show both action and next chapter context, for example `Continue` + `Ch. 2: {nextTitle}`.
 - The Continue button should use the site's primary hot color and a subtle glow/active scale (`active:scale-[0.96]`). It must visually dominate TOC.
 
@@ -130,7 +130,7 @@ The Velvet landing-page fix exposed a recurring layout bug: short pages can show
 - Fails if any chapter renders fewer or more than the configured five unique slots.
 - Fails if the next action is a muted text link or smaller than TOC.
 - Fails if the landing chapter uses SPA navigation for next chapter.
-- Fails if chapter 1 shows a visible nav bar, side menu, back button, TOC, or recommendation grid.
+- Fails if chapter 1 shows a normal site nav bar, clickable logo, side menu, back button, TOC, or recommendation grid.
 - Fails if homepage/footer or chapter recommendations are followed by a viewport-sized blank area caused by `min-h-screen` / `flex-1` page shells.
 
 ---
