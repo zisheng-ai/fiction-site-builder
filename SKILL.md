@@ -481,6 +481,7 @@ Load references only when entering that phase. Do not preload all references at 
   | Survival games and human hunts | `genre-survival-game.md` |
   | Small-town dynasties and covered disappearances | `genre-small-town-corruption.md` |
   | Revenge judgment and public reckoning | `genre-revenge-judgment.md` |
+  | Taiwan `zh-TW` oppression-to-reversal serial fiction, including engagement frames, substitutes, secret children, traded brides, and ancestor awakening | `genre-taiwan-serial-fiction.md` |
 
   If two guides apply, designate one as the primary plot engine and use the second only for its relevant subsystem. Do not merge multiple guides into a premise that lacks a single clear victory condition.
 - **`story-short-write.md`** — short-form story pipeline, emotion-first structure. Load at A1 short-form.

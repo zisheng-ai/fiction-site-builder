@@ -103,9 +103,9 @@ Each genre has its own community, demand signals, and trope language. Pick the g
 | **Contemporary Drama** | Secret child / hidden lineage + family reckoning; second-chance reunion after an old wrong; grief and inheritance | `#familydrama` `#emotionalfiction` `#secretbaby` Pinterest + Facebook Groups |
 | **Medical Drama** | Deathbed revelation + caregiver relationship; hospital diagnosis that forces family truth; donor / recipient identity | `#medicaldrama` `#hospitalstory` TikTok + Pinterest emotional content |
 
-### Taiwan / zh-TW romance niche pool
+### Taiwan / zh-TW serial-fiction niche pool
 
-Use this pool when the target site language is `zh-TW` or the user asks for Taiwan-facing Traditional Chinese fiction. These niches worked cleanly for a broad Traditional Chinese romance site because they are easy to explain in natural Taiwan web copy, produce strong chapter hooks, and can be grouped into SEO book-list articles without relying on Mainland-specific slang.
+Use this pool when the target site language is `zh-TW` or the user asks for Taiwan-facing Traditional Chinese fiction. Choose the primary taxonomy from the climax and victory condition; relationship presence alone does not make a book romance.
 
 | Niche | Hook pattern | SEO phrase examples | Notes |
 | --- | --- | --- | --- |
@@ -114,8 +114,13 @@ Use this pool when the target site language is `zh-TW` or the user asks for Taiw
 | **Xianxia doomed bond / demon lord vow** | Love interest is the key to sealing or destroying the heroine's fate | `仙俠虐戀小說`, `玄幻言情推薦`, `魔尊言情小說` | Keep terminology readable for Taiwan users; explain the emotional dilemma early. |
 | **Family inheritance / hidden identity** | A will, adoption record, or old scandal rewrites the heroine's status | `家族秘密言情小說`, `身世之謎小說`, `現代愛情小說推薦` | Good for broader audiences and lower policy risk. |
 | **Small-town second chance / healing romance** | Old lovers meet after a family obligation or local crisis | `療癒系愛情小說`, `小鎮愛情小說`, `第二次愛情小說` | Lower heat, safer for trust-building content and evergreen SEO. |
+| **Engagement betrayal / staged compromise** | A relative stages a room, photo, or accusation, but the target preserves provenance and exposes the family transaction | `婚約陷害小說`, `豪門家族鬥爭`, `女性復仇小說` | Primary: domestic thriller / family abuse. Do not eroticize drugging or inability to consent. |
+| **Secret child / custody return** | An injured mother returns with a child and refuses to surrender custody or her rebuilt life | `萌寶家庭小說`, `豪門撫養權小說`, `女性成長小說` | Primary: family drama / custody conflict. Reconciliation is optional. |
+| **Practical flash marriage / period burden** | A family or housing crisis forces a quick marriage; the underestimated bride has a scarce skill | `閃婚家庭小說`, `年代家庭故事`, `逆境翻身小說` | Primary: period family drama unless the relationship controls the climax. |
+| **Traded bride / exchange marriage** | Relatives trade the protagonist for debt, another marriage, land, or supplies; the transaction document becomes evidence | `換親小說`, `家族交易小說`, `逆境翻身故事` | Primary: survival drama / family persecution. Load `genre-taiwan-serial-fiction.md`. |
+| **Ancestor awakening / rewritten legend** | A powerful woman wakes in a degraded identity and discovers descendants or history were manipulated | `古風玄幻小說`, `老祖宗甦醒小說`, `身分翻轉小說` | Primary: fantasy / identity revenge. Restore a public record, not only a bond. |
 
-For the first `zh-TW` site launch, three books can intentionally cover three different romance sub-niches. Then create one broad `繁體中文言情小說推薦` article that recommends all three. Do not force three separate genre articles until each sub-niche has at least two or three relevant books.
+For the first `zh-TW` site launch, three books can intentionally cover three different primary genres. Create a broad `繁體中文小說推薦` article first; create `言情小說` articles only for books whose actual primary engine is romance.
 
 Prefer combinations where:
 - At least two tropes or tension angles overlap (readers search the intersection, not just one)
