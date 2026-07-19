@@ -18,6 +18,18 @@ Load this file alongside `story-long-write.md` when writing any romance novel or
 | **Paranormal Romance** | Supernatural stakes embedded in emotional arc | Fated mates, soulmark, supernatural world intersecting with domestic life |
 | **Sports Romance** | Competition + forced proximity + public pressure | Rival athletes, trainer/player, off-season drama, team dynamics |
 | **Arranged Marriage / Fake Dating** | Contractual proximity → real feeling | Business arrangement, family pressure, fake relationship for external goal, roommate escalation |
+| **Restart / Second-Act Romantic Comedy** | Desire returns while the protagonist rebuilds a material part of her life | First date after a long relationship, public embarrassment, community project, adult children, ex-spouse boundaries |
+
+### Restart Romance for Women 25–60
+
+Do not write restart romance as youth romance with older names, and do not market it as a “50+” shelf when the intended audience is women 25–60.
+
+- The protagonist needs an external goal that survives removal of the romance: save a venue, change work, protect money, build a practice, leave a family role, or enter a public fight.
+- Treat sexual and emotional desire as ordinary adult appetite, not proof that she is “still desirable.”
+- Ex-partners and adult children need independent goals. They cannot exist only to approve the new relationship.
+- The love interest must complicate the external goal before becoming useful to it. Rescue fantasy fails the agency test.
+- Humor should come from specific adult logistics, social exposure, and incompatible habits, not jokes about aging bodies or technology.
+- The ending chooses both intimacy and structure: transparent money, work, housing, care, time, or public boundaries must change alongside the relationship.
 
 ---
 

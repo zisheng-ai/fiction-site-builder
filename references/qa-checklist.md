@@ -224,6 +224,6 @@ After B6 passes, generate `TODO.md` in the project root listing every post-launc
 - [ ] Plan next batch of chapters or new books
 ```
 
-Fill in the actual publisher IDs and ad-network paths from the project's CLAUDE.md. Only include sections relevant to what was actually built (e.g. omit the AdX row if AdX was not wired up).
+Fill in the actual publisher IDs and ad-network paths from the project's AGENTS.md. Only include sections relevant to what was actually built (e.g. omit the AdX row if AdX was not wired up).
 
 **Important:** Ad accounts are shared across sites — do NOT include a "apply for / submit for review" step. The accounts already exist; the only post-launch action is confirming the slots serve correctly after the new domain goes live.

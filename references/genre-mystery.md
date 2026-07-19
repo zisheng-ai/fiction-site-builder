@@ -15,6 +15,17 @@ Load this file alongside `story-long-write.md` when writing mystery, cosy myster
 | **Historical Mystery** | Who did it — in a world where investigation was limited by era | Period-accurate constraints on evidence, authority, and a woman's agency |
 | **Domestic Thriller** | Is the danger inside the home — from someone she trusts? | Intimate betrayal; suburban or domestic setting; the ordinary made threatening |
 
+### Mature-Amateur / Silver-Sleuth Cozy
+
+Use this lane for an experienced woman whose social memory, former profession, or local trust gives her investigative access. The protagonist can be anywhere in the broader 25–60 audience range; do not market the entire collection as “50+” because one detective is retired.
+
+- Give her a useful prior craft: librarian, pharmacist, teacher, accountant, union organiser, journalist, gardener, or magistrate's clerk.
+- Intelligence should produce pleasure through observation and fair clues, not superhero deduction.
+- Preserve visible age, appetite, humor, friendships, errors, and practical limits. Do not write a sexless village oracle.
+- Use community relationships as the access system and moral cost. Every interview changes a friendship, obligation, or reputation.
+- Keep violence non-graphic for cozy, but make the fraud, inheritance, land, care, or institutional stakes material.
+- A social setting is not enough. Chapter 1 still needs an immediate wrong object, body, message, or contradiction.
+
 ---
 
 ## The Mystery Click Standard

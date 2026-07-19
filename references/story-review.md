@@ -32,7 +32,11 @@ Fallback: none | missing agents -> solo | agent tool unavailable -> solo
 
 - Does each chapter have a hook, escalation, turn, and hook-out?
 - Run the mandatory First-Three-Chapter Conversion Gate from `story-long-write.md` whenever Chapters 1–3 are in scope. Report every row as PASS or FAIL; do not replace this with a general statement that the opening has hooks.
+- Hard-fail Chapter 1 unless its first sentence contains active conflict, contradiction, abnormality, or a decision already in motion; a setting line, weather line, or retrospective setup does not pass.
+- Hard-fail Chapter 1 unless one on-page event within the first 500 words overturns the protagonist's ordinary situation and changes her available options.
+- Audit Chapter 1's foreground payloads: retain only the present dilemma, one abnormal detail, and one unresolved question. Move all other background into pressured dialogue or consequential action; explanatory interior-history blocks fail even when the facts are relevant.
 - Audit Chapter 1's middle in rolling 200-word windows. Fail any window with more than 2 new memory burdens (new names, institutions, document types, acronyms, or specialized system concepts), and fail any system fact that does not cause visible action within the next 2 paragraphs.
+- Hard-fail Chapter 1's final line unless it lands on a high-risk choice, a cognition-changing clue, or an opponent action already underway. Mood, summary, generalized resolve, and a question that changes no options do not pass.
 - Do Chapters 1–2 deliver the advertised primary conflict? Require romantic charge only when romance is a primary promise; do not downgrade identity, family, legal, medical, crime, horror, or revenge openings for prioritizing their external engine.
 - Does the chapter end with forward pull (reader wants next chapter)?
 - Are any chapters filler — nothing changes from beginning to end?

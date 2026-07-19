@@ -443,7 +443,7 @@ Chapter pages contain 1,000–1,800 words of original prose. This is not thin co
 
 2. **Identical `<title>` tag structure with no differentiator.** `Chapter 1 | Book Title | Site Name` vs `Chapter 2 | Book Title | Site Name` are fine — the chapter number differentiates them. Avoid stripping the chapter title entirely.
 
-3. **Same story text on two different sites.** This is prohibited by `fictions/CLAUDE.md`. Cross-site duplicate content from the same network of sites is a significant ranking penalty risk. Different language versions (English on velvet-throne, Spanish adaptation on fuego-eterno) are acceptable — they are distinct language content.
+3. **Same story text on two different sites.** This is prohibited by `fictions/AGENTS.md`. Cross-site duplicate content from the same network of sites is a significant ranking penalty risk. Different language versions (English on velvet-throne, Spanish adaptation on fuego-eterno) are acceptable — they are distinct language content.
 
 4. **Book detail page and Chapter 1 page with nearly identical content.** The book detail page description is the marketing blurb; the chapter 1 description should be the opening lines of chapter 1 prose. Keep them distinct.
 
@@ -594,7 +594,7 @@ Use these notes when the site language is `zh-TW` or the user asks for Taiwan-fa
 - **Wrong chapter count:** `sitemap.ts` and `chapterCount` in `books.ts` must stay in sync with the actual file count. Derive `chapterCount` from the filesystem at build time to prevent drift.
 - **Trailing slash mismatch:** If `trailingSlash: true` is set in `next.config.js`, the sitemap, canonical tags, and all internal `<a>` links must use trailing slashes. Inconsistency causes crawlers to treat trailing-slash and non-trailing-slash URLs as separate pages, splitting link equity.
 - **One-way hreflang annotation:** If the English page declares the Spanish alternate but the Spanish page does not reciprocate, Google ignores both annotations entirely.
-- **Publishing the same story text on two sites:** Google will pick one version to rank and may demote the other site. This also violates the uniqueness rule in `fictions/CLAUDE.md`. Different language adaptations are acceptable; same-language duplicate text is not.
+- **Publishing the same story text on two sites:** Google will pick one version to rank and may demote the other site. This also violates the uniqueness rule in `fictions/AGENTS.md`. Different language adaptations are acceptable; same-language duplicate text is not.
 - **Setting `<html lang="en">` on Spanish sites:** Copy-pasting the English site's `layout.tsx` leaves the wrong `lang` attribute. Set it correctly: `<html lang="es">` for fuego-eterno.
 - **Using `strategy="beforeInteractive"` for ad scripts:** Ad scripts must not block page interactivity. Use `strategy="afterInteractive"` at the earliest.
 - **Overly optimistic `changeFrequency`:** Setting `daily` everywhere inflates crawler expectations and reduces the hint's credibility over time. Use accurate frequencies.

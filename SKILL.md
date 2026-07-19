@@ -207,7 +207,7 @@ B1 → B2 → B3 → B4 are sequential. B5 and B6 run in parallel against the sa
 
 ### B4 — Domain (optional)
 
-During B4, check the parent project `fictions/CLAUDE.md` site table for the domain assigned to this site.
+During B4, check the parent project `fictions/AGENTS.md` site table for the domain assigned to this site.
 
 - **If domain is specified**: use it in `metadataBase`, `sitemap.ts`, and `src/lib/site.ts`.
 - **If no domain is specified**: set `metadataBase: new URL('https://PLACEHOLDER.example.com')` and record a TODO:
@@ -217,7 +217,7 @@ During B4, check the parent project `fictions/CLAUDE.md` site table for the doma
 
 ### B4 — Google Ads (optional)
 
-During B4, check the parent project `fictions/CLAUDE.md` site table for the ad account assigned to this site (either nablepart AdX or varygames AdSense).
+During B4, check the parent project `fictions/AGENTS.md` site table for the ad account assigned to this site (either nablepart AdX or varygames AdSense).
 
 - **If an ad account is specified**: wire up the full ad stack — GPT/AdSense script in `<head>`, `AdSlot` / `AdsenseSlot` components in pages, and follow `references/adsense-arbitrage.md` for slot placement and density rules.
 - **If no ad account is specified**: skip all ad code entirely — no GPT script, no AdSense script, no slot components. Record a TODO:
@@ -229,15 +229,15 @@ Do not add placeholder ad markup or commented-out ad code — leave the pages cl
 
 ### B4 — Facebook Pixel (optional)
 
-During B4, check the parent project `fictions/CLAUDE.md` for a `facebook_pixel.id` configuration. This step is **optional** — if the parent project does not specify a Pixel ID, skip the code change and only record it in `TODO.md`.
+During B4, check the parent project `fictions/AGENTS.md` for a `facebook_pixel.id` configuration. This step is **optional** — if the parent project does not specify a Pixel ID, skip the code change and only record it in `TODO.md`.
 
-- **If configured**: add the Facebook Pixel base code to `src/app/layout.tsx` `<head>` using `next/script` with `strategy="afterInteractive"`. Use the exact Pixel ID from `fictions/CLAUDE.md`. Also wire the `ChapterPixel` component (see `references/adsense-arbitrage.md §4.3`) into `src/app/book/[slug]/chapter/[n]/page.tsx` — this fires `ViewContent` on mount, `{subdomain}_ScrollDepth25` / `{subdomain}_ChapterRead50` / `{subdomain}_ScrollDepth75` at scroll milestones, `{subdomain}_ChapterCompleted` via IntersectionObserver on `#chapter-content-end` sentinel, and `{subdomain}_TimeOnPage20s` / `{subdomain}_TimeOnPage30` after 20 / 30 seconds. Both dwell events must use the same chapter-only scope, payload, prefix, and lifecycle. These are the L1 optimization signals for Lookalike Audience building.
+- **If configured**: add the Facebook Pixel base code to `src/app/layout.tsx` `<head>` using `next/script` with `strategy="afterInteractive"`. Use the exact Pixel ID from `fictions/AGENTS.md`. Also wire the `ChapterPixel` component (see `references/adsense-arbitrage.md §4.3`) into `src/app/book/[slug]/chapter/[n]/page.tsx` — this fires `ViewContent` on mount, `{subdomain}_ScrollDepth25` / `{subdomain}_ChapterRead50` / `{subdomain}_ScrollDepth75` at scroll milestones, `{subdomain}_ChapterCompleted` via IntersectionObserver on `#chapter-content-end` sentinel, and `{subdomain}_TimeOnPage20s` / `{subdomain}_TimeOnPage30` after 20 / 30 seconds. Both dwell events must use the same chapter-only scope, payload, prefix, and lifecycle. These are the L1 optimization signals for Lookalike Audience building.
   - Custom event names MUST be prefixed with the live subdomain, using the format `{subdomain}_{EventName}` (for example `brocade_ChapterRead50`, `midnight_ChapterCompleted`). Keep Meta standard events (`PageView`, `ViewContent`) unprefixed.
   - Add a TODO for manual Meta Events Manager setup: create Custom Conversions / Ad Set conversion events for `{subdomain}_ChapterRead50`, `{subdomain}_ChapterCompleted`, `{subdomain}_TimeOnPage30`, and `{subdomain}_NextChapterClick`. Code can emit the events, but selecting them as optimization targets requires this manual backend setup.
   - If the site uses `next/link` or any App Router client navigation, also add a lightweight route tracker that fires `fbq('track', 'PageView')` on pathname changes after the initial render. A single bootstrap `PageView` in layout is not enough for SPA-style navigation.
 - **If not configured**: do not add any Pixel code. Record in the site's `TODO.md`:
   ```
-  - [ ] 配置 Facebook Pixel（项目 CLAUDE.md 未指定 Pixel ID）
+  - [ ] 配置 Facebook Pixel（项目 AGENTS.md 未指定 Pixel ID）
   - [ ] 接入 ChapterPixel 组件（ViewContent + ChapterRead50 + ChapterCompleted + TimeOnPage30 事件）
   ```
 

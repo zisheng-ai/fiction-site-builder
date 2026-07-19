@@ -1,6 +1,6 @@
 # AdSense / AdX Arbitrage Playbook (Facebook Traffic)
 
-Load this reference whenever the site's purpose is **paid-traffic monetization** — i.e. buying traffic on Facebook (Meta) ads and monetizing reading sessions with AdSense + AdX. This is the default business model for every site built by this skill (see CLAUDE.md ad accounts). Apply it during Phase B1–B6 and at content/cover direction time.
+Load this reference whenever the site's purpose is **paid-traffic monetization** — i.e. buying traffic on Facebook (Meta) ads and monetizing reading sessions with AdSense + AdX. This is the default business model for every site built by this skill (see AGENTS.md ad accounts). Apply it during Phase B1–B6 and at content/cover direction time.
 
 > **One sentence:** the site is a machine that converts a Facebook click (cost) into multiple viewable ad impressions across a reading session (revenue). Everything below exists to widen that margin **without** getting the ad account or the AdSense account banned.
 
@@ -131,7 +131,7 @@ Chapter titles that create forward curiosity ("The Night He Came Back", "What th
 
 ## 3. Ad layout, density & viewability — the RPM lever
 
-Map the CLAUDE.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via `AdsenseSlot`) onto these positions. Layout structure matters more than raw ad count — moving a unit to a better slot can double its CPM; adding a 6th+ unit usually cannibalizes the others.
+Map the AGENTS.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via `AdsenseSlot`) onto these positions. Layout structure matters more than raw ad count — moving a unit to a better slot can double its CPM; adding a 6th+ unit usually cannibalizes the others.
 
 ### 3.1 Placement map
 
@@ -173,7 +173,7 @@ Map the CLAUDE.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via
 
 ### 3.3 CLS protection (Core Web Vitals = cheaper FB traffic + SEO)
 
-- Every ad slot wrapper reserves explicit `min-height` / `aspect-ratio` matching the largest expected creative **before** it loads. (CLAUDE.md `AdSlot` min sizes already do this for q1–q4; keep it.)
+- Every ad slot wrapper reserves explicit `min-height` / `aspect-ratio` matching the largest expected creative **before** it loads. (AGENTS.md `AdSlot` min sizes already do this for q1–q4; keep it.)
 - A jumping layout when an ad loads tanks CLS, raises bounce, and raises effective CPC.
 
 ### 3.4 Viewability & refresh

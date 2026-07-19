@@ -83,7 +83,7 @@ Generate at least 3× more candidates than you need before scoring any.
 
 ### Candidate types to prefer
 
-Each genre has its own community, demand signals, and trope language. Pick the genre that fits the **target site's tone** (see `CLAUDE.md` site table) first, then find the best trope angle within that genre.
+Each genre has its own community, demand signals, and trope language. Pick the genre that fits the **target site's tone** (see `AGENTS.md` site table) first, then find the best trope angle within that genre.
 
 | Genre | Hot trope / angle combinations | Primary platform signal |
 | --- | --- | --- |
@@ -136,10 +136,10 @@ Avoid:
 
 ## Step 1.5: Site Tone Gate (mandatory — run BEFORE Step 2)
 
-**Before evaluating any candidate, read the target site's entry in `fictions/CLAUDE.md`.** Every candidate must clear this gate or be dropped immediately:
+**Before evaluating any candidate, read the target site's entry in `fictions/AGENTS.md`.** Every candidate must clear this gate or be dropped immediately:
 
 1. **Tone match** — the candidate's core emotion (dark intensity, wholesome/cosy, literary, Spanish heat, etc.) must match the site's declared tone. No exceptions. A "heartwarming small-town" story does not belong on velvet-throne no matter how high its demand score.
-2. **No topic overlap with sister sites** — if the parent project has multiple sites on the same root domain, the candidate must not replicate the core topic of another site. Check the site isolation table in `fictions/CLAUDE.md`. Reject any candidate that would compete with a sister site on the same domain.
+2. **No topic overlap with sister sites** — if the parent project has multiple sites on the same root domain, the candidate must not replicate the core topic of another site. Check the site isolation table in `fictions/AGENTS.md`. Reject any candidate that would compete with a sister site on the same domain.
 3. **Language match** — the story language must match the site's declared language (`en`, `es`, `en-GB`, `zh-TW`). Do not write English content for a Spanish or Traditional Chinese site, and do not write Simplified Chinese for a `zh-TW` site.
 
 Reject candidates that fail any gate. Do not score them. Do not bring them back.

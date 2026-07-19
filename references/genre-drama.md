@@ -17,6 +17,19 @@ Load this file alongside `story-long-write.md` or `story-short-write.md` when wr
 | **Second Chance / Reunion** | Characters who separated under unresolved circumstances forced back into contact | What was never said; whether it is too late; what changes if it isn't |
 | **Grief / Loss** | Bereavement, absence, and the long aftermath — the story takes place inside the grief, not after it | Being inside loss rather than watching it from outside; the specific texture of mourning a particular person |
 
+## Women 25–60: Reinvention Without an Age Ghetto
+
+When a site targets women 25–60, treat that range as a shared set of pressures, not a “50+” genre and not a command to make every lead the same age.
+
+- Rotate protagonists across the range. A 28-year-old changing careers, a 41-year-old dating after divorce, and a 58-year-old building a life after retirement can belong to the same collection.
+- Anchor reinvention in a material decision: leave a job, open a business, refuse a sale, fund childcare, expose a family agreement, move home, or enter public life. Reflection alone is not a plot.
+- Preserve appetite. Women may want sex, work, money, solitude, recognition, travel, friendship, creative authorship, or authority. Do not reduce fulfillment to finding a partner.
+- Avoid “still,” “despite her age,” “late bloomer,” and bravery language that treats ordinary desire as exceptional.
+- Build cross-generational friction. Younger and older women should disagree about cost, access, care, ambition, and privacy rather than functioning as inspirational mirrors.
+- Let romance remain optional. Women's fiction passes only when removing the love interest still leaves a complete external conflict and an irreversible protagonist choice.
+
+Three reliable lanes for this audience are a restart romantic comedy, a socially observant mature-amateur mystery, and women's literary reinvention. They may share a collection, but they remain distinct genres.
+
 ---
 
 ## The Drama Click Standard

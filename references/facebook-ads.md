@@ -21,7 +21,7 @@ Everything a first-time advertiser needs to know before running a single dollar.
 
 **Without a Pixel:** You are flying blind. Facebook shows your ad to whoever its guess says is right. With a Pixel, it learns from real visitor behavior and improves targeting automatically over time.
 
-**In this project:** The Pixel ID is set in `fictions/CLAUDE.md` under `facebook_pixel`. All sites in this project share Pixel `1549585523220726`. The code is injected in `src/app/layout.tsx`. Two events fire automatically: `PageView` on every page load.
+**In this project:** The Pixel ID is set in `fictions/AGENTS.md` under `facebook_pixel`. All sites in this project share Pixel `1549585523220726`. The code is injected in `src/app/layout.tsx`. Two events fire automatically: `PageView` on every page load.
 
 **One critical rule:** The Pixel must fire *before* any ad spend. Run at least 500–1,000 organic pageviews through the site first so the Pixel has baseline data. Cold Pixels (zero events) make the algorithm guess randomly.
 

@@ -30,7 +30,7 @@ Claude Code discovers skills automatically from:
 
 The skill metadata is defined in `SKILL.md`.
 
-For project-specific defaults, add or update the project-level `CLAUDE.md`. Project instructions override skill defaults when they conflict.
+For project-specific defaults, add or update the project-level `AGENTS.md`. Project instructions override skill defaults when they conflict.
 
 ## Optional Environment
 
