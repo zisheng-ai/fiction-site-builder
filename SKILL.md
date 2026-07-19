@@ -500,7 +500,7 @@ Load references only when entering that phase. Do not preload all references at 
 
 ### Cross-cutting references
 
-- **`fiction-niche-researcher.md`** — A0 demand validation and competitive analysis; outputs `niche-research.json` that feeds A1 story brief and A2 cover direction. Includes Taiwan / `zh-TW` romance niche routing when the target site is Traditional Chinese.
+- **`fiction-niche-researcher.md`** — A0 demand validation and competitive analysis; outputs `niche-research.json` that feeds A1 story brief and A2 cover direction. Includes Taiwan / `zh-TW` niche routing and a US/UK women 25–60 portfolio covering restart comedy, silver-sleuth cozy, women’s reinvention, Romantasy, psychological suspense, supernatural bonds, and power-reversal fiction without default romance labeling.
 - **`seo.md`** — load during A0 for keyword demand validation; during A1 when writing book synopses (meta descriptions). Organic traffic scales the business beyond paid dependency. Includes Taiwan / Traditional Chinese book-list article patterns.
 - **`geo.md`** — load during A0 and A1: book synopses as self-contained relational sentences (GEO evidence); author pen-name entity strategy. Load during B4: `llms.txt` generation, structured data, AI crawler robots.
 - **`social-sharing.md`** — ShareBar component (standard feature on book detail and chapter pages). Load during B4. Social sharing is organic L2 amplification — readers sharing chapters bring new sessions at zero CPC.

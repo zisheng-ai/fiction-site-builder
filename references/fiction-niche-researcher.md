@@ -103,6 +103,28 @@ Each genre has its own community, demand signals, and trope language. Pick the g
 | **Contemporary Drama** | Secret child / hidden lineage + family reckoning; second-chance reunion after an old wrong; grief and inheritance | `#familydrama` `#emotionalfiction` `#secretbaby` Pinterest + Facebook Groups |
 | **Medical Drama** | Deathbed revelation + caregiver relationship; hospital diagnosis that forces family truth; donor / recipient identity | `#medicaldrama` `#hospitalstory` TikTok + Pinterest emotional content |
 
+### US/UK women 25–60 portfolio routing
+
+Use this pool when the user asks for a broad English-language collection for women 25–60. This is an audience portfolio, not a “50+” shelf and not a synonym for romance. Rotate protagonist ages and life pressures across the range instead of making every lead middle-aged or using age as the hook.
+
+| Lane | Reader promise | Primary-genre routing | Required differentiation |
+| --- | --- | --- | --- |
+| **Restart romantic comedy** | Desire and humor return while the protagonist rebuilds a material part of her life | `genre-romance.md` only when the relationship drives the climax; otherwise contemporary drama with a romance subplot | External goal survives removal of the love interest; no “still desirable” framing |
+| **Mature-amateur / silver-sleuth cozy** | A socially observant woman uses prior work, memory, and community access to solve a fair-play puzzle | `genre-mystery.md` | Experience creates access but not infallibility; no graphic violence or sexless-oracle stereotype |
+| **Women’s literary reinvention** | A woman confronts the life she postponed and makes a costly structural choice | `genre-drama.md` | Work, money, housing, care, authorship, or family governance changes; replacement romance cannot be the sole reward |
+| **Romantasy** | Magic, danger, court struggle, and intimacy increase one another's cost | `genre-fantasy.md` when the quest, war, court, or magical victory condition controls the ending; `genre-romance.md` only when the relationship is the main resolution engine | The heroine changes the political or magical outcome; forbidden love cannot replace a world-level objective |
+| **Psychological / domestic suspense** | The protagonist tests her own perception against a home, town, institution, or narrator that cannot be trusted | `genre-mystery.md`; add `genre-small-town-corruption.md` or `genre-stalking-control.md` when that external system is primary | Page-turning uncertainty plus verifiable physical clues; do not reduce suspense to generalized anxiety |
+| **Shifter / werewolf / supernatural bond** | Protection, loyalty, bodily transformation, and a claimed or destined bond collide with choice | `genre-romance.md` only when the bond relationship resolves the book; otherwise paranormal fantasy or horror | Protection must have limits and costs; fate creates pressure, never automatic consent or completed intimacy |
+| **Billionaire / power-reversal comeback** | A woman excluded from power returns with evidence, ownership, expertise, or public leverage | Workplace, family, inheritance, or revenge drama by default; use `genre-romance.md` only when the couple conflict controls the climax | Her leverage must change the institution; a wealthy partner cannot buy the victory for her |
+
+Portfolio rules:
+
+- A collection may carry all seven lanes when its umbrella promise is female agency, reinvention, curiosity, or power. Keep each book's actual primary genre in metadata, SEO, cover labels, and article targets.
+- Do not append `Romance` to cozy mystery, psychological suspense, women’s fiction, or power-reversal drama because a relationship subplot exists.
+- Vary the protagonist ages, household structures, work positions, economic constraints, and appetite. “Women 25–60” should widen the available lives, not flatten them into one demographic persona.
+- Validate each lane against current A0 demand evidence. Market-size figures, percentages, bestseller claims, and screenshots age quickly and must not be copied into the skill as permanent facts.
+- For an initial three-book batch, prefer three different primary engines. A strong default is restart romantic comedy, mature-amateur cozy mystery, and women’s literary reinvention; use the other four lanes for expansion after independent demand validation.
+
 ### Taiwan / zh-TW serial-fiction niche pool
 
 Use this pool when the target site language is `zh-TW` or the user asks for Taiwan-facing Traditional Chinese fiction. Choose the primary taxonomy from the climax and victory condition; relationship presence alone does not make a book romance.
