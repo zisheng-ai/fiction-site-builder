@@ -32,6 +32,7 @@ Fallback: none | missing agents -> solo | agent tool unavailable -> solo
 
 - Does each chapter have a hook, escalation, turn, and hook-out?
 - Run the mandatory First-Three-Chapter Conversion Gate from `story-long-write.md` whenever Chapters 1–3 are in scope. Report every row as PASS or FAIL; do not replace this with a general statement that the opening has hooks.
+- Audit Chapter 1's middle in rolling 200-word windows. Fail any window with more than 2 new memory burdens (new names, institutions, document types, acronyms, or specialized system concepts), and fail any system fact that does not cause visible action within the next 2 paragraphs.
 - Do Chapters 1–2 deliver the advertised primary conflict? Require romantic charge only when romance is a primary promise; do not downgrade identity, family, legal, medical, crime, horror, or revenge openings for prioritizing their external engine.
 - Does the chapter end with forward pull (reader wants next chapter)?
 - Are any chapters filler — nothing changes from beginning to end?
@@ -113,7 +114,7 @@ Scope: {chapters N–M or "full manuscript"}
 {Problems found, with chapter numbers. Actionable fix per problem.}
 
 ### Opening Conversion (Chapters 1–3)
-Chapter 1: {row-by-row PASS/FAIL plus exact evidence}
+Chapter 1: {row-by-row PASS/FAIL plus exact evidence, including middle-density and action-translation rows}
 Chapter 2: {row-by-row PASS/FAIL plus exact evidence}
 Chapter 3: {row-by-row PASS/FAIL plus exact evidence}
 Overall: {PASS/FAIL; a single hard failure makes the overall result FAIL}

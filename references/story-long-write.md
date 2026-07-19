@@ -643,6 +643,8 @@ The opening is a three-pageview conversion funnel, not three setup chapters. Run
 - **First sentence:** contain conflict, contradiction, abnormality, or a decision already in motion. Naming the setting is not enough.
 - **First 500 words:** produce one event that overturns the protagonist's normal situation. A threat or explanation without changed options does not count.
 - **Information budget:** foreground only three payloads: the present dilemma, one abnormal detail, and one unresolved question. Carry other background through pressured dialogue or action; do not stop for an explanatory internal-history block.
+- **Middle-density gate:** between the first identity/conflict proof and the final escalation, keep each 200-word window to at most 2 new memory burdens: a new named person, institution, document type, acronym, or specialized legal/commercial/medical concept. Existing focal-character names and concrete stake numbers do not count. If the reader needs an org chart, glossary, or procedural timeline to follow the scene, rewrite the middle.
+- **Action translation:** make every abstract system fact change visible behavior within the next 2 paragraphs. Someone freezes a signature, grabs evidence, blocks security, changes sides, loses access, exposes a lie, or faces a deadline. Move facts with no immediate action to Chapter 2 or later.
 - **Midpoint detonation:** the first key proof or discovery must trigger a larger family, legal, commercial, reputational, medical, or safety crisis. Evidence that merely confirms what the reader already knows is insufficient.
 - **Final line:** land on a high-risk choice, a cognition-changing clue, or an opponent action already in motion. Mood, summary, and generalized resolve fail.
 
@@ -655,6 +657,19 @@ When another person is living under the protagonist's name or status:
 3. After the first legal, biometric, financial, or archival proof appears, detonate a larger crisis that shows the dispute controls more than one person's name.
 4. End with an unexpected action, declaration, or hidden proof that reveals the protagonist still holds leverage; cut on the resulting question, alarm, or cognition shift.
 5. Do not explain backstory through interior monologue, describe identity through a mirror, or let dialogue settle the scene by simply announcing "this is fake." Make characters test, obstruct, expose, or act on the claim.
+
+#### Chapter 1 middle: reduce concepts, increase events
+
+The middle normally begins after the first 500-word overturn and ends when the final escalation starts. Its job is to convert curiosity into momentum, not teach the reader how the family, company, court, hospital, school, or criminal network works.
+
+- Use plain functional labels on first mention: `passport record`, `court filing`, `trust vote`, `hospital order`, `board signature`. Save full institution names, statute names, document taxonomies, acronyms, dates, and procedural history for later chapters.
+- Introduce one proof object at a time. Make a character attack, protect, misread, authenticate, or act on it before introducing another.
+- Prefer `Adrian froze every signature` over an explanation of merger authorization; prefer `security chose whose order to obey` over a paragraph about authority.
+- Keep at least one visible conflict action every 150–200 words: interruption, obstruction, evidence movement, public reaction, allegiance shift, deadline, or loss.
+- Preserve only stakes the reader can feel immediately. Numbers such as `31%` or `$4 billion` are useful when a character reacts to them; they fail when followed by financial mechanics.
+- Do not solve density by turning the chapter into a synopsis. Remove concepts, then replace some of the saved space with choices, reactions, reversals, and concrete interpersonal pressure. For five-ad chapter layouts, prefer roughly 1,250–1,500 words unless the site's ad-density rule requires more.
+
+**Cold-reader retell test:** after reading Chapter 1 once, a reader should be able to say who is being erased, who benefits, what proof changed the room, and what new danger demands Chapter 2. If the retell depends on remembering company divisions, court names, medical chronology, document subclasses, or more than the core 3–4 people, the middle fails.
 
 #### Chapters 2–3: no flat runway
 
@@ -684,7 +699,7 @@ Coverage: Chapters 1–N, Gates A–G, Three-Pass routing complete
 
 ### A3.5 Opening Conversion
 Status: PASS
-Chapter 1: {first sentence / first 500 / information budget / midpoint / hook-out}
+Chapter 1: {first sentence / first 500 / information budget / middle density / action translation / midpoint / hook-out}
 Chapter 2: {opening consequence / first 500 / midpoint / hook-out}
 Chapter 3: {opening consequence / first 500 / midpoint / irreversible consequence}
 Rewrites and rechecks: {none or exact chapters}

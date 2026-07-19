@@ -532,6 +532,7 @@ Do not deliver a build if any of these are true.
 **Content completeness (L2 depth gates):**
 - Any new long-form book lacks `tracking/quality-gates.md`, has an incomplete A3 deslop record, or has anything other than a final post-deslop PASS for the Chapters 1–3 conversion gate.
 - Chapter 1 fails to create conflict or abnormality in its first sentence, overturn the protagonist's normal situation within the first 500 words, or end on a high-risk choice or cognition-changing clue.
+- Chapter 1's middle asks a cold reader to retain more than 2 new names, institutions, document types, or specialized legal/commercial/medical concepts in any 200-word window; or explains a system fact without making a character act on it within the next 2 paragraphs.
 - Chapter 2 resets or explains Chapter 1 instead of imposing a new material cost, choice, deadline, exposure, or loss within its first 500 words.
 - By the end of Chapter 3, the opening crisis has not produced an irreversible consequence and a harder forward plan.
 - Site launches with fewer than 3 books.
