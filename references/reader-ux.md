@@ -8,12 +8,12 @@ The reader is the product. Optimize for long sessions, low fatigue, and fast ret
 
 ## Required Reader Controls
 
-The default reader ships with a focused set of controls. Add font size, density, or reading progress indicator only when the brief explicitly asks for them. Chapter 2 and later keep the table of contents in the bottom nav; chapter 1 omits it. The fixed top header never renders a TOC icon.
+The default reader ships with a focused set of controls. Add font size, density, or reading progress indicator only when the brief explicitly asks for them. Every chapter keeps a compact table-of-contents icon in the fixed top header; the bottom nav also keeps the chapter-list control for chapter 2 and later. Both controls hard-navigate to the book detail page's `#toc` anchor.
 
 | Control | Requirement | Notes |
 | --- | --- | --- |
 | Next chapter | Required | Inline CTA in the content flow at the end of chapter text (see **End-of-Chapter Navigation** below). No Previous button — TOC handles backward navigation. |
-| Table of contents | Required from chapter 2 onward | Later chapters keep a bottom-bar chapter list button that hard-navigates to `/book/{slug}#toc`. Omit it entirely on chapter 1. Do not render a TOC button in the fixed top header. |
+| Table of contents | Required on every chapter | The fixed top header shows a compact chapter-list icon on every chapter. Chapter 2 and later also keep the bottom-bar chapter list button; both hard-navigate to `/book/{slug}#toc`. |
 | Book cover header | Required | Small cover thumbnail in the reader header above the chapter title; omit if no cover image exists |
 | End-of-chapter prompt | Required | Inline "Next chapter →" CTA at the very bottom of chapter text. Use **`my-10`** (symmetric 40px) margin — never asymmetric `mt-16 mb-6`. |
 | Keyboard prev/next | Required on desktop | `←` / `→` arrow keys |
@@ -139,7 +139,7 @@ The Velvet landing-page fix exposed a recurring layout bug: short pages can show
 
 **No fixed bottom navigation bar.** The bottom viewport is reserved for the sticky anchor ad (AdX sites use `StickyAnchorAd` / q4; AdSense sites leave the bottom clear per policy). Navigation lives in two places:
 
-1. **Top header** — right slot has only the theme toggle; do not render a TOC icon there. The bottom nav keeps the TOC button and hard-navigates to `/book/{slug}#toc`. No drawer, no modal.
+1. **Top header** — right slot keeps a compact TOC icon followed by the theme toggle. The icon hard-navigates to `/book/{slug}#toc`. The bottom nav keeps its TOC button from chapter 2 onward. No drawer, no modal.
 2. **Content flow** — inline "Next chapter →" CTA and cross-book recommendation grid appear at the end of chapter text, in the natural scroll path.
 
 ```tsx
@@ -183,7 +183,7 @@ Why this works: bright saturated warm colors activate dopamine anticipation. Com
 
 **TOC button — hard navigation, no drawer:**
 
-The bottom-bar TOC button must use `window.location.href` to navigate to `/book/{slug}#toc`. Do NOT implement a `TOCDrawer`, bottom sheet, or any modal overlay. The top header must not include a TOC icon.
+The top-header and bottom-bar TOC buttons must use a hard navigation (`window.location.href` or a plain anchor) to `/book/{slug}#toc`. Do NOT implement a `TOCDrawer`, bottom sheet, or any modal overlay.
 
 ```tsx
 <a

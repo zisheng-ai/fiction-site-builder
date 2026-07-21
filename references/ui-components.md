@@ -33,11 +33,11 @@ Any of these is a quality gate failure:
 
 ### Top / Navigation Bar
 - Height: 48–56px on mobile.
-- Content: logo (left), optional action (right). Never more than one action icon.
+- Content: logo (left), compact chapter-list action plus ThemeToggle (right) on reader pages. Keep the action icons visually quiet and separate from ad affordances.
 - **Logo spec (site-wide):** use `src/components/SiteLogo.tsx`, which renders `/logo-light.png` and `/logo-dark.png` together for theme switching. Do not reference `/logo.png` in rendered navigation.
 - Home: logo + site name text + ThemeToggle
 - Book detail: logo (links to `/`) + ThemeToggle
-- Chapter: logo (links to `/`) + centered book/chapter name + ThemeToggle
+- Chapter: logo (links to `/`) + centered book/chapter name + chapter-list icon + ThemeToggle. The chapter-list icon hard-navigates to `/book/{slug}#toc`.
 - On scroll down: may compress or hide (if implementing immersive mode).
 
 ### Bottom Bar (Mobile Reader)
