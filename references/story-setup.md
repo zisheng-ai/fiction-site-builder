@@ -130,8 +130,8 @@ Chapter markdown under `content/` **is** committed — it is the source content,
 
 When building a fiction site from scratch, write **N books** in total, where N is the user-specified count (default 5 if not specified). Writing and site build run in parallel — site setup (stack, design, data) starts immediately after Phase 0 and does not wait for books to be written.
 
-Each book must reach minimum content level before it can be included in the site build:
-- 20–26 chapters per book for launch (development preview may run with ≥ 10)
+Each long-form novel must reach minimum content level before it can be included in the site build:
+- At least 201 chapters per novel for launch (development preview may run with fewer while writing is in progress)
 - ≥ 1,200 words per chapter
 
 Run `/story-cover` to generate covers. This can run incrementally as books are completed, or in one batch before launch.
@@ -141,7 +141,7 @@ Run `/story-cover` to generate covers. This can run incrementally as books are c
 Verify all of the following before go-live:
 
 - [ ] `content/` has ≥ 3 book directories.
-- [ ] Each book has 20–26 chapters in `chapters/`. Development preview may run with ≥ 10 chapters, but that is not launch-ready.
+- [ ] Each long-form novel has at least 201 chapters in `chapters/`. A smaller development preview is not launch-ready.
 - [ ] Each chapter is ≥ 1,000 words (resolution chapters may be 1,000–1,400; other types target 1,200–1,800 — see Pacing Guidelines in `story-long-write.md`).
 - [ ] `outline/outline.md` is non-empty for each book.
 - [ ] `world/worldbuilding.md` is non-empty for each book.

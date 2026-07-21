@@ -573,21 +573,21 @@ for d in content/*/chapters; do
 done
 ```
 
-Run this command, read the output, then pick a chapter count that **does not appear in that list**. If a count appears even once, it is unavailable for this book. Do not guess — run the command.
+Run this command, read the output, and identify every long-form book below the 201-chapter minimum. Do not guess the current count — run the command before planning extensions.
 
 **WARNING: Do NOT copy the chapter count from the reference site** (`velvet-throne/` or `midnight-fable/`). Those sites are borrowed for code/component structure only. Their chapter counts are irrelevant and must never be used as a default or template.
 
-Pick a number in the **20–26 range** that fits the story's scope AND is not already used on this site. Treat the count as a story decision, not a quota:
+Plan a minimum of **201 chapters** for every long-form novel. The final count may be higher and should fit the story's scope; treat the count as story architecture, not filler:
 
-> **Why 20–26?** The business model is Facebook traffic arbitrage: every chapter is one pageview, and the profit equation is `RPM × pageviews/session − CPC`. More chapters = higher session-depth ceiling. A reader who finishes 6 chapters on a 22-chapter book contributes 6 pageviews; on a 14-chapter book the ceiling is lower and the long tail drops off. Target 20–26 to maximize session depth without padding.
+> **Why 201+?** The business model is Facebook traffic arbitrage: every chapter is one pageview, and the profit equation is `RPM × pageviews/session − CPC`. A 201+ chapter novel creates a durable session-depth ceiling and supports multiple arcs. Do not fill chapters with padding; each chapter still needs a meaningful turn, consequence, or hook-out.
 
-- A tight psychological thriller or revenge arc: **20–21 chapters** (lean, punchy, every chapter a hard turn)
-- A paranormal/billionaire romance with full slow-burn arc: **22–23 chapters**
-- A space opera, fae epic, or multi-POV dark fantasy: **24–26 chapters**
+- A tight psychological thriller or revenge arc: 201+ chapters organized into short escalation arcs
+- A paranormal/billionaire romance with full slow-burn arc: 201+ chapters with recurring relationship reversals
+- A space opera, fae epic, or multi-POV dark fantasy: 201+ chapters with multiple major arcs
 
-Existing books with fewer than 20 chapters must be extended to at least 20 chapters before launch.
+Existing long-form books with fewer than 201 chapters must be extended to at least 201 chapters before launch.
 
-**Never default to 22.** It is the most commonly auto-selected count. If you find yourself writing "22 chapters" without having run the bash command above, stop and run it first.
+**Never default to a short 20–26 chapter plan.** If a long-form novel is planned below 201 chapters, stop and expand the arc architecture before writing.
 
 Document the chosen count in `outline/outline.md` header before writing any beat entries.
 
@@ -595,7 +595,7 @@ Document the chosen count in `outline/outline.md` header before writing any beat
 
 Word counts are targets, not uniform quotas. Let each chapter breathe according to its dramatic weight. Vary lengths across the book so readers feel the rhythm shift.
 
-> **Facebook arbitrage note:** shorter chapters increase pageviews/session. A reader finishes a 1,200-word chapter in ~5 minutes and immediately clicks Next; a 2,500-word chapter takes ~12 minutes for the same single pageview. The cliffhanger hook-out is the #1 driver of next-pageview clicks — **never sacrifice the hook-out to add word count**. Target the lower half of each range unless the scene genuinely needs more space.
+> **Facebook arbitrage note:** shorter chapters increase pageviews/session. A reader finishes a 1,200-word chapter in ~5 minutes and immediately clicks Next; a 2,500-word chapter takes ~12 minutes for the same single pageview. The cliffhanger hook-out is the #1 driver of next-pageview clicks — **never sacrifice the hook-out to add chapter count**. Use arc-level planning and natural word-count variation rather than padding.
 
 | Chapter type | Word count range | Dialogue ratio | Action beats |
 | --- | --- | --- | --- |

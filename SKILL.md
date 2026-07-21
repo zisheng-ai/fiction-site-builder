@@ -40,6 +40,7 @@ Ad density cap: ~3–4 units per 1,000 words, ad area ≤ 30% of content area. S
 - **Ensemble causality is mandatory.** Long-form books use 6–8 active named characters, at least 4 recurring plot actors, three interacting storylines, and no more than 30% lead-only chapters. Supporting characters must pursue goals and change the leads' options; names and passive confidants do not count.
 - **Escalation must change the situation.** Every 2–3 chapters produces an irreversible consequence and every 5–6 chapters a major reversal. A withheld answer or interrupted conversation is a hook-out technique, not a substitute for plot movement.
 - **Plot volatility and relationship complexity are defaults.** Long-form fiction should feel tortuous and eventful: alliances shift, secrets collide, apparent victories create larger costs, and personal relationships interfere with external goals. Do not write a smooth two-lead progression with decorative side characters. Every major turn should alter at least two relationships or force one character to choose between conflicting loyalties.
+- **Long-form novels must exceed 200 chapters.** A publishable novel must contain at least 201 chapter files. Short-form stories remain the only exception; never pad a short story into a novel to satisfy this threshold.
 - **Do not make everything romance.** Treat `romance` as a primary genre only when the love relationship is the story's main conflict and resolution engine. Kidnapping, mafia, bullying, revenge, crime, legal, horror, thriller, dark academia, family, medical, fantasy, and sci-fi premises keep their own primary taxonomy when those external conflicts drive the plot; a relationship subplot does not justify adding `Romance` to the book genres, collection name, route slug, SEO keyword, article title, cover label, or promotional copy. For multi-book batches and collection pages, deliberately mix primary genres and audit reader-facing copy for unnecessary `romance` repetition before build.
 - **The cover is an ad creative first, a book cover second.** Design and generate to stop the scroll in 0.3 seconds. For traffic fiction, default to a **normally exposed, high-readability melodramatic short-drama thumbnail**: a frozen scandal, an active accusation or interruption, visible proof, exaggerated shock/panic/guilt/fury, and a complicated 3–4-person relationship tableau. Use no more than 4 discernible people. Ban `premium`, `prestige`, `editorial`, `elegant`, `sophisticated`, `subtle emotion`, `restrained expression`, `calm power`, and atmosphere-first movie-poster direction from traffic-cover prompts unless the user explicitly requests that aesthetic. Neutral model poses, everyone looking away, beautiful couple portraits, romantic embraces, and polished family groups are hard failures. See `story-cover.md`, `cover-allure-elements.md`, and `facebook-ads.md`.
 - **Avoid both exposure extremes.** Dangerous subject matter does not mean black backgrounds, but readability does not mean blown highlights, white fog, washed-out skin, or a near-opaque pale lower third. Default to mid-key exposure with natural skin tones, readable shadow detail, controlled highlights, and local contrast. Preserve a supplied reference image's luminance and whitespace as first-class composition features. Apply both the dark and overexposure gates in `story-cover.md` before accepting any cover.
@@ -274,7 +275,7 @@ After B6 passes, generate two files before closing the session:
 
 **`TODO.md`** — outstanding work for this site, written in **Chinese (中文)**:
 - 部署状态（未部署 / 已上线 + 域名）
-- 每本书的章节缺口：列出少于目标长度（20–26 章）的书及缺多少章
+- 每本书的章节缺口：列出少于 201 章的长篇小说及缺多少章；短篇故事单独标记
 - 缺少插图的书
 - `books.ts` 里的 `chapterCount` 与实际文件数不一致的地方
 - 广告和分析工具中尚未完成的项，包括：
@@ -295,7 +296,7 @@ All of the following must be true before go-live (after B6 passes):
 | Check | Required location |
 | --- | --- |
 | ≥ 3 book directories | `content/{book-title}/` |
-| Each book has **20–26 chapters** (randomized per book; optimized for L2 session depth); chapter counts do NOT need to be unique across books within the same site — two books may share the same count | `content/{book-title}/chapters/` |
+| Each long-form book has **at least 201 chapters**; chapter counts do not need to be unique across books within the same site | `content/{book-title}/chapters/` |
 | Each chapter meets its type target (see Pacing Guidelines in `story-long-write.md`); word counts must vary naturally across chapters — never identical | A1 output |
 | `outline/outline.md` exists and non-empty | A1 output |
 | `world/worldbuilding.md` exists and non-empty | A1 output |
@@ -536,7 +537,7 @@ Do not deliver a build if any of these are true.
 - Chapter 2 resets or explains Chapter 1 instead of imposing a new material cost, choice, deadline, exposure, or loss within its first 500 words.
 - By the end of Chapter 3, the opening crisis has not produced an irreversible consequence and a harder forward plan.
 - Site launches with fewer than 3 books.
-- Any book has fewer than 20 chapters or more than 26 chapters.
+- Any long-form book has fewer than 201 chapters. Short-form stories are exempt and must be explicitly classified.
 - Any chapter falls below its type's minimum (see Pacing Guidelines in `story-long-write.md`).
 - All chapters in a book have the same word count — natural variation is required.
 - `outline/outline.md` is missing or empty for any published book.
