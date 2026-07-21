@@ -33,11 +33,11 @@ Always fixed (`position: fixed; top: 0`), `height: 56px`, `bg-base-100/95 backdr
                 [ Ch. 1 - Chapter Title (sm)]
 ```
 
-- **Left slot — site logo** (`h-8 w-auto`): always render the site logo. On chapter 1 it is a static, non-interactive brand mark with no `href`, click handler, link role, or pointer cursor. From chapter 2 onward it links to `/`. Never use a back arrow (`<`) or book cover thumbnail.
+- **Left slot — site logo** (`h-8 w-auto`): always render the site logo as a link to `/`, including chapter 1. Never use a static logo, back arrow (`<`), or book cover thumbnail.
 - **Center slot** — two-line text block: book title in `11px` muted, chapter title in `13px` medium. Truncate both.
 - **Right slot** — dark mode toggle only. Use `btn btn-ghost btn-sm btn-circle`.
 
-No back arrow (`<`) anywhere in the header. From chapter 2 onward the site logo is the back link to home (`/`); on chapter 1 it is display-only.
+No back arrow (`<`) anywhere in the header. The site logo is always the home link (`/`) on every chapter.
 
 Add `padding-top: 56px` (or `pt-14`) to the chapter content wrapper so it clears the fixed header.
 
@@ -53,10 +53,10 @@ Chapter 1 landing pages are not normal reader pages. They must remove every non-
 
 - Hide the normal site navigation bar on chapter 1 landing pages. A minimal fixed reader header may remain with static logo, book/chapter identity, and theme toggle only.
 - Hide side menus, drawer triggers, and back buttons on chapter 1 landing pages.
-- Do not render the table of contents on chapter 1 landing pages.
+- Keep the compact table-of-contents action on chapter 1; readers must be able to return to the book catalog without scrolling through the chapter.
 - Do not render recommendation grids before or after the prose on chapter 1 landing pages.
 - Do not add secondary buttons or text links that compete with `Next chapter →`.
-- Always keep the site logo for brand recognition, but make it non-interactive on chapter 1: render the image inside a neutral `span`, never an anchor or button.
+- Always keep the site logo for brand recognition and make it the home link on chapter 1 as well as later chapters.
 
 ### Chapter 1 identity card
 

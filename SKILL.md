@@ -553,7 +553,8 @@ Do not deliver a build if any of these are true.
 - Next chapter button is missing, broken, or below 60px height.
 - Next button uses a muted or dark color instead of a vivid warm fill (hot pink / magenta / coral).
 - A "Previous" button appears in the reader nav.
-- Table of contents button is missing from the reader nav.
+- Table of contents button is missing from the reader nav, or is unavailable on chapter 1.
+- The site logo is not a home link (`/`) on any chapter page, including chapter 1.
 - Chapter content fails to load or shows a blank page.
 
 **Visual quality:**
