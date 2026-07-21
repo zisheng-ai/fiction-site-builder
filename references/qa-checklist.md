@@ -152,6 +152,8 @@ Run `axe-core` or equivalent programmatically:
 Automated grep over build output:
 
 - [ ] No "lorem ipsum", "Coming soon", "TODO", "[BOOK TITLE]" on rendered pages.
+- [ ] Imported chapters have no accidental code blocks caused by leading spaces or tabs.
+- [ ] Imported chapters do not show excessive vertical gaps: consecutive blank lines are limited to one between paragraphs.
 - [ ] No reader-visible copy mentions AI, Markdown, parser, prompt, or skill.
 - [ ] Logos exist: `public/logo-light.png` and `public/logo-dark.png` (apiyi). No SVG fallback.
 - [ ] Favicon exists: `public/favicon-32x32.png` (apiyi). No SVG fallback.

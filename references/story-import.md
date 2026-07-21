@@ -112,7 +112,12 @@ When the source is a single file with chapter markers:
    chapter: N
    ---
    ```
-5. Do not modify prose content during splitting — import as-is, deslop separately
+5. Preserve wording, punctuation, and paragraph boundaries during splitting, but normalize transport formatting before writing Markdown:
+   - remove ASCII spaces, tabs, and full-width spaces accidentally used as paragraph indentation;
+   - collapse any run of 2 or more consecutive blank lines to exactly 1 blank line;
+   - never leave a body line indented by 4+ spaces, because Markdown will render it as a code block;
+   - keep exactly one blank line between prose paragraphs and no blank-line padding at the start or end of the body.
+6. Do not rewrite prose content during splitting — import as-is apart from the mechanical whitespace normalization above; deslop separately.
 
 ### Duplicate Chapter File Cleanup
 
@@ -145,6 +150,9 @@ For each duplicate pair, run `wc -w` on both files and delete the shorter versio
 ## Post-Import Checklist
 
 - [ ] All chapter files named with correct zero-padded numbers
+- [ ] Body indentation is normalized: no accidental Markdown code blocks from leading whitespace
+- [ ] Consecutive blank lines are collapsed to one, including after frontmatter and before chapter navigation
+- [ ] A sample of early, middle, and final chapters renders as normal paragraphs with expected reading density
 - [ ] `world/worldbuilding.md` contains enough to orient a writer continuing the story
 - [ ] `outline/outline.md` shows where the story is and what is planned next
 - [ ] `tracking/context.md` is ready to hand off to `/story-long-write`
