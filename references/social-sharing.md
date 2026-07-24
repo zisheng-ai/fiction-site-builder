@@ -132,7 +132,7 @@ Icon SVGs: use inline SVGs (no icon library dependency). Copy from existing site
 <p className="...">{book.description}</p>    {/* description comes AFTER ShareBar */}
 ```
 
-**Chapter page** (`/book/[slug]/chapter/[n]/page.tsx`) — after chapter content and bottom ad, before "Next chapter" CTA:
+**Chapter page** (`/book/[slug]/chapter/[n]/page.tsx`) — after chapter content and before chapter navigation. Keep the final configured ad directly below the navigation controls:
 ```tsx
 {/* Share */}
 <div className="my-8 py-6 border-t border-base-300 text-center">

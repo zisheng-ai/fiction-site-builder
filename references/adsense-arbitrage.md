@@ -140,7 +140,7 @@ Map the AGENTS.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via
 | Pre-content (above all text, just below header) | **< 30%** | **Avoid.** Paid-traffic users start scrolling immediately — this unit exits the viewport before the 1-second viewability threshold. Moving this slot into content can double its Active View score. |
 | After `contentParts[0]` (~20% into content) | 70–90% | **First slot.** Reader has invested ~2 min and is still engaged. Pass `priority` to `AdsenseSlot`; AdX uses normal `AdSlot` (singleRequest). |
 | In-content, every N paragraphs after the first break | 65–85% | the workhorse — inside the natural reading path |
-| End-of-chapter (before the inline Next CTA) | high | catches the "decide to continue" pause; keep clear gap from Next button (§1.4) |
+| End-of-chapter (after the inline Next/TOC controls) | high | catches the post-navigation pause; keep clear separation so the ad cannot be mistaken for a control (§1.4) |
 | Mobile sticky **nav bar** (bottom, `position: fixed`) | — | Nav-only: TOC + Next buttons. No ads in sticky bar. `StickyNav` component; `<main>` uses `pb-sticky-ad` (`calc(82px + env(safe-area-inset-bottom))`). |
 | Desktop sticky **side-rail** | high | uses empty side space; never a static sidebar (low viewability) |
 
@@ -166,8 +166,9 @@ Map the AGENTS.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via
 - **≤ 3–4 ad units per 1,000 words** of chapter content.
 - **Ad pixels < 30% of content pixels** per screen (FB + AdSense inventory-value).
 - RPM typically peaks around 5 units; beyond that each added unit adds ~2–4% and erodes engagement + page-experience. Cutting the weakest slot often **raises** total RPM.
-- **Configured five-slot AdX layout:** when a site has q1–q5 assigned to chapter inventory, render exactly five unique units on every chapter: q4 at the top, q1/q2/q3 after the first three content quarters, and q5 after the final prose block. There is no chapter 1 exception.
+- **Configured five-slot AdX layout:** when a site has q1–q5 assigned to chapter inventory, render exactly five unique units on every chapter: q4 at the top, q1/q2/q3 after the first three content quarters, and q5 below chapter navigation. There is no chapter 1 exception.
 - Never reuse q5 inside a sticky component when it already appears at the bottom of the content flow; duplicate GPT div IDs break slot initialization.
+- If a legacy AdX or AdSense reader has fewer configured chapter units, place its existing final unit below chapter navigation instead of adding an unconfigured slot.
 - This fixed inventory is an explicit site strategy. Keep the density and ad-area checks above visible as an operational warning, especially for chapters below roughly 1,250 words.
 - Avoid a fourth mid-content unit; it sits too close to q5 and adds clutter without meaningful RPM lift.
 
@@ -190,7 +191,7 @@ The single biggest viewability lever on chapter pages is WHERE the first ad slot
 
 Rule: place the **first** ad after `contentParts[0]` — the first ~20% of paragraphs (min 3, max 5 paragraphs). At this depth the reader has invested ~2 minutes and is still engaged — first-ad viewability should reach 70–90% vs < 30% pre-content.
 
-Configured five-slot AdX layout: `q4 top → part[0] → q1 → part[1] → q2 → part[2] → q3 → part[3] → q5 bottom`.
+Configured five-slot AdX layout: `q4 top → part[0] → q1 → part[1] → q2 → part[2] → q3 → part[3] → sentinel → chapter nav → q5 bottom`.
 
 AdSense layout (2-part): `part[0] → slot1(priority) → part[1] → slot2`.
 AdSense layout (3-part): `part[0] → slot1(priority) → part[1] → slot2 → part[2]`.
@@ -623,6 +624,7 @@ function splitContent(content: string): [string, string, string, string] {
 <AdSlot path="/23294357175/q3" id="div-gpt-ad-1782711490041-0" sizes={[[250,250],[336,280],[300,250]]} />
 <div className="prose-reader">{contentParts[3]}</div>
 <div id="chapter-content-end" />
+{/* Render the in-flow TOC / Next chapter controls here. */}
 <AdSlot path="/23294357175/q5" id="div-gpt-ad-1782711618925-0" sizes={[[336,280],[300,250],[250,250]]} />
 ```
 
@@ -630,7 +632,7 @@ function splitContent(content: string): [string, string, string, string] {
 
 Mount outside `<main>` as a sibling before `<div className="min-h-screen">`. The bar is always visible; `<main>` uses `className="pb-sticky-ad"` (CSS utility: `calc(82px + env(safe-area-inset-bottom))`) to prevent content hiding behind it.
 
-All sites use a nav-only bar: TOC + Next buttons, no ads. q5 goes in-content after the last content part and must never be duplicated in the sticky bar.
+All sites use a nav-only bar: TOC + Next buttons, no ads. q5 goes in the content flow below chapter navigation and must never be duplicated in the sticky bar.
 
 ```tsx
 'use client'

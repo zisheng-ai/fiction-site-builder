@@ -77,17 +77,18 @@ Book-detail hero variants that place a `96px` cover beside genres, title, teaser
 
 For an AdX site configured with five chapter units, every chapter uses the same five-slot layout. This removes chapter-specific inventory drift and guarantees that each GPT div ID appears exactly once:
 
-- Show a top ad after the identity card and before the chapter title/prose.
+- Show a top ad after the cover lead and before the chapter title/prose.
 - Split prose into four parts at roughly 25% / 50% / 75%.
 - Render q1 after part 1, q2 after part 2, and q3 after part 3 on every chapter, including chapter 1.
-- Render q5 after the final prose block and the completion sentinel, before chapter navigation.
-- The complete order is `q4 top → q1 → q2 → q3 → q5 bottom`. Do not reuse any unit ID in a sticky component.
+- Render q5 after chapter navigation so the final ad sits below the TOC/Next button row.
+- The complete order is `q4 top → q1 → q2 → q3 → completion sentinel → chapter navigation → q5 bottom`. Do not reuse any unit ID in a sticky component.
+- If a legacy site has fewer than five chapter units, move its existing final unit below chapter navigation; do not invent or duplicate a unit ID merely to match the five-slot example.
 - The first real prose block must still appear quickly after the identity card and top ad; no login wall, no modal, no interstitial.
 
 ### Reader flow and controls
 
 - Chapter title header follows the top ad. For chapter 1, left-align the chapter header; later chapters can be centered.
-- The first prose wrapper must have `id="chapter-start"` and `scroll-mt-20` so the identity-card CTA lands cleanly below the fixed header.
+- Keep `id="chapter-start"` and `scroll-mt-20` on the first prose wrapper for stable deep links below the fixed header.
 - End-of-prose sentinel: add `<div id="chapter-content-end" />` before nav/recommendations so `ChapterCompleted` fires at the real prose ending.
 - Bottom nav is in content flow, not a fixed bar. Chapter 1 renders only the vivid Continue/Next button at full width. Chapter 2 onward renders TOC + Continue/Next.
 - Button sizing: min-height `64px`; chapter 1 uses one full-width column. From chapter 2 onward use a grid ratio around `minmax(88px, 0.58fr) minmax(160px, 1.42fr)` when Next exists.
@@ -119,6 +120,7 @@ The Velvet landing-page fix exposed a recurring layout bug: short pages can show
 - Fails if the chapter 1 cover is rendered as a small thumbnail instead of the `220px` mobile / `260px` larger-screen lead image.
 - Fails if a modal, paywall, cookie wall, or interstitial appears before prose.
 - Fails if any chapter renders fewer or more than the configured five unique slots.
+- Fails if the final configured chapter ad appears above the chapter-navigation buttons.
 - Fails if the next action is a muted text link or smaller than TOC.
 - Fails if the landing chapter uses SPA navigation for next chapter.
 - Fails if chapter 1 shows a normal site nav bar, clickable logo, side menu, back button, TOC, or recommendation grid.
