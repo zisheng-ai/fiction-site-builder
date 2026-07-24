@@ -58,27 +58,16 @@ Chapter 1 landing pages are not normal reader pages. They must remove every non-
 - Do not add secondary buttons or text links that compete with `Next chapter →`.
 - Always keep the site logo for brand recognition and make it the home link on chapter 1 as well as later chapters.
 
-### Chapter 1 identity card
+### Chapter 1 cover lead
 
-Render this only on chapter 1, before the chapter title and prose:
+Render a minimal cover lead only on chapter 1, before the chapter title and prose:
 
-- Compact book card with cover thumbnail (`96px` mobile, `130px` sm+), title, author, tagline, top 3 genre chips, and chapter count.
-- Label copy: `Free chapter 1` (or localized equivalent).
-- Primary in-page anchor: `Start Chapter 1` linking to `#chapter-start`, not to another route.
-- Style: `rounded-[18px]`, `border border-base-300`, `bg-base-200/55`, `p-4 sm:p-5`.
-- Keep tagline to 2 lines with `line-clamp-2`; the card confirms promise, it is not the synopsis page.
-- Cover image uses `priority` on chapter 1 because it is above the fold on the paid landing page.
-
-#### Mobile first-chapter card reflow
-
-On viewports below `640px`, never keep the cover, full tagline, and chapter CTA inside the same two-column grid. A fixed-width cover leaves a narrow text column; multiline taglines then create a tall card with a large blank area beneath the cover.
-
-- The mobile top row may contain only the cover plus compact identity content: free-chapter label, title, and author.
-- Hide the tagline entirely below `360px`; the cover, title, author, and CTA are the only identity elements worth keeping at that width.
-- From `360px` to `639px`, render the tagline below the top row at full card width.
-- Render the primary `Start Chapter 1` CTA below the tagline at full width with a minimum 48px height; chapter count sits beneath or beside it only when space permits.
-- At `sm` (`640px`) and above, the tagline and CTA may return to the cover-and-content two-column layout.
-- Do not solve the problem only by shrinking type, narrowing the cover, or forcing long CTA copy to wrap inside the narrow column.
+- Show the book cover at `220px` wide on mobile and `260px` at `sm` and above, centered in the reader column with a `2:3` aspect ratio.
+- Show only the book title below the cover. Do not add author, tagline, synopsis, genre chips, chapter count, labels, badges, or an in-page CTA.
+- Keep the cover and title in normal document flow with compact spacing. Do not wrap them in a bordered identity card or a two-column metadata layout.
+- The chapter heading remains separate below the cover lead and keeps the localized chapter number/title treatment.
+- Use `priority` for the chapter 1 cover when the image component supports it because the cover is above the fold.
+- The simplified lead applies to every reader site, including sites that do not receive paid traffic yet, so existing sites and generated output stay consistent.
 
 #### Ultra-narrow book-detail heroes
 
@@ -126,6 +115,8 @@ The Velvet landing-page fix exposed a recurring layout bug: short pages can show
 ### Quality gates
 
 - Fails if chapter 1 opens with only an ad and no book identity signal.
+- Fails if the chapter 1 cover lead contains metadata or copy other than the book title.
+- Fails if the chapter 1 cover is rendered as a small thumbnail instead of the `220px` mobile / `260px` larger-screen lead image.
 - Fails if a modal, paywall, cookie wall, or interstitial appears before prose.
 - Fails if any chapter renders fewer or more than the configured five unique slots.
 - Fails if the next action is a muted text link or smaller than TOC.
