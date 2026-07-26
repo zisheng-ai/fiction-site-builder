@@ -183,15 +183,15 @@ Map the AGENTS.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via
 - Refresh ads only when the unit is **in the viewport** and after **≥ 30s active dwell**. Sticky/anchor units are the safe place to refresh because they stay viewable.
 - Never refresh on a hidden tab or an off-screen unit.
 
-**Critical: first ad slot placement rule.**
-The single biggest viewability lever on chapter pages is WHERE the first ad slot (q1 for AdX / slot 1 for AdSense) appears. Two failure modes:
+**Critical: first in-content ad placement rule.**
+The single biggest viewability lever inside chapter prose is WHERE the first in-content ad slot (q1 for AdX / slot 1 for AdSense) appears. This is separate from a configured top unit such as q4, which renders before the chapter 1 cover lead. Two failure modes:
 
 1. **Pre-content placement (worst):** q1 above all prose → user starts scrolling immediately, ad exits viewport in < 1s. Active View score < 30%. This was the historical default; do not repeat it.
 2. **Deep-content placement (bad):** first ad at 50%+ of chapter → only readers who finish more than half ever see it. Active View 30–50% on paid traffic.
 
 Rule: place the **first** ad after `contentParts[0]` — the first ~20% of paragraphs (min 3, max 5 paragraphs). At this depth the reader has invested ~2 minutes and is still engaged — first-ad viewability should reach 70–90% vs < 30% pre-content.
 
-Configured five-slot AdX layout: `q4 top → part[0] → q1 → part[1] → q2 → part[2] → q3 → part[3] → sentinel → chapter nav → q5 bottom`.
+Configured five-slot AdX layout: `q4 top → chapter 1 cover lead (chapter 1 only) → chapter title → part[0] → q1 → part[1] → q2 → part[2] → q3 → part[3] → sentinel → chapter nav → q5 bottom`.
 
 AdSense layout (2-part): `part[0] → slot1(priority) → part[1] → slot2`.
 AdSense layout (3-part): `part[0] → slot1(priority) → part[1] → slot2 → part[2]`.
