@@ -243,6 +243,19 @@ The image and tagline must imply the same scene without repeating each other.
 | Woman alone with a document / object | What that object reveals that changes everything |
 | Man behind her, she doesn't see him yet | What he already knows that she doesn't |
 
+### Relationship-Pressure Creative Brief (Billionaire / Contract / Divorce)
+
+For contemporary relationship-pressure fiction, the creative must sell the **broken arrangement**, not merely a beautiful or exposed couple. Before generating a cover or feed unit, choose one readable dramatic fact and make the copy imply its consequence:
+
+| Story promise | Image evidence | Copy should withhold |
+|---|---|---|
+| Contract becoming personal | A signed page, ring box, keycard, or calendar between the leads | Which rule was broken and who will pay for it |
+| Marriage in decay | One lead alone with a domestic object or an unkept ritual in frame | The specific absence or betrayal the object proves |
+| Divorce / power reversal | The heroine upright at a boardroom, courthouse, family entrance, or doorway; the ex reacts | What evidence or decision made her return possible |
+| Second-chance accountability | Visible distance, regret, and an unobstructed exit for the heroine | Whether repair will be accepted, not whether he wants her |
+
+Do not depict coercive restraint, document seizure, trapped-body poses, intoxication, or a powerless heroine as sensual shorthand. If the premise involves control, show the protagonist's agency, exit, proof, or refusal in the frame. The ad's implied scene must be delivered in Chapters 1–2; a contract, ritual breach, or proof object shown in the creative cannot be deferred into vague setup.
+
 ---
 
 ## Campaign Setup Notes

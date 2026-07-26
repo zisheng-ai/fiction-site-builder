@@ -154,6 +154,18 @@ Avoid:
 - Sub-genres where the top titles have 100M+ Wattpad reads (too saturated to break through organically)
 - Stories that require deep proprietary world-building before the first hook — if you can't open in medias res in chapter 1, reconsider scope
 
+### Relationship-Pressure Brief (Contemporary Romance Only)
+
+For billionaire, contract marriage, divorce, second-chance, or marriage-in-crisis candidates, a trope label is not a sufficient demand brief. Record the commercial pressure system that makes the relationship legible before the reader knows the characters.
+
+- **Material collision:** the concrete thing both leads need and cannot obtain alone (home, inheritance, business vote, custody, reputation, family obligation, or deadline).
+- **Visible relationship breach:** the opening proof that an old promise, public image, or practical arrangement has failed.
+- **Heroine agency:** the resource, expertise, evidence, exit option, or constituency that prevents the story from becoming a rescue fantasy.
+- **Irreplaceable emotional contrast:** the domestic ritual, object, place, or obligation that can recur with a changed meaning as the relationship changes.
+- **Accountability outcome:** whether the ending is a new courtship, a renegotiated partnership, or permanent separation; reconciliation cannot be assumed from the trope.
+
+Reject a candidate if its only pitch is a rich or possessive man. Select it only when the heroine has a non-romantic objective and the relationship creates a distinct cost to achieving it. Route stories whose climax is institutional exposure, inheritance recovery, or corporate reversal to their actual primary genre; do not label them romance merely because the central antagonist is an ex-husband or CEO.
+
 ---
 
 ## Step 1.5: Site Tone Gate (mandatory — run BEFORE Step 2)
@@ -292,8 +304,21 @@ The book title becomes the URL slug (`/book/{slug}/`) and the primary `<title>` 
 - The slug is auto-derived from the title (lowercase, hyphens). Avoid titles with special characters, numbers-as-symbols, or non-Latin characters that degrade URL readability.
 - Avoid generic titles that are already saturated on Wattpad / Amazon KU (e.g. "His Obsession", "The CEO's Secret") — these attract no differentiated search intent and lose social pattern-matching against existing titles.
 - A good title can be read as a micro-teaser: "The Cartel's Bride", "Iron Veil", "Protocol Zero" — each implies a world and a conflict in 2–4 words.
+- For contemporary relationship-pressure stories, title the **rupture or contested role**, not the hero's generic status. Prefer a role plus breach, proof, consequence, or changed term; avoid interchangeable possessives such as "His Billionaire Obsession." The title must still distinguish this book if the CEO, wedding, or contract is removed from the thumbnail.
 
 Record `suggested_title` and `suggested_slug` in `niche-research.json`.
+
+For candidates covered by Relationship-Pressure Brief, also record:
+
+```json
+"relationship_pressure_brief": {
+  "material_collision": "...",
+  "visible_breach": "...",
+  "heroine_agency": "...",
+  "recurring_emotional_anchor": "...",
+  "accountability_outcome": "new courtship | renegotiated partnership | permanent separation"
+}
+```
 
 ---
 

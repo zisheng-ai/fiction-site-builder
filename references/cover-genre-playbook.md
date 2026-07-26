@@ -130,6 +130,19 @@ Title large across lower third in bold serif with one script/emotional word; aut
 
 ### Genre-Specific Prompt Formulas
 
+### Contemporary Relationship-Pressure Cover Selector
+
+Use this selector before choosing a billionaire, contract-marriage, divorce, or second-chance prompt. The cover must show a story event and an agency signal, rather than a generic possessive pose.
+
+| Core promise | Focal composition | Mandatory proof of agency | Avoid |
+|---|---|---|---|
+| Contract / marriage bargain | Two adults separated by a document, key, ring, or deadline object; charged distance rather than contact | Both can leave the frame; the heroine controls or contests one material term | Generic penthouse embrace with no visible bargain |
+| Marriage deterioration | One protagonist foregrounded with an interrupted domestic ritual; partner distant or absent | Her next action, packed item, message, or doorway makes choice visible | Wedding-photo warmth, mutual longing without a rupture |
+| Divorce / public reversal | Heroine faces viewer at the institution where power changes; former partner registers the change | Proof object, professional role, witness, or open route of exit | Luxury makeover as the only evidence of power |
+| Reconciliation after harm | Physical distance remains; the person seeking repair is visually lower in access or outside her space | Her posture and environment make refusal credible | Grabbing, blocking, ownership poses, or a forced near-kiss |
+
+If a relationship-pressure cover needs an intimacy cue, use eye-line, distance, or a hand paused short of contact. Never use physical control to communicate passion. Keep the scene's evidence object legible at mobile size, and pair it with copy that asks what the object changes rather than restating what it is.
+
 #### romance / Billionaire Romance
 ```
 Romance novel cover, cinematic photorealistic quality, luxury atmosphere with strong contrast.
