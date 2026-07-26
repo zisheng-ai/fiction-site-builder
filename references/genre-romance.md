@@ -20,6 +20,88 @@ Load this file alongside `story-long-write.md` when writing any romance novel or
 | **Arranged Marriage / Fake Dating** | Contractual proximity → real feeling | Business arrangement, family pressure, fake relationship for external goal, roommate escalation |
 | **Restart / Second-Act Romantic Comedy** | Desire returns while the protagonist rebuilds a material part of her life | First date after a long relationship, public embarrassment, community project, adult children, ex-spouse boundaries |
 
+## Contemporary Marriage-Crisis and Billionaire Craft
+
+Use these techniques for contract marriage, wealthy-family romance, marriage-in-crisis, divorce, reconciliation, and obsessive-pursuit premises. Extract **structure and scene craft**, never a reference book's plot, characters, distinctive setting, or prose.
+
+### Build the Relationship Around a Material Collision
+
+At the outset, give each lead a concrete need that the other can affect: an inheritance deadline, a home, a business vote, custody arrangement, professional reputation, or family obligation. The romantic engine is not merely attraction; it is the fact that cooperation solves a real problem while intimacy makes that solution dangerous.
+
+- State what each person needs, what they can offer, and what they refuse to surrender.
+- Make the arrangement legible on the page: its term, rules, exit, and the consequence of breaking it. Do not hide the governing terms so the plot can manufacture misunderstandings.
+- Every softening between the leads must complicate one practical objective, and every practical win must put new pressure on the relationship.
+- Wealth is a pressure system, not a personality. Show it through access, staff, time, privacy, contracts, family expectations, and unequal recovery from risk—not repeated luxury inventory.
+
+### Open Through a Broken Shared Ritual
+
+For established couples, reveal relationship decay through one ordinary ritual that no longer works: a forgotten celebration, an untouched meal, a missing check-in, a routine errand, a shared household object, or a private joke that lands wrong. Start inside the failed ritual rather than explaining the relationship history.
+
+1. Let one character expect the old pattern.
+2. Let the other miss, dismiss, or misread it for an observable reason.
+3. Turn the small disappointment into evidence of a larger imbalance.
+4. End the scene with a concrete displacement—a message unanswered, a room left, an object put away, a plan cancelled—not a paragraph explaining that they have grown apart.
+
+The recurring object can return at later turning points with a changed meaning. It must carry a specific memory or obligation; never use generic flowers, gifts, or luxury goods as emotional shorthand.
+
+### Contract and Marriage-Crisis Escalation
+
+Use a relationship crisis as a sequence of changed terms, not a loop of similar arguments. Each confrontation should reveal a new layer of the bargain or impose a cost neither lead can ignore.
+
+| Beat | Required movement |
+|---|---|
+| Surface rupture | A visible breach: a missed promise, a public slight, a clause invoked, or a boundary crossed. |
+| Competing interpretation | Each lead explains the event through a different fear or obligation; neither explanation is the whole truth. |
+| Buried injury | A past choice, omission, or imbalance gives the argument a history. Reveal it through action or a specific detail, not a backstory dump. |
+| New term | Someone sets a boundary, changes the agreement, leaves, seeks counsel, or takes control of a resource. |
+| Consequence | The relationship's practical arrangement becomes harder to maintain. The next chapter begins from this altered reality. |
+
+Do not use repeated overheard half-conversations, instantly solvable misunderstandings, or a third-party lie as the sole engine. If a secret drives the conflict, give the secret-holder a credible reason to withhold it and make disclosure produce a material consequence.
+
+### Alternate Desire, Leverage, and Knowledge
+
+When using dual point of view, each viewpoint must reveal information the other cannot supply:
+
+- One POV can show the cost of being wanted but not trusted; the other can show the cost of wanting someone while believing control is protection.
+- Keep attraction asymmetrical in timing. One lead may recognize desire first, while the other recognizes the danger first.
+- End a POV shift on a changed interpretation, not a replay of the same scene. The second viewpoint should expose a hidden motive, a mistaken assumption, or an obligation that changes the reader's judgment.
+- Track who holds material leverage, who holds emotional knowledge, and who has the right to refuse. Move at least one of these balances at every major turn.
+
+### Pursuit, Obsession, and Consent
+
+An intense pursuer is compelling only when the other lead retains meaningful agency. Write fixation as a costly behavioral change—he gives up a benefit, waits, tells the truth, protects a boundary, or accepts a refusal—not as surveillance, persistence after a clear no, document control, or engineered dependency.
+
+- A rejection must change the pursuer's behavior; it cannot be treated as a puzzle to overcome.
+- Do not make wealth, access, employment, housing, marriage, pregnancy, or social power the price of intimacy.
+- If the premise begins with a controlling relationship, route the structural conflict through `genre-marital-control.md`; attraction never substitutes for restored consent.
+
+### Reconciliation Is an Accountability Arc
+
+Do not let a grand gesture, jealousy, apology, or discovery of the heroine's hidden status restore a relationship. Build reconciliation as a ledger:
+
+1. Name the specific harm without euphemism or blame-shifting.
+2. Impose a proportional loss, exposure, or changed behavior on the person who caused it.
+3. Make repair useful even if it never earns renewed access to the injured person.
+4. Let the injured lead choose freely after they have practical options and independent stakes.
+5. Close on new, mutual terms that can survive outside the emergency which forced them together.
+
+Permanent separation is a valid romantic-drama resolution when accountability does not occur. A second-chance ending requires evidence of change across multiple plot turns, not a single emotionally fluent scene.
+
+### Planning Fields for This Sub-genre
+
+Before drafting, add these fields to the relationship thread in `outline/outline.md` or `tracking/context.md`:
+
+```text
+Shared ritual / object:
+Current breach:
+Her non-romantic goal and exit option:
+His non-romantic goal and cost of change:
+Material leverage held by each:
+Boundary that cannot be crossed:
+Next changed term / consequence:
+Evidence required before reconciliation (if any):
+```
+
 ### Restart Romance for Women 25–60
 
 Do not write restart romance as youth romance with older names, and do not market it as a “50+” shelf when the intended audience is women 25–60.
