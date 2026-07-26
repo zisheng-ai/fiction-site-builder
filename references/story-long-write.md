@@ -14,6 +14,16 @@ Before writing the first chapter of a new book, check `outputs/{site-slug}/{book
 
 Continuing an existing book (adding chapters): skip this gate.
 
+## Writing Language Routing (mandatory before outline expansion)
+
+Select the prose profile from the **chapter language**, not the operator's language or the site's default UI language:
+
+- English chapter (`language: en`, `en-GB`, or another English locale) → load `writing-english-fiction.md`.
+- Chinese chapter (`language: zh-CN`, `zh-TW`, or another Chinese locale) → load `writing-chinese-fiction.md`; for `zh-TW`, also load `internationalization.md`.
+- Any other language → use a dedicated language guide when available, or obtain an explicit brief. Never use the English profile as an unmarked substitute.
+
+Record the chosen profile, locale, and reader market in `tracking/context.md`. Build the outline in that profile from the start. Translating an English draft into Chinese, or a Chinese draft into English, does not satisfy A1: it must be rewritten for the target profile and pass that profile's review checks.
+
 ## Core Principles
 
 1. **Emotion-first**: Every chapter has one primary emotional goal. Name it before writing a word.
