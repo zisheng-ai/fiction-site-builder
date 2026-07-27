@@ -17,14 +17,26 @@ Load this reference when the user asks to generate a novel cover (/story-cover, 
 
 Treat these as acceptance criteria, not optional style advice:
 
+### Project non-negotiable Facebook cover law
+
+Every production fiction cover is a Facebook traffic creative for a primary audience aged 40–65. The following rules are hard gates. A cover that misses any one of them is rejected and regenerated or redesigned before publication:
+
+- **Exactly three discernible adults:** show three and only three clearly readable adult people. No crowd, background faces, extra guests, silhouettes that read as additional people, or ambiguous fourth figure. Gender may be any combination.
+- **One visibly crying or wronged person:** at least one of the three must be unmistakably crying, tearful, pleading, humiliated, betrayed, or visibly treated unfairly. The emotion must survive a 160px mobile thumbnail.
+- **Strong emotional contrast:** the three people must carry different, opposing reactions—such as grief versus guilt versus accusation, panic versus fury versus disbelief, or resignation versus triumph versus fear. Neutral posing, matching smiles, harmonious group portraits, and three people merely looking at the camera fail.
+- **40–65 readability:** use large faces, large high-contrast title typography, familiar real-world settings, clear hands and props, and a simple visual hierarchy. The scene must be understood in one glance by an older Facebook reader without relying on small decorative details.
+- **One immediate conflict and one proof signal:** freeze a public rupture, betrayal, accusation, interruption, or status reversal and include one large, legible proof object (document, phone, recorder, ring, photograph, envelope, ledger, or similar).
+- **No promise of guaranteed CTR:** “high-click” is a design target, not a claim. Final performance must be validated through real Facebook CTR/CPC testing and controlled creative variants.
+
 1. **Normal exposure by default:** use mid-key, scene-appropriate lighting. Keep natural skin tones, readable shadow detail, controlled highlights, and local contrast. `Not dark` never means `high-key`, `white background`, or `washed out`.
 2. **One frozen scandal:** show a specific irreversible moment—an accusation, exposed proof, ceremony interruption, betrayal caught, rescue collision, or public humiliation. A cast lineup is not a scene.
-3. **Three to four people for ensemble conflict:** prefer 3–4 clearly differentiated adults when the premise is kidnapping, mafia, bullying, family war, public betrayal, or gang crime. Never exceed 4 discernible people. Use fewer only when the premise genuinely has fewer active roles.
-4. **Exaggerated reaction chain:** every visible face needs a different story role and readable emotion. At least 2 faces must show unmistakable shock, fury, panic, guilt, grief, or accusation. Reject neutral model posing.
-5. **One thumbnail-readable proof object:** make the document, scan, ring, photograph, phone, ledger, token, or other evidence large enough to understand at 160px wide.
-6. **Generate art without typography:** reserve clean top and lower safe zones, then add exact text deterministically. Do not bake a genre chip into the image when the site card already renders one.
-7. **No prestige drift:** do not use elegant/editorial/subtle/movie-poster direction unless the user explicitly asks for it. Traffic covers should feel like a high-conflict short-drama freeze-frame, not luxury key art.
-8. **Inspect the final card, not only the source image:** overlays, title bands, UI chips, and image crops are part of the cover. Reject collisions, duplicated labels, covered faces, black mud, and white fog.
+3. **Exactly three people:** the project law above replaces the generic 3–4-person range. Use three clearly differentiated adults for ensemble conflict and never exceed or fall below three without an explicit user exception.
+4. **Exaggerated reaction chain:** every visible face needs a different story role and readable emotion; at least one person must be crying or visibly wronged, and the emotional contrast must be obvious at thumbnail size. Reject neutral model posing.
+5. **One thumbnail-readable proof object:** make the document, scan, ring, photograph, phone, recorder, ledger, envelope, token, or other evidence large enough to understand at 160px wide.
+6. **40–65 audience readability:** prefer large type, high contrast, familiar relationship stakes, and uncluttered framing over fine-art subtlety or atmosphere-first composition.
+7. **Generate art without typography:** reserve clean top and lower safe zones, then add exact text deterministically. Do not bake a genre chip into the image when the site card already renders one.
+8. **No prestige drift:** do not use elegant/editorial/subtle/movie-poster direction unless the user explicitly asks for it. Traffic covers should feel like a high-conflict short-drama freeze-frame, not luxury key art.
+9. **Inspect the final card, not only the source image:** overlays, title bands, UI chips, and image crops are part of the cover. Reject collisions, duplicated labels, covered faces, black mud, white fog, extra people, weak crying/wronged emotion, or unreadable proof objects.
 
 **Instruction precedence:** the user's explicit direction and supplied visual references come first; this contract comes second; genre pattern blocks and allure guidance come after it. A genre template must never override the visible-person cap, frozen-conflict requirement, normal-exposure default, or final-card QA. When instructions conflict, preserve story clarity and conflict—not glamour, darkness, skin exposure, or cinematic atmosphere.
 

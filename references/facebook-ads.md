@@ -202,6 +202,12 @@ The tagline is not a book description. It is the 2–4 short sentences that make
 
 See `references/story-cover.md` Step 1.7 for the full technical spec. Summary here for ad context:
 
+### Project non-negotiable cover law
+
+All fiction covers in this project are built for Facebook cold traffic and a primary reader audience aged 40–65. The cover must show **exactly three discernible adults**, with **at least one person visibly crying or visibly wronged**, and a **strong emotional contrast** among the three reactions. Gender is unrestricted. The scene must also contain one large, thumbnail-readable proof object and one instantly readable conflict. Use large high-contrast typography, familiar settings, clear faces and hands, and uncluttered framing for older mobile readers. Any crowd, fourth person, neutral group portrait, weak emotion, or tiny proof object is a hard failure.
+
+This law is a design gate, not a guarantee of performance. Validate actual CTR and CPC with controlled Facebook creative tests after launch.
+
 ### Five scroll-stop signals
 
 | Signal | What it does |
