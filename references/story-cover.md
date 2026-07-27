@@ -34,10 +34,10 @@ Every generated cover or Facebook hook-card must pass all four checkpoints. Do n
 
 | Checkpoint | Required inspection | Hard failure |
 |---|---|---|
-| **C0 — prompt** | Confirm exactly three adult roles, one crying/wronged role, contrasting reactions, one proof object, one frozen incident, and a clear target-language hook direction. | Vague “dramatic couple,” generic mood, crowd, or no concrete consequence. |
-| **C1 — raw art** | View the complete uncropped image at actual output size. Count every discernible person and verify faces, hands, proof object, available-light coherence, and clean text-safe zones. | Fewer/more than three people, neutral faces, hidden proof object, pasted lighting, black mud, white fog, or cropped action. |
-| **C2 — deterministic overlay** | Add exact title/author/hook locally. Check spelling, line breaks, contrast, safe areas, and that copy does not cover faces, hands, or evidence. Hook-card mode uses 2–5 lines of consequence-led copy, usually warm yellow/cream with dark outline. | Model-generated gibberish, tiny copy, generic description, browser/fullscreen notice, watermark, or blocked focal evidence. |
-| **C3 — thumbnail card** | Render the final asset at 160px wide and inspect it as a Facebook feed card on a phone-sized viewport. Recount the three people, identify the crying/wronged face, read the emotional contrast, and recognize the proof object and hook. | The story cannot be paraphrased in one breath, any face merges into background, the hook disappears, or the proof object becomes decorative noise. |
+| **C0 — prompt** | Confirm exactly three adult roles, one crying/wronged role, contrasting reactions, one proof object, one frozen incident, and an image-only composition with no copy. | Vague “dramatic couple,” generic mood, crowd, no concrete consequence, or any requested text inside the image. |
+| **C1 — raw art** | View the complete uncropped image at actual output size. Count every discernible person and verify faces, hands, proof object, available-light coherence, and clean negative space. The raw image must contain no title, author, hook, logo, watermark, UI, or readable lettering. | Fewer/more than three people, neutral faces, hidden proof object, pasted lighting, black mud, white fog, cropped action, or any generated text/lettering. |
+| **C2 — image-only asset** | Keep the production image as pure artwork. Do not ask the image model to render title, author, hook, subtitle, genre chip, logo, watermark, signage, document text, or decorative lettering. If a site or ad placement needs copy, add it outside the image through deterministic UI/HTML/CSS in a separate layer. | Any visible generated words, gibberish, fake typography, browser/fullscreen notice, platform watermark, channel name, or copied UI chrome. |
+| **C3 — thumbnail card** | Render the image-only asset at 160px wide and inspect it as a Facebook feed image on a phone-sized viewport. Recount the three people, identify the crying/wronged face, read the emotional contrast, and recognize the proof object. | Any visible generated text, the story cannot be paraphrased in one breath, any face merges into background, or the proof object becomes decorative noise. |
 
 The C0–C3 audit applies to **every image in a batch**, not only the first or best-looking variant. Record failures and regenerate or redesign the individual image; never let a passing sibling hide a failed asset.
 
@@ -47,7 +47,7 @@ The C0–C3 audit applies to **every image in a batch**, not only the first or b
 4. **Exaggerated reaction chain:** every visible face needs a different story role and readable emotion; at least one person must be crying or visibly wronged, and the emotional contrast must be obvious at thumbnail size. Reject neutral model posing.
 5. **One thumbnail-readable proof object:** make the document, scan, ring, photograph, phone, recorder, ledger, envelope, token, or other evidence large enough to understand at 160px wide.
 6. **40–65 audience readability:** prefer large type, high contrast, familiar relationship stakes, and uncluttered framing over fine-art subtlety or atmosphere-first composition.
-7. **Generate art without typography:** reserve clean top and lower safe zones, then add exact text deterministically. Do not bake a genre chip into the image when the site card already renders one.
+7. **Generate image-only art:** do not generate or composite any title, author, hook, subtitle, logo, genre chip, watermark, UI, signage, or readable lettering into the production image. Keep the canvas clean; any required copy belongs outside the raster asset in the consuming page or ad placement.
 8. **No prestige drift:** do not use elegant/editorial/subtle/movie-poster direction unless the user explicitly asks for it. Traffic covers should feel like a high-conflict short-drama freeze-frame, not luxury key art.
 9. **Inspect the final card, not only the source image:** overlays, title bands, UI chips, and image crops are part of the cover. Reject collisions, duplicated labels, covered faces, black mud, white fog, extra people, weak crying/wronged emotion, or unreadable proof objects.
 
@@ -271,15 +271,7 @@ A cover where the figure is fully clothed, covered from neck to ankle with no bo
 
 ### Status / Case Unlocked template
 
-Use this hierarchy for promotion-led covers about revenge, captivity, criminal power, rank changes, public exposure, or a protagonist entering a dangerous new status:
-
-1. **Top status label:** one short genre/status line inside a compact bordered band.
-2. **Central power tableau:** a protagonist-led cluster of 3–4 clearly differentiated adults arranged like an emblem; use a strong vertical axis, faint concentric rings, and an optional subtle split background. The people replace a literal game badge or copied achievement icon.
-3. **Oversized lower title:** exact title in the lower third, kept off faces and evidence props.
-4. **Single hook band:** one consequence-led line beneath the title; do not stack multiple blurbs.
-5. **Whitespace:** reserve clean space around the top label and title so the cover reads at 160px wide.
-
-Generate the character art without text, then add exact typography with a deterministic HTML/CSS layer when misspelled model text would weaken the cover. Do not copy a reference application's badge, wording, colors, or achievement name; reuse only its hierarchy and spatial rhythm.
+Use this as a **text-free image-only** composition for promotion-led covers about revenge, captivity, criminal power, rank changes, public exposure, or a protagonist entering a dangerous new status. Do not add a status label, title, author, hook, badge, logo, or any other copy to the raster image. The consuming page or ad system may supply those elements outside the image when required.
 
 **Luminance preservation — mandatory:** match a supplied reference's exposure family—low-key, mid-key, or high-key—without exaggerating it. Do not translate a bright reference into night, and do not translate `not dark` into overexposed white. Without a reference or explicit direction, use **mid-key normal exposure**. Warm ivory, pale stone, mist grey, and daylight glass are background colors, not instructions to lift skin and highlights toward white.
 
@@ -292,9 +284,9 @@ Apply these rules to every cover batch, especially crime, thriller, mafia, bully
 - In a multi-cover batch, default at least half of the covers to mid-key normal exposure. Use low-key or high-key treatment only when the scene/reference earns it; adjacent cards may vary without occupying opposite extremes.
 - Faces, proof objects, and the main conflict must remain readable at 160px wide without increasing screen brightness.
 - Preserve highlight texture in white clothes, walls, sky, paper, and skin. If these merge into a flat white field, the cover is overexposed even when faces remain visible.
-- Post-processing may use a localized text band or gradient. Cap both black and white overlays at **72% opacity**, keep them out of faces and proof objects, and never cover the entire lower third with a near-opaque veil (`0.9+`). Prefer a compact title plate, text stroke, shadow, or localized 20–55% gradient.
-- When adapting a supplied reference, match its overall luminance, contrast direction, and whitespace before borrowing decorative details such as rings, axes, badges, or borders.
-- Audit the generated art and the final composited WebP separately. A correct source image can be ruined by the text overlay.
+- Do not use text bands, title plates, text strokes, copy shadows, labels, badges, or gradients intended to support text inside the raster asset.
+- When adapting a supplied reference, match its overall luminance and contrast direction, while removing all visible wording, lettering, logos, and UI.
+- Audit the generated image as an image-only WebP. Any required copy is a separate consuming-layer concern, not part of cover generation.
 
 Run an automated luminance check after final WebP export. The thresholds are deliberately broad; they catch extremes and do not replace visual QA:
 
@@ -526,9 +518,9 @@ Substitute `[ethnicity]`, `[hair]`, `[eye color]` from the book's `character-vis
 
 ---
 
-## Step 2 — Build the art prompt and deterministic text spec
+## Step 2 — Build the text-free art prompt
 
-Write the image-generation prompt in English and keep it **text-free**. Store title, author, optional hook, typography, and placement as a separate deterministic composition spec. This prevents misspellings and avoids duplicating UI-rendered genre chips.
+Write the image-generation prompt in English and keep it **strictly text-free**. Do not create a title/author/hook/typography composition spec for the raster asset. The image prompt must explicitly forbid all readable text and branding.
 
 ```
 [Genre style from cover-styles.md].
@@ -539,16 +531,7 @@ photorealistic short-drama publicity photography, looks like a real on-location 
 clean top and lower safe zones, no text, no letters, no logo, no watermark
 ```
 
-Deterministic text spec:
-
-```text
-title: exact book title
-author: exact pen name, only if the product surface displays it inside cover art
-hook: zero or one consequence-led line
-genre/status label: omit when the site card already supplies a chip
-overlay: localized only; 20–55% preferred, 72% hard cap for either black or white
-safe zones: never cover faces, hands in action, or the proof object
-```
+Text handling: none inside the image. Do not ask the image model or cover compositor to render title, author, hook, subtitle, genre/status label, logo, watermark, signage, UI, or readable lettering. If a consuming page needs copy, it must render it outside the raster asset.
 
 **Character count — use the composition type assigned in Step 1.6:**
 
@@ -559,7 +542,7 @@ safe zones: never cover faces, hands in action, or the proof object
 | **Trio** | 3–4 | Love triangle, rival figure, pack/court conflict. Keep a clear focal pairing; the third or fourth figure must have a distinct relationship role. |
 | **Environmental** | 1–2, small against scene | Figure(s) partially subsumed by the dramatic environment. Best for thriller/mystery/gothic. |
 
-For a Status / Case Unlocked cover, build the prompt as a text-free backdrop with clean top and lower zones, then composite the status label, exact title, and one hook after generation. Preserve the same hard cap of 4 discernible people.
+For a Status / Case Unlocked cover, build a text-free image-only scene. Preserve the project hard cap of exactly 3 discernible adults.
 
 **Genre defaults when Step 1.6 has not been run (single-book mode):**
 
@@ -855,7 +838,7 @@ done
 | Proof object | Large and recognizable at 160px thumbnail width |
 | Visible cast | 1–4 discernible people; ensemble conflicts normally use 3–4; count faces inside photos/screens too |
 | Exposure | Normal mid-key by default; no crushed shadow mass, blown skin/whites, or global black/white veil |
-| Typography | Exact title is legible; no model-generated gibberish; text avoids faces and proof |
+| Image text | No generated or composited words, letters, logos, watermarks, UI, or readable signage anywhere in the raster asset |
 | UI integration | No duplicate genre chip, collision, unintended crop, or overlay introduced by the card component |
 | Genre match | Setting and conflict match the book's actual primary genre; do not label every story romance |
 | Ratio correct | 2:3 portrait |
@@ -871,8 +854,8 @@ done
 **Never mark a cover passed from dimensions alone.** Retry with a corrected prompt or corrected deterministic overlay based on the failed gate:
 
 - Wrong/missing people, weak expressions, unclear event, or bad proof → regenerate the art.
-- Correct art but dark/white veil, bad title placement, duplicate chip, or crop collision → fix the deterministic composition; do not regenerate characters.
-- Text generated inside the art → regenerate text-free or inpaint/remove it, then composite exact text.
+- Correct art but dark/white veil or crop collision → fix the image-only composition; do not add a text layer.
+- Text generated inside the art → regenerate text-free or inpaint/remove it; never accept or preserve it.
 - Retry once per distinct failure mode. If it still fails, log the exact failed gate and exclude the cover from delivery rather than silently accepting it.
 
 ### Batch QA matrix
@@ -884,7 +867,7 @@ Before delivery, inspect the covers together in display order. Reject the batch 
 - adjacent covers are visually interchangeable at 160px;
 - any row reads as prestige movie posters instead of scandal scenes;
 - any cover relies on a title to explain what is happening;
-- the final card repeats image-baked labels already supplied by UI.
+- the raster asset contains any image-baked label, title, hook, logo, watermark, or UI.
 
 ## Output Location
 
