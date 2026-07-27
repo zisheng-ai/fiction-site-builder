@@ -338,6 +338,16 @@ dark mafia-romance atmosphere, photorealistic, 8k
 
 **3-word implied story:** "betrayal costs everything" / "she paid the price" / "two sides, one woman"
 
+### Story-first threshold freeze-frame
+
+When the ad angle is family rejection, adoption, inheritance, marriage expulsion, public humiliation, or a protagonist being thrown out, use the `Threshold Rejection / Discarded Heir / Family Exile` pattern from `cover-genre-playbook.md`. The winning read is not an attractive estate or a sad portrait; it is a three-person event that can be paraphrased in one breath: **“They threw her out—and now they are afraid of what she will become.”**
+
+- Keep exactly three adults: wronged/crying protagonist in the foreground, two opposing adults at a doorway or threshold.
+- Show one abandonment/proof object—suitcase, refuse bag, torn photo, legal folder, sealed letter, ring, or medical file—large enough for a mobile thumbnail.
+- Use visible height, distance, pointing, dismissal, or a blocked doorway to show the power relationship without needing exposition.
+- Reserve space for one short consequence-led hook. For the 40–65 audience, large yellow or warm-cream type with a dark outline may be used when it remains legible and does not cover faces or the proof object.
+- Keep the background ordinary and readable: an estate entrance, family home, courthouse, hospital, or rainy threshold is stronger than an empty luxury set.
+
 ---
 
 ### What to A/B test first

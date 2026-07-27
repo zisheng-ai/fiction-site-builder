@@ -12,6 +12,16 @@ Reference: `cover-allure-elements.md` for allure tiers, fabric ranking, poses, a
 
 Use these blocks when the book title, synopsis, or ad angle matches the pattern. They are extracted from high-CTR romance ad/cover references and normalized into reusable prompt language. Do not mention the reference images in the final prompt; use the pattern directly.
 
+#### Threshold Rejection / Discarded Heir / Family Exile
+```
+Facebook fiction social-ad creative, story-first short-drama freeze-frame, portrait 2:3.
+EXACTLY THREE clearly discernible adults and no other people. Put the wronged protagonist large in the foreground, visibly crying or carrying unmistakable hurt, humiliation, or pleading restraint. Place the two opposing adults together in a warmly lit doorway, estate entrance, courthouse steps, hospital lobby, or other threshold that makes the power structure legible. One antagonist should point, dismiss, block, or deliver the public rejection; the second should react with cold satisfaction, guilt, panic, or sudden fear. The three faces must show strong emotional contrast, not a coordinated pose.
+Add one physical abandonment or proof signal in the foreground: a black refuse bag, suitcase, eviction envelope, broken ring, torn photograph, sealed letter, legal folder, medical file, or similar object. The object must be large enough to read at a 160px thumbnail and must explain what has just happened without exposition.
+The subtext: they threw her away at the door, but the person they rejected is about to become the person they fear. Make the exit, doorway, steps, rain, or discarded belongings visible so the protagonist's next move is implied.
+Use one believable available-light family, warm interior versus cool exterior contrast, ordinary imperfect adult faces, matte skin, and a slightly wide phone-camera or low-budget television freeze-frame. Avoid glossy prestige lighting, empty cinematic atmosphere, crowd scenes, generic mansion portraits, and neutral expressions.
+Reserve a clean upper zone for the exact book title and a lower or middle-safe zone for one short consequence-led hook. For 40–65 Facebook readers, use large high-contrast type; a warm yellow hook with a dark outline is allowed when it improves thumbnail readability. Generate the backdrop without text and composite all exact copy deterministically.
+```
+
 #### Gothic Funeral Bride / Buried Bride
 ```
 Romance novel cover, cinematic photorealistic gothic bridal thriller atmosphere.

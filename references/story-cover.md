@@ -214,6 +214,7 @@ The genre determines composition template, color palette, character design, and 
 
 - Gothic Funeral Bride / Buried Bride
 - Rejected Husband Owns the City / Urban Revenge Landscape
+- Threshold Rejection / Discarded Heir / Family Exile
 - Royal Claim Family Drama / Owned and Claimed
 - Secret Deal With My Billionaire Boss / Office Near-Kiss
 - Multicultural Mistake / Warm City Embrace
