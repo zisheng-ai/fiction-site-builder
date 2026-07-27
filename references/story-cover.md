@@ -28,6 +28,19 @@ Every production fiction cover is a Facebook traffic creative for a primary audi
 - **One immediate conflict and one proof signal:** freeze a public rupture, betrayal, accusation, interruption, or status reversal and include one large, legible proof object (document, phone, recorder, ring, photograph, envelope, ledger, or similar).
 - **No promise of guaranteed CTR:** “high-click” is a design target, not a claim. Final performance must be validated through real Facebook CTR/CPC testing and controlled creative variants.
 
+### Mandatory cover checkpoints
+
+Every generated cover or Facebook hook-card must pass all four checkpoints. Do not approve a prompt, raw image, overlay, or final asset by intuition alone:
+
+| Checkpoint | Required inspection | Hard failure |
+|---|---|---|
+| **C0 — prompt** | Confirm exactly three adult roles, one crying/wronged role, contrasting reactions, one proof object, one frozen incident, and a clear target-language hook direction. | Vague “dramatic couple,” generic mood, crowd, or no concrete consequence. |
+| **C1 — raw art** | View the complete uncropped image at actual output size. Count every discernible person and verify faces, hands, proof object, available-light coherence, and clean text-safe zones. | Fewer/more than three people, neutral faces, hidden proof object, pasted lighting, black mud, white fog, or cropped action. |
+| **C2 — deterministic overlay** | Add exact title/author/hook locally. Check spelling, line breaks, contrast, safe areas, and that copy does not cover faces, hands, or evidence. Hook-card mode uses 2–5 lines of consequence-led copy, usually warm yellow/cream with dark outline. | Model-generated gibberish, tiny copy, generic description, browser/fullscreen notice, watermark, or blocked focal evidence. |
+| **C3 — thumbnail card** | Render the final asset at 160px wide and inspect it as a Facebook feed card on a phone-sized viewport. Recount the three people, identify the crying/wronged face, read the emotional contrast, and recognize the proof object and hook. | The story cannot be paraphrased in one breath, any face merges into background, the hook disappears, or the proof object becomes decorative noise. |
+
+The C0–C3 audit applies to **every image in a batch**, not only the first or best-looking variant. Record failures and regenerate or redesign the individual image; never let a passing sibling hide a failed asset.
+
 1. **Normal exposure by default:** use mid-key, scene-appropriate lighting. Keep natural skin tones, readable shadow detail, controlled highlights, and local contrast. `Not dark` never means `high-key`, `white background`, or `washed out`.
 2. **One frozen scandal:** show a specific irreversible moment—an accusation, exposed proof, ceremony interruption, betrayal caught, rescue collision, or public humiliation. A cast lineup is not a scene.
 3. **Exactly three people:** the project law above replaces the generic 3–4-person range. Use three clearly differentiated adults for ensemble conflict and never exceed or fall below three without an explicit user exception.
@@ -215,6 +228,7 @@ The genre determines composition template, color palette, character design, and 
 - Gothic Funeral Bride / Buried Bride
 - Rejected Husband Owns the City / Urban Revenge Landscape
 - Threshold Rejection / Discarded Heir / Family Exile
+- Facebook Hook-Card / Story-Beat Freeze-Frame
 - Royal Claim Family Drama / Owned and Claimed
 - Secret Deal With My Billionaire Boss / Office Near-Kiss
 - Multicultural Mistake / Warm City Embrace

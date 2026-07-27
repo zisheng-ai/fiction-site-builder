@@ -22,6 +22,16 @@ Use one believable available-light family, warm interior versus cool exterior co
 Reserve a clean upper zone for the exact book title and a lower or middle-safe zone for one short consequence-led hook. For 40–65 Facebook readers, use large high-contrast type; a warm yellow hook with a dark outline is allowed when it improves thumbnail readability. Generate the backdrop without text and composite all exact copy deterministically.
 ```
 
+#### Facebook Hook-Card / Story-Beat Freeze-Frame
+```
+Facebook fiction social-ad creative, vertical short-drama hook card, portrait 9:16 or 2:3.
+This is a story beat, not a prestige book jacket: freeze the exact second before or after a life-changing reveal. Use exactly THREE adult people and no crowd. One person must be visibly crying, humiliated, pleading, wronged, or emotionally abandoned; the other two must create a sharp emotional counterpoint through panic, guilt, accusation, indifference, seduction, triumph, or fear. Make the relationship geometry obvious through height, distance, a blocked exit, a bed, a certificate, a ring, a contract, a phone, a hospital chair, or a pointing/reaching hand.
+Use one large physical proof or consequence object in the foreground: marriage certificate, legal document, hospital file, recorder, suitcase, broken ring, medical bill, envelope, or discarded belongings. The object must read as an object at 160px, even if its small text is not legible.
+Use ordinary melodramatic settings—wedding altar, mansion entrance, bedroom, hospital room, courthouse, dining room, or rainy doorstep—with one coherent available-light family. Slight softness, phone-camera imperfection, and short-drama still quality are acceptable; glossy luxury-poster polish, empty atmosphere, and generic smiling couples are not.
+Add one short consequence-led hook after the art is generated. Use 2–5 lines, approximately 8–24 words in the target language, heavy high-contrast type, usually warm yellow or cream with a thick dark outline/shadow. The hook must state the incident and leave one unresolved consequence; it must never simply describe the clothes or repeat the title. Keep it away from faces, hands, and the proof object. Do not include browser/fullscreen notices, platform watermarks, channel names, or copied UI chrome from reference screenshots.
+The winning read should be paraphrasable in one breath: “She was forced to marry him while he was unconscious,” “Her father sold her to pay a debt,” “He betrayed her, so she married his uncle,” or “They threw her out, then feared what she became.”
+```
+
 #### Gothic Funeral Bride / Buried Bride
 ```
 Romance novel cover, cinematic photorealistic gothic bridal thriller atmosphere.
