@@ -41,7 +41,7 @@ Every generated cover or Facebook hook-card must pass all four checkpoints. Do n
 
 The C0–C3 audit applies to **every image in a batch**, not only the first or best-looking variant. Record failures and regenerate or redesign the individual image; never let a passing sibling hide a failed asset.
 
-1. **Normal exposure by default:** use mid-key, scene-appropriate lighting. Keep natural skin tones, readable shadow detail, controlled highlights, and local contrast. `Not dark` never means `high-key`, `white background`, or `washed out`.
+1. **Normal exposure by default:** use mid-key, scene-appropriate lighting. Keep natural skin tones, readable shadow detail, controlled highlights, and local contrast. A requested white or bright palette is valid, but must retain texture and midtone contrast rather than becoming washed out.
 2. **One frozen scandal:** show a specific irreversible moment—an accusation, exposed proof, ceremony interruption, betrayal caught, rescue collision, or public humiliation. A cast lineup is not a scene.
 3. **Exactly three people:** the project law above replaces the generic 3–4-person range. Use three clearly differentiated adults for ensemble conflict and never exceed or fall below three without an explicit user exception.
 4. **Exaggerated reaction chain:** every visible face needs a different story role and readable emotion; at least one person must be crying or visibly wronged, and the emotional contrast must be obvious at thumbnail size. Reject neutral model posing.
@@ -273,13 +273,13 @@ A cover where the figure is fully clothed, covered from neck to ankle with no bo
 
 Use this as a **text-free image-only** composition for promotion-led covers about revenge, captivity, criminal power, rank changes, public exposure, or a protagonist entering a dangerous new status. Do not add a status label, title, author, hook, badge, logo, or any other copy to the raster image. The consuming page or ad system may supply those elements outside the image when required.
 
-**Luminance preservation — mandatory:** match a supplied reference's exposure family—low-key, mid-key, or high-key—without exaggerating it. Do not translate a bright reference into night, and do not translate `not dark` into overexposed white. Without a reference or explicit direction, use **mid-key normal exposure**. Warm ivory, pale stone, mist grey, and daylight glass are background colors, not instructions to lift skin and highlights toward white.
+**Luminance preservation — mandatory:** match a supplied reference's exposure family—low-key, mid-key, or high-key—without exaggerating it. Follow an explicit user palette before any genre convention: a white, ivory, silver, pale-blue, or daylight cover is fully valid. Do not translate a bright reference into night, and do not translate a request for white into overexposed fog. Without a reference or explicit direction, use **mid-key normal exposure**. Warm ivory, pale stone, mist grey, and daylight glass are valid background colors, while skin and highlights must retain texture.
 
 ## Exposure Gate — Reject Dark Mud and White Fog
 
 Apply these rules to every cover batch, especially crime, thriller, mafia, bullying, horror, and revenge:
 
-- Dark subject matter is not a palette instruction. Do not stack `night`, `midnight`, `black`, `deep shadow`, `dark archive`, and similar low-key terms in one prompt unless the user explicitly requested a dark cover.
+- Dark subject matter is not a palette instruction. Do not add a dark or black palette unless the user explicitly requests it; do not let genre convention override a requested white, ivory, silver, pale-blue, or daylight palette.
 - `Readable`, `daylight`, and `not dark` are not instructions to overexpose. Do not stack `bright`, `high-key`, `airy`, `white`, `glowing`, and `soft haze` in one prompt. Do not add global white veils or fog to solve typography.
 - In a multi-cover batch, default at least half of the covers to mid-key normal exposure. Use low-key or high-key treatment only when the scene/reference earns it; adjacent cards may vary without occupying opposite extremes.
 - Faces, proof objects, and the main conflict must remain readable at 160px wide without increasing screen brightness.
@@ -321,7 +321,7 @@ if (lower_mean > 0.78 and lower_lift > 0.22) or lower_bright_share > 0.40:
 PY
 ```
 
-If `FAIL_DARK`, remove stacked dark prompt terms, lift the scene to normal exposure, and reduce black overlays. If `FAIL_BRIGHT`, remove stacked bright/high-key/haze terms, restore midtone contrast, and reduce white overlays. If `FAIL_LOWER_VEIL`, keep the source art and fix the deterministic composition layer first. The regional check exists because an opaque lower-third veil can look bad while the whole-image average still appears acceptable. Do not correct one extreme by forcing the opposite extreme. Then visually compare the full batch as a row and as rendered cards, not only one source cover at a time.
+If `FAIL_DARK`, remove stacked low-key terms, lift the scene to normal exposure, and remove opaque overlays. If `FAIL_BRIGHT`, remove stacked high-key/haze terms, restore midtone contrast, and remove white overlays. If `FAIL_LOWER_VEIL`, keep the source art and fix the deterministic composition layer first. The regional check exists because an opaque lower-third veil can look bad while the whole-image average still appears acceptable. Do not correct one extreme by forcing the opposite extreme. Then visually compare the full batch as a row and as rendered cards, not only one source cover at a time.
 
 Operator quick reference:
 - **Solo** means one character owns the cover. Use it when the protagonist's individual arc is stronger than the relationship dynamic, or when the genre benefits from a single iconic figure.
@@ -387,7 +387,7 @@ At final-card QA, ask: **could this image plausibly be a polished movie poster o
 - **Required frozen action:** show an accusation, slap-down of evidence, ceremony interruption, caught betrayal, public exposure, rescue collision, or comparable irreversible moment. Characters must be doing something to one another; standing in a symmetrical lineup is not a scene.
 - **Required reaction chain:** assign every visible person a distinct readable reaction such as wide-eyed shock, open-mouthed panic, finger-pointing accusation, tearful fury, guilty recoil, desperate grabbing, or stunned disbelief. At least 2 faces must be exaggerated; no visible face may be neutral without a plot-specific reason.
 - **Required proof object:** make the document, scan, ring, child, phone, ledger, photograph, test result, or other scandal proof large enough to read as evidence at thumbnail size.
-- **Normal readability:** choose a believable ballroom, hospital, courthouse, office, harbor, street, or home exposure. Faces must be readable, but white clothing and walls must retain texture. Use direct light plus controlled fill—not global haze, a white wash, or lifted blacks.
+- **Normal readability:** choose a believable ballroom, hospital, courthouse, office, harbor, street, or home exposure. Faces must be readable, and white clothing and walls must retain texture. Use direct light plus controlled fill—not global haze, a white wash, or lifted shadows.
 - **Prompt bans:** remove `premium`, `prestige`, `high-end editorial`, `fashion editorial`, `elegant`, `sophisticated`, `subtle`, `restrained expression`, `calm power`, `quiet intensity`, `moody cinematic`, `85mm prestige portrait`, and `atmosphere-first` unless the user explicitly requested them.
 - **Composition bans:** reject a beautiful cast lineup, harmonious group portrait, everyone looking away, characters standing without interaction, symmetrical power tableau with neutral faces, or a generic couple centered like a wedding poster.
 

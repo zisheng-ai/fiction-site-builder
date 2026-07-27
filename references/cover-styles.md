@@ -32,7 +32,7 @@ For paid-traffic fiction, the cover must look like the decisive frame of a high-
 | Site theme | Visual register | When to use |
 |---|---|---|
 | **Cinematic Drama** | AI film-still quality, photorealistic real actors, high contrast, emotion-first composition | Site hosts Urban Drama / Contemporary Romance / Thriller / Historical Court Drama content — contemporary or historical drama where characters feel human and real |
-| **Dark Fantasy Illustration** | Hyperrealistic 3D render, near-black atmospheric background, gold/silver metallic typography, epic world elements | Site hosts Cultivation Fantasy / Dark Fantasy / Sci-Fi content — power systems, fantasy worlds, sci-fi |
+| **Dark Fantasy Illustration** | Hyperrealistic 3D render, deep indigo, plum, stone, or daylight atmospheric background, gold/silver metallic typography, epic world elements | Site hosts Cultivation Fantasy / Dark Fantasy / Sci-Fi content — power systems, fantasy worlds, sci-fi; palette remains user-selectable |
 | **British Literary** | Painterly period photography or fine-art editorial, warm muted tones and compositional restraint — understated rather than dramatic | Site hosts Regency / Historical / Cosy Mystery / Gothic / Literary Thriller — British-flavoured, period-grounded, atmosphere-first rather than power-first |
 | **Emotional Drama** | Desaturated editorial photography, cold-warm contrast, threshold and outsider framing — quiet emotional weight rather than kinetic drama | Site hosts Family Drama / Secret Identity / Medical Drama / Grief Fiction — contemporary emotional fiction where the visual subject is an interior state, not an action |
 
@@ -47,7 +47,7 @@ If the site mixes genres, default to the **Traffic-Fiction Melodrama** hierarchy
 Both registers target **photorealistic or hyperrealistic 3D render quality** — not painted, not anime, not watercolor. The reference aesthetic is:
 
 - **Mobile Short-Drama Conflict** (Urban Drama / Contemporary / Thriller / Historical Court Drama): low-budget live-action freeze-frame quality. Use handheld wide-angle framing, one coherent available-light family, cramped locations, overlapping gestures, and imperfect faces. Think: the loudest frame from a vertical web drama, never a movie poster or cast photo. Do not equate low budget with direct flash, hard LED glare, mixed blue/orange keys, or dead-black backgrounds.
-- **Dark Fantasy Illustration** (Cultivation Fantasy / Dark Fantasy / Sci-Fi): Hyperrealistic 3D render, dark gradient background (deep black → navy/purple), character in detailed fantasy or sci-fi attire, dramatic atmospheric lighting. Gold/silver/chrome metallic typography is large and dominant in the lower 35% of the frame.
+- **Dark Fantasy Illustration** (Cultivation Fantasy / Dark Fantasy / Sci-Fi): Hyperrealistic 3D render, user-selected atmospheric background (deep indigo, plum, stone, ivory, or daylight are all valid), character in detailed fantasy or sci-fi attire, coherent lighting. Gold/silver/chrome metallic typography is large and dominant in the lower 35% of the frame.
 - **British Literary** (Regency / Historical / Cosy Mystery / Gothic / Literary Thriller): Painterly period photography or fine-art editorial quality. Warm cream, muted sage, deep burgundy or charcoal palettes depending on sub-genre. Atmosphere and period detail are the primary subjects; characters are composed and restrained rather than dramatic. Think: BBC period drama production still, literary fiction hardcover jacket.
 - **Emotional Conflict** (Family Drama / Secret Identity / Medical Drama / Grief Fiction): ordinary-location documentary immediacy. Use a hospital corridor, dining table, registry counter, or cramped apartment with broad ceiling/window light, visible paperwork, and one relationship rupture in progress. Zero editorial polish, zero formal family arrangement.
 
@@ -98,7 +98,7 @@ Pick the template that best matches the book's core tension. These mirror the re
 | arranged / contract / marriage / secretly / pretend / fake / fake-dating / forbidden / always / forever | Contemporary Romance | `cinematic photorealistic modern romance, soft luxury atmosphere, warm glow` |
 | detective / murder / missing / suspect / truth / shadows / case / killer / silent / dark / lies | Thriller | `dark cinematic thriller, noir rainy atmosphere, chiaroscuro lighting` |
 | space / mech / cyber / apocalypse / system / evolution / android / orbital / future / neon | Sci-Fi | `photorealistic sci-fi composite, dark blue black palette, glowing energy, futuristic cityscape` |
-| dragon / realm / lord / elf / arcane / magic / shadow / prophecy / fae / chosen / blood / fallen | Dark Fantasy | `hyperrealistic dark fantasy 3D render, black background, gold silver metallic elements` |
+| dragon / realm / lord / elf / arcane / magic / shadow / prophecy / fae / chosen / blood / fallen | Dark Fantasy | `hyperrealistic dark fantasy 3D render, user-selected indigo, plum, stone, ivory, or daylight background, gold silver metallic elements` |
 | war / army / general / battle / soldier / medieval / crusade / knight / siege / conquer | Historical War Epic | `cinematic historical war epic, dramatic battlefield lighting, iron and fire` |
 | ghost / haunted / demon / curse / ritual / possession / spirit / necromancer / eldritch / horror | Horror | `dark horror atmosphere, eerie green glow, cinematic supernatural tension` |
 | isekai / reincarnated / another world / hero / quest / level / guild / academy / otome | Isekai / Slice of Life | `vibrant anime-adjacent illustration, bright colors, expressive characters` |
@@ -201,7 +201,7 @@ Pick the template that best matches the book's core tension. These mirror the re
 - **Render style:** Cinematic dark photography. Stark, high-contrast, emotionally cold.
 - **Colors:** Near-black + deep charcoal + cold blue; single accent in blood red or pale yellow
 - **Characters:** Silhouette or partial reveal; calm/stone-faced expression. Rain Shelter composition is common — power gap between protector and protected.
-- **Background:** Rain-slicked cobblestone streets, European stone buildings, dark alleys, foggy night bridges
+- **Background:** Rain-slicked cobblestone streets, European stone buildings, alleys, foggy bridges, or daylight streets as requested
 - **Lighting:** `dramatic chiaroscuro, single hard overhead light or street lamp, rain-slicked surface reflections`
 - **Composition:** Rain Shelter template with cold power-gap energy
 
@@ -215,10 +215,10 @@ Pick the template that best matches the book's core tension. These mirror the re
 - **Tagline:** Small serif text at very bottom: short punchy lines referencing the system/power concept
 
 ### Dark Fantasy
-- **Render style:** Hyperrealistic dark fantasy 3D render. Near-black background with dramatic spot lighting on characters.
+- **Render style:** Hyperrealistic dark fantasy 3D render. User-selected atmospheric background with coherent broad lighting on characters.
 - **Colors:** Near-black base; deep navy/charcoal atmosphere; gold, silver, and burgundy accent
 - **Characters:** Male protagonist in dark ornate robes/armor with gold detailing; female in matching dark dress with crown or tiara. Together or side-by-side.
-- **Background:** Snow-covered mountains and dark gothic castle with glowing windows; stormy clouded sky; falling snow or embers
+- **Background:** Snow-covered mountains and gothic castle with glowing windows; stormy clouded sky; falling snow or embers
 - **Lighting:** `moody dramatic backlight from glowing castle, falling snow catching light, gold trim on costumes catching a rim light`
 - **Composition:** Duo Confrontation template (upper 65%); large gold title lower 35%; tagline text top and bottom in small spaced serif
 - **Typography note:** Title is the most visually prominent element after characters. Two-line title common: first line smaller, second line very large.
@@ -235,7 +235,7 @@ Pick the template that best matches the book's core tension. These mirror the re
 - **Render style:** Dark atmospheric photography with supernatural compositing.
 - **Colors:** Ink black + sickly green + dark red; faded paper yellow accent
 - **Characters:** Ordinary person (fearful) contrasted with supernatural presence (ghost, demon). Hunter in ritual attire optional.
-- **Background:** Night cemetery, crumbling ancient temple, dark alley with paper lanterns, coffin-lined passage
+- **Background:** Cemetery, crumbling ancient temple, alley with paper lanterns, coffin-lined passage; time of day follows the requested palette
 - **Lighting:** `eerie green ghost glow, flickering yellow candlelight, cold moonlight, shadows swallowing periphery`
 - **Composition:** Lone figure at center, supernatural threat looming from darkness behind
 
