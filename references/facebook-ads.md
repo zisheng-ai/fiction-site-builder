@@ -218,6 +218,96 @@ This law is a design gate, not a guarantee of performance. Validate actual CTR a
 | **World signal** | One background element identifies the story world without the title: city penthouse = billionaire; candlelit manor = Regency; neon rain = cyberpunk. |
 | **Partial reveal** | Bare shoulders + clutched sheet > full exposure. Suggestion generates more CTR than explicit. Better Facebook delivery too. |
 
+### Reference-derived hook-card pattern — luxury-room emotional triangle
+
+Use this as a reusable **story-card composition**, not as a fixed cast, wardrobe, or plot. It is derived from the supplied luxury-penthouse reference: the image works because the viewer can decode a relationship hierarchy, a public emotional collapse, and a third-person complication in one glance. Adapt the roles to the book's actual premise; never add a third person merely to imitate the pattern.
+
+#### 1. Relationship structure
+
+| Layer | Visual role | What the viewer should understand immediately |
+|---|---|---|
+| Foreground focal | The wronged, pleading, betrayed, or publicly rejected protagonist | She has just lost safety, status, love, or bargaining power |
+| Central power figure | The person who controls the decision, relationship, money, contract, or doorway | He or she can change the protagonist's life with one gesture |
+| Close ally / rival / witness | A third adult attached to one side or positioned behind the power figure | Someone else wants the central figure, knows the truth, or has just discovered the betrayal |
+
+Preferred high-click variant: make the foreground pair or central relationship unmistakable, then place the third adult behind or just outside that bond with a visibly shocked, jealous, guilty, or horrified reaction. The third person must have a distinct story role, not a decorative face.
+
+#### 2. Physical action and height hierarchy
+
+- Use one standing figure, one lower-positioned or kneeling wronged figure, and one attached or separated witness when the premise supports a status reversal.
+- Give every person a concrete action: holding a lapel or wrist for support, reaching toward a document, clutching an envelope, turning away, blocking a doorway, recoiling, or staring at the couple.
+- Use eye-lines to establish the triangle: the wronged protagonist looks up or toward the person who can answer her; the power figure looks down or away; the third person looks at the relationship they fear losing.
+- Keep the protagonist's agency visible through the proof object, an attempted exit, a refused signature, a hand pulling free, or a decision-ready posture. Do not make helplessness a sensual pose.
+- No running, walking, motion blur, symmetrical lineup, equal spacing, neutral expressions, or three people posing for a wealth portrait.
+
+#### 3. Scene and world signal
+
+For billionaire, inheritance, contract, marriage, and high-society betrayal cards, use a **luxury room that contains evidence of the plot**:
+
+```text
+lavish Manhattan penthouse salon or private signing room,
+floor-to-ceiling windows with a recognizable city skyline at night,
+grand crystal chandelier, warm lamps, velvet seating,
+polished marble floor or conference table, rich curtains,
+brass or gold architectural details, a quiet private bar,
+expensive old-money decor with enough ordinary objects to feel lived-in
+```
+
+The room must explain why these people have power and why the confrontation is private. Avoid an empty lobby, generic mansion, featureless studio, or luxury background that contributes no plot information.
+
+#### 4. Proof object and story trigger
+
+Place one large, simple proof object in the foreground or between the characters:
+
+| Premise | Proof object |
+|---|---|
+| Debt / contract bargain | Blank legal folder, open agreement, envelope, fountain pen |
+| Marriage betrayal | Ring box, loose ring, unsigned certificate, torn photograph |
+| Inheritance / family power | Will folder, sealed letter, key, trust box, share ledger |
+| Medical / identity reveal | Medical file, scan envelope, test result folder |
+| Public rejection | Suitcase, eviction envelope, broken keepsake, discarded gift |
+
+The object should read by shape and placement at 160px. It must remain blank or abstract inside the raster asset: no generated contract wording, signage, fake logos, author name, title, or pseudo-writing.
+
+#### 5. Warm luxury lighting and palette
+
+Use one coherent warm-light family when the card promises intimacy, wealth, or a private emotional reckoning:
+
+```text
+warm golden chandelier light, honey and champagne highlights,
+ivory furnishings, polished brass, amber lamps, muted rose or deep red accent,
+soft city lights beyond the windows, natural skin texture and readable shadow detail
+```
+
+Warm does not mean muddy. Keep faces, hands, proof object, and the relationship geometry readable. Do not stack unrelated blue/orange keys, crush the room into black, or wash the lower third into white. If the user explicitly requests a white, silver, or daylight palette, preserve the same scene hierarchy with that palette instead.
+
+#### 6. Camera, crop, and depth
+
+- Portrait 2:3; use a slightly wide 35mm-equivalent view for three-person conflict so the room, hands, and skyline remain legible.
+- Put the emotional focal person or pair in the foreground at roughly 55–70% of frame height; keep the shocked witness or rival smaller but fully readable in the mid-ground.
+- Reserve a clean, textured upper band for later title treatment, but do not create a blank veil or add typography to the raster image.
+- Use real depth: foreground hands and proof object, mid-ground faces and relationship action, background chandelier/windows/wealth signal. Shallow blur must never erase the third person's reaction.
+
+#### 7. Ready-to-adapt prompt block
+
+```text
+Facebook fiction hook-card, photorealistic short-drama freeze-frame, portrait 2:3.
+Exactly three mature adults and no other people. [WRONGED PROTAGONIST] occupies the
+foreground in a lower or pleading position, visibly [emotion], holding [proof object].
+[POWER FIGURE] stands at the center and controls [decision / document / doorway],
+looking [down / away / toward the couple] with [emotion]. [THIRD ROLE] is placed
+close to one side or separated behind them, visibly [shock / jealousy / guilt / fear],
+so the relationship triangle is instantly legible. Every person has a concrete action;
+no lineup, no neutral pose, no running, no motion blur.
+
+Set the event in [luxury room or familiar setting] with [world signal]. Use one
+coherent [warm golden / daylight / cool overcast] lighting family, readable faces and
+hands, a large thumbnail-legible proof object, and clear foreground/mid-ground/background
+depth. Image only: no text, letters, signage, logos, watermark, UI, or pseudo-writing.
+```
+
+**Card QA sentence:** before approval, summarize the frame in one breath: “She is [doing what] while [power figure] [does what], and [third role] reacts because [unanswered consequence].” If that sentence cannot be written from the pixels alone, the card is a mood board, not a high-click story hook.
+
 ### High-performing composition template (billionaire / romance)
 
 Extracted from a proven high-CTR Facebook creative:
