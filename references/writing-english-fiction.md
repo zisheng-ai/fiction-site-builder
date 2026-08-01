@@ -12,6 +12,27 @@ Use this file for English-language chapters, English titles, English book descri
 ## Scene and Chapter Shape
 
 - For any existing velvet-throne novel, Chapters 1–3 are a mandatory re-entry gate: rewrite them as a high-heat cold-traffic opening with an immediate breach, betrayal, threat, shocking discovery, or impossible demand. Chapter 1 must deliver a visible blast of conflict in the opening screen; Chapter 2 must worsen the protagonist's options through a concrete consequence; Chapter 3 must reveal a larger enemy, cost, or irreversible commitment. Every one of the first three chapters ends on a specific unanswered action, fact, deadline, or choice that makes the next click feel necessary. Do not preserve a quiet setup merely because it is elegant; preserve the story's causal promise while making the opening explosive and unmistakably readable.
+
+### Opening Trilogy: Breach → Cost → Lock
+
+Use this sequence when writing or repairing Chapters 1–3 for English cold-traffic serial fiction. It turns curiosity into narrative transportation by giving the reader an immediate abnormality, an emotionally legible reason to care, and a sequence of changed options. It does not license random spectacle: every hook must be the cause of the next chapter's pressure.
+
+| Chapter | Required movement | On-page proof | End hook |
+| --- | --- | --- | --- |
+| 1 — Breach | Destroy the protagonist's working plan in public or under imminent public exposure. | A person leaves, a proof object appears, an accusation lands, access is revoked, or an impossible demand is made in the opening screen; the protagonist makes a provisional move before the chapter ends. | A new action is already underway: the lie is about to be told, the door is opening, the evidence is being sent, or the opponent has reached the room. |
+| 2 — Cost | Make the provisional move expensive. | Add one measurable loss or constraint: a deadline, witness, legal/business condition, public record, ruined alternative, or collateral damage. The attempted fix must worsen a relationship or external storyline. | A specific choice remains, but declining it now costs something the protagonist cannot casually recover. |
+| 3 — Lock | Convert pressure into an irreversible opening-arc commitment. | The protagonist signs, announces, enters, gives up access, chooses an alliance, or publicly claims a role. Reveal one larger force that benefits from the trap. | Cut one beat before the immediate consequence; Chapter 4 must open on the consequence rather than recap the decision. |
+
+**Execution rules:**
+
+- Start every chapter inside an action with a contested object, person, or deadline. Do not spend the first page arranging a meeting or explaining why it matters.
+- Give the reader one dominant question per chapter. A second mystery may deepen it; a list of vague secrets does not.
+- In the first 200 words of Chapter 1, introduce no more than two focal identities unless a third is the claimant, impostor, or witness whose role is instantly clear.
+- Make the first dialogue line arrive before word 300 and ensure it changes the scene's available options.
+- Pair external jeopardy with a personal wound: the reader should see not only what will be lost, but why this protagonist is the wrong or costly person to demand it from.
+- Each hook-out must withhold the next **consequence**, not merely an answer. Prefer a message with a deadline, a witness entering, a signature waiting, a camera turning on, or a hand reaching for the contested object.
+- On revision, audit the transition as a chain: `Ch1 final action → Ch2 opening consequence → Ch2 final choice → Ch3 opening cost → Ch3 irreversible act → Ch4 consequence`. If any arrow requires a recap paragraph to make sense, rewrite the end of the preceding chapter.
+- Run the 200-word bail test and the A3.5 row-by-row gate after the rewrite. The opening fails if its intensity comes from coercive intimacy, generic threats, or information the protagonist cannot act on.
 - For English serial fiction, target **1,500–2,800 words per chapter**. Treat **3,200 words as the normal upper limit**; a chapter above that threshold requires a deliberate pacing review, and a chapter above **4,000 words must be split or compressed** before publication. Split at a genuine scene turn, decision, consequence, or hook-out rather than cutting at an arbitrary word count. A short epilogue, interlude, or deliberately narrow transition may fall below the target range when it has a complete narrative function.
 - Open as near as possible to the destabilizing action. Orient readers through a specific physical detail, goal, or contested object rather than a setting inventory.
 - When revising an existing serial at the user's request, use a target body length of approximately **75% of the original chapter** (a reduction of about one quarter), measured after frontmatter and structural markers. Treat this as a pacing target, not a mechanical word quota: remove repeated reactions, duplicate explanations, ornamental description, and recap before cutting a plot-bearing beat. Preserve every causal action, decision, evidence item, relationship change, deadline, reversal, and hook-out; do not merge chapters or delete a chapter's only setup/payoff link merely to hit the percentage. Chapters already below the useful scene-length floor may remain above 75% when further reduction would damage clarity or story completeness.
