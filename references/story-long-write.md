@@ -24,6 +24,10 @@ Select the prose profile from the **chapter language**, not the operator's langu
 
 Record the chosen profile, locale, and reader market in `tracking/context.md`. Build the outline in that profile from the start. Translating an English draft into Chinese, or a Chinese draft into English, does not satisfy A1: it must be rewritten for the target profile and pass that profile's review checks.
 
+## Chapter Length Gate
+
+For English serial fiction, target **1,500–2,800 words per chapter**. Treat **3,200 words as the normal upper limit**. Any chapter above 3,200 words requires an explicit pacing review; any chapter above **4,000 words must be split or compressed before publication**. Split at a real scene turn, decision, consequence, or hook-out, not at an arbitrary sentence. Preserve causal actions, evidence, relationship changes, reversals, and the hook-out when compressing. Short epilogues, interludes, and narrow transition chapters may fall below the target range only when their narrative function is complete.
+
 ## Core Principles
 
 1. **Emotion-first**: Every chapter has one primary emotional goal. Name it before writing a word.
