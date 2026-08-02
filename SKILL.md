@@ -199,7 +199,7 @@ Read at minimum: `next.config.ts`, `vercel.json`, `src/app/layout.tsx` (non-ad p
 | B1 | Stack | — | `tech-stack.md` | chosen stack with one-line rationale |
 | B2 | Design Identity | — | `design-system.md` | tone, palette, type system, `public/logo-light.png`, `public/logo-dark.png`, `public/favicon-32x32.png` |
 | B3 | Data Layer | — | `data-contract.md` | content-collections schema |
-| B4 | Monetization Build | L1 compliance + L2 + L3 | `ui-components.md` + `reader-ux.md` + `adsense-arbitrage.md` + `seo.md` + `meta-ads-landing-requirements.md` + `social-sharing.md` | working site with ad slots, FB Pixel, trust pages, sitemap, ShareBar |
+| B4 | Monetization Build | L1 compliance + L2 + L3 | `ui-components.md` + `reader-ux.md` + `adsense-arbitrage.md` + `seo.md` + `meta-ads-landing-requirements.md` | working site with ad slots, FB Pixel, trust pages, sitemap |
 | B5 | RPM Optimization | L3 | `performance.md` + `adsense-arbitrage.md` | Core Web Vitals targets met, ad CLS/lazy-load tuned |
 | B6 | Arbitrage Readiness QA | all | `qa-checklist.md` + `lighthouse-qa.md` | Lighthouse scores meet thresholds, monetization gates pass |
 
@@ -496,7 +496,7 @@ Load references only when entering that phase. Do not preload all references at 
 - **`story-import.md`** — import and split an existing manuscript into project structure. Load at A1 import.
 - **`story-review.md`** — multi-perspective structural and prose review. Load at A3.
 - **`story-deslop.md`** — unified deslop framework covering fiction chapters (full 7 Gates + Three-Pass) and non-fiction copy (articles, taglines, synopses, meta descriptions — run Gates A/B/C/G + Article Quick Checks). Incorporates stop-slop (hardikpandya/stop-slop) rules merged into the Gate structure. Load at A3 for fiction; load when writing or reviewing any `articles/`, taglines, synopses, or site copy. AI prose increases bounce rate; deslopping is a revenue pass, not a style pass.
-- **`reader-ux.md`** — chapter page UX requirements: next-chapter CTA height/color, TOC, no Previous button, dark mode, resume-last-chapter via localStorage, ShareBar placement. Load during B4. These are session-depth mechanics, not aesthetic preferences.
+- **`reader-ux.md`** — chapter page UX requirements: next-chapter CTA height/color, TOC, no Previous button, dark mode, resume-last-chapter via localStorage. Load during B4. These are session-depth mechanics, not aesthetic preferences.
 
 ### L3 — Monetization Rate references
 
@@ -508,7 +508,6 @@ Load references only when entering that phase. Do not preload all references at 
 - **`fiction-niche-researcher.md`** — A0 demand validation and competitive analysis; outputs `niche-research.json` that feeds A1 story brief and A2 cover direction. Includes Taiwan / `zh-TW` niche routing and a US/UK women 25–60 portfolio covering restart comedy, silver-sleuth cozy, women’s reinvention, Romantasy, psychological suspense, supernatural bonds, and power-reversal fiction without default romance labeling.
 - **`seo.md`** — load during A0 for keyword demand validation; during A1 when writing book synopses (meta descriptions). Organic traffic scales the business beyond paid dependency. Includes Taiwan / Traditional Chinese book-list article patterns.
 - **`geo.md`** — load during A0 and A1: book synopses as self-contained relational sentences (GEO evidence); author pen-name entity strategy. Load during B4: `llms.txt` generation, structured data, AI crawler robots.
-- **`social-sharing.md`** — ShareBar component (standard feature on book detail and chapter pages). Load during B4. Social sharing is organic L2 amplification — readers sharing chapters bring new sessions at zero CPC.
 - **`tech-stack.md`** — choose the implementation stack before writing any code (B1).
 - **`design-system.md`** — design identity, typography, palette, logo/favicon generation (B2).
 - **`data-contract.md`** — data models and `@content-collections` setup (B3).
@@ -597,7 +596,6 @@ Do not deliver a build if any of these are true.
 - Required pages: home / book list, book detail with chapter list, chapter reader.
 - Required reader controls: fixed top header with a compact TOC icon plus dark mode toggle; fixed/in-flow bottom bar with TOC (ghost) + Next → (vivid warm fill, min 60px height); no Previous button; both TOC controls hard-navigate to `/book/{slug}#toc`; resume-last-chapter via localStorage.
 - Add font size control or reading progress indicator only when the brief explicitly asks for them.
-- ShareBar (social sharing) is a standard feature — always include it. See `references/social-sharing.md`.
 - Do not add ranking, bookshelf, favorites/bookmarks, search, payment, comments, or account modules unless explicitly requested.
 - Respect content language: set `lang`, use language-appropriate font stacks, handle CJK line flow.
 - One deliberate visual signature per build — connected to reading, books, chapters, or genre.
