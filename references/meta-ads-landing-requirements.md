@@ -277,14 +277,16 @@ Never jump daily budget by more than 2× in a single day. A jump from $10 to $50
 
 ## 7. Meta Pixel + Conversions API (CAPI) architecture
 
-### 7.1 Why both are required
+### 7.1 Pixel baseline and optional CAPI reinforcement
 
 Pixel alone (browser-side) loses 30–60% of conversion events due to:
 - iOS 14+ ATT opt-outs (Safari blocks third-party cookies + Intelligent Tracking Prevention)
 - Ad blockers (uBlock, Brave, Firefox Enhanced Tracking Protection)
 - Browser-level cookie restrictions (Chrome third-party cookie phase-out)
 
-CAPI sends the same events server-side, recovering lost signal. Meta's own data shows accounts running both Pixel + CAPI average ~18% lower cost per result than Pixel-only.
+CAPI sends selected events server-side and can recover lost signal, but it is an additive transport, not a replacement for the browser Pixel. Launching with Pixel only is valid. Add CAPI only when the traffic volume, signal-loss evidence, and separate backend justify it.
+
+Do not replace an existing layout bootstrap with a consent-aware client wrapper merely to introduce CAPI. A prior production change did exactly that: fresh visitors who had not clicked the banner never initialized `fbq`, and the shared helper consequently suppressed the full browser funnel. Preserve the existing browser path and consent semantics unless the user explicitly requests a consent migration. The full invariants and acceptance matrix live in `adsense-arbitrage.md §4.1.1`.
 
 ### 7.2 Event deduplication (required when running both)
 
@@ -318,6 +320,8 @@ Common mistakes:
 ### 7.4 CAPI implementation pattern (Next.js static export)
 
 Static export means no Node.js server and no in-project `app/api/*/route.ts`. CAPI must be sent via a separate serverless/backend project, or skipped for MVP. Do not add API routes to the static export site.
+
+The browser call happens independently and first. Posting the mirrored event to the external endpoint must be best-effort; endpoint absence, timeout, non-2xx response, or consent-helper state must never suppress the browser `fbq` call. Rollback of CAPI must remove only the server transport and its disclosure, not `layout.tsx` Pixel initialization or browser event emitters.
 
 **Option A — Separate Vercel Edge Function project (recommended when CAPI is required)**
 
@@ -361,7 +365,7 @@ Client side fires the Pixel event and posts the same `event_id` to the external 
 
 **Option B — Skip CAPI for MVP, add later**
 
-CAPI is strongly recommended but not required to launch. Launch with Pixel only, add CAPI once traffic is established. Note the 18% cost penalty while running Pixel-only.
+CAPI is not required to launch. Launch with the verified browser Pixel, then add CAPI only when Events Manager shows material signal loss or traffic and spend justify the separate backend. Record the decision and re-run the regression contract when that threshold is reached.
 
 ### 7.5 Privacy policy disclosure (required for Pixel)
 
@@ -410,7 +414,7 @@ Required for any EU/UK traffic. Without a Google-certified CMP:
 - AdSense/AdX can only serve non-personalized ads to EU users (lower CPM)
 - Meta Pixel cannot set cookies for EU users without consent (attribution degrades)
 
-Use one of: Cookiebot, OneTrust, CookieYes (all Google-certified). Wire it to block Pixel and ad scripts until consent is granted.
+Use a suitable certified CMP and implement the policy required for the site's actual jurisdictions. On an existing live site, do not introduce a new Pixel gate as a side effect of CAPI, privacy-copy, or banner refactoring. Treat a change from unconditional initialization to consent-gated initialization as a separate high-risk migration requiring owner approval and browser acceptance in all five states: fresh pre-consent, accept, reject, reload after accept, and reload after reject. In a consent-gated design, acceptance must initialize the Pixel immediately and produce exactly one `PageView`; a returning accepted visitor must initialize on first load.
 
 ---
 
@@ -465,6 +469,7 @@ Wire these during B4 (trust pages / compliance) before running any Meta campaign
 - [ ] No redirect chain between the ad's destination URL and the final landing page
 - [ ] Meta Pixel fires `PageView` on every chapter load (via `layout.tsx`)
 - [ ] `ChapterPixel` client component added to chapter page — fires `ViewContent` on mount + scroll depth events at 25% / 50% / 75% / 90%
+- [ ] Pixel-adjacent changes pass `adsense-arbitrage.md §4.1.1`: fresh hard load, hard next chapter, any true SPA change, reading milestones, CAPI-unavailable fallback, and the consent-state matrix when consent behavior changed
 - [ ] Custom conversions created in 事件管理工具: `ChapterRead50`, `ChapterCompleted`
 - [ ] AEM configured: `ChapterCompleted(1) > ChapterRead50(2) > ViewContent(3) > PageView(4)`
 - [ ] `.prose-reader` uses system sans-serif stack, ≥19px mobile, line-height 1.8, max-width 68ch, word-break break-word (see §3.4)
@@ -477,7 +482,7 @@ Wire these during B4 (trust pages / compliance) before running any Meta campaign
 **Trust pages** (see `adsense-arbitrage.md §5` for page structure)
 - [ ] `/privacy` exists, is reachable without login, names Meta Pixel, names Google as ad partner, lists user rights
 - [ ] `/terms`, `/about`, `/contact` exist and are footer-linked on every page
-- [ ] Cookie consent banner wired to a Google-certified CMP and blocks Pixel + ad scripts until consent granted (EU/UK traffic)
+- [ ] Cookie consent behavior matches the approved jurisdiction policy; if gating is required, fresh/accept/reject/returning states were browser-tested without missing or duplicate initialization
 
 **Cloaking safety**
 - [ ] No middleware or edge logic serves different content based on User-Agent or IP range
@@ -487,6 +492,8 @@ Wire these during B4 (trust pages / compliance) before running any Meta campaign
 **Pixel / CAPI (when running campaigns)**
 - [ ] Meta Pixel ID is real and matches the verified domain (no placeholder)
 - [ ] Pixel `strategy="afterInteractive"` via `next/script` — does not block render
+- [ ] Layout bootstrap still owns exactly one hard-load `PageView`; the route tracker skips initial mount and handles only genuine SPA pathname changes
+- [ ] Browser `fbq` still sends when the CAPI endpoint is absent, fails, or is removed
 - [ ] (If CAPI implemented) unique `event_id` generated per event, same ID sent by both Pixel and CAPI
 - [ ] Privacy policy explicitly discloses Meta Pixel use
 - [ ] Campaign optimization event is `ViewContent` or `NextChapter`, not `PageView`

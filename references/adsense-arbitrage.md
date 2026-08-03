@@ -204,13 +204,46 @@ Diagnostic signal: if AdX viewability is below 60% and match rate is ≥ 95%, th
 
 ### 4.1 Tracking
 
-- **Meta Pixel + Conversions API (CAPI)**: Pixel alone loses signal to iOS/ad-blockers; CAPI (server-side) recovers it. Run both, deduplicated by event ID.
-- If the site uses App Router / `next/link`, add a client-side route tracker that fires `fbq('track', 'PageView')` on pathname changes after the initial render. The bootstrap PageView in layout only covers the first hard load.
+- **Browser Pixel is the baseline; CAPI is an additive option.** Pixel alone loses signal to iOS/ad-blockers, while CAPI can recover part of it. Never replace, gate, or short-circuit the working browser Pixel while adding CAPI. When both send the same event, deduplicate them with the same event ID.
+- If the site uses App Router / `next/link`, add a client-side route tracker that fires `fbq('track', 'PageView')` only after a genuine pathname change. Initialize `previousPathname` from the current pathname. Never fire from the tracker's initial mount or from a consent-state update: the layout bootstrap already owns the first hard-load `PageView`.
 - Events to fire: `PageView`, `ViewContent` (chapter open), `{subdomain}_ScrollDepth25` / `{subdomain}_ChapterRead50` / `{subdomain}_ScrollDepth75` (scroll milestones), `{subdomain}_ChapterCompleted` (IntersectionObserver on `#chapter-content-end` sentinel — not scroll ratio), and `{subdomain}_TimeOnPage20s` / `{subdomain}_TimeOnPage30` (20s / 30s setTimeout, independent of scroll) as engaged-session signals. Both dwell events must run inside `ChapterPixel` with identical chapter-only scope, payload, prefix, and cleanup behavior; do not implement one in a route-wide tracker.
 - Prefix all custom events with the live subdomain, using `{subdomain}_{EventName}`. This is mandatory when multiple sites share one Pixel, because unprefixed custom events from different subdomains collapse into one Events Manager stream. Keep standard events (`PageView`, `ViewContent`) unprefixed.
 - Next-chapter controls should fire `fbq('trackCustom', '{subdomain}_NextChapterClick', payload)` before hard navigation. Preserve normal browser behavior for modified clicks, then delay `window.location.href` by about 100–150ms so the Pixel request has time to leave the page.
 - Optimize the FB campaign toward the **engaged/value event**, not raw landing PageView — that is what trains delivery toward profitable readers.
 - UTM-tag every campaign; keep `campaign → landing chapter` mapping for ROAS attribution.
+
+#### 4.1.1 Production Pixel regression contract
+
+This contract comes from a production regression: replacing the fixed `layout.tsx` bootstrap with a consent-aware client wrapper left fresh visitors without `fbq`; the shared helper then suppressed `PageView`, `ViewContent`, reading-depth, dwell, and next-chapter events together. Removing the CAPI transport did not restore the browser Pixel because initialization had already moved behind the new gate.
+
+Before editing Pixel, CAPI, consent, cookies, or route analytics on an existing site, capture these invariants from the code and preserve them unless the user explicitly requests a migration:
+
+- the real Pixel ID in `fbq('init', ...)` and the matching `noscript` URL;
+- who owns the first `PageView` (normally the layout bootstrap);
+- whether each navigation path is a hard document load or a true SPA pathname change;
+- every browser event emitter (`ChapterPixel`, `HardLink`, route tracker, and any helper);
+- current consent behavior for fresh, accepted, rejected, and returning visitors;
+- exact event names and prefixes. Standard `PageView` and `ViewContent` remain unprefixed. Preserve established legacy exceptions such as Velvet's unprefixed custom events; do not mechanically rename a live event stream.
+
+Implementation constraints:
+
+1. Keep one stable browser bootstrap in `layout.tsx`: load `fbevents.js`, initialize the real Pixel ID once, send one hard-load `PageView`, and retain a matching `noscript` fallback.
+2. CAPI must be additive. A CAPI timeout, missing endpoint, consent helper, or transport error must not prevent the browser `fbq` call. Removing CAPI must not remove or rewrite browser initialization.
+3. Do not move an existing live bootstrap behind `useEffect`, `localStorage`, or a consent-change event as part of an unrelated refactor. If consent behavior must change for a jurisdiction, make it a separate high-risk migration and use the consent-state matrix below.
+4. `ChapterPixel` owns chapter events. `HardLink` owns click-before-hard-navigation events. The route tracker owns only genuine SPA path changes. Do not let two owners send the same event instance.
+
+Required acceptance matrix after any Pixel-adjacent change:
+
+| Scenario | Required observation |
+|---|---|
+| Fresh chapter hard load | `fbevents.js` requested; the configured Pixel initializes; exactly one `PageView`; exactly one `ViewContent` |
+| Hard next-chapter navigation | The click event leaves before navigation; the new document produces exactly one new `PageView` and one `ViewContent` |
+| True SPA pathname change, if supported | Route tracker produces exactly one `PageView`; initial mount produces none |
+| 25% / 50% / 75% / prose-end / 20s / 30s | Each configured browser event fires once with the site's established prefix and chapter payload |
+| CAPI unavailable or removed | Browser events above still fire; no helper returns early merely because the server transport is absent |
+| Consent migration only | Test fresh pre-consent, accept, reject, reload-after-accept, and reload-after-reject; each state matches the explicitly approved policy without duplicate initialization |
+
+Use Meta Pixel Helper or Events Manager Test Events on a real chapter page. Inspect network/event counts across at least one hard next-chapter transition. A build, type-check, static HTML string, or source grep is supporting evidence only.
 
 ### 4.2 Landing page choice
 
@@ -423,7 +456,7 @@ Track and optimize:
 
 ### 8.1 Meta Pixel — `layout.tsx` *(add when running FB campaigns)*
 
-Fires `PageView` on every full-reload chapter navigation automatically. Only add this when you have a real Pixel ID — do not add placeholder env vars to the build.
+Fires `PageView` on every full-reload chapter navigation automatically. Only add this when you have a real Pixel ID — do not add placeholder env vars to the build. On an existing live site, preserve this bootstrap and its current consent behavior unless an explicit consent migration is in scope; see §4.1.1.
 
 Hardcode `metadataBase` with the real domain (no env var needed):
 
@@ -442,6 +475,18 @@ Then add the Pixel script in `<head>` when the campaign goes live:
     __html: `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','YOUR_PIXEL_ID');fbq('track','PageView');`,
   }}
 />
+<noscript>
+  <img
+    height="1"
+    width="1"
+    style={{ display: 'none' }}
+    src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
+    alt=""
+  />
+</noscript>
+```
+
+The ID in `fbq('init', ...)` and the `noscript` URL must be identical. Do not replace this browser path with a CAPI-only helper.
 
 ### 8.2 OG image — three layers required
 
