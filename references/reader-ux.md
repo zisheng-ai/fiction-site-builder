@@ -121,6 +121,7 @@ The Velvet landing-page fix exposed a recurring layout bug: short pages can show
 - Fails if a modal, paywall, cookie wall, or interstitial appears before prose.
 - Fails if any chapter renders fewer or more than the configured five unique slots.
 - Fails if the final configured chapter ad appears above the chapter-navigation buttons.
+- Fails if generated production HTML for Chapter 1, an ordinary chapter, and the final chapter does not contain exactly one element for each configured GPT div ID in strict q4 → q1 → q2 → q3 → q5 DOM order.
 - Fails if the next action is a muted text link or smaller than TOC.
 - Fails if the landing chapter uses SPA navigation for next chapter.
 - Fails if chapter 1 shows a normal site nav bar, clickable logo, side menu, back button, TOC, or recommendation grid.

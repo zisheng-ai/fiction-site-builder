@@ -167,6 +167,7 @@ Map the AGENTS.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via
 - **Ad pixels < 30% of content pixels** per screen (FB + AdSense inventory-value).
 - RPM typically peaks around 5 units; beyond that each added unit adds ~2–4% and erodes engagement + page-experience. Cutting the weakest slot often **raises** total RPM.
 - **Configured five-slot AdX layout:** when a site has q1–q5 assigned to chapter inventory, render exactly five unique units on every chapter: q4 at the top, q1/q2/q3 after the first three content quarters, and q5 below chapter navigation. There is no chapter 1 exception.
+- When adding AdX to an existing reader, replace the chapter rendering sequence as one unit. Do not incrementally append q1–q3 after the prose or copy a legacy same-name `AdSlot` component from another site; use the immediate-mount AdX component in §8.6 and implement the complete five-slot sequence in the same change.
 - Never reuse q5 inside a sticky component when it already appears at the bottom of the content flow; duplicate GPT div IDs break slot initialization.
 - If a legacy AdX or AdSense reader has fewer configured chapter units, place its existing final unit below chapter navigation instead of adding an unconfigured slot.
 - This fixed inventory is an explicit site strategy. Keep the density and ad-area checks above visible as an operational warning, especially for chapters below roughly 1,250 words.
@@ -449,6 +450,7 @@ Track and optimize:
 - [ ] `og:image` set on all chapter and book detail pages; `metadataBase` set in root layout (§4 impl).
 - [ ] End-of-last-chapter shows cross-book recommendation grid, not a dead-end link (§2.3 impl).
 - [ ] `<link rel="prefetch">` added for next chapter URL on every chapter page (§2.1 impl).
+- [ ] After the production build, inspect generated HTML for Chapter 1, one ordinary chapter, and the final chapter. Each configured GPT div ID must appear exactly once as an element, and their DOM positions must strictly increase in the order q4 → q1 → q2 → q3 → q5. Source inspection alone does not pass this gate.
 
 ---
 
@@ -660,7 +662,7 @@ function splitContent(content: string): [string, string, string, string] {
   ]
 }
 
-<AdSlot path="/23294357175/q4" id="div-gpt-ad-1782711562651-0" sizes={[[336,280],[250,250],[300,250]]} priority />
+<AdSlot path="/23294357175/q4" id="div-gpt-ad-1782711562651-0" sizes={[[336,280],[250,250],[300,250]]} />
 <div className="prose-reader">{contentParts[0]}</div>
 <AdSlot path="/23294357175/q1" id="div-gpt-ad-1782711338284-0" sizes={[[250,250],[300,250],[336,280]]} />
 <div className="prose-reader">{contentParts[1]}</div>

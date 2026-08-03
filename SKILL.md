@@ -311,6 +311,7 @@ All of the following must be true before go-live (after B6 passes):
 | Lead-only chapters ≤ 30%; ensemble and supporting-character action cadence pass | `outline/outline.md` cast/conflict fields + A3 review |
 | Cover image for every book (L1 gate) | `public/covers/{book-title}.webp` |
 | Ad slots wired and sized (L3 gate) | `src/app/book/[slug]/chapter/[n]/page.tsx` |
+| Built Chapter 1, ordinary chapter, and final chapter each contain one q4/q1/q2/q3/q5 element in that DOM order | generated production HTML |
 | FB Pixel base code + ChapterPixel (L1 gate) | `src/app/layout.tsx` + chapter page |
 | Trust pages present and footer-linked (account survival) | `/privacy`, `/terms`, `/about`, `/contact` |
 
