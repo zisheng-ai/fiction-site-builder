@@ -26,7 +26,7 @@ Record the chosen profile, locale, and reader market in `tracking/context.md`. B
 
 ## Chapter Length Gate
 
-For English serial fiction, target **1,500–2,800 words per chapter**. Treat **3,200 words as the normal upper limit**. Any chapter above 3,200 words requires an explicit pacing review; any chapter above **4,000 words must be split or compressed before publication**. Split at a real scene turn, decision, consequence, or hook-out, not at an arbitrary sentence. Preserve causal actions, evidence, relationship changes, reversals, and the hook-out when compressing. Short epilogues, interludes, and narrow transition chapters may fall below the target range only when their narrative function is complete.
+For English serial fiction, target **1,200–1,800 words per chapter**. Treat **1,800 words as the normal upper limit**. Any chapter above 1,800 words requires an explicit pacing review; any chapter above **3,200 words must be split or compressed before publication**. Split at a real scene turn, decision, consequence, or hook-out, not at an arbitrary sentence. Preserve causal actions, evidence, relationship changes, reversals, and the hook-out when compressing. Short epilogues, interludes, and narrow transition chapters may fall below the target range only when their narrative function is complete.
 
 ## Core Principles
 
@@ -450,7 +450,7 @@ Use a **single batch Agent call** when the environment supports it (e.g. one Age
 After all chapter agents complete, do a single sequential pass:
 1. Read chapters in order; verify hook-out of chapter N matches the opening of chapter N+1.
 2. Audit the outline's `cast`, `threads`, `conflict action`, and `consequence` fields. Verify the 30% lead-only cap, every rolling 3-chapter ensemble gate, supporting-character action cadence, 2–3 chapter irreversible cadence, and 5–6 chapter major-reversal cadence. Rewrite failing beats before prose cleanup.
-3. **Word count check** — flag any chapter exceeding 1,800 words (1,600 for resolution chapters). For each flagged chapter: find the highest-tension cut point, split into two chapters, bump subsequent chapter numbers. Verify both parts meet lower bounds (≥1,200 / ≥1,000):
+3. **Word count check** — flag any chapter exceeding 1,800 words (1,500 for resolution chapters). For each flagged chapter: find the highest-tension cut point, split into two chapters, bump subsequent chapter numbers. Verify both parts meet the lower bound of ≥1,200 words:
    - If Part 1 < minimum, add details to Part 1.
    - If Part 2 < minimum, merge it back into Part 1 (do not save a skeleton).
    Update `outline/outline.md` with final chapter count. Then update `src/lib/books.ts` `chapterCount` for each book that underwent splits.
@@ -493,7 +493,7 @@ Use this for adding one chapter to an existing book (incremental update only).
    | Opening (ch 1) | 1,400–1,800 | 2,000 |
    | Escalation (ch 2–N-3) | 1,200–1,600 | 2,000 |
    | Climax (last 3) | 1,200–1,600 | 2,000 |
-   | Resolution | 1,000–1,400 | 1,700 |
+   | Resolution | 1,200–1,500 | 1,800 |
 
    If a chapter exceeds the soft ceiling without adding momentum, split at the strongest unresolved beat. The tail becomes the opening beat of the next chapter.
    If a chapter is far below preferred range and lacks scene value, add one concrete detail, scene action, or dialogue turn before saving.

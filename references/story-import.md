@@ -118,7 +118,7 @@ When the source is a single file with chapter markers:
    - never leave a body line indented by 4+ spaces, because Markdown will render it as a code block;
    - keep exactly one blank line between prose paragraphs and no blank-line padding at the start or end of the body.
 6. Do not rewrite prose content during splitting — import as-is apart from the mechanical whitespace normalization above; deslop separately.
-7. After splitting, run the language-specific chapter-length gate before publication. For English serial fiction, target 1,500–2,800 words, treat 3,200 as the normal upper limit, and split or compress every chapter above 4,000 words. Import preservation does not exempt a source chapter from this review; use a real scene turn, decision, consequence, or hook-out as the split point and preserve the causal chain.
+7. After splitting, run the language-specific chapter-length gate before publication. For English serial fiction, target 1,200–1,800 words, treat 1,800 as the normal upper limit, and split or compress every chapter above 3,200 words. Import preservation does not exempt a source chapter from this review; use a real scene turn, decision, consequence, or hook-out as the split point and preserve the causal chain.
 
 ### Duplicate Chapter File Cleanup
 
