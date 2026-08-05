@@ -207,9 +207,9 @@ Diagnostic signal: if AdX viewability is below 60% and match rate is ≥ 95%, th
 
 - **Browser Pixel is the baseline; CAPI is an additive option.** Pixel alone loses signal to iOS/ad-blockers, while CAPI can recover part of it. Never replace or short-circuit the working browser Pixel while adding CAPI. When both send the same event, deduplicate them with the same event ID. Only an explicitly scoped consent migration may gate browser delivery.
 - If the site uses App Router / `next/link`, add a client-side route tracker that fires `fbq('track', 'PageView')` only after a genuine pathname change. Initialize `previousPathname` from the current pathname. In an unconditional design, never fire from the tracker's initial mount or a consent-state update because layout owns the first hard-load `PageView`. In an opt-in design, the consent handler sends one current-page `PageView` only on the transition from not-consented to consented; the route effect still handles genuine later path changes only.
-- Events to fire: `PageView`, `ViewContent` (chapter open), `{subdomain}_ScrollDepth25` / `{subdomain}_ChapterRead50` / `{subdomain}_ScrollDepth75` (scroll milestones), `{subdomain}_ChapterCompleted` (IntersectionObserver on `#chapter-content-end` sentinel — not scroll ratio), and `{subdomain}_TimeOnPage20s` / `{subdomain}_TimeOnPage30` (20s / 30s setTimeout, independent of scroll) as engaged-session signals. Both dwell events must run inside `ChapterPixel` with identical chapter-only scope, payload, prefix, and cleanup behavior; do not implement one in a route-wide tracker.
-- Prefix all custom events with the live subdomain, using `{subdomain}_{EventName}`. This is mandatory when multiple sites share one Pixel, because unprefixed custom events from different subdomains collapse into one Events Manager stream. Keep standard events (`PageView`, `ViewContent`) unprefixed.
-- Next-chapter controls should fire `fbq('trackCustom', '{subdomain}_NextChapterClick', payload)` before hard navigation. Preserve normal browser behavior for modified clicks, then delay `window.location.href` by about 100–150ms so the Pixel request has time to leave the page.
+- Events to fire: `PageView`, `ViewContent` (chapter open), `ScrollDepth25` / `ChapterRead50` / `ScrollDepth75` (scroll milestones), `ChapterCompleted` (IntersectionObserver on `#chapter-content-end` sentinel — not scroll ratio), and `TimeOnPage20s` / `TimeOnPage30` (20s / 30s setTimeout, independent of scroll) as engaged-session signals. Both dwell events must run inside `ChapterPixel` with identical chapter-only scope, payload, event name, and cleanup behavior; do not implement one in a route-wide tracker.
+- Keep every custom event unprefixed across sites. Multiple sites using one Pixel intentionally contribute to the same event stream; use the page URL/domain rule or an event payload field when a report or custom conversion must distinguish a site. Standard events (`PageView`, `ViewContent`) remain unprefixed too.
+- Next-chapter controls should fire `fbq('trackCustom', 'NextChapterClick', payload)` before hard navigation. Preserve normal browser behavior for modified clicks, then delay `window.location.href` by about 100–150ms so the Pixel request has time to leave the page.
 - Optimize the FB campaign toward the **engaged/value event**, not raw landing PageView — that is what trains delivery toward profitable readers.
 - UTM-tag every campaign; keep `campaign → landing chapter` mapping for ROAS attribution.
 
@@ -224,7 +224,7 @@ Before editing Pixel, CAPI, consent, cookies, or route analytics on an existing 
 - whether each navigation path is a hard document load or a true SPA pathname change;
 - every browser event emitter (`ChapterPixel`, `HardLink`, route tracker, and any helper);
 - current consent behavior for fresh, accepted, rejected, and returning visitors;
-- exact event names and prefixes. Standard `PageView` and `ViewContent` remain unprefixed. Preserve established legacy exceptions such as Velvet's unprefixed custom events; do not mechanically rename a live event stream.
+- exact event names. Standard and custom event names remain unprefixed across every site; do not reintroduce a site prefix during unrelated work.
 
 Implementation constraints:
 
@@ -240,7 +240,7 @@ Required acceptance matrix after any Pixel-adjacent change:
 | Fresh chapter hard load | Unconditional policy: `fbevents.js`, one initialization, one `PageView`, one `ViewContent`. Opt-in policy: no Meta request or event before a choice. |
 | Hard next-chapter navigation | The click event leaves before navigation; the new document produces exactly one new `PageView` and one `ViewContent` |
 | True SPA pathname change, if supported | Route tracker produces exactly one `PageView`; initial mount produces none |
-| 25% / 50% / 75% / prose-end / 20s / 30s | Each configured browser event fires once with the site's established prefix and chapter payload |
+| 25% / 50% / 75% / prose-end / 20s / 30s | Each configured browser event fires once with its unprefixed event name and chapter payload |
 | CAPI unavailable or removed | Browser events above still fire; no helper returns early merely because the server transport is absent |
 | Consent migration only | Fresh pre-consent and reload-after-reject make zero Meta requests/events; accept immediately creates one initialization, one current-page `PageView`, and one chapter `ViewContent`; reload-after-accept produces the same once-only events without duplicate initialization |
 
@@ -266,8 +266,6 @@ interface Props {
   bookSlug: string
 }
 
-const EVENT_PREFIX = 'SUBDOMAIN_' // e.g. 'brocade_', 'midnight_'; leave empty only for already-running legacy sites
-
 export function ChapterPixel({ chapterTitle, chapterOrder, bookSlug }: Props) {
   const fired25 = useRef(false)
   const fired50 = useRef(false)
@@ -290,14 +288,14 @@ export function ChapterPixel({ chapterTitle, chapterOrder, bookSlug }: Props) {
     const dwell20Timer = setTimeout(() => {
       if (!firedDwell20.current) {
         firedDwell20.current = true
-        window.fbq?.('trackCustom', `${EVENT_PREFIX}TimeOnPage20s`, payload)
+        window.fbq?.('trackCustom', 'TimeOnPage20s', payload)
       }
     }, 20000)
 
     const dwell30Timer = setTimeout(() => {
       if (!firedDwell30.current) {
         firedDwell30.current = true
-        window.fbq?.('trackCustom', `${EVENT_PREFIX}TimeOnPage30`, payload)
+        window.fbq?.('trackCustom', 'TimeOnPage30', payload)
       }
     }, 30000)
 
@@ -306,15 +304,15 @@ export function ChapterPixel({ chapterTitle, chapterOrder, bookSlug }: Props) {
       const ratio = window.scrollY / (document.body.scrollHeight - window.innerHeight)
       if (!fired25.current && ratio >= 0.25) {
         fired25.current = true
-        window.fbq?.('trackCustom', `${EVENT_PREFIX}ScrollDepth25`, { content_name: chapterTitle, chapter_order: chapterOrder })
+        window.fbq?.('trackCustom', 'ScrollDepth25', { content_name: chapterTitle, chapter_order: chapterOrder })
       }
       if (!fired50.current && ratio >= 0.5) {
         fired50.current = true
-        window.fbq?.('trackCustom', `${EVENT_PREFIX}ChapterRead50`, { content_name: chapterTitle, chapter_order: chapterOrder })
+        window.fbq?.('trackCustom', 'ChapterRead50', { content_name: chapterTitle, chapter_order: chapterOrder })
       }
       if (!fired75.current && ratio >= 0.75) {
         fired75.current = true
-        window.fbq?.('trackCustom', `${EVENT_PREFIX}ScrollDepth75`, { content_name: chapterTitle, chapter_order: chapterOrder })
+        window.fbq?.('trackCustom', 'ScrollDepth75', { content_name: chapterTitle, chapter_order: chapterOrder })
       }
     }
 
@@ -328,7 +326,7 @@ export function ChapterPixel({ chapterTitle, chapterOrder, bookSlug }: Props) {
         (entries) => {
           if (entries[0].isIntersecting && !firedCompleted.current) {
             firedCompleted.current = true
-            window.fbq?.('trackCustom', `${EVENT_PREFIX}ChapterCompleted`, {
+            window.fbq?.('trackCustom', 'ChapterCompleted', {
               content_name: chapterTitle,
               chapter_order: chapterOrder,
             })
@@ -388,15 +386,15 @@ Select the highest-quality event that has accumulated ≥ 50 events/week. Upgrad
 
 | Priority | Event | Signal quality |
 |---|---|---|
-| 1 | `{subdomain}_ChapterCompleted` (custom) | Reader finished prose — highest intent |
-| 2 | `{subdomain}_ChapterRead50` (custom) | Reader reached midpoint — proven engagement |
-| 3 | `{subdomain}_TimeOnPage30` (custom) | 30s dwell — time-dimension engagement, good for short chapters |
+| 1 | `ChapterCompleted` (custom) | Reader finished prose — highest intent |
+| 2 | `ChapterRead50` (custom) | Reader reached midpoint — proven engagement |
+| 3 | `TimeOnPage30` (custom) | 30s dwell — time-dimension engagement, good for short chapters |
 | 4 | `ViewContent` (standard) | Chapter opened — lowest, but broadest volume |
 | 5 | `PageView` | Any page — fallback only |
 
-Note: custom events (`{subdomain}_ChapterCompleted`, `{subdomain}_ChapterRead50`, `{subdomain}_TimeOnPage30`, `{subdomain}_NextChapterClick`) must be wrapped as Custom Conversions in Events Manager before they can be selected as Ad Set optimization targets — see `facebook-ads.md §Step 1.2`. Record this manual setup in `TODO.md`.
+Note: custom events (`ChapterCompleted`, `ChapterRead50`, `TimeOnPage30`, `NextChapterClick`) must be wrapped as Custom Conversions in Events Manager before they can be selected as Ad Set optimization targets — see `facebook-ads.md §Step 1.2`. Record this manual setup in `TODO.md`.
 
-Use `ViewContent` as the campaign optimization target to start. Upgrade to `{subdomain}_ChapterRead50` once it accumulates ≥ 50 events/week — it signals actual readers, not page-loaders.
+Use `ViewContent` as the campaign optimization target to start. Upgrade to `ChapterRead50` once it accumulates ≥ 50 events/week — it signals actual readers, not page-loaders.
 
 ---
 

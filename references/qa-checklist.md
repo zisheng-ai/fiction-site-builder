@@ -193,7 +193,7 @@ Run for every monetized FB-traffic site. See `references/adsense-arbitrage.md`. 
 **Pageview depth & tracking:**
 
 - [ ] Chapter navigation does a full reload (`window.location.href`) so ads reinitialize and a fresh pageview counts.
-- [ ] Meta Pixel fires `PageView` on load, `ViewContent` on chapter mount, prefixed custom events (`{subdomain}_ScrollDepth25`, `{subdomain}_ChapterRead50`, `{subdomain}_ScrollDepth75`) at the correct scroll ratios, `{subdomain}_ChapterCompleted` when `#chapter-content-end` sentinel enters viewport, and `{subdomain}_TimeOnPage30` after 30 seconds.
+- [ ] Meta Pixel fires `PageView` on load, `ViewContent` on chapter mount, unprefixed custom events (`ScrollDepth25`, `ChapterRead50`, `ScrollDepth75`) at the correct scroll ratios, `ChapterCompleted` when `#chapter-content-end` sentinel enters viewport, and `TimeOnPage30` after 30 seconds.
 - [ ] On a fresh chapter hard load, the layout bootstrap initializes the configured Pixel and emits exactly one `PageView`; `RouteAnalyticsTracker` emits nothing on initial mount or consent-state changes.
 - [ ] One hard next-chapter transition produces exactly one click event before navigation, then exactly one new `PageView` and one `ViewContent` in the new document.
 - [ ] CAPI failure/removal does not suppress browser events. If consent behavior changed, fresh pre-consent, accept, reject, reload-after-accept, and reload-after-reject all match the approved policy without duplicate initialization.
