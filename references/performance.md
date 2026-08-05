@@ -864,7 +864,12 @@ Each site needs its own cookie-consent banner with a site-specific localStorage 
 
 Key prefix convention: two-letter abbreviation of the site slug (e.g. `vt` for velvet-throne, `mf` for midnight-fable, `fe` for fuego-eterno, `lp` for london-pages, `wr` for wildfire-reads).
 
-Both variants are **UI-only** — they record user preference in localStorage but do not gate or alter ad loading. The banner satisfies notice requirements; actual ad personalisation is governed by the ad network.
+The banner is the preference surface, not the enforcement mechanism. Every analytics or advertising tag must explicitly consume the stored choice. Do not ship Reject / Accept controls that only dismiss the banner while tracking continues.
+
+- A notice-only design must not label its action as Reject or claim that tracking stops.
+- An enforced Meta opt-in design must not preconnect to Meta, request `fbevents.js`, initialize `fbq`, emit events, or render a `noscript` tracking image before consent. Accept initializes immediately and sends one current-page `PageView`; reject and returning-rejected states send nothing.
+- Google ad personalization remains a separate CMP concern. Rejecting Meta measurement does not automatically disable AdX/AdSense; the banner copy must name the exact category it controls.
+- Store the choice and dispatch a site-specific consent-change event so Pixel, route, and chapter-event owners update from one source of truth. All event helpers must re-check the stored choice before sending.
 
 ---
 
@@ -872,7 +877,7 @@ Both variants are **UI-only** — they record user preference in localStorage bu
 
 Adapt text to the site language. English template: `"{Site Name} uses cookies to personalise content and ads."` Spanish template: `"{Nombre} utiliza cookies para personalizar contenido y anuncios."`
 
-Provide both **Reject** and **Accept** buttons. Rejecting does not block ads — it only records the preference and dismisses the banner.
+Provide both **Reject** and **Accept** buttons. Rejecting Meta measurement may still allow non-personalized ads, but it must block Meta initialization and events when the banner promises Meta opt-in.
 
 ```tsx
 'use client'
@@ -880,6 +885,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
 const CONSENT_KEY = '{prefix}-cookie-consent'
+const CONSENT_EVENT = '{prefix}-consent-change'
 
 export default function CookieBanner() {
   const [visible, setVisible] = useState(false)
@@ -894,11 +900,13 @@ export default function CookieBanner() {
 
   function accept() {
     try { localStorage.setItem(CONSENT_KEY, '1') } catch {}
+    window.dispatchEvent(new CustomEvent(CONSENT_EVENT, { detail: '1' }))
     setVisible(false)
   }
 
   function reject() {
     try { localStorage.setItem(CONSENT_KEY, '0') } catch {}
+    window.dispatchEvent(new CustomEvent(CONSENT_EVENT, { detail: '0' }))
     setVisible(false)
   }
 
@@ -947,6 +955,7 @@ const KEY = '{prefix}-cookie-consent-v2'
 
 function saveConsent(c: ConsentData) {
   try { localStorage.setItem(KEY, JSON.stringify(c)) } catch {}
+  window.dispatchEvent(new CustomEvent('{prefix}-consent-change', { detail: c }))
 }
 
 export default function CookieBanner() {

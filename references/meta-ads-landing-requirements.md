@@ -317,6 +317,8 @@ Common mistakes:
 
 **Implementation:** all scroll events live in `src/components/ChapterPixel.tsx` — a client component that fires `ViewContent` on mount and uses a single passive scroll listener with `useRef` guards to fire each depth event exactly once per page load.
 
+Reading events have no monetary value by default. Do not send placeholder `value` / `currency` parameters such as `0.01 CNY`; they distort value and ROAS reporting. Add monetary parameters only when the business defines a real value model, using the site's actual ISO 4217 currency.
+
 ### 7.4 CAPI implementation pattern (Next.js static export)
 
 Static export means no Node.js server and no in-project `app/api/*/route.ts`. CAPI must be sent via a separate serverless/backend project, or skipped for MVP. Do not add API routes to the static export site.
@@ -415,6 +417,8 @@ Required for any EU/UK traffic. Without a Google-certified CMP:
 - Meta Pixel cannot set cookies for EU users without consent (attribution degrades)
 
 Use a suitable certified CMP and implement the policy required for the site's actual jurisdictions. On an existing live site, do not introduce a new Pixel gate as a side effect of CAPI, privacy-copy, or banner refactoring. Treat a change from unconditional initialization to consent-gated initialization as a separate high-risk migration requiring owner approval and browser acceptance in all five states: fresh pre-consent, accept, reject, reload after accept, and reload after reject. In a consent-gated design, acceptance must initialize the Pixel immediately and produce exactly one `PageView`; a returning accepted visitor must initialize on first load.
+
+For an enforced opt-in design, the Reject state must block the Meta network path itself: no preconnect, `fbevents.js` request, `fbq('init')`, browser event, CAPI mirror, or `noscript` tracking image. Gate every emitter through the same stored decision; do not let direct scroll or click handlers bypass the shared helper.
 
 ---
 

@@ -205,8 +205,8 @@ Diagnostic signal: if AdX viewability is below 60% and match rate is ≥ 95%, th
 
 ### 4.1 Tracking
 
-- **Browser Pixel is the baseline; CAPI is an additive option.** Pixel alone loses signal to iOS/ad-blockers, while CAPI can recover part of it. Never replace, gate, or short-circuit the working browser Pixel while adding CAPI. When both send the same event, deduplicate them with the same event ID.
-- If the site uses App Router / `next/link`, add a client-side route tracker that fires `fbq('track', 'PageView')` only after a genuine pathname change. Initialize `previousPathname` from the current pathname. Never fire from the tracker's initial mount or from a consent-state update: the layout bootstrap already owns the first hard-load `PageView`.
+- **Browser Pixel is the baseline; CAPI is an additive option.** Pixel alone loses signal to iOS/ad-blockers, while CAPI can recover part of it. Never replace or short-circuit the working browser Pixel while adding CAPI. When both send the same event, deduplicate them with the same event ID. Only an explicitly scoped consent migration may gate browser delivery.
+- If the site uses App Router / `next/link`, add a client-side route tracker that fires `fbq('track', 'PageView')` only after a genuine pathname change. Initialize `previousPathname` from the current pathname. In an unconditional design, never fire from the tracker's initial mount or a consent-state update because layout owns the first hard-load `PageView`. In an opt-in design, the consent handler sends one current-page `PageView` only on the transition from not-consented to consented; the route effect still handles genuine later path changes only.
 - Events to fire: `PageView`, `ViewContent` (chapter open), `{subdomain}_ScrollDepth25` / `{subdomain}_ChapterRead50` / `{subdomain}_ScrollDepth75` (scroll milestones), `{subdomain}_ChapterCompleted` (IntersectionObserver on `#chapter-content-end` sentinel — not scroll ratio), and `{subdomain}_TimeOnPage20s` / `{subdomain}_TimeOnPage30` (20s / 30s setTimeout, independent of scroll) as engaged-session signals. Both dwell events must run inside `ChapterPixel` with identical chapter-only scope, payload, prefix, and cleanup behavior; do not implement one in a route-wide tracker.
 - Prefix all custom events with the live subdomain, using `{subdomain}_{EventName}`. This is mandatory when multiple sites share one Pixel, because unprefixed custom events from different subdomains collapse into one Events Manager stream. Keep standard events (`PageView`, `ViewContent`) unprefixed.
 - Next-chapter controls should fire `fbq('trackCustom', '{subdomain}_NextChapterClick', payload)` before hard navigation. Preserve normal browser behavior for modified clicks, then delay `window.location.href` by about 100–150ms so the Pixel request has time to leave the page.
@@ -219,7 +219,7 @@ This contract comes from a production regression: replacing the fixed `layout.ts
 
 Before editing Pixel, CAPI, consent, cookies, or route analytics on an existing site, capture these invariants from the code and preserve them unless the user explicitly requests a migration:
 
-- the real Pixel ID in `fbq('init', ...)` and the matching `noscript` URL;
+- the real Pixel ID in `fbq('init', ...)` and, for an unconditional design, the matching `noscript` URL;
 - who owns the first `PageView` (normally the layout bootstrap);
 - whether each navigation path is a hard document load or a true SPA pathname change;
 - every browser event emitter (`ChapterPixel`, `HardLink`, route tracker, and any helper);
@@ -228,7 +228,7 @@ Before editing Pixel, CAPI, consent, cookies, or route analytics on an existing 
 
 Implementation constraints:
 
-1. Keep one stable browser bootstrap in `layout.tsx`: load `fbevents.js`, initialize the real Pixel ID once, send one hard-load `PageView`, and retain a matching `noscript` fallback.
+1. Keep one stable browser bootstrap or loader in `layout.tsx`. In the default unconditional design, load `fbevents.js`, initialize the real Pixel ID once, send one hard-load `PageView`, and retain a matching `noscript` fallback. In an explicitly approved opt-in design, define the loader inline but do not request `connect.facebook.net`, initialize `fbq`, send events, preconnect, or render a `noscript` tracking image before consent. Returning accepted visitors initialize and send one `PageView` from layout; fresh acceptance initializes and sends one current-page `PageView` from the consent handler.
 2. CAPI must be additive. A CAPI timeout, missing endpoint, consent helper, or transport error must not prevent the browser `fbq` call. Removing CAPI must not remove or rewrite browser initialization.
 3. Do not move an existing live bootstrap behind `useEffect`, `localStorage`, or a consent-change event as part of an unrelated refactor. If consent behavior must change for a jurisdiction, make it a separate high-risk migration and use the consent-state matrix below.
 4. `ChapterPixel` owns chapter events. `HardLink` owns click-before-hard-navigation events. The route tracker owns only genuine SPA path changes. Do not let two owners send the same event instance.
@@ -237,12 +237,12 @@ Required acceptance matrix after any Pixel-adjacent change:
 
 | Scenario | Required observation |
 |---|---|
-| Fresh chapter hard load | `fbevents.js` requested; the configured Pixel initializes; exactly one `PageView`; exactly one `ViewContent` |
+| Fresh chapter hard load | Unconditional policy: `fbevents.js`, one initialization, one `PageView`, one `ViewContent`. Opt-in policy: no Meta request or event before a choice. |
 | Hard next-chapter navigation | The click event leaves before navigation; the new document produces exactly one new `PageView` and one `ViewContent` |
 | True SPA pathname change, if supported | Route tracker produces exactly one `PageView`; initial mount produces none |
 | 25% / 50% / 75% / prose-end / 20s / 30s | Each configured browser event fires once with the site's established prefix and chapter payload |
 | CAPI unavailable or removed | Browser events above still fire; no helper returns early merely because the server transport is absent |
-| Consent migration only | Test fresh pre-consent, accept, reject, reload-after-accept, and reload-after-reject; each state matches the explicitly approved policy without duplicate initialization |
+| Consent migration only | Fresh pre-consent and reload-after-reject make zero Meta requests/events; accept immediately creates one initialization, one current-page `PageView`, and one chapter `ViewContent`; reload-after-accept produces the same once-only events without duplicate initialization |
 
 Use Meta Pixel Helper or Events Manager Test Events on a real chapter page. Inspect network/event counts across at least one hard next-chapter transition. A build, type-check, static HTML string, or source grep is supporting evidence only.
 
@@ -282,8 +282,6 @@ export function ChapterPixel({ chapterTitle, chapterOrder, bookSlug }: Props) {
       content_type: 'chapter',
       content_name: chapterTitle,
       content_ids: [`${bookSlug}-ch${chapterOrder}`],
-      value: 0.01,
-      currency: 'CNY',
     })
 
     const payload = { content_name: chapterTitle, chapter_order: chapterOrder }
@@ -353,6 +351,8 @@ export function ChapterPixel({ chapterTitle, chapterOrder, bookSlug }: Props) {
   return null
 }
 ```
+
+Do not attach placeholder `value` / `currency` fields to reading events. `ViewContent` has no monetary value by default; invented values pollute value and ROAS reporting. Add them only when the business defines a real value model, and use the site's actual ISO 4217 currency.
 
 Add the sentinel element at the end of the chapter prose (before the recommendation/nav section):
 
@@ -489,6 +489,8 @@ Then add the Pixel script in `<head>` when the campaign goes live:
 ```
 
 The ID in `fbq('init', ...)` and the `noscript` URL must be identical. Do not replace this browser path with a CAPI-only helper.
+
+The snippet above is the default unconditional policy. When the site has an explicitly approved Meta opt-in policy, use the gated loader contract in §4.1.1 instead: no Meta preconnect, script request, `fbq('init')`, event, or `noscript` tracking image before consent. Do not implement the gate as a client wrapper that leaves downstream emitters without a stable initializer.
 
 ### 8.2 OG image — three layers required
 
