@@ -801,6 +801,8 @@ export default function StickyNav({ bookSlug, nextChapter }: Props) {
 
 #### AdSense — `AdsenseSlot.tsx`
 
+The `<ins>` must expose a non-zero responsive width before `adsbygoogle.push({})` runs. Keep `width: '100%'` on the element; an empty `<ins>` inside a flex wrapper can otherwise collapse to `availableWidth=0`, preventing AdSense from selecting a creative size. Reserve at least 250px of height to protect CLS while the request resolves.
+
 ```tsx
 'use client'
 
@@ -858,7 +860,7 @@ export default function AdsenseSlot({ slot, priority = false, className = '' }: 
       <ins
         ref={insRef}
         className="adsbygoogle"
-        style={{ display: 'block' }}
+        style={{ display: 'block', width: '100%', minHeight: 250 }}
         data-ad-client="ca-pub-5417273853283747"
         data-ad-slot={slot}
         data-ad-format="auto"
