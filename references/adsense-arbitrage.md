@@ -346,7 +346,7 @@ export function ChapterPixel({ chapterTitle, chapterOrder, bookSlug }: Props) {
 }
 ```
 
-Do not attach arbitrary `value` / `currency` fields to reading events. `ViewContent` has no monetary value by default, and invented values pollute value and ROAS reporting. When the business intentionally values a chapter open by expected advertising revenue, calculate it as `chapter page RPM / 1000` and use the site's actual ISO 4217 currency. For example, a measured or explicitly assumed `¥10` chapter Page RPM maps to `value: 0.01, currency: 'CNY'`. If no measured Page RPM exists but value reporting is required, `0.01 CNY` is an acceptable temporary baseline only when the assumption is recorded and revisited; otherwise omit both fields.
+Do not attach arbitrary `value` / `currency` fields to reading events. `ViewContent` has no monetary value by default, and invented values pollute value and ROAS reporting. When the business intentionally values a chapter open by expected advertising revenue, calculate it as `chapter page RPM / 1000` and use the site's actual ISO 4217 currency. For example, a measured or explicitly assumed `¥20` chapter Page RPM maps to `value: 0.02, currency: 'CNY'`. If no measured Page RPM exists but value reporting is required, `0.02 CNY` is an acceptable temporary baseline only when the assumption is recorded and revisited; otherwise omit both fields.
 
 Add the sentinel element at the end of the chapter prose (before the recommendation/nav section):
 
