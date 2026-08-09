@@ -179,7 +179,6 @@ Do not set `disableInitialLoad` or gate GPT refresh behind viewport entry. The c
 googletag.cmd.push(() => {
   googletag.setConfig({
     singleRequest: true,
-    collapseDiv: 'ON_NO_FILL',
   });
   googletag.pubads().setForceSafeFrame(true);
   googletag.enableServices();
@@ -265,7 +264,7 @@ import Script from 'next/script'
   {`
     window.googletag = window.googletag || {cmd: []};
     googletag.cmd.push(function() {
-      googletag.setConfig({singleRequest: true, collapseDiv: "ON_NO_FILL"});
+      googletag.setConfig({singleRequest: true});
       googletag.pubads().setForceSafeFrame(true);
       googletag.enableServices();
     });
