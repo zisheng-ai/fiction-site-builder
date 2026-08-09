@@ -317,7 +317,7 @@ Common mistakes:
 
 **Implementation:** all scroll events live in `src/components/ChapterPixel.tsx` — a client component that fires `ViewContent` on mount and uses a single passive scroll listener with `useRef` guards to fire each depth event exactly once per page load.
 
-Reading events have no monetary value by default. Do not send placeholder `value` / `currency` parameters such as `0.01 CNY`; they distort value and ROAS reporting. Add monetary parameters only when the business defines a real value model, using the site's actual ISO 4217 currency.
+Reading events have no monetary value by default. Do not send arbitrary placeholder `value` / `currency` parameters such as `0.02 CNY`; they distort value and ROAS reporting. When the business intentionally values a chapter open by expected ad revenue, set `value` to measured chapter Page RPM / 1000 and use the site's actual ISO 4217 currency. A temporary `0.01 CNY` baseline is acceptable only when its implied `¥10` Page RPM assumption is recorded and scheduled for replacement with measured data; otherwise omit both fields.
 
 ### 7.4 CAPI implementation pattern (Next.js static export)
 

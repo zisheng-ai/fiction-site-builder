@@ -18,7 +18,7 @@ The build can move two of the three levers directly:
 |---|---|---|
 | Facebook CPC in | campaign / creative / targeting | keep landing page approvable (cheap, compliant) — see §1 |
 | **Pageviews per session** | the site | chapter model, pagination, cliffhangers, prefetch — see §2 |
-| **Viewable session RPM** | the site | ad layout, density, viewability, lazy-load, refresh — see §3 |
+| **Viewable session RPM** | the site | ad layout, density, request coverage, viewability, refresh — see §3 |
 
 A site is only profitable when `session RPM × PV/session` clears the CPC. Two below-average levers kill the margin even if the third is great. Treat layout and pageview depth as **revenue engineering**, not decoration.
 
@@ -138,28 +138,24 @@ Map the AGENTS.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via
 | Position | Viewability | Notes |
 |---|---|---|
 | Pre-content (above all text, just below header) | **< 30%** | **Avoid.** Paid-traffic users start scrolling immediately — this unit exits the viewport before the 1-second viewability threshold. Moving this slot into content can double its Active View score. |
-| After `contentParts[0]` (~20% into content) | 70–90% | **First slot.** Reader has invested ~2 min and is still engaged. Pass `priority` to `AdsenseSlot`; AdX uses normal `AdSlot` (singleRequest). |
+| After `contentParts[0]` (~20% into content) | 70–90% | **First slot.** Reader has invested ~2 min and is still engaged. Use the normal immediate-mount slot component for both AdSense and AdX. |
 | In-content, every N paragraphs after the first break | 65–85% | the workhorse — inside the natural reading path |
 | End-of-chapter (after the inline Next/TOC controls) | high | catches the post-navigation pause; keep clear separation so the ad cannot be mistaken for a control (§1.4) |
 | Mobile sticky **nav bar** (bottom, `position: fixed`) | — | Nav-only: TOC + Next buttons. No ads in sticky bar. `StickyNav` component; `<main>` uses `pb-sticky-ad` (`calc(82px + env(safe-area-inset-bottom))`). |
 | Desktop sticky **side-rail** | high | uses empty side space; never a static sidebar (low viewability) |
 
-### 3.1.1 Per-page loading rule (AdSense only)
+### 3.1.1 Per-page loading rule (AdSense and AdX)
 
-**Rule: first ad slot on every page gets `priority`; all others lazy-load by default.**
+**Rule: every configured ad slot requests on component mount. Do not add a custom `IntersectionObserver`, `priority` prop, or viewport-margin lazy branch to either `AdsenseSlot` or `AdSlot`.**
 
-| Page | First slot (priority) | Remaining slots (lazy) |
-|------|-----------------------|------------------------|
-| Home / book list | first `<AdsenseSlot>` after the hero section | all others |
-| Book detail | first `<AdsenseSlot>` above the chapter TOC | all others |
-| Chapter reader | first `<AdsenseSlot>` **after `contentParts[0]`** (not above all content — pre-content viewability is < 30% on paid traffic) | all others |
+This is the current fill-rate / revenue-per-session default: requesting the complete configured inventory gives every eligible slot a chance to match, avoids observer and scroll-timing failure modes, and keeps the implementation simple. It can reduce Active View for later slots, so judge the strategy with **revenue per session, request coverage, fill/match rate, and Active View together** rather than optimizing one metric in isolation.
 
 ```tsx
-<AdsenseSlot slot="..." priority />   {/* immediate — no IntersectionObserver */}
-<AdsenseSlot slot="..." />            {/* lazy — 150px rootMargin trigger */}
+<AdsenseSlot slot="..." />  {/* immediate on mount */}
+<AdsenseSlot slot="..." />  {/* immediate on mount */}
 ```
 
-**AdX sites**: do NOT add lazy loading to `AdSlot`. GPT's `singleRequest` batches all slots in one HTTP call automatically; delaying `display()` breaks impression counting.
+**AdX sites**: keep `googletag.setConfig({ singleRequest: true, collapseDiv: "ON_NO_FILL" })`, but do not overstate what it guarantees. Single Request Architecture batches the slots that have already been defined when the first `display()` call executes. Independently mounted React components that each call `defineSlot()` and `display()` immediately improve request coverage, but they do not guarantee that every page slot joins one network request. If deterministic SRA batching becomes a requirement, centralize slot registration so all slots are defined before the first display; treat that as a separate architecture change.
 
 ### 3.2 Density ceiling (compliance + diminishing returns)
 
@@ -194,8 +190,8 @@ Rule: place the **first** ad after `contentParts[0]` — the first ~20% of parag
 
 Configured five-slot AdX layout: `q4 top → chapter 1 cover lead (chapter 1 only) → chapter title → part[0] → q1 → part[1] → q2 → part[2] → q3 → part[3] → sentinel → chapter nav → q5 bottom`.
 
-AdSense layout (2-part): `part[0] → slot1(priority) → part[1] → slot2`.
-AdSense layout (3-part): `part[0] → slot1(priority) → part[1] → slot2 → part[2]`.
+AdSense layout (2-part): `part[0] → slot1 → part[1] → slot2`.
+AdSense layout (3-part): `part[0] → slot1 → part[1] → slot2 → part[2]`.
 
 Diagnostic signal: if AdX viewability is below 60% and match rate is ≥ 95%, the problem is almost always first-slot placement depth, not fill. Fix the slot position before investigating any other cause.
 
@@ -350,7 +346,7 @@ export function ChapterPixel({ chapterTitle, chapterOrder, bookSlug }: Props) {
 }
 ```
 
-Do not attach placeholder `value` / `currency` fields to reading events. `ViewContent` has no monetary value by default; invented values pollute value and ROAS reporting. Add them only when the business defines a real value model, and use the site's actual ISO 4217 currency.
+Do not attach arbitrary `value` / `currency` fields to reading events. `ViewContent` has no monetary value by default, and invented values pollute value and ROAS reporting. When the business intentionally values a chapter open by expected advertising revenue, calculate it as `chapter page RPM / 1000` and use the site's actual ISO 4217 currency. For example, a measured or explicitly assumed `¥10` chapter Page RPM maps to `value: 0.01, currency: 'CNY'`. If no measured Page RPM exists but value reporting is required, `0.01 CNY` is an acceptable temporary baseline only when the assumption is recorded and revisited; otherwise omit both fields.
 
 Add the sentinel element at the end of the chapter prose (before the recommendation/nav section):
 
@@ -437,8 +433,8 @@ Track and optimize:
 - [ ] Privacy / Terms / About / Contact pages exist and are footer-linked on every route (§5).
 - [ ] Google-certified CMP / cookie consent wired (§1.5).
 - [ ] Every ad slot reserves explicit size (no CLS) (§3.3).
-- [ ] AdSense units lazy-load via `AdsenseSlot` with 150px `rootMargin`; above-fold AdSense unit passes `priority` to load immediately; every slot reserves explicit size (no CLS) (§3.3, §8.6).
-- [ ] Ad components from §8.6 are used unchanged; never revert to mount-time `display()`/`push({})` for all slots.
+- [ ] Every configured AdSense and AdX unit requests on component mount; no ad component contains a custom `IntersectionObserver`, `priority` prop, or viewport-margin lazy branch (§3.1.1, §8.6).
+- [ ] Ad components from §8.6 are used unchanged; every slot reserves explicit width/height before its immediate request (no CLS).
 - [ ] Ad density ≤ 3–4 / 1,000 words and ad-pixels < 30% of content (§1.3, §3.2).
 - [ ] No ad is mistakable for the Next/TOC control; clear gap maintained (§1.4).
 - [ ] Chapter change does a full reload so ads reinit and a fresh pageview counts (§2.1).
@@ -598,7 +594,7 @@ Privacy Policy must explicitly name: the ad network (Google AdSense or Google Ad
 
 #### AdX / GAM — `AdSlot.tsx`
 
-Mount immediately on render — no IntersectionObserver. GPT's `singleRequest` batches all requests in one call automatically.
+Mount immediately on render — no `IntersectionObserver` or `priority` branch. Keep `singleRequest`, but remember that independently mounted components do not guarantee deterministic one-request batching; guaranteed SRA requires defining every slot before the first `display()` call.
 
 ```tsx
 'use client'
@@ -806,7 +802,7 @@ The `<ins>` must expose a non-zero responsive width before `adsbygoogle.push({})
 ```tsx
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect } from 'react'
 
 declare global {
   interface Window {
@@ -816,49 +812,22 @@ declare global {
 
 type Props = {
   slot: string
-  priority?: boolean
   className?: string
 }
 
-export default function AdsenseSlot({ slot, priority = false, className = '' }: Props) {
-  const [shouldLoad, setShouldLoad] = useState(priority)
-  const insRef = useRef<HTMLModElement>(null)
-
-  // Load the ad when it comes within 150px of the viewport.
+export default function AdsenseSlot({ slot, className = '' }: Props) {
   useEffect(() => {
-    if (shouldLoad) return
-    const el = insRef.current
-    if (!el || typeof IntersectionObserver === 'undefined') {
-      setShouldLoad(true)
-      return
-    }
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShouldLoad(true)
-          observer.disconnect()
-        }
-      },
-      { rootMargin: '150px' }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-
-  useEffect(() => {
-    if (!shouldLoad) return
     try {
       window.adsbygoogle = window.adsbygoogle || []
       window.adsbygoogle.push({})
     } catch {
       // blocked by ad blocker
     }
-  }, [shouldLoad, slot])
+  }, [slot])
 
   return (
     <div className={`flex justify-center my-6 overflow-hidden ${className}`}>
       <ins
-        ref={insRef}
         className="adsbygoogle"
         style={{ display: 'block', width: '100%', minHeight: 250 }}
         data-ad-client="ca-pub-5417273853283747"

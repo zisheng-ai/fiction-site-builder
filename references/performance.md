@@ -171,25 +171,22 @@ const AdSlot = React.memo(function AdSlot({ slotId }: { slotId: string }) {
 });
 ```
 
-### GPT deferred loading to protect LCP window
+### GPT request timing for the current fill strategy
 
-Use `disableInitialLoad: true` to defer ad fetching until after LCP:
+Do not set `disableInitialLoad` or gate GPT refresh behind viewport entry. The current revenue default requests every configured slot on component mount so request coverage and fill are not dependent on scroll timing. Keep GPT asynchronous and reserve slot dimensions to control the LCP/CLS cost:
 
 ```javascript
 googletag.cmd.push(() => {
   googletag.setConfig({
     singleRequest: true,
-    disableInitialLoad: true,  // prevents ad fetch during LCP window
+    collapseDiv: 'ON_NO_FILL',
   });
   googletag.pubads().setForceSafeFrame(true);
   googletag.enableServices();
 });
-
-// In AdSlot component — fetch when slot enters viewport
-function fetchAd(slot) {
-  googletag.cmd.push(() => googletag.pubads().refresh([slot]));
-}
 ```
+
+`singleRequest` batches only slots defined before the first `display()` call. Immediate per-component registration improves request coverage but does not guarantee deterministic one-request SRA batching; centralize all slot definitions before the first display only when that architecture is explicitly required.
 
 ---
 
@@ -220,19 +217,9 @@ GPT/AdSense slots render as zero-height divs by default. When the ad creative lo
 
 q5 uses standard display sizes `[[336,280],[300,250],[250,250]]` — same `minWidth: 250, minHeight: 250` reservation as q1–q4. No special CLS handling needed.
 
-### GPT lazy loading with explicit margins
+### Ad request coverage and CLS
 
-Configure lazy loading with explicit viewport margins to prevent late-loading CLS. Fetch the ad early (5 viewports away) so it loads before it becomes visible:
-
-```javascript
-googletag.setConfig({
-  lazyLoad: {
-    fetchMarginPercent: 500,  // fetch when within 5 viewports of viewport edge
-    renderMarginPercent: 200, // render when within 2 viewports
-    mobileScaling: 2.0,       // double margins on mobile (smaller viewport + faster scroll)
-  }
-});
-```
+Do not add GPT `lazyLoad` margins or a component-level `IntersectionObserver` under the current fill strategy. Request every configured slot on mount and reserve its width/min-height before the request. If a later controlled experiment reintroduces lazy loading, evaluate revenue per session, request coverage, fill/match rate, Active View, and CLS together; do not ship it from an isolated Lighthouse result.
 
 ### Font swap CLS
 
@@ -278,7 +265,7 @@ import Script from 'next/script'
   {`
     window.googletag = window.googletag || {cmd: []};
     googletag.cmd.push(function() {
-      googletag.setConfig({singleRequest: true});
+      googletag.setConfig({singleRequest: true, collapseDiv: "ON_NO_FILL"});
       googletag.pubads().setForceSafeFrame(true);
       googletag.enableServices();
     });
