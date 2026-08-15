@@ -131,7 +131,7 @@ Chapter titles that create forward curiosity ("The Night He Came Back", "What th
 
 ## 3. Ad layout, density & viewability — the RPM lever
 
-Map the AGENTS.md inventory (AdX `q1–q5` via `AdSlot`, AdSense slots 1–5 via `AdsenseSlot`) onto these positions. Layout structure matters more than raw ad count — moving a unit to a better slot can double its CPM; adding a 6th+ unit usually cannibalizes the others.
+Map the AGENTS.md inventory (AdX `q1–q5` via `AdSlot`, with chapter readers limited to `q1–q4`; AdSense slots 1–5 via `AdsenseSlot`) onto these positions. Layout structure matters more than raw ad count — moving a unit to a better slot can double its CPM; adding a 6th+ unit usually cannibalizes the others.
 
 ### 3.1 Placement map
 
@@ -162,12 +162,12 @@ This is the current fill-rate / revenue-per-session default: requesting the comp
 - **≤ 3–4 ad units per 1,000 words** of chapter content.
 - **Ad pixels < 30% of content pixels** per screen (FB + AdSense inventory-value).
 - RPM typically peaks around 5 units; beyond that each added unit adds ~2–4% and erodes engagement + page-experience. Cutting the weakest slot often **raises** total RPM.
-- **Configured five-slot AdX layout:** when a site has q1–q5 assigned to chapter inventory, render exactly five unique units on every chapter: q4 at the top, q1/q2/q3 after the first three content quarters, and q5 below chapter navigation. There is no chapter 1 exception.
-- When adding AdX to an existing reader, replace the chapter rendering sequence as one unit. Do not incrementally append q1–q3 after the prose or copy a legacy same-name `AdSlot` component from another site; use the immediate-mount AdX component in §8.6 and implement the complete five-slot sequence in the same change.
-- Never reuse q5 inside a sticky component when it already appears at the bottom of the content flow; duplicate GPT div IDs break slot initialization.
-- If a legacy AdX or AdSense reader has fewer configured chapter units, place its existing final unit below chapter navigation instead of adding an unconfigured slot.
+- **Configured four-slot AdX reader layout:** render exactly four unique units on every chapter: q4 at the top and q1/q2/q3 after the first three content quarters. There is no chapter 1 exception. Do not render q5 in the reader, even if that unit is defined for other site surfaces.
+- When adding AdX to an existing reader, replace the chapter rendering sequence as one unit. Do not incrementally append q1–q3 after the prose or copy a legacy same-name `AdSlot` component from another site; use the immediate-mount AdX component in §8.6 and implement the complete four-slot sequence in the same change.
+- Keep q5 out of reader and sticky components; it is a non-reader placement only. Duplicate GPT div IDs break slot initialization.
+- If a legacy reader has fewer configured chapter units, retain its safe final in-content unit instead of adding an unconfigured slot.
 - This fixed inventory is an explicit site strategy. Keep the density and ad-area checks above visible as an operational warning, especially for chapters below roughly 1,250 words.
-- Avoid a fourth mid-content unit; it sits too close to q5 and adds clutter without meaningful RPM lift.
+- Do not append a fifth AdX unit after chapter navigation; it adds clutter without meaningful RPM lift and increases restriction risk.
 
 ### 3.3 CLS protection (Core Web Vitals = cheaper FB traffic + SEO)
 
@@ -188,7 +188,7 @@ The single biggest viewability lever inside chapter prose is WHERE the first in-
 
 Rule: place the **first** ad after `contentParts[0]` — the first ~20% of paragraphs (min 3, max 5 paragraphs). At this depth the reader has invested ~2 minutes and is still engaged — first-ad viewability should reach 70–90% vs < 30% pre-content.
 
-Configured five-slot AdX layout: `q4 top → chapter 1 cover lead (chapter 1 only) → chapter title → part[0] → q1 → part[1] → q2 → part[2] → q3 → part[3] → sentinel → chapter nav → q5 bottom`.
+Configured four-slot AdX reader layout: `q4 top → chapter 1 cover lead (chapter 1 only) → chapter title → part[0] → q1 → part[1] → q2 → part[2] → q3 → part[3] → sentinel → chapter nav`.
 
 AdSense layout (2-part): `part[0] → slot1 → part[1] → slot2`.
 AdSense layout (3-part): `part[0] → slot1 → part[1] → slot2 → part[2]`.
@@ -444,7 +444,7 @@ Track and optimize:
 - [ ] `og:image` set on all chapter and book detail pages; `metadataBase` set in root layout (§4 impl).
 - [ ] End-of-last-chapter shows cross-book recommendation grid, not a dead-end link (§2.3 impl).
 - [ ] `<link rel="prefetch">` added for next chapter URL on every chapter page (§2.1 impl).
-- [ ] After the production build, inspect generated HTML for Chapter 1, one ordinary chapter, and the final chapter. Each configured GPT div ID must appear exactly once as an element, and their DOM positions must strictly increase in the order q4 → q1 → q2 → q3 → q5. Source inspection alone does not pass this gate.
+- [ ] After the production build, inspect generated HTML for Chapter 1, one ordinary chapter, and the final chapter. Each configured reader GPT div ID must appear exactly once as an element, and their DOM positions must strictly increase in the order q4 → q1 → q2 → q3. Source inspection alone does not pass this gate.
 
 ---
 
@@ -668,14 +668,13 @@ function splitContent(content: string): [string, string, string, string] {
 <div className="prose-reader">{contentParts[3]}</div>
 <div id="chapter-content-end" />
 {/* Render the in-flow TOC / Next chapter controls here. */}
-<AdSlot path="/23294357175/q5" id="div-gpt-ad-1782711618925-0" sizes={[[336,280],[300,250],[250,250]]} />
 ```
 
 #### Fixed navigation bar — `StickyNav.tsx`
 
 Mount outside `<main>` as a sibling before `<div className="min-h-screen">`. The bar is always visible; `<main>` uses `className="pb-sticky-ad"` (CSS utility: `calc(82px + env(safe-area-inset-bottom))`) to prevent content hiding behind it.
 
-All sites use a nav-only bar: TOC + Next buttons, no ads. q5 goes in the content flow below chapter navigation and must never be duplicated in the sticky bar.
+All sites use a nav-only bar: TOC + Next buttons, no ads. Keep q5 out of the reader and sticky bar; it is reserved for non-reader surfaces.
 
 ```tsx
 'use client'

@@ -73,16 +73,15 @@ Render a minimal cover lead only on chapter 1, after the top ad and before the c
 
 Book-detail hero variants that place a `96px` cover beside genres, title, teaser, and CTA must switch to a single column below `360px`. Center the cover above a full-width content block, allow genre chips to wrap, and keep the CTA full width. Never preserve a two-column hero when the remaining text column is narrower than about `200px`.
 
-### Five-slot chapter ad layout
+### Four-slot chapter AdX layout
 
-For an AdX site configured with five chapter units, every chapter uses the same five-slot layout. This removes chapter-specific inventory drift and guarantees that each GPT div ID appears exactly once:
+Every AdX chapter reader uses the same four-slot layout. This removes chapter-specific inventory drift and guarantees that each reader GPT div ID appears exactly once:
 
 - Show the top ad before the chapter 1 cover lead. On later chapters it remains before the chapter title/prose.
 - Split prose into four parts at roughly 25% / 50% / 75%.
 - Render q1 after part 1, q2 after part 2, and q3 after part 3 on every chapter, including chapter 1.
-- Render q5 after chapter navigation so the final ad sits below the TOC/Next button row.
-- The complete order is `q4 top → chapter 1 cover lead (chapter 1 only) → chapter title → prose part 1 → q1 → prose part 2 → q2 → prose part 3 → q3 → prose part 4 → completion sentinel → chapter navigation → q5 bottom`. Do not reuse any unit ID in a sticky component.
-- If a legacy site has fewer than five chapter units, move its existing final unit below chapter navigation; do not invent or duplicate a unit ID merely to match the five-slot example.
+- The complete order is `q4 top → chapter 1 cover lead (chapter 1 only) → chapter title → prose part 1 → q1 → prose part 2 → q2 → prose part 3 → q3 → prose part 4 → completion sentinel → chapter navigation`. Do not reuse any unit ID in a sticky component.
+- Never render q5 in the chapter reader. It remains available only for non-reader surfaces.
 - The first real prose block must still appear quickly after the top ad and chapter 1 identity lead; no login wall, no modal, no interstitial.
 
 ### Reader flow and controls
@@ -119,9 +118,9 @@ The Velvet landing-page fix exposed a recurring layout bug: short pages can show
 - Fails if the chapter 1 cover lead contains metadata or copy other than the book title.
 - Fails if the chapter 1 cover is rendered as a small thumbnail instead of the `220px` mobile / `260px` larger-screen lead image.
 - Fails if a modal, paywall, cookie wall, or interstitial appears before prose.
-- Fails if any chapter renders fewer or more than the configured five unique slots.
-- Fails if the final configured chapter ad appears above the chapter-navigation buttons.
-- Fails if generated production HTML for Chapter 1, an ordinary chapter, and the final chapter does not contain exactly one element for each configured GPT div ID in strict q4 → q1 → q2 → q3 → q5 DOM order.
+- Fails if any chapter renders fewer or more than the configured four unique AdX slots.
+- Fails if q5 appears anywhere in the chapter reader.
+- Fails if generated production HTML for Chapter 1, an ordinary chapter, and the final chapter does not contain exactly one element for each configured reader GPT div ID in strict q4 → q1 → q2 → q3 DOM order.
 - Fails if the next action is a muted text link or smaller than TOC.
 - Fails if the landing chapter uses SPA navigation for next chapter.
 - Fails if chapter 1 shows a normal site nav bar, clickable logo, side menu, back button, TOC, or recommendation grid.
